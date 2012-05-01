@@ -1,11 +1,11 @@
-* Download the latest WP
-* Set-up a development database
-* Install WP locally for this project
-* Dump database
+* DONE Download the latest WP
+* DONE Set-up a development database
+* DONE Install WP locally for this project
+* DONE Dump database
 
-* Download & install Bootstrap theme
+* DONE Download & install Bootstrap theme
 
-* Create custom post types:
+* DONE Create custom post types:
  * Theory
  * Tactic
  * Principle
@@ -15,6 +15,8 @@
 
 * Create advanced custom fields:
  * General (apply to each of the types)
+  * Repeating elements (fields, or groups of fields)
+  * Single-use elements
  * Specific to each type
 * Export the advanced custom fields
 
