@@ -13,18 +13,19 @@
  * Practitioners
  * Contributors
 
-* Create advanced custom fields:
+* DONE Create advanced custom fields:
  * General (apply to each of the types)
   * Repeating elements (fields, or groups of fields)
   * Single-use elements
  * Specific to each type
-* Export the advanced custom fields
-
-* Update theme to output custom field data
+* WAIT Export the advanced custom fields
 
 * Script the creation of:
- * One post for each module
- * One post for each practitioner
- * One post for each contributor
+ * One post for each module (use existing GD code)
+ * One post for each practitioner (will have to be done manually: task for Mara)
+ * One post for each contributor (use contributor CSV)
 
-* 
+* Migrate local WP to Dreamhost
+* Sync database
+
+* Update theme to output custom field data (so that content entering is not blind)
