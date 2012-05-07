@@ -529,27 +529,6 @@ function create_post_type() {
                         'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
 		)
 	);
-	register_post_type( 'bt_contributor',
-		array(
-			'labels' => array(
-				'name' => __( 'Contributors' ),
-                                'singular_name' => __( 'Contributor' ),
-                                'add_new' => _x('Add new', 'Contributor'),
-                                'add_new_item'  => 'Add new Contributor',
-                                'edit_item'  => 'Edit Contributor',
-                                'new_item'  => 'New Contributor',
-                                'view_item'  => 'View Contributor',
-                                'search_items'  => 'Search Contributors',
-                                'not_found'  => 'No Contributors found',
-			),
-			'public' => true,
-			'has_archive' => true,
-			'rewrite' => array('slug' => 'contributor'),
-                        'description' => 'Contributor bios',
-                        'menu_position' => 5,
-                        'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
-		)
-	);
 }
 
 
