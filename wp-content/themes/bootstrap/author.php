@@ -18,8 +18,12 @@
 								echo get_the_author_meta('display_name', $curauth->ID);
 							}
 						?>
-					</h1></div>
-					
+                                        </h1>
+                                            <div id="author-info">
+                                            <?php echo $curauth->description; ?>
+                                            </div>
+                                        </div>
+
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					
 					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
