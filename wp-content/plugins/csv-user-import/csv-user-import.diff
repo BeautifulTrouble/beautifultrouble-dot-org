@@ -1,0 +1,98 @@
+diff --git a/Users/phillipadsmith/Downloads/csv-user-import/csv-user-import.php b/wp-content/plugins/csv-user-import/csv-user-import.php
+index ea2e26f..04265c6 100644
+--- a/Users/phillipadsmith/Downloads/csv-user-import/csv-user-import.php
++++ b/wp-content/plugins/csv-user-import/csv-user-import.php
+@@ -38,7 +38,11 @@ function csvuserimport_page1() {
+ 			foreach ($arr_rows as $row) {
+ 
+ 				// split into values
+-				$arr_values = split(",", $row);
++				// $arr_values = split(",", $row);
++                                
++                                // More intelligent way to split a CSV string into an array of values
++                                // that takes into account commas and quotes in fields.
++                                $arr_values   = str_getcsv( $row, $delimiter=',', $enclosure='"', $escape='\\' );
+ 
+ 				// firstname, lastname, username, password
+ 				$firstname 		= $arr_values[0];
+@@ -47,7 +51,16 @@ function csvuserimport_page1() {
+ 				$password 		= trim($arr_values[3]);
+ 				$user_email 	= trim($arr_values[4]);				
+ 				if (!$user_email) { $username."@donotreply.com"; }
+-				$user_nicename	= sanitize_title($username);
++                                $user_nicename	        = sanitize_title($username);
++                                $description            = $arr_values[5];  // Let's add some user meta information, like a bio
++                                $website                = $arr_values[6];  // Website
++                                $aim                    = $arr_values[7];  // AIM
++                                $jabber                 = $arr_values[8];  // Jabber (WTF uses it?)
++                                $yim                    = $arr_values[9];  // Yahoo IM
++                                $user_fb                = $arr_values[10]; // Facebook
++                                $user_tw                = $arr_values[11]; // Twitter
++                                $google_profile         = $arr_values[12]; // Google Plus
++
+ 
+ 				// add the new user
+ 				$arr_user = array( 	'user_login' => $username,
+@@ -55,7 +68,9 @@ function csvuserimport_page1() {
+ 									'user_email' => $user_email,
+ 									'user_registered' => date( 'Y-m-d H:i:s' ),
+ 									'user_status' => "0",
+-									'display_name' => $username											
++                                                                        'user_url'    => $website,
++                                // This should also be an option on the import screen
++	                       'display_name' => $firstname . ' ' . $lastname											
+ 							 		);
+ 				$wpdb->insert( $wpdb->users, $arr_user );				
+ 				$user_id = $wpdb->insert_id;		
+@@ -67,10 +82,25 @@ function csvuserimport_page1() {
+ 									'rich_editing' => "true",
+ 									'comment_shortcuts' => "false",
+ 									'admin_color' => "fresh",
+-									$wpdb->prefix . 'capabilities' => 'a:1:{s:10:"subscriber";b:1;}',
++                                                                        // Would really be sensible to put the capability options 
++                                                                        // into a hash table and accept a key from the import screen
++                                                                        // Contributor: a:1:{s:11:"contributor";s:1:"1";}
++                                                                        // Subscriber: a:1:{s:10:"subscriber";b:1;}
++                                                                        // Author:  a:1:{s:6:"author";s:1:"1";}
++                                                                        // Editor: a:1:{s:6:"editor";s:1:"1";}
++                                                                        // Admin: a:1:{s:13:"administrator";s:1:"1";}
++									$wpdb->prefix . 'capabilities' => 'a:1:{s:11:"contributor";s:1:"1";}',
+ 									'first_name' => $firstname,
+ 									'last_name' => $lastname,
+-									'default_password_nag' => "1"
++									'default_password_nag' => "1",
++                                                                        // Adding the bio description field
++                                                                        'description' => $description,
++                                                                        'aim'         => $aim,
++                                                                        'jabber'      => $jabber,
++                                                                        'yim'         => $yim,
++                                                                        'user_fb'     => $user_fb,
++                                                                        'user_tw'     => $user_tw,
++                                                                        'google_profile' => $google_profile
+ 									);
+ 
+ 				foreach ($arr_meta_values as $key => $value) {
+@@ -112,12 +142,20 @@ function csvuserimport_page1() {
+ 			<td>lastname,</td>			
+ 			<td>username,</td>
+ 			<td>password (plain text),</td>
+-			<td>email address</td>
++			<td>bio/descripton,</td>
++			<td>website,</td>
++			<td>AIM,</td>
++			<td>jabber,</td>
++			<td>YIM,</td>
++			<td>Facebook,</td>
++			<td>Twitter,</td>
++			<td>Google</td>
+ 		</tr>
+ 	</table>
++        <p>You can find an example <a href="https://gist.github.com/2640242">here</a>.</p>
+ 	
+ 	<p style="color: red">Please make sure you back up your database before proceeding!</p>	
+ </div>
+ <?php
+ }	// end of 'function csvuserimport_page1()'
+-?>
+\ No newline at end of file
++?>

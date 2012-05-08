@@ -37,14 +37,11 @@ function csvuserimport_page1() {
 		if (is_array($arr_rows)) {
 			foreach ($arr_rows as $row) {
 
-				// split into values
-				// $arr_values = split(",", $row);
-                                
-                                // More intelligent way to split a CSV string into an array of values
-                                // that takes into account commas and quotes in fields.
+                                // More effective way to split a CSV string into an array of values
                                 $arr_values   = str_getcsv( $row, $delimiter=',', $enclosure='"', $escape='\\' );
 
-				// firstname, lastname, username, password
+                                // firstname, lastname, username, password, email, description, website, aim, jabber
+                                // yim, facebook, twitter, google
 				$firstname 		= $arr_values[0];
 				$lastname 		= $arr_values[1];
 				$username 		= trim($arr_values[2]);
@@ -69,7 +66,7 @@ function csvuserimport_page1() {
 									'user_registered' => date( 'Y-m-d H:i:s' ),
 									'user_status' => "0",
                                                                         'user_url'    => $website,
-                                // This should also be an option on the import screen
+                                // TODO This should be an option on the import screen
 	                       'display_name' => $firstname . ' ' . $lastname											
 							 		);
 				$wpdb->insert( $wpdb->users, $arr_user );				
@@ -82,7 +79,7 @@ function csvuserimport_page1() {
 									'rich_editing' => "true",
 									'comment_shortcuts' => "false",
 									'admin_color' => "fresh",
-                                                                        // Would really be sensible to put the capability options 
+                                                                        // TODO Would be sensible to put the capability options 
                                                                         // into a hash table and accept a key from the import screen
                                                                         // Contributor: a:1:{s:11:"contributor";s:1:"1";}
                                                                         // Subscriber: a:1:{s:10:"subscriber";b:1;}
@@ -93,7 +90,6 @@ function csvuserimport_page1() {
 									'first_name' => $firstname,
 									'last_name' => $lastname,
 									'default_password_nag' => "1",
-                                                                        // Adding the bio description field
                                                                         'description' => $description,
                                                                         'aim'         => $aim,
                                                                         'jabber'      => $jabber,
