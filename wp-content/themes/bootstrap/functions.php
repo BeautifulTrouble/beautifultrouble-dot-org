@@ -534,5 +534,19 @@ function create_post_type() {
 
 add_action( 'init', 'create_post_type' );
 
+// add custom function to filter hook 'addquicktag_post_types'
+add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
+/**
+ * Return array $post_types with custom post types
+ * 
+ * @param   $post_type Array
+ * @return  $post_type Array
+ */
+function my_addquicktag_post_types( $post_types ) {
+
+    $post_types = array( 'bt_case', 'bt_tactic', 'bt_principle', 'bt_theory', 'bt_practitioner' );
+
+    return $post_types;
+}
 
 ?>

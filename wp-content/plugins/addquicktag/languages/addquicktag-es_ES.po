@@ -1,0 +1,217 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AddQuicktag v1.5.7\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2012-01-09 14:33-0500\n"
+"Last-Translator: Tristan Goethel <tristang@doftcom.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ addquicktag
+#. translators: plugin header field 'Name'
+#: addquicktag.php:0
+msgid "AddQuicktag"
+msgstr "AddQuicktag"
+
+# @ addquicktag
+#. translators: plugin header field 'PluginURI'
+#: addquicktag.php:0
+msgid "http://bueltge.de/wp-addquicktags-de-plugin/120/"
+msgstr "http://bueltge.de/wp-addquicktags-de-plugin/120/"
+
+# @ addquicktag
+#. translators: plugin header field 'Author'
+#: addquicktag.php:0
+msgid "Frank Bültge"
+msgstr "Frank Bültge"
+
+# @ addquicktag
+#. translators: plugin header field 'AuthorURI'
+#: addquicktag.php:0
+msgid "http://bueltge.de"
+msgstr "http://bueltge.de "
+
+#: inc/class-settings.php:110
+#: inc/class-settings.php:127
+#: inc/class-settings.php:145
+#: inc/class-settings.php:153
+msgid "Settings"
+msgstr "Configuración"
+
+# @ addquicktag
+#: inc/class-settings.php:178
+msgid "Add or delete Quicktag buttons"
+msgstr "Agregar o eliminar botones Quicktag"
+
+# @ addquicktag
+#: inc/class-settings.php:209
+msgid "Button Label*"
+msgstr "Etiqueta del botón*"
+
+# @ addquicktag
+#: inc/class-settings.php:210
+msgid "Title Attribute"
+msgstr "Atributo del título"
+
+# @ addquicktag
+#: inc/class-settings.php:211
+msgid "Start Tag(s)*"
+msgstr "Etiqueta(s) de inicio*"
+
+# @ addquicktag
+#: inc/class-settings.php:212
+msgid "End Tag(s)"
+msgstr "Etiqueta(s) de cierre"
+
+# @ addquicktag
+#: inc/class-settings.php:213
+msgid "Access Key"
+msgstr "Clave de acceso"
+
+# @ addquicktag
+#: inc/class-settings.php:273
+msgid "Fill in the fields below to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields."
+msgstr "Rellenar los siguientes campos para agregar o editar las quicktags. Los campos con * son obligatorios. Para eliminar una etiqueta, simplemente vacíe todos los campos."
+
+# @ default
+#: inc/class-settings.php:275
+msgid "Save Changes"
+msgstr "Guardar cambios"
+
+# @ addquicktag
+#: inc/class-settings.php:310
+msgid "Like this plugin?"
+msgstr "¿Le gusta este complemento?"
+
+# @ addquicktag
+#: inc/class-settings.php:312
+msgid "Here's how you can give back:"
+msgstr "Esta es la manera en la que puede devolver:"
+
+# @ addquicktag
+#: inc/class-settings.php:314
+msgid "The Plugin on the WordPress plugin repository"
+msgstr "Complemento en el repositorio de complementos de WordPress"
+
+# @ addquicktag
+#: inc/class-settings.php:314
+msgid "Give the plugin a good rating."
+msgstr "Otorgar una buena calificación al complemento."
+
+# @ addquicktag
+#: inc/class-settings.php:315
+msgid "Donate via PayPal"
+msgstr "Donar a través de PayPal"
+
+# @ addquicktag
+#: inc/class-settings.php:315
+msgid "Donate a few euros."
+msgstr "Donar algunos euros."
+
+# @ addquicktag
+#: inc/class-settings.php:316
+msgid "Frank Bültge's Amazon Wish List"
+msgstr "Lista de deseos de Amazon de Frank Bültge"
+
+# @ addquicktag
+#: inc/class-settings.php:316
+msgid "Get me something from my wish list."
+msgstr "Regálame algo de mi lista de deseos"
+
+# @ addquicktag
+#: inc/class-settings.php:335
+msgid "About this plugin"
+msgstr "Acerca de este complemento"
+
+#: inc/class-settings.php:338
+msgid "Version:"
+msgstr "Versión:"
+
+# @ addquicktag
+#: inc/class-settings.php:342
+msgid "Description:"
+msgstr "Descripción:"
+
+# @ addquicktag
+#: inc/class-settings.php:214
+msgid "Order"
+msgstr "Pedido"
+
+# @ addquicktag
+#: inc/class-settings.php:215
+msgid "Visual"
+msgstr "Visual"
+
+# @ addquicktag
+#. translators: plugin header field 'Description'
+#: addquicktag.php:0
+msgid "Allows you to easily add custom Quicktags to the html- and visual-editor."
+msgstr "Le permite agregar rápidamente Quicktags personalizadas al editor de HTML y visual."
+
+# @ addquicktag
+#. translators: plugin header field 'Version'
+#: addquicktag.php:0
+msgid "2.0.0"
+msgstr "2.0.0"
+
+# @ addquicktag
+#: inc/class-imexport.php:64
+msgid "Export"
+msgstr "Exportar"
+
+# @ addquicktag
+#: inc/class-imexport.php:66
+msgid "When you click the button below the plugin will create an XML file for you to save to your computer."
+msgstr "Al hacer clic en el siguiente botón, el complemento creará un archivo XML para que guarde en su computadora. "
+
+# @ addquicktag
+#: inc/class-imexport.php:67
+msgid "This format, a custom XML, will contain your options from quicktags."
+msgstr "Este formato, un XML personalizado, contendrá sus opciones de las quicktags."
+
+# @ addquicktag
+#: inc/class-imexport.php:68
+msgid "Once you’ve saved the download file, you can use the Import function in another WordPress installation to import this site."
+msgstr "Una vez que haya guardado el archivo de descarga, puede utilizar la función Importar en otra instalación de WordPress para importar este sitio."
+
+# @ addquicktag
+#: inc/class-imexport.php:72
+msgid "Download Export File"
+msgstr "Descargar el Archivo para Exportar"
+
+# @ addquicktag
+#: inc/class-imexport.php:80
+msgid "Import"
+msgstr "Importar"
+
+# @ addquicktag
+#: inc/class-imexport.php:82
+msgid "If you have quicktags from other installs, the plugin can import those into this site. To get started, choose a file to import."
+msgstr "Si tiene quicktags de otras instalaciones, el complemento puede importarlas a este sitio. Para comenzar, seleccione un archivo para importar."
+
+# @ addquicktag
+#: inc/class-imexport.php:87
+msgid "Upload file and import"
+msgstr "Cargar archivo e importar"
+
+# @ secure_wp
+#: inc/class-imexport.php:178
+msgid "Options not update - you don&lsquo;t have the privilidges to do this!"
+msgstr "Opciones no actualizadas. ¡Usted no tiene los privilegios para realizar esta acción!"
+
+# @ addquicktag
+#: inc/class-settings.php:387
+msgid "Options saved."
+msgstr "Opciones guardadas."
+
