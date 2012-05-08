@@ -29,3 +29,12 @@
 * Sync database
 
 * Update theme to output custom field data (so that content entering is not blind)
+ * Custom post pages
+  * Theory
+  * Principle
+  * Tactic
+  * Case Study
+ * Author pages
+    * DONE Author bio
+    * 
+ * Practitioner pages
