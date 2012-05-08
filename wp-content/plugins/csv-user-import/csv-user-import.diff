@@ -1,21 +1,22 @@
 diff --git a/Users/phillipadsmith/Downloads/csv-user-import/csv-user-import.php b/wp-content/plugins/csv-user-import/csv-user-import.php
-index ea2e26f..04265c6 100644
+index ea2e26f..2ef4fa5 100644
 --- a/Users/phillipadsmith/Downloads/csv-user-import/csv-user-import.php
 +++ b/wp-content/plugins/csv-user-import/csv-user-import.php
-@@ -38,7 +38,11 @@ function csvuserimport_page1() {
+@@ -37,17 +37,27 @@ function csvuserimport_page1() {
+ 		if (is_array($arr_rows)) {
  			foreach ($arr_rows as $row) {
  
- 				// split into values
+-				// split into values
 -				$arr_values = split(",", $row);
-+				// $arr_values = split(",", $row);
-+                                
-+                                // More intelligent way to split a CSV string into an array of values
-+                                // that takes into account commas and quotes in fields.
++                                // More effective way to split a CSV string into an array of values
 +                                $arr_values   = str_getcsv( $row, $delimiter=',', $enclosure='"', $escape='\\' );
  
- 				// firstname, lastname, username, password
+-				// firstname, lastname, username, password
++                                // firstname, lastname, username, password, email, description, website, aim, jabber
++                                // yim, facebook, twitter, google
  				$firstname 		= $arr_values[0];
-@@ -47,7 +51,16 @@ function csvuserimport_page1() {
+ 				$lastname 		= $arr_values[1];
+ 				$username 		= trim($arr_values[2]);
  				$password 		= trim($arr_values[3]);
  				$user_email 	= trim($arr_values[4]);				
  				if (!$user_email) { $username."@donotreply.com"; }
@@ -33,23 +34,23 @@ index ea2e26f..04265c6 100644
  
  				// add the new user
  				$arr_user = array( 	'user_login' => $username,
-@@ -55,7 +68,9 @@ function csvuserimport_page1() {
+@@ -55,7 +65,9 @@ function csvuserimport_page1() {
  									'user_email' => $user_email,
  									'user_registered' => date( 'Y-m-d H:i:s' ),
  									'user_status' => "0",
 -									'display_name' => $username											
 +                                                                        'user_url'    => $website,
-+                                // This should also be an option on the import screen
++                                // TODO This should be an option on the import screen
 +	                       'display_name' => $firstname . ' ' . $lastname											
  							 		);
  				$wpdb->insert( $wpdb->users, $arr_user );				
  				$user_id = $wpdb->insert_id;		
-@@ -67,10 +82,25 @@ function csvuserimport_page1() {
+@@ -67,10 +79,24 @@ function csvuserimport_page1() {
  									'rich_editing' => "true",
  									'comment_shortcuts' => "false",
  									'admin_color' => "fresh",
 -									$wpdb->prefix . 'capabilities' => 'a:1:{s:10:"subscriber";b:1;}',
-+                                                                        // Would really be sensible to put the capability options 
++                                                                        // TODO Would be sensible to put the capability options 
 +                                                                        // into a hash table and accept a key from the import screen
 +                                                                        // Contributor: a:1:{s:11:"contributor";s:1:"1";}
 +                                                                        // Subscriber: a:1:{s:10:"subscriber";b:1;}
@@ -61,7 +62,6 @@ index ea2e26f..04265c6 100644
  									'last_name' => $lastname,
 -									'default_password_nag' => "1"
 +									'default_password_nag' => "1",
-+                                                                        // Adding the bio description field
 +                                                                        'description' => $description,
 +                                                                        'aim'         => $aim,
 +                                                                        'jabber'      => $jabber,
@@ -72,7 +72,7 @@ index ea2e26f..04265c6 100644
  									);
  
  				foreach ($arr_meta_values as $key => $value) {
-@@ -112,12 +142,20 @@ function csvuserimport_page1() {
+@@ -112,12 +138,20 @@ function csvuserimport_page1() {
  			<td>lastname,</td>			
  			<td>username,</td>
  			<td>password (plain text),</td>
