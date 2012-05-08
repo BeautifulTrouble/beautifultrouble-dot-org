@@ -1,0 +1,34 @@
+/*
+PullQuote Style Name: Modern
+PullQuote Style URI: http://striderweb.com/nerdaphernalia/features/wp-javascript-pull-quotes/
+Description: A stark, modern style with sans-serif fonts and black and white coloring
+Version: 1.0
+Author: Stephen Rider
+Author URI: http://striderweb.com/
+*/
+
+/*	NOTE: Right-side quotes will get the .pullquote class AND the .pqRight class.
+	Sample Pull-Quote HTML:
+
+<blockquote class="pullquote">
+	<p>Zowie!</p>
+</blockquote>
+*/
+/* NOTE: Styles are also applied from resources/jspullquotes-core.css */
+
+blockquote.pullquote, div.pullquote {
+	font-size: 1.3em;
+	font-weight: bold;
+	text-align: left;
+}
+
+blockquote.pqRight, div.pqRight {
+	text-align: right;
+}
+
+blockquote.pullquote p, div.pullquote p {
+	border: 2px solid #444;
+	border-width: 3px 0;
+	font-family: Arial, Helvetica, sans-serif;
+	padding: .5em 0px;
+}

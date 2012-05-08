@@ -1,0 +1,153 @@
+# Copyright (C) 2007 Graceful Pull-Quotes's copyright holder
+# This file is distributed under the same license as Graceful Pull-Quotes.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Graceful Pull-Quotes 1.6.7\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-03 12:10-0600\n"
+"PO-Revision-Date: 2011-05-03 12:11-0600\n"
+"Last-Translator: Stephen Rider <localizations@striderweb.com>\n"
+"Language-Team: Ben <TRANSLATION@JOHNDOE.BE>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-KeywordsList: p__;p_e\n"
+"X-Poedit-Basepath: /Users/Steve/Dropbox/Documents/WordPress Extend\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: graceful-pull-quotes/trunk\n"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:239
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:346
+msgid "Pull-Quote Settings"
+msgstr "Configuration des Pull-Quotes"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:239
+msgid "Pull-Quotes"
+msgstr "Pull-Quotes"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:352
+msgid "Basic Options"
+msgstr "Options Basiques"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:356
+msgid "Appearance"
+msgstr ""
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:358
+msgid "Only one style is available"
+msgstr "Seulement un modèle est disponible"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:365
+msgid "show a preview of the selected style in a pop-up window"
+msgstr "afficher un aper&ccedil;u du style s&eacute;lectionn&eacute; dans une fen&ecirc;tre pop-up"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:365
+msgid "preview"
+msgstr "aper&ccedil;u"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:366
+msgid "Note: a \"jspullquotes.css\" file in the active Theme directory will override this setting"
+msgstr ""
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:370
+msgid "left"
+msgstr "gauche"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:371
+msgid "right"
+msgstr "droit"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:375
+msgid "Position"
+msgstr ""
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:377
+#, php-format
+msgid "Display quotes on %s side"
+msgstr "Afficher les extraits du c&ocirc;t&eacute; %s"
+
+# NOTE: "alternate" (verb) here means "switch sides back and forth"
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:378
+msgid "Successive quotes on one page alternate sides"
+msgstr "Alterner l'alignement lors d'extraits successifs sur une m&ecirc;me page"
+
+# NOTE: "alternate" (adj.) here means "alternative" or "different"
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:379
+msgid "Use alternate text if available"
+msgstr "Utiliser le texte alternatif si disponible"
+
+# NOTE: Only change this one if you have translated the "alt-text-info" file.  Otherwise, leave it as it is.
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:379
+msgid "en_US"
+msgstr "en_US"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:379
+msgid "how?"
+msgstr "comment?"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:384
+msgid "Advanced Options"
+msgstr "Options Avanc&eacute;es"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:394
+msgid "HTML Container"
+msgstr ""
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:396
+msgid "Type of tag that will contain the pull-quote"
+msgstr "Le type de balise HTML qui contiendra l'extrait"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:399
+msgid "HTML Links"
+msgstr ""
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:400
+msgid "Remove external links from pull-quotes"
+msgstr "Supprimer les liens externe dans les extraits"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:400
+msgid "(recommended)"
+msgstr "(recommand&eacute;)"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:401
+msgid "Remove internal links (href=\"#id\") from pull-quotes"
+msgstr "Supprimer les liens interne (href=\"#id\") dans les extraits"
+
+# This is the title attribute for the "CSS" label.  Do not use "double quotes"
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:404
+msgid "Cascading Style Sheets"
+msgstr ""
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:405
+msgid "Do not link CSS"
+msgstr "Ne pas lier la CSS"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:405
+msgid "Check this if you prefer to manually put your pull-quote styles elsewhere"
+msgstr "Cochez cette case si vous pr&eacute;f&eacute;rez mettre vos styles Pull-Quotes ailleurs"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:407
+msgid "Class selector for default pull-quote"
+msgstr "Selecteur CSS par d&eacute;faut pour l'extrait"
+
+#: graceful-pull-quotes/trunk/graceful-pull-quotes.php:408
+msgid "Class selector for alt-side pull-quote"
+msgstr "Selecteur CSS pour l'extrait positionn&eacute; alternativement"
+
+#~ msgid "Customize Pull-Quotes"
+#~ msgstr "Personnaliser Pull-Quotes"
+
+#~ msgid "Edit the currently active stylesheet"
+#~ msgstr "Editer la feuille de style active"
+
+#~ msgid "Pull-quote style"
+#~ msgstr "Feuille de style des extraits"
+
+#~ msgid "Contain pull-quote in an HTML %s"
+#~ msgstr "Entourer l'extrait dans une balise HTML %s"
+
+#~ msgid "Note: changing any of the following may require you to update your CSS file."
+#~ msgstr "Note: un changement dans les options suivantes peut n&eacute;cessiter une mise &agrave; jour votre fichier CSS"

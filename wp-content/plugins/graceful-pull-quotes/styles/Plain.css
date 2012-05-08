@@ -1,0 +1,17 @@
+/*
+PullQuote Style Name: Plain
+PullQuote Style URI: http://striderweb.com/nerdaphernalia/features/wp-javascript-pull-quotes/
+Description: A very plain style -- nothing beyond the "core" style that is the basis of all other styles
+Version: 1.0
+Author: Stephen Rider
+Author URI: http://striderweb.com/
+*/
+
+/*	NOTE: Right-side quotes will get the .pullquote class AND the .pqRight class.
+	Sample Pull-Quote HTML:
+
+<blockquote class="pullquote">
+	<p>Zowie!</p>
+</blockquote>
+*/
+/* NOTE: Styles are also applied from resources/jspullquotes-core.css */
