@@ -1,0 +1,55 @@
+	.float-a-note {
+		position: absolute;
+		height: auto;
+		background-color: #FFFFc0;
+		border-radius: 20px;
+		-moz-border-radius: 20px;
+		-webkit-border-radius: 20px;
+		-khtml-border-radius: 20px;
+		z-index: 9999;
+		opacity: 0.95;
+		border-color: #cfcfa0 !important;
+		text-align: left;
+	}
+	.float-a-note .note-label {
+		background-color: #DDDDDD; color: black;
+		border-bottom-right-radius: 5px;
+		border-bottom-left-radius: 5px;
+		-moz-border-radius-bottomright: 5px;
+		-moz-border-radius-bottomleft: 5px;
+		-webkit-border-bottom-right-radius: 5px;
+		-webkitborder-bottom-left-radius: 5px;
+		-khtml-border-bottom-right-radius: 5px;
+		-khtml-border-bottom-left-radius: 5px;
+	}
+	.float-a-note .footnote, .float-a-note .note {
+		border: none;
+		background: #ffffc0;
+		color: black;
+		overflow: auto;
+		clear: both;
+		margin: 0;
+		font-size: 10pt;
+
+		/* This is imperfect, but it's an imperfect world. */
+		max-height: inherit;
+	}
+	.float-a-note .note-return { display: none; }
+
+	ol.footnotes {
+		list-style: none;
+		margin: 0px;
+		padding: 0px;
+	}
+	ol.footnotes li {
+		list-style: none;
+		background-color: #eee;
+		margin: 0.5em 5em;
+		padding-top: 20px; padding-bottom: 10px;
+		padding-left: 10px; padding-right: 10px;
+		font-size: 90%;
+		line-height: 100%;
+		border: 1px dotted black;
+	}
+
+

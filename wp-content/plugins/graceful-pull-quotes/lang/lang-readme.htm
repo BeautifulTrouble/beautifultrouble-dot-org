@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>How to use Plugin Localizations</title>
+</head>
+<body><!-- Last Updated 22 July 2008 -->
+<h1>Translating a Plugin</h1>
+
+<p>I, (the developer of this plugin), only speaks English; but I have prepared the way for the plugin to be easily translated into other languages.  This plugin can use translation (or "localization") files from this folder, so that people who have set up WordPress to use a different language will automatically see the plugin interface in their own language.</p>
+
+<p>You can help.</p>
+
+<p>If you speak English and another language, you can help out by creating (or updating) a localization file for that other language.  I will include any translations I receive in the download package, which means that if a translation is available, people will automatically see the plugin interface in their own language.
+
+<h1>How to use a localization file</h1>
+
+<p>This plugin can use translation files ending in <code>.mo</code>.  Each language file is named with a code indicating the language and country.  For example, a file for English as spoken in the USA would be "<code>graceful-pull-quotes-en_US.mo</code>", and for Italian (as spoken in Italy) is "<code>graceful-pull-quotes-it_IT.mo</code>".</p>
+
+<p>You don't need to do anything special to use the plugin translation, but WordPress itself needs to be set up properly for your language.  For more information on doing this, please visit <a href="http://codex.wordpress.org/WordPress_Localization">http://codex.wordpress.org/WordPress_Localization</a>.</p>
+
+<h1>How to submit a translation</h1>
+
+<p>If you would like to submit a translation of this plugin, please take a look at the file <code>graceful-pull-quotes.pot</code>.  That's a template containing all the text that needs to be translated.  Rename it, adding the <code>language_COUNTRY</code> code as described above, and change the extension from "<code>.pot</code>" to "<code>.po</code>".</p>
+
+<p>Now, open up the file in a text editor (<em>not</em> a word processor!).  On Mac OS X, I recommend the free <a href="http://barebones.com/products/textwrangler/index.shtml">TextWrangler</a>; for Windows, you might use <a href="http://notepad-plus.sourceforge.net/">Notepad++</a>.
+
+<p>Editing the file is easy.  Every time you see something like this...</p>
+
+<pre>
+#: graceful-pull-quotes.php:123
+msgid "Basic Options"
+msgstr ""
+</pre>
+
+<p>...just fill in the blanks...</p>
+
+<pre>
+#: graceful-pull-quotes.php:123
+msgid "Basic Options"
+msgstr "Opzioni Di Base"
+</pre>
+
+<p>That's it!  When you're done, please email the .po file to me at  <a href="mailto:localizations@striderweb.com">localizations@striderweb.com</a></p>
+
+<p>Note that at the top of the file, you can give yourself credit by replacing the CAPITALIZED TEXT with your own information.  Also, if you know it, please fill in the language code. (If you don't know the code, just tell me what language it is, and the country, in your email and I'll figure it out.)</p>
+
+<p>If you're feeling ambitious, you might also translate the "alternate text" help file.  Simply open the file at <code>graceful-pull-quotes/resources/help/alt-text-info.en_US.htm</code> in a text editor and translate it.  Rename it to <code>alt-text-info.language_COUNTRY.htm</code>.</p>
+
+<p>Thanks for the help!  I'm sure other people who speak your language will appreciate it.</p>
+</body>
+</html>

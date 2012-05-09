@@ -1,0 +1,33 @@
+/*
+PullQuote Style Name: Comics
+PullQuote Style URI: http://striderweb.com/nerdaphernalia/features/wp-javascript-pull-quotes/
+Description: A hand-written look decorated with large graphical quote marks
+Version: 1.0
+Author: Stephen Rider
+Author URI: http://striderweb.com/
+*/
+
+/*	NOTE: Right-side quotes will get the .pullquote class AND the .pqRight class.
+	Sample Pull-Quote HTML:
+
+<blockquote class="pullquote">
+	<p>Zowie!</p>
+</blockquote>
+*/
+/* NOTE: Styles are also applied from resources/jspullquotes-core.css */
+
+blockquote.pullquote, div.pullquote {
+	background: url(startq.gif) top left no-repeat;
+	width: 12em;
+	text-align: center;
+	font-size: 1.1em;
+	border: none;
+	padding: 0;
+	
+}
+
+blockquote.pullquote p, div.pullquote p {
+	font-family: "Comic Sans MS", "Times New Roman", Times, serif;
+	background: url(endq.gif) bottom right no-repeat;
+	padding: 1.5em 1em;
+}

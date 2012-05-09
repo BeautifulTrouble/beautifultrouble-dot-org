@@ -1,0 +1,30 @@
+/* Default pull-quote style by Stephen Rider */
+
+/*	NOTE: Right-side quotes will get the .pullquote class AND the .pqRight class. 
+	Sample Pull-Quote HTML:
+
+<blockquote class="pullquote">
+	<p>Zowie!</p>
+</blockquote>
+*/
+/* NOTE: Styles are also applied from resources/jspullquotes-core.css */
+
+blockquote.pullquote, div.pullquote {
+	color: #444;
+	text-align: center;
+	font-size: 1.3em;
+	font-style: italic;
+}
+
+blockquote.pullquote em, div.pullquote em, blockquote.pullquote i, div.pullquote i {
+	font-style: normal;
+}
+
+blockquote.pqRight, div.pqRight {
+}
+
+blockquote.pullquote p, div.pullquote p {
+	border: 3px double #ccc;
+	border-width: 3px 0;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
