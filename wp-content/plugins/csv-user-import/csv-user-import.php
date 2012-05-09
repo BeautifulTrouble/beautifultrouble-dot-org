@@ -47,7 +47,9 @@ function csvuserimport_page1() {
 				$username 		= trim($arr_values[2]);
 				$password 		= trim($arr_values[3]);
 				$user_email 	= trim($arr_values[4]);				
-				if (!$user_email) { $username."@donotreply.com"; }
+                                // Fix suggested by MikaelLarsson 
+                                // http://wordpress.org/support/topic/plugin-csv-user-import-small-fix-suggestion
+                                if (!$user_email) { $user_email = $username."@donotreply.com"; }
                                 $user_nicename	        = sanitize_title($username);
                                 $description            = $arr_values[5];  // Let's add some user meta information, like a bio
                                 $website                = $arr_values[6];  // Website
