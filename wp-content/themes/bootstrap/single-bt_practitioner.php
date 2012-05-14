@@ -21,22 +21,52 @@
 						<section class="post_content clearfix" itemprop="articleBody">
 							<?php the_content(); ?>
 
-<h2 id="sources" class="sources">Sources</h2>
-<?php $values = get_field('sources');
-if($values)
-{
-	echo '<ul>';
- 
-	foreach($values as $value)
-	{
-            echo '<li>';
-            echo '<a href="' . $value['link'] . '">' . $value['description'] . '</a>';  
-            echo '</li>';
-	}
- 
-	echo '</ul>';
-}
-?>						
+                                                        <?php $values = get_field('sources');
+                                                        if($values)
+                                                        {
+                                                                echo '<h3 id="sources" class="sources">Sources</h3>';
+                                                                echo '<ul>';
+                                                         
+                                                                foreach($values as $value)
+                                                                {
+                                                                    echo '<li>';
+                                                                    echo '<a href="' . $value['link'] . '">' . $value['description'] . '</a>';  
+                                                                    echo '</li>';
+                                                                }
+                                                         
+                                                                echo '</ul>';
+                                                        }
+                                                        ?>						
+
+
+                                                        <?php $args = array(
+                                                            'numberposts'     => -1,
+                                                            'offset'          => 0,
+                                                            'orderby'         => 'post_date',
+                                                            'order'           => 'DESC',
+                                                            'post_type'       => 'bt_tactic',
+                                                            'post_status'     => 'draft',
+                                                            'meta_query' => array(
+                                                                    array(
+                                                                            'key' => 'related_practitioners',
+                                                                            'value' => $post->ID,
+                                                                    )
+                                                            )
+                                                        );  
+                                                        $posts_array = get_posts( $args );
+                                                        if( $posts_array ) {
+                                                            echo '<h3 id="related-modules" class="related-modules">Related Modules</h3>';
+                                                            echo '<ul>';
+                                                            foreach( $posts_array as $post ) {
+                                                                echo '<li>';
+                                                                echo '<a href="' . $post->guid . '">' . $post->post_title . '</a>';
+                                                                echo '</li>';
+                                                            }
+                                                            echo '</ul>';
+                                                        }
+                                                        ?>
+
+
                                                 <?php wp_link_pages(); ?>
 
 					
