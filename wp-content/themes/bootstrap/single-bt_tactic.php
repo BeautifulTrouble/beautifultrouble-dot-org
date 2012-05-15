@@ -128,11 +128,11 @@
                                         }
                                     } ?> 
                                     <?php 
-                                        $types = array( 'tactics', 'theories', 'case_sudies', 'principles', 'practitioners' );
-                                        foreach( $types as $type ) {
+                                        $types = array( 'tactics' => 'Tactics', 'theories' => 'Theories', 'case_studies' => 'Case Studies', 'principles' => 'Principles', 'practitioners' => 'Practitioners' );
+                                        foreach( array_keys( $types ) as $type ) {
                                         $relateds = get_field("related_$type"); 
                                         if( $relateds ) {
-                                            echo '<strong id="related-' . $type . '">Related ' . $type . '</strong>';
+                                            echo '<strong id="related-' . $type . '">Related ' . $types[ $type ] . '</strong>';
                                             echo '<ul id="' . $type . '">';
                                             foreach( $relateds as $related ) {
                                                echo '<li><a href="'. $related->guid . '" title="' . $related->post_excerpt . '">' . $related->post_title . '</a></li>'; 
