@@ -21,7 +21,7 @@
 					
 						<section class="post_content clearfix" itemprop="articleBody">
                                                         <div id="common-uses" class="alert alert-info">
-                                                            <strong>Common Uses</strong>
+                                                            <strong>In Summary</strong>
                                                             <?php the_excerpt(); ?>
                                                         </div> 
 							<?php the_content(); ?>
