@@ -130,7 +130,7 @@
                                     <?php 
                                         $types = array( 'tactics' => 'Tactics', 'theories' => 'Theories', 'case_studies' => 'Case Studies', 'principles' => 'Principles', 'practitioners' => 'Practitioners' );
                                         foreach( array_keys( $types ) as $type ) {
-                                        $relateds = get_field("related_$type"); 
+                                        $relateds = get_field( "related_$type" ); 
                                         if( $relateds ) {
                                             echo '<strong id="related-' . $type . '">Related ' . $types[ $type ] . '</strong>';
                                             echo '<ul id="' . $type . '">';
