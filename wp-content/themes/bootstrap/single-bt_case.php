@@ -20,11 +20,36 @@
 						</header> <!-- end article header -->
 					
 						<section class="post_content clearfix" itemprop="articleBody">
-                                                        <div id="common-uses" class="alert alert-info">
-                                                            <strong>In Summary</strong>
-                                                            <?php the_excerpt(); ?>
-                                                        </div> 
+                                                        <div id="when-and-where">
+                                                            <div class="when"><strong>When:</strong> <?php echo $fields['when']; ?></div>
+                                                            <div class="where"><strong>Where:</strong> <?php echo $fields['where'] ?></div>
+                                                        </div>
+
 							<?php the_content(); ?>
+
+                                                        <div id="why-it-worked"><strong>Why it worked</strong><p><?php echo $fields['why_it_worked']; ?></p></div>
+                                                        <div id="what-didnt-work"><strong>What didn't work</strong><p><?php echo $fields['what_didnt_work']; ?></p></div>
+
+                                                        <div id="key-tactic">
+                                                        <h4>Key Tactic Used</h4>
+                                                        <?php 
+                                                            $tactic = array_pop( $fields['key_tactic'] );
+                                                            $related = array_pop( $tactic['related_tactic'] );
+                                                            echo '<strong><a href="' . $related->guid . '">' . $related->post_title . "</a></strong> ";
+                                                            echo $tactic['description'];
+                                                        ?>
+                                                        </div>
+
+                                                        <div id="key-tactic">
+                                                        <h4>Key Principle At Work</h4>
+                                                        <?php $principles = $fields['key_principles'];
+                                                            foreach( $principles as $principle ) {
+                                                                $related = array_pop( $principle['principle'] );
+                                                                echo '<p><strong><a href="' . $related->guid . '">' . $related->post_title . "</a></strong> ";
+                                                                echo $principle['description'] . "</p>";
+                                                            }
+                                                        ?>
+                                                        </div>
 
                                                 <?php wp_link_pages(); ?>
 
@@ -147,3 +172,6 @@
 			</div> <!-- end #content -->
 
 <?php get_footer(); ?>
+<pre>
+<?php print_r( $fields['key_tactic'] ); ?>
+</pre>
