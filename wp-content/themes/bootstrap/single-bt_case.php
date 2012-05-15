@@ -172,6 +172,3 @@
 			</div> <!-- end #content -->
 
 <?php get_footer(); ?>
-<pre>
-<?php print_r( $fields['key_tactic'] ); ?>
-</pre>
