@@ -1,6 +1,8 @@
 <?php
 /* Beautiful Trouble customizations */
 
+
+function beautifultrouble_css_loader() {
 wp_enqueue_style('bootstrap', get_template_directory_uri().'/css/bootstrap.css', false ,'1.0', 'all' );
 wp_enqueue_style('docs', get_template_directory_uri().'/css/docs.css', false ,'1.0', 'all' );
 wp_enqueue_style('prettify', get_template_directory_uri().'/css/prettify.css', false ,'1.0', 'all' );
@@ -8,7 +10,8 @@ wp_enqueue_style('responsive', get_template_directory_uri().'/css/bootstrap-resp
 wp_enqueue_style('style', get_template_directory_uri().'/style.css', false ,'1.1', 'all' );
 wp_enqueue_style('bt', get_theme_root_uri().'/beautifultrouble/style.css', false,'0.1', 'all' );
 wp_enqueue_script('scalefix', get_theme_root_uri().'/beautifultrouble/js/scale-fix.js', false,'0.1', true );
-
+}
+add_action('wp_enqueue_scripts', 'beautifultrouble_css_loader');
 
 function bootstrapwp_posted_on() {
 	printf( __( '<span class="sep"> Contributed by </span> <span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span></span>', 'beautifultrouble' ),
