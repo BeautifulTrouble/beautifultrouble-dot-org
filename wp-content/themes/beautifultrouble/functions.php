@@ -7,6 +7,17 @@ wp_enqueue_style('prettify', get_template_directory_uri().'/css/prettify.css', f
 wp_enqueue_style('responsive', get_template_directory_uri().'/css/bootstrap-responsive.css', false, '1.0', 'all' );
 wp_enqueue_style('style', get_template_directory_uri().'/style.css', false ,'1.1', 'all' );
 wp_enqueue_style('bt', get_theme_root_uri().'/beautifultrouble/style.css', false,'0.1', 'all' );
+wp_enqueue_script('scalefix', get_theme_root_uri().'/beautifultrouble/js/scale-fix.js', false,'0.1', true );
+
+
+function bootstrapwp_posted_on() {
+	printf( __( '<span class="sep"> Contributed by </span> <span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span></span>', 'beautifultrouble' ),
+		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+		esc_attr( sprintf( __( 'View all posts by %s', 'bootstrap' ), get_the_author() ) ),
+		esc_html( get_the_author() )
+	);
+}
+
 
 function create_post_type() {
 	register_post_type( 'bt_tactic',
