@@ -1,0 +1,140 @@
+<?php
+/* Beautiful Trouble customizations */
+
+wp_enqueue_style('bootstrap', get_template_directory_uri().'/css/bootstrap.css', false ,'1.0', 'all' );
+wp_enqueue_style('docs', get_template_directory_uri().'/css/docs.css', false ,'1.0', 'all' );
+wp_enqueue_style('prettify', get_template_directory_uri().'/css/prettify.css', false ,'1.0', 'all' );
+wp_enqueue_style('responsive', get_template_directory_uri().'/css/bootstrap-responsive.css', false, '1.0', 'all' );
+wp_enqueue_style('style', get_template_directory_uri().'/style.css', false ,'1.1', 'all' );
+wp_enqueue_style('bt', get_theme_root_uri().'/beautifultrouble/style.css', false,'0.1', 'all' );
+
+function create_post_type() {
+	register_post_type( 'bt_tactic',
+		array(
+			'labels' => array(
+				'name' => __( 'Tactics' ),
+                                'singular_name' => __( 'Tactic' ),
+                                'add_new' => _x('Add new', 'Tactic'),
+                                'add_new_item'  => 'Add new Tactic',
+                                'edit_item'  => 'Edit Tactic',
+                                'new_item'  => 'New Tactic',
+                                'view_item'  => 'View Tactic',
+                                'search_items'  => 'Search Tactics',
+                                'not_found'  => 'No Tactics found',
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'tactic'),
+                        'description' => 'Specific forms of creative action, such as a flash mob or an occupation.',
+                        'menu_position' => 5,
+                        'menu_icon' => '/wp-content/themes/bootstrap/images/bt_menu_tactic.png',
+                        'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
+		)
+	);
+	register_post_type( 'bt_principle',
+		array(
+			'labels' => array(
+				'name' => __( 'Pricicples' ),
+                                'singular_name' => __( 'Principle' ),
+                                'add_new' => _x('Add new', 'Principle'),
+                                'add_new_item'  => 'Add new Principle',
+                                'edit_item'  => 'Edit Principle',
+                                'new_item'  => 'New Principle',
+                                'view_item'  => 'View Principle',
+                                'search_items'  => 'Search Principles',
+                                'not_found'  => 'No Principles found',
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'principle'),
+                        'description' => 'Hard-won insights that can inform creative action design.',
+                        'menu_position' => 5,
+                        'menu_icon' => '/wp-content/themes/bootstrap/images/bt_menu_principle.png',
+                        'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
+		)
+	);
+	register_post_type( 'bt_theory',
+		array(
+			'labels' => array(
+				'name' => __( 'Theories' ),
+                                'singular_name' => __( 'Theory' ),
+                                'add_new' => _x('Add new', 'Theory'),
+                                'add_new_item'  => 'Add new Theory',
+                                'edit_item'  => 'Edit Theory',
+                                'new_item'  => 'New Theory',
+                                'view_item'  => 'View Theory',
+                                'search_items'  => 'Search Theories',
+                                'not_found'  => 'No Theories found',
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'theory'),
+                        'description' => 'Big-picture ideas that help us understand how the world works and how we might go about changing it.',
+                        'menu_position' => 5,
+                        'menu_icon' => '/wp-content/themes/bootstrap/images/bt_menu_theory.png',
+                        'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
+		)
+	);
+	register_post_type( 'bt_case',
+		array(
+			'labels' => array(
+				'name' => __( 'Case Studies' ),
+                                'singular_name' => __( 'Case Study' ),
+                                'add_new' => _x('Add new', 'Case Study'),
+                                'add_new_item'  => 'Add new Case Study',
+                                'edit_item'  => 'Edit Case Study',
+                                'new_item'  => 'New Case Study',
+                                'view_item'  => 'View Case Study',
+                                'search_items'  => 'Search Case Studies',
+                                'not_found'  => 'No Case Studies found',
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'case'),
+                        'description' => 'Capsule stories of successful creative actions, useful for illustrating how tactics, principles and theories can be successfully applied.',
+                        'menu_position' => 5,
+                        'menu_icon' => '/wp-content/themes/bootstrap/images/bt_menu_case.png',
+                        'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
+		)
+	);
+	register_post_type( 'bt_practitioner',
+		array(
+			'labels' => array(
+				'name' => __( 'Practitioners' ),
+                                'singular_name' => __( 'Practitioner' ),
+                                'add_new' => _x('Add new', 'Practitioner'),
+                                'add_new_item'  => 'Add new Practitioner',
+                                'edit_item'  => 'Edit Practitioner',
+                                'new_item'  => 'New Practitioner',
+                                'view_item'  => 'View Practitioner',
+                                'search_items'  => 'Search Practitioners',
+                                'not_found'  => 'No Practitioners found',
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'practitioner'),
+                        'description' => 'Brief write-ups of some of the people and groups that inspire us to be better changemakers.',
+                        'menu_position' => 5,
+                        'menu_icon' => '/wp-content/themes/bootstrap/images/bt_menu_practitioner.png',
+                        'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
+		)
+	);
+}
+
+
+add_action( 'init', 'create_post_type' );
+
+// add custom function to filter hook 'addquicktag_post_types'
+add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
+/**
+ * Return array $post_types with custom post types
+ * 
+ * @param   $post_type Array
+ * @return  $post_type Array
+ */
+function my_addquicktag_post_types( $post_types ) {
+
+    $post_types = array( 'bt_case', 'bt_tactic', 'bt_principle', 'bt_theory' );
+
+    return $post_types;
+}

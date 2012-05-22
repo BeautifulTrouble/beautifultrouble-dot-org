@@ -1,0 +1,11 @@
+/*
+Theme Name: Beautiful Trouble 
+Theme URI: http://beautifultrouble.org
+Author: Phillip Smith
+Author URI: http://www.phillipadsmith.com
+Description: A child theme of Bootstap-WP for the Beautiful Trouble site
+Version: .01
+Template: bootstrapwp
+*/
+
+html body.home div.container header.jumbotron div.inner h1 { color: blue; }
