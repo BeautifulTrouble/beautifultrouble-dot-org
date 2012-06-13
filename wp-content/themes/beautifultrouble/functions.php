@@ -133,6 +133,72 @@ function create_post_type() {
                         'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
 		)
 	);
+	register_post_type( 'bt_partner',
+		array(
+			'labels' => array(
+				'name' => __( 'Partners' ),
+                                'singular_name' => __( 'Partner' ),
+                                'add_new' => _x('Add new', 'Partner'),
+                                'add_new_item'  => 'Add new Partner',
+                                'edit_item'  => 'Edit Partner',
+                                'new_item'  => 'New Partner',
+                                'view_item'  => 'View Partner',
+                                'search_items'  => 'Search Partners',
+                                'not_found'  => 'No Partners found',
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'partner'),
+                        'description' => 'Brief write-ups of some of the people and groups that helped make this project possible.',
+                        'menu_position' => 5,
+                        'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_partner.png',
+                        'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'revisions' ),
+		)
+	);
+	register_post_type( 'bt_event',
+		array(
+			'labels' => array(
+				'name' => __( 'Events' ),
+                                'singular_name' => __( 'Event' ),
+                                'add_new' => _x('Add new', 'Event'),
+                                'add_new_item'  => 'Add new Event',
+                                'edit_item'  => 'Edit Event',
+                                'new_item'  => 'New Event',
+                                'view_item'  => 'View Event',
+                                'search_items'  => 'Search Events',
+                                'not_found'  => 'No Events found',
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'event'),
+                        'description' => 'Events that you want to know about.',
+                        'menu_position' => 5,
+                        'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_event.png',
+                        'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
+		)
+	);
+	register_post_type( 'bt_review',
+		array(
+			'labels' => array(
+				'name' => __( 'Reviews' ),
+                                'singular_name' => __( 'Review' ),
+                                'add_new' => _x('Add new', 'Review'),
+                                'add_new_item'  => 'Add new Review',
+                                'edit_item'  => 'Edit Review',
+                                'new_item'  => 'New Review',
+                                'view_item'  => 'View Review',
+                                'search_items'  => 'Search Reviews',
+                                'not_found'  => 'No Reviews found',
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'review'),
+                        'description' => 'Reviews of the Beautiful Trouble project',
+                        'menu_position' => 5,
+                        'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_review.png',
+                        'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'revisions' ),
+		)
+	);
 }
 
 
