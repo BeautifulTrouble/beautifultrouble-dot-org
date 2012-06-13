@@ -41,7 +41,7 @@ function create_post_type() {
 			'rewrite' => array('slug' => 'tactic'),
                         'description' => 'Specific forms of creative action, such as a flash mob or an occupation.',
                         'menu_position' => 5,
-                        'menu_icon' => '/wp-content/themes/bootstrap/images/bt_menu_tactic.png',
+                        'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_tactic.png',
                         'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
 		)
 	);
@@ -63,7 +63,7 @@ function create_post_type() {
 			'rewrite' => array('slug' => 'principle'),
                         'description' => 'Hard-won insights that can inform creative action design.',
                         'menu_position' => 5,
-                        'menu_icon' => '/wp-content/themes/bootstrap/images/bt_menu_principle.png',
+                        'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_principle.png',
                         'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
 		)
 	);
@@ -85,7 +85,7 @@ function create_post_type() {
 			'rewrite' => array('slug' => 'theory'),
                         'description' => 'Big-picture ideas that help us understand how the world works and how we might go about changing it.',
                         'menu_position' => 5,
-                        'menu_icon' => '/wp-content/themes/bootstrap/images/bt_menu_theory.png',
+                        'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_theory.png',
                         'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
 		)
 	);
@@ -107,7 +107,7 @@ function create_post_type() {
 			'rewrite' => array('slug' => 'case'),
                         'description' => 'Capsule stories of successful creative actions, useful for illustrating how tactics, principles and theories can be successfully applied.',
                         'menu_position' => 5,
-                        'menu_icon' => '/wp-content/themes/bootstrap/images/bt_menu_case.png',
+                        'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_case.png',
                         'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
 		)
 	);
@@ -129,7 +129,7 @@ function create_post_type() {
 			'rewrite' => array('slug' => 'practitioner'),
                         'description' => 'Brief write-ups of some of the people and groups that inspire us to be better changemakers.',
                         'menu_position' => 5,
-                        'menu_icon' => '/wp-content/themes/bootstrap/images/bt_menu_practitioner.png',
+                        'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_practitioner.png',
                         'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
 		)
 	);
