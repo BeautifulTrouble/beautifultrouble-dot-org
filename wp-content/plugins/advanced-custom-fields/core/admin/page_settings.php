@@ -47,7 +47,6 @@ if($action == ""):
 			</tr>
 		</thead>
 		<tbody>
-			<!-- Repeater Field -->
 			<tr>
 				<td><?php _e("Repeater Field",'acf'); ?></td>
 				<td><?php echo $this->is_field_unlocked('repeater') ? __("Active",'acf') : __("Inactive",'acf'); ?></td>
@@ -67,7 +66,6 @@ if($action == ""):
 					</form>
 				</td>
 			</tr>
-			<!-- Flexible Field -->
 			<tr>
 				<td><?php _e("Flexible Content Field",'acf'); ?></td>
 				<td><?php echo $this->is_field_unlocked('flexible_content') ? __("Active",'acf') : __("Inactive",'acf'); ?></td>
@@ -87,7 +85,6 @@ if($action == ""):
 					</form>
 				</td>
 			</tr>
-			<!-- Options Page -->
 			<tr>
 				<td><?php _e("Options Page",'acf'); ?></td>
 				<td><?php echo $this->is_field_unlocked('options_page') ? __("Active",'acf') : __("Inactive",'acf'); ?></td>
@@ -301,7 +298,7 @@ elseif($action == "export_php"):
  */",'acf'); ?>
  
 // if(!get_option('acf_repeater_ac')) update_option('acf_repeater_ac', "xxxx-xxxx-xxxx-xxxx");
-// if(!get_option('acf_options_ac')) update_option('acf_options_ac', "xxxx-xxxx-xxxx-xxxx");
+// if(!get_option('acf_options_page_ac')) update_option('acf_options_page_ac', "xxxx-xxxx-xxxx-xxxx");
 // if(!get_option('acf_flexible_content_ac')) update_option('acf_flexible_content_ac', "xxxx-xxxx-xxxx-xxxx");
 
 
@@ -327,9 +324,11 @@ if(function_exists("register_field_group"))
 				);
 				
 ?>register_field_group(<?php var_export($var); ?>);
-}
 <?php
 			}
+?>
+}
+<?php
 		}
 		else
 		{

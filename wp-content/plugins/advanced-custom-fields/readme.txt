@@ -85,6 +85,72 @@ http://www.advancedcustomfields.com/support/
 
 == Changelog ==
 
+= 3.2.5 =
+* [IMPORTANT] Change field group option "Show on page" to "Hide on Screen" to allow for future proof adding new elements to list. Previously exported and registered field groups via PHP will still work as expected! This change will prompt you for a database upgrade.
+* [Added] Add in edit button to upload image / file thickbox
+* [Improved] Changed loading default values. Now behaves as expected!
+* [Fixed] Test / Fix full screen mode dissapearing from editor - http://www.advancedcustomfields.com/support/discussion/2124/full-screen-button-for-zen-mode-is-gone
+* [Fixed] get_field returning false for 0 - http://advancedcustomfields.com/support/discussion/2115/get_field-returns-false-if-field-has-value-0
+* [Improved] Improve relationship sortable code with item param - http://www.advancedcustomfields.com/support/discussion/comment/3536#Comment_3536
+* [Fixed] IE category js bug - http://www.advancedcustomfields.com/support/discussion/2127/ie-78-category-checkbox-bug
+* [Fixed] Flexible content field row css bug - http://www.advancedcustomfields.com/support/discussion/2126/space-between-fields-is-a-little-tight-in-3.2.33.2.4
+* [Fixed] Repeater row limit in flexible field bug - http://www.advancedcustomfields.com/support/discussion/1635/repeater-with-row-limit-of-1-inside-flexible-field-no-rows-show
+* [Fixed] Fix update message - appears on first activation
+* [Fixed] Fix options page sidebar drag area - no border needed
+* [Fixed] Fix export options page activation - http://www.advancedcustomfields.com/support/discussion/2112/options-page-not-working-in-functions.php
+
+= 3.2.4 =
+* [Fixed] Remove translation from validation class - http://www.advancedcustomfields.com/support/discussion/2110/custom-validation-broken-in-other-languages
+* [Fixed] Test fix WYSIWYG insert media issues
+* [Added] Add Excerpt to the field group "show on page" options
+
+= 3.2.3 =
+* [Fixed] Include Wysiwyg scripts / styles through the editor class
+* [Fixed] Wysiwyg in repeater not working
+* [Fixed] Remove Swedish translation until string / js bugs are fixed
+* [Fixed] Checkbox  array value issue: http://wordpress.org/support/topic/plugin-advanced-custom-fields-php-warning-in-corefieldscheckboxphp?replies=6
+* [Added] Add inherit to relationship posts query - http://www.advancedcustomfields.com/support/discussion/comment/3826#Comment_3826
+* [Fixed] Relationship shows deleted posts - http://www.advancedcustomfields.com/support/discussion/2080/strange-behavior-of-relationship-field-trash-posts
+* [Fixed] Wysiwyg editor not working on taxonomy edit page 
+
+= 3.2.2 =
+* [Fixed] Fix layout bug: Nested repeaters of different layouts
+* [Fixed] Fix strip slashes bug
+* [Fixed] Fix nested repeater bug - http://www.advancedcustomfields.com/support/discussion/2068/latest-update-broken-editing-environment-
+* [Fixed] Test / Fix add multiple images to repeater
+
+= 3.2.1 =
+* Field groups can now be added to options page with layout "side"
+* Fixed debug error when saving a taxonomy:
+* Fixed unnecessary code: Remove Strip Slashes on save functions
+* Added new add row buttons to the repeater field and upgraded the css / js
+* Fixed debug error caused by the WYSIWYG field: wp_tiny_mce is deprecated since version 3.3! Use wp_editor() instead.
+* Fixed duplicate field error where all sub fields became repeater fields.
+* Add Swedish translation: http://advancedcustomfields.com/support/discussion/1993/swedish-translation
+* CSS improvements
+* Fixed IE9 Bug not returning an image preview on upload / select
+* Fixed Multi export php syntax bug.
+
+= 3.2.0 =
+* Fixed Browser bug with Flexible Field: Add Row button works again
+* Added Brazilian Translation. Thanks to Marcelo Paoli Graciano - www.paolidesign.com.br
+* Reverted input CSS to separate field label / instructions onto new lines.
+
+= 3.1.9 =
+* Updated Images / JS - Please hard refresh your browser to clear your cache
+* Remove caching from acf_field_groups, replace with temp cache
+* Add "Duplicate Field" on field group edit page
+* Fix link to documentation on field group edit page
+* add "update_value" to API
+* Include new Polish translation
+* Create a nicer style for flexible content
+* Create a nicer style for repeater fields with row layout
+* Create a nicer style for "no metabox" fields
+* Add Spanish translation. Thanks to @hectorgarrofe
+* Fix css for options page no metabox
+* Added custom post_updated_messages
+* Changed "Drag and drop to reorder" from an image to a string for translation
+
 = 3.1.8 =
 * Options page fields now save their data in the wp_options table. This will require a "Database Upgrade" when you update ACF. This upgrade will move your Options page data from the postmeta table to the options table.
 * Added _e() and __() functions to more text throughout plugin

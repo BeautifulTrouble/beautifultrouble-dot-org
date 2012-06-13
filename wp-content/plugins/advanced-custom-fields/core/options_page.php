@@ -134,10 +134,6 @@ class Options_page
 		if(isset($_POST['update_options']))
 		{
 			
-			// strip slashes
-			$_POST = array_map('stripslashes_deep', $_POST);
-			
-			
 			// options name to save against
 			$option_name = 'options';
 			
@@ -174,7 +170,7 @@ class Options_page
 		// Style
 		echo '<link rel="stylesheet" type="text/css" href="'.$this->parent->dir.'/css/global.css?ver=' . $this->parent->version . '" />';
 		echo '<link rel="stylesheet" type="text/css" href="'.$this->parent->dir.'/css/input.css?ver=' . $this->parent->version . '" />';
-
+		echo '<style type="text/css">#side-sortables.empty-container { border: 0 none; }</style>';
 
 		// Javascript
 		echo '<script type="text/javascript" src="'.$this->parent->dir.'/js/input-actions.js?ver=' . $this->parent->version . '" ></script>';
@@ -289,6 +285,8 @@ class Options_page
 							<input type="submit" class="acf-button" value="Save Options" name="update_options" />
 						</div>
 					</div>
+					
+					<?php $meta_boxes = do_meta_boxes('acf_options_page', 'side', null); ?>
 					
 				</div>
 					
