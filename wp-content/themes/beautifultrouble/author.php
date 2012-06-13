@@ -2,14 +2,15 @@
 /**
  * The template for displaying Author Archive pages.
  *
- * @package WordPress
- * @subpackage WP-Bootstrap
- * @since WP-Bootstrap 0.1
  */
 
 get_header(); ?>
 
-<?php if ( have_posts() ) : ?>
+<?php 
+global $query_string;
+$posts = query_posts( $query_string . '&post_type=any' );
+
+if ( have_posts() ) : ?>
 
 	<?php
 	/* Queue the first post, that way we know
@@ -22,7 +23,7 @@ get_header(); ?>
 	?>
 	<div class="row">
 		<div class="container">
-			<?php if (function_exists('bootstrapwp_breadcrumbs')) bootstrapwp_breadcrumbs(); ?>
+                <ul class="breadcrumb"><li><a href="/">Home</a></li> <span class="divider">/</span> <li class="active"><?php echo get_the_author() ?></li></ul>		
 		</div><!--/.container -->
 	</div><!--/.row -->
 	<div class="container">
@@ -58,6 +59,10 @@ get_header(); ?>
 								<?php endwhile; ?>
 							<?php endif; ?>
 						</div><!-- /.span8 -->
-						<?php get_sidebar('blog'); ?>
+
+    <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
+    </div>
+
+</div><!-- /.row .content -->
 
 						<?php get_footer(); ?>
