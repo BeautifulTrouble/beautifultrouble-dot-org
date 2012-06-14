@@ -1,5 +1,14 @@
 CHANGES.md
 
+
+June 14, 2012
+- Hotfix_0.3
+ - Added missing templates
+- Theme_Changes_0.4
+ - Updates to the custom post templates to fix layout issues, etc.
+- Theme_Changes_0.5
+ - Fix for showing Key Theory, Tactic, Principle in Case Study and Theory
+
 June 13, 2012
 - feature/Theme_Changes_0.3
 - Added templates for theory, case study, and principle

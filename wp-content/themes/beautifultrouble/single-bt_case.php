@@ -73,7 +73,6 @@ get_header(); ?>
 
         <div id="why-it-worked"><strong>Why it worked</strong><p><?php echo $fields['why_it_worked']; ?></p></div>
         <div id="what-didnt-work"><strong>What didn't work</strong><p><?php echo $fields['what_didnt_work']; ?></p></div>
-        TEST
 
         <?php if( $fields['key_tactic'] ) {
             echo '<div id="key-tactic" class="alert alert-success">';
