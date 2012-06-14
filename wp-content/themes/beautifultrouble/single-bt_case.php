@@ -60,7 +60,7 @@ get_header(); ?>
         }
         ?>
         <div id="in-summary" class="alert alert-info">
-            <strong>In Summary</strong>
+            <strong>In Sum</strong>
             <?php the_excerpt(); ?>
         </div> 
 

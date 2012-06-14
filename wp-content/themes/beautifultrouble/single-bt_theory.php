@@ -59,18 +59,13 @@ get_header(); ?>
                 }
                 ?>
                 <div id="in-summary" class="alert alert-info">
-                    <strong>In Summary</strong>
+                    <strong>In Sum</strong>
                     <?php the_excerpt(); ?>
                 </div> 
                 <div id="origins">
                     <strong class="origins">Origins:</strong> <?php echo $fields['origins']; ?>
                 </div>
             <?php the_content();?>
-            <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
-<?php endwhile; // end of the loop. ?>
-
-        </div><!-- /.span8 -->
-        <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
             <?php if( $fields['key_principle_at_work'] ) {
                 echo '<div id="key-principle" class="alert alert-success">';
                 echo '<strong id="key-principle">Key Principle at work</strong><br />';
@@ -92,6 +87,11 @@ get_header(); ?>
                 echo '<p class="pitfalls">' . $fields['potential_pitfalls'] . '</p>';
                 echo '</div>';
             } ?>
+            <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
+<?php endwhile; // end of the loop. ?>
+
+        </div><!-- /.span8 -->
+        <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
             <?php if( $fields['repeating_elements'] ) {
                 if( $further_insights ) {
                 // Further Insights
