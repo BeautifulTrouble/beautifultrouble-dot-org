@@ -218,3 +218,6 @@ function my_addquicktag_post_types( $post_types ) {
 
     return $post_types;
 }
+add_image_size( 'bt-featured', 770, 0, false );
+add_image_size( 'bt-thumb-600', 600, 300, false );
+add_image_size( 'bt-thumb-300', 300, 100, true );

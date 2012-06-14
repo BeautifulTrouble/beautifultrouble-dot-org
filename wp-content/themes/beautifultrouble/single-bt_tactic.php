@@ -43,89 +43,86 @@ get_header(); ?>
       </header>
          
         <div class="row content">
-<div class="span8">
-   <p class="meta"><?php echo bootstrapwp_posted_on();?></p>
-<?php if( $epigraphs ) {
-    // Epigraphs
-        foreach( $epigraphs as $item ) {
-            echo '<blockquote><p class="quote">';
-            echo $item['quote'];
-            echo '</p>';
-            echo '<small class="attribution">';
-            echo $item['attribution'];
-            echo '</small>';
-            echo '</blockquote>';
-        }
-}
-?>
-   <div id="common-uses" class="alert alert-info">
-       <strong>Common Uses</strong>
-       <?php the_excerpt(); ?>
-   </div> 
-            <?php the_content();?>
-
-
-            <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
-<?php endwhile; // end of the loop. ?>
-
-
-          </div><!-- /.span8 -->
-    <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
-        <?php if( $fields['key_principle_at_work'] ) {
-            echo '<div id="key-principle" class="alert alert-success">';
-            echo '<strong id="key-principle">Key Principle at work</strong><br />';
-            // Key Principle At Work
-            $principles = $fields['key_principle_at_work'];
-            foreach( $principles as $principle ) {
-                $related = array_pop( $principle['related_principle'] );
-                echo '<p class="principle"><b><a href="' . $related->guid . '">' . $related->post_title . '</a></b><br />';
-                echo $principle['explanation'];
-                echo '</p>';
+            <div class="span8">
+            <?php the_post_thumbnail('bt-featured' ); ?>
+            <?php // TODO move this into functions.php with an override to bootstrapwp_posted_on ?>
+            <p class="meta">Contributed by <?php if( function_exists('coauthors_posts_links') ) coauthors_posts_links(); else the_author_posts_link(); ?></p>
+            <?php if( $epigraphs ) {
+                // Epigraphs
+                    foreach( $epigraphs as $item ) {
+                        echo '<blockquote><p class="quote">';
+                        echo $item['quote'];
+                        echo '</p>';
+                        echo '<small class="attribution">';
+                        echo $item['attribution'];
+                        echo '</small>';
+                        echo '</blockquote>';
+                    }
             }
-            echo '</div>';
-        }
-        ?>
-        <?php if( $fields['potential_pitfalls'] ) {
-            // Potential Pitfalls
-            echo '<div class="alert">';
-            echo '<strong id="potential-pitfalls">Potential Pitfalls</strong>';
-            echo '<p class="pitfalls">' . $fields['potential_pitfalls'] . '</p>';
-            echo '</div>';
-        } ?>
-<?php if( $further_insights ) {
-    // Further Insights
-    echo '<strong id="further-insights">Further Insights</strong>';
-    echo '<ul>';
-    foreach( $further_insights as $item ) {
-        if( $item['link'] ) {
-         echo '<li><a href="' . $item['link'] . '">'. $item['insight'] . '</a></li>';
-         } else { echo '<li>' . $item['insight'] . '</li>' ; }
-    }
-    echo '</ul>';
-}
-?>
-        <?php 
-            $types = array( 'tactics' => 'Tactics', 'theories' => 'Theories', 'case_studies' => 'Case Studies', 'principles' => 'Principles', 'practitioners' => 'Practitioners' );
-            foreach( array_keys( $types ) as $type ) {
-            $relateds = get_field( "related_$type" ); 
-            if( $relateds ) {
-                echo '<strong id="related-' . $type . '">Related ' . $types[ $type ] . '</strong>';
-                echo '<ul id="' . $type . '">';
-                foreach( $relateds as $related ) {
-                   echo '<li><a href="'. $related->guid . '" title="' . $related->post_excerpt . '">' . $related->post_title . '</a></li>'; 
+            ?>
+               <div id="common-uses" class="alert alert-info">
+                   <strong>Common Uses</strong>
+                   <?php the_excerpt(); ?>
+               </div> 
+                        <?php the_content();?>
+                        <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
+            <?php endwhile; // end of the loop. ?>
+        </div><!-- /.span8 -->
+        <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
+            <?php if( $fields['key_principle_at_work'] ) {
+                echo '<div id="key-principle" class="alert alert-success">';
+                echo '<strong id="key-principle">Key Principle at work</strong><br />';
+                // Key Principle At Work
+                $principles = $fields['key_principle_at_work'];
+                foreach( $principles as $principle ) {
+                    $related = array_pop( $principle['related_principle'] );
+                    echo '<p class="principle"><b><a href="' . $related->guid . '">' . $related->post_title . '</a></b><br />';
+                    echo $principle['explanation'];
+                    echo '</p>';
+                }
+                echo '</div>';
+            }
+            ?>
+            <?php if( $fields['potential_pitfalls'] ) {
+                // Potential Pitfalls
+                echo '<div class="alert">';
+                echo '<strong id="potential-pitfalls">Potential Pitfalls</strong>';
+                echo '<p class="pitfalls">' . $fields['potential_pitfalls'] . '</p>';
+                echo '</div>';
+            } ?>
+            <?php if( $further_insights ) {
+                // Further Insights
+                echo '<strong id="further-insights">Further Insights</strong>';
+                echo '<ul>';
+                foreach( $further_insights as $item ) {
+                    if( $item['link'] ) {
+                     echo '<li><a href="' . $item['link'] . '">'. $item['insight'] . '</a></li>';
+                     } else { echo '<li>' . $item['insight'] . '</li>' ; }
                 }
                 echo '</ul>';
             }
-            }
-        ?>
-   </div>
-</div><!-- /.row .content -->
-
-<hr />
-<div class="row">
-    <div class="span8">
-<?php bootstrapwp_content_nav('nav-below');?>
-<?php comments_template(); ?>
-    </div>
-</div>
+            ?>
+            <?php 
+                $types = array( 'tactics' => 'Tactics', 'theories' => 'Theories', 'case_studies' => 'Case Studies', 'principles' => 'Principles', 'practitioners' => 'Practitioners' );
+                foreach( array_keys( $types ) as $type ) {
+                $relateds = get_field( "related_$type" ); 
+                if( $relateds ) {
+                    echo '<strong id="related-' . $type . '">Related ' . $types[ $type ] . '</strong>';
+                    echo '<ul id="' . $type . '">';
+                    foreach( $relateds as $related ) {
+                       echo '<li><a href="'. $related->guid . '" title="' . $related->post_excerpt . '">' . $related->post_title . '</a></li>'; 
+                    }
+                    echo '</ul>';
+                }
+                }
+            ?>
+       </div>
+    </div><!-- /.row .content -->
+    <hr />
+    <div class="row">
+        <div class="span8">
+    <?php bootstrapwp_content_nav('nav-below');?>
+    <?php comments_template(); ?>
+        </div>
+    </div> <!-- /.row -->
 <?php get_footer(); ?>

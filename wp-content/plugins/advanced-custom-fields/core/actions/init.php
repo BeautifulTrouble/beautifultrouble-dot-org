@@ -14,9 +14,10 @@ $this->setup_fields();
  */
  
 $version = get_option('acf_version', false);
-if($version)
+
+if( $version )
 {
-	if(version_compare($version,$this->upgrade_version) < 0)
+	if( $version < $this->upgrade_version )
 	{
 		$this->admin_message('<p>' . __("Advanced Custom Fields",'acf') . 'v' . $this->version . ' ' . __("requires a database upgrade",'acf') .' (<a class="thickbox" href="' . admin_url() . 'plugin-install.php?tab=plugin-information&plugin=advanced-custom-fields&section=changelog&TB_iframe=true&width=640&height=559">' . __("why?",'acf') .'</a>). ' . __("Please",'acf') .' <a href="http://codex.wordpress.org/Backing_Up_Your_Database">' . __("backup your database",'acf') .'</a>, '. __("then click",'acf') . ' <a href="' . admin_url() . 'edit.php?post_type=acf&page=acf-upgrade" class="button">' . __("Upgrade Database",'acf') . '</a></p>');
 		
@@ -138,6 +139,35 @@ register_post_type('acf', array(
 	),
 	'show_in_menu'	=> false,
 ));
+
+
+/*
+ * Messages for ACF
+ */
+ 
+function acf_post_updated_messages( $messages )
+{
+	global $post, $post_ID;
+
+	$messages['acf'] = array(
+		0 => '', // Unused. Messages start at index 1.
+		1 => __('Field group updated.', 'acf'),
+		2 => __('Custom field updated.', 'acf'),
+		3 => __('Custom field deleted.', 'acf'),
+		4 => __('Field group updated.', 'acf'),
+		/* translators: %s: date and time of the revision */
+		5 => isset($_GET['revision']) ? sprintf( __('Field group restored to revision from %s', 'acf'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+		6 => __('Field group published.', 'acf'),
+		7 => __('Field group saved.', 'acf'),
+		8 => __('Field group submitted.', 'acf'),
+		9 => __('Field group scheduled for.', 'acf'),
+		10 => __('Field group draft updated.', 'acf'),
+	);
+
+	return $messages;
+}
+add_filter( 'post_updated_messages', 'acf_post_updated_messages' );
+
 
 /*
  * Set Custom Columns

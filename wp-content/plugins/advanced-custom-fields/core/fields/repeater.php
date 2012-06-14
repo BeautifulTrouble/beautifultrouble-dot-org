@@ -45,7 +45,6 @@ class acf_Repeater extends acf_Field
 	}
 	
 	
-
 	/*--------------------------------------------------------------------------------------
 	*
 	*	create_field
@@ -62,10 +61,15 @@ class acf_Repeater extends acf_Field
 		$row_limit = ( isset($field['row_limit']) && is_numeric($field['row_limit']) ) ? $field['row_limit'] : 999;
 		$layout = isset($field['layout']) ? $field['layout'] : 'table';
 		$sub_fields = isset($field['sub_fields']) ? $field['sub_fields'] : array();
-		$button_label = ( isset($field['button_label']) && $field['button_label'] != "" ) ? $field['button_label'] : __("+ Add Row",'acf');
+		$button_label = ( isset($field['button_label']) && $field['button_label'] != "" ) ? $field['button_label'] : __("Add Row",'acf');
 		
 		
 		// add clone field
+		if( !$field['value'] )
+		{
+			$field['value'] = array();
+		}
+		
 		if($row_limit == 1 && count($field['value']) == 0)
 		{
 			$field['value'][] = array();
@@ -75,34 +79,33 @@ class acf_Repeater extends acf_Field
 		$field['value'][999] = array();
 		foreach($sub_fields as $sub_field)
 		{
-			$sub_value = isset($sub_field['default_value']) ? $sub_field['default_value'] : '';
+			$sub_value = isset($sub_field['default_value']) ? $sub_field['default_value'] : false;
 			$field['value'][999][$sub_field['name']] = $sub_value;
 		}
+		
 
 		?>
 		<div class="repeater" data-row_limit="<?php echo $row_limit; ?>">
+			
 			<table class="widefat <?php if($layout == 'row'): ?>row_layout<?php endif; ?>">
 			<?php if($layout == 'table'): ?>
-			<thead>
-				<tr>
-					<?php if($row_limit > 1): ?>
-					<th class="order"><!-- order --></th>
-					<?php endif; ?>
-					
-					<?php foreach($sub_fields as $sub_field_i => $sub_field):?>
-					<th class="<?php echo $sub_field['name']; ?>" <?php if($sub_field_i != 0): ?>style="width:<?php echo 95/count($sub_fields); ?>%;"<?php endif; ?>><span><?php echo $sub_field['label']; ?></span></th>
-					<?php endforeach; ?>
-					
-					<?php if($row_limit > 1): ?>
-					<th class="remove"></th>
-					<?php endif; ?>
-				</tr>
-			</thead>
+				<thead>
+					<tr><?php
+						
+						if($row_limit > 1): ?><th class="order"></th><?php endif;
+						
+						foreach($sub_fields as $sub_field_i => $sub_field):
+							?><th class="<?php echo $sub_field['name']; ?>" <?php if($sub_field_i != 0): ?>style="width:<?php echo 95/count($sub_fields); ?>%;"<?php endif; ?>><span><?php echo $sub_field['label']; ?></span></th><?php
+						endforeach;
+												
+						if($row_limit > 1): ?><th class="remove"></th><?php endif;
+						
+					?></tr>
+				</thead>
 			<?php endif; ?>
 			<tbody>
-				<?php foreach($field['value'] as $i => $value):?>
-				<?php //if(($i+1) > $row_limit){continue;} ?>
-				<tr class="<?php echo ($i == 999) ? "row_clone" : "row"; ?>">
+				<?php if( $field['value'] ): foreach($field['value'] as $i => $value):?>
+				<tr class="<?php echo ($i == 999) ? "row-clone" : "row"; ?>">
 					
 					<?php if($row_limit > 1): ?>
 						<td class="order">
@@ -112,13 +115,23 @@ class acf_Repeater extends acf_Field
 					
 					<?php if($layout == 'row'): ?><td><?php endif; ?>
 					
-					
 					<?php foreach($sub_fields as $j => $sub_field):?>
 					
 					<?php if($layout == 'table'): ?>
 					<td>
 					<?php else: ?>
-					<label class="field_label"><?php echo $sub_field['label']; ?></label>
+					<div class="row-layout-field">
+					<p class="label">
+						<label><?php echo $sub_field['label']; ?></label>
+						<?php 
+						
+						if(!isset($sub_field['instructions']))
+							$sub_field['instructions'] = "";
+						
+						echo $sub_field['instructions']; 
+						
+						?>
+					</p>
 					<?php endif; ?>	
 						
 						<?php 
@@ -135,7 +148,7 @@ class acf_Repeater extends acf_Field
 					<?php if($layout == 'table'): ?>
 					</td>
 					<?php else: ?>
-
+					</div>
 					<?php endif; ?>	
 					
 					<?php endforeach; ?>
@@ -143,20 +156,20 @@ class acf_Repeater extends acf_Field
 					<?php if($layout == 'row'): ?></td><?php endif; ?>
 					
 					<?php if($row_limit > 1): ?>
-						<td class="remove"><a class="remove_row" id="r_remove_row" href="javascript:;"></a></td>
+						<td class="remove"><a class="add-row add-row-before" href="javascript:;"></a><a class="remove-row" href="javascript:;"></a></td>
 					<?php endif; ?>
 				</tr>
-				<?php endforeach; ?>
+				<?php endforeach; endif; ?>
 			</tbody>
 			</table>
 			<?php if($row_limit > 1): ?>
-			<div class="table_footer">
-				<ul class="hl clearfix">
-					<li class="right">
-						<a href="javascript:;" id="r_add_row" class="add_row acf-button"><?php echo $button_label; ?></a>
-					</li>
-				</ul>
-			</div>	
+
+			<ul class="hl clearfix repeater-footer">
+				<li class="right">
+					<a href="javascript:;" class="add-row-end acf-button"><?php echo $button_label; ?></a>
+				</li>
+			</ul>
+
 			<?php endif; ?>	
 		</div>
 		<?php
@@ -181,7 +194,7 @@ class acf_Repeater extends acf_Field
 		$field['row_limit'] = isset($field['row_limit']) ? $field['row_limit'] : '';
 		$field['layout'] = isset($field['layout']) ? $field['layout'] : 'table';
 		$field['sub_fields'] = isset($field['sub_fields']) ? $field['sub_fields'] : array();
-		$field['button_label'] = (isset($field['button_label']) && $field['button_label'] != "") ? $field['button_label'] : __("+ Add Row",'acf');
+		$field['button_label'] = (isset($field['button_label']) && $field['button_label'] != "") ? $field['button_label'] : __("Add Row",'acf');
 		
 		
 		// add clone field
@@ -227,7 +240,7 @@ class acf_Repeater extends acf_Field
 			</div>
 	
 			<?php foreach($field['sub_fields'] as $key2 => $sub_field): ?>
-				<div class="<?php if($key2 == 999){echo "field_clone";}else{echo "field";} ?> sub_field">
+				<div class="<?php if($key2 == 999){echo "field_clone";}else{echo "field";} ?> sub_field" data-id="<?php echo $key2; ?>">
 					
 					<?php if(isset($sub_field['key'])): ?>
 						<input type="hidden" name="fields[<?php echo $key; ?>][sub_fields][<?php echo $key2; ?>][key]" value="<?php echo $sub_field['key']; ?>" />
@@ -242,6 +255,8 @@ class acf_Repeater extends acf_Field
 								</strong>
 								<div class="row_options">
 									<span><a class="acf_edit_field" title="<?php _e("Edit this Field",'acf'); ?>" href="javascript:;"><?php _e("Edit",'acf'); ?></a> | </span>
+									<span><a title="<?php _e("Read documentation for this field",'acf'); ?>" href="http://www.advancedcustomfields.com/docs/field-types/" target="_blank"><?php _e("Docs",'acf'); ?></a> | </span>
+									<span><a class="acf_duplicate_field" title="<?php _e("Duplicate this Field",'acf'); ?>" href="javascript:;"><?php _e("Duplicate",'acf'); ?></a> | </span>
 									<span><a class="acf_delete_field" title="<?php _e("Delete this Field",'acf'); ?>" href="javascript:;"><?php _e("Delete",'acf'); ?></a>
 								</div>
 							</td>
@@ -329,7 +344,7 @@ class acf_Repeater extends acf_Field
 			<?php endforeach; ?>
 		</div>
 		<div class="table_footer">
-			<div class="order_message"></div>
+			<div class="order_message"><?php _e('Drag and drop to reorder','acf'); ?></div>
 			<a href="javascript:;" id="add_field" class="acf-button"><?php _e('+ Add Sub Field','acf'); ?></a>
 		</div>
 	</div>

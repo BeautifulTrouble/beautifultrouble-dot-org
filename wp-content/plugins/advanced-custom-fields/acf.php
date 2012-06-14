@@ -3,14 +3,12 @@
 Plugin Name: Advanced Custom Fields
 Plugin URI: http://www.advancedcustomfields.com/
 Description: Fully customise WordPress edit screens with powerful fields. Boasting a professional interface and a powerfull API, it’s a must have for any web developer working with WordPress.Field types include: Wysiwyg, text, textarea, image, file, select, checkbox, page link, post object, date picker, color picker and more!
-Version: 3.1.8
+Version: 3.2.5
 Author: Elliot Condon
 Author URI: http://www.elliotcondon.com/
 License: GPL
 Copyright: Elliot Condon
 */
-
-//ini_set('error_reporting', E_ALL);
 
 include('core/api.php');
 
@@ -26,6 +24,7 @@ class Acf
 	var $upgrade_version;
 	var $fields;
 	var $options_page;
+	var $cache;
 	
 	
 	/*--------------------------------------------------------------------------------------
@@ -45,17 +44,20 @@ class Acf
 		$this->dir = plugins_url('',__FILE__);
 		$this->siteurl = get_bloginfo('url');
 		$this->wpadminurl = admin_url();
-		$this->version = '3.1.8';
-		$this->upgrade_version = '3.1.8'; // this is the latest version which requires an upgrade
+		$this->version = '3.2.5';
+		$this->upgrade_version = '3.2.5'; // this is the latest version which requires an upgrade
+		$this->cache = array(); // basic array cache to hold data throughout the page load
 		
 		
 		// set text domain
 		//load_plugin_textdomain('acf', false, $this->path.'/lang' );
 		load_plugin_textdomain('acf', false, basename(dirname(__FILE__)).'/lang' );
 		
+		
 		// load options page
 		$this->setup_options_page();
 		$this->setup_everything_fields();
+		
 		
 		// actions
 		add_filter('pre_get_posts', array($this, 'pre_get_posts'));  
@@ -83,6 +85,58 @@ class Acf
 		
 		return true;
 	}
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	get_cache
+	*
+	*	@author Elliot Condon
+	*	@since 3.1.9
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function get_cache($key = false)
+	{
+		// key is required
+		if( !$key )
+			return false;
+		
+		
+		// does cache at key exist?
+		if( !isset($this->cache[$key]) )
+			return false;
+		
+		
+		// return cahced item
+		return $this->cache[$key];
+	}
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	set_cache
+	*
+	*	@author Elliot Condon
+	*	@since 3.1.9
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function set_cache($key = false, $value = null)
+	{
+		// key is required
+		if( !$key )
+			return false;
+		
+		
+		// update the cache array
+		$this->cache[$key] = $value;
+		
+		
+		// return true. Probably not needed
+		return true;
+	}
+	
 	
 	
 	/*--------------------------------------------------------------------------------------
@@ -417,6 +471,7 @@ class Acf
 		echo '<style type="text/css"> 
 			#toplevel_page_edit-post_type-acf a[href="edit.php?post_type=acf&page=acf-upgrade"]{ display:none; }
 			#toplevel_page_edit-post_type-acf .wp-menu-image { background: url("../wp-admin/images/menu.png") no-repeat scroll 0 -33px transparent; }
+			#toplevel_page_edit-post_type-acf:hover .wp-menu-image { background-position: 0 -1px; }
 			#toplevel_page_edit-post_type-acf .wp-menu-image img { display:none; }
 		</style>';
 		
@@ -450,7 +505,8 @@ class Acf
 		}
 		else
 		{
-	
+			$post_type = get_post_type($post);
+			
 			// get style for page
 			$metabox_ids = $this->get_input_metabox_ids(array('post_id' => $post->ID), false);
 			$style = isset($metabox_ids[0]) ? $this->get_input_style($metabox_ids[0]) : '';
@@ -544,7 +600,7 @@ class Acf
 	function get_field_groups()
 	{
 		// return cache
-		$cache = wp_cache_get('acf_field_groups');
+		$cache = $this->get_cache('acf_field_groups');
 		if($cache != false)
 		{
 			return $cache;
@@ -581,7 +637,7 @@ class Acf
 		$acfs = apply_filters('acf_register_field_group', $acfs);
 		
 		// update cache
-		wp_cache_set('acf_field_groups', $acfs);
+		$this->set_cache('acf_field_groups', $acfs);
 		
 		// return
 		if(empty($acfs))
@@ -856,18 +912,14 @@ class Acf
 	
 	function get_acf_options($post_id)
 	{
+		
 		// defaults
 	 	$options = array(
-	 		'position'		=>	get_post_meta($post_id, 'position', true) ? get_post_meta($post_id, 'position', true) : 'normal',
-	 		'layout'		=>	get_post_meta($post_id, 'layout', true) ? get_post_meta($post_id, 'layout', true) : 'default',
-	 		'show_on_page'	=>	get_post_meta($post_id, 'show_on_page', true) ? get_post_meta($post_id, 'show_on_page', true) : array(),
+	 		'position'			=>	get_post_meta($post_id, 'position', true) ? get_post_meta($post_id, 'position', true) : 'normal',
+	 		'layout'			=>	get_post_meta($post_id, 'layout', true) ? get_post_meta($post_id, 'layout', true) : 'default',
+	 		'hide_on_screen'	=>	get_post_meta($post_id, 'hide_on_screen', true) ? get_post_meta($post_id, 'hide_on_screen', true) : array(),
 	 	);
-	 	
-	 	// If this is a new acf, there will be no custom keys!
-	 	if(!get_post_custom_keys($post_id))
-	 	{
-	 		$options['show_on_page'] = array('the_content', 'discussion', 'custom_fields', 'comments', 'slug', 'author');
-	 	}
+	 
 	 	
 	 	// return
 	 	return $options;
@@ -890,9 +942,9 @@ class Acf
 		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;
 		
 		// only save once! WordPress save's twice for some strange reason.
-		global $flag;
-		if ($flag != 0) return $post_id;
-		$flag = 1;
+		global $acf_flag;
+		if ($acf_flag != 0) return $post_id;
+		$acf_flag = 1;
 		
 		// set post ID if is a revision		
 		if(wp_is_post_revision($post_id)) 
@@ -941,7 +993,7 @@ class Acf
 	{
 		if(!isset($this->fields[$field['type']]) || !is_object($this->fields[$field['type']]))
 		{
-			return '';
+			return false;
 		}
 		
 		return $this->fields[$field['type']]->get_value($post_id, $field);
@@ -1195,37 +1247,50 @@ class Acf
 		{
 			foreach($acfs as $acf)
 			{
-				if($acf['id'] == $acf_id)
+				if($acf['id'] != $acf_id) continue;
+				
+
+				// add style to html 
+				if( in_array('the_content',$acf['options']['hide_on_screen']) )
 				{
-					// add style to html 
-					if(!in_array('the_content',$acf['options']['show_on_page']))
-					{
-						$html .= '#postdivrich {display: none;} ';
-					}
-					if(!in_array('custom_fields',$acf['options']['show_on_page']))
-					{
-						$html .= '#postcustom, #screen-meta label[for=postcustom-hide] { display: none; } ';
-					}
-					if(!in_array('discussion',$acf['options']['show_on_page']))
-					{
-						$html .= '#commentstatusdiv, #screen-meta label[for=commentstatusdiv-hide] {display: none;} ';
-					}
-					if(!in_array('comments',$acf['options']['show_on_page']))
-					{
-						$html .= '#commentsdiv, #screen-meta label[for=commentsdiv-hide] {display: none;} ';
-					}
-					if(!in_array('slug',$acf['options']['show_on_page']))
-					{
-						$html .= '#slugdiv, #screen-meta label[for=slugdiv-hide] {display: none;} ';
-					}
-					if(!in_array('author',$acf['options']['show_on_page']))
-					{
-						$html .= '#authordiv, #screen-meta label[for=authordiv-hide] {display: none;} ';
-					}
-					
-					break;
+					$html .= '#postdivrich {display: none;} ';
 				}
-				// if($acf['id'] == $acf_id)
+				if( in_array('excerpt',$acf['options']['hide_on_screen']) )
+				{
+					$html .= '#postexcerpt, #screen-meta label[for=postexcerpt-hide] {display: none;} ';
+				}
+				if( in_array('custom_fields',$acf['options']['hide_on_screen']) )
+				{
+					$html .= '#postcustom, #screen-meta label[for=postcustom-hide] { display: none; } ';
+				}
+				if( in_array('discussion',$acf['options']['hide_on_screen']) )
+				{
+					$html .= '#commentstatusdiv, #screen-meta label[for=commentstatusdiv-hide] {display: none;} ';
+				}
+				if( in_array('comments',$acf['options']['hide_on_screen']) )
+				{
+					$html .= '#commentsdiv, #screen-meta label[for=commentsdiv-hide] {display: none;} ';
+				}
+				if( in_array('slug',$acf['options']['hide_on_screen']) )
+				{
+					$html .= '#slugdiv, #screen-meta label[for=slugdiv-hide] {display: none;} ';
+				}
+				if( in_array('author',$acf['options']['hide_on_screen']) )
+				{
+					$html .= '#authordiv, #screen-meta label[for=authordiv-hide] {display: none;} ';
+				}
+				if( in_array('format',$acf['options']['hide_on_screen']) )
+				{
+					$html .= '#formatdiv, #screen-meta label[for=formatdiv-hide] {display: none;} ';
+				}
+				if( in_array('featured_image',$acf['options']['hide_on_screen']) )
+				{
+					$html .= '#postimagediv, #screen-meta label[for=postimagediv-hide] {display: none;} ';
+				}
+				
+				
+				break;
+
 			}
 			// foreach($acfs as $acf)
 		}
@@ -2002,6 +2067,7 @@ class Acf
 	
 	function render_fields_for_input($fields, $post_id)
 	{
+		
 		// create fields
 		if($fields)
 		{
@@ -2024,14 +2090,16 @@ class Acf
 				
 				if($field['required'] == "1")
 				{
-					$required_class = ' ' . __("required",'acf');
+					$required_class = ' required';
 					$required_label = ' <span class="required">*</span>';
 				}
 				
 				echo '<div id="acf-' . $field['name'] . '" class="field field-' . $field['type'] . $required_class . '">';
-								
-					echo '<label class="field_label" for="fields[' . $field['key'] . ']">' . $field['label'] . $required_label . '</label>';
-					if($field['instructions']) echo '<p class="instructions">' . $field['instructions'] . '</p>';
+
+					echo '<p class="label">';
+						echo '<label for="fields[' . $field['key'] . ']">' . $field['label'] . $required_label . '</label>';
+						echo $field['instructions'];
+					echo '</p>';
 					
 					$field['name'] = 'fields[' . $field['key'] . ']';
 					$this->create_field($field);
@@ -2040,6 +2108,7 @@ class Acf
 				
 			}
 		}
+		
 	}
 	
 	

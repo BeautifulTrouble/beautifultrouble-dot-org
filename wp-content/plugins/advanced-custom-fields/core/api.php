@@ -306,6 +306,16 @@ function register_field_group($array)
 		$array['id'] = uniqid();
 	}
 	
+
+	// 3.2.5 - changed show_on_page option
+	if( !isset($array['options']['hide_on_screen']) && isset($array['options']['show_on_page']) )
+	{
+		$show_all = array('the_content', 'discussion', 'custom_fields', 'comments', 'slug', 'author');
+		$array['options']['hide_on_screen'] = array_diff($show_all, $array['options']['show_on_page']);
+		unset( $array['options']['show_on_page'] );
+	}
+
+
 	$GLOBALS['acf_register_field_group'][] = $array;
 }
 
@@ -441,10 +451,6 @@ function acf_form_head()
 	if(isset($_POST) && isset($_POST['acf_save']))
 	{
 		$post_id = $_POST['post_id'];
-		
-		// save
-		// strip slashes
-		$_POST = array_map('stripslashes_deep', $_POST);
 		
 		// save fields
 		$fields = $_POST['fields'];
@@ -628,5 +634,60 @@ function acf_form($options = null)
 	
 }
 
+
+/*--------------------------------------------------------------------------------------
+*
+*	update_field
+*
+*	@author Elliot Condon
+*	@since 3.1.9
+* 
+*-------------------------------------------------------------------------------------*/
+
+function update_field($field_name, $value, $post_id = false)
+{
+	global $post, $acf; 
+	 
+	if(!$post_id) 
+	{ 
+		$post_id = $post->ID; 
+	}
+	
+	
+	// allow for option == options
+	if( $post_id == "option" )
+	{
+		$post_id = "options";
+	}
+	 
+	 
+	// get value
+	$field_key = "";
+	if( is_numeric($post_id) )
+	{
+		$field_key = get_post_meta($post_id, '_' . $field_name, true); 
+	}
+	else
+	{
+		$field_key = get_option('_' . $post_id . '_' . $field_name); 
+	}
+
+	
+	// create default field to save the data as plain text
+	$field = array(
+		'type' => 'text',
+		'name' => $field_name,
+		'key' => ''
+	);
+	
+	if($field_key != "") 
+	{ 
+		// we can load the field properly! 
+		$field = $acf->get_acf_field($field_key); 
+	} 
+	
+	
+	$acf->update_value($post_id, $field, $value);
+}
 
 ?>
