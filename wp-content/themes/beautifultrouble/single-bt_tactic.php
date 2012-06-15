@@ -93,14 +93,14 @@ get_header(); ?>
                 echo '</div>';
             }
             ?>
-            <?php if( $fields['potential_pitfalls'] ) {
+                        <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
+            <?php if( $fields['potential_pitfalls']  ) {
                 // Potential Pitfalls
                 echo '<div class="alert">';
                 echo '<strong id="potential-pitfalls">Potential Pitfalls</strong>';
                 echo '<p class="pitfalls">' . $fields['potential_pitfalls'] . '</p>';
                 echo '</div>';
             } ?>
-                        <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
             <?php endwhile; // end of the loop. ?>
         </div><!-- /.span8 -->
         <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">

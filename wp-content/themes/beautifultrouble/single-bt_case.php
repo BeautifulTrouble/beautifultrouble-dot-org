@@ -59,10 +59,6 @@ get_header(); ?>
                 }
         }
         ?>
-        <div id="in-summary" class="alert alert-info">
-            <strong>In Sum</strong>
-            <?php the_excerpt(); ?>
-        </div> 
 
         <div id="when-and-where">
             <div class="when"><strong>When:</strong> <?php echo $fields['when']; ?></div>
