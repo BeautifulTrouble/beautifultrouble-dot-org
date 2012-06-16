@@ -35,7 +35,7 @@ if (have_posts() ) ;?>
 			if ( $tag_description )
 				echo apply_filters( 'tag_archive_meta', '<div class="tag-archive-meta">' . $tag_description . '</div>' );
 		} elseif ( is_category() ) {
-			printf( __( 'Category Archives: %s', 'bootstrapwp' ), '<span>' . single_cat_title( '', false ) . '</span>' );
+			printf( __( '%s', 'bootstrapwp' ), '<span>' . single_cat_title( '', false ) . '</span>' );
 					// Show an optional category description
 			$category_description = category_description();
 			if ( $category_description )
@@ -69,6 +69,9 @@ if (have_posts() ) ;?>
 
 			<?php bootstrapwp_content_nav('nav-below');?>
 		</div><!-- /.span8 -->
-		<?php get_sidebar('blog'); ?>
+                <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
+                &nbsp;
+                </div>
+            </div><!-- /.row .content -->
 
 		<?php get_footer(); ?>
