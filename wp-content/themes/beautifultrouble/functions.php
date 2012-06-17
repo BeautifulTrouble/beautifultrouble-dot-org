@@ -171,7 +171,7 @@ function create_post_type() {
 			'public' => true,
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'event'),
-                        'description' => 'Events that you want to know about.',
+                        'description' => 'Upcoming Beautiful Trouble events near you.',
                         'menu_position' => 5,
                         'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_event.png',
                         'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
