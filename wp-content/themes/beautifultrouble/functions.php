@@ -297,8 +297,8 @@ function bootstrapwp_content_nav( $nav_id ) {
 
 	<?php if ( is_single() ) : // navigation links for single posts ?>
 <ul class="pager">
-		<?php previous_post_link_plus( array('order_by' => 'post_title', 'format' => '<li class="previous">%link</li>', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'bootstrapwp' ) . '</span> %title' ) ); ?>
-		<?php next_post_link_plus( array('order_by' => 'post_title', 'format' => '<li class="next">%link</li>', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'bootstrapwp' ) . '</span>') ); ?>
+		<?php previous_post_link_plus( array('order_by' => 'post_title', 'format' => '<li class="previous">%link</li>', 'link' => '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'beautifultrouble' ) . '</span> %title' ) ); ?>
+		<?php next_post_link_plus( array('order_by' => 'post_title', 'format' => '<li class="next">%link</li>', 'link' => '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'bootstrapwp' ) . '</span>') ); ?>
 </ul>
 	<?php elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) : // navigation links for home, archive, and search pages ?>
 					<?php if (function_exists('page_navi')) { // if expirimental feature is active ?>
@@ -320,3 +320,26 @@ function bootstrapwp_content_nav( $nav_id ) {
 
 	<?php
 }
+
+function thumbnail_caption($html, $post_id, $post_thumbnail_id, $size, $attr)
+// Variation of this idea http://stereointeractive.com/blog/2010/02/12/wordpress-get-post-images-and-the_post_thumbnail-caption/ 
+// However, we just return the HTML if we're on an archive page, or there is no thumnail image.
+    {
+    if ( $post_thumbnail_id && is_single() ) {
+      $attachment =& get_post($post_thumbnail_id);
+      // post_title => image title
+      // post_excerpt => image caption
+      // post_content => image description
+     
+      if ($attachment->post_excerpt || $attachment->post_content) {
+        $html .= '<p class="thumbcaption">';
+        if ($attachment->post_excerpt) {
+          $html .= '<span class="captitle">'.$attachment->post_excerpt.'</span> ';
+        }
+        $html .= $attachment->post_content.'</p>';
+      }
+     
+        } 
+            return $html;
+    } 
+add_action('post_thumbnail_html', 'thumbnail_caption', null, 5);

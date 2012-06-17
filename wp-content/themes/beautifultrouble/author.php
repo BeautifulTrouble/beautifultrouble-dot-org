@@ -8,7 +8,7 @@ get_header(); ?>
 
 <?php 
 global $query_string;
-$posts = query_posts( $query_string . '&post_type=any' );
+$posts = query_posts( $query_string . '&post_type=any&nopaging=true' );
 
 if ( have_posts() ) : ?>
 
@@ -65,4 +65,4 @@ if ( have_posts() ) : ?>
 
 </div><!-- /.row .content -->
 
-						<?php get_footer(); ?>
+<?php get_footer(); ?>
