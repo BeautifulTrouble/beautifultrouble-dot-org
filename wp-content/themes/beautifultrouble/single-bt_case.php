@@ -59,66 +59,54 @@ get_header(); ?>
                 }
         }
         ?>
-        <div id="in-summary" class="alert alert-info">
-            <strong>In Summary</strong>
-            <?php the_excerpt(); ?>
-        </div> 
-
+        <?php if ( $fields['when'] && $fields['where'] ) { ?>
         <div id="when-and-where">
             <div class="when"><strong>When:</strong> <?php echo $fields['when']; ?></div>
             <div class="where"><strong>Where:</strong> <?php echo $fields['where'] ?></div>
         </div>
+        <?php } ?>
 
         <?php the_content();?>
-
+        
+        <?php if ( $fields['why_it_worked'] ) { ?>
         <div id="why-it-worked"><strong>Why it worked</strong><p><?php echo $fields['why_it_worked']; ?></p></div>
+        <?php } ?>
+        <?php if ( $fields['what_didnt_work'] ) { ?>
         <div id="what-didnt-work"><strong>What didn't work</strong><p><?php echo $fields['what_didnt_work']; ?></p></div>
+        <?php } ?>
 
-        <div id="key-tactic">
-        <h4>Key Tactic Used</h4>
-        <?php 
-            $tactic = array_pop( $fields['key_tactic'] );
-            $related = array_pop( $tactic['related_tactic'] );
-            echo '<strong><a href="' . $related->guid . '">' . $related->post_title . "</a></strong> ";
-            echo $tactic['description'];
-        ?>
-        </div>
-
-        <div id="key-tactic">
-        <h4>Key Principle At Work</h4>
-        <?php $principles = $fields['key_principles'];
-            foreach( $principles as $principle ) {
-                $related = array_pop( $principle['principle'] );
-                echo '<p><strong><a href="' . $related->guid . '">' . $related->post_title . "</a></strong> ";
-                echo $principle['description'] . "</p>";
-            }
-        ?>
-        </div>
-        <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
-        <?php endwhile; // end of the loop. ?>
-    </div><!-- /.span8 -->
-    <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
-        <?php if( $fields['key_principle_at_work'] ) {
-            echo '<div id="key-principle" class="alert alert-success">';
-            echo '<strong id="key-principle">Key Principle at work</strong><br />';
-            // Key Principle At Work
-            $principles = $fields['key_principle_at_work'];
-            foreach( $principles as $principle ) {
-                $related = array_pop( $principle['related_principle'] );
-                echo '<p class="principle"><b><a href="' . $related->guid . '">' . $related->post_title . '</a></b><br />';
-                echo $principle['explanation'];
+        <?php if( $fields['key_tactic'] ) {
+            echo '<div id="key-tactic" class="alert alert-success">';
+            echo '<strong id="key-tactic">Key Tactic at work</strong><br />';
+            // Key Tactic At Work
+            $tactics = $fields['key_tactic'];
+            foreach( $tactics as $tactic ) {
+                $related = array_pop( $tactic['related_tactic'] );
+                echo '<p class="tactic"><b><a href="' . $related->guid . '">' . $related->post_title . '</a></b><br />';
+                echo $tactic['description'];
                 echo '</p>';
             }
             echo '</div>';
         }
         ?>
-        <?php if( $fields['potential_pitfalls'] ) {
-            // Potential Pitfalls
-            echo '<div class="alert">';
-            echo '<strong id="potential-pitfalls">Potential Pitfalls</strong>';
-            echo '<p class="pitfalls">' . $fields['potential_pitfalls'] . '</p>';
+        <?php if( $fields['key_principles'] ) {
+            echo '<div id="key-principle" class="alert alert-success">';
+            echo '<strong id="key-principle">Key Principle at work</strong><br />';
+            // Key Principle At Work
+            $principles = $fields['key_principles'];
+            foreach( $principles as $principle ) {
+                $related = array_pop( $principle['principle'] );
+                echo '<p class="principle"><b><a href="' . $related->guid . '">' . $related->post_title . '</a></b><br />';
+                echo $principle['description'];
+                echo '</p>';
+            }
             echo '</div>';
-        } ?>
+        }
+        ?>
+        <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
+        <?php endwhile; // end of the loop. ?>
+    </div><!-- /.span8 -->
+    <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
         <?php if( $fields['repeating_elements'] ) {
             if( $further_insights ) {
             // Further Insights

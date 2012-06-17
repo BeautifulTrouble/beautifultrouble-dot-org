@@ -60,15 +60,13 @@ get_header(); ?>
                     }
             }
             ?>
+            <?php if ( get_the_excerpt() ) { ?>
                <div id="common-uses" class="alert alert-info">
                    <strong>Common Uses</strong>
                    <?php the_excerpt(); ?>
                </div> 
+            <?php } ?>
                         <?php the_content();?>
-                        <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
-            <?php endwhile; // end of the loop. ?>
-        </div><!-- /.span8 -->
-        <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
             <?php if( $fields['key_principle_at_work'] ) {
                 echo '<div id="key-principle" class="alert alert-success">';
                 echo '<strong id="key-principle">Key Principle at work</strong><br />';
@@ -83,13 +81,31 @@ get_header(); ?>
                 echo '</div>';
             }
             ?>
-            <?php if( $fields['potential_pitfalls'] ) {
+            <?php if( $fields['key_theory_at_work'] ) {
+                echo '<div id="key-theory" class="alert alert-success">';
+                echo '<strong id="key-theory">Key Theory at work</strong><br />';
+                // Key Principle At Work
+                $theories = $fields['key_theory_at_work'];
+                foreach( $theories as $theory ) {
+                    $related = array_pop( $theory['related_theory'] );
+                    echo '<p class="theory"><b><a href="' . $related->guid . '">' . $related->post_title . '</a></b><br />';
+                    echo $theory['explanation'];
+                    echo '</p>';
+                }
+                echo '</div>';
+            }
+            ?>
+                        <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
+            <?php if( $fields['potential_pitfalls'] && strlen( $fields['potential_pitfalls'] ) > 1 ) {
                 // Potential Pitfalls
                 echo '<div class="alert">';
                 echo '<strong id="potential-pitfalls">Potential Pitfalls</strong>';
                 echo '<p class="pitfalls">' . $fields['potential_pitfalls'] . '</p>';
                 echo '</div>';
             } ?>
+            <?php endwhile; // end of the loop. ?>
+        </div><!-- /.span8 -->
+        <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
             <?php if( $further_insights ) {
                 // Further Insights
                 echo '<strong id="further-insights">Further Insights</strong>';
