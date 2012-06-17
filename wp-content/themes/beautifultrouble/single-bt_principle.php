@@ -59,12 +59,15 @@ get_header(); ?>
                 }
         }
         ?>
+        
+        <?php if ( the_excerpt() ) { ?>
         <div id="in-summary" class="alert alert-info">
             <strong>In Sum</strong>
             <?php the_excerpt(); ?>
         </div> 
-            <?php the_content();?>
-            <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
+        <?php } ?>
+        <?php the_content();?>
+        <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
 <?php endwhile; // end of the loop. ?>
 
     </div><!-- /.span8 -->

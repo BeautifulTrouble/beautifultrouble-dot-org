@@ -58,10 +58,12 @@ get_header(); ?>
                         }
                 }
                 ?>
+            <?php if ( get_the_excerpt() ) { ?>
                 <div id="in-summary" class="alert alert-info">
                     <strong>In Sum</strong>
                     <?php the_excerpt(); ?>
                 </div> 
+            <?php } ?>
             <?php if( $fields['origins'] ) {
             ?>
                 <div id="origins">

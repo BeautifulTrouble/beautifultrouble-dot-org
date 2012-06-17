@@ -60,7 +60,7 @@ get_header(); ?>
                     }
             }
             ?>
-            <?php if ( the_excerpt() ) { ?>
+            <?php if ( get_the_excerpt() ) { ?>
                <div id="common-uses" class="alert alert-info">
                    <strong>Common Uses</strong>
                    <?php the_excerpt(); ?>
