@@ -59,20 +59,21 @@ get_header(); ?>
                 }
         }
         ?>
-        <div id="in-summary" class="alert alert-info">
-            <strong>In Sum</strong>
-            <?php the_excerpt(); ?>
-        </div> 
-
+        <?php if ( $fields['when'] && $fields['where'] ) { ?>
         <div id="when-and-where">
             <div class="when"><strong>When:</strong> <?php echo $fields['when']; ?></div>
             <div class="where"><strong>Where:</strong> <?php echo $fields['where'] ?></div>
         </div>
+        <?php } ?>
 
         <?php the_content();?>
-
+        
+        <?php if ( $fields['why_it_worked'] ) { ?>
         <div id="why-it-worked"><strong>Why it worked</strong><p><?php echo $fields['why_it_worked']; ?></p></div>
+        <?php } ?>
+        <?php if ( $fields['what_didnt_work'] ) { ?>
         <div id="what-didnt-work"><strong>What didn't work</strong><p><?php echo $fields['what_didnt_work']; ?></p></div>
+        <?php } ?>
 
         <?php if( $fields['key_tactic'] ) {
             echo '<div id="key-tactic" class="alert alert-success">';

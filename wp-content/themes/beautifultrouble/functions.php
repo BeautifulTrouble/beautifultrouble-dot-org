@@ -171,7 +171,7 @@ function create_post_type() {
 			'public' => true,
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'event'),
-                        'description' => 'Events that you want to know about.',
+                        'description' => 'Upcoming Beautiful Trouble events near you.',
                         'menu_position' => 5,
                         'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_event.png',
                         'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
@@ -224,6 +224,122 @@ add_image_size( 'bt-thumb-300', 300, 100, true );
 
 
 function custom_excerpt_length( $length ) {
-	return 1000;
+	return 50;
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+// Numeric Page Navi (built into the theme by default)
+function page_navi($before = '', $after = '') {
+	global $wpdb, $wp_query;
+	$request = $wp_query->request;
+	$posts_per_page = intval(get_query_var('posts_per_page'));
+	$paged = intval(get_query_var('paged'));
+	$numposts = $wp_query->found_posts;
+	$max_page = $wp_query->max_num_pages;
+	if ( $numposts <= $posts_per_page ) { return; }
+	if(empty($paged) || $paged == 0) {
+		$paged = 1;
+	}
+	$pages_to_show = 7;
+	$pages_to_show_minus_1 = $pages_to_show-1;
+	$half_page_start = floor($pages_to_show_minus_1/2);
+	$half_page_end = ceil($pages_to_show_minus_1/2);
+	$start_page = $paged - $half_page_start;
+	if($start_page <= 0) {
+		$start_page = 1;
+	}
+	$end_page = $paged + $half_page_end;
+	if(($end_page - $start_page) != $pages_to_show_minus_1) {
+		$end_page = $start_page + $pages_to_show_minus_1;
+	}
+	if($end_page > $max_page) {
+		$start_page = $max_page - $pages_to_show_minus_1;
+		$end_page = $max_page;
+	}
+	if($start_page <= 0) {
+		$start_page = 1;
+	}
+		
+	echo $before.'<div class="pagination"><ul class="clearfix">'."";
+	if ($paged > 1) {
+		$first_page_text = "&laquo";
+		echo '<li class="prev"><a href="'.get_pagenum_link().'" title="First">'.$first_page_text.'</a></li>';
+	}
+		
+	$prevposts = get_previous_posts_link('&larr; Previous');
+	if($prevposts) { echo '<li>' . $prevposts  . '</li>'; }
+	else { echo '<li class="disabled"><a href="#">&larr; Previous</a></li>'; }
+	
+	for($i = $start_page; $i  <= $end_page; $i++) {
+		if($i == $paged) {
+			echo '<li class="active"><a href="#">'.$i.'</a></li>';
+		} else {
+			echo '<li><a href="'.get_pagenum_link($i).'">'.$i.'</a></li>';
+		}
+	}
+	echo '<li class="">';
+	next_posts_link('Next &rarr;');
+	echo '</li>';
+	if ($end_page < $max_page) {
+		$last_page_text = "&raquo;";
+		echo '<li class="next"><a href="'.get_pagenum_link($max_page).'" title="Last">'.$last_page_text.'</a></li>';
+	}
+	echo '</ul></div>'.$after."";
+}
+
+/**
+ * Display navigation to next/previous pages when applicable
+ */
+function bootstrapwp_content_nav( $nav_id ) {
+	global $wp_query;
+
+	?>
+
+	<?php if ( is_single() ) : // navigation links for single posts ?>
+<ul class="pager">
+		<?php previous_post_link_plus( array('order_by' => 'post_title', 'format' => '<li class="previous">%link</li>', 'link' => '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'beautifultrouble' ) . '</span> %title' ) ); ?>
+		<?php next_post_link_plus( array('order_by' => 'post_title', 'format' => '<li class="next">%link</li>', 'link' => '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'bootstrapwp' ) . '</span>') ); ?>
+</ul>
+	<?php elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) : // navigation links for home, archive, and search pages ?>
+					<?php if (function_exists('page_navi')) { // if expirimental feature is active ?>
+						
+						<?php page_navi(); // use the page navi function ?>
+						
+					<?php } else { // if it is disabled, display regular wp prev & next links ?>
+<ul class="pager">
+		<?php if ( get_next_posts_link() ) : ?>
+		<li class="next"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'bootstrapwp' ) ); ?></li>
+		<?php endif; ?>
+
+		<?php if ( get_previous_posts_link() ) : ?>
+		<li class="previous"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'bootstrapwp' ) ); ?></li>
+		<?php endif; ?>
+</ul>
+					<?php } ?>			
+	<?php endif; ?>
+
+	<?php
+}
+
+function thumbnail_caption($html, $post_id, $post_thumbnail_id, $size, $attr)
+// Variation of this idea http://stereointeractive.com/blog/2010/02/12/wordpress-get-post-images-and-the_post_thumbnail-caption/ 
+// However, we just return the HTML if we're on an archive page, or there is no thumnail image.
+    {
+    if ( $post_thumbnail_id && is_single() ) {
+      $attachment =& get_post($post_thumbnail_id);
+      // post_title => image title
+      // post_excerpt => image caption
+      // post_content => image description
+     
+      if ($attachment->post_excerpt || $attachment->post_content) {
+        $html .= '<p class="thumbcaption">';
+        if ($attachment->post_excerpt) {
+          $html .= '<span class="captitle">'.$attachment->post_excerpt.'</span> ';
+        }
+        $html .= $attachment->post_content.'</p>';
+      }
+     
+        } 
+            return $html;
+    } 
+add_action('post_thumbnail_html', 'thumbnail_caption', null, 5);

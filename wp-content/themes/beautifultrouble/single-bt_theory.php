@@ -58,13 +58,20 @@ get_header(); ?>
                         }
                 }
                 ?>
+            <?php if ( get_the_excerpt() ) { ?>
                 <div id="in-summary" class="alert alert-info">
                     <strong>In Sum</strong>
                     <?php the_excerpt(); ?>
                 </div> 
+            <?php } ?>
+            <?php if( $fields['origins'] ) {
+            ?>
                 <div id="origins">
                     <strong class="origins">Origins:</strong> <?php echo $fields['origins']; ?>
                 </div>
+            <?php
+                }   
+            ?>
             <?php the_content();?>
             <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
 <?php endwhile; // end of the loop. ?>
