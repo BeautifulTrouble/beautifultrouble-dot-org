@@ -1,0 +1,364 @@
+# Copyright (C) 2010 Social Sharing Toolkit
+# This file is distributed under the same license as the Social Sharing Toolkit package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Social Sharing Toolkit 2.0.5\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/social_sharing_toolkit\n"
+"POT-Creation-Date: 2012-04-07 14:59:58+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-04-09 21:31+0100\n"
+"Last-Translator: Marijn Rongen <m.rongen@active-bits.nl>\n"
+"Language-Team: Dutch <LL@li.org>\n"
+
+msgid "Button"
+msgstr "Knop"
+
+msgid "Button + text"
+msgstr "Knop + tekst"
+
+msgid "Button + side counter"
+msgstr "Knop + teller zijkant"
+
+msgid "Button + top counter"
+msgstr "Knop + teller boven"
+
+msgid "Small icon"
+msgstr "Klein icoon"
+
+msgid "Small icon + text"
+msgstr "Klein icoon + tekst"
+
+msgid "Medium icon"
+msgstr "Medium icoon"
+
+msgid "Medium icon + text"
+msgstr "Medium icoon + tekst"
+
+msgid "Large icon"
+msgstr "Groot icoon"
+
+msgid "Send email"
+msgstr "Stuur email"
+
+msgid "Divider"
+msgstr "Afscheiding"
+
+msgid "RSS Feed"
+msgstr "RSS Feed"
+
+msgid "Donate"
+msgstr "Doneren"
+
+msgid "Settings saved."
+msgstr "Instellingen opgeslagen"
+
+msgid "General settings"
+msgstr "Algemene instellingen"
+
+msgid "Content"
+msgstr "Inhoud"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgid "Share Widget"
+msgstr "Deel Widget"
+
+msgid "Follow Widget"
+msgstr "Volg Widget"
+
+msgid "Advanced settings"
+msgstr "Geavanceerde instellingen"
+
+msgid "Load JavaScript in footer"
+msgstr "JavaScript in footer laden"
+
+msgid "Improves performance but may not work on some themes"
+msgstr "Verbeterd werking maar werkt niet op met alle thema's"
+
+msgid "Choose where the buttons must be displayed and if the buttons should be displayed on posts, pages or both."
+msgstr "Kies of en waar de knoppen getoond moeten worden op berichten, pagina's of beide."
+
+msgid "Button location"
+msgstr "Locatie knoppen"
+
+msgid "Do not display"
+msgstr "Niet tonen"
+
+msgid "Display before content"
+msgstr "Vertoon voor inhoud"
+
+msgid "Display after content"
+msgstr "Vertoon na inhoud"
+
+msgid "Display before and after content"
+msgstr "Vertoon voor en na inhoud"
+
+msgid "Place buttons on"
+msgstr "Plaats knoppen op"
+
+msgid "Enable shortcode"
+msgstr "Shortcode inschakelen"
+
+msgid "Use the shortcode [social_share/] where you want the buttons to appear"
+msgstr "Gebruik de shortcode [social_share/] waar je de knoppen wilt laten zien"
+
+msgid "Uncheck this box if you are having issues displaying the buttons with excerpts (some themes have custom excerpt functions which do not play nice with the plugin)."
+msgstr "Ontvink dit als u problemen ondervindt met de weergave van knoppen in samenvattingen (enkele thema's gebruiken eigen functies welke niet goed samenwerken met de plugin)."
+
+msgid "Include buttons in excerpts"
+msgstr "Toon knoppen in samenvattingen"
+
+msgid "Use rel=\"nofollow\" on links to social networks"
+msgstr "Gebruik rel=\"nofollow\" voor links naar sociale networken"
+
+msgid "Check the boxes to display the button on your website. For each button you can select a separate style from the dropdown box. You can change the order of the buttons by dragging them to the desired location in the list. For the tweet button you can also fill in your Twitter username which will then be appended to the tweet (like via @WordPress)."
+msgstr "Vink de knoppen aan om deze weer te geven op uw website. Voor elke knop kunt u een apart stijl selecteren uit het selectieveld. U kunt de volgorde van de knoppen wijzigen door deze naar de gewenste positie in de lijst te slepen. Voor de Tweet knop kunt u ook uw Twitter gebruikersnaam invullen om deze aan de tweet toe te voegen (zoals via @WordPress)."
+
+msgid "Check the boxes to display the button on Social Sharing Toolkit Share widget. For each button you can select a separate style from the dropdown box. You can change the order of the buttons by dragging them to the desired location in the list. For the tweet button you can also fill in your Twitter username which will then be appended to the tweet (like via @WordPress)."
+msgstr "Vink de knoppen aan om deze weer te geven in de Social Sharing Toolkit Deel widget. Voor elke knop kunt u een apart stijl selecteren uit het selectieveld. U kunt de volgorde van de knoppen wijzigen door deze naar de gewenste positie in de lijst te slepen. Voor de Tweet knop kunt u ook uw Twitter gebruikersnaam invullen om deze aan de tweet toe te voegen (zoals via @WordPress)."
+
+msgid "For each widget you can enter a fixed url and title for the buttons, to do this"
+msgstr "Voor elke widget kunt u een vaste url en titel opgeven, om dit te doen"
+
+msgid "go to the widget configuration page"
+msgstr "ga naar de widget configuratie pagina"
+
+msgid "Check the boxes to display the button on Social Sharing Toolkit Follow widget. For each button you can select a separate style from the dropdown box. You can change the order of the buttons by dragging them to the desired location in the list."
+msgstr "Vink de knoppen aan om deze weer te geven in de Social Sharing Toolkit Volg widget. Voor elke knop kunt u een apart stijl selecteren uit het selectieveld. U kunt de volgorde van de knoppen wijzigen door deze naar de gewenste positie in de lijst te slepen."
+
+msgid "For each button you only have to enter your id or username of the network as it appears in the url of your profile page. You will need to enter the complete url for the RSS Feed (including the http:// part) if you wish to display this button."
+msgstr "Voor elke knop hoeft u enkel uw id of gebruikersnaam van het netwerk op te geven zoals deze wordt weergegeven in de url van uw profielpagina. U dient de complete url op te geven voor de RSS Feed (inclusief http://) als u deze wenst weer te geven."
+
+msgid "To add the widget to your website"
+msgstr "Om de widget aan uw website toe te voegen"
+
+msgid "Automatic Twitter links"
+msgstr "Automatische Twitter links"
+
+msgid "Select what you want to convert:"
+msgstr "Selecteer wat u wilt converteren:"
+
+msgid "Convert Twitter usernames"
+msgstr "Twitter gebruikersnamen converteren"
+
+msgid "Convert hashtags"
+msgstr "Hashtags converteren"
+
+msgid "And where it should be converted:"
+msgstr "En waar het geconverteerd moet worden:"
+
+msgid "Convert in posts and pages"
+msgstr "Converteren in inhoud"
+
+msgid "Convert in comments"
+msgstr "Converteren in reacties"
+
+msgid "Open links in new window or tab"
+msgstr "Open links in een nieuw venster of tabblad"
+
+msgid "Bitly"
+msgstr "Bitly"
+
+msgid "Use Bitly url shortening for the tweet button"
+msgstr "Gebruik Bitly url verkorting voor de tweet knop"
+
+msgid "Enable Bitly URL shortening"
+msgstr "Bilty URL verkorting inschakelen"
+
+msgid "Your bitly Username"
+msgstr "Uw bitly gebruikersnaam"
+
+msgid "Your bitly API Key"
+msgstr "Uw bitly API Sleutel"
+
+msgid "OpenGraph"
+msgstr "OpenGraph"
+
+msgid "Include Open Graph tags"
+msgstr "Open Graph tags gebruiken"
+
+msgid "Enable Open Graph"
+msgstr "Open Graph inschakelen"
+
+msgid "Default image URL"
+msgstr "Standaard afbeelding URL"
+
+msgid "You can specify a link to an image you would like to use for Pinterest pins when no image is available"
+msgstr "U kunt een link naar een afbeelding invullen die u wilt gebruiken voor Pinterest pins indien geen afbeelding is gevonden"
+
+msgid "Check this box to always display the default image with your Pins"
+msgstr "Vink deze knop aan om altijd de standaard afbeelding to tonen bij uw Pins"
+
+msgid "You can specify a link to an image you would like to include in your likes and shares"
+msgstr "U kunt een link naar een afbeelding invullen die u wilt gebruiken voor gedeelde inhoud"
+
+msgid "Always use the default image"
+msgstr "Altijd de standaard afbeelding gebruiken"
+
+msgid "Check this box to always display the default image with you shared content"
+msgstr "Vink deze knop aan om altijd de standaard afbeelding to tonen bij uw gedeelde inhoud"
+
+msgid "Save Changes"
+msgstr "Veranderingen Opslaan"
+
+msgid "Thank you for using the Social Sharing Toolkit!"
+msgstr "Bedankt voor het gebruiken van de Social Sharing Toolkit!"
+
+msgid "For questions or requests about this plugin please use the"
+msgstr "Voor vragen of verzoeken over deze plugin gaat u naar de"
+
+msgid "official plugin page"
+msgstr "officiële plugin pagina"
+
+msgid "If you like the plugin I would appreciate it if you provide a rating of the"
+msgstr "Als u de plugin leuk vind waardeer ik het zeer als u een beoordeling achterlaat van de"
+
+msgid "plugin on WordPress.org"
+msgstr "plugin op WordPress.org"
+
+msgid "If you really like the plugin you can also"
+msgstr "Als u de plugin echt leuk vindt kunt u ook"
+
+msgid "donate here"
+msgstr "hier doneren"
+
+msgid "Change button order"
+msgstr "Verander volgorde van knoppen"
+
+msgid "Choose button orientation horizontal to display the buttons side by side, vertical will place them below each other. You can also select an alignment to better suit your theme."
+msgstr "Kies horizontale knop orientatie om de knoppen langs elkaar te tonen, de verticale orientatie zal de knoppen onder elkaar plaatsen. U kunt ook een uitlijning kiezen welke beter bij uw thema past. "
+
+msgid "Button orientation"
+msgstr "Knop orientatie"
+
+msgid "Horizontal"
+msgstr "Horizontaal"
+
+msgid "Vertical"
+msgstr "Verticaal"
+
+msgid "Button alignment"
+msgstr "Knop uitlijning"
+
+msgid "Align to bottom"
+msgstr "Uitlijnen op onderkant"
+
+msgid "Align to top"
+msgstr "Uitlijnen op bovenkant"
+
+msgid "en_US"
+msgstr "nl_NL"
+
+msgid "fb_horizontal_recommend_width"
+msgstr "125"
+
+msgid "fb_horizontal_width"
+msgstr "125"
+
+msgid "fb_vertical_recommend_width"
+msgstr "91"
+
+msgid "fb_vertical_width"
+msgstr "91"
+
+msgid "fb_standard_recommend_width"
+msgstr "93"
+
+msgid "fb_standard_width"
+msgstr "93"
+
+msgid "Share on"
+msgstr "Deel op"
+
+msgid "Add to"
+msgstr "Toevoegen aan"
+
+msgid "Pin it on"
+msgstr "Pin het op"
+
+msgid "Submit to"
+msgstr "Voeg toe aan"
+
+msgid "Save on"
+msgstr "Opslaan op"
+
+msgid "Digg This"
+msgstr "Digg dit"
+
+msgid "Share via email"
+msgstr "Deel via email"
+
+msgid "Friend me on"
+msgstr "Bevriend me op"
+
+msgid "Follow me on"
+msgstr "Volg me op"
+
+msgid "Add me to your circles"
+msgstr "Voeg me toe aan je cirkels"
+
+msgid "Join my network on"
+msgstr "Wordt lid van mijn netwerk op"
+
+msgid "Follow my company on"
+msgstr "Volg mijn bedrijf op"
+
+msgid "Join my group on"
+msgstr "Wordt lid van mijn groep op"
+
+msgid "Watch me on"
+msgstr "Bekijk me op"
+
+msgid "My photostream on"
+msgstr "Mijn photostream op"
+
+msgid "My portfolio on"
+msgstr "Mijn portfolio op"
+
+msgid "My Picasa Web Albums"
+msgstr "Mijn Picasa Web Albums"
+
+msgid "My deviantArt"
+msgstr "Mijn deviantArt"
+
+msgid "My profile on"
+msgstr "Mijn profiel op"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Fixed title"
+msgstr "Vaste titel"
+
+msgid "Fixed url"
+msgstr "Vaste url"
+
+msgid "Further configuration is done via the"
+msgstr "Verdere configuratie wordt gedaan via het"
+
+msgid "plugin admin screen"
+msgstr "plugin admin scherm"
+
+#. Plugin Name of the plugin/theme
+msgid "Social Sharing Toolkit"
+msgstr "Social Sharing Toolkit"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.active-bits.nl/support/social_sharing_toolkit/"
+msgstr "Social Sharing Toolkit"
+
+#. Description of the plugin/theme
+msgid "This plugin enables sharing of your content via popular social networks and can also convert Twitter names and hashtags to links. Easy & configurable."
+msgstr "http://www.active-bits.nl/support/social_sharing_toolkit/"
+
+#. Author of the plugin/theme
+msgid "Marijn Rongen"
+msgstr "Marijn Rongen"
+
+#. Author URI of the plugin/theme
+msgid "http://www.active-bits.nl"
+msgstr "http://www.active-bits.nl"
+
