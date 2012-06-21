@@ -113,7 +113,7 @@ get_header(); ?>
     $module  = array_shift( $fields['spotlight_partner'] );
 ?>
     <h2>Spotlighted Partner</h2>
-    <?php echo get_the_post_thumbnail($module->ID, 'full', array( 'class' => "spotlight-module-img", 'alt' => $module->post_title, 'title' => $module->post_title ) ); ?>
+    <?php echo get_the_post_thumbnail($module->ID, 'bt-thumb-300', array( 'class' => "spotlight-module-img", 'alt' => $module->post_title, 'title' => $module->post_title ) ); ?>
     <a href="<?php echo get_permalink( $module->ID ); ?>"><h3><?php echo $module->post_title; ?></h3></a>
         <p><?php echo $module->post_excerpt; ?></p>   
 <?php } ?>    
