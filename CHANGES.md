@@ -1,5 +1,8 @@
 CHANGES.md
 
+June 15, 2012
+- Theme_Changes_0.6
+ - Added paged navigation to the archive template
 
 June 14, 2012
 - Hotfix_0.3
@@ -8,8 +11,6 @@ June 14, 2012
  - Updates to the custom post templates to fix layout issues, etc.
 - Theme_Changes_0.5
  - Fix for showing Key Theory, Tactic, Principle in Case Study and Theory
-- Theme_Changes_0.6
- - 
 
 June 13, 2012
 - feature/Theme_Changes_0.3

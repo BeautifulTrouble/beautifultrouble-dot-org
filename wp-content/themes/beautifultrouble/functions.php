@@ -332,11 +332,9 @@ function thumbnail_caption($html, $post_id, $post_thumbnail_id, $size, $attr)
       // post_content => image description
      
       if ($attachment->post_excerpt || $attachment->post_content) {
+        $caption = $attachment->post_excerpt ? $attachment->post_excerpt : $attachment->post_content; 
         $html .= '<p class="thumbcaption">';
-        if ($attachment->post_excerpt) {
-          $html .= '<span class="captitle">'.$attachment->post_excerpt.'</span> ';
-        }
-        $html .= $attachment->post_content.'</p>';
+          $html .= '<span class="captitle">' . $caption . '</span>';
       }
      
         } 
