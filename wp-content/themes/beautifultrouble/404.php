@@ -20,16 +20,18 @@ get_header(); ?>
  <!-- Masthead
       ================================================== -->
       <header class="jumbotron subhead" id="overview">
-        <h1><?php _e( 'This is Embarrassing', 'bootstrapwp' ); ?></h1>
-        <p class="lead"><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for.', 'bootstrapwp' ); ?></p>
+        <h1><?php _e( 'Here be dragons.', 'bootstrapwp' ); ?></h1>
+        <p class="lead"><?php _e( 'You&apos;ve reached the known limits of the Beautiful Trouble universe.', 'bootstrapwp' ); ?></p>
       </header>
 	  
         <div class="row content">
 <div class="span8">
 					
-<p>Not finding a module you're looking for? You can search for it here[linked] or browse the table of contents[link to whatever the website equivalent of the TOC will be], but it's also possible that the module you're looking for does not (yet) exist.</p>
+<p>So many more modules could be written than we've managed to write so far. Rather than only reference already-existing modules, we've deliberately designed the project to be expansive and outward looking, freely referencing modules that have yet to be written in the hopes they someday might.
 
-<p>Why? Because Beautiful Trouble is, by design, an evolving project. Not all the tactics, principles, theories and case studies we know are important have been written up yet. We are continuing to expand the content, and welcome your help submitting new modules or helping to complete unfinished ones. To learn more, visit [volunteer/contact/submission-guidelines page].</p>	
+<p>In fact, maybe you’re the one who can write up the module you’re looking for. </p>
+
+<p> To learn more, check out our <a href="/get-involved">Get Involved page</a>.</p>	
 
 <div class="well">
 					<?php get_search_form(); ?>
