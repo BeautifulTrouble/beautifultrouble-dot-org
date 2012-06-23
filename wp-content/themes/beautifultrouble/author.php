@@ -8,7 +8,7 @@ get_header(); ?>
 
 <?php 
 global $query_string;
-$posts = query_posts( $query_string . '&post_type=any&nopaging=true' );
+$posts = query_posts( $query_string . '&post_type[]=bt_theory&post_type[]=bt_tactic&post_type[]=bt_theory&post_type[]=bt_case&post_type[]=bt_principle&nopaging=true' );
 
 if ( have_posts() ) : ?>
 
@@ -28,8 +28,10 @@ if ( have_posts() ) : ?>
 	</div><!--/.row -->
 	<div class="container">
 		<header class="jumbotron subhead" id="overview">
-			<h1 class="page-title author"><?php printf( __( 'Author Archives: %s', 'bootstrapwp' ), '<span class="vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( "ID" ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author() . '</a></span>' ); ?></h1>
+			<h1 class="page-title author"><?php printf( '<span class="vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( "ID" ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author() . '</a></span>' ); ?></h1>
+                        <p><?php the_author_meta('description'); ?></p>
 		</header>
+                <hr class="soften" />
 		<?php
 					/* Since we called the_post() above, we need to
 					 * rewind the loop back to the beginning that way
