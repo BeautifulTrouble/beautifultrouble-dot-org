@@ -13,22 +13,6 @@
 get_header(); ?>
 <?php $fields = get_fields(); ?>
 <div class="container">
-    <div class="row">
-        <div class="span8">&nbsp;</div>
-        <div class="span4">
-            <?php $args = array( 'numberposts' => 1, 'orderby' => 'rand', 'post_type' => array ('bt_review'));
-            global $post;
-            $review = get_posts( $args );
-            $field = get_field('quotes', $review[0]->ID);
-            $key = array_rand( $field, 1 );
-            $quote = $field[$key]['quote'];
-            $attribution = get_field('attribution', $review[0]->ID );
-            ?>
-                <blockquote><p><?php echo $quote; ?></p>
-                <small><?php echo $attribution; ?></small>
-                </blockquote>
-        </div>
-    </div>
     <p class="alert alert-success"><i class="icon-star-empty"></i> Beautiful Trouble is a book and web toolbox that puts the accumulated wisdom of decades of creative protest into the hands of the next generation of change-makers.</p>
     <div class="row">
         <div id="myCarousel" class="carousel slide span8">

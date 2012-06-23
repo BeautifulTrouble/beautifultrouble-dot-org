@@ -9,3 +9,13 @@ Template: bootstrapwp
 */
 
 /*html body.home div.container header.jumbotron div.inner h1 { color: blue; }*/
+
+body {
+    background: url('../beautifultrouble/img/bg.png') repeat-x;
+}
+
+body h1.logo {
+    text-indent: -5000px;
+    background: url('../beautifultrouble/img/bt-100x600-banner.png') no-repeat;
+    height: 120px;
+}
