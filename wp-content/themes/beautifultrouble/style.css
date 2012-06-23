@@ -19,3 +19,8 @@ body h1.logo {
     background: url('../beautifultrouble/img/bt-100x600-banner.png') no-repeat;
     height: 120px;
 }
+
+.carousel .item {
+    height: 500px;
+    overflow: hidden;
+}
