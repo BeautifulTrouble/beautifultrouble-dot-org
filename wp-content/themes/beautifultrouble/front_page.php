@@ -59,12 +59,13 @@ get_header(); ?>
       <?php
       if ( function_exists('dynamic_sidebar')) dynamic_sidebar("home-two");
       ?>
+        <div class="upcoming_events">
             <?php $args = array('orderby' => 'meta_value', 'meta_key' => 'date', 'order' => 'ASC', 'post_type' => array ('bt_event'));
             $my_query = null;
             $my_query = new WP_Query($args);
             echo "<h2>Upcoming Events</h2>";
             if( $my_query->have_posts() ) {
-              echo "<ul>";
+              echo '<ul class="unstyled">';
               while ($my_query->have_posts()) : $my_query->the_post();
                 $date  = get_field('date');
                 $date_obj   = DateTime::createFromFormat('d/m/Y', $date );
@@ -81,6 +82,7 @@ get_header(); ?>
             }
             wp_reset_query();  // Restore global post data stomped by the_post().
             ?>
+            </div>
     </div>
     <div class="span4">
       <?php

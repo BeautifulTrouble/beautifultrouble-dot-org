@@ -24,3 +24,21 @@ body h1.logo {
     height: 500px;
     overflow: hidden;
 }
+
+.spotlight-module-img { 
+    float: left;
+    margin: 0 10px 10px 0;
+}
+
+body.home .avatar { 
+    float: left;
+    margin: 0 10px 10px 0;
+}
+
+#buy-the-book a img {
+    margin-bottom: 10px;
+}
+
+hr, hr.soften {
+    margin: 27px 0;
+}
