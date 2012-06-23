@@ -32,6 +32,7 @@ if ( have_posts() ) : ?>
                         <p><?php the_author_meta('description'); ?></p>
 		</header>
                 <hr class="soften" />
+                <h2>Contributed Modules</h3>
 		<?php
 					/* Since we called the_post() above, we need to
 					 * rewind the loop back to the beginning that way
