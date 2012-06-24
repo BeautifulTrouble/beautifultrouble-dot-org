@@ -58,16 +58,17 @@ foreach($authors as $author) {
 	$author_profile_url = get_author_posts_url($author['ID']);
         $author_bio         = get_the_author_meta('description', $author['ID'] );
         echo '<li><a href="', $author_profile_url, '">', $avatar , '</a><a href="', $author_profile_url, '" class="contributor-link">', $display_name, '</a>';
-        echo "<p>$author_bio</li>";
+        echo '<p>', $author_bio, '</p></li><br clear="all" />';
 }
 echo '</ul>';
 
  ?>
   </div><!-- /.span8 -->
+</div><!-- row -->
 
-  <div class="span8">
+<div class="row">
+    <div class="span8">
  <?php bootstrapwp_content_nav('nav-below');?>
-
-</div><!-- /.span8 -->
-<?php get_sidebar('blog'); ?>
+    </div><!-- /.span8 -->
+</div><!-- row -->
 <?php get_footer(); ?>

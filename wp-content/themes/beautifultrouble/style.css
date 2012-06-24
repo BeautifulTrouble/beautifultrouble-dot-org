@@ -50,3 +50,11 @@ hr, hr.soften {
 #supporters-logos img {
     margin-right: 20px;
 }
+body.page-template-team-php ul.contributors li, body.page-template-contributors-php ul.contributors li {
+    list-style: none;
+    margin-bottom: 40px;
+}
+body.page-template-team-php ul.contributors li img, body.page-template-contributors-php ul.contributors li img {
+    float: left;
+    margin: 0 10px 10px 0;
+}
