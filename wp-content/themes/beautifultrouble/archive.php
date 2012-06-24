@@ -44,9 +44,7 @@ if (have_posts() ) ;?>
 			_e( 'Blog Archives', 'bootstrapwp' );
 		}
 		?></h1>
-	</h1>
-</header>
-
+        </header>
 <div class="row content">
 	<div class="span8">
 		<?php while ( have_posts() ) : the_post(); ?>
