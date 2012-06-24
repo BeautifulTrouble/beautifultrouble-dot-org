@@ -1,5 +1,7 @@
 CHANGES.md
 
+Oh, foo, just read the commit log...
+
 June 15, 2012
 - Theme_Changes_0.6
  - Added paged navigation to the archive template

@@ -53,11 +53,15 @@ foreach ($blogusers as $bloguser) {
 
 echo '<ul class="contributors">';
 foreach($authors as $author) {
+        $id = 'user_' . $author['ID'];
 	$display_name = $author['data']->display_name;
 	$avatar = get_avatar($author['ID'], $avatar_size);
 	$author_profile_url = get_author_posts_url($author['ID']);
         $author_bio         = get_the_author_meta('description', $author['ID'] );
         echo '<li><a href="', $author_profile_url, '">', $avatar , '</a><a href="', $author_profile_url, '" class="contributor-link">', $display_name, '</a>';
+        if ( get_field( 'title', $id ) ) { 
+            echo '<p><em>', get_field( 'title', $id ), '</em></p>';
+        }
         echo "<p>$author_bio</li>";
 }
 echo '</ul>';
