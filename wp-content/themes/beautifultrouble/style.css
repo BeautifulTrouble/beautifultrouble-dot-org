@@ -42,3 +42,11 @@ body.home .avatar {
 hr, hr.soften {
     margin: 27px 0;
 }
+
+.carousel-caption {
+    background: rgba(0,0,0,0.60);
+}
+
+#supporters-logos img {
+    margin-right: 20px;
+}

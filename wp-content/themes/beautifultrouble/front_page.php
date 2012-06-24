@@ -77,6 +77,7 @@ get_header(); ?>
               <?php }
               endwhile;
                 echo "</ul>";
+                echo 'No event in your town? <a href="/get-involved">Help us organize one!</a>';
             } else {
                 echo 'No events? <a href="/get-involved">Help us organize one!</a>';
             }
