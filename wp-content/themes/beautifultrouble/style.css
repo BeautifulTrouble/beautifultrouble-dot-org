@@ -85,27 +85,42 @@ ol.footnotes li {
 
 body.single-bt_tactic header h1 {
     padding: 26px 0 10px 80px;
-    background: url('http://anonymous-ii.local/beautifultrouble-dot-org/wp-content/themes/beautifultrouble/img/icon_w_title_tactic.png') no-repeat;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_tactic.png') no-repeat;
     color: #e7932e;
 }
 body.single-bt_principle header h1 {
     padding: 26px 0 10px 82px;
-    background: url('http://anonymous-ii.local/beautifultrouble-dot-org/wp-content/themes/beautifultrouble/img/icon_w_title_principle.png') no-repeat;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_principle.png') no-repeat;
     color: #12a3d9;
 }
 body.single-bt_case header h1 {
     padding: 26px 0 10px 82px;
-    background: url('http://anonymous-ii.local/beautifultrouble-dot-org/wp-content/themes/beautifultrouble/img/icon_w_title_case.png') no-repeat;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_case.png') no-repeat;
     color: #7eb84f;
 }
 body.single-bt_theory header h1 {
     padding: 26px 0 10px 80px;
-    background: url('http://anonymous-ii.local/beautifultrouble-dot-org/wp-content/themes/beautifultrouble/img/icon_w_title_theory.png') no-repeat;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_theory.png') no-repeat;
     color: #b50035;
 }
 body.post-type-archive-bt_theory header h1 {
-    text-indent: 5000px;
-    background: url('http://anonymous-ii.local/beautifultrouble-dot-org/wp-content/themes/beautifultrouble/img/icon_w_title_theories.png') no-repeat;
+    text-indent: -5000px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_theories.png') no-repeat;
+    padding-top: 10px;
+}
+body.post-type-archive-bt_tactic header h1 {
+    text-indent: -5000px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_tactics.png') no-repeat;
+    padding-top: 10px;
+}
+body.post-type-archive-bt_principle header h1 {
+    text-indent: -5000px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_principles.png') no-repeat;
+    padding-top: 10px;
+}
+body.post-type-archive-bt_case header h1 {
+    text-indent: -5000px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_cases.png') no-repeat;
     padding-top: 10px;
 }
 body.post-type-archive-bt_theory header h2 {
