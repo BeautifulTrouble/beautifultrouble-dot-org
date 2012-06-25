@@ -146,7 +146,7 @@ div.featured-image {
     background: rgb(0,0,0);
     margin-bottom: 10px;
     overflow: hidden;
-    padding: 5px 5px 5px 0;
 }
 div.featured-image img {
+    border: 1px solid black;
 }

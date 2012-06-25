@@ -66,7 +66,7 @@ get_header(); ?>
                     <?php the_excerpt(); ?>
                 </div> 
             <?php } ?>
-            <?php if( $fields['origins'] ) {
+            <?php if( $fields['origins'] && strlen( $fields['origins'] ) > 1 ) {
             ?>
                 <div id="origins" class="well">
                     <strong class="origins">Origins:</strong> <?php echo $fields['origins']; ?>
