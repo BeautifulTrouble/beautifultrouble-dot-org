@@ -9,7 +9,7 @@
                                     <a class="img" href="http://orbooks.mybigcommerce.com/cart.php?action=add&product_id=265"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a>&nbsp;Ebook:&nbsp;$10&nbsp;<br />
                                     <a class="img" href="http://orbooks.mybigcommerce.com/cart.php?action=add&product_id=266"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a>&nbsp;Both:&nbsp;$28&nbsp;
                                     </p>
-                                    <p><i class="highlight">Not sure yet? <b><a href="http://docs.google.com/viewer?url=http%3A%2F%2Fbeautifultrouble.org%2Fbeautiful_trouble_module_example.pdf">Have a look inside the book</a>!</b></i></p>
+                                    <p><i class="highlight">Not sure yet? <b><a href="/the-book">Have a look inside the book</a>!</b></i></p>
         </div><!--/.well .sidebar-nav -->
         <hr class="soften" />
     </div><!-- /.span4 -->

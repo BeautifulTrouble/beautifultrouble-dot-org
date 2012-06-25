@@ -43,7 +43,9 @@ get_header(); ?>
          
         <div class="row content">
     <div class="span8">
-        <?php the_post_thumbnail('bt-featured' ); ?>
+        <div class="featured-image">
+            <?php the_post_thumbnail('bt-featured' ); ?>
+        </div>
         <?php // TODO move this into functions.php with an override to bootstrapwp_posted_on ?>
         <p class="meta">Contributed by <?php if( function_exists('coauthors_posts_links') ) coauthors_posts_links(); else the_author_posts_link(); ?></p>
         <?php if( $epigraphs ) {
@@ -79,7 +81,6 @@ get_header(); ?>
 
     </div><!-- /.span8 -->
     <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
-        <?php get_sidebar('book'); ?>
         <?php if( $fields['repeating_elements'] ) {
             if( $further_insights ) {
             // Further Insights

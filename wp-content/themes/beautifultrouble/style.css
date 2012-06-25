@@ -65,6 +65,7 @@ body.page-template-team-php ul.contributors li img, body.page-template-contribut
 .thumbcaption {
     background: black;
     padding: 8px;
+    text-align: left;
 }
 
 
@@ -136,4 +137,16 @@ body.post-type-archive-bt_theory > div.container a  {
 }
 .content {
     margin-top: 10px;
+}
+h3.partners, h3.supporters {
+    text-transform: uppercase;
+}
+div.featured-image {
+    text-align: center;
+    background: rgb(0,0,0);
+    margin-bottom: 10px;
+    overflow: hidden;
+    padding: 5px 5px 5px 0;
+}
+div.featured-image img {
 }
