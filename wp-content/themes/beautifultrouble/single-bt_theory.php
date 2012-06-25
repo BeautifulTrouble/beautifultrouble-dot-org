@@ -80,6 +80,7 @@ get_header(); ?>
 
         </div><!-- /.span8 -->
         <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
+            <?php get_sidebar('book'); ?>
             <?php if( $fields['repeating_elements'] ) {
                 if( $further_insights ) {
                 // Further Insights
