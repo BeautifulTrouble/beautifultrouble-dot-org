@@ -123,6 +123,11 @@ body.post-type-archive-bt_case header h1 {
     background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_cases.png') no-repeat;
     padding-top: 10px;
 }
+body.post-type-archive-bt_practitioner header h1 {
+    text-indent: -5000px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_practitioner.png') no-repeat;
+    padding-top: 10px;
+}
 body.post-type-archive-bt_theory header h2 {
     /*color: #b50035;*/
 }
