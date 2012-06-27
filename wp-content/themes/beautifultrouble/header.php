@@ -82,7 +82,7 @@
             $quote = $field[$key]['quote'];
             $attribution = get_field('attribution', $review[0]->ID );
             ?>
-                <blockquote><p><?php echo $quote; ?></p>
+                <blockquote id="quote-top"><p><?php echo $quote; ?></p>
                 <small><?php echo $attribution; ?></small>
                 </blockquote>
         </div>

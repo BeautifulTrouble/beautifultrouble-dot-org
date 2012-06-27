@@ -42,9 +42,13 @@ print $obj->labels->name;
 			<p class="meta"><?php echo bootstrapwp_posted_on();?></p>
 			<div class="row">
 				        <div class="span2"><?php // Checking for a post thumbnail
-				        if ( has_post_thumbnail() ) ?>
+				        if ( has_post_thumbnail() )  { ?>
 				        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-				        	<?php the_post_thumbnail();?></a>
+                                                <?php the_post_thumbnail();?></a>
+                                        <?php } else { ?>
+				        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
+                                                <img src="/wp-content/themes/beautifultrouble/img/icon_tactic.png" /></a>
+                                        <?php } ?> 
 				        </div><!-- /.span2 -->
 				        <div class="span6">
 				        	<?php the_excerpt();?>
