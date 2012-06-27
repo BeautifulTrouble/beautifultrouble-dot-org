@@ -445,3 +445,18 @@ function validate_gravatar($email) {
 	}
 	return $has_valid_avatar;
 }
+
+/**
+ * truncate() Simple function to shorten a string and add an ellipsis
+ *
+ * @param string $string Origonal string
+ * @param integer $max Maximum length
+ * @param string $rep Replace with... (Default = '' - No elipsis -)
+ * @return string
+ * @author David Duong
+ **/
+function truncate ($string, $max = 50, $rep = '') {
+    $leave = $max - strlen ($rep);
+    return substr_replace($string, $rep, $leave);
+}
+

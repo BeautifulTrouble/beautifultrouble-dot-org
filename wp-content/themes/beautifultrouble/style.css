@@ -43,8 +43,15 @@ hr, hr.soften {
     margin: 27px 0;
 }
 
+
+.carousel-inner  {
+    background: rgb(0,0,0);
+    text-align: center;
+}
+
 .carousel-caption {
     background: rgba(0,0,0,0.60);
+    text-align: left;
 }
 
 #supporters-logos img {

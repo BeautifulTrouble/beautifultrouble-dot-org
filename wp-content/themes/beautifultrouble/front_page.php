@@ -31,7 +31,11 @@ get_header(); ?>
                     <a href="<?php echo get_permalink( $slide->ID ); ?>"><?php echo get_the_post_thumbnail($slide->ID, 'bt-featured', array( 'alt' => $slide->post_title, 'title' => $slide->post_title ) ); ?></a>
                     <div class="carousel-caption">
                     <h4><?php $obj = get_post_type_object( get_post_type( $slide->ID) ); echo strtoupper( $obj->labels->singular_name ); ?>: <?php echo $slide->post_title; ?></h4>
-                    <p><?php echo $slide->post_excerpt; ?></p>
+                    <p><?php if ( $slide->post_excerpt ) { 
+                        echo $slide->post_excerpt;
+                    } else {
+                        echo truncate( $slide->post_content, 248, '...' ); 
+                    } ?></p>
                     </div>
                 </div>
         
@@ -104,7 +108,12 @@ get_header(); ?>
     <h2>Spotlighted Module</h2>
     <?php echo get_the_post_thumbnail($module->ID, 'thumbnail', array( 'class' => "spotlight-module-img", 'alt' => $module->post_title, 'title' => $module->post_title ) ); ?></span>
     <a href="<?php echo get_permalink( $module->ID ); ?>"><h3><?php echo $module->post_title; ?></h3></a>
-        <p><?php echo $module->post_excerpt; ?></p>   
+        <p><?php if ( $module->post_excerpt ) { 
+                        echo $module->post_excerpt;
+                    } else {
+                        echo truncate( $module->post_content, 300, '...' );
+                        echo ' <a href="', get_permalink( $module->ID ), '">Read more</a>'; 
+                    } ?></p>   
 <?php } ?>    
         </div>
         <div class="span4">
