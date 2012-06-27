@@ -9,3 +9,156 @@ Template: bootstrapwp
 */
 
 /*html body.home div.container header.jumbotron div.inner h1 { color: blue; }*/
+
+body {
+    background: url('../beautifultrouble/img/bg.png') repeat-x;
+}
+
+body h1.logo {
+    text-indent: -5000px;
+    background: url('../beautifultrouble/img/bt-100x600-banner.png') no-repeat;
+    height: 120px;
+}
+
+.carousel .item {
+    height: 500px;
+    overflow: hidden;
+}
+
+.spotlight-module-img { 
+    float: left;
+    margin: 0 10px 10px 0;
+}
+
+body.home .avatar { 
+    float: left;
+    margin: 0 10px 10px 0;
+}
+
+#buy-the-book a img {
+    margin-bottom: 10px;
+}
+
+hr, hr.soften {
+    margin: 27px 0;
+}
+
+.carousel-caption {
+    background: rgba(0,0,0,0.60);
+}
+
+#supporters-logos img {
+    margin-right: 20px;
+}
+body.page-template-team-php ul.contributors li, body.page-template-contributors-php ul.contributors li {
+    list-style: none;
+    margin-bottom: 40px;
+}
+body.page-template-team-php ul.contributors li img, body.page-template-contributors-php ul.contributors li img {
+    float: left;
+    margin: 0 10px 10px 0;
+}
+.captitle {
+    font-style: italic;
+    color: white;
+}
+.thumbcaption {
+    background: black;
+    padding: 8px;
+    text-align: left;
+}
+
+
+ol.footnotes {
+  min-height: 20px;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+ol.footnotes li {
+    font-size: 100% !important;
+    line-height: inherit !important;
+    background: transparent !important;
+    padding: 0px !important;
+    border: none !important;
+    margin: 0.5em 1em !important;
+}
+
+body.single-bt_tactic header h1 {
+    padding: 26px 0 10px 80px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_tactic.png') no-repeat;
+    color: #e7932e;
+}
+body.single-bt_principle header h1 {
+    padding: 26px 0 10px 82px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_principle.png') no-repeat;
+    color: #12a3d9;
+}
+body.single-bt_case header h1 {
+    padding: 26px 0 10px 82px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_case.png') no-repeat;
+    color: #7eb84f;
+}
+body.single-bt_theory header h1 {
+    padding: 26px 0 10px 80px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_theory.png') no-repeat;
+    color: #b50035;
+}
+body.post-type-archive-bt_theory header h1 {
+    text-indent: -5000px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_theories.png') no-repeat;
+    padding-top: 10px;
+}
+body.post-type-archive-bt_tactic header h1 {
+    text-indent: -5000px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_tactics.png') no-repeat;
+    padding-top: 10px;
+}
+body.post-type-archive-bt_principle header h1 {
+    text-indent: -5000px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_principles.png') no-repeat;
+    padding-top: 10px;
+}
+body.post-type-archive-bt_case header h1 {
+    text-indent: -5000px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_cases.png') no-repeat;
+    padding-top: 10px;
+}
+body.post-type-archive-bt_practitioner header h1 {
+    text-indent: -5000px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_practitioners.png') no-repeat;
+    padding-top: 10px;
+}
+body.post-type-archive-bt_theory header h2 {
+    /*color: #b50035;*/
+}
+body.post-type-archive-bt_theory > div.container a  {
+    /*color: #b50035;*/
+}
+.content {
+    margin-top: 10px;
+}
+h3.partners, h3.supporters {
+    text-transform: uppercase;
+}
+div.featured-image {
+    text-align: center;
+    background: rgb(0,0,0);
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+div.featured-image img {
+    border: 1px solid black;
+}
+
+.navbar .nav > li > a  {
+    color: rgb(220,220,220);
+}
+
+.caret {
+    opacity: 0.5;
+}
+#quote-top {
+    background: url('../beautifultrouble/img/quote.png') no-repeat top right;
+    padding-bottom: 60px;
+}

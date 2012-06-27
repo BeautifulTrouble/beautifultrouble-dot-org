@@ -1,0 +1,366 @@
+# Copyright (C) 2010 Social Sharing Toolkit
+# This file is distributed under the same license as the Social Sharing Toolkit package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Social Sharing Toolkit 2.0.5\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/social_sharing_toolkit\n"
+"POT-Creation-Date: 2012-04-07 14:59:58+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+msgid "Button"
+msgstr ""
+
+msgid "Button + text"
+msgstr ""
+
+msgid "Button + side counter"
+msgstr ""
+
+msgid "Button + top counter"
+msgstr ""
+
+msgid "Small icon"
+msgstr ""
+
+msgid "Small icon + text"
+msgstr ""
+
+msgid "Medium icon"
+msgstr ""
+
+msgid "Medium icon + text"
+msgstr ""
+
+msgid "Large icon"
+msgstr ""
+
+msgid "Send email"
+msgstr ""
+
+msgid "Divider"
+msgstr ""
+
+msgid "RSS Feed"
+msgstr ""
+
+msgid "Donate"
+msgstr ""
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+msgid "Settings saved."
+msgstr ""
+
+msgid "General settings"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Shortcode"
+msgstr ""
+
+msgid "Share Widget"
+msgstr ""
+
+msgid "Follow Widget"
+msgstr ""
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Load JavaScript in footer"
+msgstr ""
+
+msgid "Improves performance but may not work on some themes"
+msgstr ""
+
+msgid "Choose where the buttons must be displayed and if the buttons should be displayed on posts, pages or both."
+msgstr ""
+
+msgid "Button location"
+msgstr ""
+
+msgid "Do not display"
+msgstr ""
+
+msgid "Display before content"
+msgstr ""
+
+msgid "Display after content"
+msgstr ""
+
+msgid "Display before and after content"
+msgstr ""
+
+msgid "Place buttons on"
+msgstr ""
+
+msgid "Enable shortcode"
+msgstr ""
+
+msgid "Use the shortcode [social_share/] where you want the buttons to appear"
+msgstr ""
+
+msgid "Include buttons in excerpts"
+msgstr ""
+
+msgid "Uncheck this box if you are having issues displaying the buttons with excerpts (some themes have custom excerpt functions which do not play nice with the plugin)."
+msgstr ""
+
+msgid "Use rel=\"nofollow\" on links to social networks"
+msgstr ""
+
+msgid "Check the boxes to display the button on your website. For each button you can select a separate style from the dropdown box. You can change the order of the buttons by dragging them to the desired location in the list. For the tweet button you can also fill in your Twitter username which will then be appended to the tweet (like via @WordPress)."
+msgstr ""
+
+msgid "Check the boxes to display the button on Social Sharing Toolkit Share widget. For each button you can select a separate style from the dropdown box. You can change the order of the buttons by dragging them to the desired location in the list. For the tweet button you can also fill in your Twitter username which will then be appended to the tweet (like via @WordPress)."
+msgstr ""
+
+msgid "For each widget you can enter a fixed url and title for the buttons, to do this"
+msgstr ""
+
+msgid "go to the widget configuration page"
+msgstr ""
+
+msgid "Check the boxes to display the button on Social Sharing Toolkit Follow widget. For each button you can select a separate style from the dropdown box. You can change the order of the buttons by dragging them to the desired location in the list."
+msgstr ""
+
+msgid "For each button you only have to enter your id or username of the network as it appears in the url of your profile page. You will need to enter the complete url for the RSS Feed (including the http:// part) if you wish to display this button."
+msgstr ""
+
+msgid "To add the widget to your website"
+msgstr ""
+
+msgid "Automatic Twitter links"
+msgstr ""
+
+msgid "Select what you want to convert:"
+msgstr ""
+
+msgid "Convert Twitter usernames"
+msgstr ""
+
+msgid "Convert hashtags"
+msgstr ""
+
+msgid "And where it should be converted:"
+msgstr ""
+
+msgid "Convert in posts and pages"
+msgstr ""
+
+msgid "Convert in comments"
+msgstr ""
+
+msgid "Open links in new window or tab"
+msgstr ""
+
+msgid "Bitly"
+msgstr ""
+
+msgid "Use Bitly url shortening for the tweet button"
+msgstr ""
+
+msgid "Enable Bitly URL shortening"
+msgstr ""
+
+msgid "Your bitly Username"
+msgstr ""
+
+msgid "Your bitly API Key"
+msgstr ""
+
+msgid "OpenGraph"
+msgstr ""
+
+msgid "Include Open Graph tags"
+msgstr ""
+
+msgid "Enable Open Graph"
+msgstr ""
+
+msgid "Default image URL"
+msgstr ""
+
+msgid "You can specify a link to an image you would like to use for Pinterest pins when no image is available"
+msgstr ""
+
+msgid "Check this box to always display the default image with your Pins"
+msgstr ""
+
+msgid "You can specify a link to an image you would like to include in your likes and shares"
+msgstr ""
+
+msgid "Always use the default image"
+msgstr ""
+
+msgid "Check this box to always display the default image with you shared content"
+msgstr ""
+
+msgid "Save Changes"
+msgstr ""
+
+msgid "Thank you for using the Social Sharing Toolkit!"
+msgstr ""
+
+msgid "For questions or requests about this plugin please use the"
+msgstr ""
+
+msgid "official plugin page"
+msgstr ""
+
+msgid "If you like the plugin I would appreciate it if you provide a rating of the"
+msgstr ""
+
+msgid "plugin on WordPress.org"
+msgstr ""
+
+msgid "If you really like the plugin you can also"
+msgstr ""
+
+msgid "donate here"
+msgstr ""
+
+msgid "Change button order"
+msgstr ""
+
+msgid "Choose button orientation horizontal to display the buttons side by side, vertical will place them below each other. You can also select an alignment to better suit your theme."
+msgstr ""
+
+msgid "Button orientation"
+msgstr ""
+
+msgid "Horizontal"
+msgstr ""
+
+msgid "Vertical"
+msgstr ""
+
+msgid "Button alignment"
+msgstr ""
+
+msgid "Align to bottom"
+msgstr ""
+
+msgid "Align to top"
+msgstr ""
+
+msgid "en_US"
+msgstr ""
+
+msgid "fb_horizontal_recommend_width"
+msgstr ""
+
+msgid "fb_horizontal_width"
+msgstr ""
+
+msgid "fb_vertical_recommend_width"
+msgstr ""
+
+msgid "fb_vertical_width"
+msgstr ""
+
+msgid "fb_standard_recommend_width"
+msgstr ""
+
+msgid "fb_standard_width"
+msgstr ""
+
+msgid "Share on"
+msgstr ""
+
+msgid "Add to"
+msgstr ""
+
+msgid "Pin it on"
+msgstr ""
+
+msgid "Submit to"
+msgstr ""
+
+msgid "Save on"
+msgstr ""
+
+msgid "Digg This"
+msgstr ""
+
+msgid "Share via email"
+msgstr ""
+
+msgid "Friend me on"
+msgstr ""
+
+msgid "Follow me on"
+msgstr ""
+
+msgid "Add me to your circles"
+msgstr ""
+
+msgid "Join my network on"
+msgstr ""
+
+msgid "Follow my company on"
+msgstr ""
+
+msgid "Join my group on"
+msgstr ""
+
+msgid "Watch me on"
+msgstr ""
+
+msgid "My photostream on"
+msgstr ""
+
+msgid "My portfolio on"
+msgstr ""
+
+msgid "My Picasa Web Albums"
+msgstr ""
+
+msgid "My deviantArt"
+msgstr ""
+
+msgid "My profile on"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Fixed title"
+msgstr ""
+
+msgid "Fixed url"
+msgstr ""
+
+msgid "Further configuration is done via the"
+msgstr ""
+
+msgid "plugin admin screen"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Social Sharing Toolkit"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.active-bits.nl/support/social_sharing_toolkit/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "This plugin enables sharing of your content via popular social networks and can also convert Twitter names and hashtags to links. Easy & configurable."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Marijn Rongen"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.active-bits.nl"
+msgstr ""

@@ -38,16 +38,27 @@ print $obj->labels->name;
 	<div class="span8">
 		<?php while ( have_posts() ) : the_post(); ?>
 		<div <?php post_class(); ?>>
-			<a href="<?php the_permalink(); ?>" title="<?php the_title();?>"><h3><?php the_title();?></h3></a>
-			<p class="meta"><?php echo bootstrapwp_posted_on();?></p>
 			<div class="row">
-				        <div class="span2"><?php // Checking for a post thumbnail
-				        if ( has_post_thumbnail() ) ?>
-				        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-				        	<?php the_post_thumbnail();?></a>
-				        </div><!-- /.span2 -->
 				        <div class="span6">
-				        	<?php the_excerpt();?>
+                                        <blockquote>
+                                        <?php 
+                                        $fields = get_fields();
+                                        $quotes = $fields['quotes'];
+                                        foreach( $quotes as $quote ) { 
+                                        $text = $quote['quote'];
+                                        $attribution = $fields['attribution'];
+                                        ?>
+                                            <p class="quote"><?php echo $text ?></p>
+                                        <?php } ?>
+                                        <?php if ( $fields['link'] ) { ?> 
+                                            <small class="attribution"><a href="<?php echo $fields['link']; ?>"><?php echo $attribution ?></a></small>
+                                            
+                                        <?php }
+                                            else {
+                                        ?>
+                                            <small class="attribution"><?php echo $attribution; ?></small>
+                                        <?php } ?>
+                                            </blockquote>
 				        </div><!-- /.span6 -->
 				    </div><!-- /.row -->
 				    <hr />

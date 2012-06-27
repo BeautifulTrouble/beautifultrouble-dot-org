@@ -70,3 +70,21 @@
         </div>
       </div>
     </div>
+    <div class="container">
+    <div class="row">
+        <div class="span8"><a href="/" title="Beautiful Trouble front page"><h1 class="logo">Beautiful Trouble</h1></a></div>
+        <div class="span4">
+            <?php $args = array( 'numberposts' => 1, 'orderby' => 'rand', 'post_type' => array ('bt_review'));
+            global $post;
+            $review = get_posts( $args );
+            $field = get_field('quotes', $review[0]->ID);
+            $key = array_rand( $field, 1 );
+            $quote = $field[$key]['quote'];
+            $attribution = get_field('attribution', $review[0]->ID );
+            ?>
+                <blockquote id="quote-top"><p><?php echo $quote; ?></p>
+                <small><?php echo $attribution; ?></small>
+                </blockquote>
+        </div>
+    </div>
+    </div>

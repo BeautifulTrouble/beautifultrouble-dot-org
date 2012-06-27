@@ -43,7 +43,9 @@ get_header(); ?>
          
     <div class="row content">
     <div class="span8">
-        <?php the_post_thumbnail('bt-featured' ); ?>
+        <div class="featured-image">
+            <?php the_post_thumbnail('bt-featured' ); ?>
+        </div>
         <?php // TODO move this into functions.php with an override to bootstrapwp_posted_on ?>
         <p class="meta">Contributed by <?php if( function_exists('coauthors_posts_links') ) coauthors_posts_links(); else the_author_posts_link(); ?></p>
         <?php if( $epigraphs ) {
@@ -60,7 +62,7 @@ get_header(); ?>
         }
         ?>
         <?php if ( $fields['when'] && $fields['where'] ) { ?>
-        <div id="when-and-where">
+        <div id="when-and-where" class="well">
             <div class="when"><strong>When:</strong> <?php echo $fields['when']; ?></div>
             <div class="where"><strong>Where:</strong> <?php echo $fields['where'] ?></div>
         </div>
@@ -68,10 +70,10 @@ get_header(); ?>
 
         <?php the_content();?>
         
-        <?php if ( $fields['why_it_worked'] ) { ?>
+        <?php if ( $fields['why_it_worked'] && strlen( $fields['why_it_worked'] ) > 1) { ?>
         <div id="why-it-worked"><strong>Why it worked</strong><p><?php echo $fields['why_it_worked']; ?></p></div>
         <?php } ?>
-        <?php if ( $fields['what_didnt_work'] ) { ?>
+        <?php if ( $fields['what_didnt_work'] && strlen( $fields['why_it_didnt_work'] ) > 1 ) { ?>
         <div id="what-didnt-work"><strong>What didn't work</strong><p><?php echo $fields['what_didnt_work']; ?></p></div>
         <?php } ?>
 
@@ -107,6 +109,7 @@ get_header(); ?>
         <?php endwhile; // end of the loop. ?>
     </div><!-- /.span8 -->
     <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
+        <?php get_sidebar('book'); ?>
         <?php if( $fields['repeating_elements'] ) {
             if( $further_insights ) {
             // Further Insights

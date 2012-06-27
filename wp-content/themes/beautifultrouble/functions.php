@@ -218,7 +218,7 @@ function my_addquicktag_post_types( $post_types ) {
 
     return $post_types;
 }
-add_image_size( 'bt-featured', 770, 0, false );
+add_image_size( 'bt-featured', 770, 500, false );
 add_image_size( 'bt-thumb-600', 600, 300, false );
 add_image_size( 'bt-thumb-300', 300, 100, true );
 
@@ -332,14 +332,116 @@ function thumbnail_caption($html, $post_id, $post_thumbnail_id, $size, $attr)
       // post_content => image description
      
       if ($attachment->post_excerpt || $attachment->post_content) {
+        $caption = $attachment->post_excerpt ? $attachment->post_excerpt : $attachment->post_content; 
         $html .= '<p class="thumbcaption">';
-        if ($attachment->post_excerpt) {
-          $html .= '<span class="captitle">'.$attachment->post_excerpt.'</span> ';
-        }
-        $html .= $attachment->post_content.'</p>';
+          $html .= '<span class="captitle">' . $caption . '</span>';
       }
      
         } 
             return $html;
     } 
 add_action('post_thumbnail_html', 'thumbnail_caption', null, 5);
+
+function beautifultrouble_widgets_init() {
+  register_sidebar( array(
+    'name' => 'Page Sidebar',
+    'id' => 'sidebar-page',
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget' => "</div>",
+    'before_title' => '<h4 class="widget-title">',
+    'after_title' => '</h4>',
+  ) );
+
+  register_sidebar( array(
+    'name' => 'Posts Sidebar',
+    'id' => 'sidebar-posts',
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget' => "</div>",
+    'before_title' => '<h4 class="widget-title">',
+    'after_title' => '</h4>',
+  ) );
+
+  register_sidebar(array(
+    'name' => 'Home One',
+    'id'   => 'home-one',
+    'description'   => 'Left textbox on homepage',
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h2>',
+    'after_title'   => '</h2>'
+  ));
+
+    register_sidebar(array(
+    'name' => 'Home Two',
+    'id'   => 'home-two',
+    'description'   => 'Middle textbox on homepage',
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h2>',
+    'after_title'   => '</h2>'
+  ));
+
+    register_sidebar(array(
+    'name' => 'Home Three',
+    'id'   => 'home-three',
+    'description'   => 'Right textbox on homepage',
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h2>',
+    'after_title'   => '</h2>'
+  ));
+
+  register_sidebar(array(
+    'name' => 'Home Four',
+    'id'   => 'home-four',
+    'description'   => 'Left textbox on homepage',
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h2>',
+    'after_title'   => '</h2>'
+  ));
+
+    register_sidebar(array(
+    'name' => 'Home Five',
+    'id'   => 'home-five',
+    'description'   => 'Middle textbox on homepage',
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h2>',
+    'after_title'   => '</h2>'
+  ));
+
+    register_sidebar(array(
+    'name' => 'Home Six',
+    'id'   => 'home-six',
+    'description'   => 'Right textbox on homepage',
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h2>',
+    'after_title'   => '</h2>'
+  ));
+    register_sidebar(array(
+    'name' => 'Footer Content',
+    'id'   => 'footer-content',
+    'description'   => 'Footer text or acknowledgements',
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h4>',
+    'after_title'   => '</h4>'
+  ));
+}
+add_action( 'init', 'beautifultrouble_widgets_init' );
+
+
+function validate_gravatar($email) {
+	// Craft a potential url and test its headers
+	$hash = md5(strtolower(trim($email)));
+	$uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
+	$headers = @get_headers($uri);
+	if (!preg_match("|200|", $headers[0])) {
+		$has_valid_avatar = FALSE;
+	} else {
+		$has_valid_avatar = TRUE;
+	}
+	return $has_valid_avatar;
+}
