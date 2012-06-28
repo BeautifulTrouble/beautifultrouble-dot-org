@@ -64,12 +64,12 @@ jQuery('a.dropdown-toggle')
 .attr('data-toggle', 'dropdown');
 });
 </script>
-<script>
-  jQuery(document).ready(function(){
-      jQuery('#myCarousel').carousel({
-            interval: 'false' 
-      })
+<script type="text/javascript">
+jQuery(document).ready(function(){
+  jQuery('#myCarousel').carousel({
+        interval: 'false' 
   });
+});
 </script>
   </body>
 </html>
