@@ -13,7 +13,7 @@
 get_header(); ?>
 <?php $fields = get_fields(); ?>
 <div class="container">
-    <p class="alert alert-success"><i class="icon-star-empty"></i> Beautiful Trouble is a book and web toolbox that puts the accumulated wisdom of decades of creative protest into the hands of the next generation of change-makers.</p>
+    <p class="well"><i class="icon-star-empty"></i> Beautiful Trouble is a book and web toolbox that puts the accumulated wisdom of decades of creative protest into the hands of the next generation of change-makers.</p>
     <div class="row">
         <div id="myCarousel" class="carousel slide span8">
         <!-- Carousel items -->
@@ -41,7 +41,10 @@ get_header(); ?>
         
 <?php  }
     }
-} ?> 
+} ?>    
+                <div class="item">
+                    <a href="/the-book/"><img src="/wp-content/themes/beautifultrouble/img/slide-book-promo.jpg" /></a>
+                </div> 
             </div>
         <!-- Carousel nav -->
         <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>

@@ -62,6 +62,13 @@ jQuery(document).ready(function(){
  // Don't FORGET: replace all $ with jQuery to prevent conflicts //
 jQuery('a.dropdown-toggle')
 .attr('data-toggle', 'dropdown');
+});
+</script>
+<script>
+  jQuery(document).ready(function(){
+      jQuery('#myCarousel').carousel({
+            interval: 'false' 
+      })
   });
 </script>
   </body>
