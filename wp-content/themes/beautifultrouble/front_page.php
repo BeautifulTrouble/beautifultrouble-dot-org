@@ -77,7 +77,7 @@ get_header(); ?>
                 $unix_date  = $date_obj->format('U');
                 $nice_date  = $date_obj->format('M d');
                 if( $unix_date >= $time ) { ?>
-                    <li class="event"><span class="date badge badge-inverse"><?php echo $nice_date ?></span> <a href="<?php post_permalink(); ?>"><?php the_title(); ?></a></li>                
+                    <li class="event"><span class="date badge badge-inverse"><?php echo $nice_date ?></span> <a href="<?php echo post_permalink(); ?>"><?php the_title(); ?></a></li>                
               <?php }
               endwhile;
                 echo "</ul>";
@@ -106,7 +106,7 @@ get_header(); ?>
     $module  = array_shift( $fields['spotlight_module'] );
 ?>
     <h2>Spotlighted Module</h2>
-    <?php echo get_the_post_thumbnail($module->ID, 'thumbnail', array( 'class' => "spotlight-module-img", 'alt' => $module->post_title, 'title' => $module->post_title ) ); ?></span>
+    <?php echo get_the_post_thumbnail($module->ID, 'thumbnail', array( 'class' => "spotlight-module-img", 'alt' => $module->post_title, 'title' => $module->post_title ) ); ?>
     <a href="<?php echo get_permalink( $module->ID ); ?>"><h3><?php echo $module->post_title; ?></h3></a>
         <p><?php if ( $module->post_excerpt ) { 
                         echo $module->post_excerpt;

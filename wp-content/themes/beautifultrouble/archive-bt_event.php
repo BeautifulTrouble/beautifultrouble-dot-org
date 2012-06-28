@@ -78,7 +78,9 @@ print $obj->labels->name;
 					<?php } ?>			
 		</div><!-- /.span8 -->
                 <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
-                &nbsp;
+                    <?php
+                        if ( function_exists('dynamic_sidebar')) dynamic_sidebar("sidebar-event");
+                    ?>
                 </div>
             </div><!-- /.row .content -->
 <?php get_footer(); ?>
