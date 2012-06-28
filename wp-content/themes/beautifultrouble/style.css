@@ -165,7 +165,7 @@ div.featured-image img {
 .caret {
     opacity: 0.5;
 }
-#quote-top {
-    background: url('/wp-content/themes/beautifultrouble/img/quote.png') no-repeat top right;
-    min-height: 92px;
-}
+/*#quote-top {*/
+    /*background: url('/wp-content/themes/beautifultrouble/img/quote.png') no-repeat top right;*/
+    /*min-height: 92px;*/
+/*}*/
