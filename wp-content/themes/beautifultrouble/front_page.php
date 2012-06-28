@@ -13,7 +13,7 @@
 get_header(); ?>
 <?php $fields = get_fields(); ?>
 <div class="container">
-    <p class="alert alert-success"><i class="icon-star-empty"></i> Beautiful Trouble is a book and web toolbox that puts the accumulated wisdom of decades of creative protest into the hands of the next generation of change-makers.</p>
+    <p class="well"><i class="icon-star-empty"></i> Beautiful Trouble is a book and web toolbox that puts the accumulated wisdom of decades of creative protest into the hands of the next generation of change-makers.</p>
     <div class="row">
         <div id="myCarousel" class="carousel slide span8">
         <!-- Carousel items -->
@@ -41,7 +41,10 @@ get_header(); ?>
         
 <?php  }
     }
-} ?> 
+} ?>    
+                <div class="item">
+                    <a href="/the-book/"><img src="/wp-content/themes/beautifultrouble/img/slide-book-promo.jpg" /></a>
+                </div> 
             </div>
         <!-- Carousel nav -->
         <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
@@ -64,7 +67,7 @@ get_header(); ?>
       if ( function_exists('dynamic_sidebar')) dynamic_sidebar("home-two");
       ?>
         <div class="upcoming_events">
-            <?php $args = array('orderby' => 'meta_value', 'meta_key' => 'date', 'order' => 'ASC', 'post_type' => array ('bt_event'));
+            <?php $args = array('orderby' => 'meta_value', 'meta_key' => 'date', 'order' => 'DESC', 'post_type' => array ('bt_event'));
             $my_query = null;
             $my_query = new WP_Query($args);
             echo "<h2>Upcoming Events</h2>";
@@ -77,7 +80,7 @@ get_header(); ?>
                 $unix_date  = $date_obj->format('U');
                 $nice_date  = $date_obj->format('M d');
                 if( $unix_date >= $time ) { ?>
-                    <li class="event"><span class="date badge badge-inverse"><?php echo $nice_date ?></span> <a href="<?php post_permalink(); ?>"><?php the_title(); ?></a></li>                
+                    <li class="event"><span class="date badge badge-inverse"><?php echo $nice_date ?></span> <a href="<?php echo post_permalink(); ?>"><?php the_title(); ?></a></li>                
               <?php }
               endwhile;
                 echo "</ul>";
@@ -106,7 +109,7 @@ get_header(); ?>
     $module  = array_shift( $fields['spotlight_module'] );
 ?>
     <h2>Spotlighted Module</h2>
-    <?php echo get_the_post_thumbnail($module->ID, 'thumbnail', array( 'class' => "spotlight-module-img", 'alt' => $module->post_title, 'title' => $module->post_title ) ); ?></span>
+    <?php echo get_the_post_thumbnail($module->ID, 'thumbnail', array( 'class' => "spotlight-module-img", 'alt' => $module->post_title, 'title' => $module->post_title ) ); ?>
     <a href="<?php echo get_permalink( $module->ID ); ?>"><h3><?php echo $module->post_title; ?></h3></a>
         <p><?php if ( $module->post_excerpt ) { 
                         echo $module->post_excerpt;

@@ -361,6 +361,15 @@ function beautifultrouble_widgets_init() {
     'after_title' => '</h4>',
   ) );
 
+  register_sidebar( array(
+    'name' => 'Events Sidebar',
+    'id' => 'sidebar-event',
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget' => "</div>",
+    'before_title' => '<h4 class="widget-title">',
+    'after_title' => '</h4>',
+  ) );
+
   register_sidebar(array(
     'name' => 'Home One',
     'id'   => 'home-one',
