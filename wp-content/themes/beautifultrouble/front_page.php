@@ -64,7 +64,7 @@ get_header(); ?>
       if ( function_exists('dynamic_sidebar')) dynamic_sidebar("home-two");
       ?>
         <div class="upcoming_events">
-            <?php $args = array('orderby' => 'meta_value', 'meta_key' => 'date', 'order' => 'ASC', 'post_type' => array ('bt_event'));
+            <?php $args = array('orderby' => 'meta_value', 'meta_key' => 'date', 'order' => 'DESC', 'post_type' => array ('bt_event'));
             $my_query = null;
             $my_query = new WP_Query($args);
             echo "<h2>Upcoming Events</h2>";
