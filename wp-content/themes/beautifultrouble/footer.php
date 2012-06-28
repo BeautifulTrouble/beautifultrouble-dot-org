@@ -67,7 +67,7 @@ jQuery('a.dropdown-toggle')
 <script type="text/javascript">
 jQuery(document).ready(function(){
   jQuery('#myCarousel').carousel({
-        interval: 'false' 
+        interval: '50000' 
   });
 });
 </script>
