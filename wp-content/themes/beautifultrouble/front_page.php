@@ -67,7 +67,7 @@ get_header(); ?>
       if ( function_exists('dynamic_sidebar')) dynamic_sidebar("home-two");
       ?>
         <div class="upcoming_events">
-            <?php $args = array('orderby' => 'meta_value', 'meta_key' => 'date', 'order' => 'ASC', 'post_type' => array ('bt_event'));
+            <?php $args = array('orderby' => 'meta_value', 'meta_key' => 'date', 'order' => 'ASC', 'post_type' => array('bt_event') );
             $my_query = null;
             $my_query = new WP_Query($args);
             echo "<h2>Upcoming Events</h2>";
@@ -75,7 +75,7 @@ get_header(); ?>
               echo '<ul class="unstyled">';
               while ($my_query->have_posts()) : $my_query->the_post();
                 $date  = get_field('date');
-                $date_obj   = DateTime::createFromFormat('d/m/Y', $date );
+                $date_obj   = DateTime::createFromFormat('Y/m/d', $date );
                 $time       = time();
                 $unix_date  = $date_obj->format('U');
                 $nice_date  = $date_obj->format('M d');
