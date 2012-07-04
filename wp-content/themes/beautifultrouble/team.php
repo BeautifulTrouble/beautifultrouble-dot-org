@@ -23,7 +23,7 @@ get_header(); ?>
     ?>
     <hr />
  <?php
-$display_admins = false;
+$display_admins = true;
 $order_by = 'display_name'; // 'nicename', 'email', 'url', 'registered', 'display_name', or 'post_count'
 $role = 'administrator'; // 'subscriber', 'contributor', 'editor', 'author' - leave blank for 'all'
 $avatar_size = 64;
