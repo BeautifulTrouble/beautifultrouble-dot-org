@@ -48,11 +48,19 @@ if ( have_posts() ) : ?>
 								<a href="<?php the_permalink(); ?>" title="<?php the_title();?>"><h3><?php the_title();?></h3></a>
 								<p class="meta"><?php echo bootstrapwp_posted_on();?></p>
 								<div class="row">
-									        <div class="span2"><?php // Checking for a post thumbnail
-									        if ( has_post_thumbnail() ) ?>
-									        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-									        	<?php the_post_thumbnail();?></a>
-									        </div><!-- /.span2 -->
+                                                                                <div class="span2"><?php // Checking for a post thumbnail
+                                                                                if ( has_post_thumbnail() )  { ?>
+                                                                                <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
+                                                                                        <?php the_post_thumbnail();?></a>
+                                                                                <?php } else {
+                                                                                    $type = get_post_type();
+                                                                                    $obj = get_post_type_object( $type );
+                                                                                    $type_name = strtolower( $obj->labels->singular_name );
+                                                                                ?>
+                                                                                <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
+                                                                                        <img src="/wp-content/themes/beautifultrouble/img/icon_<?php echo $type_name ?>.png" /></a>
+                                                                                <?php } ?> 
+                                                                                </div>
 									        <div class="span6">
 									        	<?php the_excerpt();?>
 									        </div><!-- /.span6 -->

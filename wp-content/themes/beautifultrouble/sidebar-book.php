@@ -2,7 +2,8 @@
         <div id="buy-the-book" class="sidebar-nav">
                 <h2>Get the book!</h2>
                                     <p>
-                                    Available exclusively from our publisher <a href="http://www.orbooks.com/catalog/beautiful-trouble/">OR Books</a>.</p>
+                                    Available exclusively from our publisher <b>OR Books</b>.
+                                    </p>
                                     <p>
                                     <img src="/wp-content/themes/beautifultrouble/img/Beautiful_Trouble_Book_Cover.png" /><br />
                                     <a class="img" href="http://orbooks.mybigcommerce.com/cart.php?action=add&product_id=264"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a>&nbsp;Paperback:&nbsp;$25&nbsp;<br />
