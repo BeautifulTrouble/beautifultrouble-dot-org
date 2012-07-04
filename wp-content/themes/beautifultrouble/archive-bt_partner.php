@@ -38,7 +38,6 @@ print $obj->labels->name;
 	<div class="span8">
 		<?php while ( have_posts() ) : the_post(); ?>
 		<div <?php post_class(); ?>>
-			<a href="<?php the_permalink(); ?>" title="<?php the_title();?>"><h3><?php the_title();?></h3></a>
 			<div class="row">
 				        <div class="span2"><?php // Checking for a post thumbnail
 				        if ( has_post_thumbnail() ) ?>
