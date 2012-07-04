@@ -36,11 +36,14 @@ print $obj->labels->name;
 
 <div class="row content">
 	<div class="span8">
+<p>We are currently adapting the book into specific training modules and hands-on action design tools. Many members of the Beautiful Trouble network are professional trainers. Contact us at beautifultrouble.org at gmail dot com to request a training in Beautiful Trouble 101, Nonviolent Direct Action, or Advanced Creative Action. We can come to your campus, organization or gathering.</p>
+<p>And here&#8217;s a <a href="https://docs.google.com/document/d/1jbrGrYTI3qiMTyRFvftmNpTTSzUMfGuZw4iGiH9Q4Dg/edit">draft curriculum</a> for a week-long training we did in New York in July. More to come, soon.</p>
+
 		<?php while ( have_posts() ) : the_post(); ?>
                 <?php 
                 $fields = get_fields();
                 $date  = $fields['date'];
-                $date_obj   = DateTime::createFromFormat('d/m/Y', $date );
+                $date_obj   = DateTime::createFromFormat('Y/m/d', $date );
                 $time       = time();
                 $unix_date  = $date_obj->format('U');
                 if( $unix_date >= $time ) { ?>
