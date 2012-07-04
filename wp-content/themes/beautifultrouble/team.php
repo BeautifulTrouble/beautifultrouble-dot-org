@@ -23,24 +23,14 @@ get_header(); ?>
     ?>
     <hr />
  <?php
-$display_admins = true;
+$display_admins = false;
 $order_by = 'display_name'; // 'nicename', 'email', 'url', 'registered', 'display_name', or 'post_count'
 $role = 'administrator'; // 'subscriber', 'contributor', 'editor', 'author' - leave blank for 'all'
 $avatar_size = 64;
 $hide_empty = false; // hides authors with zero posts
 
 
-if(!empty($display_admins)) {
-	$blogusers = get_users('orderby='.$order_by.'&role='.$role);
-} else {
-	$admins = get_users('role=administrator');
-	$exclude = array();
-	foreach($admins as $ad) {
-		$exclude[] = $ad->ID;
-	}
-	$exclude = implode(',', $exclude);
-	$blogusers = get_users('exclude='.$exclude.'&orderby='.$order_by.'&role='.$role);
-}
+$blogusers = get_users('orderby='.$order_by.'&role='.$role);
 $authors = array();
 foreach ($blogusers as $bloguser) {
 	$user = get_userdata($bloguser->ID);
