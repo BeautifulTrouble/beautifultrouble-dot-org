@@ -48,7 +48,7 @@ foreach($authors as $author) {
 	$avatar = get_avatar($author['ID'], $avatar_size);
 	$author_profile_url = get_author_posts_url($author['ID']);
         $author_bio         = get_the_author_meta('description', $author['ID'] );
-        if ( count_user_modules( $author['ID'] ) > 0 ) {
+        if ( count_user_modules( $author['ID'] ) >= 1 ) {
             echo '<li><a href="', $author_profile_url, '">', $avatar , '</a><a href="', $author_profile_url, '" class="contributor-link">', $display_name, '</a>';
         } else {
             echo '<li>', $avatar, '<strong>', $display_name, '</strong>';

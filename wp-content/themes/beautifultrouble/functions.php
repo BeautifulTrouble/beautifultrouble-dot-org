@@ -476,7 +476,7 @@ function count_user_modules( $userid ) {
     foreach ( $post_types as $post_type ) {
       $where = get_posts_by_author_sql($post_type, true, $userid);
       $count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts $where" );
-      $modules = $modules = $count;
+      $modules = $modules + $count;
     }
     return $modules;
 }  
