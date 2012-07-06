@@ -58,7 +58,7 @@ if ( have_posts() ) : ?>
                                                                                     $type_name = strtolower( $obj->labels->singular_name );
                                                                                 ?>
                                                                                 <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-                                                                                        <img src="/wp-content/themes/beautifultrouble/img/icon_<?php echo $type_name ?>.png" /></a>
+                                                                                        <img src="/wp-content/themes/beautifultrouble/img/icon_<?php echo str_replace(" ", "-", $type_name ?>.png" /></a>
                                                                                 <?php } ?> 
                                                                                 </div>
 									        <div class="span6">
