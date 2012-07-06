@@ -13,9 +13,11 @@
 get_header(); ?>
 <?php $fields = get_fields(); ?>
 <div class="container">
-    <p class="well"><i class="icon-star-empty"></i> Beautiful Trouble is a book and web toolbox that puts the accumulated wisdom of decades of creative protest into the hands of the next generation of change-makers.</p>
+    <p class="well"><i class="icon-star-empty"></i> Beautiful Trouble is a book and web toolbox that puts the accumulated wisdom of decades of creative protest into the hands of the next generation of change-makers. 
+     <a class="visible-phone" href="/all-modules/">Start browsing the Web Toolbox &raquo;</a>
+    </p>
     <div class="row">
-        <div id="myCarousel" class="carousel slide span8">
+        <div id="myCarousel" class="carousel slide span8 hidden-phone">
         <!-- Carousel items -->
             <div class="carousel-inner">
 <?php if( $fields['slideshow'] ) {

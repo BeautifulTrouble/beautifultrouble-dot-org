@@ -16,7 +16,7 @@ body {
 
 body h1.logo {
     text-indent: -5000px;
-    background: url('../beautifultrouble/img/bt-100x600-banner.png') no-repeat;
+    background: url('../beautifultrouble/img/bt-large-banner.png') no-repeat;
     height: 120px;
 }
 
@@ -169,3 +169,30 @@ div.featured-image img {
     /*background: url('/wp-content/themes/beautifultrouble/img/quote.png') no-repeat top right;*/
     /*min-height: 92px;*/
 /*}*/
+
+#partner-logos img, #supporters-logos img {
+    margin: 0 10px 10px 0;
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+
+body h1.logo {
+    background: url('../beautifultrouble/img/bt-small-banner.png') no-repeat;
+    height: 240px;
+}
+ 
+.jumbotron h1, .jumbotron p {
+    text-align: left;
+}
+
+}
+
+
+@media (min-width: 768px) and (max-width: 979px) { 
+
+body h1.logo {
+    background: url('../beautifultrouble/img/bt-med-banner.png') no-repeat;
+}
+
+}
