@@ -361,6 +361,15 @@ function beautifultrouble_widgets_init() {
     'after_title' => '</h4>',
   ) );
 
+  register_sidebar( array(
+    'name' => 'Events Sidebar',
+    'id' => 'sidebar-event',
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget' => "</div>",
+    'before_title' => '<h4 class="widget-title">',
+    'after_title' => '</h4>',
+  ) );
+
   register_sidebar(array(
     'name' => 'Home One',
     'id'   => 'home-one',
@@ -445,3 +454,39 @@ function validate_gravatar($email) {
 	}
 	return $has_valid_avatar;
 }
+
+/**
+ * truncate() Simple function to shorten a string and add an ellipsis
+ *
+ * @param string $string Origonal string
+ * @param integer $max Maximum length
+ * @param string $rep Replace with... (Default = '' - No elipsis -)
+ * @return string
+ * @author David Duong
+ **/
+function truncate ($string, $max = 50, $rep = '') {
+    $leave = $max - strlen ($rep);
+    return substr_replace($string, $rep, $leave);
+}
+
+function count_user_modules( $userid ) {
+    global $wpdb;
+    $post_types = array( 'bt_case', 'bt_tactic', 'bt_theory', 'bt_principle' );
+    $modules = 0;
+    foreach ( $post_types as $post_type ) {
+      $where = get_posts_by_author_sql($post_type, true, $userid);
+      $count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts $where" );
+      $modules = $modules + $count;
+    }
+    return $modules;
+}  
+//
+// adding the facebook and twitter links to the user profile
+function bt_add_user_fields( $contactmethods ) {
+    // Add Facebook
+    $contactmethods['user_fb'] = 'Facebook';
+    // Add Twitter
+    $contactmethods['user_tw'] = 'Twitter';
+    return $contactmethods;
+}
+add_filter('user_contactmethods','bt_add_user_fields',10,1);
