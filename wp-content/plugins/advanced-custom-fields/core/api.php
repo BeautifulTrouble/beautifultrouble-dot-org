@@ -505,12 +505,7 @@ function acf_form_wp_head()
 
 	// Javascript
 	echo '<script type="text/javascript" src="'.$acf->dir.'/js/input-actions.js?ver=' . $acf->version . '" ></script>';
-	echo '<script type="text/javascript">
-		acf.validation_message = "' . __("Validation Failed. One or more fields below are required.",'acf') . '";
-		acf.post_id = ' . $post->ID . ';
-		acf.editor_mode = "wysiwyg";
-		acf.admin_url = "' . admin_url() . '";
-	</script>';
+	echo '<script type="text/javascript">acf.post_id = ' . $post->ID . ';</script>';
 	
 	
 	// add user js + css
@@ -580,11 +575,10 @@ function acf_form($options = null)
 		<input type="hidden" name="acf_save" value="true" />
 		<input type="hidden" name="post_id" value="<?php echo $options['post_id']; ?>" />
 		<input type="hidden" name="return" value="<?php echo $options['return']; ?>" />
-		<?php wp_editor('', 'acf-temp-editor'); ?>
+		<?php wp_editor('', 'acf_settings'); ?>
 	</div>
 	
 	<div id="poststuff">
-	<div class="acf_postbox">
 	<?php
 	
 	// html before fields
@@ -608,11 +602,10 @@ function acf_form($options = null)
 				
 			if($field_group['fields'])
 			{
-				
-				echo '<div class="options" data-layout="' . $field_group['options']['layout'] . '"></div>';
-				
-				$acf->render_fields_for_input($field_group['fields'], $options['post_id']);
-				
+				echo '<div id="acf_' . $field_group['id'] . '" class="postbox acf_postbox"><div class="inside">';
+					echo '<div class="options" data-layout="' . $field_group['options']['layout'] . '" data-show="true"></div>';
+					$acf->render_fields_for_input($field_group['fields'], $options['post_id']);
+				echo '</div></div>';
 			}
 			
 		endforeach;
@@ -622,14 +615,14 @@ function acf_form($options = null)
 	echo $defaults['html_after_fields'];
 	
 	?>
+	<!-- Submit -->
 	<div class="field">
 		<input type="submit" value="<?php echo $options['submit_value']; ?>" />
 	</div>
-	</div>
-	</div>
+	<!-- / Submit -->
+
+	</div><!-- <div id="poststuff"> -->
 	</form>
-	
-	
 	<?php
 	
 }
@@ -684,7 +677,53 @@ function update_field($field_name, $value, $post_id = false)
 	{ 
 		// we can load the field properly! 
 		$field = $acf->get_acf_field($field_key); 
-	} 
+	}
+	
+	
+	// sub fields? They need formatted data
+	if( isset($field['sub_fields']) )
+	{
+		// define sub field keys
+		$sub_field_keys = array();
+		if( $field['sub_fields'] )
+		{
+			foreach( $field['sub_fields'] as $sub_field )
+			{
+				$sub_field_keys[ $sub_field['name'] ] = $sub_field['key'];
+			}
+		}
+		
+		
+		// loop through the values and format the array to use sub field keys
+		if( $value )
+		{
+			foreach( $value as $row_i => $row)
+			{
+				if( $row )
+				{
+					foreach( $row as $sub_field_name => $sub_field_value )
+					{
+						
+						if( isset($sub_field_keys[$sub_field_name]) )
+						{
+							// change the array key from "sub_field_name" to "sub_field_key"
+							$value[$row_i][ $sub_field_keys[$sub_field_name] ] = $sub_field_value;
+							
+							unset( $value[$row_i][$sub_field_name] );
+						}
+						
+					}
+					// foreach( $row as $sub_field_name => $sub_field_value )
+				}
+				// if( $row )
+			}
+			// foreach( $value as $row_i => $row)
+		}
+		// if( $value )
+
+	}
+	
+	
 	
 	
 	$acf->update_value($post_id, $field, $value);

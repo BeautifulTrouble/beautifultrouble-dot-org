@@ -1,9 +1,11 @@
 <?php
 /**
  * AddQuicktag - Settings
- * @license GPLv3
- * @package AddQuicktag
+ * 
+ * @license    GPLv3
+ * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
+ * @author     Frank Bueltge <frank@bueltge.de>
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -14,6 +16,8 @@ if ( ! function_exists( 'add_action' ) ) {
 class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	
 	static private $classobj = NULL;
+	// post types for the settings
+	static private $post_types_for_js;
 	
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
@@ -40,6 +44,8 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 * @return  void
 	 */
 	public function __construct() {
+		
+		$this->post_types_for_js = parent::get_post_types_for_js();
 		
 		if ( isset( $_GET['addquicktag_download'] ) && check_admin_referer( parent :: $nonce_string ) )
 			add_action( 'init', array( $this, 'get_export_file' ) );
@@ -182,6 +188,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 			$filename = $_FILES['xml']['tmp_name'];
 		
 		$filename = preg_replace( "/\<\!\[CDATA\[(.*?)\]\]\>/ies", "'[CDATA]' . base64_encode('$1') . '[/CDATA]'", $filename );
+		$filename = utf8_encode( $filename );
 		$matches  = simplexml_load_file( $filename );
 		
 		// create array from xml
@@ -195,6 +202,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 		$options['buttons'] = $button;
 		// validate the values from xml
 		$options = parent :: validate_settings($options);
+		
 		// update settings in database
 		if ( is_multisite() && is_plugin_active_for_network( parent :: get_plugin_string() ) )
 			update_site_option( parent :: get_option_string(), $options );

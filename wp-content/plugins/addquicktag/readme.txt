@@ -3,8 +3,8 @@ Contributors: Bueltge
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955
 Tags: quicktag, editor, tinymce, add buttons, button, buttons, visual editor
 Requires at least: 3.0
-Tested up to: 3.4-beta3
-Stable tag: 2.0.3
+Tested up to: 3.5-Alpha
+Stable tag: 2.2.0
 
 This plugin make it easy, Quicktags add to the html - and visual-editor.
 
@@ -13,7 +13,7 @@ This plugin make it easy, Quicktags add to the html - and visual-editor.. It is 
 
 WP-AddQuicktag for WordPress is in originally by [Roel Meurders](http://roel.meurders.nl/ "Roel Meurders"). The versions of the Repo to AddQuicktag are newer versions, completly rewrite with version 2.0.0 and more functionalities.
 
-The plugin add the quicktag on default to post types `post` and `page`. If you will also the plugin for other post types you can use a filter; see the follow example or an example plugin in the [Gist 1595155](https://gist.github.com/1595155).
+The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`. If you will also the plugin for other post types you can use a filter; see the follow example or an example plugin in the [Gist 1595155](https://gist.github.com/1595155).
 
 	// add custom function to filter hook 'addquicktag_post_types'
 	add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
@@ -25,23 +25,43 @@ The plugin add the quicktag on default to post types `post` and `page`. If you w
 	 */
 	function my_addquicktag_post_types( $post_types ) {
 		
-		$post_types[] = 'my_custom_post_type';
+		$post_types[] = 'edit-comments';
 		
 		return $post_types;
 	}
 
-**More Plugins**
+Also it is possible to filter the pages inside the backend. On default was the scripts include the pages `post.php`, `comment.php`. The follow example change this for an another page.
 
+	add_filter( 'addquicktag_pages', 'my_addquicktag_pages' );
+	/**
+	 * Return array $page with custom page strings
+	 * 
+	 * @param   $page Array
+	 * @return  $page Array
+	 */
+	function my_addquicktag_pages( $page ) {
+		
+		$page[] = 'edit-comments.php';
+		
+		return $page;
+	}
+
+See this Gist als example for add the Quicktags to the editor of comments: [Gist: 3076698](https://gist.github.com/3076698).
+If you need the functionality, that the Quicktags of this plugin works on the Quickedit of comments as well, remove the `.example`-part of `addquicktag_quickedit_comment.php.example` filename. The file is a stand alone helper plugin for Add Quicktag and you'll need to activate this file (plugin) separately in 'Manage Plugins'.
+
+= Bugs, technical hints or contribute =
+Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/AddQuicktag).
+
+= More Plugins =
 Please see also my [Premium Plugins](http://wpplugins.com/author/malo.conny/). Maybe you find an solution for your requirement.
 
-**Interested in WordPress tips and tricks**
-
+= Interested in WordPress tips and tricks =
 You may also be interested in WordPress tips and tricks at [WP Engineer](http://wpengineer.com/) or for german people [bueltge.de](http://bueltge.de/) 
 
 
 == Installation ==
 = Requirements =
-* WordPress version 3.0 and later (tested at 3.3 (nightly build) and 3.2.1)
+* WordPress version 3.0 and later (tested at 3.5-Alpha (nightly build))
 
 = Installation =
 1. Unpack the download-package
@@ -65,19 +85,37 @@ If you will use this plugin with an older version of WordPress, please use an ol
 = Acknowledgements =
 **Thanks to**
 
-* German translation by [myself](http://bueltge.de) ;)
-* French translation by [Jean-Michel MEYER (dit Li-An)](http://www.li-an.fr/blog)
-* Russion translation by Flector
-* Lithuanian translation files by [Vincent G](http://www.host1plus.com)
+* German Translation by [myself](http://bueltge.de) ;)
+* French translation by [Jean-Michel MEYER](http://www.li-an.fr/blog)
+* Japanese translation by [Yuuichi](http://www.u-1.net/2011/12/29/2498/)
 
 = Licence =
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955 "Paypal Donate link") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 = Translations =
-The plugin comes with various translations, please refer to the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") for more information about activating the translation. If you want to help to translate the plugin to your language, please have a look at the .pot file which contains all defintions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows) or plugin for WordPress [Localization](http://wordpress.org/extend/plugins/codestyling-localization/).
+The plugin comes with various translations, please refer to the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") for more information about activating the translation. If you want to help to translate the plugin to your language, please have a look at the .pot file which contains all defintions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows) or the plugin [Localization](http://wordpress.org/extend/plugins/codestyling-localization/) for WordPress.
 
 
 == Changelog ==
+= 2.2.0 =
+* Add checkboxes for different post type, use also filter for custom post type
+* Change script on HTML editor, only include buttons, there have an active checkbox on options for his post type
+* Add more data in JSON
+* Fix for custom post types; works now also on settings page
+* Change function to add button in html editor --> `QTags.addButton()`
+* Update im/export function for use with custmo post type	
+
+= 2.1.0 =
+* Add fix, see [Forum thread 'array_multisort error'](http://wordpress.org/support/topic/plugin-addquicktag-array_multisort-error#post-2920394)
+* See Quicktag button in visual editor, onbly if an button is actove for visual
+* Change hooks for include scripts
+* Add filter for page in backend
+* Add edit comments to use quicktags
+
+= 2.0.4 =
+* Add fix for use older settings from previous versions
+* Unicode fix for upload XML file
+
 = 2.0.3 =
 * Add Filter 'addquicktag_post_types' for use the plugin also on custom post types
 * Update readme and add an example for this filter; also an Gist for use faster

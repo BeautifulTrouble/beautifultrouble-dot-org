@@ -480,3 +480,13 @@ function count_user_modules( $userid ) {
     }
     return $modules;
 }  
+//
+// adding the facebook and twitter links to the user profile
+function bt_add_user_fields( $contactmethods ) {
+    // Add Facebook
+    $contactmethods['user_fb'] = 'Facebook';
+    // Add Twitter
+    $contactmethods['user_tw'] = 'Twitter';
+    return $contactmethods;
+}
+add_filter('user_contactmethods','bt_add_user_fields',10,1);
