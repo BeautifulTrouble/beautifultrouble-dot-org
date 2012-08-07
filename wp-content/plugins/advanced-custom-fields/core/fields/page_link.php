@@ -84,7 +84,8 @@ class acf_Page_link extends acf_Field
 					'post_type' => $post_type,
 					'sort_column' => 'menu_order',
 					'order' => 'ASC',
-					'post_status' => array('publish', 'private', 'draft'),
+					'post_status' => array('publish', 'private', 'draft', 'inherit', 'future'),
+					'suppress_filters' => false,
 					//'meta_key' => $field['meta_key'],
 					//'meta_value' => $field['meta_value'],
 				));
@@ -98,6 +99,7 @@ class acf_Page_link extends acf_Field
 					'orderby' => 'title',
 					'order' => 'ASC',
 					'post_status' => array('publish', 'private', 'draft'),
+					'suppress_filters' => false,
 					//'meta_key' => $field['meta_key'],
 					//'meta_value' => $field['meta_value'],
 				));

@@ -47,7 +47,7 @@ print $obj->labels->name;
                                                 <?php the_post_thumbnail();?></a>
                                         <?php } else { ?>
 				        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-                                                <img src="/wp-content/themes/beautifultrouble/img/icon_tactic.png" /></a>
+                                                <img src="/wp-content/themes/beautifultrouble/img/icon_case-study.png" /></a>
                                         <?php } ?> 
 				        </div><!-- /.span2 -->
 				        <div class="span6">

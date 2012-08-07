@@ -85,6 +85,41 @@ http://www.advancedcustomfields.com/support/
 
 == Changelog ==
 
+= 3.3.0 =
+* [Fixed] Gallery not returning correct order
+
+= 3.2.9 =
+* [Added] Add new Gallery Field
+* [Fixed] Test / Fix update_field on repeater / flexible content
+* [Fixed] Fix regex JS issue with adding nested repeaters
+* [Added] Add new Czech translation - Thanks to Webees ( http://www.webees.cz/ )
+
+= 3.2.8 =
+* [Added] Repeater - Add option for min rows + max rows - http://www.advancedcustomfields.com/support/discussion/2111/repeater-empty-conditional-statements#Item_4
+* [Fixed] Test / Fix Chrome Double WYSIWYG. Again...
+* [Added] Add "future" to post status options - http://advancedcustomfields.com/support/discussion/1975/changed-line-81-and-94-of-corefieldspost_object-to-show-future-entries
+* [Added] Make image sizes strings "Pretty" for preview size options
+* [Fixed] Test / Fix WYSIWYG insert image inside a repeater bug - http://www.advancedcustomfields.com/support/discussion/2404/problem-with-repeater-wysiwyg-fields-and-images
+
+= 3.2.7 =
+* [Fixed] Rename controller classes - http://www.advancedcustomfields.com/support/discussion/2363/fatal-error-after-update-to-3.2.6
+* [Added] Add edit button to image / file fields
+* [Fixed] WYSIWYG toolbar buttons dissapearing in HTML tab mode
+
+= 3.2.6 =
+* [Fixed] Fix flexible content inside repeater add extra row jquery bug - http://www.advancedcustomfields.com/support/discussion/2134/add-flexible-content-button-in-repeater-field-adds-new-repeater-row
+* [Added] Add suppress_filters to relationship field for WPML compatibility - http://www.advancedcustomfields.com/support/discussion/comment/5401#Comment_5401
+* [Added] Add new German translation - http://www.advancedcustomfields.com/support/discussion/2197/german-translation
+* [Added] Add new Italian translation - Alessandro Mignogna (www.asernet.it)
+* [Added] Add new Japanese translation - http://www.advancedcustomfields.com/support/discussion/2219/japanese-translation
+* [Fixed] Test / Fix WYSIWYG removing p tags - http://www.advancedcustomfields.com/support/discussion/comment/5482#Comment_5482
+* [Added] edit basic toolbar buttons to match WP teeny mode - WYSIWYG
+* [Fixed] Test front end form hiding - http://www.advancedcustomfields.com/support/discussion/2226/frontend-form-disppears-on-acf-3.2.5
+* [Fixed] Test saving user custom fields - http://www.advancedcustomfields.com/support/discussion/2231/custom-fields-not-saving-data-on-initial-user-registration
+* [Fixed] Fix options page translation bug - http://www.advancedcustomfields.com/support/discussion/2098/change-language-and-options-page-fields-disappear
+* [Fixed] Pages rule not returning private pages - http://www.advancedcustomfields.com/support/discussion/2275/attach-field-group-to-privately-published-pages
+* [Added] Add custom add_image_size() Image field preview sizes - http://www.advancedcustomfields.com/support/discussion/comment/5800#Comment_5800
+
 = 3.2.5 =
 * [IMPORTANT] Change field group option "Show on page" to "Hide on Screen" to allow for future proof adding new elements to list. Previously exported and registered field groups via PHP will still work as expected! This change will prompt you for a database upgrade.
 * [Added] Add in edit button to upload image / file thickbox

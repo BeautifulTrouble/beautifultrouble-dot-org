@@ -71,7 +71,12 @@ if (DISQUS_DEBUG) {
         <?php if (!get_option('disqus_manual_sync')): ?>
         config.callbacks.onReady.push(function() {
             // sync comments in the background so we don't block the page
-            DISQUS.request.get('?cf_action=sync_comments&post_id=<?php echo $post->ID; ?>');
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = '?cf_action=sync_comments&post_id=<?php echo $post->ID; ?>';
+
+            var firstScript = document.getElementsByTagName( "script" )[0];
+            firstScript.parentNode.insertBefore(script, firstScript);
         });
         <?php endif; ?>
         <?php
@@ -80,6 +85,9 @@ if (DISQUS_DEBUG) {
             foreach ($sso as $k=>$v) {
                 echo "this.page.{$k} = '{$v}';\n";
             }
+        }
+        if (get_option('disqus_sso_button')) {
+            echo dsq_sso_login();
         }
         ?>
     };
@@ -128,7 +136,7 @@ if (DISQUS_DEBUG) {
         $connection_type = "http";
     }
     ?>
-    dsq.src = '<?php echo $connection_type; ?>' + '://' + disqus_shortname + '.' + disqus_domain + '/embed.js?pname=wordpress&pver=<?php echo DISQUS_VERSION; ?>';
+    dsq.src = '<?php echo $connection_type; ?>' + '://' + disqus_shortname + '.' + '<?php echo DISQUS_DOMAIN; ?>' + '/embed.js?pname=wordpress&pver=<?php echo DISQUS_VERSION; ?>';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 })();
 /* ]]> */
