@@ -76,6 +76,18 @@ get_header(); ?>
             echo '<p class="pitfalls">' . $fields['potential_pitfalls'] . '</p>';
             echo '</div>';
         } ?>
+
+
+        <?php $coauthors = get_coauthors(); ?>
+        <hr class="soften" />
+        <div class="author-bios">
+        <?php foreach( $coauthors as $coauthor ) : ?>
+            <p>
+                <?php echo $coauthor->description; ?>
+            </p>
+        <?php endforeach; ?>
+        </div>
+
         <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
 <?php endwhile; // end of the loop. ?>
 
