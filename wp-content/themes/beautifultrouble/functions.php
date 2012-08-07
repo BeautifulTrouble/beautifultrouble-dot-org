@@ -48,7 +48,7 @@ function create_post_type() {
 	register_post_type( 'bt_principle',
 		array(
 			'labels' => array(
-				'name' => __( 'Pricicples' ),
+				'name' => __( 'Princicples' ),
                                 'singular_name' => __( 'Principle' ),
                                 'add_new' => _x('Add new', 'Principle'),
                                 'add_new_item'  => 'Add new Principle',

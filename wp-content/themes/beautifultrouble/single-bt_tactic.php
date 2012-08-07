@@ -97,7 +97,6 @@ get_header(); ?>
                 echo '</div>';
             }
             ?>
-                        <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
             <?php if( $fields['potential_pitfalls'] && strlen( $fields['potential_pitfalls'] ) > 1 ) {
                 // Potential Pitfalls
                 echo '<div class="alert">';
@@ -105,6 +104,19 @@ get_header(); ?>
                 echo '<p class="pitfalls">' . $fields['potential_pitfalls'] . '</p>';
                 echo '</div>';
             } ?>
+
+        <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
+
+        <?php $coauthors = get_coauthors(); ?>
+        <hr class="soften" />
+        <div class="author-bios">
+        <?php foreach( $coauthors as $coauthor ) : ?>
+            <p>
+                <?php echo $coauthor->description; ?>
+            </p>
+        <?php endforeach; ?>
+        </div>
+
             <?php endwhile; // end of the loop. ?>
         </div><!-- /.span8 -->
         <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
