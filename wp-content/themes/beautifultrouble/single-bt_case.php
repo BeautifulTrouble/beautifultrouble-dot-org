@@ -106,6 +106,17 @@ get_header(); ?>
         }
         ?>
         <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
+
+        <?php $coauthors = get_coauthors(); ?>
+        <hr class="soften" />
+        <div class="author-bios">
+        <?php foreach( $coauthors as $coauthor ) : ?>
+            <p>
+                <?php echo $coauthor->description; ?>
+            </p>
+        <?php endforeach; ?>
+        </div>
+
         <?php endwhile; // end of the loop. ?>
     </div><!-- /.span8 -->
     <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
