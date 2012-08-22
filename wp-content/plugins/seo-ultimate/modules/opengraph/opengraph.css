@@ -1,0 +1,13 @@
+
+#su-opengraph .form-table tr th {
+	width: 150px;
+}
+
+#su-opengraph table.widefat .su-og_type {
+	width: 100px;
+}
+
+#su-opengraph #su-default-values table.widefat td,
+#su-opengraph #su-default-values table.widefat th {
+	padding-right: 3em;
+}

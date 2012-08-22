@@ -1,0 +1,21 @@
+
+#su-webmaster-verify td {
+	vertical-align: middle;
+}
+
+#su-webmaster-verify .su-webmaster-verify-meta_tag_before {
+	padding-right: 0;
+}
+
+#su-webmaster-verify td.su-webmaster-verify-meta_tag_before {
+	text-align: right;
+}
+
+#su-webmaster-verify .su-webmaster-verify-meta_tag {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#su-webmaster-verify .su-webmaster-verify-meta_tag_after {
+	padding-left: 0;
+}

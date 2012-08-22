@@ -1,0 +1,14 @@
+
+#su-sharing-buttons table.form-table label {
+	display: block;
+	margin-top: 1em;
+}
+
+#su-sharing-buttons table.form-table label.first {
+	margin-top: 0;
+}
+
+#su-sharing-buttons table.form-table input.subfield {
+	margin-left: 2em;
+	width: 90%;
+}

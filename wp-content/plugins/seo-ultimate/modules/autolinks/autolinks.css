@@ -1,0 +1,44 @@
+#su-autolinks table.widefat,
+#su-autolinks table.widefat input.textbox {
+	width: 100%;
+}
+
+#su-autolinks table.widefat td {
+	vertical-align: middle;
+}
+
+#su-autolinks table.widefat td.su-link-from-match label,
+#su-autolinks table.widefat td.su-link-options label {
+	margin-right: 1em;
+}
+
+#su-autolinks table.widefat td.su-link-from-match {
+	width: 11em;
+}
+
+#su-content-autolinks table.widefat td.su-link-to {
+	width: 20em;
+}
+
+#su-footer-autolinks table.widefat td.su-link-from,
+#su-footer-autolinks table.widefat td.su-link-to {
+	width: 15em;
+}
+
+#su-autolinks table.widefat td.su-link-sitewide-lpa {
+	width: 5em;
+}
+
+#su-autolinks table.widefat td.su-link-options {
+	width: 9em;
+}
+
+#su-autolinks table.widefat td.su-link-delete,
+#su-autolinks table.widefat th.su-link-delete {
+	width: 3em;
+	text-align: center;
+}
+
+#su-autolinks table.widefat td {
+	padding-right: 0.5em;
+}
