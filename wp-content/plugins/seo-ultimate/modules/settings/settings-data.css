@@ -1,0 +1,20 @@
+#su-settings table#manage-settings {
+	border-collapse: collapse;
+	margin-top: 2em;
+}
+
+#su-settings table#manage-settings td {
+	width: 100%;
+}
+
+#su-settings table#manage-settings th {
+	font-weight: bold;
+	padding-right: 2em;
+}
+
+#su-settings table#manage-settings td,
+#su-settings table#manage-settings th {
+	padding-top: 2em;
+	padding-bottom: 2em;
+	border-top: 1px solid #ccc;
+}

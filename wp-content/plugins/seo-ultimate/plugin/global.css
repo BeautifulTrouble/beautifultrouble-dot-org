@@ -1,0 +1,275 @@
+/*
+SEO Ultimate CSS
+These styles are sometimes or always referenced outside of SEO Ultimate's admin pages, so we include this file throughout the WordPress admin.
+*/
+
+/* MENU */
+
+#adminmenu .toplevel_page_seo div.wp-menu-image {
+	background-image: url(images/icon.png);
+	background-position: -1px -33px;
+}
+
+#adminmenu .toplevel_page_seo:hover div.wp-menu-image,
+#adminmenu .toplevel_page_seo .wp-has-current-submenu div.wp-menu-image {
+	background-position: -1px -1px;
+}
+
+/* MESSAGES */
+
+.su-success, .su-error,
+.su-warning, .su-info {
+	padding-left: 21px;
+	background-repeat: no-repeat;
+	background-position: 0px center;
+}
+
+.su-success {
+	background-image: url(images/success.png);
+	color: #008000;
+}
+
+.su-error {
+	background-image: url(images/error.png);
+	color: #FF0000;
+}
+
+.su-warning {
+	background-image: url(images/warning.png);
+	color: #FF8C00;
+}
+
+.su-info {
+	background-image: url(images/info.png);
+	color: #0000FF;
+}
+
+#wpcontent div.su-status,
+#wpcontent span.su-status {
+	background-position: 10px center;
+	padding-left: 31px;
+}
+
+#wpcontent .su-message p,
+#wpcontent p.su-status {
+	margin: 1em 0;
+	color: black;
+	background-position: 10px center;
+	padding: 10px 10px 10px 36px;
+}
+
+#wpcontent .su-message p {
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 4px;
+}
+
+.su-message .su-success {
+	background-color: #DFFFE3;
+	border-color: #61DF6F;
+}
+
+.su-message .su-error, .plugin-update-tr.su-plugin-notice .update-message {
+	background-color: #FFBFBF;
+	border-color: #FF0000;
+}
+
+.su-message .su-warning {
+	background-color: #FFFFE0;
+	border-color: orange;
+}
+
+.su-message .su-info {
+	background-color: #DFEEFF;
+	border-color: #8F93FF;
+}
+
+/* CONTEXTUAL HELP */
+
+div.su-help div.metabox-prefs {
+	margin-bottom: 2em;
+}
+
+div.su-help ul {
+	list-style-type: disc;
+	padding-left: 1em;
+	margin-left: 1em;
+}
+
+div.su-help h6 {
+	font-size: 0.9em;
+	font-weight: bold;
+	margin: 2em 0 0 0;
+	padding: 0;
+}
+
+/* POSTMETA BOX */
+
+#su-postmeta-box table th.su,
+#su-postmeta-box table td.su {
+	padding: 0.5em 0;
+}
+
+#su-postmeta-box table th.su {
+	text-align: right;
+	font-weight: bold;
+	padding-right: 0.5em;
+	white-space: nowrap;
+}
+
+#su-postmeta-box table tr[valign="top"] th.su {
+	padding-top: 0.7em;
+}
+
+#su-postmeta-box table tr.textarea th.su label {
+	display: block;
+	margin-top: 5px;
+}
+
+#su-postmeta-box table th.su em {
+	font-weight: normal;
+}
+
+#su-postmeta-box table td.su {
+	width: 100%;
+}
+
+#su-postmeta-box table td.su.group table {
+	border-spacing: 0;
+}
+
+#su-postmeta-box table td.su.group th {
+	text-align: right;
+	font-weight: normal;
+	white-space: nowrap;
+	padding: 0 0.5em;
+	vertical-align: middle;
+}
+
+#su-postmeta-box table td.su.group {
+	padding: 0.4em;
+}
+
+#su-postmeta-box table td.su.group td {
+	width: 100%;
+}
+
+#su-postmeta-box table,
+#su-postmeta-box table td input.regular-text,
+#su-postmeta-box table td textarea {
+	width: 100%;
+}
+
+#su-postmeta-box select optgroup,
+div.su-module select optgroup {
+	margin-top: 1em;
+}
+
+#su-postmeta-box select optgroup option,
+div.su-module select optgroup option {
+	margin-left: 1em;
+}
+
+#su-postmeta-box table.widefat {
+	width: auto;
+}
+
+#su-postmeta-box table.widefat td {
+	vertical-align: middle;
+}
+
+#su-postmeta-box .su-postmeta-box-footer {
+	color: #999;
+	margin: 0;
+	padding: 0.5em 1em;
+	text-align: right;
+}
+
+#su-postmeta-box .su-postmeta-box-footer a {
+	color: #999;
+	text-decoration: none;
+}
+
+#su-postmeta-box input[type="tel"] {
+	box-sizing: border-box;
+}
+
+
+/* PLUGIN NOTICES */
+
+#wpwrap .su-plugin-notice .update-message, #wpwrap .su-plugin-update-info {
+	font-weight: normal;
+}
+
+/* TABS (Heavily based on CSS from the Breadcrumbs NavXT plugin) */
+
+.su-tabs ul.ui-tabs-nav {
+	border-bottom: 1px solid #dfdfdf;
+	font-size: 12px;
+	height: 29px;
+	list-style: none;
+	margin: 13px 0 0;
+	overflow: visible;
+	padding: 0 0 0 8px;
+}
+
+.su-tabs ul.ui-tabs-nav li {
+	display: block;
+	float: left;
+	line-height: 200%;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	text-align: center;
+	white-space: nowrap;
+	width: auto;
+}
+
+
+.su-tabs ul.ui-tabs-nav li a {
+	border-bottom: 1px solid #dfdfdf;
+	display: block;
+	float: left;
+	line-height: 28px;
+	padding: 1px 10px 0;
+	position: relative;
+	text-decoration: none;
+}
+
+.su-tabs ul.ui-tabs-nav li.ui-tabs-selected a {
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border: 1px solid #dfdfdf;
+	color: #333333;
+	font-weight: normal;
+	padding: 0 9px;
+}
+
+.su-tabs ul.ui-tabs-nav li.ui-tabs-selected a {
+	border-bottom-color: #fff;
+}
+
+#su-postmeta-box .su-tabs ul.ui-tabs-nav li.ui-tabs-selected a {
+	background-color: white;
+}
+
+.su-tabs fieldset {
+	clear: left;
+}
+
+div.su-module .su-tabs .su-tab-contents {
+	margin-top: 1em;
+}
+
+#su-postmeta-box .su-tabs .su-tab-contents {
+	padding: 1em;
+	background-color: white;
+	border: 1px solid #dfdfdf;
+	border-top: 0 none;
+	background-color: white;
+}

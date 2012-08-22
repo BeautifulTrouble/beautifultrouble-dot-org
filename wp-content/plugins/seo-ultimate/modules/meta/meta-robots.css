@@ -1,0 +1,8 @@
+#su-meta-robots table.widefat {
+	width: auto;
+}
+
+#su-meta-robots table.widefat td.su-meta_robots_noindex,
+#su-meta-robots table.widefat td.su-meta_robots_nofollow {
+	text-align: center;
+}

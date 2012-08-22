@@ -1,0 +1,38 @@
+#su-sds-blog .rss-widget {
+	background-color: white;
+	border: 1px solid black;
+	padding: 2em;
+	margin: 2em 0;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+#su-sds-blog a.rsswidget {
+	font-size: 13px;
+	font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
+	line-height: 1.7em;
+}
+
+#su-sds-blog li a:visited {
+	color: purple;
+}
+
+#su-sds-blog span.rss-date {
+	margin-left: 3px;
+}
+
+#su-sds-blog li {
+	padding-bottom: 1em;
+}
+
+#su-sds-blog img#sds-logo {
+	float: right;
+	border: 1px solid black;
+	padding: 1em;
+	background-color: white;
+	margin-left: 2em;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}

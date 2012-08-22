@@ -1,0 +1,35 @@
+#su-internal-link-aliases table.widefat,
+#su-internal-link-aliases table.widefat input.textbox {
+	width: 100%;
+}
+
+#su-internal-link-aliases table.widefat td {
+	vertical-align: middle;
+}
+
+#su-internal-link-aliases table.widefat td.su-alias-to {
+	width: 15em;
+}
+
+#su-internal-link-aliases table.widefat td.su-alias-to-test {
+	font-size: 0.8em;
+}
+
+#su-internal-link-aliases table.widefat td.su-alias-delete {
+	width: 3em;
+	text-align: center;
+}
+
+#su-internal-link-aliases table.widefat td.su-alias-to table,
+#su-internal-link-aliases table.widefat td.su-alias-to table tr,
+#su-internal-link-aliases table.widefat td.su-alias-to table tr td {
+	border-collapse: 0;
+	padding: 0;
+	margin: 0;
+	border: 0 none;
+	background: transparent;
+}
+
+#su-internal-link-aliases table.widefat td.su-alias-to table tr td input.textbox {
+	width: 98%;
+}
