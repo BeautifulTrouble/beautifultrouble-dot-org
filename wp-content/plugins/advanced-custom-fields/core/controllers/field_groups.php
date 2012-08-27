@@ -33,10 +33,31 @@ class acf_field_groups
 		
 		
 		// actions
-		add_filter('pre_get_posts', array($this, 'pre_get_posts')); 
+		add_action('admin_menu', array($this,'admin_menu'));
+
+	}
+	
+	
+	/*
+	*  admin_menu
+	*
+	*  @description: 
+	*  @created: 2/08/12
+	*/
+	
+	function admin_menu()
+	{
+		
+		// validate page
+		if( ! $this->validate_page() ) return;
+		
 		add_action('admin_print_scripts', array($this,'admin_print_scripts'));
 		add_action('admin_print_styles', array($this,'admin_print_styles'));
 		add_action('admin_footer', array($this,'admin_footer'));
+		
+		add_filter( 'manage_edit-acf_columns', array($this,'acf_edit_columns') );
+		add_action( 'manage_acf_posts_custom_column' , array($this,'acf_columns_display'), 10, 2 );
+		
 	}
 	
 	
@@ -63,10 +84,16 @@ class acf_field_groups
 		{
 		
 			// validate post type
-			if( isset($GLOBALS['post_type']) && $GLOBALS['post_type'] == 'acf' )
+			if( isset($_GET['post_type']) && $_GET['post_type'] == 'acf' )
 			{
 				$return = true;
-			}	
+			}
+			
+			
+			if( isset($_GET['page']) )
+			{
+				$return = false;
+			}
 			
 		}
 		
@@ -86,9 +113,6 @@ class acf_field_groups
 	
 	function admin_print_scripts()
 	{
-		// validate page
-		if( ! $this->validate_page() ) return;
-		
 		wp_enqueue_script( 'jquery' );
     	wp_enqueue_script( 'thickbox' );
 	}
@@ -104,29 +128,89 @@ class acf_field_groups
 	
 	function admin_print_styles()
 	{
-		// validate page
-		if( ! $this->validate_page() ) return;
-		
 		wp_enqueue_style( 'thickbox' );
 	}
 	
 	
 	/*
-	*  pre_get_posts
+	*  acf_edit_columns
 	*
 	*  @description: 
-	*  @since 3.0.6
-	*  @created: 23/06/12
+	*  @created: 2/08/12
 	*/
 	
-	function pre_get_posts($query)
+	function acf_edit_columns( $columns )
 	{
-		// validate page
-		if( ! $this->validate_page() ) return;
+		$columns['fields'] = __("Fields", 'acf');
 		
-		$query->query_vars['posts_per_page'] = 999;
-		  
-    	return $query; 
+		return $columns;
+	}
+	
+	
+	/*
+	*  acf_columns_display
+	*
+	*  @description: 
+	*  @created: 2/08/12
+	*/
+	
+	function acf_columns_display( $column, $post_id )
+	{
+		// vars
+		$options = $this->parent->get_acf_options( $post_id );
+		
+		
+		switch ($column)
+	    {
+	        case "fields":
+	            
+	            // vars
+				$count =0;
+				$keys = get_post_custom_keys( $post_id );
+				
+				if($keys)
+				{
+					foreach($keys as $key)
+					{
+						if(strpos($key, 'field_') !== false)
+						{
+							$count++;
+						}
+					}
+			 	}
+			 	
+			 	echo $count;
+
+	            break;
+	        
+	         case "order":
+	        	
+	        	global $post;
+				
+	        	echo $order = $post->menu_order;
+	        	
+	        	break;
+	        	
+	        case "position":
+	        	
+	        	$choices = array(
+					'normal'	=>	__("Normal",'acf'),
+					'side'		=>	__("Side",'acf'),
+				);
+				
+	        	echo $choices[$options['position']];
+	        	
+	        	break;
+	        
+	        case "style":
+	        	
+	        	$choices = array(
+					'default'	=>	__("Standard Metabox",'acf'),
+					'no_box'	=>	__("No Metabox",'acf'),
+				);
+				
+	        	echo $choices[$options['layout']];
+	    }
 	}
 	
 	
@@ -140,12 +224,9 @@ class acf_field_groups
 	
 	function admin_footer()
 	{
-		// validate page
-		if( ! $this->validate_page() ) return;
-	
 		?>
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->parent->dir ?>/css/global.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->parent->dir ?>/css/acf.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo $this->parent->dir; ?>/css/global.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo $this->parent->dir; ?>/css/acf.css" />
 		<div id="acf-col-right" class="hidden">
 		
 			<div class="wp-box">
@@ -157,10 +238,10 @@ class acf_field_groups
 					
 					<h3><?php _e("Resources",'acf'); ?></h3>
 					<p><?php _e("Read documentation, learn the functions and find some tips &amp; tricks for your next web project.",'acf'); ?><br />
-					<a href="http://www.advancedcustomfields.com/"><?php _e("View the ACF website",'acf'); ?></a></p>
+					<a href="http://www.advancedcustomfields.com/" target="_blank"><?php _e("Visit the ACF website",'acf'); ?></a></p>
 		
 				</div>
-				<div class="footer">
+				<div class="footer footer-blue">
 					<ul class="left hl">
 						<li><?php _e("Created by",'acf'); ?> Elliot Condon</li>
 					</ul>
@@ -174,11 +255,13 @@ class acf_field_groups
 		<script type="text/javascript">
 		(function($){
 			
-			$('#screen-meta-links').remove();
+			//$('#screen-meta-links').remove();
 			$('#wpbody .wrap').wrapInner('<div id="acf-col-left" />');
 			$('#wpbody .wrap').wrapInner('<div id="acf-cols" />');
 			$('#acf-col-right').removeClass('hidden').prependTo('#acf-cols');
 			
+			$('#acf-col-left > .icon32').insertBefore('#acf-cols');
+			$('#acf-col-left > h2').insertBefore('#acf-cols');
 		})(jQuery);
 		</script>
 		<?php
