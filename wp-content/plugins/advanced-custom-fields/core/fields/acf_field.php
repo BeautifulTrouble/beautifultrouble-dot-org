@@ -202,6 +202,10 @@ class acf_Field
 		 	}
 
 		}
+		
+		
+		// if value was duplicated, it may now be a serialized string!
+		$value = maybe_unserialize($value);
 
 		
 		return $value;
@@ -222,38 +226,6 @@ class acf_Field
 		return $this->get_value($post_id, $field);
 	}
 	
-	
-	/*--------------------------------------------------------------------------------------
-	*
-	*	format_value_for_input
-	*	- 
-	*
-	*	@author Elliot Condon
-	*	@since 2.2.0
-	* 
-	*-------------------------------------------------------------------------------------
-	
-	function format_value_for_input($value, $field)
-	{
-		return $value;
-	}
-	*/
-	
-	/*--------------------------------------------------------------------------------------
-	*
-	*	format_value_for_api
-	*	- 
-	*
-	*	@author Elliot Condon
-	*	@since 2.2.0
-	* 
-	*-------------------------------------------------------------------------------------
-	
-	function format_value_for_api($value, $field)
-	{
-		return $value;
-	}
-	*/
 }
 
 ?>

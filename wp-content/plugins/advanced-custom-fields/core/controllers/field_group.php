@@ -290,31 +290,32 @@ class acf_field_group
 					'post_type' => 'page',
 					'sort_column' => 'menu_order',
 					'order' => 'ASC',
-					'post_status' => array('publish', 'private', 'draft'),
+					'post_status' => array('publish', 'private', 'draft', 'inherit', 'future'),
 					'suppress_filters' => false,
 				));
 
 				foreach($pages as $page)
 				{
-					$value = '';
+					$title = '';
 					$ancestors = get_ancestors($page->ID, 'page');
 					if($ancestors)
 					{
 						foreach($ancestors as $a)
 						{
-							$value .= '- ';
+							$title .= '- ';
 						}
 					}
-					$value .= get_the_title($page->ID);
+					
+					$title .= apply_filters( 'the_title', $page->post_title, $page->ID );
 					
 					
 					// status
-					if($page->post_status == "private" || $page->post_status == "draft")
+					if($page->post_status != "publish")
 					{
-						$value .= " ($page->post_status)";
+						$title .= " ($page->post_status)";
 					}
 					
-					$choices[$page->ID] = $value;
+					$choices[$page->ID] = $title;
 					
 				}
 				
@@ -346,10 +347,23 @@ class acf_field_group
 			
 			case "post" :
 				
-				$posts = get_posts( array('numberposts' => '-1' ));
-				foreach($posts as $v)
+				$posts = get_posts(array(
+					'numberposts' => '-1',
+					'post_status' => array('publish', 'private', 'draft', 'inherit', 'future'),
+					'suppress_filters' => false,
+				));
+				
+				foreach($posts as $post)
 				{
-					$choices[$v->ID] = $v->post_title;
+					$title = apply_filters( 'the_title', $post->post_title, $post->ID );
+					
+					// status
+					if($post->post_status != "publish")
+					{
+						$title .= " ($post->post_status)";
+					}
+					
+					$choices[$post->ID] = $title;
 				}
 				
 				break;
@@ -400,7 +414,7 @@ class acf_field_group
 			
 			case "taxonomy" :
 				
-				$choices = $this->parent->get_taxonomies_for_select();
+				$choices = $this->parent->get_taxonomies_for_select( array('simple_value' => true) );
 				$optgroup = true;
 								
 				break;
@@ -500,20 +514,11 @@ class acf_field_group
 		}
 		
 		
-		// only save once! WordPress save's twice for some strange reason.
-		global $acf_flag;
-		if ($acf_flag != 0)
+		// only save once! WordPress save's a revision as well.
+		if( wp_is_post_revision($post_id) )
 		{
-			return $post_id;
-		}
-		$acf_flag = 1;
-		
-		
-		// set post ID if is a revision		
-		if(wp_is_post_revision($post_id)) 
-		{
-			$post_id = wp_is_post_revision($post_id);
-		}
+	    	return $post_id;
+        }
 		
 		
 		/*

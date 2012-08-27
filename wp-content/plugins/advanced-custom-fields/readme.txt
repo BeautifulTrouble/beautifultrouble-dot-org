@@ -51,7 +51,7 @@ http://www.advancedcustomfields.com/docs/getting-started/
 http://www.advancedcustomfields.com/docs/field-types/
 
 = Bug Submission and Forum Support =
-http://www.advancedcustomfields.com/support/
+http://support.advancedcustomfields.com/
 
 = Please Vote and Enjoy =
 Your votes really make a difference! Thanks.
@@ -70,7 +70,7 @@ Your votes really make a difference! Thanks.
 
 = Q. I have a question =
 A. Chances are, someone else has asked it. Check out the support forum at: 
-http://www.advancedcustomfields.com/support/
+http://support.advancedcustomfields.com/
 
 
 == Screenshots ==
@@ -84,6 +84,61 @@ http://www.advancedcustomfields.com/support/
 
 
 == Changelog ==
+
+= 3.3.9 =
+* [Added] Add basic support for WPML - duplicate field groups, pages and posts for each language without corrupting ACF data!
+* [Fixed] Fix date picker save null - http://support.advancedcustomfields.com/discussion/2844/bug-with-the-date-picker
+* [Fixed] Fix color picker save null - http://support.advancedcustomfields.com/discussion/2683/allow-null-on-colour-pickers#Item_1
+* [Fixed] Fix image object null result - http://support.advancedcustomfields.com/discussion/2852/3.3.8-image-field-image-object-always-returns-true-
+* [Updated] Update Japanese translation - http://support.advancedcustomfields.com/discussion/comment/7384#Comment_7384
+* [Added] WYSIWYG field option - disable "the_content" filter to allow for compatibility issues with plugins / themes - http://support.advancedcustomfields.com/discussion/comment/7020#Comment_7020
+
+= 3.3.8 =
+* [Added] Gallery field { auto add image on upload, new style to show already added images
+* [Fixed] Fix saving value issue with WP e-commerce http://support.advancedcustomfields.com/discussion/comment/7026#Comment_7026
+* [Updated] Date picker field { new display format option (different from save format), UI overhaul
+* [Added] Add new field - Number
+* [Fixed] Test post object / select based fields for saving empty value - http://support.advancedcustomfields.com/discussion/2759/post-object-and-conditional-statement
+
+= 3.3.7 =
+* [Added] Add new return value for image { image object
+* [Updated] Update Dutch translation (thanks to Derk Oosterveld - www.inpoint.nl)
+* [Updated] Update UI Styles
+* [Updated] Refresh settings page UI and fix exported PHP code indentation Styles
+* [Fixed] Fix post object hierarchy display bug - http://support.advancedcustomfields.com/discussion/2650/post_object-showing-posts-in-wrong-hierarchy
+* [Fixed] Fix metabox position from high to core - http://support.advancedcustomfields.com/discussion/comment/6846#Comment_6846
+* [Fixed] Fix flexible content field save layout with no fields - http://support.advancedcustomfields.com/discussion/2639/flexible-content-field-support-for-empty-layoutss
+* [Fixed] Text / Fix field group limit - http://support.advancedcustomfields.com/discussion/2675/admin-only-showing-20-fields-groups
+
+= 3.3.6 =
+* [Fixed] Fix IE regex issue (thanks to Ben Heller - http://spruce.it)
+* [Added] Check for more translatable strings (thanks to Derk Oosterveld - www.inpoint.nl)
+* [Fixed] Fix location rule post category bug
+* [Updated] Added all post status to page / post location rules - http://support.advancedcustomfields.com/discussion/2624/scheduled-pages
+* [Updated] Updated the page link field to rely on the post_object field
+* [Added] Add $post_id parameter to the [acf] shortcode
+
+= 3.3.5 =
+* [Fixed] Fix location rule bug for taxonomy.
+
+= 3.3.4 = 
+* [Added] Added new API function: has_sub_field - replacement for the_repeater_field and the_flexible_field. Allows for nested while loops! 
+* [Improved] Improve save_post functions- http://support.advancedcustomfields.com/discussion/2540/bug-fix-for-taxonomies-and-revisions-solved
+* [Fixed] Fix relationship AJAX abort for multiple fields - http://support.advancedcustomfields.com/discussion/2555/problem-width-relationship-after-update-the-latest-version
+
+= 3.3.3 =
+* [Upgrade] Database Upgrade is required to modify the taxonomy filtering data for fields. This allows for performance boosts throughout ACF.
+* [Improved] relationship field: Improve querying posts / results and use AJAX powered search to increase performance on large-scale websites
+* [Improved] post object field: Improve querying posts / results
+
+= 3.3.2 =
+* [Fixed] Integrate with Shopp plugin
+
+= 3.3.1 =
+* [Fixed] Fix gallery sortable in repeater - http://support.advancedcustomfields.com/discussion/2463/gallery-within-a-repeater-image-reorder-not-working
+* [Fixed] Test / Fix two gallery fields - http://support.advancedcustomfields.com/discussion/2467/gallery-two-gallery-fieldss
+* [Fixed] Fix tinymce undefined visual editor off - http://support.advancedcustomfields.com/discussion/2465/solved-admin-conflicts-after-upgrade
+* [Updated] Update Polish translation - Thanks to www.digitalfactory.pl
 
 = 3.3.0 =
 * [Fixed] Gallery not returning correct order
