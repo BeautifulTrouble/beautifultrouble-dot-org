@@ -1,9 +1,5 @@
 .htaccess
 *.sql*
-wp-*.php
-xmlrpc.php
-wp-admin/
-wp-includes/
 wp-content/uploads/
 wp-content/blogs.dir/
 wp-content/upgrade/*
