@@ -1,4 +1,3 @@
-.htaccess
 *.sql*
 wp-config.php
 wp-content/uploads/
@@ -14,4 +13,3 @@ sitemap.xml.gz
 readme.html
 license.txt
 .DS_Store
-.svn
