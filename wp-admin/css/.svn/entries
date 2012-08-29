@@ -1,7 +1,7 @@
 10
 
 dir
-21641
+21655
 http://svn.automattic.com/wordpress/branches/3.4/wp-admin/css
 http://svn.automattic.com/wordpress
 
@@ -128,40 +128,6 @@ has-props
 
 1311
 
-ie-rtl.css
-file
-
-
-
-
-2012-08-28T16:32:58.000000Z
-09ba525a650f839144871fba3f38c8f2
-2012-03-23T21:58:28.065850Z
-20273
-bumpbot
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2786
-
 media.dev.css
 file
 
@@ -196,16 +162,16 @@ has-props
 
 4831
 
-ie.css
+ie-rtl.css
 file
 
 
 
 
 2012-08-28T16:32:58.000000Z
-88e9ab4f522932e1726bddd3b9f6b0e7
-2012-06-10T14:38:44.037439Z
-21043
+09ba525a650f839144871fba3f38c8f2
+2012-03-23T21:58:28.065850Z
+20273
 bumpbot
 has-props
 
@@ -228,7 +194,7 @@ has-props
 
 
 
-7351
+2786
 
 colors-classic.dev.css
 file
@@ -263,6 +229,40 @@ has-props
 
 
 57100
+
+ie.css
+file
+
+
+
+
+2012-08-28T16:32:58.000000Z
+88e9ab4f522932e1726bddd3b9f6b0e7
+2012-06-10T14:38:44.037439Z
+21043
+bumpbot
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7351
 
 customize-controls-rtl.dev.css
 file
@@ -332,40 +332,6 @@ ryan
 
 10800
 
-install.css
-file
-
-
-
-
-2012-08-28T16:32:58.000000Z
-243359672a1fa89898c942b8d3ae40b2
-2012-02-08T06:00:51.678320Z
-19861
-bumpbot
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3504
-
 colors-fresh.css
 file
 
@@ -399,6 +365,40 @@ has-props
 
 
 36317
+
+install.css
+file
+
+
+
+
+2012-08-28T16:32:58.000000Z
+243359672a1fa89898c942b8d3ae40b2
+2012-02-08T06:00:51.678320Z
+19861
+bumpbot
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3504
 
 ie-rtl.dev.css
 file

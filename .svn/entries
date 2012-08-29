@@ -1,7 +1,7 @@
 10
 
 dir
-21641
+21655
 http://svn.automattic.com/wordpress/branches/3.4
 http://svn.automattic.com/wordpress
 
@@ -60,40 +60,6 @@ has-props
 
 18299
 
-wp-comments-post.php
-file
-
-
-
-
-2012-08-28T16:32:52.000000Z
-e3078b7123750960c4bd59d2a5f7c541
-2012-04-10T17:21:17.032994Z
-20425
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3522
-
 wp-login.php
 file
 
@@ -127,6 +93,40 @@ has-props
 
 
 29084
+
+wp-comments-post.php
+file
+
+
+
+
+2012-08-28T16:32:52.000000Z
+e3078b7123750960c4bd59d2a5f7c541
+2012-04-10T17:21:17.032994Z
+20425
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3522
 
 wp-blog-header.php
 file
@@ -196,9 +196,6 @@ has-props
 
 2341
 
-wp-includes
-dir
-
 wp-app.php
 file
 
@@ -232,6 +229,9 @@ has-props
 
 
 1354
+
+wp-includes
+dir
 
 xmlrpc.php
 file
@@ -369,40 +369,6 @@ has-props
 
 3177
 
-wp-trackback.php
-file
-
-
-
-
-2012-08-28T16:32:52.000000Z
-ad11ff8af8966609839af21c0af5cd56
-2012-01-08T17:01:11.911209Z
-19712
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3700
-
 wp-links-opml.php
 file
 
@@ -437,17 +403,17 @@ has-props
 
 1997
 
-readme.html
+wp-trackback.php
 file
 
 
 
 
 2012-08-28T16:32:52.000000Z
-9ecbb128295ac324f63a6adc0b6e78ea
-2012-06-26T21:54:32.587333Z
-21151
-nacin
+ad11ff8af8966609839af21c0af5cd56
+2012-01-08T17:01:11.911209Z
+19712
+ryan
 has-props
 
 
@@ -469,7 +435,7 @@ has-props
 
 
 
-9177
+3700
 
 license.txt
 file
@@ -504,6 +470,40 @@ has-props
 
 
 19929
+
+readme.html
+file
+
+
+
+
+2012-08-28T16:32:52.000000Z
+9ecbb128295ac324f63a6adc0b6e78ea
+2012-06-26T21:54:32.587333Z
+21151
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9177
 
 wp-activate.php
 file
