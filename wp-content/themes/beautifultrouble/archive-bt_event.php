@@ -14,7 +14,7 @@
 
 get_header();
 $posts = query_posts($query_string . 
-'&orderby=meta_value&meta_key=date&order=asc&posts_per_page=10');
+'&orderby=meta_value&meta_key=date&order=asc&posts_per_page=20&nopaging=true');
 if (have_posts() ) ;?>
 <div class="row">
 	<div class="container">
