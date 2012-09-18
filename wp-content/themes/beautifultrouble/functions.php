@@ -105,7 +105,7 @@ function create_post_type() {
 			'public' => true,
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'case'),
-                        'description' => 'Capsule stories of successful creative actions, useful for illustrating how tactics, principles and theories can be successfully applied.',
+                        'description' => 'Capsule stories of successful creative actions.',
                         'menu_position' => 5,
                         'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_case.png',
                         'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
