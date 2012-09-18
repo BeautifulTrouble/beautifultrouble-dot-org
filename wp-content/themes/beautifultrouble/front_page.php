@@ -72,7 +72,7 @@ get_header(); ?>
             <?php $args = array('nopaging' => 'true', 'orderby' => 'meta_value', 'meta_key' => 'date', 'order' => 'ASC', 'post_type' => array('bt_event') );
             $my_query = null;
             $my_query = new WP_Query($args);
-            echo '<h2><a href="/event/" title="Events & Trainings">Upcoming Events</a></h2>';
+            echo "<h2>Upcoming Events</h2>";
             if( $my_query->have_posts() ) {
               echo '<ul class="unstyled">';
               while ($my_query->have_posts()) : $my_query->the_post();
