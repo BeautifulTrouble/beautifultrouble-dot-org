@@ -29,8 +29,38 @@ if ( have_posts() ) : ?>
 	<div class="container">
 		<header class="jumbotron subhead" id="overview">
 			<h1 class="page-title author"><?php printf( '<span class="vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( "ID" ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author() . '</a></span>' ); ?></h1>
-                        <p><?php the_author_meta('description'); ?></p>
+                        <p>
+                        <?php if ( validate_gravatar( get_the_author_meta('user_email') ) ) { 
+                            echo get_avatar( get_the_author_meta('user_email') );  
+                        } ?>
+                        <?php the_author_meta('description'); ?>
+                        </p>
+                        <ul class="author-social-links">
+                        <?php 
+                            $twitter    = get_the_author_meta('user_tw');
+                            $facebook   = get_the_author_meta('user_fb');
+                            $google     = get_the_author_meta('googleplus');
+                            $website    = get_the_author_meta('url');
+                            $twitter = preg_replace("#(http://twitter.com/|twitter.com/|www.twitter.com/|@)#ie",
+                              "",
+                              $twitter
+                            );
+                            if ( $twitter ) {
+                                echo '<li class="twitter"><a  href="http://twitter.com/', $twitter, '">@', $twitter, '</a></li>';
+                            }
+                            if ( $facebook ) {
+                                echo '<li class="facebook"><a href="', $facebook, '">', get_the_author(), ' on Facebook</a></li>';
+                            }
+                            if ( $google ) {
+                                echo '<li class="google"><a href="', $google, '">', get_the_author(), ' on Google Plus</a></li>';
+                            }
+                            if ( $website ) {
+                                echo '<li class="website"><a href="', $website, '">', $website, '</a></li>';
+                            }
+                        ?>
+                        </ul>
 		</header>
+                <br clear="all" />
                 <hr class="soften" />
                 <h2>Contributed Modules</h3>
 		<?php
