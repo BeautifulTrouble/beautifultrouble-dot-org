@@ -2,7 +2,7 @@
         <div id="buy-the-book" class="sidebar-nav">
                 <h2>Get the book!</h2>
                                     <p>
-                                    Available exclusively from our publisher <b>OR Books</b>.
+                                    Published by <b>OR Books</b>. Order your copy today:
                                     </p>
                                     <p>
                                     <img src="/wp-content/themes/beautifultrouble/img/Beautiful_Trouble_Book_Cover.png" /><br />

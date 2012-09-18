@@ -30,7 +30,7 @@ body h1.logo {
     margin: 0 10px 10px 0;
 }
 
-body.home .avatar { 
+body.home .avatar, body.author .avatar { 
     float: left;
     margin: 0 10px 10px 0;
 }
@@ -200,4 +200,22 @@ body h1.logo {
     background: url('../beautifultrouble/img/bt-med-banner.png') no-repeat;
 }
 
+}
+ul.author-social-links li {
+    list-style: none;
+    display: inline;
+    margin-right: 14px;
+}
+
+li.twitter {
+    background: url('../beautifultrouble/img/twitter-16x16.png') no-repeat top left;
+    padding-left: 18px;
+}
+li.facebook {
+    background: url('../beautifultrouble/img/facebook-16x16.png') no-repeat top left;
+    padding-left: 18px;
+}
+li.google {
+    background: url('../beautifultrouble/img/google-16x16.png') no-repeat top left;
+    padding-left: 18px;
 }

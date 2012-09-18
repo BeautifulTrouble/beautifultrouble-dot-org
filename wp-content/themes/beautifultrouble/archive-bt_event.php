@@ -14,7 +14,7 @@
 
 get_header();
 $posts = query_posts($query_string . 
-'&orderby=meta_value&meta_key=date&order=asc&posts_per_page=20&nopaging=true');
+'&orderby=meta_value&meta_key=date&order=asc&nopaging=true');
 if (have_posts() ) ;?>
 <div class="row">
 	<div class="container">
@@ -26,24 +26,22 @@ if (have_posts() ) ;?>
                 <h1>
 <?php  
 $obj = get_post_type_object('bt_event');
-print $obj->labels->name;
+echo $obj->labels->name;
 ?>
         </h1>
 
-<p>We are currently adapting the book into specific training modules and hands-on action design tools. Many members of the Beautiful Trouble network are professional trainers. Contact us at helpout at beautifultrouble dot org to request a training in Beautiful Trouble 101, Nonviolent Direct Action, or Advanced Creative Action. We can come to your campus, organization or gathering.</p>
-<p>And here&#8217;s a <a href="https://docs.google.com/document/d/1jbrGrYTI3qiMTyRFvftmNpTTSzUMfGuZw4iGiH9Q4Dg/edit">draft curriculum</a> for a week-long training we did in New York in July. More to come, soon.</p>
-
-<hr class="soften" />
-
-        <h2>
-        <?php print $obj->description ?>
-        </h2>
 </header>
 
 <div class="row content">
 	<div class="span8">
 
+<p>We are currently adapting the book into specific training modules and hands-on action design tools. Many members of the Beautiful Trouble network are professional trainers. Contact us at helpout at beautifultrouble dot org to request a training in Beautiful Trouble 101, Nonviolent Direct Action, or Advanced Creative Action. We can come to your campus, organization or gathering.</p>
+<p>And here&#8217;s a <a href="https://docs.google.com/document/d/1jbrGrYTI3qiMTyRFvftmNpTTSzUMfGuZw4iGiH9Q4Dg/edit">draft curriculum</a> for a week-long training we did in New York in July. More to come, soon.</p>
+<p>No events listed below? <a href="http://beautifultrouble.dev/get-involved">Help us organize one!</a></p>
 
+<hr class="soften" />
+
+                <h2>Upcoming events</h2>
 		<?php while ( have_posts() ) : the_post(); ?>
                 <?php 
                 $fields = get_fields();
@@ -71,24 +69,42 @@ print $obj->labels->name;
 				</div><!-- /.post_class -->
             <?php } ?>
 	    <?php endwhile; ?>
+            <hr />
+            <h2>Past events</h2>
+		<?php while ( have_posts() ) : the_post(); ?>
+                <?php 
+                $fields = get_fields();
+                $date  = $fields['date'];
+                $date_obj   = DateTime::createFromFormat('Y/m/d', $date );
+                $time       = time();
+                $unix_date  = $date_obj->format('U');
+                if( $unix_date < $time ) { ?>
+		<div <?php post_class(); ?>>
+			<a href="<?php the_permalink(); ?>" title="<?php the_title();?>"><h3><?php the_title();?></h3></a>
+			<div class="row">
+				        <div class="span2"><?php // Checking for a post thumbnail
+				        if ( has_post_thumbnail() ) ?>
+				        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
+				        	<?php the_post_thumbnail();?></a>
+				        </div><!-- /.span2 -->
+                                        <div class="span6">
+                                                <div class="date"><strong>Date:</strong> <?php echo $date_obj->format('M d, Y'); ?></div>
+                                                <div class="time"><strong>Time:</strong> <?php echo $fields['time']; ?></div>
+                                                <div class="location"><strong>Location:</strong> <?php echo $fields['location'] ?></div> 
+				        	<?php the_excerpt();?>
+				        </div><!-- /.span6 -->
+				    </div><!-- /.row -->
+				    <hr />
+				</div><!-- /.post_class -->
+            <?php } ?>
+	    <?php endwhile; ?>
 
-					<?php if (function_exists('page_navi')) { // if expirimental feature is active ?>
-						
-						<?php page_navi(); // use the page navi function ?>
-						
-					<?php } else { // if it is disabled, display regular wp prev & next links ?>
-						<nav class="wp-prev-next">
-							<ul class="clearfix">
-								<li class="prev-link"><?php next_posts_link(_e('&laquo; Older Entries', "bonestheme")) ?></li>
-								<li class="next-link"><?php previous_posts_link(_e('Newer Entries &raquo;', "bonestheme")) ?></li>
-							</ul>
-						</nav>
-					<?php } ?>			
 		</div><!-- /.span8 -->
                 <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
                     <?php
                         if ( function_exists('dynamic_sidebar')) dynamic_sidebar("sidebar-event");
                     ?>
+                    <?php get_sidebar('book'); ?>
                 </div>
             </div><!-- /.row .content -->
 <?php get_footer(); ?>

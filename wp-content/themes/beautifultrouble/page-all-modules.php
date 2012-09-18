@@ -23,11 +23,11 @@ get_header(); ?>
     ?>
     <hr />
 <?php
-$types = array( 'tactic', 'theory', 'principle', 'case', 'practitioner' );
+$types = array( 'tactic', 'principle', 'theory', 'case', 'practitioner' );
 foreach ( $types as $type ) {
     $obj = get_post_type_object( "bt_$type");
-    echo '<h2>', $obj->labels->name, '</h2>';
-    echo '<ul class="', $case, '">';
+    echo '<h2><a title="Browse ', $obj->labels->name, '" href="/', $type, '">', $obj->labels->name, '</a></h2>';
+    echo '<ul class="', $type, '">';
     // The Query
     $the_query = new WP_Query( array( 'post_type' => "bt_$type", 'nopaging' => 'true', 'orderby' => 'title', 'order' => 'ASC'  ));
 

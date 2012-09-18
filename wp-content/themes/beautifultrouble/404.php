@@ -27,7 +27,7 @@ get_header(); ?>
         <div class="row content">
 <div class="span8">
 					
-<p>So many more modules could be written than we've managed to write so far. Rather than only reference already-existing modules, we've deliberately designed the project to be expansive and outward looking, freely referencing modules that have yet to be written in the hopes they someday might.
+<p>So many more tactic, principle, theory and case study modules could be written than we've managed to write so far. Rather than only reference already-existing modules, we've deliberately designed the project to be expansive and outward looking, freely referencing modules that have yet to be written in the hopes they someday might.
 
 <p>In fact, maybe you’re the one who can write up the module you’re looking for. </p>
 
