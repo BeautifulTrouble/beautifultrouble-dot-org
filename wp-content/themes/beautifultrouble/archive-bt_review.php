@@ -29,9 +29,6 @@ $obj = get_post_type_object('bt_review');
 print $obj->labels->name;
 ?>
         </h1>
-        <h2>
-        <?php print $obj->description ?>
-        </h2>
 </header>
 
 <div class="row content">
