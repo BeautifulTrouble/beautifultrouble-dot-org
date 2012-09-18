@@ -23,7 +23,7 @@ get_header(); ?>
     ?>
     <hr />
 <?php
-$types = array( 'tactic', 'theory', 'principle', 'case', 'practitioner' );
+$types = array( 'tactic', 'principle', 'theory', 'case', 'practitioner' );
 foreach ( $types as $type ) {
     $obj = get_post_type_object( "bt_$type");
     echo '<h2><a title="Browse ', $obj->labels->name, '" href="/', $type, '">', $obj->labels->name, '</a></h2>';
