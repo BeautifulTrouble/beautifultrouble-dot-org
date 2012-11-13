@@ -24,6 +24,25 @@ class acf_Relationship extends acf_Field
    	}
    	
    	
+   	/*
+   	*  my_posts_where
+   	*
+   	*  @description: 
+   	*  @created: 3/09/12
+   	*/
+   	function posts_where( $where, &$wp_query )
+	{
+	    global $wpdb;
+	    
+	    if ( $title = $wp_query->get('like_title') )
+	    {
+	        $where .= " AND " . $wpdb->posts . ".post_title LIKE '%" . esc_sql( like_escape(  $title ) ) . "%'";
+	    }
+	    
+	    return $where;
+	}
+	
+	
    	/*--------------------------------------------------------------------------------------
 	*
 	*	acf_get_relationship_results
@@ -129,6 +148,17 @@ class acf_Relationship extends acf_Field
 		unset( $options['taxonomy'] );
 		
 		
+		// search
+		if( $options['s'] )
+		{
+			$options['like_title'] = $options['s'];
+			
+			add_filter( 'posts_where', array($this, 'posts_where'), 10, 2 );
+		}
+		
+		unset( $options['s'] );
+		
+		
 		// load the posts
 		$posts = get_posts( $options );
 		
@@ -137,7 +167,7 @@ class acf_Relationship extends acf_Field
 			foreach( $posts  as $post )
 			{
 				// right aligned info
-				$title = '<span class="info">';
+				$title = '<span class="relationship-item-info">';
 				
 					$title .= $post->post_type;
 					
@@ -158,7 +188,7 @@ class acf_Relationship extends acf_Field
 					$title .= " ($post->post_status)";
 				}
 				
-				echo '<li><a href="javascript:;" data-post_id="' . $post->ID . '">' . $title .  '<span class="add"></span></a></li>';
+				echo '<li><a href="' . get_permalink($post->ID) . '" data-post_id="' . $post->ID . '">' . $title .  '<span class="add"></span></a></li>';
 			}
 		}
 		
@@ -235,7 +265,7 @@ class acf_Relationship extends acf_Field
 		
 		
 		?>
-<div class="acf_relationship" data-max="<?php echo $field['max']; ?>" data-s="" data-paged="1" data-post_type="<?php echo implode(',', $field['post_type']); ?>" data-taxonomy="<?php echo implode(',', $field['taxonomy']); ?>" <?php if( defined('ICL_LANGUAGE_CODE') ){ echo 'data-lang="' . ICL_LANGUAGE_CODE . '"';} ?>">
+<div class="acf_relationship" data-max="<?php echo $field['max']; ?>" data-s="" data-paged="1" data-post_type="<?php echo implode(',', $field['post_type']); ?>" data-taxonomy="<?php echo implode(',', $field['taxonomy']); ?>" <?php if( defined('ICL_LANGUAGE_CODE') ){ echo 'data-lang="' . ICL_LANGUAGE_CODE . '"';} ?>>
 	
 	<!-- Hidden Blank default value -->
 	<input type="hidden" name="<?php echo $field['name']; ?>" value="" />
@@ -279,9 +309,15 @@ class acf_Relationship extends acf_Field
 		{
 			foreach( $field['value'] as $post )
 			{
-			
+				// check that post exists (my have been trashed)
+				if( !is_object($post) )
+				{
+					continue;
+				}
+				
+				
 				// right aligned info
-				$title = '<span class="info">';
+				$title = '<span class="relationship-item-info">';
 				
 					$title .= $post->post_type;
 					
@@ -303,7 +339,7 @@ class acf_Relationship extends acf_Field
 				}
 				
 				echo '<li>
-					<a href="javascript:;" class="" data-post_id="' . $post->ID . '">' . $title . '<span class="remove"></span></a>
+					<a href="' . get_permalink($post->ID) . '" class="" data-post_id="' . $post->ID . '">' . $title . '<span class="remove"></span></a>
 					<input type="hidden" name="' . $field['name'] . '[]" value="' . $post->ID . '" />
 				</li>';
 				
@@ -471,7 +507,11 @@ class acf_Relationship extends acf_Field
 		// override value array with attachments
 		foreach( $value as $k => $v)
 		{
-			$value[ $k ] = $ordered_posts[ $v ];
+			// check that post exists (my have been trashed)
+			if( isset($ordered_posts[ $v ]) )
+			{
+				$value[ $k ] = $ordered_posts[ $v ];
+			}
 		}
 		
 				

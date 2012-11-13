@@ -221,8 +221,8 @@ class acf_everything_fields
 				type: 'post',
 				dataType: 'html',
 				success: function(html){
-					<?php 
 					
+<?php 
 					if($this->data['page_type'] == "user")
 					{
 						if($this->data['page_action'] == "add")
@@ -256,10 +256,12 @@ class acf_everything_fields
 							echo "$('#media-single-form table tbody tr.submit').before( html );";
 						}
 					}
-										
-					echo "setTimeout( function(){ $(document).trigger('acf/setup_fields', $('#wpbody') ); }, 200);";
+?>
+
+					setTimeout( function(){ 
+						$(document).trigger('acf/setup_fields', $('#wpbody') ); 
+					}, 200);
 					
-					?>
 				}
 			});
 		
@@ -282,28 +284,16 @@ class acf_everything_fields
 	
 	function save_taxonomy( $term_id )
 	{
-		// validate
-		if( !isset( $_POST['fields'] ) )
+		// for some weird reason, this is triggered by saving a menu... 
+		if( !isset($_POST['taxonomy']) )
 		{
 			return;
 		}
 		
+		// $post_id to save against
+		$post_id = $_POST['taxonomy'] . '_' . $term_id;
 		
-		// options name to save against
-		$option_name = $_POST['taxonomy'] . '_' . $term_id;
-		
-		
-		// save fields
-		$fields = $_POST['fields'];
-		
-		foreach($fields as $key => $value)
-		{
-			// get field
-			$field = $this->parent->get_acf_field($key);
-			
-			$this->parent->update_value( $option_name , $field, $value );
-		}
-		
+		do_action('acf_save_post', $post_id);
 	}
 		
 		
@@ -318,30 +308,10 @@ class acf_everything_fields
 	
 	function save_user( $user_id )
 	{
+		// $post_id to save against
+		$post_id = 'user_' . $user_id;
 		
-		// validate
-		if( !isset( $_POST['fields'] ) )
-		{
-			return;
-		}
-		
-		
-		// options name to save against
-		$option_name = 'user_' . $user_id;
-		
-		
-		// save fields
-		$fields = $_POST['fields'];
-		
-		foreach($fields as $key => $value)
-		{
-			// get field
-			$field = $this->parent->get_acf_field($key);
-			
-			$this->parent->update_value( $option_name , $field, $value );
-		}
-
-		
+		do_action('acf_save_post', $post_id);		
 	}
 	
 	
@@ -356,28 +326,12 @@ class acf_everything_fields
 	
 	function save_attachment( $post, $attachment )
 	{
-
-		// validate
-		if( !isset( $_POST['fields'] ) )
-		{
-			return $post;
-		}
-
+		// $post_id to save against
+		$post_id = $post['ID'];
 		
-		// save fields
-		$fields = $_POST['fields'];
-		
-		foreach($fields as $key => $value)
-		{
-			// get field
-			$field = $this->parent->get_acf_field($key);
-			
-			$this->parent->update_value( $post['ID'] , $field, $value );
-		}
+		do_action('acf_save_post', $post_id);
 		
 		return $post;
-
-		
 	}
 	
 	
@@ -435,7 +389,14 @@ class acf_everything_fields
 				// title 
 				if( $options['page_action'] == "edit" && $options['page_type'] != "media")
 				{
-					echo '<h3>' . get_the_title( $acf['id'] ) . '</h3>';
+					if ( is_numeric( $acf['id'] ) )
+				    {
+				        echo '<h3>' . get_the_title( $acf['id'] ) . '</h3>';
+				    }
+				    else
+				    {
+				        echo '<h3>' . apply_filters( 'the_title', $acf['title'] ) . '</h3>';
+				    }
 					echo '<table class="form-table">';
 				}
 				
@@ -467,7 +428,7 @@ class acf_everything_fields
 					
 					if( $options['page_type'] == "taxonomy" && $options['page_action'] == "add")
 					{
-						echo '<div id="acf-' . $field['name'] . '" class="form-field' . $required_class . '">';
+						echo '<div id="acf-' . $field['name'] . '" class="form-field field field-' . $field['type'] . ' field-'.$field['key'] . $required_class . '">';
 							echo '<label for="fields[' . $field['key'] . ']">' . $field['label'] . $required_label . '</label>';	
 							$field['name'] = 'fields[' . $field['key'] . ']';
 							$this->parent->create_field($field);
@@ -476,11 +437,12 @@ class acf_everything_fields
 					}
 					else
 					{
-						echo '<tr id="acf-' . $field['name'] . '" class="field form-field' . $required_class . '">';
+						echo '<tr id="acf-' . $field['name'] . '" class="form-field field field-' . $field['type'] . ' field-'.$field['key'] . $required_class . '">';
 							echo '<th valign="top" scope="row"><label for="fields[' . $field['key'] . ']">' . $field['label'] . $required_label . '</label></th>';	
 							echo '<td>';
 								$field['name'] = 'fields[' . $field['key'] . ']';
 								$this->parent->create_field($field);
+								
 								if($field['instructions']) echo '<span class="description">' . $field['instructions'] . '</span>';
 							echo '</td>';
 						echo '</tr>';

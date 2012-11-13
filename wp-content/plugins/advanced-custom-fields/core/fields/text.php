@@ -35,7 +35,7 @@ class acf_Text extends acf_Field
 	
 	function create_field($field)
 	{
-		echo '<input type="text" value="' . $field['value'] . '" id="' . $field['name'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" />';
+		echo '<input type="text" value="' . $field['value'] . '" id="' . $field['id'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" />';
 	}
 	
 	
@@ -51,10 +51,14 @@ class acf_Text extends acf_Field
 	
 	function create_options($key, $field)
 	{
-		// defaults
-		$field['default_value'] = isset($field['default_value']) ? $field['default_value'] : '';
-		$field['formatting'] = isset($field['formatting']) ? $field['formatting'] : 'html';
+		// vars
+		$defaults = array(
+			'default_value'	=>	'',
+			'formatting' 	=>	'html',
+		);
 		
+		$field = array_merge($defaults, $field);
+
 		?>
 		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
@@ -133,7 +137,9 @@ class acf_Text extends acf_Field
 		}
 		elseif($format == 'html')
 		{
-			$value = html_entity_decode($value);
+			//$value = html_entity_decode($value);
+			$value = nl2br($value);
+
 		}
 		
 		return $value;

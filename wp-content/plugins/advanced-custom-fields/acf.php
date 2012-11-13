@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields
 Plugin URI: http://www.advancedcustomfields.com/
 Description: Fully customise WordPress edit screens with powerful fields. Boasting a professional interface and a powerfull API, it’s a must have for any web developer working with WordPress. Field types include: Wysiwyg, text, textarea, image, file, select, checkbox, page link, post object, date picker, color picker, repeater, flexible content, gallery and more!
-Version: 3.3.9
+Version: 3.5.1
 Author: Elliot Condon
 Author URI: http://www.elliotcondon.com/
 License: GPL
@@ -30,7 +30,8 @@ class Acf
 		$field_group,
 		$input,
 		$options_page,
-		$everything_fields;
+		$everything_fields,
+		$third_party;
 	
 	
 	/*
@@ -47,8 +48,8 @@ class Acf
 		// vars
 		$this->path = plugin_dir_path(__FILE__);
 		$this->dir = plugins_url('',__FILE__);
-		$this->version = '3.3.9';
-		$this->upgrade_version = '3.3.3'; // this is the latest version which requires an upgrade
+		$this->version = '3.5.1';
+		$this->upgrade_version = '3.4.1'; // this is the latest version which requires an upgrade
 		$this->cache = array(); // basic array cache to hold data throughout the page load
 		
 		
@@ -67,9 +68,13 @@ class Acf
 		
 		add_action('admin_menu', array($this,'admin_menu'));
 		add_action('admin_head', array($this,'admin_head'));
+		add_action('acf_save_post', array($this, 'acf_save_post'), 10); // save post, called from many places (api, input, everything, options)
 		
+		add_filter('acf_load_field', array($this, 'acf_load_field_defaults'), 5);
+		
+		// ajax
 		add_action('wp_ajax_get_input_metabox_ids', array($this, 'get_input_metabox_ids'));
-	
+		
 		
 		return true;
 	}
@@ -266,6 +271,11 @@ class Acf
 		// everthing fields
 		include_once('core/controllers/everything_fields.php');
 		$this->everything_fields = new acf_everything_fields($this);
+		
+		
+		// Third Party Compatibility
+		include_once('core/controllers/third_party.php');
+		$this->third_party = new acf_third_party($this);
 	}
 	
 	
@@ -487,24 +497,28 @@ class Acf
 	function get_acf_fields($post_id)
 	{
 		// vars
-		$return = array();
-		$keys = get_post_custom_keys($post_id);
+		global $wpdb;
 		
-		if($keys)
+		$return = array();
+		
+		
+		// get field from postmeta
+		$rows = $wpdb->get_results( $wpdb->prepare("SELECT meta_key FROM $wpdb->postmeta WHERE post_id = %d AND meta_key LIKE %s", $post_id, 'field\_%'), ARRAY_A);
+		
+		if( $rows )
 		{
-			foreach($keys as $key)
+			foreach( $rows as $row )
 			{
-				if(strpos($key, 'field_') !== false)
-				{
-					$field = $this->get_acf_field($key, $post_id);
+				$field = $this->get_acf_field( $row['meta_key'], $post_id );
 	
-			 		$return[$field['order_no']] = $field;
-				}
+			 	$return[ $field['order_no'] ] = $field;
 			}
 		 	
 		 	ksort($return);
 	 	}
-	 	// return fields
+	 	
+	 	
+	 	// return
 		return $return;
 		
 	}
@@ -514,82 +528,137 @@ class Acf
 	*
 	*	get_acf_field
 	*	- returns a field
+	*	- $post_id can be passed to make sure the correct field is loaded. Eg: a duplicated
+	*	field group may have the same field_key, but a different post_id
 	*
 	*	@author Elliot Condon
 	*	@since 1.0.0
 	* 
 	*-------------------------------------------------------------------------------------*/
 
-	function get_acf_field($field_name, $post_id = false)
+	function get_acf_field( $field_key, $post_id = false )
 	{
-		// vars
-		$post_id = $post_id ? $post_id : $this->get_post_meta_post_id($field_name);
-		$field = false;
 		
-		// if this acf ($post_id) is trashed don't use it's fields
-		if(get_post_status($post_id) != "trash")
+		
+		// return cache
+		$cache = $this->get_cache('acf_field_' . $field_key);
+		if($cache != false)
 		{
-			$field = get_post_meta($post_id, $field_name, true);
-			
-			
-			// if field group was duplicated, it may now be a serialized string!
-			$field = maybe_unserialize($field);
+			return $cache;
 		}
- 		
- 		// field could be registered via php, and not in db at all!
- 		if(!$field)
- 		{ 			
- 			// hook to load in registered field groups
-			$acfs = apply_filters('acf_register_field_group', array());
-			if($acfs)
+		
+		
+		// vars
+		global $wpdb;
+		
+		
+		// get field from postmeta
+		$sql = $wpdb->prepare("SELECT post_id, meta_value FROM $wpdb->postmeta WHERE meta_key = %s", $field_key);
+		
+		if( $post_id )
+		{
+			$sql .= $wpdb->prepare("AND post_id = %d", $post_id);
+		}
+
+		$row = $wpdb->get_results( $sql, ARRAY_A );
+		
+		
+		
+		if( $row )
+		{
+			$row = $row[0];
+			
+			
+			// return field if it is not in a trashed field group
+			if( get_post_status( $row['post_id'] ) != "trash" )
 			{
-				// loop through acfs
-				foreach($acfs as $acf)
+				$row['meta_value'] = maybe_unserialize( $row['meta_value'] );
+				$row['meta_value'] = maybe_unserialize( $row['meta_value'] ); // run again for WPML
+				
+				
+				// run filters
+				$field = $row['meta_value'];
+				$field = apply_filters('acf_load_field', $field);
+				$field = apply_filters('acf_load_field-' . $field['name'], $field);
+				$field = apply_filters('acf_load_field-' . $field['key'], $field);
+			
+			
+				// set cache
+				$this->set_cache('acf_field_' . $field_key, $field);
+				
+				return $field;
+			}
+		}
+		
+
+
+		// hook to load in registered field groups
+		$acfs = apply_filters('acf_register_field_group', array());
+		
+		if($acfs)
+		{
+			// loop through acfs
+			foreach($acfs as $acf)
+			{
+				// loop through fields
+				if($acf['fields'])
 				{
-					// loop through fields
-					if($acf['fields'])
+					foreach($acf['fields'] as $field)
 					{
-						foreach($acf['fields'] as $field)
+						if($field['key'] == $field_key)
 						{
-							if($field['key'] == $field_name)
-							{
-								return $field;
-							}
+							// run filters
+							$field = apply_filters('acf_load_field', $field);
+							$field = apply_filters('acf_load_field-' . $field['name'], $field);
+							$field = apply_filters('acf_load_field-' . $field['key'], $field);
+							
+							// set cache
+							$this->set_cache('acf_field_' . $field_key, $field);
+							
+							return $field;
 						}
 					}
-					// if($acf['fields'])
 				}
-				// foreach($acfs as $acf)
+				// if($acf['fields'])
 			}
-			// if($acfs)
- 		}
- 		// if(!$field)
- 		
- 		return $field;
-		
-	}
-	
-	
-	/*--------------------------------------------------------------------------------------
-	*
-	*	get_post_meta_post_id
-	*	- returns the post_id for a meta_key
-	*
-	*	@author Elliot Condon
-	*	@since 1.0.0
-	* 
-	*-------------------------------------------------------------------------------------*/
+			// foreach($acfs as $acf)
+		}
+		// if($acfs)
 
-	function get_post_meta_post_id($field_name)
-	{
-		global $wpdb;
-		$post_id = $wpdb->get_var( $wpdb->prepare("SELECT post_id FROM $wpdb->postmeta WHERE meta_key = %s", $field_name) );
-		
-		if($post_id) return (int)$post_id;
-		 
-		return false;
+ 		
+ 		return null;
 	}
 	
+	
+	/*
+	*  acf_load_field_defaults
+	*
+	*  @description: 
+	*  @since 3.5.1
+	*  @created: 14/10/12
+	*/
+	
+	function acf_load_field_defaults( $field )
+	{
+		$defaults = array(
+			'key' => '',
+			'label' => '',
+			'name' => '',
+			'type' => 'text',
+			'order_no' =>	'1',
+			'instructions' =>	'',
+			'required' => '0',
+			'conditional_logic' => array(
+				'status' => '0',
+				'allorany' => 'all',
+				'rules' => false
+			),
+		);
+		
+		$field = array_merge($defaults, $field);
+		
+		return $field;
+	}
 	
 	/*--------------------------------------------------------------------------------------
 	*
@@ -602,16 +671,93 @@ class Acf
 	
 	function create_field($field)
 	{
+		
 		if(!isset($this->fields[$field['type']]) || !is_object($this->fields[$field['type']]))
 		{
 			_e('Error: Field Type does not exist!','acf');
 			return false;
 		}
 		
-		// defaults
-		if(!isset($field['class'])) $field['class'] = $field['type'];
 		
-		$this->fields[$field['type']]->create_field($field);
+		// defaults - class
+		if( !isset($field['class']) )
+		{
+			$field['class'] = $field['type'];
+		}
+		
+		
+		// defaults - id
+		// - isset is needed for the edit field group page where fields are created without many parameters
+		if( !isset($field['id']) )
+		{
+			if( isset($field['key']) )
+			{
+				$field['id'] = 'acf-' . $field['key'];
+			}
+			else
+			{
+				$field['id'] = 'acf-' . $field['name'];
+			}
+		}
+		
+		
+		$this->fields[ $field['type'] ]->create_field($field);
+		
+
+		// conditional logic
+		// - isset is needed for the edit field group page where fields are created without many parameters
+		if( isset($field['conditional_logic']) && $field['conditional_logic']['status'] == '1' ):
+		
+			$join = ' && ';
+			if( $field['conditional_logic']['allorany'] == "any" )
+			{
+				$join = ' || ';
+			}
+			
+			?>
+<script type="text/javascript">
+(function($){
+	
+	// create the conditional function
+	$(document).live('acf/conditional_logic/<?php echo $field['key']; ?>', function(){
+		
+		var field = $('.field-<?php echo $field['key']; ?>');		
+<?php
+
+		$if = array();
+		foreach( $field['conditional_logic']['rules'] as $rule )
+		{
+			$if[] = 'acf.conditional_logic.calculate({ field : "'. $field['key'] .'", toggle : "' . $rule['field'] . '", operator : "' . $rule['operator'] .'", value : "' . $rule['value'] . '"})' ;
+		}
+		
+?>
+		if(<?php echo implode( $join, $if ); ?>)
+		{
+			field.show();
+		}
+		else
+		{
+			field.hide();
+		}
+		
+	});
+	
+	
+	// add change events to all fields
+<?php foreach( $field['conditional_logic']['rules'] as $rule ): ?>
+	$('.field-<?php echo $rule['field']; ?> *[name]').live('change', function(){
+		$(document).trigger('acf/conditional_logic/<?php echo $field['key']; ?>');
+	});
+<?php endforeach; ?>
+	
+	$(document).live('acf/setup_fields', function(e, postbox){
+		$(document).trigger('acf/conditional_logic/<?php echo $field['key']; ?>');
+	});
+		
+})(jQuery);
+</script>
+			<?php
+		endif;
 	}
 	
 	
@@ -684,7 +830,7 @@ class Acf
 		// defaults
 	 	$options = array(
 	 		'position'			=>	'normal',
-	 		'layout'			=>	'default',
+	 		'layout'			=>	'no_box',
 	 		'hide_on_screen'	=>	array(),
 	 	);
 	 	
@@ -747,7 +893,7 @@ class Acf
 	
 	function get_value_for_api($post_id, $field)
 	{
-		if(!isset($this->fields[$field['type']]) || !is_object($this->fields[$field['type']]))
+		if( !isset($field['type'], $this->fields[ $field['type'] ]) )
 		{
 			return '';
 		}
@@ -767,7 +913,10 @@ class Acf
 	
 	function update_value($post_id, $field, $value)
 	{
-		$this->fields[$field['type']]->update_value($post_id, $field, $value);
+		if( isset($field['type'], $this->fields[ $field['type'] ]) )
+		{
+			$this->fields[$field['type']]->update_value($post_id, $field, $value);
+		}
 	}
 	
 	
@@ -846,23 +995,18 @@ class Acf
 	
 	function render_fields_for_input($fields, $post_id)
 	{
-		
+			
 		// create fields
 		if($fields)
 		{
 			foreach($fields as $field)
 			{
 				// if they didn't select a type, skip this field
-				if($field['type'] == 'null') continue;
+				if(!$field['type'] || $field['type'] == 'null') continue;
+				
 				
 				// set value
 				$field['value'] = $this->get_value($post_id, $field);
-				
-				// required
-				if(!isset($field['required']))
-				{
-					$field['required'] = "0";
-				}
 				
 				$required_class = "";
 				$required_label = "";
@@ -873,7 +1017,7 @@ class Acf
 					$required_label = ' <span class="required">*</span>';
 				}
 				
-				echo '<div id="acf-' . $field['name'] . '" class="field field-' . $field['type'] . $required_class . '">';
+				echo '<div id="acf-' . $field['name'] . '" class="field field-' . $field['type'] . ' field-'.$field['key'] . $required_class . '">';
 
 					echo '<p class="label">';
 						echo '<label for="fields[' . $field['key'] . ']">' . $field['label'] . $required_label . '</label>';
@@ -908,19 +1052,31 @@ class Acf
 		// overrides
 		if(isset($_POST))
 		{
-			if(isset($_POST['post_id']) && $_POST['post_id'] != 'false') $overrides['post_id'] = $_POST['post_id'];
-			if(isset($_POST['page_template']) && $_POST['page_template'] != 'false') $overrides['page_template'] = $_POST['page_template'];
-			if(isset($_POST['page_parent']) && $_POST['page_parent'] != 'false') $overrides['page_parent'] = $_POST['page_parent'];
-			if(isset($_POST['page_type']) && $_POST['page_type'] != 'false') $overrides['page_type'] = $_POST['page_type'];
-			if(isset($_POST['page']) && $_POST['page'] != 'false') $overrides['page'] = $_POST['page'];
-			if(isset($_POST['post']) && $_POST['post'] != 'false') $overrides['post'] = $_POST['post'];
-			if(isset($_POST['post_category']) && $_POST['post_category'] != 'false') $overrides['post_category'] = $_POST['post_category'];
-			if(isset($_POST['post_format']) && $_POST['post_format'] != 'false') $overrides['post_format'] = $_POST['post_format'];
-			if(isset($_POST['taxonomy']) && $_POST['taxonomy'] != 'false') $overrides['taxonomy'] = $_POST['taxonomy'];
-			if(isset($_POST['lang']) && $_POST['lang'] != 'false') $overrides['lang'] = $_POST['lang'];
+			$override_keys = array(
+				'post_id',
+				'post_type',
+				'page_template',
+				'page_parent',
+				'page_type',
+				'page',
+				'post',
+				'post_category',
+				'post_format',
+				'taxonomy',
+				'lang',
+			);
+
+			foreach( $override_keys as $override_key )
+			{
+				if( isset($_POST[ $override_key ]) && $_POST[ $override_key ] != 'false' )
+				{
+					$overrides[ $override_key ] = $_POST[ $override_key ];
+				}
+			}
+
 		}
 		
-		
+
 		// WPML
 		if( isset($overrides['lang']) )
 		{
@@ -930,7 +1086,8 @@ class Acf
 		
 		
 		// create post object to match against
-		$post = isset($overrides['post_id']) ? get_post($_POST['post_id']) : false;
+		$post = isset($overrides['post_id']) ? get_post($overrides['post_id']) : false;
+		
 		
 		// find all acf objects
 		$acfs = $this->get_field_groups();
@@ -1029,6 +1186,7 @@ class Acf
 				'ef_taxonomy',
 				'ef_user',
 				'ef_media',
+				'post_type',
 			);
 			
 			if( !in_array($rule['param'], $exceptions) )
@@ -1295,14 +1453,24 @@ class Acf
 					return false;
 				}
 				
+				
 				// value has changed in 3.2.6 to a sanitized string
-				if( strpos( $rule['value'] ,'options-') === false )
+				//if( substr($rule['value'], 0, 7) != 'options' )
+				//{
+				//	$rule['value'] = 'options-' . sanitize_title( $rule['value'] );
+				//}
+				
+				
+				// value has changed in 3.5.1 to a acf-options-$title
+				if( substr($rule['value'], 0, 12) != 'acf-options-' )
 				{
-					$rule['value'] = 'options-' . sanitize_title_with_dashes( $rule['value'] );
+					$rule['value'] = 'acf-options-' . sanitize_title( $rule['value'] );
 				}
 				
+				
 				// generate the page title to match against
-				$page_title = 'options-' . sanitize_title_with_dashes( get_admin_page_title() );
+				$page_title = 'acf-options-' . sanitize_title( get_admin_page_title() );
+				
 				
 		        if($rule['operator'] == "==")
 		        {
@@ -1676,6 +1844,43 @@ class Acf
 		// return array
 		return $image_sizes;
 	}
+	
+	
+	/*
+	*  acf_save_post
+	*
+	*  @description: 
+	*  @created: 4/09/12
+	*/
+	
+	function acf_save_post( $post_id )
+	{
+
+		// load from post
+		if( !isset($_POST['fields']) )
+		{
+			return false;
+		}
+		
+		
+		// loop through and save
+		if( $_POST['fields'] )
+		{
+			foreach( $_POST['fields'] as $key => $value )
+			{
+				// get field
+				$field = $this->get_acf_field($key);
+				
+				$this->update_value($post_id, $field, $value);
+			}
+			// foreach($fields as $key => $value)
+		}
+		// if($fields)
+		
+		
+		return true;
+	}
+	
 	
 	
 	/*

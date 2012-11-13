@@ -69,7 +69,7 @@ class acf_Select extends acf_Field
 		
 		
 		// html
-		echo '<select id="' . $field['name'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" ' . $multiple . ' >';	
+		echo '<select id="' . $field['id'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" ' . $multiple . ' >';	
 		
 		
 		// null
@@ -182,7 +182,7 @@ class acf_Select extends acf_Field
 				</p>
 			</td>
 			<td>
-				<textarea rows="5" name="fields[<?php echo $key; ?>][choices]" id=""><?php echo $field['choices']; ?></textarea>
+				<textarea class="texarea field_option-choices" rows="5" name="fields[<?php echo $key; ?>][choices]" id=""><?php echo $field['choices']; ?></textarea>
 			</td>
 		</tr>
 		<tr class="field_option field_option_<?php echo $this->name; ?>">
@@ -254,40 +254,60 @@ class acf_Select extends acf_Field
 	
 	function pre_save_field($field)
 	{
-		// defaults
-		$field['choices'] = isset($field['choices']) ? $field['choices'] : '';
+		// vars
+		$defaults = array(
+			'choices'	=>	'',
+		);
+		
+		$field = array_merge($defaults, $field);
+		
+		
+		// check if is array. Normal back end edit posts a textarea, but a user might use update_field from the front end
+		if( is_array( $field['choices'] ))
+		{
+		    return $field;
+		}
+
 		
 		// vars
 		$new_choices = array();
 		
-		// explode choices from each line
-		if(strpos($field['choices'], "\n") !== false)
-		{
-			// found multiple lines, explode it
-			$field['choices'] = explode("\n", $field['choices']);
-		}
-		else
-		{
-			// no multiple lines! 
-			$field['choices'] = array($field['choices']);
-		}
 		
-		// key => value
-		foreach($field['choices'] as $choice)
+		// explode choices from each line
+		if( $field['choices'] )
 		{
-			if(strpos($choice, ' : ') !== false)
+			if(strpos($field['choices'], "\n") !== false)
 			{
-				$choice = explode(' : ', $choice);
-				$new_choices[trim($choice[0])] = trim($choice[1]);
+				// found multiple lines, explode it
+				$field['choices'] = explode("\n", $field['choices']);
 			}
 			else
 			{
-				$new_choices[trim($choice)] = trim($choice);
+				// no multiple lines! 
+				$field['choices'] = array($field['choices']);
+			}
+			
+			
+			// key => value
+			foreach($field['choices'] as $choice)
+			{
+				if(strpos($choice, ' : ') !== false)
+				{
+					$choice = explode(' : ', $choice);
+					$new_choices[trim($choice[0])] = trim($choice[1]);
+				}
+				else
+				{
+					$new_choices[trim($choice)] = trim($choice);
+				}
 			}
 		}
 		
+		
+		
 		// update choices
 		$field['choices'] = $new_choices;
+		
 		
 		// return updated field
 		return $field;

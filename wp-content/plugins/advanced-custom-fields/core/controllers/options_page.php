@@ -58,28 +58,39 @@ class acf_options_page
 			return true;
 		}
 		
+		
+		// vars
 		$parent_slug = 'acf-options';
 		$parent_title = __('Options','acf');
+		$parent_menu = __('Options','acf');
 		
-		// set parent slug
+		
+		// redirect to first child
 		$custom = apply_filters('acf_register_options_page',array());
-		if(!empty($custom))
+		if( !empty($custom) )
 		{	
 			$parent_slug = $custom[0]['slug'];
 			$parent_title = $custom[0]['title'];
 		}
 		
 		
+		// allow override of title
+		$parent_menu = apply_filters('acf_options_page_title', $parent_menu);
+		
+		
 		// Parent
-		$parent_page = add_menu_page($parent_title, __('Options','acf'), 'edit_posts', $parent_slug, array($this, 'html'));	
+		$parent_page = add_menu_page($parent_title, $parent_menu, 'edit_posts', $parent_slug, array($this, 'html'));	
+		
 		
 		// some fields require js + css
 		add_action('admin_print_scripts-'.$parent_page, array($this, 'admin_print_scripts'));
 		add_action('admin_print_styles-'.$parent_page, array($this, 'admin_print_styles'));
 		
+		
 		// Add admin head
 		add_action('admin_head-'.$parent_page, array($this,'admin_head'));
 		add_action('admin_footer-'.$parent_page, array($this,'admin_footer'));
+		
 		
 		if(!empty($custom))
 		{
@@ -116,29 +127,9 @@ class acf_options_page
 		// save
 		if(isset($_POST['update_options']))
 		{
-			
-			// options name to save against
-			$option_name = 'options';
-			
-			
-			// save fields
-			$fields = isset($_POST['fields']) ? $_POST['fields'] : false;
-			
-			if($fields)
-			{
-				foreach($fields as $key => $value)
-				{
-					// get field
-					$field = $this->parent->get_acf_field($key);
-				
-					$this->parent->update_value( $option_name , $field, $value );
-					
-				}
-			}
-			
+			do_action('acf_save_post', 'options');
 			
 			$this->data['admin_message'] = __("Options Updated",'acf');
-			
 		}
 		
 		$metabox_ids = $this->parent->get_input_metabox_ids(false, false);
@@ -157,7 +148,7 @@ class acf_options_page
 
 		// Javascript
 		echo '<script type="text/javascript" src="'.$this->parent->dir.'/js/input-actions.js?ver=' . $this->parent->version . '" ></script>';
-		echo '<script type="text/javascript">acf.post_id = 0;</script>';
+		echo '<script type="text/javascript">acf.post_id = 0; </script>';
 		
 		
 		// add user js + css
@@ -201,7 +192,29 @@ class acf_options_page
 	*-------------------------------------------------------------------------------------*/
 	function admin_footer()
 	{
-		
+		// add togle open / close postbox
+		?>
+		<script type="text/javascript">
+		(function($){
+			
+			$('.postbox .handlediv').live('click', function(){
+				
+				var postbox = $(this).closest('.postbox');
+				
+				if( postbox.hasClass('closed') )
+				{
+					postbox.removeClass('closed');
+				}
+				else
+				{
+					postbox.addClass('closed');
+				}
+				
+			});
+			
+		})(jQuery);
+		</script>
+		<?php
 	}
 	
 	

@@ -21,6 +21,27 @@
 		return $(this).length>0;
 	};
 	
+	
+	/*
+	*  Vars
+	*
+	*  @description: 
+	*  @created: 3/09/12
+	*/
+	
+	acf.data = {
+		action 			:	'get_input_metabox_ids',
+		post_id			:	0,
+		page_template	:	false,
+		page_parent		:	false,
+		page_type		:	false,
+		page			:	0,
+		post			:	0,
+		post_category	:	false,
+		post_format		:	false,
+		taxonomy		:	false
+	};
+	
 		
 	/*
 	*  Document Ready
@@ -30,20 +51,12 @@
 	*/
 	
 	$(document).ready(function(){
-	
-		// show metaboxes for this post
-		acf.data = {
-			action 			:	'get_input_metabox_ids',
-			post_id			:	acf.post_id,
-			page_template	:	false,
-			page_parent		:	false,
-			page_type		:	false,
-			page			:	acf.post_id,
-			post			:	acf.post_id,
-			post_category	:	false,
-			post_format		:	false,
-			taxonomy		:	false
-		};
+		
+		
+		// update post_id
+		acf.data.post_id = acf.post_id;
+		acf.data.page = acf.post_id;
+		acf.data.post = acf.post_id;
 		
 		
 		// MPML
@@ -79,7 +92,7 @@
 			success: function(result){
 				
 				// hide all metaboxes
-				$('#poststuff .acf_postbox').hide();
+				$('#poststuff .acf_postbox').addClass('acf-hidden');
 				$('#adv-settings .acf_hide_label').hide();
 				
 				
@@ -95,7 +108,8 @@
 					
 					
 					var postbox = $('#poststuff #acf_' + v);
-					postbox.show();
+					
+					postbox.removeClass('acf-hidden');
 					$('#adv-settings .acf_hide_label[for="acf_' + v + '-hide"]').show();
 					
 					// load fields if needed
@@ -161,15 +175,19 @@
 	
 	$('#parent_id').live('change', function(){
 		
-		var page_parent = $(this).val();
+		var val = $(this).val();
 		
-		if($(this).val() != "")
+		
+		// set page_type / page_parent
+		if( val != "" )
 		{
 			acf.data.page_type = 'child';
+			acf.data.page_parent = val;
 		}
 		else
 		{
 			acf.data.page_type = 'parent';
+			acf.data.page_parent = false;
 		}
 		
 		update_fields();
@@ -204,7 +222,8 @@
 
 		update_fields();
 		
-	});	
+	});
+	
 	
 	
 })(jQuery);

@@ -8,13 +8,19 @@
 * 
 *-------------------------------------------------------------------------------------*/
 
-// includes
-require_once('../../../../../wp-load.php');
-require_once('../../../../../wp-admin/admin.php');
+// vars
+$defaults = array(
+	'acf_abspath' => '../../../../../',
+	'acf_posts' => array()
+);
+$my_options = array_merge( $defaults, $_POST );
+
+require_once( $my_options['acf_abspath'] . 'wp-load.php');
+require_once( $my_options['acf_abspath'] . 'wp-admin/admin.php');
 		
 
 // check for posts
-if(!isset($_POST['acf_posts']))
+if( !$my_options['acf_posts'] )
 {
 	wp_die(__("No ACF groups selected",'acf'));
 }
@@ -176,12 +182,12 @@ echo '<?xml version="1.0" encoding="' . get_bloginfo('charset') . "\" ?>\n";
 	<wp:base_site_url><?php echo wxr_site_url(); ?></wp:base_site_url>
 	<wp:base_blog_url><?php bloginfo_rss( 'url' ); ?></wp:base_blog_url>
 <?php wxr_authors_list(); ?>
-<?php if ( $_POST['acf_posts'] ) {
+<?php if ( $my_options['acf_posts'] ) {
 
 	global $wp_query;
 	$wp_query->in_the_loop = true; // Fake being in the loop.
 
-	$where = 'WHERE ID IN (' . join( ',', $_POST['acf_posts'] ) . ')';
+	$where = 'WHERE ID IN (' . join( ',', $my_options['acf_posts'] ) . ')';
 	$posts = $wpdb->get_results( "SELECT * FROM {$wpdb->posts} $where" );
 
 	// Begin Loop
@@ -206,7 +212,10 @@ echo '<?xml version="1.0" encoding="' . get_bloginfo('charset') . "\" ?>\n";
 		<wp:post_type><?php echo $post->post_type; ?></wp:post_type>
 		<wp:post_password><?php echo $post->post_password; ?></wp:post_password>
 <?php	$postmeta = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->postmeta WHERE post_id = %d", $post->ID ) );
-		foreach( $postmeta as $meta ) : if ( $meta->meta_key != '_edit_lock' ) : ?>
+		foreach( $postmeta as $meta ) : if ( $meta->meta_key != '_edit_lock' ) : 
+			$meta->meta_value = str_replace("\r\n", "\n", $meta->meta_value);
+			$meta->meta_value = str_replace("\r", "\n", $meta->meta_value);
+		?>
 		<wp:postmeta>
 			<wp:meta_key><?php echo $meta->meta_key; ?></wp:meta_key>
 			<wp:meta_value><?php echo wxr_cdata( $meta->meta_value ); ?></wp:meta_value>

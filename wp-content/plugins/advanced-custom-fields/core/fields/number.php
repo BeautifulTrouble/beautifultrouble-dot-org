@@ -35,9 +35,47 @@ class acf_Number extends acf_Field
 	
 	function create_field($field)
 	{
-		echo '<input type="number" step="any" value="' . $field['value'] . '" id="' . $field['name'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" />';
+		echo '<input type="number" step="any" value="' . $field['value'] . '" id="' . $field['id'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" />';
 	}
 	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	create_options
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.6
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function create_options($key, $field)
+	{
+		// vars
+		$defaults = array(
+			'default_value'	=>	'',
+		);
+		
+		$field = array_merge($defaults, $field);
+
+		
+		?>
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
+			<td class="label">
+				<label><?php _e("Default Value",'acf'); ?></label>
+			</td>
+			<td>
+				<?php 
+				$this->parent->create_field(array(
+					'type'	=>	'text',
+					'name'	=>	'fields['.$key.'][default_value]',
+					'value'	=>	$field['default_value'],
+				));
+				?>
+			</td>
+		</tr>
+		<?php
+	}
 	
 	/*--------------------------------------------------------------------------------------
 	*

@@ -2,9 +2,19 @@
 	Post Box
 ---------------------------------------------------------------------------------------------*/
 
+
+#poststuff .acf_postbox {
+	display: block;
+}
+
+#poststuff .acf_postbox.acf-hidden {
+	display: none !important;
+}
+
 #poststuff .acf_postbox .widefat th, 
 #poststuff .acf_postbox .widefat td {
 	overflow: visible;
+	
 }
 
 #poststuff .acf_postbox .inside {
@@ -115,6 +125,7 @@
 
 .acf_postbox .field textarea {
 	resize: vertical;
+	min-height: 150px;
 }
 
 .acf_postbox .field select{
@@ -199,7 +210,7 @@
 
 .acf-image-uploader img {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-	max-width:100%;
+	width:100%;
 	height: auto;
 	display: block;
 }
@@ -314,7 +325,6 @@
 
 .acf-file-uploader img {
 	margin: 0 5px 0 0;
-	height: 
 }
 
 .acf-file-uploader input.button {
@@ -330,23 +340,25 @@
 }
 
 .repeater > table {
-
-}
-
-.repeater > table > thead > tr > th {
-	width: auto;
+	border-radius: 0 0 0 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .repeater > table > tbody > tr > td {
 	background: transparent;
+	border: 0 none;
     border-right: 1px solid #ededed;
-    border-bottom: 1px solid #ededed;
+    border-top: 1px solid #ededed;
     padding: 8px !important;
     position: relative;
 }
 
-.repeater > table > tbody > tr:last-child > td {
-	border-bottom: 0 none;
+.repeater > table.row_layout > tbody > tr > td {
+	border-top-color: #DFDFDF;
+}
+
+.repeater > table > tbody > tr:first-child > td {
+	border-top: 0 none;
 }
 
 .repeater > table > tbody > tr > td:last-child {
@@ -354,7 +366,7 @@
 }
 
 .repeater > table > tbody > tr:nth-child(even) {
-	background: #F9F9F9;
+	background: #fff;
 }
 
 .repeater > table > tbody > tr:nth-child(odd) {
@@ -362,7 +374,7 @@
 }
 
 .repeater > table > thead > tr > th {
-
+	vertical-align: top;
 	border-right: 1px solid #e1e1e1;
 }
 
@@ -445,6 +457,9 @@ a.remove-row:hover {
 
 .repeater table tr td.order {
 	cursor: move;
+	background: #f4f4f4;
+	border-top-color: #e8e8e8;
+	border-right-color: #E1E1E1;
 }
 
 .repeater table tr td.order:hover {
@@ -529,7 +544,7 @@ ul.checkbox_list {
 
 .repeater > table > tbody > tr.ui-sortable-placeholder td {
 	border: 0 none !important;
-	box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
+	box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 	background: rgba(0,0,0,0.075);
 }
 
@@ -539,7 +554,21 @@ ul.checkbox_list {
 	border-bottom: 0 none;
 }
 
+.repeater > table > tbody > tr > td.acf_input-wrap {
+	padding: 0 !important;;
+}
 
+.repeater > table > tbody > tr > td.acf_input-wrap .acf_input {
+	width: 100%;
+}
+
+.sub-field-instructions {
+	color: #999999;
+    display: block;
+    font-family: sans-serif;
+    font-size: 12px;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
 
 
 
@@ -628,19 +657,19 @@ ul.checkbox_list {
 	text-decoration: none;
 }
 
-.acf_relationship .relationship_list li a .info {
+.acf_relationship .relationship_list li a .relationship-item-info {
 	color: #CCC;
 	text-transform: uppercase;
 	float: right;
 	font-size: 11px;
 }
 
-.acf_relationship .relationship_list li:hover a .info {
+.acf_relationship .relationship_list li:hover a .relationship-item-info {
 	padding-right: 24px;
 	color: #999;
 }
 
-.acf_relationship .relationship_list li.hide:hover a .info {
+.acf_relationship .relationship_list li.hide:hover a .relationship-item-info {
 	padding-right: 0;
 	color: #CCC;
 }
@@ -1075,10 +1104,13 @@ ul.checkbox_list {
 	font-size: 12px;
 	line-height: 1em;
 	position: relative;
+	min-height: 36px;
 }
 
-.acf-gallery .toolbar li:hover,
-.acf-gallery .toolbar li.active {
+.acf-gallery .toolbar li.view-grid-li:hover,
+.acf-gallery .toolbar li.view-grid-li.active,
+.acf-gallery .toolbar li.view-list-li:hover,
+.acf-gallery .toolbar li.view-list-li.active {
 	background-color: #F9F9F9;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#ECECEC), to(#F9F9F9)); /* Saf4+, Chrome */
     background-image: -webkit-linear-gradient(top, #ECECEC, #F9F9F9); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -1087,12 +1119,8 @@ ul.checkbox_list {
     background-image:         linear-gradient(to bottom, #ECECEC, #F9F9F9);
 }
 
-.acf-gallery .toolbar li.count-li:hover {
-	background: transparent;
-}
-
-.acf-gallery .toolbar li a,
-.acf-gallery .toolbar li span {
+.acf-gallery .toolbar li.gallery-li a,
+.acf-gallery .toolbar li.gallery-li span {
 	display: block;
 	padding: 1em;	
 	
@@ -1102,7 +1130,7 @@ ul.checkbox_list {
 	text-decoration: none;
 }
 
-.acf-gallery .toolbar li span {
+.acf-gallery .toolbar li.gallery-li span {
 	color: #8d8d8d;
 }
 
@@ -1146,6 +1174,10 @@ ul.checkbox_list {
 
 .acf-gallery .toolbar .view-grid-li {
 	margin-left: -36px;
+}
+
+.acf-gallery .toolbar .acf-button {
+	margin: 4px 0 0 4px;
 }
 
 
