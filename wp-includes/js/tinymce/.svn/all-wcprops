@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 61
-/wordpress/!svn/ver/21344/branches/3.4/wp-includes/js/tinymce
+/wordpress/!svn/ver/22374/branches/3.4/wp-includes/js/tinymce
 END
 license.txt
 K 25
@@ -13,7 +13,7 @@ tiny_mce.js
 K 25
 svn:wc:ra_dav:version-url
 V 73
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/tinymce/tiny_mce.js
+/wordpress/!svn/ver/22374/branches/3.4/wp-includes/js/tinymce/tiny_mce.js
 END
 wp-tinymce.php
 K 25
@@ -43,5 +43,5 @@ wp-tinymce.js.gz
 K 25
 svn:wc:ra_dav:version-url
 V 78
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/tinymce/wp-tinymce.js.gz
+/wordpress/!svn/ver/22374/branches/3.4/wp-includes/js/tinymce/wp-tinymce.js.gz
 END

@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 38
-/wordpress/!svn/ver/21615/branches/3.4
+/wordpress/!svn/ver/22374/branches/3.4
 END
 wp-signup.php
 K 25
@@ -9,17 +9,17 @@ svn:wc:ra_dav:version-url
 V 52
 /wordpress/!svn/ver/21077/branches/3.4/wp-signup.php
 END
-wp-login.php
-K 25
-svn:wc:ra_dav:version-url
-V 51
-/wordpress/!svn/ver/21136/branches/3.4/wp-login.php
-END
 wp-comments-post.php
 K 25
 svn:wc:ra_dav:version-url
 V 59
 /wordpress/!svn/ver/21077/branches/3.4/wp-comments-post.php
+END
+wp-login.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/wordpress/!svn/ver/21136/branches/3.4/wp-login.php
 END
 wp-blog-header.php
 K 25
@@ -31,7 +31,7 @@ wp-load.php
 K 25
 svn:wc:ra_dav:version-url
 V 50
-/wordpress/!svn/ver/21077/branches/3.4/wp-load.php
+/wordpress/!svn/ver/21739/branches/3.4/wp-load.php
 END
 wp-app.php
 K 25
@@ -63,29 +63,29 @@ svn:wc:ra_dav:version-url
 V 59
 /wordpress/!svn/ver/21077/branches/3.4/wp-config-sample.php
 END
-wp-links-opml.php
-K 25
-svn:wc:ra_dav:version-url
-V 56
-/wordpress/!svn/ver/21077/branches/3.4/wp-links-opml.php
-END
 wp-trackback.php
 K 25
 svn:wc:ra_dav:version-url
 V 55
 /wordpress/!svn/ver/21077/branches/3.4/wp-trackback.php
 END
-readme.html
+wp-links-opml.php
 K 25
 svn:wc:ra_dav:version-url
-V 50
-/wordpress/!svn/ver/21151/branches/3.4/readme.html
+V 56
+/wordpress/!svn/ver/21077/branches/3.4/wp-links-opml.php
 END
 license.txt
 K 25
 svn:wc:ra_dav:version-url
 V 50
 /wordpress/!svn/ver/21077/branches/3.4/license.txt
+END
+readme.html
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/wordpress/!svn/ver/21710/branches/3.4/readme.html
 END
 wp-settings.php
 K 25

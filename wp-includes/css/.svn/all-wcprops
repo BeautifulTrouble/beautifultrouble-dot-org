@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 54
-/wordpress/!svn/ver/21307/branches/3.4/wp-includes/css
+/wordpress/!svn/ver/21760/branches/3.4/wp-includes/css
 END
 admin-bar-rtl.css
 K 25
@@ -49,7 +49,7 @@ editor.css
 K 25
 svn:wc:ra_dav:version-url
 V 65
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/css/editor.css
+/wordpress/!svn/ver/21760/branches/3.4/wp-includes/css/editor.css
 END
 admin-bar.dev.css
 K 25

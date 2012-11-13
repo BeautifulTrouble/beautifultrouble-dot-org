@@ -1,14 +1,14 @@
 10
 
 dir
-21655
+22559
 http://svn.automattic.com/wordpress/branches/3.4/wp-includes
 http://svn.automattic.com/wordpress
 
 
 
-2012-08-25T04:32:01.232620Z
-21615
+2012-11-05T18:07:51.886943Z
+22374
 nacin
 
 
@@ -25,108 +25,6 @@ nacin
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-class-snoopy.php
-file
-
-
-
-
-2012-08-28T16:32:56.000000Z
-1ea3224bb940f17228b7db290fbb01b1
-2010-10-27T09:54:17.870624Z
-16005
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-37774
-
-admin-bar.php
-file
-
-
-
-
-2012-08-28T16:32:56.000000Z
-cd19f18c6ae131315dd2af2d3998b5f3
-2012-06-08T18:45:12.170837Z
-21028
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-21647
-
-default-filters.php
-file
-
-
-
-
-2012-08-28T16:32:56.000000Z
-345ee6e8166fdc5b7c096c6f8556aa93
-2012-06-10T17:58:57.014243Z
-21049
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-13761
 
 feed-rss2.php
 file
@@ -162,16 +60,16 @@ has-props
 
 2518
 
-class-wp-atom-server.php
+default-filters.php
 file
 
 
 
 
 2012-08-28T16:32:56.000000Z
-e6e3267096e302682bb221b33939a48f
-2012-05-03T16:41:59.905578Z
-20715
+345ee6e8166fdc5b7c096c6f8556aa93
+2012-06-10T17:58:57.014243Z
+21049
 ryan
 has-props
 
@@ -194,18 +92,52 @@ has-props
 
 
 
-36488
+13761
 
-post-template.php
+admin-bar.php
 file
 
 
 
 
 2012-08-28T16:32:56.000000Z
-d3019526bb2c6ee7b7760495d8629756
-2012-06-26T03:21:37.535043Z
-21125
+cd19f18c6ae131315dd2af2d3998b5f3
+2012-06-08T18:45:12.170837Z
+21028
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+21647
+
+class-snoopy.php
+file
+
+
+
+
+2012-08-28T16:32:56.000000Z
+1ea3224bb940f17228b7db290fbb01b1
+2010-10-27T09:54:17.870624Z
+16005
 nacin
 has-props
 
@@ -228,7 +160,41 @@ has-props
 
 
 
-42982
+37774
+
+class-wp-atom-server.php
+file
+
+
+
+
+2012-11-13T17:55:57.000000Z
+3b5db0512c358ecdf1b0200cb750bde9
+2012-09-04T20:58:32.312144Z
+21745
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+36750
 
 plugin.php
 file
@@ -264,16 +230,16 @@ has-props
 
 27276
 
-nav-menu-template.php
+post-template.php
 file
 
 
 
 
 2012-08-28T16:32:56.000000Z
-0300272b30ff3731ec4799987c7e141d
-2012-04-18T19:06:22.958681Z
-20513
+d3019526bb2c6ee7b7760495d8629756
+2012-06-26T03:21:37.535043Z
+21125
 nacin
 has-props
 
@@ -296,7 +262,7 @@ has-props
 
 
 
-18438
+42982
 
 locale.php
 file
@@ -331,6 +297,40 @@ has-props
 
 
 11687
+
+nav-menu-template.php
+file
+
+
+
+
+2012-08-28T16:32:56.000000Z
+0300272b30ff3731ec4799987c7e141d
+2012-04-18T19:06:22.958681Z
+20513
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18438
 
 feed-atom.php
 file
@@ -542,11 +542,11 @@ file
 
 
 
-2012-08-28T16:32:56.000000Z
-a685cde982794935710c019a0c5270ba
-2012-06-01T19:05:30.478776Z
-20972
-ryan
+2012-11-13T17:55:57.000000Z
+ce1712f4286b8de8d34308212202ac3c
+2012-09-05T01:25:47.992400Z
+21759
+nacin
 has-props
 
 
@@ -568,7 +568,7 @@ has-props
 
 
 
-108668
+108789
 
 ms-files.php
 file
@@ -885,10 +885,10 @@ file
 
 
 
-2012-08-28T16:32:56.000000Z
-5ca9159b469bb7d519903518dbb62cd0
-2012-06-27T19:29:16.067671Z
-21153
+2012-11-13T17:55:57.000000Z
+d932279e1932172919e445b8a110629e
+2012-11-05T18:07:51.886943Z
+22374
 nacin
 has-props
 
@@ -911,7 +911,7 @@ has-props
 
 
 
-731
+737
 
 post.php
 file
@@ -956,11 +956,11 @@ file
 
 
 
-2012-08-28T16:32:56.000000Z
-85d2dcf8c79b82fdfeed411e0d351645
-2012-06-10T00:32:19.444233Z
-21037
-ryan
+2012-11-13T17:55:57.000000Z
+ff7dfbe9921ad14ea051b42f64c20bbf
+2012-09-04T04:54:01.833313Z
+21724
+nacin
 
 
 
@@ -982,7 +982,7 @@ ryan
 
 
 
-13950
+15120
 
 default-widgets.php
 file
@@ -1024,11 +1024,12 @@ file
 
 
 
-2012-08-28T16:32:56.000000Z
-39f8638929ea9b8c2da45c54c16d926e
-2012-08-25T04:32:01.232620Z
-21615
+2012-11-13T17:55:57.000000Z
+dfd5a0adeed13379d6cb5170fe35737e
+2012-09-04T02:16:12.793861Z
+21714
 nacin
+has-props
 
 
 
@@ -1049,8 +1050,7 @@ nacin
 
 
 
-
-37785
+37937
 
 class-simplepie.php
 file
@@ -1188,40 +1188,6 @@ has-props
 
 5101
 
-theme.php
-file
-
-
-
-
-2012-08-28T16:32:56.000000Z
-b171e25acc0692a04ac6f24bd2c40853
-2012-06-26T03:36:44.882855Z
-21127
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-51402
-
 comment.php
 file
 
@@ -1255,6 +1221,40 @@ has-props
 
 
 66569
+
+theme.php
+file
+
+
+
+
+2012-11-13T17:55:57.000000Z
+fe35c7804407fa0a516b050cabba1afd
+2012-09-04T22:26:14.902198Z
+21753
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+51475
 
 class-IXR.php
 file
@@ -1290,6 +1290,40 @@ has-props
 
 31370
 
+functions.php
+file
+
+
+
+
+2012-11-13T17:55:57.000000Z
+c0bc605e7f7646c44c88f706c51d276a
+2012-09-05T01:08:23.430654Z
+21757
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+111403
+
 feed-rss.php
 file
 
@@ -1323,74 +1357,6 @@ has-props
 
 
 1048
-
-functions.php
-file
-
-
-
-
-2012-08-28T16:32:56.000000Z
-243157634e0e8a2d9f965644f8846346
-2012-06-26T21:26:42.816266Z
-21146
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-110982
-
-registration.php
-file
-
-
-
-
-2012-08-28T16:32:56.000000Z
-7198cf8d485e8ddcb2b3bb49a6d069da
-2012-01-08T17:01:11.911209Z
-19712
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-176
 
 l10n.php
 file
@@ -1426,82 +1392,14 @@ has-props
 
 18001
 
-vars.php
+registration.php
 file
 
 
 
 
 2012-08-28T16:32:56.000000Z
-ff63e764a310743855c77b6e13333ae4
-2012-06-04T16:04:54.562833Z
-20990
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4529
-
-template.php
-file
-
-
-
-
-2012-08-28T16:32:56.000000Z
-f1555ae42706ef30aca64a72bcda0778
-2012-05-24T07:06:13.546297Z
-20872
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-10382
-
-class.wp-styles.php
-file
-
-
-
-
-2012-08-28T16:32:56.000000Z
-5c1cace2c4eec80e78be036f91b73cb9
+7198cf8d485e8ddcb2b3bb49a6d069da
 2012-01-08T17:01:11.911209Z
 19712
 ryan
@@ -1526,7 +1424,7 @@ has-props
 
 
 
-4511
+176
 
 comment-template.php
 file
@@ -1562,6 +1460,108 @@ has-props
 
 54802
 
+class.wp-styles.php
+file
+
+
+
+
+2012-08-28T16:32:56.000000Z
+5c1cace2c4eec80e78be036f91b73cb9
+2012-01-08T17:01:11.911209Z
+19712
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4511
+
+template.php
+file
+
+
+
+
+2012-08-28T16:32:56.000000Z
+f1555ae42706ef30aca64a72bcda0778
+2012-05-24T07:06:13.546297Z
+20872
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10382
+
+vars.php
+file
+
+
+
+
+2012-08-28T16:32:56.000000Z
+ff63e764a310743855c77b6e13333ae4
+2012-06-04T16:04:54.562833Z
+20990
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4529
+
 feed-rdf.php
 file
 
@@ -1595,40 +1595,6 @@ has-props
 
 
 2122
-
-shortcodes.php
-file
-
-
-
-
-2012-08-28T16:32:56.000000Z
-6afee3067aa34039d8366382033cca27
-2012-01-08T17:01:11.911209Z
-19712
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9913
 
 rss-functions.php
 file
@@ -1664,48 +1630,14 @@ has-props
 
 188
 
-user.php
+shortcodes.php
 file
 
 
 
 
 2012-08-28T16:32:56.000000Z
-cc72259947534e8fe1c614cd7770855d
-2012-04-27T15:57:51.386864Z
-20612
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-46247
-
-bookmark-template.php
-file
-
-
-
-
-2012-08-28T16:32:56.000000Z
-d74323c6a7046c282894184fb7bae53a
+6afee3067aa34039d8366382033cca27
 2012-01-08T17:01:11.911209Z
 19712
 ryan
@@ -1730,41 +1662,7 @@ has-props
 
 
 
-9620
-
-class.wp-dependencies.php
-file
-
-
-
-
-2012-08-28T16:32:56.000000Z
-7cdaedd799ae2effdf210f0016d81787
-2011-12-13T23:45:31.084505Z
-19593
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6745
+9913
 
 functions.wp-styles.php
 file
@@ -1800,16 +1698,84 @@ has-props
 
 7509
 
-post-thumbnail-template.php
+class.wp-dependencies.php
 file
 
 
 
 
 2012-08-28T16:32:56.000000Z
-8ea84d3cc10bdbd6a31d03b485a79c2f
-2012-04-30T15:55:57.249814Z
-20646
+7cdaedd799ae2effdf210f0016d81787
+2011-12-13T23:45:31.084505Z
+19593
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6745
+
+bookmark-template.php
+file
+
+
+
+
+2012-08-28T16:32:56.000000Z
+d74323c6a7046c282894184fb7bae53a
+2012-01-08T17:01:11.911209Z
+19712
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9620
+
+user.php
+file
+
+
+
+
+2012-08-28T16:32:56.000000Z
+cc72259947534e8fe1c614cd7770855d
+2012-04-27T15:57:51.386864Z
+20612
 nacin
 has-props
 
@@ -1832,7 +1798,75 @@ has-props
 
 
 
-2861
+46247
+
+class.wp-scripts.php
+file
+
+
+
+
+2012-08-28T16:32:56.000000Z
+5a75bdad8c1d9136326cd88a7c2afe3c
+2012-06-26T06:28:59.211802Z
+21134
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5595
+
+load.php
+file
+
+
+
+
+2012-11-13T17:55:57.000000Z
+9295d23675f1ab4b573eb9eee402de3c
+2012-09-04T20:31:14.163305Z
+21739
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+22922
 
 media.php
 file
@@ -1868,16 +1902,16 @@ has-props
 
 52637
 
-load.php
+post-thumbnail-template.php
 file
 
 
 
 
 2012-08-28T16:32:56.000000Z
-4c2296fa06ae8391ef79360354dd18a9
-2012-02-08T06:05:35.492914Z
-19862
+8ea84d3cc10bdbd6a31d03b485a79c2f
+2012-04-30T15:55:57.249814Z
+20646
 nacin
 has-props
 
@@ -1900,41 +1934,7 @@ has-props
 
 
 
-22978
-
-class.wp-scripts.php
-file
-
-
-
-
-2012-08-28T16:32:56.000000Z
-5a75bdad8c1d9136326cd88a7c2afe3c
-2012-06-26T06:28:59.211802Z
-21134
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5595
+2861
 
 registration-functions.php
 file
@@ -2044,10 +2044,10 @@ file
 
 
 
-2012-08-28T16:32:56.000000Z
-109d98849c0ba6fe7408ddd681688f1a
-2012-06-26T19:04:41.040458Z
-21138
+2012-11-13T17:55:57.000000Z
+6419200edbad5ce39aac4f575f035bad
+2012-09-03T22:12:14.902509Z
+21708
 nacin
 has-props
 
@@ -2070,7 +2070,7 @@ has-props
 
 
 
-151360
+151567
 
 class-phpass.php
 file
@@ -2350,11 +2350,11 @@ file
 
 
 
-2012-08-28T16:32:56.000000Z
-0b15dc5fc51828a8552c9348ae367bb5
-2012-05-27T16:25:43.651697Z
-20944
-ryan
+2012-11-13T17:55:57.000000Z
+643b09c993c2769e03216923762d8331
+2012-09-04T03:37:29.288057Z
+21719
+nacin
 has-props
 
 
@@ -2376,7 +2376,7 @@ has-props
 
 
 
-107767
+107769
 
 author-template.php
 file
@@ -2523,11 +2523,11 @@ file
 
 
 
-2012-08-28T16:32:56.000000Z
-3b469c7087b400ba218903765850235f
-2012-06-25T20:51:16.982531Z
-21115
-duck_
+2012-11-13T17:55:57.000000Z
+60cb72438069699d7b69ddf6112c70fc
+2012-09-03T23:21:38.591100Z
+21709
+nacin
 has-props
 
 
@@ -2549,7 +2549,7 @@ has-props
 
 
 
-62567
+62560
 
 general-template.php
 file
@@ -2693,10 +2693,10 @@ file
 
 
 
-2012-08-28T16:32:56.000000Z
-c494230d26f44d97de843ba8d1d8e392
-2012-06-27T19:29:16.067671Z
-21153
+2012-11-13T17:55:57.000000Z
+f2e9701e4bf88692e36dfc7c80d7a08b
+2012-09-06T18:04:58.018692Z
+21774
 nacin
 has-props
 
@@ -2719,7 +2719,7 @@ has-props
 
 
 
-34614
+34624
 
 ms-load.php
 file
@@ -2767,11 +2767,11 @@ file
 
 
 
-2012-08-28T16:32:56.000000Z
-d1a601b7a93fca4ad803713e8feb3761
-2012-05-24T07:14:10.216229Z
-20874
-markjaquith
+2012-11-13T17:55:57.000000Z
+e3e2f07802095af2141cb086c89cb98b
+2012-09-03T23:25:58.330264Z
+21711
+nacin
 has-props
 
 
@@ -2793,7 +2793,7 @@ has-props
 
 
 
-11133
+11259
 
 deprecated.php
 file

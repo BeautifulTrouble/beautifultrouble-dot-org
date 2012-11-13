@@ -1,7 +1,7 @@
 10
 
 dir
-21655
+22559
 http://svn.automattic.com/wordpress/branches/3.4/wp-includes/images
 http://svn.automattic.com/wordpress
 
@@ -60,9 +60,6 @@ has-props
 
 959
 
-crystal
-dir
-
 admin-bar-sprite.png
 file
 
@@ -96,6 +93,9 @@ has-props
 
 
 3999
+
+crystal
+dir
 
 down_arrow.gif
 file
@@ -267,9 +267,6 @@ has-props
 
 783
 
-smilies
-dir
-
 wpicons.png
 file
 
@@ -303,6 +300,9 @@ has-props
 
 
 21059
+
+smilies
+dir
 
 upload.png
 file
@@ -338,40 +338,6 @@ has-props
 
 814
 
-admin-bar-sprite-2x.png
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-f33596ef4918f4902d084f1ccf3261f7
-2012-05-16T23:55:38.446154Z
-20814
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4160
-
 xit.gif
 file
 
@@ -405,6 +371,40 @@ has-props
 
 
 182
+
+admin-bar-sprite-2x.png
+file
+
+
+
+
+2012-08-28T16:32:55.000000Z
+f33596ef4918f4902d084f1ccf3261f7
+2012-05-16T23:55:38.446154Z
+20814
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4160
 
 wlw
 dir

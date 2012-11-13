@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 53
-/wordpress/!svn/ver/21346/branches/3.4/wp-includes/js
+/wordpress/!svn/ver/22374/branches/3.4/wp-includes/js
 END
 wp-pointer.js
 K 25
@@ -61,7 +61,7 @@ wp-lists.js
 K 25
 svn:wc:ra_dav:version-url
 V 65
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/wp-lists.js
+/wordpress/!svn/ver/21760/branches/3.4/wp-includes/js/wp-lists.js
 END
 tw-sack.dev.js
 K 25
@@ -87,11 +87,11 @@ svn:wc:ra_dav:version-url
 V 71
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/customize-base.js
 END
-json2.js
+comment-reply.js
 K 25
 svn:wc:ra_dav:version-url
-V 62
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/json2.js
+V 70
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/comment-reply.js
 END
 wp-list-revisions.dev.js
 K 25
@@ -99,11 +99,11 @@ svn:wc:ra_dav:version-url
 V 78
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/wp-list-revisions.dev.js
 END
-comment-reply.js
+json2.js
 K 25
 svn:wc:ra_dav:version-url
-V 70
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/comment-reply.js
+V 62
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/json2.js
 END
 customize-preview.js
 K 25
@@ -111,17 +111,17 @@ svn:wc:ra_dav:version-url
 V 74
 /wordpress/!svn/ver/21149/branches/3.4/wp-includes/js/customize-preview.js
 END
-autosave.dev.js
-K 25
-svn:wc:ra_dav:version-url
-V 69
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/autosave.dev.js
-END
 wplink.js
 K 25
 svn:wc:ra_dav:version-url
 V 63
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/wplink.js
+END
+autosave.dev.js
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/autosave.dev.js
 END
 admin-bar.dev.js
 K 25
@@ -193,7 +193,7 @@ wp-lists.dev.js
 K 25
 svn:wc:ra_dav:version-url
 V 69
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/wp-lists.dev.js
+/wordpress/!svn/ver/22371/branches/3.4/wp-includes/js/wp-lists.dev.js
 END
 customize-loader.dev.js
 K 25

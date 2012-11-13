@@ -1,25 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 50
-/wordpress/!svn/ver/21615/branches/3.4/wp-includes
-END
-feed-rss2.php
-K 25
-svn:wc:ra_dav:version-url
-V 64
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/feed-rss2.php
-END
-default-filters.php
-K 25
-svn:wc:ra_dav:version-url
-V 70
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/default-filters.php
-END
-admin-bar.php
-K 25
-svn:wc:ra_dav:version-url
-V 64
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/admin-bar.php
+/wordpress/!svn/ver/22374/branches/3.4/wp-includes
 END
 class-snoopy.php
 K 25
@@ -27,17 +9,29 @@ svn:wc:ra_dav:version-url
 V 67
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/class-snoopy.php
 END
+admin-bar.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/admin-bar.php
+END
+default-filters.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/default-filters.php
+END
+feed-rss2.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/feed-rss2.php
+END
 class-wp-atom-server.php
 K 25
 svn:wc:ra_dav:version-url
 V 75
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/class-wp-atom-server.php
-END
-plugin.php
-K 25
-svn:wc:ra_dav:version-url
-V 61
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/plugin.php
+/wordpress/!svn/ver/21745/branches/3.4/wp-includes/class-wp-atom-server.php
 END
 post-template.php
 K 25
@@ -45,17 +39,23 @@ svn:wc:ra_dav:version-url
 V 68
 /wordpress/!svn/ver/21125/branches/3.4/wp-includes/post-template.php
 END
-locale.php
+plugin.php
 K 25
 svn:wc:ra_dav:version-url
 V 61
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/locale.php
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/plugin.php
 END
 nav-menu-template.php
 K 25
 svn:wc:ra_dav:version-url
 V 72
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/nav-menu-template.php
+END
+locale.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/locale.php
 END
 feed-atom.php
 K 25
@@ -97,7 +97,7 @@ taxonomy.php
 K 25
 svn:wc:ra_dav:version-url
 V 63
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/taxonomy.php
+/wordpress/!svn/ver/21759/branches/3.4/wp-includes/taxonomy.php
 END
 ms-files.php
 K 25
@@ -163,13 +163,13 @@ version.php
 K 25
 svn:wc:ra_dav:version-url
 V 62
-/wordpress/!svn/ver/21153/branches/3.4/wp-includes/version.php
+/wordpress/!svn/ver/22374/branches/3.4/wp-includes/version.php
 END
 class-wp-customize-control.php
 K 25
 svn:wc:ra_dav:version-url
 V 81
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/class-wp-customize-control.php
+/wordpress/!svn/ver/21724/branches/3.4/wp-includes/class-wp-customize-control.php
 END
 default-widgets.php
 K 25
@@ -181,7 +181,7 @@ class-wp-theme.php
 K 25
 svn:wc:ra_dav:version-url
 V 69
-/wordpress/!svn/ver/21615/branches/3.4/wp-includes/class-wp-theme.php
+/wordpress/!svn/ver/21714/branches/3.4/wp-includes/class-wp-theme.php
 END
 class-simplepie.php
 K 25
@@ -207,17 +207,17 @@ svn:wc:ra_dav:version-url
 V 75
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/pluggable-deprecated.php
 END
+theme.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/wordpress/!svn/ver/21753/branches/3.4/wp-includes/theme.php
+END
 comment.php
 K 25
 svn:wc:ra_dav:version-url
 V 62
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/comment.php
-END
-theme.php
-K 25
-svn:wc:ra_dav:version-url
-V 60
-/wordpress/!svn/ver/21127/branches/3.4/wp-includes/theme.php
 END
 class-IXR.php
 K 25
@@ -225,23 +225,17 @@ svn:wc:ra_dav:version-url
 V 64
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/class-IXR.php
 END
-functions.php
-K 25
-svn:wc:ra_dav:version-url
-V 64
-/wordpress/!svn/ver/21146/branches/3.4/wp-includes/functions.php
-END
 feed-rss.php
 K 25
 svn:wc:ra_dav:version-url
 V 63
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/feed-rss.php
 END
-l10n.php
+functions.php
 K 25
 svn:wc:ra_dav:version-url
-V 59
-/wordpress/!svn/ver/21122/branches/3.4/wp-includes/l10n.php
+V 64
+/wordpress/!svn/ver/21757/branches/3.4/wp-includes/functions.php
 END
 registration.php
 K 25
@@ -249,23 +243,11 @@ svn:wc:ra_dav:version-url
 V 67
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/registration.php
 END
-comment-template.php
+l10n.php
 K 25
 svn:wc:ra_dav:version-url
-V 71
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/comment-template.php
-END
-class.wp-styles.php
-K 25
-svn:wc:ra_dav:version-url
-V 70
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/class.wp-styles.php
-END
-template.php
-K 25
-svn:wc:ra_dav:version-url
-V 63
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/template.php
+V 59
+/wordpress/!svn/ver/21122/branches/3.4/wp-includes/l10n.php
 END
 vars.php
 K 25
@@ -273,17 +255,29 @@ svn:wc:ra_dav:version-url
 V 59
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/vars.php
 END
+template.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/template.php
+END
+class.wp-styles.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/class.wp-styles.php
+END
+comment-template.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/comment-template.php
+END
 feed-rdf.php
 K 25
 svn:wc:ra_dav:version-url
 V 63
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/feed-rdf.php
-END
-rss-functions.php
-K 25
-svn:wc:ra_dav:version-url
-V 68
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/rss-functions.php
 END
 shortcodes.php
 K 25
@@ -291,23 +285,11 @@ svn:wc:ra_dav:version-url
 V 65
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/shortcodes.php
 END
-functions.wp-styles.php
+rss-functions.php
 K 25
 svn:wc:ra_dav:version-url
-V 74
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/functions.wp-styles.php
-END
-class.wp-dependencies.php
-K 25
-svn:wc:ra_dav:version-url
-V 76
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/class.wp-dependencies.php
-END
-bookmark-template.php
-K 25
-svn:wc:ra_dav:version-url
-V 72
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/bookmark-template.php
+V 68
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/rss-functions.php
 END
 user.php
 K 25
@@ -315,17 +297,29 @@ svn:wc:ra_dav:version-url
 V 59
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/user.php
 END
-class.wp-scripts.php
+bookmark-template.php
 K 25
 svn:wc:ra_dav:version-url
-V 71
-/wordpress/!svn/ver/21134/branches/3.4/wp-includes/class.wp-scripts.php
+V 72
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/bookmark-template.php
 END
-load.php
+class.wp-dependencies.php
 K 25
 svn:wc:ra_dav:version-url
-V 59
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/load.php
+V 76
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/class.wp-dependencies.php
+END
+functions.wp-styles.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/functions.wp-styles.php
+END
+post-thumbnail-template.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/wordpress/!svn/ver/21077/branches/3.4/wp-includes/post-thumbnail-template.php
 END
 media.php
 K 25
@@ -333,11 +327,17 @@ svn:wc:ra_dav:version-url
 V 60
 /wordpress/!svn/ver/21077/branches/3.4/wp-includes/media.php
 END
-post-thumbnail-template.php
+load.php
 K 25
 svn:wc:ra_dav:version-url
-V 78
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/post-thumbnail-template.php
+V 59
+/wordpress/!svn/ver/21739/branches/3.4/wp-includes/load.php
+END
+class.wp-scripts.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/wordpress/!svn/ver/21134/branches/3.4/wp-includes/class.wp-scripts.php
 END
 registration-functions.php
 K 25
@@ -361,7 +361,7 @@ class-wp-xmlrpc-server.php
 K 25
 svn:wc:ra_dav:version-url
 V 77
-/wordpress/!svn/ver/21138/branches/3.4/wp-includes/class-wp-xmlrpc-server.php
+/wordpress/!svn/ver/21708/branches/3.4/wp-includes/class-wp-xmlrpc-server.php
 END
 class-phpass.php
 K 25
@@ -415,7 +415,7 @@ formatting.php
 K 25
 svn:wc:ra_dav:version-url
 V 65
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/formatting.php
+/wordpress/!svn/ver/21719/branches/3.4/wp-includes/formatting.php
 END
 author-template.php
 K 25
@@ -445,7 +445,7 @@ rewrite.php
 K 25
 svn:wc:ra_dav:version-url
 V 62
-/wordpress/!svn/ver/21115/branches/3.4/wp-includes/rewrite.php
+/wordpress/!svn/ver/21709/branches/3.4/wp-includes/rewrite.php
 END
 general-template.php
 K 25
@@ -475,7 +475,7 @@ capabilities.php
 K 25
 svn:wc:ra_dav:version-url
 V 67
-/wordpress/!svn/ver/21153/branches/3.4/wp-includes/capabilities.php
+/wordpress/!svn/ver/21774/branches/3.4/wp-includes/capabilities.php
 END
 ms-load.php
 K 25
@@ -487,7 +487,7 @@ class-oembed.php
 K 25
 svn:wc:ra_dav:version-url
 V 67
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/class-oembed.php
+/wordpress/!svn/ver/21711/branches/3.4/wp-includes/class-oembed.php
 END
 deprecated.php
 K 25

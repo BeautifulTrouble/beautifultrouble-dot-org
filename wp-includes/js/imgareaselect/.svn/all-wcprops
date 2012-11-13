@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 67
-/wordpress/!svn/ver/21346/branches/3.4/wp-includes/js/imgareaselect
+/wordpress/!svn/ver/21760/branches/3.4/wp-includes/js/imgareaselect
 END
 border-anim-v.gif
 K 25
@@ -31,5 +31,5 @@ jquery.imgareaselect.js
 K 25
 svn:wc:ra_dav:version-url
 V 91
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/imgareaselect/jquery.imgareaselect.js
+/wordpress/!svn/ver/21760/branches/3.4/wp-includes/js/imgareaselect/jquery.imgareaselect.js
 END

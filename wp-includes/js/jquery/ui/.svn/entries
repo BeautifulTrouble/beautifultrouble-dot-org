@@ -1,7 +1,7 @@
 10
 
 dir
-21655
+22559
 http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/jquery/ui
 http://svn.automattic.com/wordpress
 
@@ -740,40 +740,6 @@ has-props
 
 965
 
-jquery.ui.draggable.min.js
-file
-
-
-
-
-2012-08-28T16:32:53.000000Z
-5bf4c3ca95229659f8d7b0cf7d8cc1d3
-2012-04-30T21:53:09.424203Z
-20660
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-18736
-
 jquery.ui.droppable.min.js
 file
 
@@ -807,6 +773,40 @@ has-props
 
 
 5889
+
+jquery.ui.draggable.min.js
+file
+
+
+
+
+2012-08-28T16:32:53.000000Z
+5bf4c3ca95229659f8d7b0cf7d8cc1d3
+2012-04-30T21:53:09.424203Z
+20660
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18736
 
 jquery.effects.highlight.min.js
 file

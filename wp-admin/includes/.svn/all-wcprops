@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 56
-/wordpress/!svn/ver/21151/branches/3.4/wp-admin/includes
+/wordpress/!svn/ver/22371/branches/3.4/wp-admin/includes
 END
 class-wp-ms-sites-list-table.php
 K 25
@@ -157,7 +157,7 @@ class-wp-ms-themes-list-table.php
 K 25
 svn:wc:ra_dav:version-url
 V 90
-/wordpress/!svn/ver/21077/branches/3.4/wp-admin/includes/class-wp-ms-themes-list-table.php
+/wordpress/!svn/ver/21754/branches/3.4/wp-admin/includes/class-wp-ms-themes-list-table.php
 END
 class-wp-list-table.php
 K 25
@@ -205,7 +205,7 @@ class-wp-upgrader.php
 K 25
 svn:wc:ra_dav:version-url
 V 78
-/wordpress/!svn/ver/21077/branches/3.4/wp-admin/includes/class-wp-upgrader.php
+/wordpress/!svn/ver/21754/branches/3.4/wp-admin/includes/class-wp-upgrader.php
 END
 schema.php
 K 25
@@ -241,7 +241,7 @@ meta-boxes.php
 K 25
 svn:wc:ra_dav:version-url
 V 71
-/wordpress/!svn/ver/21108/branches/3.4/wp-admin/includes/meta-boxes.php
+/wordpress/!svn/ver/22371/branches/3.4/wp-admin/includes/meta-boxes.php
 END
 image-edit.php
 K 25
@@ -253,7 +253,7 @@ class-wp-plugins-list-table.php
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/wordpress/!svn/ver/21077/branches/3.4/wp-admin/includes/class-wp-plugins-list-table.php
+/wordpress/!svn/ver/21741/branches/3.4/wp-admin/includes/class-wp-plugins-list-table.php
 END
 theme-install.php
 K 25
@@ -271,13 +271,13 @@ update-core.php
 K 25
 svn:wc:ra_dav:version-url
 V 72
-/wordpress/!svn/ver/21151/branches/3.4/wp-admin/includes/update-core.php
+/wordpress/!svn/ver/21710/branches/3.4/wp-admin/includes/update-core.php
 END
 class-wp-themes-list-table.php
 K 25
 svn:wc:ra_dav:version-url
 V 87
-/wordpress/!svn/ver/21077/branches/3.4/wp-admin/includes/class-wp-themes-list-table.php
+/wordpress/!svn/ver/21754/branches/3.4/wp-admin/includes/class-wp-themes-list-table.php
 END
 class-wp-comments-list-table.php
 K 25
@@ -295,7 +295,7 @@ template.php
 K 25
 svn:wc:ra_dav:version-url
 V 69
-/wordpress/!svn/ver/21077/branches/3.4/wp-admin/includes/template.php
+/wordpress/!svn/ver/22371/branches/3.4/wp-admin/includes/template.php
 END
 user.php
 K 25

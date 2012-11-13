@@ -1,15 +1,15 @@
 10
 
 dir
-21655
+22559
 http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/wpeditimage
 http://svn.automattic.com/wordpress
 
 
 
-2012-07-16T19:57:03.898517Z
-21274
-azaozz
+2012-09-05T01:55:55.383098Z
+21760
+nacin
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-186e45b7613323108c761faee2a1cae1
-2012-05-02T01:58:25.971031Z
-20681
-bumpbot
+2012-11-13T17:55:57.000000Z
+8b4d90c058f4f224c9c8f304d67e2dd5
+2012-09-05T01:55:55.383098Z
+21760
+nacin
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-5060
+5078
 
 editor_plugin_src.js
 file

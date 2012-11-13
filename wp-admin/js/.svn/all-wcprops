@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 50
-/wordpress/!svn/ver/21149/branches/3.4/wp-admin/js
+/wordpress/!svn/ver/21760/branches/3.4/wp-admin/js
 END
 edit-comments.js
 K 25
@@ -103,7 +103,7 @@ post.dev.js
 K 25
 svn:wc:ra_dav:version-url
 V 62
-/wordpress/!svn/ver/21077/branches/3.4/wp-admin/js/post.dev.js
+/wordpress/!svn/ver/21738/branches/3.4/wp-admin/js/post.dev.js
 END
 widgets.js
 K 25
@@ -175,7 +175,7 @@ link.js
 K 25
 svn:wc:ra_dav:version-url
 V 58
-/wordpress/!svn/ver/21077/branches/3.4/wp-admin/js/link.js
+/wordpress/!svn/ver/21760/branches/3.4/wp-admin/js/link.js
 END
 tags.js
 K 25
@@ -253,7 +253,7 @@ customize-controls.js
 K 25
 svn:wc:ra_dav:version-url
 V 72
-/wordpress/!svn/ver/21149/branches/3.4/wp-admin/js/customize-controls.js
+/wordpress/!svn/ver/21760/branches/3.4/wp-admin/js/customize-controls.js
 END
 inline-edit-post.js
 K 25
@@ -337,7 +337,7 @@ link.dev.js
 K 25
 svn:wc:ra_dav:version-url
 V 62
-/wordpress/!svn/ver/21077/branches/3.4/wp-admin/js/link.dev.js
+/wordpress/!svn/ver/21717/branches/3.4/wp-admin/js/link.dev.js
 END
 tags.dev.js
 K 25
@@ -373,7 +373,7 @@ post.js
 K 25
 svn:wc:ra_dav:version-url
 V 58
-/wordpress/!svn/ver/21077/branches/3.4/wp-admin/js/post.js
+/wordpress/!svn/ver/21760/branches/3.4/wp-admin/js/post.js
 END
 media.dev.js
 K 25
@@ -385,7 +385,7 @@ customize-controls.dev.js
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/wordpress/!svn/ver/21136/branches/3.4/wp-admin/js/customize-controls.dev.js
+/wordpress/!svn/ver/21724/branches/3.4/wp-admin/js/customize-controls.dev.js
 END
 media-upload.js
 K 25

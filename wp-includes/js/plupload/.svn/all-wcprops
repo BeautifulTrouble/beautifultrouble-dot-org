@@ -1,13 +1,13 @@
 K 25
 svn:wc:ra_dav:version-url
 V 62
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/plupload
+/wordpress/!svn/ver/21760/branches/3.4/wp-includes/js/plupload
 END
 wp-plupload.js
 K 25
 svn:wc:ra_dav:version-url
 V 77
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/plupload/wp-plupload.js
+/wordpress/!svn/ver/21760/branches/3.4/wp-includes/js/plupload/wp-plupload.js
 END
 license.txt
 K 25
@@ -79,5 +79,5 @@ wp-plupload.dev.js
 K 25
 svn:wc:ra_dav:version-url
 V 81
-/wordpress/!svn/ver/21077/branches/3.4/wp-includes/js/plupload/wp-plupload.dev.js
+/wordpress/!svn/ver/21724/branches/3.4/wp-includes/js/plupload/wp-plupload.dev.js
 END

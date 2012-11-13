@@ -1,7 +1,7 @@
 10
 
 dir
-21655
+22559
 http://svn.automattic.com/wordpress/branches/3.4/wp-includes/images/smilies
 http://svn.automattic.com/wordpress
 
@@ -94,40 +94,6 @@ has-props
 
 171
 
-icon_sad.gif
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-5a50535a06def9d01076772e5e9d235b
-2005-08-27T19:10:56.940452Z
-2813
-matt
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-171
-
 icon_question.gif
 file
 
@@ -161,6 +127,40 @@ has-props
 
 
 248
+
+icon_sad.gif
+file
+
+
+
+
+2012-08-28T16:32:55.000000Z
+5a50535a06def9d01076772e5e9d235b
+2005-08-27T19:10:56.940452Z
+2813
+matt
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+171
 
 icon_wink.gif
 file
@@ -400,40 +400,6 @@ has-props
 
 238
 
-icon_lol.gif
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-b76e7729d43c4a49182d020741285bef
-2005-08-27T19:10:56.940452Z
-2813
-matt
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-336
-
 icon_razz.gif
 file
 
@@ -467,6 +433,40 @@ has-props
 
 
 176
+
+icon_lol.gif
+file
+
+
+
+
+2012-08-28T16:32:55.000000Z
+b76e7729d43c4a49182d020741285bef
+2005-08-27T19:10:56.940452Z
+2813
+matt
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+336
 
 icon_redface.gif
 file
