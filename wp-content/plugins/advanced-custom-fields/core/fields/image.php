@@ -348,6 +348,7 @@ class acf_Image extends acf_Field
 		position: relative;
 		overflow: hidden;
 		display: none; /* default is hidden */
+		clear: both;
 	}
 	
 	#media-upload .acf-submit a {
@@ -397,7 +398,7 @@ class acf_Image extends acf_Field
 				
 				
 				// update acf_div
-				div.find('input.value').val( item.id );
+				div.find('input.value').val( item.id ).trigger('change');
 	 			div.find('img').attr( 'src', item.url );
 	 			div.addClass('active');
 	 	
@@ -457,7 +458,7 @@ class acf_Image extends acf_Field
 			$.each(json, function(i ,item){
 			
 				// update acf_div
-				self.parent.acf_div.find('input.value').val( item.id ); 
+				self.parent.acf_div.find('input.value').val( item.id ).trigger('change'); 
 	 			self.parent.acf_div.find('img').attr('src', item.url ); 
 	 			self.parent.acf_div.addClass('active'); 
 	 	 
@@ -472,7 +473,7 @@ class acf_Image extends acf_Field
 	 				self.parent.acf_div.closest('.repeater').find('.add-row-end').trigger('click'); 
 	 			 
 	 				// set acf_div to new row image 
-	 				self.parent.acf_div = self.parent.acf_div.closest('.repeater').find('> table > tbody > tr:last-child .acf-image-uploader'); 
+	 				self.parent.acf_div = self.parent.acf_div.closest('.repeater').find('> table > tbody > tr.row:last .acf-image-uploader'); 
 	 			} 
 	 			else 
 	 			{ 
@@ -590,6 +591,21 @@ class acf_Image extends acf_Field
 			$(this).attr('action', action);
 			
 		});
+		
+		
+		<?php
+	
+		// add support for media tags
+		
+		if($tab == 'mediatags'): ?>
+		$('#media-items .mediatag-item-count a').each(function(){
+			
+			var href = $(this).attr('href');
+			href += "&acf_type=image&acf_preview_size=<?php echo $preview_size; ?>";
+			$(this).attr('href', href);
+			
+		});
+		<?php endif; ?>
 	});
 				
 })(jQuery);
@@ -630,6 +646,14 @@ class acf_Image extends acf_Field
 		elseif($format == 'object')
 		{
 			$attachment = get_post( $value );
+			
+			
+			// validate
+			if( !$attachment )
+			{
+				return false;	
+			}
+			
 			
 			// create array to hold value data
 			$value = array(

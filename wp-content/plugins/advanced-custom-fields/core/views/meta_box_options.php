@@ -67,8 +67,8 @@ $options = $this->parent->get_acf_options($post->ID);
 				'name'	=>	'options[layout]',
 				'value'	=>	$options['layout'],
 				'choices' => array(
-					'default'	=>	__("Standard Metabox",'acf'),
 					'no_box'	=>	__("No Metabox",'acf'),
+					'default'	=>	__("Standard Metabox",'acf'),
 				)
 			));
 			
@@ -94,10 +94,14 @@ $options = $this->parent->get_acf_options($post->ID);
 					'custom_fields'		=>	__("Custom Fields"),
 					'discussion'		=>	__("Discussion"),
 					'comments'			=>	__("Comments"),
+					'revisions'			=>	__("Revisions"),
 					'slug'				=>	__("Slug"),
 					'author'			=>	__("Author"),
 					'format'			=>	__("Format"),
-					'featured_image'	=>	__("Featured Image")
+					'featured_image'	=>	__("Featured Image"),
+					'categories'		=>	__("Categories"),
+					'tags'				=>	__("Tags"),
+					'send-trackbacks'	=>	__("Send Trackbacks"),
 				)
 			));
 			

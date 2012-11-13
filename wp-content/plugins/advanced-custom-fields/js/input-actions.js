@@ -21,7 +21,9 @@ var acf = {
 		'gallery_tb_title_edit' : "Edit Image",
 		'repeater_min_alert' : "Minimum rows reached ( {min} rows )",
 		'repeater_max_alert' : "Maximum rows reached ( {max} rows )"
-	}
+	},
+	conditional_logic : {},
+	sortable_helper : null
 };
 
 (function($){
@@ -54,7 +56,7 @@ var acf = {
 		$('#adv-settings label[for*="acf_"]').addClass('acf_hide_label');
 		
 		// hide acf stuff
-		$('#poststuff .acf_postbox').hide();
+		$('#poststuff .acf_postbox').addClass('acf-hidden');
 		$('#adv-settings .acf_hide_label').hide();
 		
 		// loop through acf metaboxes
@@ -72,12 +74,26 @@ var acf = {
 			// show / hide
 			if(show == 'true')
 			{
-				$(this).show();
+				$(this).removeClass('acf-hidden');
 				$('#adv-settings .acf_hide_label[for="acf_' + id + '-hide"]').show();
 			}
 			
 		});
 	
+	});
+	
+	
+	/*
+	*  Save Draft
+	*
+	*  @description: 
+	*  @created: 18/09/12
+	*/
+	var save_post = false;
+	$('#save-post').live('click', function(){
+		
+		save_post = true;
+		
 	});
 	
 	
@@ -90,24 +106,30 @@ var acf = {
 	
 	$('form#post').live("submit", function(){
 		
-		// do validation
-		do_validation();
-		
-		if(acf.validation == false)
+		if( !save_post )
 		{
-			// show message
-			$(this).siblings('#message').remove();
-			$(this).before('<div id="message" class="error"><p>' + acf.text.validation_error + '</p></div>');
+			// do validation
+			do_validation();
 			
 			
-			// hide ajax stuff on submit button
-			$('#publish').removeClass('button-primary-disabled');
-			$('#ajax-loading').attr('style','');
-			
-			return false;
+			if(acf.validation == false)
+			{
+				// show message
+				$(this).siblings('#message').remove();
+				$(this).before('<div id="message" class="error"><p>' + acf.text.validation_error + '</p></div>');
+				
+				
+				// hide ajax stuff on submit button
+				$('#publish').removeClass('button-primary-disabled');
+				$('#ajax-loading').attr('style','');
+				
+				return false;
+			}
 		}
-		
+
+
 		$('.acf_postbox:hidden').remove();
+		
 		
 		// submit the form
 		return true;
@@ -136,14 +158,17 @@ var acf = {
 				validation = false;
 			}
 			
+			
 			// select
 			if($(this).find('select').exists())
 			{
+				validation = true;
 				if($(this).find('select').val() == "null" || !$(this).find('select').val())
 				{
 					validation = false;
 				}
 			}
+
 			
 			// checkbox
 			if($(this).find('input[type="checkbox"]:checked').exists())
@@ -373,7 +398,7 @@ var acf = {
 		// vars
 		var div = $(this).closest('.acf-file-uploader');
 		
-		div.removeClass('active').find('input.value').val('');
+		div.removeClass('active').find('input.value').val('').trigger('change');
 		
 		return false;
 		
@@ -430,7 +455,7 @@ var acf = {
 		var div = $(this).closest('.acf-image-uploader');
 		
 		div.removeClass('active');
-		div.find('input.value').val('');
+		div.find('input.value').val('').trigger('change');
 		div.find('img').attr('src', '');
 		
 		return false;
@@ -749,9 +774,11 @@ var acf = {
 	// create wysiwyg
 	$.fn.acf_activate_wysiwyg = function(){
 		
-
+		
+		
 		// add tinymce to all wysiwyg fields
 		$(this).find('.acf_wysiwyg textarea').each(function(){
+			
 			
 			// is clone field?
 			if( acf.is_clone_field($(this)) )
@@ -821,6 +848,8 @@ var acf = {
 			acf_wysiwyg_buttons.theme_advanced_buttons2 = tinyMCE.settings.theme_advanced_buttons2;
 		}
 		
+		$(document).trigger('acf/setup_fields', $('#poststuff'));
+		
 	});
 	
 	$(window).load(function(){
@@ -835,20 +864,80 @@ var acf = {
 		
 	});
 	
-	// Sortable: Start
-	$('.repeater > table > tbody, .acf_flexible_content > .values').live( "sortstart", function(event, ui) {
-		
-		$(ui.item).find('.acf_wysiwyg textarea').each(function(){
-			tinyMCE.execCommand("mceRemoveControl", false, $(this).attr('id'));
+	
+	/*
+	*  Sortable Helper
+	*
+	*  @description: keeps widths of td's inside a tr
+	*  @since 3.5.1
+	*  @created: 10/11/12
+	*/
+	
+	acf.sortable_helper = function(e, ui)
+	{
+		ui.children().each(function(){
+			$(this).width($(this).width());
 		});
+		return ui;
+	};
+
+
+	/*
+	*  acf/sortable_start
+	*
+	*  @description:
+	*  @since 3.5.1
+	*  @created: 10/11/12
+	*/
+	
+	$(document).live('acf/sortable_start', function(e, div) {
+		
+		//console.log( 'sortstart' );
+		
+		$(div).find('.acf_wysiwyg textarea').each(function(){
+			
+			// vars
+			var textarea = $(this),
+				id = textarea.attr('id'),
+				wysiwyg = tinymce.get( id );
+			
+			
+			// if wysiwyg was found (should be always...), remove its functionality and set the value (to keep line breaks)
+			if( wysiwyg )
+			{
+				var val = wysiwyg.getContent();
+				
+				tinyMCE.execCommand("mceRemoveControl", false, id);
+			
+				textarea.val( val );
+			}
+			
+		});
+
 		
 	});
 	
-	// Sortable: End
-	$('.repeater > table > tbody, .acf_flexible_content > .values').live( "sortstop", function(event, ui) {
+	
+	/*
+	*  acf/sortable_stop
+	*
+	*  @description:
+	*  @since 3.5.1
+	*  @created: 10/11/12
+	*/
+	
+	$(document).live('acf/sortable_stop', function(e, div) {
 		
-		$(ui.item).find('.acf_wysiwyg textarea').each(function(){
-			tinyMCE.execCommand("mceAddControl", false, $(this).attr('id'));
+		//console.log( 'sortstop' );
+		
+		$(div).find('.acf_wysiwyg textarea').each(function(){
+			
+			// vars
+			var textarea = $(this),
+				id = textarea.attr('id');
+			
+			// add functionality back in
+			tinyMCE.execCommand("mceAddControl", false, id);
 		});
 		
 	});
@@ -882,28 +971,29 @@ var acf = {
 	// make sortable
 	function repeater_add_sortable( repeater ){
 		
-		var fixHelper = function(e, ui) {
-			ui.children().each(function() {
-				$(this).width($(this).width());
-			});
-			return ui;
-		};
-		
 		repeater.find('> table > tbody').unbind('sortable').sortable({
 			update: function(event, ui){
 				repeater_update_order( repeater );
 			},
 			items : '> tr.row',
-			handle: '> td.order',
-			helper: fixHelper,
-			forceHelperSize: true,
-			forcePlaceholderSize: true,
-			scroll: true,
-			start: function (event, ui) {
-				
+			handle : '> td.order',
+			helper : acf.sortable_helper,
+			forceHelperSize : true,
+			forcePlaceholderSize : true,
+			scroll : true,
+			start : function (event, ui) {
+			
+				$(document).trigger('acf/sortable_start', ui.item);
+
 				// add markup to the placeholder
 				var td_count = ui.item.children('td').length;
         		ui.placeholder.html('<td colspan="' + td_count + '"></td>');
+        		
+   			},
+   			stop : function (event, ui) {
+			
+				$(document).trigger('acf/sortable_stop', ui.item);
+				
    			}
 		});
 	};
@@ -919,12 +1009,37 @@ var acf = {
 				max_rows = parseInt( repeater.attr('data-max_rows') );	
 			
 			
-			// move row-clone to be the first element (to avoid double border css bug)
-			var row_clone = repeater.find('> table > tbody > tr.row-clone');
-			
-			if( row_clone.index() != 0 )
+			// set column widths
+			if( ! repeater.find('> table').hasClass('row_layout') )
 			{
-				row_clone.closest('tbody').prepend( row_clone );
+				// accomodate for order / remove th widths
+				var column_width = 93;
+				
+				// find columns that already have a width and remove these amounts from the column_width var
+				repeater.find('> table > thead > tr > th[width]').each(function( i ){
+					
+					column_width -= parseInt( $(this).attr('width') );
+				});
+
+				
+				var ths = repeater.find('> table > thead > tr th').not('[width]').has('span');
+				if( ths.length > 1 )
+				{
+					column_width = column_width / ths.length;
+					
+					ths.each(function( i ){
+						
+						// dont add width to last th
+						if( (i+1) == ths.length  )
+						{
+							return;
+						}
+						
+						$(this).attr('width', column_width + '%');
+						
+					});
+				}
+				
 			}
 			
 			
@@ -996,14 +1111,12 @@ var acf = {
 		
 		
 		// add row
-		if( before )
+		if( !before )
 		{
-			before.before( new_field );
+			before = repeater.find('> table > tbody > .row-clone');
 		}
-		else
-		{
-			repeater.find('> table > tbody').append(new_field); 
-		}
+		
+		before.before( new_field );
 		
 		
 		// trigger mouseenter on parent repeater to work out css margin on add-row button
@@ -1135,7 +1248,20 @@ var acf = {
 		// remove (if clone) and add sortable
 		div.children('.values').unbind('sortable').sortable({
 			items : '> .layout',
-			handle: '> .actions .order'
+			handle : '> .actions .order',
+			forceHelperSize : true,
+			forcePlaceholderSize : true,
+			scroll : true,
+			start : function (event, ui) {
+			
+				$(document).trigger('acf/sortable_start', ui.item);
+        		
+   			},
+   			stop : function (event, ui) {
+			
+				$(document).trigger('acf/sortable_stop', ui.item);
+				
+   			}
 		});
 		
 	};
@@ -1263,7 +1389,7 @@ var acf = {
 	
 	acf.is_clone_field = function( input )
 	{
-		if( input.attr('name').indexOf('[999]') != -1 )
+		if( input.attr('name') && input.attr('name').indexOf('[999]') != -1 )
 		{
 			return true;
 		}
@@ -1307,6 +1433,7 @@ var acf = {
 				altField : alt_field,
 				altFormat :  save_format,
 				changeYear: true,
+				yearRange: "-100:+100",
 				changeMonth: true,
 				showButtonPanel : true
 			});
@@ -1498,7 +1625,6 @@ var acf = {
 			// is clone field?
 			if( acf.is_clone_field($(this).children('input[type="hidden"]')) )
 			{
-				//console.log('Clone Field: Gallery');
 				return;
 			}
 			
@@ -1531,6 +1657,64 @@ var acf = {
 		});
 	
 	});
+	
+	
+	/*
+	*  Conditional Logic Calculate
+	*
+	*  @description: 
+	*  @since 3.5.1
+	*  @created: 15/10/12
+	*/
+	
+	acf.conditional_logic.calculate = function( options )
+	{
+		// vars
+		var field = $('.field-' + options.field),
+			toggle = $('.field-' + options.toggle),
+			r = false;
+		
+		
+		// compare values
+		if( toggle.hasClass('field-true_false') || toggle.hasClass('field-checkbox') || toggle.hasClass('field-radio') )
+		{
+			if( options.operator == "==" )
+			{
+				if( toggle.find('input[value="' + options.value + '"]:checked').exists() )
+				{
+					r = true;
+				}
+			}
+			else
+			{
+				if( !toggle.find('input[value="' + options.value + '"]:checked').exists() )
+				{
+					r = true;
+				}
+			}
+			
+		}
+		else
+		{
+			if( options.operator == "==" )
+			{
+				if( toggle.find('*[name]').val() == options.value )
+				{
+					r = true;
+				}
+			}
+			else
+			{
+				if( toggle.find('*[name]').val() != options.value )
+				{
+					r = true;
+				}
+			}
+			
+		}
+		
+		return r;
+	}
 	
 	
 })(jQuery);

@@ -71,7 +71,7 @@ class acf_Checkbox extends acf_Field
 			{
 				$selected = 'checked="yes"';
 			}
-			echo '<li><label><input type="checkbox" class="' . $field['class'] . '" name="' . $field['name'] . '" value="' . $key . '" ' . $selected . ' />' . $value . '</label></li>';
+			echo '<li><label><input id="' . $field['id'] . '-' . $key . '" type="checkbox" class="' . $field['class'] . '" name="' . $field['name'] . '" value="' . $key . '" ' . $selected . ' />' . $value . '</label></li>';
 		}
 		
 		echo '</ul>';
@@ -121,7 +121,7 @@ class acf_Checkbox extends acf_Field
 				</p>
 			</td>
 			<td>
-				<textarea rows="5" name="fields[<?php echo $key; ?>][choices]" id=""><?php echo $field['choices']; ?></textarea>
+				<textarea class="texarea field_option-choices" rows="5" name="fields[<?php echo $key; ?>][choices]" id=""><?php echo $field['choices']; ?></textarea>
 			</td>
 		</tr>
 		<?php
@@ -140,9 +140,21 @@ class acf_Checkbox extends acf_Field
 	
 	function pre_save_field($field)
 	{
-		// defaults
-		$field['choices'] = isset($field['choices']) ? $field['choices'] : '';
+		// vars
+		$defaults = array(
+			'choices'	=>	'',
+		);
 		
+		$field = array_merge($defaults, $field);
+		
+		
+		// check if is array. Normal back end edit posts a textarea, but a user might use update_field from the front end
+		if( is_array( $field['choices'] ))
+		{
+		    return $field;
+		}
+
+
 		// vars
 		$new_choices = array();
 		
