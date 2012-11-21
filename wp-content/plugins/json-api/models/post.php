@@ -18,7 +18,6 @@ class JSON_API_Post {
   var $modified;        // String (modified by date_format query var)
   var $categories;      // Array of objects
   var $tags;            // Array of objects
-  var $author;          // Object
   var $comments;        // Array of objects
   var $attachments;     // Array of objects
   var $comment_count;   // Integer
@@ -206,10 +205,21 @@ class JSON_API_Post {
   
   function set_author_value($author_id) {
     global $json_api;
-    if ($json_api->include_value('author')) {
-      $this->author = new JSON_API_Author($author_id);
+    if ($json_api->include_value('author') || $json_api->include_value('authors')) {
+        // Check for the Coauthors Plus plugin's function
+        if ( function_exists('get_coauthors') ) {
+            $this->authors = array();
+            if ( $wp_authors = get_coauthors() ) {
+                foreach ($wp_authors as $wp_author) {
+                    $this->authors[] = new JSON_API_Author( $wp_author->ID );
+                }
+            }
+        }
+        else { 
+            $this->author = new JSON_API_Author($author_id);
+        }
     } else {
-      unset($this->author);
+      unset($this->author, $this->authors);
     }
   }
   

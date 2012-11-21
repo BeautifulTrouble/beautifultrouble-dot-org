@@ -235,6 +235,15 @@ class JSON_API_Core_Controller {
       'authors' => array_values($authors)
     );
   }
+
+  public function get_all_authors() {
+    global $json_api;
+    $authors = $json_api->introspector->get_all_authors();
+    return array(
+      'count' => count($authors),
+      'authors' => array_values($authors)
+    );
+  }
   
   public function get_page_index() {
     global $json_api;
