@@ -244,6 +244,16 @@ class JSON_API_Core_Controller {
       'authors' => array_values($authors)
     );
   }
+
+  public function get_all_modules() {
+    global $json_api;
+    $posts = $json_api->introspector->get_posts(array(
+        'post_type' => array( 'bt_tactic', 'bt_theory', 'bt_principle', 'bt_case', 'bt_practitioner' ),
+        'orderby'   => 'title',
+        'order'     => 'ASC'
+    ));
+    return $this->posts_result($posts);
+  }
   
   public function get_page_index() {
     global $json_api;
