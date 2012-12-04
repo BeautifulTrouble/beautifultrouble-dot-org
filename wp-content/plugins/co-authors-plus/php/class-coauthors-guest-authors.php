@@ -64,7 +64,6 @@ class CoAuthors_Guest_Authors
 		add_filter( 'user_row_actions', array( $this, 'filter_user_row_actions' ), 10, 2 );
 
 		// Add support for featured thumbnails that we can use for guest author avatars
-		add_action( 'after_setup_theme', array( $this, 'action_after_setup_theme' ) );
 		add_filter( 'get_avatar', array( $this, 'filter_get_avatar' ),10 ,5 );
 
 		// Allow users to change where this is placed in the WordPress admin
@@ -119,6 +118,18 @@ class CoAuthors_Guest_Authors
 				'query_var' => false,
 			);
 		register_post_type( $this->post_type, $args );
+
+		// Some of the common sizes used by get_avatar
+		$this->avatar_sizes = array(
+				32,
+				64,
+				96,
+				128
+			);
+		$this->avatar_sizes = apply_filters( 'coauthors_guest_author_avatar_sizes', $this->avatar_sizes );
+		foreach( $this->avatar_sizes as $size ) {
+			add_image_size( 'guest-author-' . $size, $size, $size, true );
+		}
 
 		// Hacky way to remove the title and the editor
 		remove_post_type_support( $this->post_type, 'title' );
@@ -264,8 +275,12 @@ class CoAuthors_Guest_Authors
 			die();
 
 		$search = sanitize_text_field( $_GET['q'] );
+		if ( ! empty( $_GET['guest_author'] ) )
+			$ignore = array( $this->get_guest_author_by( 'ID', (int)$_GET['guest_author'] )->user_login );
+		else
+			$ignore = array();
 
-		$results = wp_list_pluck( $coauthors_plus->search_authors( $search ), 'user_login' );
+		$results = wp_list_pluck( $coauthors_plus->search_authors( $search, $ignore ), 'user_login' );
 		$retval = array();
 		foreach( $results as $user_login ) {
 			$coauthor = $coauthors_plus->get_coauthor_by( 'user_login', $user_login );
@@ -334,7 +349,25 @@ class CoAuthors_Guest_Authors
 
 			wp_enqueue_style( 'guest-authors-css', COAUTHORS_PLUS_URL . 'css/guest-authors.css', false, COAUTHORS_PLUS_VERSION );
 			wp_enqueue_script( 'guest-authors-js', COAUTHORS_PLUS_URL . 'js/guest-authors.js', false, COAUTHORS_PLUS_VERSION );
+		} else if ( in_array( $pagenow, array( 'post.php', 'post-new.php' ) ) && $this->post_type == get_post_type() ) {
+			add_action( 'admin_head', array( $this, 'change_title_icon' ) );
 		}
+	}
+
+	/**
+	 * Change the icon appearing next to the title
+	 * Core doesn't allow us to filter screen_icon(), so changing the ID is the next best thing
+	 *
+	 * @since 3.0.1
+	 */
+	function change_title_icon() {
+		?>
+		<script type="text/javascript">
+			jQuery(document).ready(function($){
+				$('#icon-edit').attr('id', 'icon-users');
+			});
+		</script>
+		<?php
 	}
 
 	/**
@@ -412,7 +445,7 @@ class CoAuthors_Guest_Authors
 			// Hidden stuffs
 			echo '<input type="hidden" name="action" value="delete-guest-author" />';
 			wp_nonce_field( 'delete-guest-author' );
-			echo '<input type="hidden" name="id" value="' . esc_attr( (int)$_GET['id'] ) . '" />';
+			echo '<input type="hidden" id="id" name="id" value="' . esc_attr( (int)$_GET['id'] ) . '" />';
 			echo '<fieldset><ul style="list-style-type:none;">';
 			// Reassign to another user
 			echo '<li class="hide-if-no-js"><label for="reassign-another">';
@@ -621,8 +654,10 @@ class CoAuthors_Guest_Authors
 		// Guest authors can't be created with the same user_login as a user
 		$user_nicename = str_replace( 'cap-', '', $slug );
 		$user = get_user_by( 'slug', $user_nicename );
-		if ( $user && $user->user_login != get_post_meta( $original_args['ID'], $this->get_post_meta_key( 'linked_account' ), true ) )
-			wp_die( __( 'Guest authors cannot be created with the same user_login value as a user. Try creating a profile from the user instead', 'co-authors-plus' ) );
+		if ( $user 
+			&& is_user_member_of_blog( $user->ID, get_current_blog_id() )
+			&& $user->user_login != get_post_meta( $original_args['ID'], $this->get_post_meta_key( 'linked_account' ), true ) )
+			wp_die( __( 'Guest authors cannot be created with the same user_login value as a user. Try creating a profile from the user on the Manage Users listing instead.', 'co-authors-plus' ) );
 
 		// Guest authors can't have the same post_name value
 		$guest_author = $this->get_guest_author_by( 'post_name', $post_data['post_name'] );
@@ -698,11 +733,11 @@ class CoAuthors_Guest_Authors
 	 * @param string $value Value to search for
 	 * @param object|false $coauthor The guest author on success, false on failure
 	 */
-	function get_guest_author_by( $key, $value ) {
+	function get_guest_author_by( $key, $value, $force = false ) {
 		global $wpdb;
 
 		$cache_key = md5( 'guest-author-' . $key . '-' . $value );
-		if ( false !== ( $retval = wp_cache_get( $cache_key, self::$cache_group ) ) )
+		if ( false == $force && false !== ( $retval = wp_cache_get( $cache_key, self::$cache_group ) ) )
 			return $retval;
 
 		switch( $key ) {
@@ -724,6 +759,7 @@ class CoAuthors_Guest_Authors
 			case 'login':
 			case 'user_login':
 			case 'linked_account':
+			case 'user_email':
 				if ( 'login' == $key )
 					$key = 'user_login';
 				// Ensure we aren't doing the lookup by the prefixed value
@@ -973,7 +1009,7 @@ class CoAuthors_Guest_Authors
 			}
 
 			// The user login field shouldn't collide with any existing users
-			if ( 'user_login' == $field['key'] && $existing_coauthor = $coauthors_plus->get_coauthor_by( 'user_login', $args['user_login'] ) ) {
+			if ( 'user_login' == $field['key'] && $existing_coauthor = $coauthors_plus->get_coauthor_by( 'user_login', $args['user_login'], true ) ) {
 				if ( 'guest-author' == $existing_coauthor->type )
 					return new WP_Error( 'duplicate-field', __( 'user_login cannot duplicate existing guest author or mapped user', 'co-authors-plus' ) );
 			}
@@ -1136,27 +1172,6 @@ class CoAuthors_Guest_Authors
 	}
 
 	/**
-	 * Anything to do after the theme has been set up
-	 *
-	 * @since 3.0
-	 */
-	function action_after_setup_theme() {
-		add_theme_support( 'post-thumbnails', array( $this->post_type ) );
-
-		// Some of the common sizes used by get_avatar
-		$this->avatar_sizes = array(
-				32,
-				64,
-				96,
-				128
-			);
-		$this->avatar_sizes = apply_filters( 'coauthors_guest_author_avatar_sizes', $this->avatar_sizes );
-		foreach( $this->avatar_sizes as $size ) {
-			add_image_size( 'guest-author-' . $size, $size, $size, true );
-		}
-	}
-
-	/**
 	 * Filter 'get_avatar' to replace with our own avatar if one exists
 	 *
 	 * @since 3.0
@@ -1204,8 +1219,12 @@ class CoAuthors_Guest_Authors
 		} else {
 			global $wp_rewrite;
 			$link = $wp_rewrite->get_author_permastruct();
-			$link = str_replace('%author%', $author_nicename, $link);
-			$link = home_url( user_trailingslashit( $link ) );
+			if ( $link ) {
+				$link = str_replace('%author%', $author_nicename, $link);
+				$link = home_url( user_trailingslashit( $link ) );
+			} else {
+				$link = add_query_arg( 'author_name', $author_nicename, home_url() );
+			}
 		}
 		return $link;
 

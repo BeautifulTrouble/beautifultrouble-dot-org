@@ -48,11 +48,39 @@ class acf_settings
 	{
 		$page = add_submenu_page('edit.php?post_type=acf', __('Settings','acf'), __('Settings','acf'), 'manage_options','acf-settings',array($this,'html'));
 		
+		add_action('load-' . $page, array($this,'load'));
+		
 		add_action('admin_print_scripts-' . $page, array($this, 'admin_print_scripts'));
 		add_action('admin_print_styles-' . $page, array($this, 'admin_print_styles'));
 		
 		add_action('admin_head-' . $page, array($this,'admin_head'));
 		
+	}
+	
+	
+	/*
+	*  load
+	*
+	*  @description: 
+	*  @since 3.5.2
+	*  @created: 16/11/12
+	*  @thanks: Kevin Biloski and Charlie Eriksen via Secunia SVCRP
+	*/
+	
+	function load()
+	{
+		// vars
+		$defaults = array(
+			'action' => ''
+		);
+		$options = array_merge($defaults, $_POST);
+		
+
+		if( $options['action'] == "export_xml" )
+		{
+			include_once($this->parent->path . 'core/actions/export.php');
+			die;
+		}
 	}
 	
 	
@@ -329,8 +357,8 @@ class acf_settings
 				</div>
 			</th>
 			<td>
-				<form class="acf-export-form" method="post" action="<?php echo $this->parent->dir; ?>/core/actions/export.php">
-					<input type="hidden" name="acf_abspath" value="<?php echo ABSPATH; ?>" />
+				<form class="acf-export-form" method="post">
+					<input type="hidden" name="action" value="export_xml" />
 					<?php
 
 					$this->parent->create_field(array(
