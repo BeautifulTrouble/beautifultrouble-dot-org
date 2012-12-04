@@ -496,10 +496,6 @@ add_filter('user_contactmethods','bt_add_user_fields',10,1);
  * Adds CustomPostCount_Widget widget.
  */
 class CustomPostCount_Widget extends WP_Widget {
-
-	/**
-	 * Register widget with WordPress.
-	 */
 	public function __construct() {
 		parent::__construct(
 	 		'custompostcount_widget', // Base ID
@@ -508,14 +504,6 @@ class CustomPostCount_Widget extends WP_Widget {
 		);
 	}
 
-	/**
-	 * Front-end display of widget.
-	 *
-	 * @see WP_Widget::widget()
-	 *
-	 * @param array $args     Widget arguments.
-	 * @param array $instance Saved values from database.
-	 */
 	public function widget( $args, $instance ) {
 		extract( $args );
 		$title = apply_filters( 'widget_title', $instance['title'] );
@@ -532,23 +520,13 @@ class CustomPostCount_Widget extends WP_Widget {
                     $post_type_url  = $obj->rewrite['slug'];
                     $post_icon      = $obj->menu_icon;
                     $num = wp_count_posts( $post_type );
-                    echo "<li class=\"$post_type\"><a href=\"/$post_type_url\"><img src=\"$post_icon\" />&nbsp;$num->publish $post_type_name ($num->draft drafts)</a></li>";
+                    echo "<li class=\"$post_type\"><a href=\"/$post_type_url\"><img src=\"$post_icon\" />&nbsp;$num->publish $post_type_name</a></li>";
                 }
                 echo '</ul>';
                 //print_r( $num_bt_case );
 		echo $after_widget;
 	}
 
-	/**
-	 * Sanitize widget form values as they are saved.
-	 *
-	 * @see WP_Widget::update()
-	 *
-	 * @param array $new_instance Values just sent to be saved.
-	 * @param array $old_instance Previously saved values from database.
-	 *
-	 * @return array Updated safe values to be saved.
-	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = strip_tags( $new_instance['title'] );
@@ -556,13 +534,6 @@ class CustomPostCount_Widget extends WP_Widget {
 		return $instance;
 	}
 
-	/**
-	 * Back-end widget form.
-	 *
-	 * @see WP_Widget::form()
-	 *
-	 * @param array $instance Previously saved values from database.
-	 */
 	public function form( $instance ) {
 		if ( isset( $instance[ 'title' ] ) ) {
 			$title = $instance[ 'title' ];
@@ -578,6 +549,6 @@ class CustomPostCount_Widget extends WP_Widget {
 		<?php 
 	}
 
-} // class Foo_Widget
-// register Foo_Widget widget
+} // class custompostcount_Widget
+// register custompostcount_Widget widget
 add_action( 'widgets_init', create_function( '', 'register_widget( "custompostcount_widget" );' ) );
