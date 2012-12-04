@@ -208,6 +208,9 @@ form[role="search"] {
     margin: 0px;
     float: none;
 }
+form[role="search"] input#s {
+    width: 170px;
+}
 
 }
 
