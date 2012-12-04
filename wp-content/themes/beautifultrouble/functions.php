@@ -499,7 +499,7 @@ class CustomPostCount_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 	 		'custompostcount_widget', // Base ID
-			'CustomPostCount_Widget', // Name
+			'Custom Post Count Widget', // Name
 			array( 'description' => __( 'A Custom Posts Count Widget', 'text_domain' ), ) // Args
 		);
 	}
