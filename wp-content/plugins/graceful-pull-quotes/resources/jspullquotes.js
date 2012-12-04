@@ -76,7 +76,7 @@ var pullquote = {
 // If the first child of the span is a comment, its content is our quote...
 // thx: https://www.engr.uga.edu/adminsite/modules/htmlarea/example-fully-loaded.html
 				if ($alttext && oElement.firstChild && oElement.firstChild.nodeType == 8) { // 8 == comment
-						oAltQuote = document.createTextNode(oElement.firstChild.data);
+						oAltQuote = document.createTextNode(pullquote.trim(oElement.firstChild.data));
 						oPullquoteP.appendChild(oAltQuote);
 				} else { // otherwise get all content as normal
 					for(j=0;j<oElement.childNodes.length;j++) { //loop through the children of <span>
@@ -91,16 +91,16 @@ var pullquote = {
 							( '' == oCurrChild.getAttribute('href') ) // href is blank
 						) ) {
 
-			// Apply the append loop to node's decendants, but not the A tag itself  (assumes there is not another A tag within the A tag, as that would be illegal)
+							// Apply the append loop to node's decendants, but not the A tag itself  (assumes there is not another A tag within the A tag, as that would be illegal)
 							for(k=0;k<oCurrChild.childNodes.length;k++) {
-//								oAltQuote = oCurrChild.childNodes[k].cloneNode(true);
+								// oAltQuote = oCurrChild.childNodes[k].cloneNode(true);
 								oAltQuote = pullquote.dupeNode(oCurrChild.childNodes[k],true);
 								oPullquoteP.appendChild(oAltQuote);
 							}
 
 						} else {
-			// Standard "copy everything and append to P node"
-//							oAltQuote = oElement.childNodes[j].cloneNode(true);
+							// Standard "copy everything and append to P node"
+							// oAltQuote = oElement.childNodes[j].cloneNode(true);
 							if (oCurrChild.nodeType == 1 && oCurrChild.tagName.toLowerCase() == "a") {
 								//strip out "name" attributes
 							}
@@ -110,8 +110,8 @@ var pullquote = {
 						}
 					}
 				}
-		// only insert the pull-quote if it is not empty!
-				if(oAltQuote != undefined && oAltQuote != '') {
+			// only insert the pull-quote if it is not empty!
+				if(oAltQuote != undefined && oAltQuote.data != '') {
 			// append text to the paragraph node
 					oPullquote.appendChild(oPullquoteP);
 			// Insert the blockquote element before the span element's parent element
@@ -122,8 +122,10 @@ var pullquote = {
 	}, // end function init
 
 	dupeNode : function($the_node, $include_all) {
-// dupeNode function by Stephen Rider
-// http://striderweb.com/nerdaphernalia/features/javascript-dupenode-function/
+/*
+based on dupeNode function by Stephen Rider
+http://striderweb.com/nerdaphernalia/features/js-dupenode-function/
+*/
 		var i;
 		var $new_node = $the_node.cloneNode(false);
 
@@ -142,7 +144,26 @@ var pullquote = {
 		}
 		return $new_node;
 	},
-	
+
+	/*
+	*  Javascript trim, ltrim, rtrim
+	*  http://www.webtoolkit.info/javascript-trim.html
+	*/
+
+	trim : function($str, $chars) {
+		return pullquote.ltrim(pullquote.rtrim($str, $chars), $chars);
+	},
+
+	ltrim : function($str, $chars) {
+		$chars = $chars || "\\s";
+		return $str.replace(new RegExp("^[" + $chars + "]+", "g"), "");
+	},
+
+	rtrim : function($str, $chars) {
+		$chars = $chars || "\\s";
+		return $str.replace(new RegExp("[" + $chars + "]+$", "g"), "");
+	},
+
 	// addEvent function from http://www.quirksmode.org/blog/archives/2005/10/_and_the_winner_1.html
 	addEvent : function(obj, type, fn) {
 		if (obj.addEventListener)

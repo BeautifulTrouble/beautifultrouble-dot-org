@@ -243,12 +243,12 @@ class CoAuthorsPlus_Command extends WP_CLI_Command {
 			// Otherwise, simply rename the old term
 			$new_term = $coauthors_plus->get_author_term( $coauthors_plus->get_coauthor_by( 'login', $new_user ) );
 			if ( is_object( $new_term ) ) {
+				WP_CLI::line( "Success: There's already a '{$new_user}' term for '{$old_user}'. Reassigning {$old_term->count} posts and then deleting the term" );
 				$args = array(
 						'default' => $new_term->term_id,
 						'force_default' => true,
 					);
 				wp_delete_term( $old_term->term_id, $coauthors_plus->coauthor_taxonomy, $args );
-				WP_CLI::line( "Success: There's already a '{$new_user}' term for '{$old_user}'. Reassigning posts and then deleting the term" );
 				$results->new_term_exists++;
 			} else {
 				$args = array(
@@ -267,6 +267,58 @@ class CoAuthorsPlus_Command extends WP_CLI_Command {
 		WP_CLI::line( "- $results->new_term_exists authors had their old term merged to their new term" );
 		WP_CLI::line( "- $results->old_term_missing authors were missing old terms" );
 
+	}
+
+	/**
+	 * Change a term from representing one user_login value to another
+	 * If the term represents a guest author, the post_name will be changed
+	 * in addition to the term slug/name
+	 *
+	 * @since 3.0.1
+	 *
+	 * @subcommand rename-coauthor
+	 * @synopsis --from=<user-login> --to=<user-login>
+	 */
+	public function rename_coauthor( $args, $assoc_args ) {
+		global $coauthors_plus, $wpdb;
+
+		$defaults = array(
+				'from'      => null,
+				'to'        => null,
+			);
+		$assoc_args = array_merge( $defaults, $assoc_args );
+
+		$to_userlogin = $assoc_args['to'];
+		$to_userlogin_prefixed = 'cap-' . $to_userlogin;
+
+		$orig_coauthor = $coauthors_plus->get_coauthor_by( 'user_login', $assoc_args['from'] );
+		if ( ! $orig_coauthor )
+			WP_CLI::error( "No co-author found for {$assoc_args['from']}" );
+
+		if ( ! $to_userlogin )
+			WP_CLI::error( '--to param must not be empty' );
+
+		if ( $coauthors_plus->get_coauthor_by( 'user_login', $to_userlogin ) )
+			WP_CLI::error( "New user_login value conflicts with existing co-author" );
+
+		$orig_term = $coauthors_plus->get_author_term( $orig_coauthor );
+
+		WP_CLI::line( "Renaming {$orig_term->name} to {$to_userlogin}" );
+		$rename_args = array(
+				'name'         => $to_userlogin,
+				'slug'         => $to_userlogin_prefixed,
+			);
+		wp_update_term( $orig_term->term_id, $coauthors_plus->coauthor_taxonomy, $rename_args );
+
+		if ( 'guest-author' == $orig_coauthor->type ) {
+			$wpdb->update( $wpdb->posts, array( 'post_name' => $to_userlogin_prefixed ), array( 'ID' => $orig_coauthor->ID ) );
+			clean_post_cache( $orig_coauthor->ID );
+			update_post_meta( $orig_coauthor->ID, 'cap-user_login', $to_userlogin );
+			$coauthors_plus->guest_authors->delete_guest_author_cache( $orig_coauthor->ID );
+			WP_CLI::line( "Updated guest author profile value too" );
+		}
+
+		WP_CLI::success( "All done!" );
 	}
 
 	/**
@@ -378,6 +430,33 @@ class CoAuthorsPlus_Command extends WP_CLI_Command {
 			WP_CLI::line( "Term {$author_term->slug} ({$author_term->term_id}) changed from {$old_count} to {$new_count} and the description was refreshed" );
 		}
 		WP_CLI::success( "All done" );
+	}
+
+	/**
+	 * Remove author terms from revisions, which we've been adding since the dawn of time
+	 *
+	 * @since 3.0.1
+	 *
+	 * @subcommand remove-terms-from-revisions
+	 */
+	public function remove_terms_from_revisions() {
+		global $wpdb;
+
+		$ids = $wpdb->get_col( "SELECT ID FROM $wpdb->posts WHERE post_type='revision' AND post_status='inherit'" );
+
+		WP_CLI::line( "Found " . count( $ids ) . " revisions to look through" );
+		$affected = 0;
+		foreach( $ids as $post_id ) {
+
+			$terms = wp_get_post_terms( $post_id, 'author' );
+			if ( ! $terms )
+				continue;
+
+			WP_CLI::line( "#{$post_id}: Removing " . implode( ',', wp_list_pluck( $terms, 'slug' ) ) );
+			wp_set_post_terms( $post_id, array(), 'author' );
+			$affected++;
+		}
+		WP_CLI::line( "All done! {$affected} revisions had author terms removed" );
 	}
 
 	/**

@@ -3,8 +3,8 @@ Contributors: strider72
 Donate link: http://striderweb.com/nerdaphernalia/features/wp-javascript-pull-quotes/#download
 Tags: theme, pull-quotes, pull quotes, blurb, quotation, quote
 Requires at least: 2.6
-Tested up to: 3.1.2
-Stable tag: 2.4.1
+Tested up to: 3.5-RC1
+Stable tag: 2.4.2
 
 Allows you to make pull-quotes without duplicating content. If the plugin is disabled the pull-quotes disappear seamlessly.
 
@@ -82,8 +82,13 @@ Enjoy!
 
 == Changelog ==
 
+= 2.4.2 (27 November 2012) =
+* Bugfix: Pull-quote text in an HTML comment is now trimmed of spaces
+* Bugfix: better testing for empty pull-quotes before rendering
+* Bugfix: Was not saving container setting correctly -- error in HTML rendering on Settings page.
+
 = 2.4.1 (3 September 2011) =
-* Bugfix: A jspullqutes.css file in a theme is now properly detected in both Parent and Child themes
+* Bugfix: A jspullquotes.css file in a theme is now properly detected in both Parent and Child themes
 
 = 2.4 (5 May 2011) =
 * Updated filenames to reflect new plugin name.

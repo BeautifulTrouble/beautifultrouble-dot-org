@@ -3,8 +3,8 @@
 Plugin Name: Graceful Pull-Quotes
 Plugin URI: http://striderweb.com/nerdaphernalia/features/wp-javascript-pull-quotes/
 Description: Allows you to create customizable magazine-style pull-quotes without duplicating text in your markup or feeds.
-Version: 2.4.1
-Date: 2011-09-03
+Version: 2.4.2
+Date: 2012-11-27
 Author: Stephen Rider
 Author URI: http://striderweb.com/
 */
@@ -274,13 +274,13 @@ EOT;
 EOT;
 	}
 
-	// Add homepage link to settings page footer
+// Add homepage link to settings page footer
 	function admin_footer() {
 		$pluginfo = $this->get_plugin_data();
 		printf( '%1$s plugin | Version %2$s | by %3$s<br />', $pluginfo['Title'], $pluginfo['Version'], $pluginfo['Author'] );
 	}
 
-	// Add action link(s) to plugins page
+// Add action link(s) to plugins page
 	function filter_plugin_actions( $links, $file ) {
 		//Static so we don't call plugin_basename on every plugin row.
 		static $this_plugin;
@@ -402,7 +402,7 @@ EOT;
 
 		<h3><?php $this->p_e( 'Advanced Options' ); ?></h3>
 <?php
-		$cmbq_container = '<select name="<?php echo $this->option_name; ?>[q_container]" id="q_container">
+		$cmbq_container = '<select name="' . $this->option_name . '[q_container]" id="q_container">
 							<option value="blockquote"' . $this->checkcombo( $opts, 'q_container', 'blockquote', true ) . '>&lt;blockquote&gt;</option>
 							<option value="div"' . $this->checkcombo( $opts, 'q_container', 'div' ) . '>&lt;div&gt;</option>
 						</select>';
