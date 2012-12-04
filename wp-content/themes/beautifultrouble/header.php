@@ -66,6 +66,7 @@
           <?php
            /** Loading WordPress Custom Menu with Fallback to wp_list_pages **/
       wp_nav_menu( array( 'menu' => 'main-menu', 'container_class' => 'nav-collapse', 'menu_class' => 'nav', 'menu_id' => 'main-menu') ); ?>
+					<?php get_search_form(); ?>
         </div>
       </div>
     </div>
