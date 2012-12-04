@@ -59,6 +59,5 @@ get_header(); ?>
 						</nav>
 					<?php } ?>			
 		</div><!--/.span8 -->
-
-<?php get_sidebar(); ?>
+    </div> <!-- /.row -->
 <?php get_footer(); ?>
