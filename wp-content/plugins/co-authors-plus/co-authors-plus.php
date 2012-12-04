@@ -3,7 +3,7 @@
 Plugin Name: Co-Authors Plus
 Plugin URI: http://wordpress.org/extend/plugins/co-authors-plus/
 Description: Allows multiple authors to be assigned to a post. This plugin is an extended version of the Co-Authors plugin developed by Weston Ruter.
-Version: 3.0
+Version: 3.0.3
 Author: Mohammad Jangda, Daniel Bachhuber, Automattic
 Copyright: 2008-2012 Shared and distributed between Mohammad Jangda, Daniel Bachhuber, Weston Ruter
 
@@ -24,7 +24,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 */
 
-define( 'COAUTHORS_PLUS_VERSION', '3.0' );
+define( 'COAUTHORS_PLUS_VERSION', '3.0.3' );
 
 define( 'COAUTHORS_PLUS_PATH', dirname( __FILE__ ) );
 define( 'COAUTHORS_PLUS_URL', plugin_dir_url( __FILE__ ) );
@@ -152,11 +152,12 @@ class coauthors_plus {
 			'rewrite' => false,
 			'public' => false,
 			'sort' => true,
+			'args' => array( 'orderby' => 'term_order' ),
 			'show_ui' => false
 		);
 		$post_types_with_authors = array_values( get_post_types() );
 		foreach( $post_types_with_authors as $key => $name ) {
-			if ( ! post_type_supports( $name, 'author' ) )
+			if ( ! post_type_supports( $name, 'author' ) || 'revision' == $name )
 				unset( $post_types_with_authors[$key] );
 		}
 		$this->supported_post_types = apply_filters( 'coauthors_supported_post_types', $post_types_with_authors );
@@ -207,11 +208,11 @@ class coauthors_plus {
 	 * @param string $value Value to search for
 	 * @param object|false $coauthor The co-author on success, false on failure
 	 */
-	function get_coauthor_by( $key, $value ) {
+	function get_coauthor_by( $key, $value, $force = false ) {
 
 		// If Guest Authors are enabled, prioritize those profiles
 		if ( $this->is_guest_authors_enabled() ) {
-			$guest_author = $this->guest_authors->get_guest_author_by( $key, $value );
+			$guest_author = $this->guest_authors->get_guest_author_by( $key, $value, $force );
 			if ( is_object( $guest_author ) ) {
 				return $guest_author;
 			}
@@ -605,7 +606,7 @@ class coauthors_plus {
 			return $data;
 
 		// Bail on revisions
-		if ( $data['post_type'] == 'revision' )
+		if ( ! $this->is_post_type_enabled( $data['post_type'] ) )
 			return $data;
 
 		// This action happens when a post is saved while editing a post
@@ -661,9 +662,11 @@ class coauthors_plus {
 	 * @param $post_ID
 	 */
 	function coauthors_update_post( $post_id, $post ) {
-		$post_type = $post->post_type;
 
 		if ( defined( 'DOING_AUTOSAVE' ) && !DOING_AUTOSAVE )
+			return;
+
+		if ( ! $this->is_post_type_enabled( $post->post_type ) )
 			return;
 
 		if( isset( $_POST['coauthors-nonce'] ) && isset( $_POST['coauthors'] ) ) {
@@ -790,6 +793,10 @@ class coauthors_plus {
 		$current_user = wp_get_current_user();
 		if ( ! $current_user )
 			return false;
+		// Super admins can do anything
+		if ( function_exists( 'is_super_admin' ) && is_super_admin() )
+			return true;
+
 		$can_set_authors = isset( $current_user->allcaps['edit_others_posts'] ) ? $current_user->allcaps['edit_others_posts'] : false;
 
 		return apply_filters( 'coauthors_plus_edit_authors', $can_set_authors );
@@ -1062,7 +1069,7 @@ class coauthors_plus {
 			return $allcaps;
 
 		// We won't be doing any modification if they aren't already a co-author on the post
-		if( ! is_coauthor_for_post( $user_id, $post_id ) )
+		if( ! is_user_logged_in() || ! is_coauthor_for_post( $user_id, $post_id ) )
 			return $allcaps;
 
 		$current_user = wp_get_current_user();
