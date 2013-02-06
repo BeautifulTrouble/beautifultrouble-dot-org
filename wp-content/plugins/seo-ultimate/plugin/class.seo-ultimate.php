@@ -208,9 +208,6 @@ class SEO_Ultimate {
 			if (!get_option('blog_public')) {
 				//Add admin-wide notice
 				add_action('admin_notices', array(&$this, 'private_blog_admin_notice'));
-				
-				//Remove duplicate Robots Meta notice
-				suwp::remove_instance_action('admin_footer', 'RobotsMeta_Admin', 'blog_public_warning');
 			}
 			
 			add_action('admin_init', array(&$this, 'admin_init'));
@@ -1402,17 +1399,31 @@ class SEO_Ultimate {
 	}
 	
 	/**
-	 * Outputs a WordPress-esque admin notice regarding the privacy setting.
-	 * The setting must be checked *before* this function is hooked into WordPress.
+	 * Outputs a WordPress-esque admin notice regarding the "discourage search engines" setting.
+	 * The value of this setting must be assessed *before* this function is hooked into WordPress.
 	 * 
 	 * @since 1.7
 	 */
 	function private_blog_admin_notice() {
 		echo "\n<div class='error'><p>";
-		_e('<strong>SEO Ultimate Notice:</strong> Your blog is configured to block search engine spiders. To resolve this, <a href="options-privacy.php" target="_blank">go to your Privacy settings</a> and set your blog visible to everyone.', 'seo-ultimate');
+		_e('<strong>SEO Ultimate Notice:</strong> Your blog is configured to block search engine spiders. To resolve this, <a href="options-reading.php" target="_blank">go to your Reading settings</a> and disable the &#8220;discourage search engines&#8221; option.', 'seo-ultimate');
 		echo "</p></div>";
 	}
 	
+	/**
+	 * @since 7.6
+	 */
+	function should_show_wp_ultimate_promo() {
+		return $this->is_wp_ultimate_promo_applicable() && $this->get_setting('wp_ultimate', true, 'settings');
+	}
+	
+	/**
+	 * @since 7.6
+	 */
+	function is_wp_ultimate_promo_applicable() {
+		//If the current user can install themes and if WP Ultimate isn't already uploaded...
+		return current_user_can('install_themes') && (wp_get_theme('wpultimate')->errors() !== false);
+	}
 	
 	/********** MODULE FUNCTIONS ***********/
 	
@@ -1459,6 +1470,17 @@ class SEO_Ultimate {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * @since 7.6
+	 */
+	function get_module_var($key, $var, $default) {
+		
+		if (isset($this->modules[$key]) && property_exists($this->modules[$key], $var))
+			return $this->modules[$key]->$var;
+		
+		return $default;
 	}
 	
 	/**
@@ -1519,8 +1541,8 @@ class SEO_Ultimate {
 						if (!isset($fields['misc'][$tab])) $fields['misc'][$tab] = array();
 						$fields['misc'][$tab] += $tab_fields;
 					} else {
-						list($pos, $key) = explode('|', $tab);
-						$fields['misc'][$pos][$key] = $tab_fields;
+						list($pos, $keys) = explode('|', $tab, 2);
+						$fields['misc'][$pos][$keys] = $tab_fields;
 					}
 				}
 			}
@@ -1544,7 +1566,7 @@ class SEO_Ultimate {
 	function add_postmeta_box() {
 		
 		//Add the metabox to posts and pages.
-		$posttypes = suwp::get_post_type_names();
+		$posttypes = get_post_types(array('public' => true), 'names');
 		foreach ($posttypes as $screen) {
 			
 			if (strpos($screen, '"') !== false)
@@ -1774,7 +1796,7 @@ class SEO_Ultimate {
 		}
 		
 		
-		$posttypeobjs = suwp::get_post_type_objects();
+		$posttypeobjs = get_post_types(array('public' => true), 'objects');
 		foreach ($posttypeobjs as $posttypeobj) {
 			
 			if ($include && !in_array('posttype', $include) && !in_array('posttype_' . $posttypeobj->name, $include))

@@ -3,7 +3,7 @@
 Plugin Name: SEO Ultimate
 Plugin URI: http://www.seodesignsolutions.com/wordpress-seo/
 Description: This all-in-one SEO plugin gives you control over title tags, noindex/nofollow, meta tags, rich snippets, slugs, canonical tags, autolinks, 404 errors, rich snippets, and more.
-Version: 7.5.7
+Version: 7.6.1
 Author: SEO Design Solutions
 Author URI: http://www.seodesignsolutions.com/
 Text Domain: seo-ultimate
@@ -12,7 +12,7 @@ Text Domain: seo-ultimate
 /**
  * The main SEO Ultimate plugin file.
  * @package SeoUltimate
- * @version 7.5.7
+ * @version 7.6.1
  * @link http://www.seodesignsolutions.com/wordpress-seo/ SEO Ultimate Homepage
  */
 
@@ -41,21 +41,21 @@ if (!defined('ABSPATH')) {
 
 /********** CONSTANTS **********/
 
-//The minimum version of WordPress required
+//The bare minimum version of WordPress required to run without generating a fatal error.
+//SEO Ultimate will refuse to run if activated on a lower version of WP.
 define('SU_MINIMUM_WP_VER', '3.3');
 
 //Reading plugin info from constants is faster than trying to parse it from the header above.
 define('SU_PLUGIN_NAME', 'SEO Ultimate');
 define('SU_PLUGIN_URI', 'http://www.seodesignsolutions.com/wordpress-seo/');
-define('SU_VERSION', '7.5.7');
+define('SU_VERSION', '7.6.1');
 define('SU_AUTHOR', 'SEO Design Solutions');
 define('SU_AUTHOR_URI', 'http://www.seodesignsolutions.com/');
-define('SU_USER_AGENT', 'SeoUltimate/7.5.7');
+define('SU_USER_AGENT', 'SeoUltimate/7.6.1');
 
 /********** INCLUDES **********/
 
 //Libraries
-include 'includes/backcompat.php';
 include 'includes/jlfunctions/jlfunctions.php';
 include 'includes/jlwp/jlwp.php';
 
@@ -69,7 +69,7 @@ include 'modules/class.su-module.php';
 include 'modules/class.su-importmodule.php';
 
 
-/********** PLUGIN FILE LOAD HANDLER **********/
+/********** VERSION CHECK & INITIALIZATION **********/
 
 global $wp_version;
 if (version_compare($wp_version, SU_MINIMUM_WP_VER, '>=')) {

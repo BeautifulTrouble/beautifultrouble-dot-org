@@ -109,7 +109,7 @@ class SU_Install extends SU_Module {
 			return;
 		}
 		
-		$radiobuttons = $this->get_version_radiobuttons(SU_DOWNGRADE_LIMIT, SU_VERSION);
+		$radiobuttons = $this->get_version_radiobuttons(SU_DOWNGRADE_LIMIT, SU_VERSION, 5);
 		if (is_array($radiobuttons)) {
 			if (count($radiobuttons) > 1) {
 				
@@ -125,7 +125,7 @@ class SU_Install extends SU_Module {
 				$this->admin_form_end(__('Downgrade', 'seo-ultimate'));
 				echo "</div>\n";
 			} else
-				$this->print_message('warning', sprintf(__('Downgrading to versions earlier than %s is not supported because doing so will result in data loss.', 'seo-ultimate'), SU_DOWNGRADE_LIMIT));
+				$this->print_message('warning', sprintf(__('Downgrading to versions earlier than %s is not supported because doing so will result the loss of some or all of your SEO Ultimate settings.', 'seo-ultimate'), SU_DOWNGRADE_LIMIT));
 		} else
 			$this->print_message('error', __('There was an error retrieving the list of available versions. Please try again later.', 'seo-ultimate'));
 	}
@@ -146,7 +146,7 @@ class SU_Install extends SU_Module {
 		$this->admin_form_end(__('Reinstall', 'seo-ultimate'), false);
 	}
 	
-	function get_version_radiobuttons($min, $max) {
+	function get_version_radiobuttons($min, $max, $limit=false) {
 		
 		$this->update_setting('version', SU_VERSION);
 		
@@ -155,7 +155,7 @@ class SU_Install extends SU_Module {
 		if (is_array($versions) && count($versions)) {
 			
 			$radiobuttons = array();
-			$first = true;
+			$i = 0;
 			foreach ($versions as $title => $changes) {
 				if (preg_match('|Version ([0-9.]{3,9}) |', $title, $matches)) {
 					$version = $matches[1];
@@ -166,7 +166,7 @@ class SU_Install extends SU_Module {
 					$changes = wptexturize($changes);
 					if ($version == SU_VERSION)
 						$message = __('Your Current Version', 'seo-ultimate');
-					elseif ($first)
+					elseif (0 == $i)
 						$message = __('Latest Version', 'seo-ultimate');
 					else
 						$message = '';
@@ -174,7 +174,7 @@ class SU_Install extends SU_Module {
 					
 					$radiobuttons[$version] = "<strong>$title</strong>$message</label>\n$changes\n";
 					
-					$first = false;
+					if ($limit !== false && $limit > 0 && ++$i >= $limit) break;
 				}
 			}
 			
@@ -185,6 +185,8 @@ class SU_Install extends SU_Module {
 	}
 	
 	function do_installation() {
+		
+		if (!isset($_POST['version'])) return false;
 		
 		$nv = sustr::preg_filter('0-9a-zA-Z .', $_POST['version']);
 		if (!strlen($nv)) return false;

@@ -22,8 +22,9 @@ class acf_File extends acf_Field
 		
 		add_action('admin_head-media-upload-popup', array($this, 'popup_head'));
 		add_filter('get_media_item_args', array($this, 'allow_file_insertion'));
-		add_action('wp_ajax_acf_select_file', array($this, 'ajax_select_file'));
 		add_action('acf_head-update_attachment-file', array($this, 'acf_head_update_attachment'));
+		
+		add_action('wp_ajax_acf/fields/file/get_files', array($this, 'ajax_get_files'));
    	}
    	
    	
@@ -42,11 +43,11 @@ class acf_File extends acf_Field
 (function($){
 	
 	// vars
-	var div = self.parent.acf_edit_attachment;
+	var div = self.parent.acf.media.div;
 	
 	
 	// add message
-	self.parent.acf.add_message("<?php _e("File Updated.",'acf'); ?>", div);
+	self.parent.acf.helpers.add_message("<?php _e("File Updated.",'acf'); ?>", div);
 	
 
 })(jQuery);
@@ -55,71 +56,57 @@ class acf_File extends acf_Field
 	}
    	
    	
-   	/*--------------------------------------------------------------------------------------
-	*
-	*	render_file
-	*
-	*	@description : Renders the file html from an ID
-	*	@author Elliot Condon
-	*	@since 3.1.6
-	* 
-	*-------------------------------------------------------------------------------------*/
+   	/*
+   	*  ajax_get_files
+   	*
+   	*  @description: 
+   	*  @since: 3.5.7
+   	*  @created: 13/01/13
+   	*/
 	
-   	function render_file($id = null)
+   	function ajax_get_files()
    	{
-   		if(!$id)
-   		{
-   			echo "";
-   			return;
-   		}
-   		
-   		
    		// vars
-		$file_src = wp_get_attachment_url($id);
-		preg_match("~[^/]*$~", $file_src, $file_name);
-		$class = "active";
-   		
-   		
-   		?>
-		<ul class="hl clearfix">
-			<li data-mime="<?php echo get_post_mime_type( $id ) ; ?>">
-				<img class="acf-file-icon" src="<?php echo wp_mime_type_icon( $id ); ?>" alt=""/>
-			</li>
-			<li>
-				<span class="acf-file-name"><?php echo $file_name[0]; ?></span><br />
-				<a href="#" class="edit-file"><?php _e('Edit','acf'); ?></a> 
-				<a href="#" class="remove-file"><?php _e('Remove','acf'); ?></a>
-			</li>
-		</ul>
-		<?php
-   		
-   	}
-   	
-   	/*--------------------------------------------------------------------------------------
-	*
-	*	ajax_select_file
-	*
-	*	@description ajax function to provide url of selected file
-	*	@author Elliot Condon
-	*	@since 3.1.5
-	* 
-	*-------------------------------------------------------------------------------------*/
-	
-   	function ajax_select_file()
-   	{
-   		$id = isset($_POST['id']) ? $_POST['id'] : false;
-   				
+		$options = array(
+			'nonce' => '',
+			'files' => array()
+		);
+		$return = array();
 		
-		// attachment ID is required
-   		if(!$id)
-   		{
-   			echo "";
-   			die();
-   		}
-   		
-   		$this->render_file($id);
-   		
-		die();
+		
+		// load post options
+		$options = array_merge($options, $_POST);
+		
+		
+		// verify nonce
+		if( ! wp_verify_nonce($options['nonce'], 'acf_nonce') )
+		{
+			die(0);
+		}
+		
+		
+		if( $options['files'] )
+		{
+			foreach( $options['files'] as $id )
+			{
+				$file_src = wp_get_attachment_url( $id );
+				preg_match("~[^/]*$~", $file_src, $file_name);
+					
+					
+				// vars
+				$return[] = array(
+					'id' => $id,
+					'icon' => wp_mime_type_icon( $id ),
+					'name' => $file_name[0]
+				);
+			}
+		}
+		
+		
+		// return json
+		echo json_encode( $return );
+		die;
+		
    	}
 	
 	
@@ -153,18 +140,41 @@ class acf_File extends acf_Field
 	{
 		
 		// vars
-		$class = $field['value'] ? "active" : "";
+		$options = array(
+			'class' => '',
+			'icon' => '',
+			'file_name' => ''
+		);
+		
+		if( $field['value'] )
+		{
+			$file_src = wp_get_attachment_url( $field['value'] );
+			preg_match("~[^/]*$~", $file_src, $file_name);
+		
+			$options['class'] = 'active';
+			$options['icon'] = wp_mime_type_icon( $field['value'] );
+			$options['file_name'] = $file_name[0];
+		}
 		
 		?>
-		<div class="acf-file-uploader <?php echo $class; ?>">
-			<input class="value" type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo $field['value']; ?>" />
+		<div class="acf-file-uploader <?php echo $options['class']; ?>">
+			<input class="acf-file-value" type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo $field['value']; ?>" />
 			<div class="has-file">
-				<?php $this->render_file( $field['value'] ); ?>
+				<ul class="hl clearfix">
+					<li>
+						<img class="acf-file-icon" src="<?php echo $options['icon']; ?>" alt=""/>
+					</li>
+					<li>
+						<span class="acf-file-name"><?php echo $options['file_name']; ?></span><br />
+						<a href="#" class="edit-file"><?php _e('Edit','acf'); ?></a> 
+						<a href="#" class="remove-file"><?php _e('Remove','acf'); ?></a>
+					</li>
+				</ul>
 			</div>
 			<div class="no-file">
 				<ul class="hl clearfix">
 					<li>
-						<span class="acf-file-name"><?php _e('No File Selected','acf'); ?></span>. <a href="#" class="button add-file"><?php _e('Add File','acf'); ?></a>
+						<span><?php _e('No File Selected','acf'); ?></span>. <a href="#" class="button add-file"><?php _e('Add File','acf'); ?></a>
 					</li>
 				</ul>
 			</div>
@@ -189,7 +199,7 @@ class acf_File extends acf_Field
 	{
 		// vars
 		$defaults = array(
-			'save_format'	=>	'object',
+			'save_format'	=>	'id',
 		);
 		
 		$field = array_merge($defaults, $field);
@@ -200,18 +210,20 @@ class acf_File extends acf_Field
 				<label><?php _e("Return Value",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
-					'type'	=>	'radio',
-					'name'	=>	'fields['.$key.'][save_format]',
-					'value'	=>	$field['save_format'],
+				<?php
+				
+				do_action('acf/create_field', array(
+					'type'		=>	'radio',
+					'name'		=>	'fields['.$key.'][save_format]',
+					'value'		=>	$field['save_format'],
 					'layout'	=>	'horizontal',
-					'choices' => array(
+					'choices' 	=>	array(
 						'object'	=>	__("File Object",'acf'),
 						'url'		=>	__("File URL",'acf'),
 						'id'		=>	__("File ID",'acf')
 					)
 				));
+				
 				?>
 			</td>
 		</tr>
@@ -219,40 +231,41 @@ class acf_File extends acf_Field
 	}
 	
 	
-	/*---------------------------------------------------------------------------------------------
-	 * popup_head - STYLES MEDIA THICKBOX
-	 *
-	 * @author Elliot Condon
-	 * @since 1.1.4
-	 * 
-	 ---------------------------------------------------------------------------------------------*/
+	/*
+	*  popup_head
+	*
+	*  @description: css + js for thickbox
+	*  @since: 1.1.4
+	*  @created: 7/12/12
+	*/
+	
 	function popup_head()
-	{	
-		// defults
-		$access = false;
-		$tab = "type";
+	{
+		// options
+		$defaults = array(
+			'acf_type' => '',
+			'tab'	=>	'type',	
+		);
+		
+		$options = array_merge($defaults, $_GET);
 		
 		
-		// GET
-		if(isset($_GET["acf_type"]) && $_GET['acf_type'] == 'file')
+		// validate
+		if( $options['acf_type'] != 'file' )
 		{
-			$access = true;
-			if( isset($_GET['tab']) ) $tab = $_GET['tab'];
-			
-			if( isset($_POST["attachments"]) )
-			{
-				echo '<div class="updated"><p>' . __("Media attachment updated.") . '</p></div>';
-			}
-			
+			return;
 		}
 		
 		
-		if( $access )
+		// update attachment
+		if( isset($_POST["attachments"]) )
 		{
+			echo '<div class="updated"><p>' . __("Media attachment updated.") . '</p></div>';
+		}
+		
 					
 ?><style type="text/css">
 	#media-upload-header #sidemenu li#tab-type_url,
-	#media-upload-header #sidemenu li#tab-gallery,
 	#media-items .media-item a.toggle,
 	#media-items .media-item tr.image-size,
 	#media-items .media-item tr.align,
@@ -262,7 +275,8 @@ class acf_File extends acf_Field
 	}
 	
 	#media-items .media-item {
-		min-height: 68px;
+		position: relative;
+		overflow: hidden;
 	}
 	
 	#media-items .media-item .acf-checkbox {
@@ -274,11 +288,12 @@ class acf_File extends acf_Field
 		max-width: 64px;
 		max-height: 64px;
 		display: block !important;
+		margin: 2px;
 	}
 	
 	#media-items .media-item .filename.new {
 		min-height: 0;
-		padding: 20px 10px 10px 10px;
+		padding: 10px;
 		line-height: 15px;
 	}
 	
@@ -301,22 +316,42 @@ class acf_File extends acf_Field
 		position: relative;
 		overflow: hidden;
 		display: none; /* default is hidden */
+		clear: both;
 	}
 	
 	#media-upload .acf-submit a {
 		float: left;
 		margin: 0 10px 0 0;
 	}
-
+	
+	#media-items .media-item .acf-filename {
+		color: #999;
+		font-size: 11px;
+		margin: 0 0 3px;
+		display: block;
+	}
+	
+	
+<?php if( $options['tab'] == 'gallery' ): ?>
+	#sort-buttons,
+	#gallery-form > .widefat,
+	#media-items .menu_order,
+	#gallery-settings {
+		display: none !important;
+	}
+<?php endif; ?>
 
 </style>
 <script type="text/javascript">
 (function($){
 	
+	
 	/*
 	*  Select File
 	*
-	*  @created : 29/03/2012
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 11/12/12
 	*/
 	
 	$('#media-items .media-item a.acf-select').live('click', function(){
@@ -331,140 +366,194 @@ class acf_File extends acf_Field
 			id = split[split.length-1];
 		}
 		
-
-		var data = {
-			action: 'acf_select_file',
-			id: id
+		
+		var ajax_data = {
+			action : 'acf/fields/file/get_files',
+			nonce : self.parent.acf.nonce,
+			files : [ id ]
 		};
 	
-		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-		$.post(ajaxurl, data, function(html) {
 		
-			if(!html || html == "")
-			{
-				return false;
-			}
-			
-			self.parent.acf_div.find('input.value').val(id).trigger('change');
-			self.parent.acf_div.find('.has-file').html(html);
- 			self.parent.acf_div.addClass('active');
- 	
- 			// validation
- 			self.parent.acf_div.closest('.field').removeClass('error');
- 			
- 			// reset acf_div and return false
- 			self.parent.acf_div = null;
- 			self.parent.tb_remove();
- 	
-		});
-		
-		return false;
-	});
-	
-	
-	
-	$('#acf-add-selected').live('click', function(){ 
-		 
-		// check total 
-		var ids = []; 
-		var i = -1; 
-		 
-		$('#media-items .media-item .acf-checkbox:checked').each(function(){ 
-			ids.push($(this).val()); 
-		}); 
-		 
-		if(ids.length == 0) 
-		{ 
-			alert("<?php _e("No files selected",'acf'); ?>"); 
-			return false; 
-		} 
-		 
-				 
-		function acf_add_next_file() 
-		{ 
-			i++; 
-			 
-			if(!ids[i]) 
-			{ 
-				return false; 
-			} 
-			 
-			var this_id = ids[i]; 
-			var data = {
-				action: 'acf_select_file',
-				id: this_id
-			};
-		
-			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-			$.post(ajaxurl, data, function(html) {
-			
-				if(!html || html == "")
+		// ajax
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			data : ajax_data,
+			cache: false,
+			dataType: "json",
+			success: function( json ) {	    	
+
+				// validate
+				if( !json )
 				{
 					return false;
 				}
 				
-				self.parent.acf_div.find('input.value').val(this_id).trigger('change');
-				self.parent.acf_div.find('.has-file').html(html);
-	 			self.parent.acf_div.addClass('active');
+				
+				// add file
+				self.parent.acf.fields.file.add( json[0] );
+				
+	 			self.parent.tb_remove();
 	 	
-	 			// validation
-	 			self.parent.acf_div.closest('.field').removeClass('error');
-	 			
-	 			
-	 			if((i+1) < ids.length) 
-	 			{ 
-	 				// add row 
-	 				self.parent.acf_div.closest('.repeater').find('.add-row-end').trigger('click'); 
-	 			 
-	 				// set acf_div to new row file 
-	 				self.parent.acf_div = self.parent.acf_div.closest('.repeater').find('> table > tbody > tr.row:last .acf-file-uploader'); 
-	 			} 
-	 			else 
-	 			{ 
-	 				// reset acf_div and return false 
- 					self.parent.acf_div = null; 
- 					self.parent.tb_remove(); 
-	 			} 
-	 			 
-	 			// add next file 
-	 			acf_add_next_file(); 
-	 			 
-	 	 
-			}); 
-			 
+	 	
+			}
+		});
+		
+ 						
+		return false;
+	});
+	
+	
+	/*
+	*  Select Files
+	*
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 11/12/12
+	*/
+	
+	$('#acf-add-selected').live('click', function(){ 
+		 
+		// check total 
+		var total = $('#media-items .media-item .acf-checkbox:checked').length;
+		if( total == 0 ) 
+		{ 
+			alert("<?php _e("No files selected",'acf'); ?>"); 
+			return false; 
 		} 
-		acf_add_next_file(); 
+		
 		 
-		 
+		var ajax_data = {
+			action : 'acf/fields/file/get_files',
+			nonce : self.parent.acf.nonce,
+			files : []
+		};
+		
+		
+		// add to id array
+		$('#media-items .media-item .acf-checkbox:checked').each(function(){
+			
+			ajax_data.files.push( $(this).val() );
+			
+		});
+		
+		
+		// ajax
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			data : ajax_data,
+			cache: false,
+			dataType: "json",
+			success: function( json ) {
+			
+				// validate
+				if( !json )
+				{
+					return false;
+				}
+				
+				
+				
+				var selection = json,
+		    		i = 0;
+		    		
+		    	
+		    	$.each( json, function( k, file ){
+
+			    	// counter
+			    	i++;
+			    	
+			    	
+			    	// vars
+			    	var div = self.parent.acf.media.div;
+			    	
+			    	
+			    	// add image to field
+			        self.parent.acf.fields.file.add( file );
+			        
+			        
+			        // select / add another file field?
+			        if( i < selection.length )
+					{
+						var tr = div.closest('tr'),
+							repeater = tr.closest('.repeater');
+						
+						
+						if( tr.next('.row').exists() )
+						{
+							self.parent.acf.media.div = tr.next('.row').find('.acf-file-uploader');
+						}
+						else
+						{
+							// add row 
+			 				repeater.find('.add-row-end').trigger('click'); 
+			 			 
+			 				// set div to new row file 
+			 				self.parent.acf.media.div = repeater.find('> table > tbody > tr.row:last .acf-file-uploader');
+						}
+					}
+					
+			    });
+
+				
+	 			self.parent.tb_remove();
+	 	
+			}
+		});
+ 		
+ 		
 		return false; 
 		 
 	}); 
 	
 	
-	// edit toggle
+	/*
+	*  Edit Attachment Toggle
+	*
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 11/12/12
+	*/
+	
 	$('#media-items .media-item a.acf-toggle-edit').live('click', function(){
 		
-		if( $(this).hasClass('active') )
+		// vars
+		var a = $(this),
+			item = a.closest('.media-item');
+		
+		
+		// toggle
+		if( a.hasClass('active') )
 		{
-			$(this).removeClass('active');
-			$(this).closest('.media-item').find('.slidetoggle').attr('style', 'display: none !important');
-			return false;
+			a.removeClass('active');
+			item.find('.slidetoggle').attr('style', 'display: none !important');
 		}
 		else
 		{
-			$(this).addClass('active');
-			$(this).closest('.media-item').find('.slidetoggle').attr('style', 'display: table !important');
-			return false;
+			a.addClass('active');
+			item.find('.slidetoggle').attr('style', 'display: table !important');
 		}
+		
+		
+		// return
+		return false;
 		
 	});
 	
 	
-	// set a interval function to add buttons to media items
-	function acf_add_buttons()
+	/*
+	*  add_buttons
+	*
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 11/12/12
+	*/
+
+	function add_buttons()
 	{
 		// vars
-		var is_sub_field = (self.parent.acf_div && self.parent.acf_div.closest('.repeater').length > 0) ? true : false;
+		var is_sub_field = (self.parent.acf.media.div.closest('.repeater').length > 0) ? true : false;
 		
 		
 		// add submit after media items (on for sub fields)
@@ -492,12 +581,15 @@ class acf_File extends acf_Field
 			// if inside repeater, add checkbox
 			if(is_sub_field)
 			{
-				$(this).prepend('<input type="checkbox" class="acf-checkbox" value="' + id + '" <?php if($tab == "type"){echo 'checked="checked"';} ?> />');
+				$(this).prepend('<input type="checkbox" class="acf-checkbox" value="' + id + '" <?php if( $options['tab'] == 'type' ){echo 'checked="checked"';} ?> />');
 			}
 			
+			// find file url
+			var file_url = $(this).find('.slidetoggle tr.url .urlfile').attr('data-link-url');
+			$(this).find('.filename.new').append('<span class="acf-filename">' + file_url + '</span>');
 			
 			// Add edit button
-			$(this).find('.filename.new').append('<br /><a href="#" class="acf-toggle-edit">Edit</a>');
+			$(this).find('.filename.new').append('<a href="#" class="acf-toggle-edit">Edit</a>');
 			
 			// Add select button
 			$(this).find('.filename.new').before('<a href="' + id + '" class="button acf-select"><?php _e("Select File",'acf'); ?></a>');
@@ -510,9 +602,9 @@ class acf_File extends acf_Field
 	<?php
 	
 	// run the acf_add_buttons ever 500ms when on the file upload tab
-	if($tab == 'type'): ?>
+	if( $options['tab'] == 'type' ): ?>
 	var acf_t = setInterval(function(){
-		acf_add_buttons();
+		add_buttons();
 	}, 500);
 	<?php endif; ?>
 	
@@ -521,7 +613,7 @@ class acf_File extends acf_Field
 	$(document).ready(function(){
 		
 		setTimeout(function(){
-			acf_add_buttons();
+			add_buttons();
 		}, 1);
 		
 		
@@ -543,7 +635,6 @@ class acf_File extends acf_Field
 })(jQuery);
 </script><?php
 
-		}
 	}
 	
 		

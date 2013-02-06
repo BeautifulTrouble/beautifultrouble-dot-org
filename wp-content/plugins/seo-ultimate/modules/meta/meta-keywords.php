@@ -57,7 +57,7 @@ class SU_MetaKeywords extends SU_Module {
 	function defaults_tab() {
 		$this->admin_form_table_start();
 		
-		$posttypenames = suwp::get_post_type_names();
+		$posttypenames = get_post_types(array('public' => true), 'names');
 		foreach ($posttypenames as $posttypename) {
 			$posttype = get_post_type_object($posttypename);
 			$posttypelabel = $posttype->labels->name;
@@ -135,7 +135,12 @@ class SU_MetaKeywords extends SU_Module {
 		} elseif (suwp::is_tax()) {
 			global $wp_query;
 			$tax_keywords = $this->get_setting('taxonomy_keywords');
-			$kw = $tax_keywords[$wp_query->get_queried_object_id()];
+			
+			$term_id = $wp_query->get_queried_object_id();
+			if (isset($tax_keywords[$term_id]))
+				$kw = $tax_keywords[$term_id];
+			else
+				$kw = '';
 		}
 		
 		if ($globals = $this->get_setting('global_keywords')) {
@@ -172,15 +177,23 @@ class SU_MetaKeywords extends SU_Module {
 			  'id' => 'su-meta-keywords-overview'
 			, 'title' => __('Overview', 'seo-ultimate')
 			, 'content' => __("
-<p>Meta Keywords Editor lets you tell search engines what keywords are associated with the various pages on your site. Modern search engines don&#8217;t give meta keywords much weight, but the option is there if you want to use it. You can customize the meta keywords of an individual post or page by using the textboxes that Meta Editor adds to the post/page editors.</p>
+<p>Meta Keywords Editor lets you tell search engines what keywords are associated with the various pages on your site. Modern search engines don&#8217;t give meta keywords much weight, if any at all, but the option is there if you want to use it.</p>
 ", 'seo-ultimate')));
 		
 		$screen->add_help_tab(array(
-			  'id' => 'su-meta-keywords-settings'
-			, 'title' => __('Settings Help', 'seo-ultimate')
+				  'id' => 'su-meta-keywords-global'
+				, 'title' => __('Sitewide Settings Tab', 'seo-ultimate')
+				, 'content' => __("
+<ul>
+	<li><strong>Sitewide Keywords</strong> &mdash; Here you can enter keywords that describe the overall subject matter of your entire blog. Use commas to separate keywords. These keywords will be put in the <code>&gt;meta name=&quot;keywords&quot; /&gt;</code> tags of all webpages on the site (homepage, posts, pages, archives, etc.).</li>
+</ul>
+", 'seo-ultimate')));
+		
+		$screen->add_help_tab(array(
+			  'id' => 'su-meta-keywords-home'
+			, 'title' => __('Blog Homepage Tab', 'seo-ultimate')
 			, 'content' => __("
 <ul>
-	<li><strong>Sitewide Keywords</strong> &mdash; Here you can enter keywords that describe the overall subject matter of your entire blog. Use ommas to separate keywords. These keywords will be put in the <code>&gt;meta name=&quot;keywords&quot; /&gt;</code> tags of all webpages on the site (homepage, posts, pages, archives, etc.).</li>
 	<li><strong>Blog Homepage Meta Keywords</strong> &mdash; These keywords will be applied only to the <em>blog</em> homepage. Note that if you&#8217;ve specified a &#8220;front page&#8221; under <a href='options-reading.php'>Settings &rArr; Reading</a>, you&#8217;ll need to edit your frontpage and set your frontpage keywords there.</li>
 </ul>
 ", 'seo-ultimate')));
@@ -190,10 +203,7 @@ class SU_MetaKeywords extends SU_Module {
 			, 'title' => __('FAQ', 'seo-ultimate')
 			, 'content' => __("
 <ul>
-	<li>
-		<p><strong>How do I edit the meta keywords of my homepage?</strong><br />If you are using a &#8220;blog homepage&#8221; (the default option of showing your blog posts on your homepage), just use the Blog Homepage field.</p>
-		<p>If you have configured your <a href='options-reading.php'>Settings &rArr; Reading</a> section to use a &#8220;frontpage&#8221; (i.e. a Page as your homepage), just edit that Page and use the &#8220;Meta Keywords&#8221; field in the &#8220;SEO Settings&#8221; box.</p>
-	</li>
+	<li><strong>How do I edit the meta keywords of my homepage?</strong><br />If you have configured your <a href='options-reading.php'>Settings &rArr; Reading</a> section to use a &#8220;front page&#8221; and/or a &#8220;posts page,&#8221; just edit those pages&#8217;s meta keywords on the &#8220;Pages&#8221; tab. Otherwise, just use the Blog Homepage field.</li>
 	<li><strong>What happens if I add a global keyword that I previously assigned to individual posts or pages?</strong><br />Don&#8217;t worry; Meta Keywords Editor will remove duplicate keywords automatically.</li>
 </ul>
 ", 'seo-ultimate')));

@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js
+http://core.svn.wordpress.org
 
 
 
-2012-11-05T18:07:51.886943Z
-22374
-nacin
+2013-01-23T21:04:45.586005Z
+23340
+azaozz
 
 
 
@@ -35,45 +35,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-44006ca7f608bdd5a0a6445d84dfa14d
-2012-01-08T22:54:51.056064Z
-19715
-bumpbot
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3797
-
-prototype.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-965fe52b851d8ff3c2b915ada9fb273f
-2009-12-27T22:30:58.678356Z
-12557
-azaozz
+2013-02-06T00:42:26.000000Z
+9fb67c2257a8111e496014c2d2f3a930
+2012-11-21T22:31:55.432126Z
+22798
+duck_
 has-props
 
 
@@ -95,7 +61,7 @@ has-props
 
 
 
-139854
+6607
 
 hoverIntent.js
 file
@@ -103,10 +69,10 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-e7b615fa36594e4ba18d0b71ca0b39c8
-2011-12-21T04:22:21.346920Z
-19618
+2013-02-06T00:42:26.000000Z
+73e23cc2a686c50a9f80746d5fde8eb5
+2012-08-23T00:04:18.101198Z
+21592
 nacin
 has-props
 
@@ -129,53 +95,19 @@ has-props
 
 
 
-996
+4246
 
-customize-base.dev.js
+autosave.min.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
-96113df5c6d74956eaa855233e4740b2
-2012-06-08T22:59:48.706505Z
-21033
-koopersmith
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-15536
-
-json2.dev.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-74d903049683e5bbea9ccb7544a42bca
-2011-04-21T22:21:27.198908Z
-17679
-azaozz
+2013-02-06T00:42:26.000000Z
+0a5377f0fedb60c22a9d918cfd4e91ac
+2012-12-06T23:17:49.153034Z
+23111
+bumpbot
 has-props
 
 
@@ -197,41 +129,7 @@ has-props
 
 
 
-17413
-
-comment-reply.dev.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-20ef5771571f1be483869066b2830c2f
-2009-01-02T15:08:58.051426Z
-10291
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1222
+6785
 
 colorpicker.js
 file
@@ -239,11 +137,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-3211fa8ad9b5ff52a438e30c3b7c2998
-2009-01-02T15:08:58.051426Z
-10291
-azaozz
+2013-02-06T00:42:26.000000Z
+f01017ca562067f4840eb2b6f99f2daf
+2012-11-17T15:11:29.248518Z
+22634
+ryan
 has-props
 
 
@@ -265,53 +163,53 @@ has-props
 
 
 
-17119
+29083
 
-customize-preview.dev.js
+admin-bar.min.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
-16e10c6310bd62bb63876f0094592ef4
-2012-06-26T18:53:45.721080Z
-21136
+2013-02-06T00:42:26.000000Z
+9c6442635f5e064bdb407b9f9cf0c8f4
+2012-11-20T20:58:28.320818Z
+22729
+bumpbot
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6173
+
+quicktags.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+d93d32c5f16e2b5169f5d2118cb58d08
+2012-08-23T00:04:18.101198Z
+21592
 nacin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3701
-
-wplink.dev.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-dc327b2e93ae86b3be62a536379457e9
-2012-04-11T00:20:42.023991Z
-20428
-azaozz
 has-props
 
 
@@ -333,7 +231,7 @@ has-props
 
 
 
-15503
+9917
 
 wp-lists.js
 file
@@ -341,10 +239,78 @@ file
 
 
 
-2012-11-13T17:55:57.000000Z
-46e1341cd4ea49f31046f7d7962adc7f
-2012-09-05T01:55:55.383098Z
-21760
+2013-02-06T00:42:26.000000Z
+87ce7e6067f829ba65df86fddb32bf5b
+2012-11-06T01:01:52.893939Z
+22396
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11036
+
+media-models.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+7dcae0648406b44bfe02151f2af361e2
+2012-12-06T05:26:39.293169Z
+23093
+bumpbot
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10736
+
+wp-ajax-response.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+1da637535cdded009a8dde077e234430
+2012-08-23T00:04:18.101198Z
+21592
 nacin
 has-props
 
@@ -367,10 +333,7 @@ has-props
 
 
 
-7682
-
-scriptaculous
-dir
+2152
 
 customize-loader.js
 file
@@ -378,11 +341,12 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-db7600d0c3cd3ee2578d361ff5c81d19
-2012-06-08T18:58:24.108981Z
-21030
-bumpbot
+2013-02-06T00:42:26.000000Z
+3e18e99953ef2c5dbe445865119db950
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
 
 
 
@@ -403,8 +367,7 @@ bumpbot
 
 
 
-
-2609
+4244
 
 swfobject.js
 file
@@ -440,17 +403,536 @@ has-props
 
 10231
 
-tw-sack.dev.js
+backbone.min.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
-b989a5bd84f6ebcbc1393ec003e6e991
-2009-01-02T15:08:58.051426Z
-10291
+2013-02-06T00:42:26.000000Z
+9f8b43fd1df78dca0827c73e29890865
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+16464
+
+wp-pointer.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+44006ca7f608bdd5a0a6445d84dfa14d
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3797
+
+hoverIntent.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+e7b615fa36594e4ba18d0b71ca0b39c8
+2012-08-23T00:04:18.101198Z
+21592
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+996
+
+customize-base.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+62f799465f3922f79057f8c1e17f123f
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15518
+
+shortcode.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+667dfe93afdf63592ca07ec403b05170
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10340
+
+comment-reply.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+20ef5771571f1be483869066b2830c2f
+2012-08-23T00:04:18.101198Z
+21592
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1222
+
+json2.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+74d903049683e5bbea9ccb7544a42bca
+2012-08-23T00:04:18.101198Z
+21592
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+17413
+
+underscore.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+a8167cbe4acedc5f0132f7b087c24bd0
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13430
+
+tinymce
+dir
+
+colorpicker.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+3211fa8ad9b5ff52a438e30c3b7c2998
+2012-08-23T00:04:18.101198Z
+21592
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+17119
+
+utils.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+a5f4880c9cca30561e9290f0dafda128
+2012-12-04T19:29:56.416560Z
+23036
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3951
+
+customize-preview.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+9100940268231265441eeec70eaad488
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3699
+
+jcrop
+dir
+
+media-editor.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+e4097e9dea685c3e613e0fc015ba2832
+2013-01-14T17:37:00.771697Z
+23299
 azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+17302
+
+wplink.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+628548fcce211ffe2df025d71d5d1001
+2012-09-26T19:57:44.779030Z
+22019
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15505
+
+wp-lists.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+c7b59d9b7e2339b76708ccff21cfe930
+2012-11-06T22:58:35.622486Z
+22407
+bumpbot
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7724
+
+plupload
+dir
+
+customize-loader.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+17da53aeae6cc8d61bed50c2ab38c209
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2642
+
+tw-sack.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+b989a5bd84f6ebcbc1393ec003e6e991
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 has-props
 
 
@@ -474,17 +956,18 @@ has-props
 
 4969
 
-customize-base.js
+media-views.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
-f435c162b8ac5353e9b9f92de1882cf8
-2012-06-08T23:02:40.914732Z
-21034
-bumpbot
+2013-02-06T00:42:26.000000Z
+cd99128430a7e77777d1a80a3010f819
+2013-01-05T02:02:29.108383Z
+23285
+ryan
+has-props
 
 
 
@@ -505,20 +988,121 @@ bumpbot
 
 
 
-
-6866
+107774
 
-json2.js
+mce-view.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
+2013-02-06T00:42:26.000000Z
+09f646383af1481207855a1eaf2d8f16
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9792
+
+customize-base.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+43068dabcf577d41f4e84f59d8586628
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6852
+
+shortcode.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+45b08b8d56d3b5138e2056cda31fd674
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2772
+
+json2.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
 ba3293970e13b03a2ea92f5b6b5bf544
-2011-04-21T22:21:27.198908Z
-17679
-azaozz
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 has-props
 
 
@@ -542,17 +1126,17 @@ has-props
 
 3377
 
-comment-reply.js
+comment-reply.min.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
+2013-02-06T00:42:26.000000Z
 500ceaa723d95be311592bd902d6823e
-2009-01-02T15:08:58.051426Z
-10291
-azaozz
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 has-props
 
 
@@ -576,17 +1160,17 @@ has-props
 
 786
 
-wp-list-revisions.dev.js
+wp-list-revisions.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
+2013-02-06T00:42:26.000000Z
 10b8adab39fa790c52bac5c59cead9a8
-2010-01-15T22:11:12.737551Z
-12733
-ryan
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 has-props
 
 
@@ -610,20 +1194,86 @@ has-props
 
 912
 
-tinymce
-dir
-
-customize-preview.js
+utils.min.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
-617d9fd858e117c7d1d087be168b5643
-2012-06-26T21:51:24.080143Z
-21149
+2013-02-06T00:42:26.000000Z
+284f0a2c317e3e094f08677e1b451c8a
+2012-12-04T19:29:56.416560Z
+23036
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1855
+
+customize-preview.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+6e3f2d3422ec9af1707e3b2d3dee2406
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1947
+
+media-editor.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+960a0adb54a1ffa9bf62719e7896de57
+2013-01-18T00:07:39.489221Z
+23304
 bumpbot
+has-props
 
 
 
@@ -644,22 +1294,52 @@ bumpbot
 
 
 
-
-1949
+8483
 
-jcrop
-dir
-
-autosave.dev.js
+wplink.min.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
-f62b83e650dce98e19b872eb43689298
-2011-12-13T23:45:31.084505Z
-19593
+2013-02-06T00:42:26.000000Z
+e532ee2cba4f82923a406d04a69827f2
+2012-09-26T22:58:46.099407Z
+22024
+bumpbot
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9018
+
+autosave.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+00172ff53b67ee3b773504420e7de431
+2012-12-06T23:12:59.653393Z
+23110
 ryan
 has-props
 
@@ -682,55 +1362,27 @@ has-props
 
 
 
-10718
+10649
 
-wplink.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-c1b068acfed8ce07852470f45b777a43
-2012-04-11T00:58:23.869406Z
-20429
-bumpbot
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9016
-
-plupload
+crop
 dir
 
-admin-bar.dev.js
+swfupload
+dir
+
+imgareaselect
+dir
+
+admin-bar.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
-10fee05fc3a9b14be7bf83b0f5669b48
-2012-02-06T23:17:28.239297Z
-19846
+2013-02-06T00:42:26.000000Z
+e3614ae78ac77f5553cd2cea4fa45e4b
+2012-11-20T20:45:03.402961Z
+22728
 azaozz
 has-props
 
@@ -753,19 +1405,19 @@ has-props
 
 
 
-8091
+9690
 
-quicktags.dev.js
+quicktags.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
-191ea92b9cdd1a23d48ad67fba256f0a
-2012-06-12T19:27:41.773629Z
-21070
-ryan
+2013-02-06T00:42:26.000000Z
+cb35ecf64895decdb22a0f1ae83e4e7c
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 has-props
 
 
@@ -787,19 +1439,19 @@ has-props
 
 
 
-19139
+19310
 
-tw-sack.js
+tw-sack.min.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
+2013-02-06T00:42:26.000000Z
 f103f8c3fb6d11562faf82f3943459c7
-2009-01-02T15:08:58.051426Z
-10291
-azaozz
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 has-props
 
 
@@ -823,17 +1475,122 @@ has-props
 
 3619
 
-wp-list-revisions.js
+media-views.min.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
+2013-02-06T00:42:26.000000Z
+f744caaf733436017d261ed10764b05c
+2013-01-05T02:35:02.238148Z
+23289
+bumpbot
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+59231
+
+mce-view.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+5c9bdc4d0fc3392189943f92ba6866d7
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2836
+
+thickbox
+dir
+
+media-models.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+92a5d9fdc580782fefac7329ae7c43ab
+2012-12-06T05:06:49.577797Z
+23092
+koopersmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+26176
+
+wp-list-revisions.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
 a539afdba6c8cc71a580347083eee7d1
-2009-12-23T09:24:01.771775Z
-12502
-westi
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 has-props
 
 
@@ -857,17 +1614,17 @@ has-props
 
 604
 
-wp-ajax-response.dev.js
+wp-ajax-response.js
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
+2013-02-06T00:42:26.000000Z
 54b536447cd644bcafa51a568be8c54e
-2009-11-19T10:24:14.490695Z
-12215
-azaozz
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 has-props
 
 
@@ -890,322 +1647,4 @@ has-props
 
 
 3114
-
-wp-pointer.dev.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-9fb67c2257a8111e496014c2d2f3a930
-2012-01-08T22:53:05.876766Z
-19713
-koopersmith
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6607
-
-hoverIntent.dev.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-73e23cc2a686c50a9f80746d5fde8eb5
-2011-12-20T20:54:54.304552Z
-19605
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4246
-
-autosave.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-f74c1ba83ff35888d3dd2e3521897db5
-2011-11-29T18:06:56.623486Z
-19476
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6828
-
-crop
-dir
-
-swfupload
-dir
-
-colorpicker.dev.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-a513cd35728deb3db7dcb9b75da0a62d
-2009-01-02T15:08:58.051426Z
-10291
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-29114
-
-imgareaselect
-dir
-
-admin-bar.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-87155dc1915f0d675ab45859c63c29eb
-2012-02-06T23:31:17.601186Z
-19847
-bumpbot
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5253
-
-quicktags.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-77a0503d00ffbf740d3572411c676724
-2012-04-12T17:58:20.814695Z
-20452
-bumpbot
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9872
-
-wp-lists.dev.js
-file
-
-
-
-
-2012-11-13T17:55:57.000000Z
-d33bfd9c3504e41dab0ade6fc6309085
-2012-11-05T17:47:55.371784Z
-22371
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-10921
-
-thickbox
-dir
-
-customize-loader.dev.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-96e5dedaddcfa2e0514f29bf1dd402c8
-2012-06-08T18:52:44.998172Z
-21029
-ryan
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4066
-
-wp-ajax-response.js
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-1da637535cdded009a8dde077e234430
-2009-11-19T10:24:14.490695Z
-12215
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2152
 

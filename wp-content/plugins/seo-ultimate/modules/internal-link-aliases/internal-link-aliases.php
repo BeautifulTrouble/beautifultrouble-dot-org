@@ -10,11 +10,14 @@ class SU_InternalLinkAliases extends SU_Module {
 	
 	function init() {
 		add_filter('su_custom_update_postmeta-aliases', array(&$this, 'save_post_aliases'), 10, 4);
-		add_filter('the_content', array(&$this, 'apply_aliases'), 9); //Run before wp_texturize etc.
-		add_action('template_redirect', array(&$this, 'redirect_aliases'), 0);
-		add_action('do_robotstxt', array(&$this, 'block_aliases_dir'));
-		add_action('su_do_robotstxt', array(&$this, 'block_aliases_dir'));
 		add_filter('su_get_setting-internal-link-aliases-alias_dir', array(&$this, 'filter_alias_dir'));
+		
+		if (suwp::permalink_mode() == SUWP_PRETTY_PERMALINKS) {
+			add_filter('the_content', array(&$this, 'apply_aliases'), 9); //Run before wp_texturize etc.
+			add_action('template_redirect', array(&$this, 'redirect_aliases'), 0);
+			add_action('do_robotstxt', array(&$this, 'block_aliases_dir'));
+			add_action('su_do_robotstxt', array(&$this, 'block_aliases_dir'));
+		}
 	}
 	
 	function admin_page_init() {
@@ -24,6 +27,14 @@ class SU_InternalLinkAliases extends SU_Module {
 	function get_module_title() { return __('Link Mask Generator', 'seo-ultimate'); }
 	
 	function get_settings_key() { return 'internal-link-aliases'; }
+	
+	function admin_page_contents() {
+		
+		if (suwp::permalink_mode() != SUWP_PRETTY_PERMALINKS)
+			$this->print_message('error', sprintf(__('Link Mask Generator won&#8217;t work with default or &#8220;pathinfo&#8221; permalinks. Please change your <a href="%s">permalink structure</a> to enable this module&#8217;s functionality.', 'seo-ultimate'), 'options-permalink.php'));
+		
+		$this->children_admin_page_tabs_form();
+	}
 	
 	function get_admin_page_tabs() {
 		return array(
@@ -86,7 +97,7 @@ class SU_InternalLinkAliases extends SU_Module {
 		$headers = array(
 			  'alias-from' => __('Actual URL', 'seo-ultimate')
 			, 'alias-to' => __('Alias URL', 'seo-ultimate')
-			, 'alias-posts' => __('Only on This Post&hellip; (optional)', 'seo-ultimate')
+			, 'alias-posts' => __('Only on This Post&hellip; <em>(optional)</em>', 'seo-ultimate')
 		);
 		if ($existing_item) $headers['alias-delete'] = __('Delete', 'seo-ultimate');
 		
@@ -111,8 +122,7 @@ class SU_InternalLinkAliases extends SU_Module {
 			$alias_dir = $this->get_setting('alias_dir', 'go', null, true);
 			$alias_url = get_bloginfo('url') . "/$alias_dir/$u_alias_to/";
 			
-			if ($existing_item)
-				$test_link = "<td class='su-alias-to-test'>[<a href='$alias_url' target='_blank'>" . __('Test', 'seo-ultimate') . "</a>]</td>";
+			$test_link = $existing_item ? "<td class='su-alias-to-test'>[<a href='$alias_url' target='_blank'>" . __('Test', 'seo-ultimate') . "</a>]</td>" : '';
 			
 			$cells = array(
 				  'alias-from' =>
@@ -141,7 +151,7 @@ class SU_InternalLinkAliases extends SU_Module {
 		$this->admin_form_table_start();
 		$this->textbox('alias_dir', __('Alias Directory', 'seo-ultimate'), $this->get_default_setting('alias_dir'));
 		if ($this->plugin->module_exists('link-nofollow'))
-			$this->checkbox('nofollow_aliased_links', __('Nofollow aliased links', 'seo-ultimate'), __('Link Attributes', 'seo-ultimate'));
+			$this->checkbox('nofollow_aliased_links', __('Nofollow masked links', 'seo-ultimate'), __('Link Attributes', 'seo-ultimate'));
 		$this->admin_form_table_end();
 	}
 	
@@ -306,5 +316,57 @@ class SU_InternalLinkAliases extends SU_Module {
 		_e('End Link Mask Generator output', 'seo-ultimate');
 		echo "\n\n";
 	}
+	
+	
+	function add_help_tabs($screen) {
+		
+		$screen->add_help_tab(array(
+			  'id' => 'su-internal-link-aliases-overview'
+			, 'title' => __('Overview', 'seo-ultimate')
+			, 'content' => __("
+<ul>
+	<li><strong>What it does:</strong> Link Mask Generator lets you replace ugly affiliate links with clean-looking link aliases that redirect to the real URLs. Link Mask Generator will scan your posts for the links to the actual URLs and replace them with links to the alias URLs. When a visitor clicks on the link to the alias URL, Link Mask Generator will redirect the visitor to the actual URL.</li>
+	<li><strong>Why it helps:</strong> This type of functionality is a staple in an affiliate marketer&#8217;s toolkit. Link Mask Generator helps you by doing it in an SEO-friendly way: by funneling your affiliate links through a directory (e.g. <code>/go/</code>) which is blocked with <code>robots.txt</code> rules, effectively sealing off link juice flow to your affiliate links.</li>
+	<li><strong>How to use it:</strong> Type in the real URL, type in an alias URL, and click &#8220;Save Changes&#8221; &mdash; that&#8217;s it!</li>
+</ul>
+", 'seo-ultimate')));
 
+		$screen->add_help_tab(array(
+			  'id' => 'su-internal-link-aliases-aliases'
+			, 'title' => __('Aliases Tab', 'seo-ultimate')
+			, 'content' => __("
+<p>To add a link alias, fill in the fields and then click &#8220;Save Changes.&#8221; Once you do so, you can edit your newly masked link or add another one.</p>
+
+<ul>
+	<li><strong>Actual URL</strong> &mdash; This box is where you put your affiliate URL (or other URL that you want to mask).</li>
+	<li><strong>Alias URL</strong> &mdash; This box is where you specify the new URL that will replace the actual one.</li>
+	<li><strong>Only on This Post</strong> &mdash; If you want to mask the actual URL across your entire site, leave this box blank. If you only want to mask the actual URL within an individual post, then type its name into this box and select it from the dropdown.</li>
+	<li><strong>Delete</strong> &mdash; To delete a link mask, tick its &#8220;Delete&#8221; checkbox and then click &#8220;Save Changes.&#8221;</li>
+</ul>
+", 'seo-ultimate')));
+		
+		$screen->add_help_tab(array(
+			  'id' => 'su-internal-link-aliases-settings'
+			, 'title' => __('Settings Tab', 'seo-ultimate')
+			, 'content' => __("
+<p>The following options are available on the Settings tab:</p>
+
+<ul>
+	<li><strong>Alias Directory</strong> &mdash; If you&#8217;d like, you can change the name of the directory that contains all your alias URLs. (Don&#8217;t worry, you won&#8217;t break any links by changing this.)</li>
+	<li><strong>Nofollow masked links</strong> &mdash; Checking this will add the <code>rel=&quot;nofollow&quot;</code> attribute to any masked links on your site. This makes it super-easy to nofollow all your affiliate links automatically.</li>
+</ul>
+", 'seo-ultimate')));
+		
+		$screen->add_help_tab(array(
+			  'id' => 'su-autolinks-faq'
+			, 'title' => __('FAQ', 'seo-ultimate')
+			, 'content' => __("
+<ul>
+	<li><strong>Can I automatically link a phrase on my site to one of my alias URLs?</strong><br />Yes. Once you&#8217;ve created your link mask, go to Deeplink Juggernaut&#8217;s &#8220;Content Links&#8221; section, type the contents of your link mask&#8217;s &#8220;Alias URL&#8221; field into Deeplink Juggernaut&#8217;s &#8220;Destination&#8221; field, and select your link mask from the dropdown that appears.</li>
+	<li><strong>Will Link Mask Generator still add the <code>robots.txt</code> rules if I&#8217;m using the File Editor module to create a custom <code>robots.txt</code>?</strong><br />Yes.</li>
+</ul>
+", 'seo-ultimate')));
+		
+	}
+	
 }

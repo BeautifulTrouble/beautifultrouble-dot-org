@@ -9,6 +9,8 @@ if (class_exists('SU_Module')) {
 
 class SU_ContentAutolinks extends SU_Module {
 	
+	var $legacy_sitewide_lpa_in_use = false;
+	
 	function get_parent_module() { return 'autolinks'; }
 	function get_child_order() { return 10; }
 	function is_independent_module() { return false; }
@@ -23,16 +25,18 @@ class SU_ContentAutolinks extends SU_Module {
 		add_filter('su_get_postmeta-autolinks', array(&$this, 'get_post_autolinks'), 10, 3);
 		add_filter('su_custom_update_postmeta-autolinks', array(&$this, 'save_post_autolinks'), 10, 4);
 		
-		if ($this->is_action('update'))
-			add_action('admin_footer', array(&$this, 'outdate_max_post_dates'));
-		add_action('save_post', array(&$this, 'outdate_max_post_dates'));
-		$this->cron('update_max_post_dates', 'hourly');
-		
 		add_filter('su_get_setting-autolinks-linkfree_tags', array(&$this, 'filter_linkfree_tags'));
+		add_filter('su_get_setting-autolinks-dampen_sitewide_lpa_value', array(&$this, 'filter_dampen_sitewide_lpa_value'));
 	}
 	
 	function filter_linkfree_tags($tags) {
 		return sustr::preg_filter('a-z0-9,', strtolower($tags));
+	}
+	
+	function filter_dampen_sitewide_lpa_value($value) {
+		$value = sustr::to_int($value);
+		if ($value > 100) $value = 100;
+		return $value;
 	}
 	
 	function autolink_content($content) {
@@ -101,8 +105,40 @@ class SU_ContentAutolinks extends SU_Module {
 			
 			if (strlen(trim($anchor)) && $to_id !== 0 && $to_id != 'http://') {
 				
-				if ($context == 'the_content' && ($this->get_setting('limit_sitewide_lpa', false) || ($this->get_setting('enable_link_limits', false) && $data['sitewide_lpa'] !== false)) && isset($data['max_post_date']) && $data['max_post_date'] !== false && $post && sudate::gmt_to_unix($post->post_date_gmt) > sudate::gmt_to_unix($data['max_post_date']))
-					continue;
+				//*** Begin sitewide links-per-anchor dampening effect ***
+				
+				//Get the dampening percentage for this link, but only if per-link values are enabled
+				if ($this->get_setting('enable_perlink_dampen_sitewide_lpa', false))
+					$link_dswlpa = $data['dampen_sitewide_lpa']; //Should be a number (0 to 100 inclusive) or bool(false)
+				else
+					$link_dswlpa = false;
+				
+				if (false === $link_dswlpa) { //We need the === operator here so we don't match a zero
+					
+					//There's no per-link value, so get the default, if a default value is specified and enabled
+					if ($this->get_setting('dampen_sitewide_lpa', false))
+						$link_dswlpa = $this->get_setting('dampen_sitewide_lpa_value', 0);
+					else
+						$link_dswlpa = false; //Indicates there's neither a per-link value or a default value available
+				}
+				
+				if (false !== $link_dswlpa) {
+					$link_dswlpa = absint($link_dswlpa);
+					if ($link_dswlpa == 0) break;
+					if ($link_dswlpa > 100) $link_dswlpa = 100;
+					
+					//Rather than generating a random number, we use the MD5s of the anchor and the post's ID.
+					//This gives us a quasi-random dampening effect that will turn out the same way for any given post each time the dampener is applied.
+					//We don't want a post's autolinks changing every time the post is viewed.
+					$md5starts = array_slice(array_unique(str_split(md5($anchor))), 0, intval(round(16*(1-($link_dswlpa / 100)))));
+					
+					//Only apply this autolink if the MD5 of the post's ID starts with one of the allowed characters
+					if (!in_array(substr(md5($id), 0, 1), $md5starts))
+						continue; //Don't apply autolink; continue to next item in the $links foreach loop
+				}
+				
+				//*** End sitewide LPA dampener ***
+				
 				
 				$type = $data['to_type'];
 				
@@ -201,79 +237,6 @@ class SU_ContentAutolinks extends SU_Module {
 		return $linkfree_tags;
 	}
 	
-	function outdate_max_post_dates() {
-		$links = $this->get_setting('links', array());
-		$new_links = array();
-		foreach ($links as $link_data) {
-			$link_data['max_post_date_outdated'] = true;
-			$new_links[] = $link_data;
-		}
-		$this->update_setting('links', $new_links);
-	}
-	
-	function update_max_post_dates() {
-		
-		$processing_limit = 1;
-		
-		$sitewide_lpa_enabled = $this->get_setting('limit_sitewide_lpa', false);
-		$sitewide_lpa = intval($this->get_setting('limit_sitewide_lpa_value', false));
-		$lpp = $this->get_setting('limit_lpp_value', 5); //No need to check limit_lpp, as _autolink_content already does this
-		
-		global $wpdb;
-		
-		$links = $this->get_setting('links', array());
-		suarr::vklrsort($links, 'anchor');
-		$links = array_values($links);
-		
-		$new_links = array();
-		
-		$i=0;
-		foreach ($links as $link_data) {
-			
-			if ($link_data['max_post_date_outdated'] && $processing_limit > 0) {
-				$link_data['max_post_date_outdated'] = false;
-			
-				if ($this->get_setting('enable_link_limits', false) && isset($link_data['sitewide_lpa']) && $link_data['sitewide_lpa'] !== false)
-					$link_sitewide_lpa = intval($link_data['sitewide_lpa']);
-				elseif ($sitewide_lpa_enabled)
-					$link_sitewide_lpa = $sitewide_lpa;
-				else
-					$link_sitewide_lpa = false;
-				
-				if ($link_sitewide_lpa !== false) {
-					$link_data['max_post_date'] = false;
-					
-					$posts_with_anchor = $wpdb->get_results( $wpdb->prepare(
-						  "SELECT ID, post_content, post_date_gmt FROM $wpdb->posts WHERE post_status = 'publish' AND LOWER(post_content) LIKE %s ORDER BY post_date_gmt ASC"
-						, '%' . like_escape(strtolower($link_data['anchor'])) . '%'
-					));
-					
-					$count = 0;
-					foreach ($posts_with_anchor as $post_with_anchor) {
-						
-						$total_count = 0; //Not used
-						$link_count = array();
-						$this->_autolink_content($post_with_anchor->ID, $post_with_anchor->post_content, $links, $lpp, $total_count, $link_count, 1, array(), 'update_max_post_dates');
-						
-						$count += $link_count[$i];
-						
-						if ($count >= $link_sitewide_lpa) {
-							$link_data['max_post_date'] = $post_with_anchor->post_date_gmt;
-							break;
-						}
-					}
-					
-					$processing_limit--;
-				}
-			}
-			
-			$new_links[] = $link_data;
-			$i++;
-		}
-		
-		$this->update_setting('links', $new_links);
-	}
-	
 	function admin_page_init() {
 		$this->jlsuggest_init();
 	}
@@ -316,10 +279,11 @@ class SU_ContentAutolinks extends SU_Module {
 				
 				$title  = stripslashes($_POST["link_{$i}_title"]);
 				
-				$sitewide_lpa = sustr::preg_filter('0-9', strval($_POST["link_{$i}_sitewide_lpa"]));
-				$sitewide_lpa = ($sitewide_lpa === '') ? false : intval($sitewide_lpa);
+				$dampen_sitewide_lpa = sustr::preg_filter('0-9', strval($_POST["link_{$i}_dampen_sitewide_lpa"]));
+				$dampen_sitewide_lpa = ($dampen_sitewide_lpa === '') ? false : intval($dampen_sitewide_lpa);
 				
-				$max_post_date = sustr::preg_filter('0-9-: ', strval($_POST["link_{$i}_max_post_date"]));
+				$sitewide_lpa = isset($_POST["link_{$i}_sitewide_lpa"]) ? sustr::preg_filter('0-9', strval($_POST["link_{$i}_sitewide_lpa"])) : '';
+				$sitewide_lpa = ($sitewide_lpa === '') ? false : intval($sitewide_lpa);
 				
 				$target = empty($_POST["link_{$i}_target"]) ? 'self' : 'blank';
 				
@@ -327,11 +291,23 @@ class SU_ContentAutolinks extends SU_Module {
 				$delete = isset($_POST["link_{$i}_delete"]) ? (intval($_POST["link_{$i}_delete"]) == 1) : false;
 				
 				if (!$delete && (strlen($anchor) || $to_id))
-					$links[] = compact('anchor', 'to_type', 'to_id', 'title', 'sitewide_lpa', 'nofollow', 'target', 'max_post_date');
+					$links[] = compact('anchor', 'to_type', 'to_id', 'title', 'dampen_sitewide_lpa', 'sitewide_lpa', 'nofollow', 'target');
 			}
 			$this->update_setting('links', $links);
 			
 			$num_links = count($links);
+		}
+		
+		$this->legacy_sitewide_lpa_in_use = false;
+		foreach ($links as $link) {
+			if (isset($link['sitewide_lpa']) && $link['sitewide_lpa']) {
+				$this->legacy_sitewide_lpa_in_use = true;
+				break;
+			}
+		}
+		
+		if ($this->legacy_sitewide_lpa_in_use) {
+			$this->print_message('warning', __('<strong>Functionality Change Notice:</strong> The &#8220;Site Cap&#8221; feature (which allowed you set a per-link sitewide quantity limit) has been replaced with a more efficient &#8220;Dampener&#8221; feature that lets you reduce autolinking frequency by a percentage. Although the Site Cap feature has been replaced, we retained the &#8220;Site Cap&#8221; column for you in the table below, since it looks like you&#8217;ve used the Site Cap feature in the past. We retained the column to help you remember which links used the old feature, so that you know to which links to apply the new &#8220;Dampener&#8221; feature. Once you&#8217;re done migrating the Site Cap values to Dampener percentages, just clear the &#8220;Site Cap&#8221; boxes to make those boxes (and this message) go away.', 'seo-ultimate'));
 		}
 		
 		$guid = substr(md5(time()), 0, 10);
@@ -347,15 +323,19 @@ class SU_ContentAutolinks extends SU_Module {
 	
 	function content_links_form($guid, $start_id = 0, $links, $delete_option = true) {
 		
-		$link_limits_enabled = $this->get_setting('enable_link_limits', false, null, true);
-		$global_sitewide_lpa = $this->get_setting('limit_sitewide_lpa', false, null, true) ? $this->get_setting('limit_sitewide_lpa_value', 50, null, true) : null;
+		//Get settings
+		$default_dampen_sitewide_lpa = $this->get_setting('dampen_sitewide_lpa', false, null, true)
+			? $this->get_setting('dampen_sitewide_lpa_value', 0, null, true)
+			: false;
 		
 		//Set headers
 		$headers = array();
 		$headers['link-anchor'] = __('Anchor Text', 'seo-ultimate');
 		$headers['link-to'] = __('Destination', 'seo-ultimate');
-		$headers['link-title'] = __('Title Attribute', 'seo-ultimate');
-		if ($link_limits_enabled)
+		$headers['link-title'] = __('Title Attribute <em>(optional)</em>', 'seo-ultimate');
+		if ($this->get_setting('enable_perlink_dampen_sitewide_lpa', false, null, true) || $this->legacy_sitewide_lpa_in_use)
+			$headers['link-dampen-sitewide-lpa'] = __('Dampener', 'seo-ultimate');
+		if ($this->legacy_sitewide_lpa_in_use)
 			$headers['link-sitewide-lpa'] = __('Site Cap', 'seo-ultimate');
 		$headers['link-options'] = __('Options', 'seo-ultimate');
 		if ($delete_option)
@@ -372,8 +352,8 @@ class SU_ContentAutolinks extends SU_Module {
 			if (!isset($link['to_id']))			$link['to_id'] = '';
 			if (!isset($link['to_type']))		$link['to_type'] = 'url';
 			if (!isset($link['title']))			$link['title'] = '';
+			if (!isset($link['dampen_sitewide_lpa']))	$link['dampen_sitewide_lpa'] = '';
 			if (!isset($link['sitewide_lpa']))	$link['sitewide_lpa'] = '';
-			if (!isset($link['max_post_date']))	$link['max_post_date'] = '';
 			if (!isset($link['nofollow']))		$link['nofollow'] = false;
 			if (!isset($link['target']))		$link['target'] = '';
 			
@@ -385,13 +365,15 @@ class SU_ContentAutolinks extends SU_Module {
 			$cells['link-to'] = $this->get_jlsuggest_box("link_{$i}_to", $jlsuggest_box_params);
 			$cells['link-title'] = $this->get_input_element('textbox', "link_{$i}_title", $link['title']);
 			
-			if ($link_limits_enabled) {
-				$cells['link-sitewide-lpa'] = $this->get_input_element('textbox', "link_{$i}_sitewide_lpa", $link['sitewide_lpa'], $global_sitewide_lpa);
+			if ($this->get_setting('enable_perlink_dampen_sitewide_lpa', false, null, true) || $this->legacy_sitewide_lpa_in_use) {
+				$cells['link-dampen-sitewide-lpa'] = $this->get_input_element('textbox', "link_{$i}_dampen_sitewide_lpa", $link['dampen_sitewide_lpa'], $default_dampen_sitewide_lpa) . '%';
 				$cells['link-options'] = '';
-			} else
-				$cells['link-options'] = $this->get_input_element('hidden', "link_{$i}_sitewide_lpa", $link['sitewide_lpa']);
+			} else {
+				$cells['link-options'] = $this->get_input_element('hidden', "link_{$i}_dampen_sitewide_lpa", $link['dampen_sitewide_lpa'], $default_dampen_sitewide_lpa);
+			}
 			
-			$cells['link-options'] .= $this->get_input_element('hidden', "link_{$i}_max_post_date", $link['max_post_date']);
+			if ($this->legacy_sitewide_lpa_in_use)
+				$cells['link-sitewide-lpa'] = $this->get_input_element('textbox', "link_{$i}_sitewide_lpa", $link['sitewide_lpa']);
 			
 			$cells['link-options'] .=
 					 $this->get_input_element('checkbox', "link_{$i}_nofollow", $link['nofollow'], str_replace(' ', '&nbsp;', __('Nofollow', 'seo-ultimate')))

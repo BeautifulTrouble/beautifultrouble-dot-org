@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/wpeditimage
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wpeditimage
+http://core.svn.wordpress.org
 
 
 
-2012-09-05T01:55:55.383098Z
-21760
-nacin
+2012-12-06T04:50:31.479089Z
+23090
+azaozz
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-11-13T17:55:57.000000Z
-8b4d90c058f4f224c9c8f304d67e2dd5
-2012-09-05T01:55:55.383098Z
-21760
-nacin
+2013-02-06T00:42:23.000000Z
+5f51f325fb3e0b8e1737690dc96e3c9d
+2012-11-27T02:58:50.109753Z
+22860
+bumpbot
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-5078
+5874
 
 editor_plugin_src.js
 file
@@ -66,10 +66,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-23acb7d19b52e8fafaa84c3a342cfe7c
-2012-07-16T19:57:03.898517Z
-21274
+2013-02-06T00:42:23.000000Z
+653d4dc2d7c3dbdd9ad409ae3f4c4817
+2012-11-27T01:31:51.287076Z
+22857
 azaozz
 has-props
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-7895
+9137
 
 css
 dir
@@ -103,10 +103,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-bc3a66e8d3e0de62ab83d95bd04f4dae
-2012-05-18T23:09:59.974634Z
-20831
+2013-02-06T00:42:23.000000Z
+ff7bbb3f7519ab7cc2a9f7fb2a39ea33
+2012-12-06T04:50:31.479089Z
+23090
 azaozz
 has-props
 
@@ -129,7 +129,7 @@ has-props
 
 
 
-11851
+11989
 
 img
 dir

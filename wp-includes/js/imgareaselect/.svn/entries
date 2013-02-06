@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/imgareaselect
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/imgareaselect
+http://core.svn.wordpress.org
 
 
 
-2012-09-05T01:55:55.383098Z
-21760
-nacin
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 
 
 
@@ -26,17 +26,17 @@ nacin
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-border-anim-v.gif
+jquery.imgareaselect.min.js
 file
 
 
 
 
-2012-08-28T16:32:54.000000Z
-a786bb7ed6d1cdc6146f086a22d0342d
-2009-09-10T22:07:33.651462Z
-11911
-azaozz
+2013-02-06T00:42:26.000000Z
+6bc47583ef2dfc50dda136132e465b5f
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 has-props
 
 
@@ -58,7 +58,41 @@ has-props
 
 
 
-219
+9628
+
+border-anim-v.gif
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+20c97a21993cf137ead9fdbecbc42aa8
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+178
 
 border-anim-h.gif
 file
@@ -66,11 +100,11 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-50da31b23fdd3f5585dffd363c310456
-2009-09-10T22:07:33.651462Z
-11911
-azaozz
+2013-02-06T00:42:26.000000Z
+5ac3c42cc86e745a5e36b67b4c70a134
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -92,41 +126,7 @@ has-props
 
 
 
-219
-
-jquery.imgareaselect.dev.js
-file
-
-
-
-
-2012-08-28T16:32:54.000000Z
-7958066469b0a567962a6355d9c5f817
-2012-07-25T22:42:05.803807Z
-21346
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-36846
+178
 
 imgareaselect.css
 file
@@ -168,10 +168,10 @@ file
 
 
 
-2012-11-13T17:55:57.000000Z
-6bc47583ef2dfc50dda136132e465b5f
-2012-09-05T01:55:55.383098Z
-21760
+2013-02-06T00:42:26.000000Z
+7958066469b0a567962a6355d9c5f817
+2012-08-23T00:04:18.101198Z
+21592
 nacin
 has-props
 
@@ -194,5 +194,5 @@ has-props
 
 
 
-9628
+36846
 

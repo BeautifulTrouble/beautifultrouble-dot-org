@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/wpfullscreen
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wpfullscreen
+http://core.svn.wordpress.org
 
 
 
-2012-05-16T07:58:24.962823Z
-20805
-bumpbot
+2012-11-21T22:31:55.432126Z
+22798
+duck_
 
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-9e3439b2b5d41797f67e6c4f4d0f17a3
-2012-05-16T07:58:24.962823Z
-20805
+2013-02-06T00:42:24.000000Z
+24b30b63b51ccaea07d4f8c13f058032
+2012-09-24T03:24:33.153813Z
+21964
 bumpbot
 has-props
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-2706
+3030
 
 editor_plugin_src.js
 file
@@ -66,10 +66,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-9518d57cd71cab0e2e1b792c8f2e7afb
-2012-05-16T07:02:55.566901Z
-20804
+2013-02-06T00:42:24.000000Z
+393aaad342ffa662acffe4b7ebd77fe1
+2012-09-24T03:08:31.855151Z
+21963
 azaozz
 has-props
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-4953
+5362
 
 css
 dir

@@ -79,16 +79,29 @@ class SU_WebmasterVerify extends SU_Module {
 
 	function add_help_tabs($screen) {
 		
-		$screen->add_help_tab(array(
-			  'id' => 'su-webmaster-verify-overview'
-			, 'title' => $this->has_enabled_parent() ? __('Webmaster Verification Assistant', 'seo-ultimate') : __('Overview', 'seo-ultimate')
-			, 'content' => __("
+		$overview = __("
 <ul>
 	<li><strong>What it does:</strong> Webmaster Verification Assistant lets you enter in verification codes for the webmaster portals of leading search engines.</li>
 	<li><strong>Why it helps:</strong> Webmaster Verification Assistant assists you in obtaining access to webmaster portals, which can provide you with valuable SEO tools.</li>
 	<li><strong>How to use it:</strong> Use a search engine to locate the webmaster portal you&#8217;re interested in, sign up at the portal, and then obtain a verification code. Once you have the code, you can paste it in here, click Save Changes, then return to the portal to verify that you own the site. Once that&#8217;s done, you'll have access to the portal&#8217;s SEO tools.</li>
 </ul>
-", 'seo-ultimate')));
+", 'seo-ultimate');
+		
+		if ($this->has_enabled_parent()) {
+			$screen->add_help_tab(array(
+			  'id' => 'su-webmaster-verify-help'
+			, 'title' => __('Webmaster Verification Assistant', 'seo-ultimate')
+			, 'content' => 
+				'<h3>' . __('Overview', 'seo-ultimate') . '</h3>' . $overview
+			));
+		} else {
+			
+			$screen->add_help_tab(array(
+				  'id' => 'su-webmaster-verify-overview'
+				, 'title' => __('Overview', 'seo-ultimate')
+				, 'content' => $overview));
+			
+		}
 	}
 
 }

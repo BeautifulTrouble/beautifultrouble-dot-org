@@ -1,7 +1,7 @@
 <?php
 /*
 JLFunctions String Class
-Copyright (c)2009-2011 John Lamansky
+Copyright (c)2009-2012 John Lamansky
 */
 
 class sustr {
@@ -16,7 +16,7 @@ class sustr {
 	function startswith( $str, $sub ) {
 	   return ( substr( $str, 0, strlen( $sub ) ) === $sub );
 	}
-
+	
 	/**
 	 * Returns whether or not a given string ends with a given substring.
 	 * 
@@ -28,6 +28,14 @@ class sustr {
 	   return ( substr( $str, strlen( $str ) - strlen( $sub ) ) === $sub );
 	}
 	
+	/**
+	 * Makes a string start with a given string if it doesn't already.
+	 * 
+	 * @param string $str The string that should start with $start
+	 * @param string $start
+	 * 
+	 * @return string The string with $start at the beginning
+	 */
 	function startwith( $str, $start ) {
 		if (!sustr::startswith($str, $start))
 			return $start.$str;
@@ -35,6 +43,14 @@ class sustr {
 			return $str;
 	}
 	
+	/**
+	 * Makes a string end with a given string if it doesn't already.
+	 * 
+	 * @param string $str The string that should end with $end
+	 * @param string $end
+	 * 
+	 * @return string The string with $end at the end
+	 */
 	function endwith( $str, $end ) {
 		if (!sustr::endswith($str, $end))
 			return $str.$end;
@@ -42,22 +58,37 @@ class sustr {
 			return $str;
 	}
 	
+	/**
+	 * Checks whether or not $str has $sub in it somewhere.
+	 * 
+	 * @param string $str
+	 * @param string $sub
+	 * @return bool
+	 */
 	function has($str, $sub) {
 		return (strpos($str, $sub) !== false);
 	}
 	
+	/**
+	 * Case-insensitively checks whether or not $str has $sub in it somewhere.
+	 * 
+	 * @param string $str
+	 * @param string $sub
+	 * @return bool
+	 */
 	function ihas($str, $sub) {
 		$str = strtolower($str);
 		$sub = strtolower($sub);
 		return (strpos($str, $sub) !== false);
 	}
-
+	
 	/**
 	 * Truncates a string if it is longer than a given length.
 	 * 
 	 * @param string $str The string to possibly truncate.
 	 * @param int $maxlen The desired maximum length of the string.
-	 * @param str $truncate The string that should be added to the end of a truncated string.
+	 * @param string $truncate The string that should be added to the end of a truncated string.
+	 * @return string
 	 */
 	function truncate( $str, $maxlen, $truncate = '...', $maintain_words=false ) {
 		
@@ -70,15 +101,23 @@ class sustr {
 		return $str;
 	}
 	
-	function truncate_at( $str, $end ) {
-		if ($endpos = strpos($str, $end))
-			return substr($str, 0, $endpos);
-		else
+	/**
+	 * Returns the contents of $str up to, but not including, the first instance of $sub.
+	 * 
+	 * @param string $str
+	 * @param string $sub
+	 * @return string
+	 */
+	function upto($str, $sub) {
+		$end = strpos($str, $sub);
+		if ($end === false)
 			return $str;
+		else
+			return substr($str, 0, $end);
 	}
 	
 	/**
-	 * Joins strings into a natural-language list.
+	 * Joins strings into a natural-language list (e.g. "A and B" or "A, B, and C")
 	 * Can be internationalized with gettext or the su_lang_implode filter.
 	 * 
 	 * @param array $items The strings (or objects with $var child strings) to join.
@@ -119,7 +158,7 @@ class sustr {
 	/**
 	 * If the given string ends with the given suffix, the suffix is removed.
 	 * 
-	 * @param string $str The string of which the provided suffix should be trimmed if located.
+	 * @param string $str The string from which the provided suffix should be trimmed if located.
 	 * @param string $totrim The suffix that should be trimmed if found.
 	 * @return string The possibly-trimmed string.
 	 */
@@ -130,6 +169,13 @@ class sustr {
 		return $str;
 	}
 	
+	/**
+	 * If the given string ends with the given suffix or any portion thereof, the suffix or suffix portion is removed.
+	 * 
+	 * @param string $str The string from which the provided suffix should be trimmed if located.
+	 * @param string $totrim The suffix that should be trimmed if it or a portion of it is found.
+	 * @return string The possibly-trimmed string.
+	 */
 	function rtrim_substr($str, $totrim) {
 		for ($i = strlen($totrim); $i > 0; $i--) {
 			$totrimsub = substr($totrim, 0, $i);
@@ -140,6 +186,13 @@ class sustr {
 		return $str;
 	}
 	
+	/**
+	 * If the given string begins with the given prefix, the prefix is removed.
+	 * 
+	 * @param string $str The string of which the provided prefix should be trimmed if located.
+	 * @param string $totrim The prefix that should be trimmed if found.
+	 * @return string The possibly-trimmed string.
+	 */
 	function ltrim_str($str, $totrim) {
 		if (strlen($str) > strlen($totrim) && sustr::startswith($str, $totrim))
 			return substr($str, strlen($totrim));
@@ -156,26 +209,13 @@ class sustr {
 		return $results;
 	}
 	
-	function unique_words($str) {
-		$str = explode(' ', $str);
-		$str = array_unique($str);
-		$str = implode(' ', $str);
-		return $str;
-	}
-	
-	function remove_double_words($str) {
-		$words = explode(' ', $str);
-		foreach ($words as $word) $str = str_replace("$word $word", $word, $str);
-		return $str;
+	function to_int($str) {
+		return intval(sustr::preg_filter('0-9', strval($str)));
 	}
 	
 	function preg_filter($filter, $str) {
 		$filter = str_replace('/', '\\/', $filter);
 		return preg_replace("/[^{$filter}]/", '', $str);
-	}
-	
-	function to_int($str) {
-		return intval(sustr::preg_filter('0-9', strval($str)));
 	}
 	
 	function preg_escape($str, $delim='%') {
@@ -206,18 +246,6 @@ class sustr {
 		$search_regex = "/\b($search)\b(?!(?:(?!<\/?(?:$exclude_tags).*?>).)*<\/(?:$exclude_tags).*?>)(?![^<>]*>)/imsU";
 		
 		return preg_replace($search_regex, $replace, $subject, $limit, $count);
-	}
-	
-	function upto($str, $sub) {
-		$end = strpos($str, $sub);
-		if ($end === false)
-			return $str;
-		else
-			return substr($str, 0, $end);
-	}
-	
-	function str2func($varval) {
-		return create_function('', 'return "'.addcslashes((string)$varval, '"').'";');
 	}
 	
 	function tclcwords($str) {

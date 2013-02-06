@@ -1,14 +1,14 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/wpgallery/img
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wpgallery/img
+http://core.svn.wordpress.org
 
 
 
-2012-02-24T23:46:04.710889Z
-19990
+2012-11-14T23:21:59.699312Z
+22586
 azaozz
 has-props
 
@@ -26,17 +26,17 @@ has-props
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-delete.png
+edit-2x.png
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
-748b2a72b7e2aeec7e32f3f1846b5ff9
-2008-11-23T09:15:39.102800Z
-9850
-westi
+2013-02-06T00:42:24.000000Z
+55706c78fac741908045b68213df637f
+2012-11-14T23:21:59.699312Z
+22586
+azaozz
 has-props
 
 
@@ -58,7 +58,41 @@ has-props
 
 
 
-1638
+4924
+
+delete.png
+file
+
+
+
+
+2013-02-06T00:42:24.000000Z
+6de18e0045263b20400e284eb2731939
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1386
 
 t.gif
 file
@@ -100,11 +134,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-9554f2aa129d2d01e247a73669bb832d
-2008-11-23T09:15:39.102800Z
-9850
-westi
+2013-02-06T00:42:24.000000Z
+42a45087214d7c886a308fd83406d60d
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -126,5 +160,39 @@ has-props
 
 
 
-1799
+1590
+
+delete-2x.png
+file
+
+
+
+
+2013-02-06T00:42:24.000000Z
+fc29fcdb63500be0c6096b4621840f24
+2012-11-14T23:21:59.699312Z
+22586
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5064
 

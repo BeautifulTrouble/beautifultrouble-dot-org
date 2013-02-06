@@ -39,6 +39,10 @@ div.su-module .form-table .jls_text_dest {
 	width: 325px;
 }
 
+div.su-module .form-table .subfield {
+	width: auto;
+}
+
 div.su-module .form-table td div.field {
 	padding-bottom: 1em;
 }

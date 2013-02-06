@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/jquery/ui
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/jquery/ui
+http://core.svn.wordpress.org
 
 
 
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-039f3a81ac2f843432776ee10243b89a
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+2b09e33474c5641d8b63eaf28e870a66
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -58,19 +58,19 @@ has-props
 
 
 
-2803
+2864
 
-jquery.effects.fade.min.js
+jquery.ui.effect-fade.min.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
-573626f9df72877a8255b4b7cdbaa6d2
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+36eebb647c0021b081027d95a4681a08
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -92,7 +92,75 @@ has-props
 
 
 
-465
+367
+
+jquery.ui.effect-explode.min.js
+file
+
+
+
+
+2013-02-06T00:42:23.000000Z
+ffec1f546e53676923f4a05ca20790a8
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1027
+
+jquery.ui.effect.min.js
+file
+
+
+
+
+2013-02-06T00:42:23.000000Z
+14927dd90ee28ed46043547c56638549
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12970
 
 jquery.ui.accordion.min.js
 file
@@ -100,11 +168,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-45b90c748b46dead2768518a6b0709c7
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+75ac483f270380c9a0a4e8eb5b6f3dd0
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -126,41 +194,7 @@ has-props
 
 
 
-9118
-
-jquery.effects.explode.min.js
-file
-
-
-
-
-2012-08-28T16:32:53.000000Z
-8ac1dfce432d3647b3ff1ebe8031ce6f
-2012-04-30T21:53:09.424203Z
-20660
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1530
+10454
 
 jquery.ui.position.min.js
 file
@@ -168,11 +202,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-61d86a8b3e7d4fcefbac74a1fe050f74
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+dd2ebb2a9d3b4d3e6fc95142fe607e34
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -194,7 +228,7 @@ has-props
 
 
 
-4040
+6645
 
 jquery.ui.sortable.min.js
 file
@@ -202,11 +236,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-24834266535ff3a5db2919a4dfa3a3b6
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+4a6b8c51735314ad669b4a73eab51726
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -228,7 +262,7 @@ has-props
 
 
 
-23823
+23582
 
 jquery.ui.datepicker.min.js
 file
@@ -236,11 +270,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-2a31d31b165267910cc15a22bcbf14ca
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+e36a086123756412293231aead17f24f
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -262,19 +296,19 @@ has-props
 
 
 
-37099
+37629
 
-jquery.effects.transfer.min.js
+jquery.ui.effect-transfer.min.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
-577573b3f3586e9f239a82b4066993fd
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+0df5a22bfac5e648139f4a3cabfb39b6
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -296,7 +330,143 @@ has-props
 
 
 
-698
+705
+
+jquery.ui.effect-scale.min.js
+file
+
+
+
+
+2013-02-06T00:42:23.000000Z
+ebae30aac3140e8c77dff67bfe0aba5d
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4391
+
+jquery.ui.effect-clip.min.js
+file
+
+
+
+
+2013-02-06T00:42:23.000000Z
+c566a56516cfa9b0f5f0af9515edd008
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+770
+
+jquery.ui.effect-blind.min.js
+file
+
+
+
+
+2013-02-06T00:42:23.000000Z
+77bc3e84b750f288c68d789dfb28144f
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+994
+
+jquery.ui.effect-shake.min.js
+file
+
+
+
+
+2013-02-06T00:42:23.000000Z
+4b5ef540c8212613d8bc80c90386b522
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+952
 
 jquery.ui.core.min.js
 file
@@ -304,11 +474,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-c57795d684b34461c7ab90c951c7b7ee
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+f8d56d3c5539aa7af2a7d5c3b8769fad
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -330,7 +500,7 @@ has-props
 
 
 
-4295
+4693
 
 jquery.ui.tabs.min.js
 file
@@ -338,11 +508,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-b2f62945320bd46f2e119cec08b9996a
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+490d0168365536638cb63e97b69494b1
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -364,7 +534,7 @@ has-props
 
 
 
-11463
+18572
 
 jquery.ui.progressbar.min.js
 file
@@ -372,11 +542,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-ebaf9ac23de07b1e2edf1cfdd9d24859
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+e90017815cdefec31a27eef26a1df6f7
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -398,19 +568,19 @@ has-props
 
 
 
-1699
+1589
 
-jquery.effects.clip.min.js
+jquery.ui.tooltip.min.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
-bdc3cf35b8dbf9c95533a7041b7997a7
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+a0c1fb100694e7e398afd0a3517e8273
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -432,19 +602,19 @@ has-props
 
 
 
-961
+4774
 
-jquery.effects.scale.min.js
+jquery.ui.effect-slide.min.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
-40ca173ecd15c47c39fc04864a4ad9f5
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+d1d2843cdbebec3ec262539e8f482655
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -466,19 +636,19 @@ has-props
 
 
 
-3740
+813
 
-jquery.effects.blind.min.js
+jquery.ui.effect-drop.min.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
-10b40853994ade768b452861bb0896c4
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+82eab8c3912d259f462a229b7b4f2081
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -500,75 +670,7 @@ has-props
 
 
 
-777
-
-jquery.effects.core.min.js
-file
-
-
-
-
-2012-08-28T16:32:53.000000Z
-6c97a90bce71c640c4a78753a4c589ec
-2012-04-30T21:53:09.424203Z
-20660
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-10621
-
-jquery.effects.shake.min.js
-file
-
-
-
-
-2012-08-28T16:32:53.000000Z
-0f7eda61dce38226f959fe4128118b94
-2012-04-30T21:53:09.424203Z
-20660
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1037
+849
 
 jquery.ui.dialog.min.js
 file
@@ -576,11 +678,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-a360a66b85be756d2fefd8b1ed4c4105
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+29610778c84d9db4858c8aafe9315229
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -602,7 +704,7 @@ has-props
 
 
 
-11226
+11264
 
 jquery.ui.autocomplete.min.js
 file
@@ -610,11 +712,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-cc93470f358beca9abfc5b0429a6147b
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+697382ab550d87badbc9e4f8ba547b60
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -636,19 +738,19 @@ has-props
 
 
 
-9038
+7723
 
-jquery.effects.slide.min.js
+jquery.ui.effect-highlight.min.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
-f4fdf642ec7e0cab73ce242ef9789025
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+da7641af95d688d998c837bec535ea88
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -670,7 +772,7 @@ has-props
 
 
 
-955
+636
 
 jquery.ui.selectable.min.js
 file
@@ -678,11 +780,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-2a4ae2945b0ad112bc7453746e73fef0
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+5498a8027d4314a6b7aecc07400c15f8
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -704,19 +806,19 @@ has-props
 
 
 
-4163
+4079
 
-jquery.effects.drop.min.js
+jquery.ui.menu.min.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
-c78aae2ed48fe5c20e6f301d2121b506
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+3b0fa982a618f8885056b51d41076d0c
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -738,19 +840,19 @@ has-props
 
 
 
-965
+9225
 
-jquery.ui.droppable.min.js
+jquery.ui.effect-bounce.min.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
-07b2b6e067cae96848f1e017015e707e
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+575070d688f2df8beb11595b36a5406d
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -772,7 +874,41 @@ has-props
 
 
 
-5889
+1097
+
+jquery.ui.effect-pulsate.min.js
+file
+
+
+
+
+2013-02-06T00:42:23.000000Z
+5ac5c5ca652b881fe4073440719f9102
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+647
 
 jquery.ui.draggable.min.js
 file
@@ -780,11 +916,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-5bf4c3ca95229659f8d7b0cf7d8cc1d3
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+8c3ca109cbf3a09e50c356b6a1826c05
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -806,19 +942,19 @@ has-props
 
 
 
-18736
+18614
 
-jquery.effects.highlight.min.js
+jquery.ui.droppable.min.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
-42313e472b34be79275d6006b8530d33
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+0d6eef31f7bd7215fc554b1455435efc
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -840,7 +976,7 @@ has-props
 
 
 
-796
+5881
 
 jquery.ui.button.min.js
 file
@@ -848,11 +984,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-7ad0bc035cc7e8e29092f06b28c80220
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+841ae1782456e0e034e446bc34c18a82
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -874,19 +1010,19 @@ has-props
 
 
 
-6953
+7222
 
-jquery.effects.bounce.min.js
+jquery.ui.effect-fold.min.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
-abd026273ad30b0122973bd085e4d9be
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+8074c41343e8123a8567de8af452fc72
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -908,19 +1044,19 @@ has-props
 
 
 
-1586
+882
 
-jquery.effects.pulsate.min.js
+jquery.ui.spinner.min.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
-cf94d2a6a7f254ae983a859b96b22e48
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+7a5e4203edf87c7e35b57c63bcc34903
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -942,7 +1078,7 @@ has-props
 
 
 
-718
+6643
 
 jquery.ui.resizable.min.js
 file
@@ -950,11 +1086,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-26865f17edea007af640cfb6abc38d7a
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+ea9fbda91a34e85949e727926665f4af
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -976,7 +1112,7 @@ has-props
 
 
 
-17462
+17325
 
 jquery.ui.slider.min.js
 file
@@ -984,11 +1120,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-9d26e2b237072855950bf775167fc9ea
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+38d250e04af3d561f01156273f08d578
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -1010,7 +1146,7 @@ has-props
 
 
 
-9821
+9913
 
 jquery.ui.widget.min.js
 file
@@ -1018,11 +1154,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-7348be0976e007a8c2c02771b5e56ffa
-2012-04-30T21:53:09.424203Z
-20660
-nacin
+2013-02-06T00:42:23.000000Z
+a5626b56956b854edc4435086b81e642
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
 has-props
 
 
@@ -1044,39 +1180,5 @@ has-props
 
 
 
-3189
-
-jquery.effects.fold.min.js
-file
-
-
-
-
-2012-08-28T16:32:53.000000Z
-f69b3b79f4bcf7469073043135cf6307
-2012-04-30T21:53:09.424203Z
-20660
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1034
+6759
 

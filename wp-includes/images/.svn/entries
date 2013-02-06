@@ -1,14 +1,14 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/images
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/images
+http://core.svn.wordpress.org
 
 
 
-2012-06-26T02:01:07.551141Z
-21118
+2012-12-04T16:18:53.945302Z
+23023
 nacin
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-5703fed2bbf0319df846ad18b980b1a1
-2011-11-14T19:22:44.343646Z
-19274
-koopersmith
+2013-02-06T00:42:29.000000Z
+779ffc62e3ce872a4cabb2c35bbb14f9
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -58,7 +58,10 @@ has-props
 
 
 
-959
+793
+
+crystal
+dir
 
 admin-bar-sprite.png
 file
@@ -66,10 +69,112 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-063f8eaa151e3f80e037a977a70c9d82
-2011-12-09T19:20:47.299524Z
-19578
+2013-02-06T00:42:29.000000Z
+62834b32c7fff8e341ed4b77292a4555
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2470
+
+rss-2x.png
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+c71759615ba051c1e6f597fd726a9d11
+2012-11-07T20:54:08.779035Z
+22439
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1306
+
+toggle-arrow-2x.png
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+46cae1ca5cf883f4c91243447215ef11
+2012-11-07T20:54:08.779035Z
+22439
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+354
+
+wpspin.gif
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+67f40a30bfa13743e5c4e86bfa467a90
+2012-12-04T16:18:53.945302Z
+23023
 nacin
 has-props
 
@@ -92,10 +197,7 @@ has-props
 
 
 
-3999
-
-crystal
-dir
+2193
 
 down_arrow.gif
 file
@@ -103,10 +205,10 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
+
 7bbbc00f708a791dc4e674f9e21aa2ca
-2011-08-03T10:19:00.749737Z
-18498
+2012-11-22T19:08:22.200566Z
+22829
 azaozz
 has-props
 
@@ -131,17 +233,17 @@ has-props
 
 60
 
-rss.png
+icon-pointer-flag-2x.png
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
-0ee254a56334189fd471afeec067186f
-2007-04-24T01:05:17.395407Z
-5297
-rob1n
+2013-02-06T00:42:29.000000Z
+a9e5e1a632f1b3b962e4c426d55acc72
+2012-09-27T02:12:54.098838Z
+22031
+azaozz
 has-props
 
 
@@ -163,7 +265,41 @@ has-props
 
 
 
-3341
+1369
+
+rss.png
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+a5b05bbf28f294b02efd942a4e5ab806
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+608
 
 blank.gif
 file
@@ -171,11 +307,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
+
 6d22e4f2d2057c6e8d6fab098e76e80f
-2008-05-04T18:05:20.604601Z
-7886
-ryan
+2012-11-22T19:08:22.200566Z
+22829
+azaozz
 has-props
 
 
@@ -205,10 +341,112 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-e5064769584f17a701131db269226700
-2011-08-03T10:19:00.749737Z
-18498
+2013-02-06T00:42:29.000000Z
+8e9022f98e990584452838f85d77c928
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+333
+
+wpicons-2x.png
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+e7792025943f6c6f219e566bf2f79aa9
+2012-11-21T15:34:24.861577Z
+22766
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+125467
+
+uploader-icons-2x.png
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+ef35cb53941bef570b89317c4fba357c
+2012-11-30T02:18:07.573426Z
+22940
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3915
+
+xit-2x.gif
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+d9a81fb5a5e21e6d74a5e81ce37b421e
+2012-09-27T02:12:54.098838Z
+22031
 azaozz
 has-props
 
@@ -231,7 +469,7 @@ has-props
 
 
 
-3226
+823
 
 icon-pointer-flag.png
 file
@@ -267,16 +505,16 @@ has-props
 
 783
 
-wpicons.png
+wpmini-blue-2x.png
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
-968a7e190df87105abfa07fef2d3fe61
-2011-08-03T23:56:21.839243Z
-18503
+2013-02-06T00:42:29.000000Z
+13e7ab1ac2f6c77f177c849576bfdf31
+2012-11-07T20:54:08.779035Z
+22439
 azaozz
 has-props
 
@@ -299,22 +537,22 @@ has-props
 
 
 
-21059
+2087
 
 smilies
 dir
 
-upload.png
+wpicons.png
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
-64f033ed3bb680dba682829fe46ac34a
-2010-03-01T11:57:03.548953Z
-13528
-dd32
+2013-02-06T00:42:29.000000Z
+90dd81a3ac5697aca79a34a9b1bfa8fa
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -336,7 +574,109 @@ has-props
 
 
 
-814
+16089
+
+arrow-pointer-blue-2x.png
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+431a3e3d7139b7a17b7663c02246445d
+2012-11-20T02:09:37.078376Z
+22698
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+52574
+
+uploader-icons.png
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+707b402719c2a935cc7106b1b60bffee
+2012-11-30T02:18:07.573426Z
+22940
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1593
+
+admin-bar-sprite-2x.png
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+aae29dcdbdab4a1fbe6696c9f6b82cf0
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4122
 
 xit.gif
 file
@@ -344,11 +684,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
+
 a815dc7ad6c4175e95bc48f3ab6832e9
-2011-12-06T02:39:53.762700Z
-19557
-nacin
+2012-11-22T19:08:22.200566Z
+22829
+azaozz
 has-props
 
 
@@ -372,40 +712,6 @@ has-props
 
 182
 
-admin-bar-sprite-2x.png
-file
-
-
-
-
-2012-08-28T16:32:55.000000Z
-f33596ef4918f4902d084f1ccf3261f7
-2012-05-16T23:55:38.446154Z
-20814
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4160
-
 wlw
 dir
 
@@ -415,11 +721,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-46b52530984eff532be3372596c66386
-2010-09-27T20:26:36.174907Z
-15671
-ryan
+2013-02-06T00:42:29.000000Z
+e8d9359697813d9df251808ec4b58b71
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -441,5 +747,73 @@ has-props
 
 
 
-958
+751
+
+wpspin-2x.gif
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+450b52bd860e667a0fa3c00b82b58a18
+2012-12-04T16:18:53.945302Z
+23023
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9097
+
+down_arrow-2x.gif
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+e52496d9eecd561f7c6d964acb0a5a73
+2012-11-17T06:38:25.845297Z
+22626
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+83
 

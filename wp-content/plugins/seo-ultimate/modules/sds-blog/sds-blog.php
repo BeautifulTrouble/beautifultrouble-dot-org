@@ -63,7 +63,7 @@ class SU_SdsBlog extends SU_Module {
 	function truncate_at_ellipsis($content) {
 		$end = '[...]';
 		if (sustr::has($content, $end)) {
-			$content = sustr::truncate_at($content, $end);
+			$content = sustr::upto($content, $end);
 			$content = sustr::rtrim_substr($content, $end);
 		}
 		return sustr::endwith($content, '[&hellip;]');

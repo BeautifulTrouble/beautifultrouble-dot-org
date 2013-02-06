@@ -1,14 +1,14 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/tabfocus
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/tabfocus
+http://core.svn.wordpress.org
 
 
 
-2012-02-18T06:43:47.830148Z
-19945
+2012-08-18T23:24:27.211302Z
+21545
 azaozz
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-dccf6d391c252e2571f2ed4b15fba889
-2011-09-09T20:08:40.327340Z
-18660
+2013-02-06T00:42:24.000000Z
+d3e5ef7a1a203516af0d8fdf94952fd2
+2012-08-18T23:24:27.211302Z
+21545
 azaozz
 has-props
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-1654
+1666
 
 editor_plugin_src.js
 file
@@ -66,10 +66,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-8cf50fd7b506d6ee501f58d19c68eedf
-2012-02-18T06:43:47.830148Z
-19945
+2013-02-06T00:42:24.000000Z
+12889ccf8caf1d466859ba949f52fbca
+2012-08-18T23:24:27.211302Z
+21545
 azaozz
 has-props
 
@@ -92,5 +92,5 @@ has-props
 
 
 
-2923
+2935
 

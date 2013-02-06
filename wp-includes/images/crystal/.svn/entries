@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/images/crystal
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/images/crystal
+http://core.svn.wordpress.org
 
 
 
-2008-03-02T21:34:25.197724Z
-7131
-ryan
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-cc537b760f40258679df957cbe061a0e
-2008-02-29T06:49:05.194427Z
-7099
-ryan
+2013-02-06T00:42:28.000000Z
+534872ce342d27be12c21a24a3c960ea
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-2808
+2680
 
 license.txt
 file
@@ -100,11 +100,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-e6d7abf70fe3653e0e7208da55b3dbdc
-2008-02-29T06:49:05.194427Z
-7099
-ryan
+2013-02-06T00:42:28.000000Z
+5d9bd2b7c1a6de4cd60db260705a0d4a
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-2305
+2230
 
 archive.png
 file
@@ -134,11 +134,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-93a5da9e9cb5553d570a271c5b6e98fc
-2008-02-29T06:49:05.194427Z
-7099
-ryan
+2013-02-06T00:42:28.000000Z
+fbaa067099eb73e2dcecb3f29033e0fa
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -160,7 +160,7 @@ has-props
 
 
 
-3066
+2897
 
 audio.png
 file
@@ -168,11 +168,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-b9daa96636b39b9c94475ee4f2686e11
-2008-02-29T06:49:05.194427Z
-7099
-ryan
+2013-02-06T00:42:28.000000Z
+6b1b3153b950cb7d88b0790445892365
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -194,7 +194,7 @@ has-props
 
 
 
-2647
+2595
 
 default.png
 file
@@ -202,11 +202,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-d510e9e0ac0d9dd2af7a846029c69e2b
-2008-02-29T06:49:05.194427Z
-7099
-ryan
+2013-02-06T00:42:28.000000Z
+fe5f6af8b942a9ed1d5754b1e0e5ea90
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -228,7 +228,7 @@ has-props
 
 
 
-638
+490
 
 text.png
 file
@@ -236,11 +236,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-17c0cf58506a41596a42a7a28030e951
-2008-02-29T06:49:05.194427Z
-7099
-ryan
+2013-02-06T00:42:28.000000Z
+681932d1f666acaa97582ecb22309011
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -262,7 +262,7 @@ has-props
 
 
 
-999
+707
 
 video.png
 file
@@ -270,11 +270,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-c8caf92649ddfbd515b97a455f91d113
-2008-02-29T06:49:05.194427Z
-7099
-ryan
+2013-02-06T00:42:28.000000Z
+94010edbfd8e6ca589daa4b83bf53d0b
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -296,7 +296,7 @@ has-props
 
 
 
-2372
+1339
 
 spreadsheet.png
 file
@@ -304,11 +304,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-b3954af9d01078755e8d2e8e819bb31a
-2008-02-29T06:49:05.194427Z
-7099
-ryan
+2013-02-06T00:42:28.000000Z
+b0b5df1b422cc9300b05604a7a71b06c
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -330,7 +330,7 @@ has-props
 
 
 
-2725
+2680
 
 code.png
 file
@@ -338,11 +338,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-7943ed0e713a89c87601daec06ba272d
-2008-02-29T06:49:05.194427Z
-7099
-ryan
+2013-02-06T00:42:28.000000Z
+1460ef31b2cffaef1cb012f531ae391f
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -364,5 +364,5 @@ has-props
 
 
 
-2133
+1604
 

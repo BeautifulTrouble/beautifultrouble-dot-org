@@ -22,29 +22,56 @@ class SU_OpenGraph extends SU_Module {
 			, 'default_post_twitter_card' => 'summary'
 			, 'default_page_twitter_card' => 'summary'
 			, 'default_attachment_twitter_card' => 'photo'
+			, 'enable_og_article_author' => true
 		);
 	}
 	
 	function init() {
-		add_filter('language_attributes', array(&$this, 'html_tag_xmlns_attrs'), 1000);
+		add_filter('language_attributes', array(&$this, 'html_tag_attrs'), 1000);
 		add_action('su_head', array(&$this, 'head_tag_output'));
 		add_filter('su_get_setting-opengraph-twitter_site_handle', array(&$this, 'sanitize_twitter_handle'));
 		add_filter('user_contactmethods', array(&$this, 'add_twitter_field'));
 	}
 	
-	function html_tag_xmlns_attrs($attrs) {
+	function html_tag_attrs($attrs) {
 		$this->namespaces_declared = true;
-		return $attrs . ' ' . implode(' ', $this->get_xmlns_attrs());
+		$namespace_urls = $this->get_namespace_urls();
+		
+		$doctype = $this->get_setting('doctype', '');
+		switch ($doctype) {
+			case 'xhtml':
+				foreach ($namespace_urls as $namespace => $url) {
+					$namespace = su_esc_attr($namespace);
+					$url = su_esc_attr($url);
+					$attrs .= " xmlns:$namespace=\"$url\"";
+				}
+				break;
+			case 'html5':
+			default:
+				$attrs .= ' prefix="';
+				$whitespace = '';
+				foreach ($namespace_urls as $namespace => $url) {
+					$namespace = su_esc_attr($namespace);
+					$url = su_esc_attr($url);
+					$attrs .= "$whitespace$namespace: $url";
+					$whitespace = ' ';
+				}
+				$attrs .= '"';
+				break;
+		}
+		
+		return $attrs;
 	}
 	
-	function get_xmlns_attrs() {
+	function get_namespace_urls() {
 		return array(
-			  'og' => 'xmlns:og="http://ogp.me/ns#"'
-			, 'fb' => 'xmlns:fb="http://ogp.me/ns/fb#"'
+			  'og' => 'http://ogp.me/ns#'
+			, 'fb' => 'http://ogp.me/ns/fb#'
 		);
 	}
 	
 	function head_tag_output() {
+		global $wp_query;
 		
 		$tags = $twitter_tags = array();
 		
@@ -65,14 +92,13 @@ class SU_OpenGraph extends SU_Module {
 				$tags['og:description'] = get_bloginfo('description');
 			
 			//URL
-			$tags['og:url'] = get_bloginfo('url');
+			$tags['og:url'] = suwp::get_blog_home_url();
 			
 			//Image
 			$tags['og:image'] = $this->get_setting('home_og_image');
 			
 		} elseif (is_singular()) {
 			
-			global $wp_query;
 			$post = $wp_query->get_queried_object();
 			
 			if (is_object($post)) {
@@ -101,7 +127,7 @@ class SU_OpenGraph extends SU_Module {
 				if (!$tags['og:image']) {
 					if ('attachment' == $post->post_type)
 						$tags['og:image'] = wp_get_attachment_url();
-					elseif ($thumbnail_id = get_post_thumbnail_id($post->ID))
+					elseif (current_theme_supports('post-thumbnails') && $thumbnail_id = get_post_thumbnail_id($post->ID))
 						$tags['og:image'] = wp_get_attachment_url($thumbnail_id);
 				}
 				
@@ -111,7 +137,10 @@ class SU_OpenGraph extends SU_Module {
 						
 						$tags['article:published_time'] = get_the_date('Y-m-d');
 						$tags['article:modified_time'] = get_the_modified_date('Y-m-d');
-						$tags['article:author'] = get_author_posts_url($post->post_author);
+						
+						//Authorship generally doesn't apply to pages
+						if (!is_page() && $this->get_setting('enable_og_article_author', true))
+							$tags['article:author'] = get_author_posts_url($post->post_author);
 						
 						$single_category = (count(get_the_category()) == 1);
 						
@@ -140,7 +169,6 @@ class SU_OpenGraph extends SU_Module {
 			}
 		} elseif (is_author()) {
 			
-			global $wp_query;
 			$author = $wp_query->get_queried_object();
 			
 			if (is_object($author)) {
@@ -193,22 +221,50 @@ class SU_OpenGraph extends SU_Module {
 		$twitter_tags['twitter:site'] = $this->get_setting('twitter_site_handle');
 		
 		//Output meta tags
-		$xmlns_attrs = $this->namespaces_declared ? array() : $this->get_xmlns_attrs();
+		$namespace_urls = $this->namespaces_declared ? array() : $this->get_namespace_urls();
+		$doctype = $this->get_setting('doctype', '');
 		
-		$output_formats = array(
-			  '<meta property="%1$s" content="%2$s" %3$s/>' => $tags
-			, '<meta name="%1$s" content="%2$s" />' => $twitter_tags
-		);
+		switch ($doctype) {
+			case 'xhtml':
+				$output_formats = array('<meta%3$s name="%1$s" content="%2$s" />' => array_merge($tags, $twitter_tags));
+				break;
+			case 'html5':
+				$output_formats = array('<meta%3$s property="%1$s" content="%2$s">' => array_merge($tags, $twitter_tags));
+				break;
+			default:
+				$output_formats = array(
+					  '<meta%3$s property="%1$s" content="%2$s" />' => $tags
+					, '<meta%3$s name="%1$s" content="%2$s" />' => $twitter_tags
+				);
+				break;
+		}
+		
 		foreach ($output_formats as $html_format => $format_tags) {
 			foreach ($format_tags as $property => $values) {
 				foreach ((array)$values as $value) {
 					$property = su_esc_attr($property);
 					$value  = su_esc_attr($value);
 					if (strlen(trim($property)) && strlen(trim($value))) {
-						$xmlns = sustr::upto($property, ':');
-						$xmlns_attr = empty($xmlns_attrs[$xmlns]) ? '' : $xmlns_attrs[$xmlns] . ' ';
+						
+						$namespace_attr = '';
+						$namespace = sustr::upto($property, ':');
+						if (!empty($namespace_urls[$namespace])) {
+							$a_namespace = su_esc_attr($namespace);
+							$a_namespace_url = su_esc_attr($namespace_urls[$namespace]);
+						
+							switch ($doctype) {
+								case 'xhtml':
+									$namespace_attr = " xmlns:$a_namespace=\"$a_namespace_url\"";
+									break;
+								case 'html5':
+								default:
+									$namespace_attr = " prefix=\"$a_namespace: $a_namespace_url\"";
+									break;
+							}
+						}
+						
 						echo "\t";
-						printf($html_format, $property, $value, $xmlns_attr);
+						printf($html_format, $property, $value, $namespace_attr);
 						echo "\n";
 					}
 				}
@@ -260,6 +316,7 @@ class SU_OpenGraph extends SU_Module {
 			  array(
 				  array('title' => __('Sitewide Values', 'seo-ultimate'), 'id' => 'su-sitewide-values', 'callback' => 'global_tab')
 				, array('title' => __('Default Values', 'seo-ultimate'), 'id' => 'su-default-values', 'callback' => 'defaults_tab')
+				, array('title' => __('Settings', 'seo-ultimate'), 'id' => 'su-settings', 'callback' => 'settings_tab')
 				, array('title' => __('Blog Homepage', 'seo-ultimate'), 'id' => 'su-homepage', 'callback' => 'home_tab')
 				)
 			, $postmeta_edit_tabs
@@ -275,7 +332,7 @@ class SU_OpenGraph extends SU_Module {
 	}
 	
 	function defaults_tab() {
-		$posttypes = suwp::get_post_type_objects();
+		$posttypes = get_post_types(array('public' => true), 'objects');
 		
 		$this->admin_subheader(__('Default Types', 'seo-ultimate'));
 		$this->admin_wftable_start(array(
@@ -303,6 +360,17 @@ class SU_OpenGraph extends SU_Module {
 		
 		$this->jlsuggest_box('default_og_image', __('Default Image', 'seo-ultimate'), 'types=posttype_attachment&post_mime_type=image/*');
 		
+		$this->admin_form_table_end();
+	}
+	
+	function settings_tab() {
+		$this->admin_form_table_start();
+		$this->checkbox('enable_og_article_author', __('Include author data for posts', 'seo-ultimate'), __('Open Graph Data', 'seo-ultimate'));
+		$this->radiobuttons('doctype', array(
+			  '' => __('Use the non-validating code prescribed by Open Graph and Twitter', 'seo-ultimate')
+			, 'xhtml' => __('Alter the code to validate as XHTML', 'seo-ultimate')
+			, 'html5' => __('Alter the code to validate as HTML5', 'seo-ultimate')
+		), __('HTML Validation', 'seo-ultimate'));
 		$this->admin_form_table_end();
 	}
 	
@@ -343,7 +411,7 @@ class SU_OpenGraph extends SU_Module {
 	
 	function get_jlsuggest_box($name, $value, $params='', $placeholder='') {
 		
-		if (empty($value) && $this->jlsuggest_box_post_id && $thumbnail_id = get_post_thumbnail_id($this->jlsuggest_box_post_id)) {
+		if (empty($value) && $this->jlsuggest_box_post_id && current_theme_supports('post-thumbnails') && $thumbnail_id = get_post_thumbnail_id($this->jlsuggest_box_post_id)) {
 			$selected_post = get_post($thumbnail_id);
 			$placeholder = sprintf(__('Featured Image: %s', 'seo-ultimate'), $selected_post->post_title);
 		}
@@ -402,6 +470,21 @@ class SU_OpenGraph extends SU_Module {
 	function add_twitter_field( $contactmethods ) {
 		$contactmethods['twitter'] = __('Twitter Handle', 'seo-ultimate');
 		return $contactmethods;
+	}
+	
+	function add_help_tabs($screen) {
+		
+		$screen->add_help_tab(array(
+			  'id' => 'su-opengraph-overview'
+			, 'title' => __('Overview', 'seo-ultimate')
+			, 'content' => __("
+<ul>
+	<li><strong>What it does:</strong> Open Graph Integrator makes it easy for you to convey information about your site to social networks like Facebook, Twitter, and Google+.</li>
+	<li><strong>Why it helps:</strong> By providing this Open Graph data, you can customize how these social networks will present your site when people share it with their followers.</li>
+	<li><strong>How to use it:</strong> The &#8220;Sitewide Values&#8221; tab lets you specify data that applies to your entire site. The &#8220;Default Values&#8221; tab lets you specify default data for your posts, pages, etc. The bulk editor tabs let you override those defaults on individual posts and pages. If the authors on your site fill in the &#8220;Twitter Handle&#8221; field which Open Graph Integrator adds to the <a href='profile.php'>profile editor</a>, Open Graph Integrator will communicate that information to Twitter as well.</li>
+</ul>
+", 'seo-ultimate')));
+		
 	}
 }
 

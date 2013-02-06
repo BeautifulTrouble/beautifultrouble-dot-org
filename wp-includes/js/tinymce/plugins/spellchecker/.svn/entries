@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/spellchecker
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/spellchecker
+http://core.svn.wordpress.org
 
 
 
-2012-02-18T22:06:17.834755Z
-19951
-azaozz
+2012-11-29T02:45:16.678117Z
+22917
+nacin
 
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-50a890efd0b000bebf8f59be18b4756e
-2012-02-18T22:06:17.834755Z
-19951
+2013-02-06T00:42:24.000000Z
+750c7ce89a12d3feb9581048b191b306
+2012-07-07T16:22:53.967176Z
+21228
 azaozz
 has-props
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-6894
+6876
 
 changelog.txt
 file
@@ -103,10 +103,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-4a1ccb08ad7a42be05124e2db14dc558
-2012-02-18T06:43:47.830148Z
-19945
+2013-02-06T00:42:24.000000Z
+dfd90ec4732fbd422523c8264d9c6618
+2012-07-07T16:22:53.967176Z
+21228
 azaozz
 has-props
 
@@ -129,7 +129,7 @@ has-props
 
 
 
-11620
+11602
 
 css
 dir

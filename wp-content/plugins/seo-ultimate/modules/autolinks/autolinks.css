@@ -25,6 +25,14 @@
 	width: 15em;
 }
 
+#su-autolinks table.widefat td.su-link-dampen-sitewide-lpa {
+	width: 5em;
+}
+
+#su-autolinks table.widefat td.su-link-dampen-sitewide-lpa input.textbox {
+	width: 4em;
+}
+
 #su-autolinks table.widefat td.su-link-sitewide-lpa {
 	width: 5em;
 }

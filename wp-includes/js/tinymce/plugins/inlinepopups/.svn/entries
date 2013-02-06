@@ -1,14 +1,14 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/inlinepopups
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/inlinepopups
+http://core.svn.wordpress.org
 
 
 
-2012-03-15T00:47:06.680461Z
-20177
+2012-12-06T04:50:31.479089Z
+23090
 azaozz
 
 
@@ -66,10 +66,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-987df7a126c458f5394eb711c27f5e4d
-2012-03-15T00:47:06.680461Z
-20177
+2013-02-06T00:42:24.000000Z
+6deeea3f92e1992d587c08dc51cfd091
+2012-12-06T04:50:31.479089Z
+23090
 azaozz
 has-props
 

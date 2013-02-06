@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-admin/user
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-admin/user
+http://core.svn.wordpress.org
 
 
 
-2012-03-15T13:20:00.937850Z
-20190
-nacin
+2012-11-21T22:31:55.432126Z
+22798
+duck_
 
 
 
@@ -32,12 +32,12 @@ file
 
 
 
-2012-08-28T16:32:58.000000Z
+2013-02-06T00:42:43.000000Z
 5ef86888e11f2b72ab611b155e8857ba
-2012-01-06T18:08:45.858373Z
-19700
-nacin
-
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
 
 
 
@@ -66,12 +66,12 @@ file
 
 
 
-2012-08-28T16:32:58.000000Z
+2013-02-06T00:42:43.000000Z
 09a71568df2d2bf25aa58f68e39b7f93
-2012-01-06T18:08:45.858373Z
-19700
-nacin
-
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
 
 
 
@@ -168,12 +168,12 @@ file
 
 
 
-2012-08-28T16:32:58.000000Z
+2013-02-06T00:42:43.000000Z
 706a8898264178f2b4815c1706f3e593
-2012-01-06T18:08:45.858373Z
-19700
-nacin
-
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
 
 
 

@@ -65,7 +65,7 @@ class acf_Textarea extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'textarea',
 					'name'	=>	'fields['.$key.'][default_value]',
 					'value'	=>	$field['default_value'],
@@ -80,7 +80,7 @@ class acf_Textarea extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'select',
 					'name'	=>	'fields['.$key.'][formatting]',
 					'value'	=>	$field['formatting'],
@@ -109,20 +109,34 @@ class acf_Textarea extends acf_Field
 	function get_value_for_api($post_id, $field)
 	{
 		// vars
-		$format = isset($field['formatting']) ? $field['formatting'] : 'br';
+		$defaults = array(
+			'formatting'	=>	'br',
+		);
 		
+		$field = array_merge($defaults, $field);
+		
+		
+		// load value
 		$value = parent::get_value($post_id, $field);
 		
-		if($format == 'none')
+		
+		// validate type
+		if( !is_string($value) )
+		{
+			return $value;
+		}
+		
+		
+		if($field['formatting'] == 'none')
 		{
 			$value = htmlspecialchars($value, ENT_QUOTES);
 		}
-		elseif($format == 'html')
+		elseif($field['formatting'] == 'html')
 		{
 			//$value = html_entity_decode($value);
 			//$value = nl2br($value);
 		}
-		elseif($format == 'br')
+		elseif($field['formatting'] == 'br')
 		{
 			$value = htmlspecialchars($value, ENT_QUOTES);
 			$value = nl2br($value);

@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-content/themes/twentyten/images
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-content/themes/twentyten/images
+http://core.svn.wordpress.org
 
 
 
-2010-02-23T18:23:26.995060Z
-13333
-iammattthomas
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 
 
 
@@ -35,11 +35,11 @@ file
 
 
 
-2012-11-13T17:59:08.000000Z
-3ead5afa19537170bb980924397b70d6
-2010-02-07T16:16:26.819022Z
-13012
-ryan
+2013-02-06T00:42:32.000000Z
+f51375d00e7d0a70c801c6256d432d3b
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -61,5 +61,5 @@ has-props
 
 
 
-849
+794
 

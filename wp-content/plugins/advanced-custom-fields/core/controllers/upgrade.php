@@ -414,9 +414,7 @@ class acf_upgrade
 						if(!isset($field['key'])) $field['key'] = 'field_' . $field['id'];
 						
 						// update field
-						update_post_meta($field['post_id'], $field['key'], $field);
-						//$this->update_field($field['post_id'], $field);
-						
+						$this->parent->update_field( $field['post_id'], $field);
 						
 				 		// create field name (field_rand)
 				 		//$message .= print_r($field, true) . '<br /><br />';
@@ -760,7 +758,7 @@ class acf_upgrade
 				
 				if( $option_rows )
 				{
-					foreach( $option_rows as $k => &$row)
+					foreach( $option_rows as $k => $row)
 					{
 						preg_match('/user_([0-9]+)_(.*)/', $row['option_name'], $matches);
 						

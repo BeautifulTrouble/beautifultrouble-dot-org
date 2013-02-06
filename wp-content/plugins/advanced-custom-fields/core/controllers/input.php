@@ -7,7 +7,6 @@
 *  @since 3.2.6
 *  @created: 23/06/12
 */
-
  
 class acf_input
 {
@@ -62,6 +61,7 @@ class acf_input
 		// edit attachment hooks (used by image / file / gallery)
 		add_action('admin_head-media.php', array($this, 'admin_head_media'));
 		add_action('admin_head-upload.php', array($this, 'admin_head_upload'));
+		
 	}
 	
 	
@@ -123,7 +123,14 @@ class acf_input
 		// validate page
 		if( ! $this->validate_page() ) return;
 		
+		
 		do_action('acf_print_scripts-input');
+		
+		
+		// only "edit post" input pages need the ajax
+		wp_enqueue_script(array(
+			'acf-input-ajax',	
+		));
 	}
 	
 	
@@ -170,30 +177,29 @@ class acf_input
 		
 		
 		// vars
-		$post_id = 0;
-		
-		if( $post )
-		{
-			$post_id = $post->ID;
-		}
+		$post_id = $post ? $post->ID : 0;
 		
 			
-		// get style for page
-		$metabox_ids = $this->parent->get_input_metabox_ids( array( 'post_id' => $post_id, 'post_type' => $typenow ), false);
-		$style = isset($metabox_ids[0]) ? $this->get_input_style($metabox_ids[0]) : '';
-		echo '<style type="text/css" id="acf_style" >' .$style . '</style>';
+		// get field groups
+		$filter = array( 
+			'post_id' => $post_id, 
+			'post_type' => $typenow 
+		);
+		$metabox_ids = array();
+		$metabox_ids = apply_filters( 'acf/location/match_field_groups', $metabox_ids, $filter );
 		
-
+		
+		// get style of first field group
+		$style = '';
+		if( isset($metabox_ids[0]) )
+		{
+			$style = $this->get_input_style( $metabox_ids[0] );
+		}
+		
+		
 		// Style
-		echo '<link rel="stylesheet" type="text/css" href="' . $this->parent->dir . '/css/global.css?ver=' . $this->parent->version . '" />';
-		echo '<link rel="stylesheet" type="text/css" href="' . $this->parent->dir . '/css/input.css?ver=' . $this->parent->version . '" />';
+		echo '<style type="text/css" id="acf_style" >' . $style . '</style>';
 		echo '<style type="text/css">.acf_postbox, .postbox[id*="acf_"] { display: none; }</style>';
-		
-		
-		// Javascript
-		echo '<script type="text/javascript" src="' . $this->parent->dir . '/js/input-actions.js?ver=' . $this->parent->version . '" ></script>';
-		echo '<script type="text/javascript" src="' . $this->parent->dir . '/js/input-ajax.js?ver=' . $this->parent->version . '" ></script>';
-		echo '<script type="text/javascript">acf.post_id = ' . $post_id . ';</script>';
 		
 		
 		// add user js + css
@@ -201,19 +207,21 @@ class acf_input
 		
 		
 		// get acf's
-		$acfs = $this->parent->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
+		
 		
 		if($acfs)
 		{
 			foreach($acfs as $acf)
 			{
 				// hide / show
-				$show = in_array($acf['id'], $metabox_ids) ? "true" : "false";
+				$show = in_array($acf['id'], $metabox_ids) ? 1 : 0;
 				$priority = 'high';
 				if( $acf['options']['position'] == 'side' )
 				{
 					$priority = 'core';
 				}
+				
 				
 				// add meta box
 				add_meta_box(
@@ -244,7 +252,7 @@ class acf_input
 	function get_input_style($acf_id = false)
 	{
 		// vars
-		$acfs = $this->parent->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
 		$html = "";
 		
 		// find acf
@@ -352,34 +360,32 @@ class acf_input
 	function meta_box_input($post, $args)
 	{
 		// vars
-		$fields = isset($args['args']['fields']) ? $args['args']['fields'] : false ;	
-		$options = isset($args['args']['options']) ? $args['args']['options'] : false;
-		$show = isset($args['args']['show']) ? $args['args']['show'] : "false";
-		$post_id = isset($args['args']['post_id']) ? $args['args']['post_id'] : false;
-		
-
-		// defaults
-		if(!$options)
-		{
-			$options = array(
+		$options = array(
+			'fields' => array(),
+			'options' => array(
 				'layout'	=>	'default'
-			);
-		}
+			),
+			'show' => 0,
+			'post_id' => 0,
+		);
+		$options = array_merge( $options, $args['args'] );
 		
-		if($fields)
+		
+		// needs fields
+		if( $options['fields'] )
 		{
 			echo '<input type="hidden" name="save_input" value="true" />';
-			echo '<div class="options" data-layout="' . $options['layout'] . '" data-show="' . $show . '" style="display:none"></div>';
+			echo '<div class="options" data-layout="' . $options['options']['layout'] . '" data-show="' . $options['show'] . '" style="display:none"></div>';
 			
-			if($show == "false")
+			if( $options['show'] )
 			{
-				// don't create fields
-				echo '<div class="acf-replace-with-fields"><div class="acf-loading"></div></div>';
+				$this->parent->render_fields_for_input( $options['fields'], $options['post_id'] );
 			}
 			else
 			{
-				$this->parent->render_fields_for_input($fields, $post_id);
+				echo '<div class="acf-replace-with-fields"><div class="acf-loading"></div></div>';
 			}
+			
 		}
 	}
 	
@@ -412,7 +418,7 @@ class acf_input
 		}
 		
 		// get acfs
-		$acfs = $this->parent->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
 		if( $acfs )
 		{
 			foreach( $acfs as $acf )
@@ -531,25 +537,66 @@ class acf_input
 	
 	function acf_head_input()
 	{
+		// global
+		global $wp_version, $post;
+		
+				
+		// vars
+		$toolbars = apply_filters( 'acf/fields/wysiwyg/toolbars', array() );
+		$post_id = 0;
+		if( $post )
+		{
+			$post_id = $post->ID;
+		}
 		
 		?>
 <script type="text/javascript">
 
-// admin url
+// vars
+acf.post_id = <?php echo $post_id; ?>;
+acf.nonce = "<?php echo wp_create_nonce( 'acf_nonce' ); ?>";
 acf.admin_url = "<?php echo admin_url(); ?>";
+acf.wp_version = "<?php echo $wp_version; ?>";
 	
-// messages
-acf.text.validation_error = "<?php _e("Validation Failed. One or more fields below are required.",'acf'); ?>";
-acf.text.file_tb_title_add = "<?php _e("Add File to Field",'acf'); ?>";
-acf.text.file_tb_title_edit = "<?php _e("Edit File",'acf'); ?>";
-acf.text.image_tb_title_add = "<?php _e("Add Image to Field",'acf'); ?>";
-acf.text.image_tb_title_edit = "<?php _e("Edit Image",'acf'); ?>";
-acf.text.relationship_max_alert = "<?php _e("Maximum values reached ( {max} values )",'acf'); ?>";
-acf.text.gallery_tb_title_add = "<?php _e("Add Image to Gallery",'acf'); ?>";
-acf.text.gallery_tb_title_edit = "<?php _e("Edit Image",'acf'); ?>";
+	
+// text
+acf.validation.text.error = "<?php _e("Validation Failed. One or more fields below are required.",'acf'); ?>";
 
+acf.fields.relationship.max = "<?php _e("Maximum values reached ( {max} values )",'acf'); ?>";
+
+acf.fields.image.text.title_add = "Select Image";
+acf.fields.image.text.title_edit = "Edit Image";
+acf.fields.image.text.button_add = "Select Image";
+
+acf.fields.file.text.title_add = "Select File";
+acf.fields.file.text.title_edit = "Edit File";
+acf.fields.file.text.button_add = "Select File";
+
+acf.fields.gallery.title_add = "<?php _e("Add Image to Gallery",'acf'); ?>";
+acf.fields.gallery.title_edit = "<?php _e("Edit Image",'acf'); ?>";
+
+
+// WYSIWYG
+<?php 
+
+if( is_array($toolbars) ):
+	foreach( $toolbars as $label => $rows ):
+		$name = sanitize_title( $label );
+		$name = str_replace('-', '_', $name);
+	?>
+acf.fields.wysiwyg.toolbars.<?php echo $name; ?> = {};
+		<?php if( is_array($rows) ): 
+			foreach( $rows as $k => $v ): ?>
+acf.fields.wysiwyg.toolbars.<?php echo $name; ?>.theme_advanced_buttons<?php echo $k; ?> = '<?php echo implode(',', $v); ?>';
+			<?php endforeach; 
+		endif;
+	endforeach;
+endif;
+
+?>
 </script>
 		<?php
+		
 		
 		foreach($this->parent->fields as $field)
 		{
@@ -569,9 +616,6 @@ acf.text.gallery_tb_title_edit = "<?php _e("Edit Image",'acf'); ?>";
 	
 	function acf_print_scripts_input()
 	{
-		
-		wp_register_script('acf-datepicker', $this->parent->dir . '/core/fields/date_picker/jquery.ui.datepicker.js', false, $this->parent->version);
-    
 		wp_enqueue_script(array(
 			'jquery',
 			'jquery-ui-core',
@@ -580,6 +624,7 @@ acf.text.gallery_tb_title_edit = "<?php _e("Edit Image",'acf'); ?>";
 			'farbtastic',
 			'thickbox',
 			'media-upload',
+			'acf-input',
 			'acf-datepicker',	
 		));
 
@@ -587,6 +632,13 @@ acf.text.gallery_tb_title_edit = "<?php _e("Edit Image",'acf'); ?>";
 		foreach($this->parent->fields as $field)
 		{
 			$field->admin_print_scripts();
+		}
+		
+		
+		// 3.5 media gallery
+		if( function_exists('wp_enqueue_media') && !did_action( 'wp_enqueue_media' ))
+		{
+			wp_enqueue_media();
 		}
 	}
 	
@@ -602,11 +654,11 @@ acf.text.gallery_tb_title_edit = "<?php _e("Edit Image",'acf'); ?>";
 	
 	function acf_print_styles_input()
 	{
-		wp_register_style('acf-datepicker', $this->parent->dir . '/core/fields/date_picker/style.date_picker.css', false, $this->parent->version);
-		
 		wp_enqueue_style(array(
 			'thickbox',
 			'farbtastic',
+			'acf-global',
+			'acf-input',
 			'acf-datepicker',	
 		));
 		
@@ -649,17 +701,12 @@ acf.text.gallery_tb_title_edit = "<?php _e("Edit Image",'acf'); ?>";
 		?>
 <script type="text/javascript">
 
-	// reset global
-	self.parent.acf_edit_attachment = null;
-	
 	// remove tb
 	self.parent.tb_remove();
 	
 </script>
 </head>
 <body>
-	
-	<div class="updated" id="message"><p><?php _e("Attachment updated",'acf'); ?>.</div>
 	
 </body>
 </html
@@ -701,6 +748,7 @@ acf.text.gallery_tb_title_edit = "<?php _e("Edit Image",'acf'); ?>";
 #adminmenuback,
 #adminmenuwrap,
 #footer,
+#wpfooter,
 #media-single-form > .submit:first-child,
 #media-single-form td.savesend,
 .add-new-h2 {

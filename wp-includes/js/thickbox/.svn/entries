@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/thickbox
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/thickbox
+http://core.svn.wordpress.org
 
 
 
-2011-11-26T17:49:50.987237Z
-19456
-azaozz
+2012-11-17T06:50:08.723598Z
+22629
+nacin
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-6e63d8058c61e28953cc285de8d5c37d
-2008-08-20T21:42:31.827796Z
-8691
-ryan
+2013-02-06T00:42:26.000000Z
+189217c8b067ef86add757922c2f75b4
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-207
+94
 
 loadingAnimation.gif
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-c33734a1bf58bec328ffa27872e96ae1
-2008-01-09T08:14:29.685148Z
-6579
-ryan
+2013-02-06T00:42:26.000000Z
+ce2268030dd2151b63cdf4ffc2f626ba
+2012-11-05T21:00:15.590450Z
+22378
+nacin
 has-props
 
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-5886
+15238
 
 thickbox.css
 file
@@ -100,11 +100,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-1b31826535373c66aeeac3fc82008024
-2011-07-29T08:59:35.725094Z
-18482
-azaozz
+2013-02-06T00:42:26.000000Z
+b1dcb13562cf13a93d4ddf10a7c6d787
+2012-11-17T06:50:08.723598Z
+22629
+nacin
 has-props
 
 
@@ -126,7 +126,41 @@ has-props
 
 
 
-3870
+4114
+
+tb-close-2x.png
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+ae65a3a2de0cb24ecef3065a1618fdac
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+412
 
 thickbox.js
 file
@@ -134,11 +168,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-e0bb5a88a4b79d0b41e6dfdca1952fa2
-2011-11-26T17:49:50.987237Z
-19456
-azaozz
+2013-02-06T00:42:26.000000Z
+ee978eee2af4a9d56478d4d953c33731
+2012-11-05T21:00:15.590450Z
+22378
+nacin
 has-props
 
 
@@ -160,7 +194,7 @@ has-props
 
 
 
-12501
+12417
 
 tb-close.png
 file
@@ -168,11 +202,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-7c088dbddefa7aff7a860580a98f3e30
-2008-01-09T08:14:29.685148Z
-6579
-ryan
+2013-02-06T00:42:26.000000Z
+19efae1b275c9c70a783799e259e059e
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -194,5 +228,5 @@ has-props
 
 
 
-506
+387
 

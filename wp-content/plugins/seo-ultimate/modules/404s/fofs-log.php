@@ -44,6 +44,9 @@ class SU_FofsLog extends SU_Module {
 	//Upgrade to new wp_options-only system if needed
 	function upgrade() {
 		global $wpdb;
+		
+		$suppress = $wpdb->suppress_errors(true);
+		
 		//Get old storage system if it exists
 		if ($result = @$wpdb->get_results("SELECT * FROM {$wpdb->prefix}sds_hits WHERE status_code=404 AND redirect_url='' AND url NOT LIKE '%/favicon.ico' ORDER BY id DESC", ARRAY_A)) {
 			
@@ -56,6 +59,8 @@ class SU_FofsLog extends SU_Module {
 			//Out with the old
 			mysql_query("DROP TABLE IF EXISTS {$wpdb->prefix}sds_hits");
 		}
+		
+		$wpdb->suppress_errors($suppress);
 	}
 	
 	function queue_admin_scripts() {

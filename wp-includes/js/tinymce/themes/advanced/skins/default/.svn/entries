@@ -1,14 +1,14 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/themes/advanced/skins/default
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/themes/advanced/skins/default
+http://core.svn.wordpress.org
 
 
 
-2012-02-04T22:23:27.930128Z
-19830
+2012-11-12T21:20:46.260192Z
+22550
 azaozz
 
 
@@ -66,10 +66,10 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-642e4f5b08ac1ccc1f1d6d956171ee34
-2011-09-09T20:08:40.327340Z
-18660
+2013-02-06T00:42:25.000000Z
+03ae09e5c5f80f0ed0fc1ebb9c2053f0
+2012-07-07T16:22:53.967176Z
+21228
 azaozz
 has-props
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-15525
+15740
 
 dialog.css
 file
@@ -100,10 +100,10 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-56b99f4e744b576fc0b79da0a997f328
-2010-10-02T05:14:12.716956Z
-15683
+2013-02-06T00:42:25.000000Z
+0ceb1bc740c467971507606441d36d7c
+2012-07-07T16:22:53.967176Z
+21228
 azaozz
 has-props
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-5499
+5643
 
 img
 dir

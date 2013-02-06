@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/crop
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/crop
+http://core.svn.wordpress.org
 
 
 
-2008-03-02T21:34:25.197724Z
-7131
-ryan
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-9b4c27fccf817923f59b78fa6099c376
-2006-12-08T00:10:58.141882Z
-4629
-ryan
+2013-02-06T00:42:26.000000Z
+8cccae9c1ebafdb83be602e4d44c6f0a
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-1125
+277
 
 cropper.css
 file
@@ -100,11 +100,11 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-2b2adfe6df6517f146b5b7c5b86eda42
-2006-12-08T00:10:58.141882Z
-4629
-ryan
+2013-02-06T00:42:26.000000Z
+ae9accf100a4b9930639adff52d4dcc7
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-1141
+293
 
 cropper.js
 file

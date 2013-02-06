@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-admin/maint
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-admin/maint
+http://core.svn.wordpress.org
 
 
 
-2012-05-30T16:22:53.135114Z
-20953
-nacin
+2012-11-30T13:40:59.238541Z
+22948
+ryan
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-08-28T16:32:58.000000Z
-cc467d8cc1e827c132976aa8ace1d0e3
-2012-05-30T16:22:53.135114Z
-20953
-nacin
+2013-02-06T00:42:43.000000Z
+ceb4b0e44e0ba90514594637c4c35c25
+2012-11-30T13:40:59.238541Z
+22948
+ryan
 has-props
 
 
@@ -58,5 +58,5 @@ has-props
 
 
 
-5107
+5172
 

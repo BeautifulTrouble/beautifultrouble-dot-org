@@ -2,4 +2,11 @@ K 13
 svn:eol-style
 V 6
 native
+K 13
+svn:mergeinfo
+V 268
+/branches/3.1/wp-admin/includes/update-core.php:18031
+/branches/3.3/wp-admin/includes/update-core.php:20543
+/branches/3.4/wp-admin/includes/update-core.php:21757
+/trunk/wp-admin/includes/update-core.php:18512,23133-23135,23139,23179,23185,23245,23263-23264,23267,23297
 END

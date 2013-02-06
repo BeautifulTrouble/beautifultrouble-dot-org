@@ -70,7 +70,7 @@ class acf_True_false extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'text',
 					'name'	=>	'fields['.$key.'][message]',
 					'value'	=>	$field['message'],
@@ -97,7 +97,7 @@ class acf_True_false extends acf_Field
 		// get value
 		$value = parent::get_value($post_id, $field);
 		
-		if($value == '1')
+		if($value == 1)
 		{
 			return true;
 		}

@@ -1,14 +1,14 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/wpgallery
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wpgallery
+http://core.svn.wordpress.org
 
 
 
-2012-04-18T20:58:24.105651Z
-20521
+2012-11-30T15:20:51.373735Z
+22953
 bumpbot
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-a53c355041b61b5a9c030e21be5f2447
-2012-04-18T20:58:24.105651Z
-20521
+2013-02-06T00:42:24.000000Z
+1a99537df5afe33ad7972ed385716c03
+2012-11-30T15:20:51.373735Z
+22953
 bumpbot
 has-props
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-2446
+3094
 
 editor_plugin_src.js
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-c0e1697f5027204a9a8409f4048a1150
-2012-04-18T20:43:28.051209Z
-20519
-azaozz
+2013-02-06T00:42:24.000000Z
+e61dbbc27d24dcdf7dd27875920e202d
+2012-11-30T15:19:11.217222Z
+22952
+ryan
 has-props
 
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-3324
+4541
 
 img
 dir

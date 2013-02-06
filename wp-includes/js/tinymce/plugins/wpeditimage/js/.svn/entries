@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/wpeditimage/js
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wpeditimage/js
+http://core.svn.wordpress.org
 
 
 
-2012-05-02T01:58:25.971031Z
-20681
-bumpbot
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 
 
 
@@ -26,17 +26,17 @@ bumpbot
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-editimage.dev.js
+editimage.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
+2013-02-06T00:42:23.000000Z
 0a25f1ee5635ea5c98d12fe6a25124dd
-2012-05-02T01:14:52.124111Z
-20679
-azaozz
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 has-props
 
 
@@ -60,17 +60,17 @@ has-props
 
 17070
 
-editimage.js
+editimage.min.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
+2013-02-06T00:42:23.000000Z
 b7f2ab839344415015809824e6d1ee27
-2012-05-02T01:58:25.971031Z
-20681
-bumpbot
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 has-props
 
 

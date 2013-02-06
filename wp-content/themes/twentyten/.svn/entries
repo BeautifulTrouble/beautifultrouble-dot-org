@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-content/themes/twentyten
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-content/themes/twentyten
+http://core.svn.wordpress.org
 
 
 
-2012-09-27T17:51:53.459052Z
-22067
-nacin
+2013-01-01T00:19:29.760677Z
+23237
+potbot
 
 
 
@@ -33,10 +33,10 @@ file
 
 
 
-b619d9c38e9674abc411596d95db3ecf
-2011-12-16T17:13:16.705346Z
-19599
-ryan
+2016acf0e7d283eab3bc99f028475076
+2012-10-12T16:13:37.357258Z
+22214
+lancewillett
 has-props
 
 loop-attachment.php
@@ -59,22 +59,9 @@ file
 
 
 
-5d0a4ca33edc4d55072c10ad9673f13c
-2012-06-10T14:18:45.779308Z
-21040
-ryan
-has-props
-
-author.php
-file
-
-
-
-
-
-240b8e7f734a86ce4dab1ada222cfbc3
-2010-06-11T16:55:41.131338Z
-15226
+bb0b1c0a3d3189581f3956eab671a4c8
+2012-12-07T20:43:34.517691Z
+23125
 nacin
 has-props
 
@@ -85,20 +72,20 @@ file
 
 
 
-28c6b498c77f9a6de8f99d3339009904
-2010-11-19T05:37:47.971224Z
-16480
-nacin
+bff06d272495f6ccd539583a5c798316
+2012-11-28T17:49:43.594316Z
+22897
+lancewillett
 has-props
 
-search.php
+author.php
 file
 
 
 
 
 
-4b23519c6fbcf41b994c6f0d21d159b5
+240b8e7f734a86ce4dab1ada222cfbc3
 2010-06-11T16:55:41.131338Z
 15226
 nacin
@@ -117,16 +104,16 @@ a14f15208e4b969054f88509481804ec
 nacin
 has-props
 
-index.php
+search.php
 file
 
 
 
 
 
-ffe6b0bae4e69246b6815b732d2c1535
-2010-11-19T05:37:47.971224Z
-16480
+4b23519c6fbcf41b994c6f0d21d159b5
+2010-06-11T16:55:41.131338Z
+15226
 nacin
 has-props
 
@@ -143,6 +130,19 @@ file
 nacin
 has-props
 
+index.php
+file
+
+
+
+
+
+ffe6b0bae4e69246b6815b732d2c1535
+2010-11-19T05:37:47.971224Z
+16480
+nacin
+has-props
+
 functions.php
 file
 
@@ -150,36 +150,10 @@ file
 
 
 
-a7168942c3abf44459d137f6b5bb04ba
-2012-06-04T14:43:19.537655Z
-20983
-ryan
-has-props
-
-loop.php
-file
-
-
-
-
-
-3ee85b8c282b25891574006ac1f6c5e0
-2011-12-16T17:13:16.705346Z
-19599
-ryan
-has-props
-
-onecolumn-page.php
-file
-
-
-
-
-
-192f1d8d59f7bf5313058e0930fcef8b
-2010-10-09T09:17:42.620840Z
-15762
-nacin
+183a403bc5261213efd9e62f8b992b08
+2012-11-02T16:52:53.892281Z
+22359
+lancewillett
 has-props
 
 sidebar.php
@@ -195,39 +169,31 @@ file
 nacin
 has-props
 
-screenshot.png
+onecolumn-page.php
 file
 
 
 
 
-2012-11-13T17:59:08.000000Z
-00a4fffd45328971afcb81531c7d7a46
-2010-06-11T01:55:32.608244Z
-15207
-iammattthomas
+
+192f1d8d59f7bf5313058e0930fcef8b
+2010-10-09T09:17:42.620840Z
+15762
+nacin
 has-props
+
+loop.php
+file
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-34923
+6408aa211fc69d9e22f4d90d1c903d1a
+2012-10-11T20:12:40.677708Z
+22197
+lancewillett
+has-props
 
 license.txt
 file
@@ -262,6 +228,40 @@ has-props
 
 
 15129
+
+screenshot.png
+file
+
+
+
+
+2013-02-06T00:42:32.000000Z
+d04c5be9de11eb79fd0a69e4a6b587e7
+2012-10-26T23:25:08.215000Z
+22317
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+256242
 
 tag.php
 file
@@ -380,10 +380,10 @@ file
 
 
 
-0ab47f89aa04b9e100433f5b92da1965
-2011-12-16T17:13:16.705346Z
-19599
-ryan
+fd6e8ba4f3135d64a258f4da1b1e96d5
+2012-11-16T22:06:01.973866Z
+22621
+lancewillett
 has-props
 
 header.php

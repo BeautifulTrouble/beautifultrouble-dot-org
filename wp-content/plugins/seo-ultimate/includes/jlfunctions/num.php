@@ -1,11 +1,18 @@
 <?php
 /*
 JLFunctions Number Class
-Copyright (c)2011 John Lamansky
+Copyright (c)2011-2012 John Lamansky
 */
 
 class sunum {
-
+	
+	/**
+	 * Returns the lowest of a set of numbers.
+	 * 
+	 * @param array|int $number,... The numbers may be passed as function arguments or as an array.
+	 * 
+	 * @return int The lowest of the numbers.
+	 */
 	function lowest() {
 		$numbers = func_get_args();
 		$numbers = array_values($numbers);

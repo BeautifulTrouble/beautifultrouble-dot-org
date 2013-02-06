@@ -1,15 +1,20 @@
 <?php
 /*
 JLFunctions HTML Class
-Copyright (c)2010 John Lamansky
+Copyright (c)2010-2012 John Lamansky
 */
 
 class suhtml {
 	
 	/**
 	 * Returns <option> tags.
+	 * 
+	 * @param array $options An array of (value => label)
+	 * @param string $current The value of the option that should be initially selected on the dropdown
+	 * 
+	 * @return string
 	 */
-	function option_tags($options, $current = true) {
+	function option_tags($options, $current) {
 		$html = '';
 		foreach ($options as $value => $label) {
 			if (is_array($label)) {

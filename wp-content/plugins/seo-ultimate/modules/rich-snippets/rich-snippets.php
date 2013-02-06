@@ -12,17 +12,18 @@ class SU_RichSnippets extends SU_Module {
 	var $apply_subproperty_markup_args = array();
 	
 	function get_module_title() { return __('Rich Snippet Creator', 'seo-ultimate'); }
-	function get_menu_title() { return false; }
 	
-	function get_admin_url($key = false) {
-		if ($key)
-			return parent::get_admin_url($key);
-		
-		return false;
-	}
+	function get_parent_module() { return 'misc'; }
+	function get_settings_key() { return 'rich-snippets'; }
 	
 	function init() {
 		add_filter('the_content', array(&$this, 'apply_markup'));
+	}
+	
+	function admin_page_contents() {
+		$this->child_admin_form_start();
+		$this->textblock(__('Rich Snippet Creator adds a &#8220;Search Result Type&#8221; dropdown to the WordPress content editor screen. To add rich snippet data to a post, select &#8220;Review&#8221; or &#8220;Place&#8221; from a post&#8217;s  &#8220;Search Result Type&#8221; dropdown and fill in the fields that appear.', 'seo-ultimate'));
+		$this->child_admin_form_end();
 	}
 	
 	function get_supported_snippet_formats() {
@@ -387,36 +388,44 @@ class SU_RichSnippets extends SU_Module {
 		return $fields;
 	}
 
+	
 	function add_help_tabs($screen) {
 		
-		$screen->add_help_tab(array(
-			  'id' => 'su-rich-snippets-overview'
-			, 'title' => __('Overview', 'seo-ultimate')
-			, 'content' => __("
+		$overview = __("
 <ul>
-	<li><strong>What it does:</strong> Rich Snippet Creator adds special code to your posts that asks Google to display special pertinent information (known as <a href='http://www.google.com/support/webmasters/bin/topic.py?hl=en&topic=219' target='_blank'>Rich Snippets</a>) in search results for certain types of content. For example, if you&#8217;ve written a product review, you can use Rich Snippet Creator to ask Google to display the star rating that you gave the product in your review next to your review webpage when it appears in search results.</li>
+	<li><strong>What it does:</strong> Rich Snippet Creator adds special code (called Schema.org data) to your posts that asks Google and other major search engines to display special pertinent information (known as Rich Snippets) in search results for certain types of content. For example, if you&#8217;ve written a product review, you can use Rich Snippet Creator to ask Google to display the star rating that you gave the product in your review next to your review webpage when it appears in search results.</li>
 	<li><strong>Why it helps:</strong> Rich Snippet Creator enhances the search engine results for your content by asking Google to add extra, eye-catching info that could help draw in more search engine visitors.</li>
-	<li><p><strong>How it works:</strong> When editing one of your posts or pages, see if your content fits one of the available rich snippet types (for example, a review). If so, select that type from the &#8220;Rich Snippet Type&#8221; dropdown box. Once you select the applicable type, additional options will appear that vary based on the type selected. For example, a &#8220;Star Rating&#8221; field will appear if you select the &#8220;Review&#8221; type.</p><p>Once you save the post/page, Rich Snippet Creator will add the special code to it. You can remove this code at any time by selecting &#8220;None&#8221; from the &#8220;Rich Snippet Type&#8221; dropdown and resaving the post/page.</p></li>
+	<li><strong>How it works:</strong> When editing one of your posts or pages, see if your content fits one of the available rich snippet types (for example, a review). If so, select that type from the &#8220;Search Result Type&#8221; dropdown box. Once you select the applicable type, additional options will appear that vary based on the type selected. For example, a &#8220;Star Rating for Reviewed Item&#8221; field will appear if you select the &#8220;Review&#8221; type. Once you save the post/page, Rich Snippet Creator will add the special code to it. You can remove this code at any time by selecting &#8220;Standard&#8221; from the &#8220;Search Result Type&#8221; dropdown and resaving the post/page.</li>
 </ul>
-", 'seo-ultimate')));
+", 'seo-ultimate');
 		
-		$screen->add_help_tab(array(
-			  'id' => 'su-rich-snippets-settings'
-			, 'title' => __('Settings Help', 'seo-ultimate')
-			, 'content' => __("
+		$troubleshooting = __("
 <ul>
-	<li><strong>Categories/Tags That Indicate Reviews</strong> &mdash; If you haven&#8217;t set the &#8220;Rich Snippet Type&#8221; setting for an old post or page, then Rich Snippet Creator will automatically set its default type to &#8220;Review&#8221; (instead of &#8220;None&#8221;) if it has a category or tag whose name is in this list (the default list is &#8220;Reviews&#8221; and &#8220;Review&#8221;). Put one category/tag name per line.</li>
+	<li><p><strong>Why aren&#8217;t rich snippets showing up in Google search results for my site?</strong><br />Enter the URL of your post/page into <a href='http://www.google.com/webmasters/tools/richsnippets' target='_blank'>Google&#8217;s testing tool</a> to make sure Google can find the rich snippet code on your site. If no code is found, check and make sure you&#8217;ve enabled rich snippets for that particular post/page.</p><p>Note that having the code on a post/page doesn&#8217;t guarantee that Google will actually use it to create a rich snippet. If Google is able to read your code but isn&#8217;t using it to generate rich snippets, you can ask Google to do so using <a href='http://www.google.com/support/webmasters/bin/request.py?contact_type=rich_snippets_feedback' target='_blank'>this form</a>.</p></li>
 </ul>
-", 'seo-ultimate')));
-
-	$screen->add_help_tab(array(
-			  'id' => 'su-rich-snippets-troubleshooting'
-			, 'title' => __('Troubleshooting', 'seo-ultimate')
-			, 'content' => __("
-<ul>
-	<li><p><strong>Why aren&#8217;t rich snippets showing up in Google search results for my site?</strong><br />Enter the URL of your post/page into <a href='http://www.google.com/webmasters/tools/richsnippets' target='_blank'>Google&#8217;s testing tool</a> to make sure Google can find the rich snippet code on your site. If no code is found, check and make sure you've enabled rich snippets for that particular post/page.</p><p>Note that having the code on a post/page doesn&#8217;t guarantee that Google will actually use it to create a rich snippet. If Google is able to read your code but isn&#8217;t using it to generate rich snippets, you can ask Google to do so using <a href='http://www.google.com/support/webmasters/bin/request.py?contact_type=rich_snippets_feedback' target='_blank'>this form</a>.</p></li>
-</ul>
-", 'seo-ultimate')));
+", 'seo-ultimate');
+		
+		if ($this->has_enabled_parent()) {
+			$screen->add_help_tab(array(
+			  'id' => 'su-rich-snippets-help'
+			, 'title' => __('Rich Snippet Creator', 'seo-ultimate')
+			, 'content' => 
+				'<h3>' . __('Overview', 'seo-ultimate') . '</h3>' . $overview . 
+				'<h3>' . __('Troubleshooting', 'seo-ultimate') . '</h3>' . $troubleshooting
+			));
+		} else {
+			
+			$screen->add_help_tab(array(
+				  'id' => 'su-rich-snippets-overview'
+				, 'title' => __('Overview', 'seo-ultimate')
+				, 'content' => $overview));
+			
+			$screen->add_help_tab(array(
+				  'id' => 'su-rich-snippets-troubleshooting'
+				, 'title' => __('Troubleshooting', 'seo-ultimate')
+				, 'content' => $troubleshooting));
+		}
+	
 	}
 }
 
