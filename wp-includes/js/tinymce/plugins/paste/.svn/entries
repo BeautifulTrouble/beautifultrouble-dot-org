@@ -1,14 +1,14 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/paste
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/paste
+http://core.svn.wordpress.org
 
 
 
-2012-03-15T00:47:06.680461Z
-20177
+2012-12-06T04:50:31.479089Z
+23090
 azaozz
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-ace4ee20adc97976943071a23a644834
-2012-02-04T22:23:27.930128Z
-19830
+2013-02-06T00:42:24.000000Z
+e7e3089339dc85691bed70d81734accd
+2012-11-12T21:20:46.260192Z
+22550
 azaozz
 has-props
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-13309
+13616
 
 pasteword.htm
 file
@@ -66,10 +66,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-140c8639b95b5985387314ff5c538e20
-2012-03-15T00:47:06.680461Z
-20177
+2013-02-06T00:42:24.000000Z
+7db62fe5ecea992a47ad567a59fddf4a
+2012-12-06T04:50:31.479089Z
+23090
 azaozz
 has-props
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-878
+796
 
 editor_plugin_src.js
 file
@@ -100,10 +100,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-f99e775a94ebccd2e099282fed60f79f
-2012-02-18T06:43:47.830148Z
-19945
+2013-02-06T00:42:24.000000Z
+2a403fc1f292458b7e9a323901e9d171
+2012-11-12T21:20:46.260192Z
+22550
 azaozz
 has-props
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-30018
+30590
 
 pastetext.htm
 file
@@ -134,10 +134,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-765a36671dc31ddf23bda7193e646842
-2012-03-15T00:47:06.680461Z
-20177
+2013-02-06T00:42:24.000000Z
+7e2ab5dcd71147801312f12d9ad99d53
+2012-12-06T04:50:31.479089Z
+23090
 azaozz
 has-props
 
@@ -160,7 +160,7 @@ has-props
 
 
 
-1299
+1217
 
 js
 dir

@@ -166,11 +166,11 @@ class SU_FooterAutolinks extends SU_Module {
 		
 		//Set headers
 		$headers = array(
-			  'link-from' => __('Link Location (optional)', 'seo-ultimate')
+			  'link-from' => __('Link Location <em>(optional)</em>', 'seo-ultimate')
 			, 'link-from-match' => ''
 			, 'link-anchor' => __('Anchor Text', 'seo-ultimate')
 			, 'link-to' => __('Destination', 'seo-ultimate')
-			, 'link-title' => __('Title Attribute', 'seo-ultimate')
+			, 'link-title' => __('Title Attribute <em>(optional)</em>', 'seo-ultimate')
 			, 'link-options' => __('Options', 'seo-ultimate')
 		);
 		if ($delete_option) $headers['link-delete'] = __('Delete', 'seo-ultimate');

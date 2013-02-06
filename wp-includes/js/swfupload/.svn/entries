@@ -1,14 +1,14 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/swfupload
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/swfupload
+http://core.svn.wordpress.org
 
 
 
-2012-04-18T13:36:32.601011Z
-20501
+2012-08-23T00:04:18.101198Z
+21592
 nacin
 has-props
 
@@ -165,16 +165,16 @@ has-props
 
 29020
 
-handlers.dev.js
+handlers.js
 file
 
 
 
 
-2012-08-28T16:32:54.000000Z
+2013-02-06T00:42:26.000000Z
 793ff9921f096583ba52f8606ec79f4c
-2012-03-15T13:30:28.961279Z
-20191
+2012-08-23T00:04:18.101198Z
+21592
 nacin
 has-props
 
@@ -199,17 +199,17 @@ has-props
 
 12588
 
-handlers.js
+handlers.min.js
 file
 
 
 
 
-2012-08-28T16:32:54.000000Z
+2013-02-06T00:42:26.000000Z
 44b4f7cfec54b7fc8410a383257af538
-2012-03-15T13:58:27.986691Z
-20192
-bumpbot
+2012-08-23T00:04:18.101198Z
+21592
+nacin
 has-props
 
 

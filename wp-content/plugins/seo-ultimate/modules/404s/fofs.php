@@ -34,10 +34,14 @@ class SU_Fofs extends SU_Module {
 <p>You can perform the following actions on each entry in the log:</p>
 
 <ul>
-	<li>The &#8220;View&#8221; button will open the URL in a new window. This is useful for testing whether or not a redirect is working.</li>
-	<li>The &#8220;Google Cache&#8221; button will open Google's archived version of the URL in a new window. This is useful for determining what content, if any, used to be located at that URL.</li>
-	<li>Once you've taken care of a 404 error, you can click the &#8220;Remove&#8221; button to remove it from the list. The URL will reappear on the list if it triggers a 404 error in the future.</li>
+	<li>Clicking the first icon will open the URL in a new window. This is useful for testing whether or not a redirect is working.</li>
+	<li>Clicking the second icon will open Google's archived version of the URL in a new window. This is useful for determining what content, if any, used to be located at that URL.</li>
+	<li>Once you've taken care of a 404 error, you can click the third icon to remove it from the list. The URL will reappear on the list if it triggers a 404 error in the future.</li>
+	<li>To view the list of the URLs by which visitors and/or search engines reached this non-existent URL, click the scroll icon in the &#8220;Referers&#8221; column.</li>
+	<li>To view the list of visitor browsers and search engine bots which tried to access this non-existent URL, click the scroll icon in the &#8220;User Agents&#8221; column.</li>
 </ul>
+
+<p>The &#8220;Clear Log&#8221; button will erase all of entries in the log. The log will remain empty until more 404 errors are logged.</p>
 ", 'seo-ultimate')));
 		
 		$screen->add_help_tab(array(

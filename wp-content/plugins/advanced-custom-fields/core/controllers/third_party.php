@@ -35,11 +35,17 @@ class acf_third_party
 		
 		
 		// Duplicate Post - http://wordpress.org/extend/plugins/duplicate-post/
-		add_action( 'dp_duplicate_page', array($this, 'dp_duplicate_page'), 11, 2);
+		add_action('dp_duplicate_page', array($this, 'dp_duplicate_page'), 11, 2);
 		
 		
 		// Post Type Switcher - http://wordpress.org/extend/plugins/post-type-switcher/
 		add_filter('pts_post_type_filter', array($this, 'pts_post_type_filter'));
+		
+		
+		// WordPres Importer
+		add_filter('import_post_meta_key', array($this, 'import_post_meta_key'), 10, 1);
+		add_action('import_post_meta', array($this, 'import_post_meta'), 10, 3);
+		
 	}
 	
 	
@@ -121,7 +127,7 @@ class acf_third_party
 	function tabify_add_meta_boxes( $post_type )
 	{
 		// get acf's
-		$acfs = $this->parent->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
 		
 		if($acfs)
 		{
@@ -204,23 +210,69 @@ class acf_third_party
 	
 	function create_new_field_keys( $field )
 	{
-		if( isset( $field['key']) )
-		{
-			$field['key'] = 'field_' . uniqid();
-		}
+		// get next id
+		$next_id = (int) get_option('acf_next_field_id', 1);
 		
 		
+		// update the acf_next_field_id
+		update_option('acf_next_field_id', ($next_id + 1) );
+		
+		
+		// update key
+		$field['key'] = 'field_' . $next_id;
+		
+		
+		// update sub field's keys
 		if( isset( $field['sub_fields'] ) )
 		{
-			foreach( $field['sub_fields'] as &$sub_field )
+			foreach( $field['sub_fields'] as $k => $v )
 			{
-				$sub_field = $this->create_new_field_keys( $sub_field );
+				$field['sub_fields'][ $k ] = $this->create_new_field_keys( $v );
 			}
 		}
 		
 		
 		return $field;
 	}
+	
+	
+	/*
+	*  import_post_meta
+	*
+	*  @description: 
+	*  @since: 3.5.5
+	*  @created: 31/12/12
+	*/
+	
+	function import_post_meta_key( $meta_key )
+	{
+		if( strpos($meta_key, 'field_') !== false )
+		{
+			$meta_key = 'field_' . $this->parent->get_next_field_id();
+		}
+		
+		return $meta_key;
+	}
+	
+	
+	/*
+	*  import_post_meta
+	*
+	*  @description: 
+	*  @since: 3.5.5
+	*  @created: 1/01/13
+	*/
+	
+	function import_post_meta( $post_id, $key, $value )
+	{
+		if( strpos($key, 'field_') !== false )
+		{
+			$value['key'] = $key;
+			
+			update_post_meta( $post_id, $key, $value );
+		}
+	}
+
 
 }
 

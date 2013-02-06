@@ -159,7 +159,7 @@ class SU_Titles extends SU_Module {
 			return htmlspecialchars($this->get_title_paged($post_title));
 		
 		//Custom taxonomy title?
-		if (is_category() || is_tag() || is_tax()) {
+		if (suwp::is_tax()) {
 			$tax_titles = $this->get_setting('taxonomy_titles');
 			if ($tax_title = $tax_titles[$wp_query->get_queried_object_id()])
 				return htmlspecialchars($this->get_title_paged($tax_title));
@@ -432,6 +432,7 @@ class SU_Titles extends SU_Module {
 			, 'content' => __("
 <p>Here&#8217;s documentation for the options on the &#8220;Settings&#8221; tab.</p>
 <ul>
+	<li><strong>Convert lowercase category/tag names to title case when used in title tags</strong> &mdash; If your Tag Title Format is set to <code>{tag} | {blog}</code> and you have a tag called &#8220;blue widgets,&#8221; your title tag would be <code>blue widgets | My WordPress Blog</code>. Enabling this setting would capitalize the words in &#8220;blue widgets&#8221; so that the title tag would be <code>Blue Widgets | My WordPress Blog</code> instead.</li>
 	<li>
 		<p><strong>Rewrite Method</strong> &mdash; This setting controls the method by which Title Tag Rewriter edits your site&#8217;s <code>&lt;title&gt;</code> tags.</p>
 		<ul>

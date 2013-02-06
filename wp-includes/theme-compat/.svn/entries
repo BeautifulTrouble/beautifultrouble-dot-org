@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/theme-compat
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/theme-compat
+http://core.svn.wordpress.org
 
 
 
-2012-01-08T17:01:11.911209Z
-19712
-ryan
+2012-11-07T19:56:10.680942Z
+22431
+nacin
 
 
 
@@ -100,10 +100,10 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-49a58de586d1b12fb79ddc656c59e574
-2012-01-05T20:10:39.665296Z
-19684
+2013-02-06T00:42:29.000000Z
+7df98827c76853d19b0304d644182c86
+2012-07-30T18:30:03.799657Z
+21364
 ryan
 has-props
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-4012
+3985
 
 comments-popup.php
 file
@@ -134,10 +134,10 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-2d0a922128c7a8f43a5bb8cd87a9d954
-2011-10-20T15:04:46.219640Z
-19028
+2013-02-06T00:42:29.000000Z
+c09d4a5311e135eec19c75825ed62201
+2012-11-07T19:56:10.680942Z
+22431
 nacin
 has-props
 
@@ -160,7 +160,7 @@ has-props
 
 
 
-5233
+5217
 
 header.php
 file

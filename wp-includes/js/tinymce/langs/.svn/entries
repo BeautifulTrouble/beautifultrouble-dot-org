@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/langs
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/langs
+http://core.svn.wordpress.org
 
 
 
-2012-07-25T19:58:10.677698Z
-21344
-azaozz
+2012-12-03T19:21:34.370575Z
+22996
+nacin
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-7db3698995b52c5eccad285d5d790355
-2012-03-05T07:31:31.904061Z
-20114
-azaozz
+2013-02-06T00:42:24.000000Z
+260c1cc4baa6208fad1e01788c56e30b
+2012-12-03T19:21:34.370575Z
+22996
+nacin
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-13593
+13662
 
 wp-langs.php
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-42b342e0f7335919d6a744d3b66ad0eb
-2012-07-25T19:58:10.677698Z
-21344
-azaozz
+2013-02-06T00:42:24.000000Z
+594203a3e68c96250c775f804fb35042
+2012-09-19T16:55:43.985450Z
+21917
+nacin
 has-props
 
 
@@ -92,5 +92,5 @@ has-props
 
 
 
-20308
+20390
 

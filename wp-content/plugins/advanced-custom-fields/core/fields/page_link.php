@@ -38,7 +38,7 @@ class acf_Page_link extends acf_Field
 		// let post_object create the field
 		$field['type'] = 'post_object';
 		
-		$this->parent->create_field( $field );
+		do_action('acf/create_field', $field );
 
 	}
 	
@@ -58,8 +58,8 @@ class acf_Page_link extends acf_Field
 		// defaults
 		$defaults = array(
 			'post_type' 	=>	'',
-			'multiple'		=>	'0',
-			'allow_null'	=>	'0',
+			'multiple'		=>	0,
+			'allow_null'	=>	0,
 		);
 		
 		$field = array_merge($defaults, $field);
@@ -75,21 +75,17 @@ class acf_Page_link extends acf_Field
 				$choices = array(
 					''	=>	__("All",'acf')
 				);
+				$choices = array_merge( $choices, $this->parent->get_post_types() );
 				
-				$post_types = get_post_types( array('public' => true) );
 				
-				foreach( $post_types as $post_type )
-				{
-					$choices[$post_type] = $post_type;
-				}
-				
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'select',
 					'name'	=>	'fields['.$key.'][post_type]',
 					'value'	=>	$field['post_type'],
 					'choices'	=>	$choices,
-					'multiple'	=>	'1',
+					'multiple'	=>	1,
 				));
+				
 				?>
 			</td>
 		</tr>
@@ -98,17 +94,19 @@ class acf_Page_link extends acf_Field
 				<label><?php _e("Allow Null?",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
+				<?php
+				
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][allow_null]',
 					'value'	=>	$field['allow_null'],
 					'choices'	=>	array(
-						'1'	=>	__("Yes",'acf'),
-						'0'	=>	__("No",'acf'),
+						1	=>	__("Yes",'acf'),
+						0	=>	__("No",'acf'),
 					),
 					'layout'	=>	'horizontal',
 				));
+				
 				?>
 			</td>
 		</tr>
@@ -117,17 +115,19 @@ class acf_Page_link extends acf_Field
 				<label><?php _e("Select multiple values?",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
+				<?php
+				
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][multiple]',
 					'value'	=>	$field['multiple'],
 					'choices'	=>	array(
-						'1'	=>	__("Yes",'acf'),
-						'0'	=>	__("No",'acf'),
+						1	=>	__("Yes",'acf'),
+						0	=>	__("No",'acf'),
 					),
 					'layout'	=>	'horizontal',
 				));
+				
 				?>
 			</td>
 		</tr>

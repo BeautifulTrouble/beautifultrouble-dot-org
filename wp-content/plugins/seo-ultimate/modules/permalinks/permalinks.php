@@ -37,6 +37,7 @@ class SU_Permalinks extends SU_Module {
 				}
 			}
 			if ($nobase_enabled) {
+				add_action('wp_insert_post', array(&$this, 'flush_rewrite_rules'));
 				add_filter('term_link', array(&$this, 'nobase_term_link'), 1000, 2);
 				add_filter('query_vars', array(&$this, 'nobase_query_vars'));
 				add_filter('request', array(&$this, 'nobase_old_base_redirect'));
@@ -58,6 +59,7 @@ class SU_Permalinks extends SU_Module {
 				}
 			}
 			if ($nobase_enabled) {
+				remove_action('wp_insert_post', array(&$this, 'flush_rewrite_rules'));
 				remove_filter('term_link', array(&$this, 'nobase_term_link'), 1000, 2);
 				remove_filter('query_vars', array(&$this, 'nobase_query_vars'));
 				remove_filter('request', array(&$this, 'nobase_old_base_redirect'));
@@ -162,6 +164,7 @@ class SU_Permalinks extends SU_Module {
 		$tax_name = sustr::rtrim_str(current_filter(), '_rewrite_rules');
 		$tax_obj = get_taxonomy($tax_name);
 		
+		wp_cache_flush(); //Otherwise get_terms() won't include the term just added
 		$terms = get_terms($tax_name);
 		if ($terms && !is_wp_error($terms)) {
 			foreach ($terms as $term_obj) {

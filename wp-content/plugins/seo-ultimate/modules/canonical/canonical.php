@@ -207,20 +207,29 @@ class SU_Canonical extends SU_Module {
 	
 	function add_help_tabs($screen) {
 		
-		$screen->add_help_tab(array(
-			  'id' => 'su-canonical-overview'
-			, 'title' => $this->has_enabled_parent() ? __('Canonicalizer', 'seo-ultimate') : __('Overview', 'seo-ultimate')
-			, 'content' => __("
+		$overview = __("
 <ul>
-	<li>
-		<p><strong>What it does:</strong> Canonicalizer improves on two WordPress features to minimize possible exact-content duplication penalties. The <code>&lt;link rel=&quot;canonical&quot; /&gt;</code> tags setting improves on the canonical tags feature of WordPress 2.9 and above by encompassing much more of your site than just your posts and Pages.</p>
-		<p>The nonexistent pagination redirect feature fills a gap in WordPress's built-in canonicalization functionality: for example, if a URL request is made for page 6 of a category archive, and that category doesn't have a page 6, then by default, depending on the context, WordPress will display a blank page, or it will display the content of the closest page number available, without issuing a 404 error or a 301 redirect (thus creating two or more identical webpages). This duplicate-content situation can happen when you, for example, remove many posts from a category, thus reducing the amount of pagination needed in the category's archive. The Canonicalizer's feature fixes that behavior by issuing 301 redirects to page 1 of the paginated section in question.</p>
-	</li>
-	<li><strong>Why it helps:</strong> These features will point Google to the correct URL for your homepage and each of your posts, Pages, categories, tags, date archives, and author archives. That way, if Google comes across an alternate URL by which one of those items can be accessed, it will be able to find the correct URL and won't penalize you for having two identical pages on your site.</li>
-	<li><strong>How to use it:</strong> Just check all three checkboxes and click Save Changes. SEO Ultimate will do the rest.</li>
+	<li><strong>What it does:</strong> Canonicalizer will point Google to the correct URL for your homepage and each of your posts, Pages, categories, tags, date archives, and author archives.</li>
+	<li><strong>Why it helps:</strong> If Google comes across an alternate URL by which one of those items can be accessed, it will be able to find the correct URL and won&#8217;t penalize you for having two identical pages on your site.</li>
+	<li><strong>How to use it:</strong> Just check the three checkboxes. If your site is accessible using both <code>http://</code> and <code>https://</code>, be sure to set the preferred one under &#8220;Canonical URL Scheme.&#8221;</li>
 </ul>
-", 'seo-ultimate')));
+", 'seo-ultimate');
 		
+		if ($this->has_enabled_parent()) {
+			$screen->add_help_tab(array(
+			  'id' => 'su-canonical-help'
+			, 'title' => __('Canonicalizer', 'seo-ultimate')
+			, 'content' => 
+				'<h3>' . __('Overview', 'seo-ultimate') . '</h3>' . $overview
+			));
+		} else {
+			
+			$screen->add_help_tab(array(
+				  'id' => 'su-canonical-overview'
+				, 'title' => __('Overview', 'seo-ultimate')
+				, 'content' => $overview));
+			
+		}
 	}
 }
 

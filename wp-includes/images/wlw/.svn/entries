@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/images/wlw
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/images/wlw
+http://core.svn.wordpress.org
 
 
 
-2007-10-08T20:21:29.257320Z
-6202
-westi
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-e44d22b74f7ee4435e22062d5adf4a6a
-2007-10-08T20:21:29.257320Z
-6202
-westi
+2013-02-06T00:42:29.000000Z
+311d098eca9a89370877334b1b8f992a
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-779
+664
 
 wp-watermark.png
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-c5a6a59365ad54aa20c71e79da9dfd7a
-2007-10-08T20:21:29.257320Z
-6202
-westi
+2013-02-06T00:42:29.000000Z
+708ebef70c64f23294d63347ececebe7
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-8280
+5102
 
 wp-comments.png
 file
@@ -100,11 +100,11 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
-f12204bb737213d9c0b530b918da182d
-2007-10-08T20:21:29.257320Z
-6202
-westi
+2013-02-06T00:42:29.000000Z
+4cc2365d0450dedec30cec2e73a8a1d4
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -126,5 +126,5 @@ has-props
 
 
 
-1442
+1373
 

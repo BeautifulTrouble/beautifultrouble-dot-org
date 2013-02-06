@@ -108,9 +108,11 @@ jQuery(document).ready( function($) {
 				if (timeout)
 						clearTimeout(timeout);
 				
+				//Only trigger suggestions if the minimum length is met and if this isn't a URL (assuming the noUrls option is set)
 				if ($input.val().length >= options.minchars && (!options.noUrls || ($input.val().substring(0, 7) != 'http://' && $input.val().substring(0, 8) != 'https://' && $input.val().indexOf('/') == '-1'))) {
 					$input.addClass(options.timeoutClass);
 					
+					//Wait a bit before giving autocomplete suggestions
 					timeout = setTimeout(suggest, options.delay);
 				} else {
 					$results.hide();
@@ -127,22 +129,8 @@ jQuery(document).ready( function($) {
 		
 		function suggest() {
 			
-			var q = $.trim($input.val()), multipleSepPos, items;
+			var q = $.trim($input.val()), items;
 			
-			/*
-			if (options.noUrls && (q.substring(0, 7) == 'http://' || q.substring(0, 8) == 'https://')) {
-				$results.hide();
-				$input.removeClass(options.timeoutClass);
-				return;
-			}
-			*/
-			
-			if ( options.multiple ) {
-				multipleSepPos = q.lastIndexOf(options.multipleSep);
-				if ( multipleSepPos != -1 ) {
-					q = $.trim(q.substr(multipleSepPos + options.multipleSep.length));
-				}
-			}
 			if (q.length >= options.minchars) {
 
 				cached = checkCache(q);
@@ -284,30 +272,21 @@ jQuery(document).ready( function($) {
 			$currentResult = getCurrentResult();
 
 			if ($currentResult) {
-				if ( options.multiple ) {
-					if ( $input.val().indexOf(options.multipleSep) != -1 ) {
-						$currentVal = $input.val().substr( 0, ( $input.val().lastIndexOf(options.multipleSep) + options.multipleSep.length ) );
-					} else {
-						$currentVal = "";
-					}
-					$input.val( $currentVal + $currentResult.text() + options.multipleSep);
-					$input.focus();
+				if (options.textDest) {
+					$input
+						.hide() //Hide the input box
+						.siblings('.' + options.textDestClass + ':first')
+						.show() //Show the selection box
+						.children('.' + options.textDestTextClass)
+						.html($currentResult.attr('su:selectedtext') || $currentResult.text()) //Put the selected item into the selection box
+						.parentsUntil('tr') //If we're in a table...
+						.next('td')
+						.children('input')
+						.focus(); //...then focus the next textbox in the table
+					
+					$input.val($currentResult.attr('su:value'));
 				} else {
-					if (options.textDest) {
-						$input
-							.hide()
-							.siblings('.' + options.textDestClass + ':first')
-							.show()
-							.children('.' + options.textDestTextClass)
-							.html($currentResult.attr('su:selectedtext') || $currentResult.text())
-							.parentsUntil('tr')
-							.next('td')
-							.children('input')
-							.focus();
-						
-						$input.val($currentResult.attr('su:value'));
-					} else
-						$input.val($currentResult.text());
+					$input.val($currentResult.text());
 				}
 				$results.hide();
 
@@ -352,8 +331,6 @@ jQuery(document).ready( function($) {
 			return;
 		
 		options = options || {};
-		options.multiple = options.multiple || false;
-		options.multipleSep = options.multipleSep || ", ";
 		options.source = source;
 		options.delay = options.delay || 100;
 		options.resultsClass = options.resultsClass || 'jls_results';

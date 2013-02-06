@@ -1,7 +1,7 @@
 <?php
 /*
 JLFunctions Array Class
-Copyright (c)2009-2011 John Lamansky
+Copyright (c)2009-2012 John Lamansky
 */
 
 class suarr {
@@ -28,16 +28,10 @@ class suarr {
 	}
 	
 	/**
-	 * Removes elements that are blank (after trimming) from the beginning of the given array.
-	 */
-	function ltrim($array) {
-		while (count($array) && !strlen(trim($array[0])))
-			array_shift($array);
-		return $array;
-	}
-	
-	/**
 	 * Removes a value from the array if found.
+	 * 
+	 * @param array $array Passed by reference.
+	 * @param mixed $value The value to remove.
 	 */
 	function remove_value(&$array, $value) {
 		$index = array_search($value, $array);
@@ -46,63 +40,59 @@ class suarr {
 	}
 	
 	/**
-	 * Returns whether or not any of the specified $needles are in the $haystack.
+	 * Turns a string into an array, with one line per array element.
 	 * 
-	 * @param array $needles
-	 * @param array $haystack
-	 * @param bool $case Whether or not the search should be case-sensitive.
+	 * @param string $lines
 	 * 
-	 * @return bool
+	 * @return array
 	 */
-	function any_in_array($needles, $haystack, $case = true) {
-		if (!$case) {
-			$needles  = array_map('strtolower', $needles);
-			$haystack = array_map('strtolower', $haystack);
-		}
-		
-		return count(array_intersect($needles, $haystack)) > 0;
-	}
-	
 	function explode_lines($lines) {
 		$lines = explode("\n", $lines);
 		$lines = array_map('trim', $lines); //Remove any \r's
 		return $lines;
 	}
 	
-	//Based on recursive array search function from:
-	//http://www.php.net/manual/en/function.array-search.php#91365
-	function search_recursive($needle, $haystack) {
-		foreach ($haystack as $key => $value) {
-			if ($needle === $value || (is_array($value) && suarr::search_recursive($needle, $value) !== false))
-				return $key;
-		}
-		return false;
-	}
-	
-	function recursive_get($array, $key) {
-		if (is_array($array)) {
-			if (isset($array[$key]))
-				return $array[$key];
-			
-			foreach ($array as $subarray) {
-				if ($value = suarr::recursive_get($subarray, $key))
-					return $value;
-			}
-		}
-		
-		return false;
-	}
-	
+	/**
+	 * Sorts an array of arrays by using a given array key to locate string values in the second-level arrays and sorting the first-level array accordingly.
+	 * Alphabetical sorting is used.
+	 * 
+	 * @param array $arr Passed by reference
+	 * @param string $valuekey The array key used to access the string values by which the arrays in $arr are to be sorted
+	 */
 	function vksort(&$arr, $valuekey) {
 		$valuekey = sustr::preg_filter('A-Za-z0-9 ', $valuekey);
 		uasort($arr, create_function('$a,$b', 'return strcasecmp($a["'.$valuekey.'"], $b["'.$valuekey.'"]);'));
 	}
 	
+	/**
+	 * Sorts an array of arrays by using a given array key to locate string values in the second-level arrays and sorting the first-level array accordingly.
+	 * Reverse length sorting is used. (Longest strings are first, shortest strings last.)
+	 * 
+	 * @param array $arr Passed by reference
+	 * @param string $valuekey The array key used to access the string values by which the arrays in $arr are to be sorted
+	 */
 	function vklrsort(&$arr, $valuekey) {
 		$valuekey = sustr::preg_filter('A-Za-z0-9 ', $valuekey);
 		uasort($arr, create_function('$a,$b', 'return strlen($b["'.$valuekey.'"]) - strlen($a["'.$valuekey.'"]);'));
 	}
 	
+	/**
+	 * Flattens a multidimensional array (or an array of objects) into a single-dimensional array by discarding all but one element of the higher-level array(s).
+	 * Works like WordPress's wp_list_pluck(), except this function is recursive and supports inserting a default value if a subarray doesn't have the specified key.
+	 * 
+	 * Usage example:
+	 * ---
+	 * $post_types = get_post_types(array('public' => true), 'objects');
+	 * $singular_names = suarr::flatten_values($post_types, array('labels', 'singular_name'));
+	 * ---
+	 * 
+	 * @param array $arr The multidimensional array (or array of objects) to flatten
+	 * @param array|string|int $value_keys Each array/object in $arr will be replaced with its element/property named $value_keys. If $value_keys is an array, this will be done recursively.
+	 * @param bool $use_default_if_empty If a given array/object in $arr does not have an element/property named $value_keys, should a default value be inserted?
+	 * @param mixed $default
+	 * 
+	 * @return array The flattened array
+	 */
 	function flatten_values($arr, $value_keys, $use_default_if_empty=false, $default='') {
 		foreach ((array)$value_keys as $key)
 			$arr = suarr::_flatten_values($arr, $key, $use_default_if_empty, $default);
@@ -133,6 +123,16 @@ class suarr {
 		return $newarr;
 	}
 	
+	/**
+	 * Renames keys in an array. Supports recursion.
+	 * 
+	 * @param array $array The array whose keys should be renamed
+	 * @param array $key_changes An array of (old_key => new_key)
+	 * @param bool $recursive Whether or not to do the same for subarrays of $array
+	 * @param bool $return_replaced_only If true, then elements whose keys were *not* renamed will be discarded
+	 * 
+	 * @return array
+	 */
 	function key_replace($array, $key_changes, $recursive = true, $return_replaced_only = false) {
 		$newarray = array();
 		foreach ($array as $key => $value) {
@@ -154,6 +154,16 @@ class suarr {
 		return $newarray;
 	}
 	
+	/**
+	 * Runs a find/replace operation on values in an array.
+	 * 
+	 * @param array $array The array whose values should be replaced
+	 * @param array $value_changes An array of (old_value => new_value)
+	 * @param bool $recursive Whether or not to do the same for subarrays of $array
+	 * @param bool $return_replaced_only If true, then elements *not* replaced will be discarded
+	 * 
+	 * @return array
+	 */
 	function value_replace($array, $value_changes, $recursive = true, $return_replaced_only = false) {
 		$newarray = array();
 		
@@ -173,25 +183,21 @@ class suarr {
 		return $newarray;
 	}
 	
+	/**
+	 * Goes through an array of arrays/objects, plucks two elements/properties from each array/object, and constructs a new array, with one element/property as the key, and the other as the value.
+	 * 
+	 * @param array $arr The array to run this process on.
+	 * @param array|string|int $keyloc The location (either a string/integer key, or an array of nested keys) of the elements' values to be used as keys in the new array
+	 * @param array|string|int $valloc The location (either a string/integer key, or an array of nested keys) of the elements' values to be used as values in the new array
+	 * @param bool $use_default_if_empty Whether or not to use a default value in the event that nothing is located at $keyloc or $valloc for a given array/object in $arr
+	 * @param mixed $default
+	 * 
+	 * @return array
+	 */
 	function simplify($arr, $keyloc, $valloc, $use_default_if_empty=false, $default='') {
 		$keys = suarr::flatten_values($arr, $keyloc, $use_default_if_empty, $default);
 		$values = suarr::flatten_values($arr, $valloc, $use_default_if_empty, $default);
 		return array_combine($keys, $values);
-	}
-	
-	function has_keys($array, $keys) {
-		if (is_array($array) && is_array($keys)) {
-			if (count($keys))
-				return count(array_diff($keys, array_keys($array))) == 0;
-			
-			return true;
-		}
-		
-		return false;
-	}
-	
-	function key_check($array, $function) {
-		return (count($array) == count(array_filter(array_keys($array), $function)));
 	}
 	
 	//Function based on http://php.net/manual/en/function.array-unique.php#82508
@@ -211,17 +217,6 @@ class suarr {
 				$n[$k] = $v;
 		}
 		return $n;
-	}
-	
-	function replace_empty_values_with_keys($array) {
-		$newarray = array();
-		foreach ($array as $key => $value) {
-			if (empty($value))
-				$newarray[$key] = $key;
-			else
-				$newarray[$key] = $value;
-		}
-		return $newarray;
 	}
 }
 

@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/wordpress/img
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wordpress/img
+http://core.svn.wordpress.org
 
 
 
-2012-02-24T23:46:04.710889Z
-19990
-azaozz
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 
 
 
@@ -134,11 +134,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-c25dc2e7e5c0c2203ca0ca516ca852a9
-2008-07-03T15:55:45.181379Z
-8248
-ryan
+2013-02-06T00:42:24.000000Z
+fe5bd0edc99f44dfe3ec2302359a7f81
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -160,7 +160,7 @@ has-props
 
 
 
-101
+95
 
 video.gif
 file
@@ -168,11 +168,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-10a455edf8439d00599854ffd2add437
-2008-07-03T15:55:45.181379Z
-8248
-ryan
+2013-02-06T00:42:24.000000Z
+233f9a78eadddb26f8976682e6d1bf44
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -194,7 +194,7 @@ has-props
 
 
 
-99
+93
 
 trans.gif
 file

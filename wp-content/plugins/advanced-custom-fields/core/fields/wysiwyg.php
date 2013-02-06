@@ -21,7 +21,40 @@ class acf_Wysiwyg extends acf_Field
 		$this->title = __("Wysiwyg Editor",'acf');
 		
 		add_action( 'acf_head-input', array( $this, 'acf_head') );
+		
+		add_filter( 'acf/fields/wysiwyg/toolbars', array( $this, 'toolbars'), 1, 1 );
 
+   	}
+   	
+   	
+   	/*
+   	*  get_toolbars
+   	*
+   	*  @description: 
+   	*  @since: 3.5.7
+   	*  @created: 10/01/13
+   	*/
+   	
+   	function toolbars( $toolbars )
+   	{
+   		$editor_id = 'acf_settings';
+   		
+   		// Full
+   		$toolbars['Full'] = array();
+   		$toolbars['Full'][1] = apply_filters('mce_buttons', array('bold', 'italic', 'strikethrough', 'bullist', 'numlist', 'blockquote', 'justifyleft', 'justifycenter', 'justifyright', 'link', 'unlink', 'wp_more', 'spellchecker', 'fullscreen', 'wp_adv' ), $editor_id);
+   		$toolbars['Full'][2] = apply_filters('mce_buttons_2', array( 'formatselect', 'underline', 'justifyfull', 'forecolor', 'pastetext', 'pasteword', 'removeformat', 'charmap', 'outdent', 'indent', 'undo', 'redo', 'wp_help', 'code' ), $editor_id);
+   		$toolbars['Full'][3] = apply_filters('mce_buttons_3', array(), $editor_id);
+   		$toolbars['Full'][4] = apply_filters('mce_buttons_4', array(), $editor_id);
+   		
+   		
+   		// Basic
+   		$toolbars['Basic'] = array();
+   		$toolbars['Basic'][1] = apply_filters( 'teeny_mce_buttons', array('bold', 'italic', 'underline', 'blockquote', 'strikethrough', 'bullist', 'numlist', 'justifyleft', 'justifycenter', 'justifyright', 'undo', 'redo', 'link', 'unlink', 'fullscreen'), $editor_id );
+   		
+   		
+   		// Custom - can be added with acf/fields/wysiwyg/toolbars filter
+   	
+	   	return $toolbars;
    	}
    	
 	
@@ -82,7 +115,7 @@ class acf_Wysiwyg extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'textarea',
 					'name'	=>	'fields['.$key.'][default_value]',
 					'value'	=>	$field['default_value'],
@@ -95,16 +128,29 @@ class acf_Wysiwyg extends acf_Field
 				<label><?php _e("Toolbar",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
+				<?php
+				
+				$toolbars = apply_filters( 'acf/fields/wysiwyg/toolbars', array() );
+				$choices = array();
+				
+				if( is_array($toolbars) )
+				{
+					foreach( $toolbars as $k => $v )
+					{
+						$label = $k;
+						$name = sanitize_title( $label );
+						$name = str_replace('-', '_', $name);
+						
+						$choices[ $name ] = $label;
+					}
+				}
+				
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][toolbar]',
 					'value'	=>	$field['toolbar'],
 					'layout'	=>	'horizontal',
-					'choices' => array(
-						'full'	=>	__("Full",'acf'),
-						'basic'	=>	__("Basic",'acf')
-					)
+					'choices' => $choices
 				));
 				?>
 			</td>
@@ -115,7 +161,7 @@ class acf_Wysiwyg extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][media_upload]',
 					'value'	=>	$field['media_upload'],
@@ -136,7 +182,7 @@ class acf_Wysiwyg extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][the_content]',
 					'value'	=>	$field['the_content'],
@@ -165,6 +211,9 @@ class acf_Wysiwyg extends acf_Field
 	
 	function create_field($field)
 	{
+		global $wp_version;
+		
+		
 		// vars
 		$defaults = array(
 			'toolbar'		=>	'full',
@@ -172,13 +221,13 @@ class acf_Wysiwyg extends acf_Field
 		);
 		$field = array_merge($defaults, $field);
 		
-		$id = 'wysiwyg-' . $field['name'];
+		$id = 'wysiwyg-' . $field['id'];
 		
 		
 		?>
 		<div id="wp-<?php echo $id; ?>-wrap" class="acf_wysiwyg wp-editor-wrap" data-toolbar="<?php echo $field['toolbar']; ?>">
 			<?php if($field['media_upload'] == 'yes'): ?>
-				<?php if(get_bloginfo('version') < "3.3"): ?>
+				<?php if( version_compare($wp_version, '3.3', '<') ): ?>
 					<div id="editor-toolbar">
 						<div id="media-buttons" class="hide-if-no-js">
 							<?php do_action( 'media_buttons' ); ?>

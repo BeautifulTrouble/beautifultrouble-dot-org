@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/plupload
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/plupload
+http://core.svn.wordpress.org
 
 
 
-2012-09-05T01:55:55.383098Z
-21760
-nacin
+2013-01-23T21:04:45.586005Z
+23340
+azaozz
 has-props
 
 
@@ -32,11 +32,12 @@ file
 
 
 
-2012-11-13T17:55:57.000000Z
-839d6017ae96d4f4bfd3a8a88b5bd131
-2012-09-05T01:55:55.383098Z
-21760
+2013-02-06T00:42:26.000000Z
+a9c4b3dcac8cb4cd962ee0e16cdf5f8c
+2012-12-10T23:25:03.413470Z
+23165
 nacin
+has-props
 
 
 
@@ -57,8 +58,7 @@ nacin
 
 
 
-
-3074
+9746
 
 license.txt
 file
@@ -93,6 +93,40 @@ has-props
 
 
 17987
+
+wp-plupload.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+7a89e68c14d7d560251a55cdd2717047
+2012-12-10T23:32:04.152491Z
+23166
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4634
 
 plupload.html4.js
 file
@@ -134,10 +168,10 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-f3c8aaf882d1ed25a7f5fe7fd2ee4d9d
-2012-04-13T23:23:13.929648Z
-20463
+2013-02-06T00:42:26.000000Z
+7c8989ad91007dccb1bb4f754e9ad511
+2013-01-23T21:04:45.586005Z
+23340
 azaozz
 has-props
 
@@ -160,7 +194,7 @@ has-props
 
 
 
-44013
+44116
 
 plupload.html5.js
 file
@@ -168,10 +202,10 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-ec192acff96dee19dd49e52d43f6240e
-2012-04-13T23:23:13.929648Z
-20463
+2013-02-06T00:42:26.000000Z
+3229c9876dd8f4f2f2d6ec090e57fb13
+2013-01-23T21:04:45.586005Z
+23340
 azaozz
 has-props
 
@@ -194,7 +228,7 @@ has-props
 
 
 
-16719
+16756
 
 changelog.txt
 file
@@ -202,10 +236,10 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-ca2c3fb188295605bfabaaef64114554
-2012-04-13T23:23:13.929648Z
-20463
+2013-02-06T00:42:26.000000Z
+15bab07382420b0fd20cdbf308cad0cc
+2013-01-23T21:04:45.586005Z
+23340
 azaozz
 has-props
 
@@ -228,7 +262,7 @@ has-props
 
 
 
-17655
+18315
 
 plupload.silverlight.js
 file
@@ -236,10 +270,10 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-4152d57d9dcf7ea975bb05043e53a83e
-2012-04-13T23:23:13.929648Z
-20463
+2013-02-06T00:42:26.000000Z
+20ff795950f0ef3b5115682db8f4111e
+2013-01-23T21:04:45.586005Z
+23340
 azaozz
 has-props
 
@@ -262,7 +296,7 @@ has-props
 
 
 
-5610
+5606
 
 plupload.flash.js
 file
@@ -298,50 +332,16 @@ has-props
 
 5541
 
-handlers.dev.js
-file
-
-
-
-
-2012-08-28T16:32:54.000000Z
-5890cd4d95125931f0e0650601e2a647
-2012-06-02T01:39:00.956294Z
-20978
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-15579
-
 plupload.flash.swf
 file
 
 
 
 
-2012-08-28T16:32:54.000000Z
-70fe6deae2bdb29aa32d3565bf20ff0a
-2012-04-13T23:23:13.929648Z
-20463
+2013-02-06T00:42:26.000000Z
+ee056b175f2ac1fef496493783403b69
+2013-01-23T21:04:45.586005Z
+23340
 azaozz
 has-props
 
@@ -364,7 +364,7 @@ has-props
 
 
 
-18873
+18958
 
 handlers.js
 file
@@ -372,10 +372,78 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-95d55f5d43ce4423cfeb1efcf61f6bcc
-2012-06-02T01:58:27.231724Z
-20979
+2013-02-06T00:42:26.000000Z
+1d74c489a7777d0fa6b226eccb151140
+2012-11-21T13:05:44.117659Z
+22755
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15699
+
+plupload.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+a881348ad82cd67fd3ede2686f8e9cfd
+2013-01-23T21:04:45.586005Z
+23340
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11939
+
+handlers.min.js
+file
+
+
+
+
+2013-02-06T00:42:26.000000Z
+d672c9820c43194fc1d0b7536ec55bc9
+2012-11-21T14:58:31.220123Z
+22763
 bumpbot
 has-props
 
@@ -398,73 +466,5 @@ has-props
 
 
 
-10619
-
-plupload.js
-file
-
-
-
-
-2012-08-28T16:32:54.000000Z
-85199c05db63fcb5880de4af8be7b571
-2012-04-13T23:23:13.929648Z
-20463
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-11904
-
-wp-plupload.dev.js
-file
-
-
-
-
-2012-11-13T17:55:57.000000Z
-75bd0d965758c849bd27173d7aec1923
-2012-09-04T04:54:01.833313Z
-21724
-nacin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6379
+10709
 

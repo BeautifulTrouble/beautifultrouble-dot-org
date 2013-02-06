@@ -75,6 +75,11 @@ if( empty($location['rules']) )
 							}
 							
 							
+							// allow custom location rules
+							$choices = apply_filters( 'acf/location/rule_types', $choices );
+							
+							
+							// create field
 							$args = array(
 								'type'	=>	'select',
 								'name'	=>	'location[rules]['.$k.'][param]',
@@ -83,19 +88,27 @@ if( empty($location['rules']) )
 								'optgroup' => true,
 							);
 							
-							$this->parent->create_field($args);							
+							do_action('acf/create_field', $args);							
 							
 						?></td>
 						<td class="operator"><?php 	
 							
-							$this->parent->create_field(array(
+							$choices = array(
+								'=='	=>	__("is equal to",'acf'),
+								'!='	=>	__("is not equal to",'acf'),
+							);
+							
+							
+							// allow custom location rules
+							$choices = apply_filters( 'acf/location/rule_operators', $choices );
+							
+							
+							// create field
+							do_action('acf/create_field', array(
 								'type'	=>	'select',
 								'name'	=>	'location[rules]['.$k.'][operator]',
 								'value'	=>	$rule['operator'],
-								'choices' => array(
-									'=='	=>	__("is equal to",'acf'),
-									'!='	=>	__("is not equal to",'acf'),
-								)
+								'choices' => $choices
 							)); 	
 							
 						?></td>
@@ -109,8 +122,10 @@ if( empty($location['rules']) )
 							
 						?></td>
 						<td class="buttons">
-							<a href="javascript:;" class="remove"></a>
-							<a href="javascript:;" class="add"></a>
+							<ul class="hl clearfix">
+								<li><a href="javascript:;" class="acf-button-remove"></a></li>
+								<li><a href="javascript:;" class="acf-button-add"></a></li>
+							</ul>
 						</td>
 						</tr>
 						<?php endforeach; ?>
@@ -119,7 +134,7 @@ if( empty($location['rules']) )
 				</table>
 				<ul class="hl clearfix">
 					<li style="padding:4px 4px 0 0;"><?php _e("match",'acf'); ?></li>
-					<li><?php $this->parent->create_field(array(
+					<li><?php do_action('acf/create_field', array(
 									'type'	=>	'select',
 									'name'	=>	'location[allorany]',
 									'value'	=>	$location['allorany'],

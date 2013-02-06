@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-content/themes
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-content/themes
+http://core.svn.wordpress.org
 
 
 
-2012-09-27T17:51:53.459052Z
-22067
-nacin
+2013-01-01T00:19:44.749852Z
+23244
+potbot
 
 
 
@@ -27,6 +27,9 @@ nacin
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
 twentyten
+dir
+
+twentytwelve
 dir
 
 twentyeleven

@@ -58,7 +58,7 @@ class acf_Flexible_content extends acf_Field
 			
 				<div class="layout" data-layout="<?php echo $layout['name']; ?>">
 					
-					<input type="hidden" name="<?php echo $field['name']; ?>[999][acf_fc_layout]" value="<?php echo $layout['name']; ?>" />
+					<input type="hidden" name="<?php echo $field['name']; ?>[acfcloneindex][acf_fc_layout]" value="<?php echo $layout['name']; ?>" />
 					
 					<a class="ir fc-delete-layout" href="#"></a>
 					<p class="menu-item-handle"><span class="fc-layout-order"><?php echo $i+1; ?></span>. <?php echo $layout['label']; ?></p>
@@ -127,10 +127,10 @@ class acf_Flexible_content extends acf_Field
 									$sub_field['value'] = isset($sub_field['default_value']) ? $sub_field['default_value'] : false;
 									
 									// add name
-									$sub_field['name'] = $field['name'] . '[999][' . $sub_field['key'] . ']';
+									$sub_field['name'] = $field['name'] . '[acfcloneindex][' . $sub_field['key'] . ']';
 									
 									// create field
-									$this->parent->create_field($sub_field);
+									do_action('acf/create_field', $sub_field);
 									
 									?>
 								</td>
@@ -250,13 +250,13 @@ class acf_Flexible_content extends acf_Field
 										<?php
 										
 										// add value
-										$sub_field['value'] = isset($value[$sub_field['name']]) ? $value[$sub_field['name']] : false;
+										$sub_field['value'] = isset($value[$sub_field['key']]) ? $value[$sub_field['key']] : false;
 										
 										// add name
 										$sub_field['name'] = $field['name'] . '[' . $i . '][' . $sub_field['key'] . ']';
 										
 										// create field
-										$this->parent->create_field($sub_field);
+										do_action('acf/create_field', $sub_field);
 										
 										?>
 									</td>
@@ -360,7 +360,7 @@ class acf_Flexible_content extends acf_Field
 				$fields_names[$f->name] = $f->title;
 			}
 		}
-		unset($fields_names['flexible_content']);
+		unset( $fields_names['flexible_content'], $fields_names['tab'] );
 		
 		
 		// loop through layouts and create the options for them
@@ -372,7 +372,7 @@ class acf_Flexible_content extends acf_Field
 				'label' => __("New Field",'acf'),
 				'name' => __("new_field",'acf'),
 				'type' => 'text',
-				'order_no' =>	'1',
+				'order_no' =>	1,
 				'instructions' =>	'',
 			);
 			
@@ -382,8 +382,12 @@ class acf_Flexible_content extends acf_Field
 		<label><?php _e("Layout",'acf'); ?></label>
 		<p class="desription">
 			<span><a class="acf_fc_reorder" title="<?php _e("Reorder Layout",'acf'); ?>" href="javascript:;"><?php _e("Reorder",'acf'); ?></a> | </span>
-			<span><a class="acf_fc_add" title="<?php _e("Add New Layout",'acf'); ?>" href="javascript:;"><?php _e("Add New",'acf'); ?></a> | </span>
 			<span><a class="acf_fc_delete" title="<?php _e("Delete Layout",'acf'); ?>" href="javascript:;"><?php _e("Delete",'acf'); ?></a>
+			
+			<br />
+			
+			<span><a class="acf_fc_add" title="<?php _e("Add New Layout",'acf'); ?>" href="javascript:;"><?php _e("Add New",'acf'); ?></a> | </span>
+			<span><a class="acf_fc_duplicate" title="<?php _e("Duplicate Layout",'acf'); ?>" href="javascript:;"><?php _e("Duplicate",'acf'); ?></a></span>
 		</p>
 	</td>
 	<td>
@@ -395,7 +399,7 @@ class acf_Flexible_content extends acf_Field
 					<td class="acf_fc_label" style="padding-left:0;">
 						<label><?php _e('Label','acf'); ?></label>
 						<?php 
-						$this->parent->create_field(array(
+						do_action('acf/create_field', array(
 							'type'	=>	'text',
 							'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][label]',
 							'value'	=>	$layout['label'],
@@ -405,7 +409,7 @@ class acf_Flexible_content extends acf_Field
 					<td class="acf_fc_name">
 						<label><?php _e('Name','acf'); ?></label>
 						<?php 
-						$this->parent->create_field(array(
+						do_action('acf/create_field', array(
 							'type'	=>	'text',
 							'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][name]',
 							'value'	=>	$layout['name'],
@@ -415,7 +419,7 @@ class acf_Flexible_content extends acf_Field
 					<td class="acf_fc_display" style="padding-right:0;">
 						<label><?php _e('Display','acf'); ?></label>
 						<?php 
-						$this->parent->create_field(array(
+						do_action('acf/create_field', array(
 							'type'	=>	'select',
 							'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][display]',
 							'value'	=>	$layout['display'],
@@ -482,7 +486,7 @@ class acf_Flexible_content extends acf_Field
 									</td>
 									<td>
 										<?php 
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'text',
 											'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'].'][label]',
 											'value'	=>	$sub_field['label'],
@@ -498,7 +502,7 @@ class acf_Flexible_content extends acf_Field
 									</td>
 									<td>
 										<?php 
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'text',
 											'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'].'][name]',
 											'value'	=>	$sub_field['name'],
@@ -511,7 +515,7 @@ class acf_Flexible_content extends acf_Field
 									<td class="label"><label><span class="required">*</span><?php _e("Field Type",'acf'); ?></label></td>
 									<td>
 										<?php 
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'select',
 											'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'].'][type]',
 											'value'	=>	$sub_field['type'],
@@ -531,7 +535,7 @@ class acf_Flexible_content extends acf_Field
 											$sub_field['instructions'] = "";
 										}
 										
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'text',
 											'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'].'][instructions]',
 											'value'	=>	$sub_field['instructions'],
@@ -553,7 +557,7 @@ class acf_Flexible_content extends acf_Field
 											$sub_field['column_width'] = "";
 										}
 										
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'number',
 											'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'].'][column_width]',
 											'value'	=>	$sub_field['column_width'],
@@ -564,7 +568,10 @@ class acf_Flexible_content extends acf_Field
 								</tr>
 								<?php 
 								
-								$this->parent->fields[$sub_field['type']]->create_options($key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'], $sub_field);
+								if( isset($this->parent->fields[ $sub_field['type'] ]) )
+								{
+									$this->parent->fields[$sub_field['type']]->create_options($key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'], $sub_field);
+								}
 								
 								?>
 								<tr class="field_save">
@@ -600,7 +607,7 @@ class acf_Flexible_content extends acf_Field
 	</td>
 	<td>
 		<?php 
-		$this->parent->create_field(array(
+		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields['.$key.'][button_label]',
 			'value'	=>	$field['button_label'],
@@ -637,7 +644,7 @@ class acf_Flexible_content extends acf_Field
 		if($value)
 		{
 			// remove dummy field
-			unset($value[999]);
+			unset($value['acfcloneindex']);
 			
 			$i = -1;
 			
@@ -651,7 +658,7 @@ class acf_Flexible_content extends acf_Field
 				unset($row['acf_fc_layout']);
 					
 				// loop through sub fields
-				foreach($row as $field_key => $value)
+				foreach($row as $field_key => $v)
 				{
 					$sub_field = $sub_fields[$field_key];
 
@@ -659,7 +666,29 @@ class acf_Flexible_content extends acf_Field
 					$sub_field['name'] = $field['name'] . '_' . $i . '_' . $sub_field['name'];
 					
 					// save sub field value
-					$this->parent->update_value($post_id, $sub_field, $value);
+					$this->parent->update_value($post_id, $sub_field, $v);
+				}
+			}
+		}
+		
+		
+		/*
+		*  Remove Old Data
+		*
+		*  @credit: http://support.advancedcustomfields.com/discussion/1994/deleting-single-repeater-fields-does-not-remove-entry-from-database
+		*/
+		
+		$old_total = parent::get_value($post_id, $field);
+		$old_total = count( $old_total );
+		$new_total = count( $total );
+
+		if( $old_total > $new_total )
+		{
+			foreach( $sub_fields as $sub_field )
+			{
+				for ( $j = $new_total; $j < $old_total; $j++ )
+				{ 
+					parent::delete_value( $post_id, $field['name'] . '_' . $j . '_' . $sub_field['name'] );
 				}
 			}
 		}
@@ -688,28 +717,38 @@ class acf_Flexible_content extends acf_Field
 			// loop through and save fields
 			foreach($field['layouts'] as $layout_key => $layout)
 			{				
-				// remove dummy field
-				unset( $layout['sub_fields']['field_clone'] );
-				
-				// loop through and save fields
-				$i = -1;
-				
+			
 				if( $layout['sub_fields'] )
 				{
+					// remove dummy field
+					unset( $layout['sub_fields']['field_clone'] );
+				
+				
+					// loop through and save fields
+					$i = -1;
+					$sub_fields = array();
+					
+					
 					foreach( $layout['sub_fields'] as $key => $f )
 					{
 						$i++;
+						
 						
 						// order
 						$f['order_no'] = $i;
 						$f['key'] = $key;
 						
+						
 						// apply filters
 						$f = apply_filters('acf_save_field', $f );
 						$f = apply_filters('acf_save_field-' . $f['type'], $f );
 						
-						$layout['sub_fields'][ $key ] = $f;
+						
+						$sub_fields[ $f['key'] ] = $f;
+						
 					}
+					
+					$layout['sub_fields'] = $sub_fields;
 				}
 				
 				// update $layout
@@ -766,13 +805,10 @@ class acf_Flexible_content extends acf_Field
 					// loop through sub fields
 					foreach($layouts[$layout]['sub_fields'] as $sub_field)
 					{
-						// store name
-						$field_name = $sub_field['name'];
-						
 						// update full name
-						$sub_field['name'] = $field['name'] . '_' . $i . '_' . $field_name;
+						$sub_field['name'] = $field['name'] . '_' . $i . '_' . $sub_field['name'];
 						
-						$values[$i][$field_name] = $this->parent->get_value($post_id, $sub_field);
+						$values[$i][ $sub_field['key'] ] = $this->parent->get_value($post_id, $sub_field);
 					}
 				}
 			}

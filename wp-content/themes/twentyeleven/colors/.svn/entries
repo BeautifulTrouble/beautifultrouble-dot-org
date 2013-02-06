@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-content/themes/twentyeleven/colors
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-content/themes/twentyeleven/colors
+http://core.svn.wordpress.org
 
 
 
-2011-11-19T04:07:54.199582Z
-19347
-azaozz
+2012-11-28T18:04:17.571212Z
+22898
+lancewillett
 
 
 
@@ -33,9 +33,9 @@ file
 
 
 
-ac9cbba4712c4ac3e0cf34435dcf673a
-2011-11-19T04:07:54.199582Z
-19347
-azaozz
+a699f99fb37166654f4a56dedb9b9071
+2012-11-28T18:04:17.571212Z
+22898
+lancewillett
 has-props
 

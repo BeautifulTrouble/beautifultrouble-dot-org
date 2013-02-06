@@ -26,13 +26,13 @@ $fields[] = array(
 	'label' => __("New Field",'acf'),
 	'name' => __("new_field",'acf'),
 	'type' => 'text',
-	'order_no' =>	'1',
+	'order_no' =>	1,
 	'instructions' =>	'',
-	'required' => '0',
+	'required' => 0,
 	'conditional_logic' => array(
-		'status' => '0',
+		'status' => 0,
 		'allorany' => 'all',
-		'rules' => false
+		'rules' => 0
 	)
 );
 
@@ -46,6 +46,14 @@ foreach($this->parent->fields as $f)
 	}
 }
 
+
+// conditional logic dummy data
+$conditional_logic_rule = array(
+	'field' => '',
+	'operator' => '==',
+	'value' => ''
+);
+
 ?>
 
 <!-- Hidden Fields -->
@@ -54,8 +62,9 @@ foreach($this->parent->fields as $f)
 	acf.text.move_to_trash = "<?php _e("Move to trash. Are you sure?",'acf'); ?>";
 	acf.text.checked = "<?php _e("checked",'acf'); ?>";
 	acf.text.conditional_no_fields = "<?php _e('No toggle fields available','acf'); ?>";
+	acf.text.flexible_content_no_fields = "<?php _e('Flexible Content requires at least 1 layout','acf'); ?>";
 	</script>
-	<input type="hidden" name="acf_save_post" value="field_group" />
+	<input type="hidden" name="acf_field_group" value="<?php echo wp_create_nonce( 'acf_field_group' ); ?>" />
 </div>
 <!-- / Hidden Fields -->
 
@@ -86,7 +95,7 @@ foreach($this->parent->fields as $f)
 	<!-- / No Fields Message -->
 	
 	<?php foreach($fields as $field): ?>
-	<div class="field field-<?php echo $field['key']; ?>" data-id="<?php echo $field['key']; ?>">
+	<div class="field field-<?php echo $field['type']; ?> field-<?php echo $field['key']; ?>" data-type="<?php echo $field['type']; ?>" data-id="<?php echo $field['key']; ?>">
 		<div class="field_meta">
 			<table class="acf widefat">
 				<tr>
@@ -120,7 +129,7 @@ foreach($this->parent->fields as $f)
 							</td>
 							<td>
 								<?php 
-								$this->parent->create_field(array(
+								do_action('acf/create_field', array(
 									'type'	=>	'text',
 									'name'	=>	'fields['.$field['key'].'][label]',
 									'value'	=>	$field['label'],
@@ -136,7 +145,7 @@ foreach($this->parent->fields as $f)
 							</td>
 							<td>
 								<?php 
-								$this->parent->create_field(array(
+								do_action('acf/create_field', array(
 									'type'	=>	'text',
 									'name'	=>	'fields['.$field['key'].'][name]',
 									'value'	=>	$field['name'],
@@ -149,7 +158,7 @@ foreach($this->parent->fields as $f)
 							<td class="label"><label><span class="required">*</span><?php _e("Field Type",'acf'); ?></label></td>
 							<td>
 								<?php 
-								$this->parent->create_field(array(
+								do_action('acf/create_field', array(
 									'type'		=>	'select',
 									'name'		=>	'fields['.$field['key'].'][type]',
 									'value'		=>	$field['type'],
@@ -163,7 +172,7 @@ foreach($this->parent->fields as $f)
 							<p class="description"><?php _e("Instructions for authors. Shown when submitting data",'acf'); ?></p></td>
 							<td>
 								<?php 
-								$this->parent->create_field(array(
+								do_action('acf/create_field', array(
 									'type'	=>	'textarea',
 									'name'	=>	'fields['.$field['key'].'][instructions]',
 									'value'	=>	$field['instructions'],
@@ -175,13 +184,13 @@ foreach($this->parent->fields as $f)
 							<td class="label"><label><?php _e("Required?",'acf'); ?></label></td>
 							<td>
 								<?php 
-								$this->parent->create_field(array(
+								do_action('acf/create_field', array(
 									'type'	=>	'radio',
 									'name'	=>	'fields['.$field['key'].'][required]',
 									'value'	=>	$field['required'],
 									'choices'	=>	array(
-										'1'	=>	__("Yes",'acf'),
-										'0'	=>	__("No",'acf'),
+										1	=>	__("Yes",'acf'),
+										0	=>	__("No",'acf'),
 									),
 									'layout'	=>	'horizontal',
 								));
@@ -190,51 +199,60 @@ foreach($this->parent->fields as $f)
 						</tr>
 						<?php 
 						
-						$this->parent->fields[$field['type']]->create_options($field['key'], $field);
+						if( isset($this->parent->fields[ $field['type'] ]) )
+						{
+							$this->parent->fields[$field['type']]->create_options($field['key'], $field);
+						}
 						
 						?>
 						<tr class="conditional-logic" data-field_name="<?php echo $field['key']; ?>">
 							<td class="label"><label><?php _e("Conditional Logic",'acf'); ?></label></td>
 							<td>
 								<?php 
-								$this->parent->create_field(array(
+								do_action('acf/create_field', array(
 									'type'	=>	'radio',
 									'name'	=>	'fields['.$field['key'].'][conditional_logic][status]',
 									'value'	=>	$field['conditional_logic']['status'],
 									'choices'	=>	array(
-										'1'	=>	__("Yes",'acf'),
-										'0'	=>	__("No",'acf'),
+										1	=>	__("Yes",'acf'),
+										0	=>	__("No",'acf'),
 									),
 									'layout'	=>	'horizontal',
 								));
+								
+								
+								// no rules?
+								if( ! $field['conditional_logic']['rules'] )
+								{
+									$field['conditional_logic']['rules'] = array(
+										array() // this will get merged with $conditional_logic_rule
+									);
+								}
+								
 								?>
-								<div class="contional-logic-rules-wrapper" <?php if( $field['conditional_logic']['status'] == '0') echo 'style="display:none"'; ?>>
-
-									<?php 
-									
-									// set defaults
-									if( !$field['conditional_logic']['rules'] )
-									{
-										$field['conditional_logic']['rules'] = array(
-											array(
-												'field' => '',
-												'operator' => '==',
-												'value' => ''
-											)
-										);
-									}
-									
-									?>
+								<div class="contional-logic-rules-wrapper" <?php if( ! $field['conditional_logic']['status'] ) echo 'style="display:none"'; ?>>
 									<table class="conditional-logic-rules widefat acf-rules <?php if( count($field['conditional_logic']['rules']) == 1) echo 'remove-disabled'; ?>">
 										<tbody>
-										<?php foreach( $field['conditional_logic']['rules'] as $rule_i => $rule ): ?>
+										<?php foreach( $field['conditional_logic']['rules'] as $rule_i => $rule ): 
+											
+											// validate
+											$rule = array_merge($conditional_logic_rule, $rule);
+											
+											
+											// fix PHP error in 3.5.4.1
+											if( strpos($rule['value'],'Undefined index: value in') !== false  )
+											{
+												$rule['value'] = '';
+											}
+											
+											?>
 											<tr data-i="<?php echo $rule_i; ?>">
 												<td>
 													<input class="conditional-logic-field" type="hidden" name="fields[<?php echo $field['key']; ?>][conditional_logic][rules][<?php echo $rule_i; ?>][field]" value="<?php echo $rule['field']; ?>" />
 												</td>
 												<td width="25%">
 													<?php 
-													$this->parent->create_field(array(
+													do_action('acf/create_field', array(
 														'type'	=>	'select',
 														'name'	=>	'fields['.$field['key'].'][conditional_logic][rules][' . $rule_i . '][operator]',
 														'value'	=>	$rule['operator'],
@@ -247,8 +265,10 @@ foreach($this->parent->fields as $f)
 												</td>
 												<td><input class="conditional-logic-value" type="hidden" name="fields[<?php echo $field['key']; ?>][conditional_logic][rules][<?php echo $rule_i; ?>][value]" value="<?php echo $rule['value']; ?>" /></td>
 												<td class="buttons">
-													<a class="remove disabled" href="javascript:;"></a>
-													<a class="add" href="javascript:;"></a>
+													<ul class="hl clearfix">
+														<li><a class="acf-button-remove" href="javascript:;"></a></li>
+														<li><a class="acf-button-add" href="javascript:;"></a></li>
+													</ul>
 												</td>
 											</tr>	
 										<?php endforeach; ?>
@@ -257,7 +277,7 @@ foreach($this->parent->fields as $f)
 									
 									<ul class="hl clearfix">
 										<li style="padding:4px 4px 0 0;"><?php _e("Show this field when",'acf'); ?></li>
-										<li><?php $this->parent->create_field(array(
+										<li><?php do_action('acf/create_field', array(
 												'type'	=>	'select',
 												'name'	=>	'fields['.$field['key'].'][conditional_logic][allorany]',
 												'value'	=>	$field['conditional_logic']['allorany'],

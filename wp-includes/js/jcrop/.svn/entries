@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/jcrop
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/jcrop
+http://core.svn.wordpress.org
 
 
 
-2011-01-13T08:04:58.919661Z
-17286
-markjaquith
+2012-11-21T22:31:55.432126Z
+22798
+duck_
 
 
 
@@ -32,112 +32,10 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
-7a4b4c6ebdb549fcbe47408f9457493e
-2009-03-27T16:45:55.037866Z
-10846
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-329
-
-jquery.Jcrop.css
-file
-
-
-
-
-2012-08-28T16:32:54.000000Z
-3888e9f93e218814c97a146069d104f1
-2009-04-20T19:34:27.841342Z
-11015
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-748
-
-jquery.Jcrop.dev.js
-file
-
-
-
-
-2012-08-28T16:32:54.000000Z
-ed882314c841932770eab4413337b4b0
-2009-04-20T19:34:27.841342Z
-11015
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-25566
-
-jquery.Jcrop.js
-file
-
-
-
-
-2012-08-28T16:32:54.000000Z
-e363e3b8839e5db9fa0260eeabfac23e
-2011-01-13T08:04:58.919661Z
-17286
+2013-02-06T00:42:25.000000Z
+5a8bfd37651305bdafbcf2cd51b0254b
+2012-11-07T18:49:10.703842Z
+22425
 markjaquith
 has-props
 
@@ -160,5 +58,73 @@ has-props
 
 
 
-12637
+323
+
+jquery.Jcrop.min.css
+file
+
+
+
+
+2013-02-06T00:42:25.000000Z
+1a6073b9ad2ed6318c1ff41a5aa76c04
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2029
+
+jquery.Jcrop.min.js
+file
+
+
+
+
+2013-02-06T00:42:25.000000Z
+23e42f2bd8a5b091d0eb8a80eeb79453
+2012-08-27T23:37:03.881908Z
+21633
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15899
 

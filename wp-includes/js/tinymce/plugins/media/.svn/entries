@@ -1,14 +1,14 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/media
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/media
+http://core.svn.wordpress.org
 
 
 
-2012-03-15T00:47:06.680461Z
-20177
+2012-12-06T04:50:31.479089Z
+23090
 azaozz
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-9ce4c5f8e09f3b86b7b62abb19f32b09
-2012-02-04T22:23:27.930128Z
-19830
+2013-02-06T00:42:23.000000Z
+5ad7db86c5008f98ec135595db4a4973
+2012-07-07T16:22:53.967176Z
+21228
 azaozz
 has-props
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-12459
+12655
 
 editor_plugin_src.js
 file
@@ -66,10 +66,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-0a4a9b17e7640d4a0b7ed0b1404c89da
-2012-02-18T06:43:47.830148Z
-19945
+2013-02-06T00:42:23.000000Z
+30d8cd0fe92587476fab267f2598ad7d
+2012-08-18T23:24:27.211302Z
+21545
 azaozz
 has-props
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-24976
+25521
 
 media.htm
 file
@@ -100,10 +100,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-0470b34fb0c140d8d917ada27d885b87
-2012-03-15T00:47:06.680461Z
-20177
+2013-02-06T00:42:23.000000Z
+d8ada489c50c283c5732ff06aa72b4f8
+2012-12-06T04:50:31.479089Z
+23090
 azaozz
 has-props
 

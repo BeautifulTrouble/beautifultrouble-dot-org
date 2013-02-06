@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/wpeditimage/css
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wpeditimage/css
+http://core.svn.wordpress.org
 
 
 
-2012-04-25T20:56:26.201710Z
-20597
-nacin
+2012-12-04T19:51:35.666031Z
+23039
+azaozz
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-7b6706be2029b702630f0d14ca83bdc4
-2012-04-25T20:56:26.201710Z
-20597
-nacin
+2013-02-06T00:42:23.000000Z
+be84c8843d5da59cde1aaa472acf86a6
+2012-12-04T19:51:35.666031Z
+23039
+azaozz
 has-props
 
 
@@ -58,5 +58,5 @@ has-props
 
 
 
-6683
+6970
 

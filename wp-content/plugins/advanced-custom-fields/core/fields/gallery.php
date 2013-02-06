@@ -28,62 +28,58 @@ class acf_Gallery extends acf_Field
 		// actions
 		add_action('admin_head-media-upload-popup', array($this, 'popup_head'));
 		add_action('acf_head-update_attachment-gallery', array($this, 'acf_head_update_attachment'));
-		add_action('wp_ajax_acf_get_gallery_list_data', array($this, 'acf_get_gallery_list_data'));
+		add_action('wp_ajax_acf/fields/gallery/get_image', array($this, 'get_image'));
    	}
 
 	
 	/*
-	*  acf_get_gallery_list_data
+	*  get_image
 	*
-	*  @description: AJAX call to get updated list data after an image is edited
-	*  @created: 5/07/12
+	*  @description: 
+	*  @since: 3.5.8
+	*  @created: 18/01/13
 	*/
 	
-   	function acf_get_gallery_list_data()
+   	function get_image()
    	{
+   		
    		// vars
-		$defaults = array(
-			'attachment_id'	=>	false,
+		$options = array(
+			'nonce' => '',
+			'id' => '',
+			'preview_size' => 'full'
 		);
+		$return = array();
 		
-		$options = array_merge($defaults, $_GET);
+		
+		// load post options
+		$options = array_merge($options, $_POST);
+
+		
+		// verify nonce
+		if( ! wp_verify_nonce($options['nonce'], 'acf_nonce') )
+		{
+			die(0);
+		}
 		
 		
 		// get attachment object
-		$attachment = get_post( $options['attachment_id'] );
+		$attachment = get_post( $options['id'] );
+		
+		$src = wp_get_attachment_image_src( $attachment->ID, $options['preview_size'] );
+		
+		$return = array(
+			'id' => $attachment->ID,
+			'src' => $src[0],
+			'title'=> $attachment->post_title,
+			'caption'=> $attachment->post_excerpt,
+			'alt'=> get_post_meta($attachment->ID, '_wp_attachment_image_alt', true),
+			'description'=> $attachment->post_content,
+		);
 		
 		
-		// get fields
-		$alt = get_post_meta($attachment->ID, '_wp_attachment_image_alt', true);
-		$image_title = $attachment->post_title;
-		$caption = $attachment->post_excerpt;
-		$description = $attachment->post_content;
-		
-		?>
-<table>
-	<tbody>
-		<tr>
-			<th><label><?php _e("Title",'acf'); ?>:</label></th>
-			<td><?php echo $image_title; ?></td>
-		</tr>
-		<tr>
-			<th><label><?php _e("Alternate Text",'acf'); ?>:</label></th>
-			<td><?php echo $alt; ?></td>
-		</tr>
-		<tr>
-			<th><label><?php _e("Caption",'acf'); ?>:</label></th>
-			<td><?php echo $caption; ?></td>
-		</tr>
-		<tr>
-			<th><label><?php _e("Description",'acf'); ?>:</label></th>
-			<td><?php echo $description; ?></td>
-		</tr>
-	</tbody>
-</table>
-		<?php
-		
-		// end ajax
-		die();
+		echo json_encode($return);
+		die;
    	}
    	
    	
@@ -122,7 +118,7 @@ class acf_Gallery extends acf_Field
 		
 		$image_sizes = $this->parent->get_all_image_sizes();
 		
-		$this->parent->create_field(array(
+		do_action('acf/create_field', array(
 			'type'		=>	'radio',
 			'name'		=>	'fields['.$key.'][preview_size]',
 			'value'		=>	$field['preview_size'],
@@ -143,40 +139,16 @@ class acf_Gallery extends acf_Field
 		?>
 <script type="text/javascript">
 (function($){
-	
-	// vars
-	var div = self.parent.acf_edit_attachment,
-		attachment_id = div.attr('data-id');
-	
-	
-	// ajax find new list data
-	$.ajax({
-		url: ajaxurl,
-		data : {
-			'action' : 'acf_get_gallery_list_data',
-			'attachment_id' : attachment_id
-		},
-		cache: false,
-		dataType: "html",
-		success: function( html ) {
-	    	
 
-			// validate
-			if(!html)
-			{
-				return false;
-			}
-			
-			
-			// update list-item html
-			div.find('.list-data').html( html ); 	
- 	
-		}
-	});
+	// vars
+	var div = self.parent.acf.media.div;
+	
+	
+	self.parent.acf.fields.gallery.update_image();
 	
 	
 	// add message
-	self.parent.acf.add_message('<?php _e("Image Updated",'acf'); ?>.', div);
+	self.parent.acf.helpers.add_message('<?php _e("Image Updated",'acf'); ?>.', div);
 	
 		
 })(jQuery);
@@ -219,7 +191,7 @@ class acf_Gallery extends acf_Field
 			
 			?>
 			<div class="thumbnail" data-id="<?php echo $attachment['id']; ?>">
-				<input type="hidden" name="<?php echo $field['name']; ?>[]" value="<?php echo $attachment['id']; ?>" />
+				<input class="acf-image-value" type="hidden" name="<?php echo $field['name']; ?>[]" value="<?php echo $attachment['id']; ?>" />
 				<div class="inner clearfix">
 					<img src="<?php echo $src; ?>" alt="" />
 					<div class="list-data">
@@ -247,8 +219,8 @@ class acf_Gallery extends acf_Field
 				</div>
 				<div class="hover">
 					<ul class="bl">
-						<li><a href="#" class="remove-image ir"><?php _e("Remove",'acf'); ?></a></li>
-						<li><a href="#" class="edit-image ir"><?php _e("Edit",'acf'); ?></a></li>
+						<li><a href="#" class="acf-button-delete ir"><?php _e("Remove",'acf'); ?></a></li>
+						<li><a href="#" class="acf-button-edit ir"><?php _e("Edit",'acf'); ?></a></li>
 					</ul>
 				</div>
 				
@@ -269,16 +241,37 @@ class acf_Gallery extends acf_Field
 	</div>
 	
 	<script type="text/html" class="tmpl-thumbnail">
-	<div class="thumbnail" data-id="0">
-		<input type="hidden" name="<?php echo $field['name']; ?>[]" value="" />
+	<div class="thumbnail" data-id="{id}">
+		<input type="hidden" class="acf-image-value" name="<?php echo $field['name']; ?>[]" value="{id}" />
 		<div class="inner clearfix">
-			<img src="" alt="" />
-			<div class="list-data"><!-- Generated by AJAX --></div>
+			<img src="{src}" alt="{alt}" />
+			<div class="list-data">
+				<table>
+				<tbody>
+					<tr>
+						<th><label><?php _e("Title",'acf'); ?>:</label></th>
+						<td class="td-title">{title}</td>
+					</tr>
+					<tr>
+						<th><label><?php _e("Alternate Text",'acf'); ?>:</label></th>
+						<td class="td-alt">{alt}</td>
+					</tr>
+					<tr>
+						<th><label><?php _e("Caption",'acf'); ?>:</label></th>
+						<td class="td-caption">{caption}</td>
+					</tr>
+					<tr>
+						<th><label><?php _e("Description",'acf'); ?>:</label></th>
+						<td class="td-description">{description}</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
 		</div>
 		<div class="hover">
 			<ul class="bl">
-				<li><a href="#" class="remove-image ir"><?php _e("Remove",'acf'); ?></a></li>
-				<li><a href="#" class="edit-image ir"><?php _e("Edit",'acf'); ?></a></li>
+				<li><a href="#" class="acf-button-delete ir"><?php _e("Remove",'acf'); ?></a></li>
+				<li><a href="#" class="acf-button-edit ir"><?php _e("Edit",'acf'); ?></a></li>
 			</ul>
 		</div>
 		
@@ -309,6 +302,7 @@ class acf_Gallery extends acf_Field
 	{
 		// get value
 		$value = parent::get_value($post_id, $field);
+		$new_value = array();
 		
 		
 		// empty?
@@ -341,9 +335,12 @@ class acf_Gallery extends acf_Field
 		
 		
 		// override value array with attachments
-		foreach( $value as $k => $v)
+		foreach( $value as $v)
 		{
-			$value[ $k ] = $ordered_attachments[ $v ];
+			if( isset($ordered_attachments[ $v ]) )
+			{
+				$new_value[] = $ordered_attachments[ $v ];
+			}
 		}
 		
 		
@@ -375,7 +372,7 @@ class acf_Gallery extends acf_Field
 		*/
 		
 		// return value
-		return $value;	
+		return $new_value;	
 	}
 	
 	
@@ -448,19 +445,12 @@ class acf_Gallery extends acf_Field
 	*/
 	
 	function popup_head()
-	{
-		// $_GET is required
-		if( ! isset($_GET) )
-		{
-			return;
-		}
-		
-		
+	{	
 		// options
 		$defaults = array(
 			'acf_type' => '',
 			'acf_gallery_id' => '',
-			'preview_size' => 'thumbnail',
+			'acf_preview_size' => 'thumbnail',
 			'tab'	=>	'type',	
 		);
 		
@@ -476,7 +466,6 @@ class acf_Gallery extends acf_Field
 			
 ?><style type="text/css">
 	#media-upload-header #sidemenu li#tab-type_url,
-	#media-upload-header #sidemenu li#tab-gallery,
 	#media-items .media-item a.toggle,
 	#media-items .media-item tr.image-size,
 	#media-items .media-item tr.align,
@@ -527,6 +516,7 @@ class acf_Gallery extends acf_Field
 		position: relative;
 		overflow: hidden;
 		display: none; /* default is hidden */
+		clear: both;
 	}
 	
 	#media-upload .acf-submit a {
@@ -545,6 +535,15 @@ class acf_Gallery extends acf_Field
 	#wpcontent {
    		margin-left: 0 !important;
     }
+    
+<?php if( $options['tab'] == 'gallery' ): ?>
+	#sort-buttons,
+	#gallery-form > .widefat,
+	#media-items .menu_order,
+	#gallery-settings {
+		display: none !important;
+	}
+<?php endif; ?>
 
 </style>
 <script type="text/javascript">
@@ -614,7 +613,6 @@ class acf_Gallery extends acf_Field
 		
 		
 		// show added message
-		//self.parent.acf.add_message('<?php _e("Image Added",'acf'); ?>.', div);
 		disable_image( div );
 		
 		
@@ -709,7 +707,7 @@ class acf_Gallery extends acf_Field
 	$(document).ready(function(){
 		
 		// vars
-		gallery = self.parent.acf_div;
+		gallery = self.parent.acf.media.div;
 		tmpl_thumbnail = gallery.find('.tmpl-thumbnail').html();
 		
 		
@@ -723,7 +721,7 @@ class acf_Gallery extends acf_Field
 		
 		$('form#filter').each(function(){
 			
-			$(this).append('<input type="hidden" name="acf_preview_size" value="<?php echo $options['preview_size']; ?>" />');
+			$(this).append('<input type="hidden" name="acf_preview_size" value="<?php echo $options['acf_preview_size']; ?>" />');
 			$(this).append('<input type="hidden" name="acf_type" value="gallery" />');
 						
 		});
@@ -731,7 +729,7 @@ class acf_Gallery extends acf_Field
 		$('form#image-form, form#library-form').each(function(){
 			
 			var action = $(this).attr('action');
-			action += "&acf_type=gallery&acf_preview_size=<?php $options['preview_size']; ?>";
+			action += "&acf_type=gallery&acf_preview_size=<?php $options['acf_preview_size']; ?>";
 			$(this).attr('action', action);
 			
 		});
@@ -747,88 +745,38 @@ class acf_Gallery extends acf_Field
 	*  @created: 2/07/12
 	*/
 	
-	function add_image( attachment_id )
+	function add_image( id )
 	{
-			
+		var ajax_data = {
+			action : 'acf/fields/gallery/get_image',
+			nonce : self.parent.acf.nonce,
+			id : id,
+			preview_size : "<?php echo $options['acf_preview_size']; ?>"
+		};
+	
+		
+		// ajax
 		$.ajax({
 			url: ajaxurl,
-			data : {
-				action: 'acf_get_preview_image',
-				id: attachment_id,
-				preview_size : "<?php echo $options['preview_size']; ?>"
-			},
+			type: 'post',
+			data : ajax_data,
 			cache: false,
 			dataType: "json",
-			success: function( json ) {
-		    	
+			success: function( json ) {	    	
 
 				// validate
-				if(!json)
+				if( !json )
 				{
-					return;
+					return false;
 				}
 				
 				
-				// get item
-				var item = json[0];
+				// add file
+				self.parent.acf.fields.gallery.add( json );
 				
-				
-				// create thumbnail div
-			    var div = $(tmpl_thumbnail);
-			     
-			     
-			    // add id refernece to later replace this div with the image
-			    div.attr('data-id', item.id);
-			    div.find('input[type="hidden"]').val(item.id);
-			    
-			    
-			    // add image src
-			    div.find('img').attr('src', item.url);
-			    
-			    
-			    // replace loading with thumbnail
-			    gallery.find('.thumbnails > .inner').append( div );
-				
-				
-				// update gallery count
-				self.parent.acf.update_gallery_count( gallery );
-				
-				
-				// validation
-	 			div.closest('.field').removeClass('error');
-	 			
-				
-				// ajax find new list data
-				$.ajax({
-					url: ajaxurl,
-					data : {
-						'action' : 'acf_get_gallery_list_data',
-						'attachment_id' : item.id
-					},
-					cache: false,
-					dataType: "html",
-					success: function( html ) {
-				    	
-			
-						// validate
-						if(!html)
-						{
-							return false;
-						}
-						
-						
-						// update list-item html
-						div.find('.list-data').html( html ); 	
-			 	
-					}
-					// success: function( html ) {
-					
-				});
-				// $.ajax({
 			}
-			// success: function( json ) {
 		});
-		// $.ajax({
+		
 	}
 
 				

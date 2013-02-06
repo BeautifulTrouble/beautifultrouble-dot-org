@@ -1,15 +1,5 @@
 <?php 
 
-/*--------------------------------------------------------------------------
-*
-*	Field_groups
-*
-*	@author Elliot Condon
-*	@since 3.2.6
-* 
-*-------------------------------------------------------------------------*/
- 
- 
 class acf_field_groups 
 {
 
@@ -113,8 +103,10 @@ class acf_field_groups
 	
 	function admin_print_scripts()
 	{
-		wp_enqueue_script( 'jquery' );
-    	wp_enqueue_script( 'thickbox' );
+		wp_enqueue_script(array(
+			'jquery',
+			'thickbox',
+		));
 	}
 	
 	
@@ -128,7 +120,11 @@ class acf_field_groups
 	
 	function admin_print_styles()
 	{
-		wp_enqueue_style( 'thickbox' );
+		wp_enqueue_style(array(
+			'thickbox',
+			'acf-global',
+			'acf',
+		));
 	}
 	
 	
@@ -141,7 +137,11 @@ class acf_field_groups
 	
 	function acf_edit_columns( $columns )
 	{
-		$columns['fields'] = __("Fields", 'acf');
+		$columns = array(
+			'cb'	 	=> '<input type="checkbox" />',
+			'title' 	=> __("Title"),
+			'fields' 	=> __("Fields", 'acf')
+		);
 		
 		return $columns;
 	}
@@ -225,45 +225,41 @@ class acf_field_groups
 	function admin_footer()
 	{
 		?>
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->parent->dir; ?>/css/global.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->parent->dir; ?>/css/acf.css" />
-		<div id="acf-col-right" class="hidden">
-		
-			<div class="wp-box">
-				<div class="inner">
-					<h3 class="h2"><?php _e("Advanced Custom Fields",'acf'); ?> <span>v<?php echo $this->parent->version; ?></span></h3>
-		
-					<h3><?php _e("Changelog",'acf'); ?></h3>
-					<p><?php _e("See what's new in",'acf'); ?> <a class="thickbox" href="<?php bloginfo('url'); ?>/wp-admin/plugin-install.php?tab=plugin-information&plugin=advanced-custom-fields&section=changelog&TB_iframe=true&width=640&height=559">v<?php echo $this->parent->version; ?></a>
-					
-					<h3><?php _e("Resources",'acf'); ?></h3>
-					<p><?php _e("Read documentation, learn the functions and find some tips &amp; tricks for your next web project.",'acf'); ?><br />
-					<a href="http://www.advancedcustomfields.com/" target="_blank"><?php _e("Visit the ACF website",'acf'); ?></a></p>
-		
-				</div>
-				<div class="footer footer-blue">
-					<ul class="left hl">
-						<li><?php _e("Created by",'acf'); ?> Elliot Condon</li>
-					</ul>
-					<ul class="right hl">
-						<li><a href="http://wordpress.org/extend/plugins/advanced-custom-fields/"><?php _e("Vote",'acf'); ?></a></li>
-						<li><a href="http://twitter.com/elliotcondon"><?php _e("Follow",'acf'); ?></a></li>
-					</ul>
-				</div>
-			</div>
+<div id="acf-col-right" class="hidden">
+
+	<div class="wp-box">
+		<div class="inner">
+			<h3 class="h2"><?php _e("Advanced Custom Fields",'acf'); ?> <span>v<?php echo $this->parent->version; ?></span></h3>
+
+			<h3><?php _e("Changelog",'acf'); ?></h3>
+			<p><?php _e("See what's new in",'acf'); ?> <a class="thickbox" href="<?php echo admin_url('plugin-install.php'); ?>?tab=plugin-information&plugin=advanced-custom-fields&section=changelog&TB_iframe=true&width=640&height=559">v<?php echo $this->parent->version; ?></a>
+			
+			<h3><?php _e("Resources",'acf'); ?></h3>
+			<p><?php _e("Read documentation, learn the functions and find some tips &amp; tricks for your next web project.",'acf'); ?><br />
+			<a href="http://www.advancedcustomfields.com/" target="_blank"><?php _e("Visit the ACF website",'acf'); ?></a></p>
+
 		</div>
-		<script type="text/javascript">
-		(function($){
-			
-			//$('#screen-meta-links').remove();
-			$('#wpbody .wrap').wrapInner('<div id="acf-col-left" />');
-			$('#wpbody .wrap').wrapInner('<div id="acf-cols" />');
-			$('#acf-col-right').removeClass('hidden').prependTo('#acf-cols');
-			
-			$('#acf-col-left > .icon32').insertBefore('#acf-cols');
-			$('#acf-col-left > h2').insertBefore('#acf-cols');
-		})(jQuery);
-		</script>
+		<div class="footer footer-blue">
+			<ul class="left hl">
+				<li><?php _e("Created by",'acf'); ?> Elliot Condon</li>
+			</ul>
+			<ul class="right hl">
+				<li><a href="http://wordpress.org/extend/plugins/advanced-custom-fields/"><?php _e("Vote",'acf'); ?></a></li>
+				<li><a href="http://twitter.com/elliotcondon"><?php _e("Follow",'acf'); ?></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+(function($){
+	$('#wpbody .wrap').wrapInner('<div id="acf-col-left" />');
+	$('#wpbody .wrap').wrapInner('<div id="acf-cols" />');
+	$('#acf-col-right').removeClass('hidden').prependTo('#acf-cols');
+	
+	$('#acf-col-left > .icon32').insertBefore('#acf-cols');
+	$('#acf-col-left > h2').insertBefore('#acf-cols');
+})(jQuery);
+</script>
 		<?php
 	}
 			

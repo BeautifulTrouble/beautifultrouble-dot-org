@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/wplink
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wplink
+http://core.svn.wordpress.org
 
 
 
-2012-02-18T06:43:47.830148Z
-19945
-azaozz
+2012-07-13T00:58:19.111177Z
+21269
+bumpbot
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-c6407f04ec80e657ba01bf5938a60faa
-2011-01-20T23:09:37.528903Z
-17340
-nacin
+2013-02-06T00:42:24.000000Z
+b1f0a677a64e08005a093b4049f54d53
+2012-07-13T00:58:19.111177Z
+21269
+bumpbot
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-668
+586
 
 editor_plugin_src.js
 file
@@ -66,10 +66,10 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-9dd84d5a159ba243f18568c223a534b6
-2012-02-18T06:43:47.830148Z
-19945
+2013-02-06T00:42:24.000000Z
+0c8c4f07f089e8ae86166ab16201cda9
+2012-07-13T00:26:49.983740Z
+21266
 azaozz
 has-props
 
@@ -92,5 +92,5 @@ has-props
 
 
 
-1771
+1681
 

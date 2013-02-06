@@ -1,7 +1,7 @@
 <?php
 /*
 JLFunctions URL Class
-Copyright (c)2009-2011 John Lamansky
+Copyright (c)2009-2012 John Lamansky
 */
 
 class suurl {
@@ -22,10 +22,13 @@ class suurl {
 			return $url.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 	}
 	
-	function build_query($array) {
-		return html_entity_decode(http_build_query($array));
-	}
-	
+	/**
+	 * Checks whether or not two URLs are equivalent.
+	 * 
+	 * @param string $url1
+	 * @param string $url2
+	 * @return bool
+	 */
 	function equal($url1, $url2) {
 		
 		if (($url1parts = parse_url($url1)) && isset($url1parts['host'])) {
@@ -41,6 +44,12 @@ class suurl {
 		return $url1 == $url2;
 	}
 	
+	/**
+	 * Turns an array of URL parts (host, scheme, path, query, fragment) into a URL.
+	 * 
+	 * @param array $parts
+	 * @return string
+	 */
 	function build($parts) {
 		
 		$url = '';

@@ -46,11 +46,23 @@ class SU_Modules extends SU_Module {
 	}
 	
 	function admin_page_contents() {
-		echo "<p>";
+		
+		if ($this->plugin->should_show_wp_ultimate_promo()) {
+?>
+<div id="wp-ultimate">
+	<a href="http://www.wpultimatetheme.com/" target="_blank">
+		<img src="<?php echo $this->plugin->plugin_dir_url; ?>plugin/images/wp-ultimate.gif" alt="<?php esc_attr_e('Like SEO Ultimate? Check out the WP Ultimate theme from SEO Design Solutions.', 'seo-ultimate'); ?>" title="" />
+	</a>
+</div>
+
+<?php
+		}
+		
+		echo '<p>';
 		_e('SEO Ultimate&#8217;s features are located in groups called &#8220;modules.&#8221; By default, most of these modules are listed in the &#8220;SEO&#8221; menu on the left. Whenever you&#8217;re working with a module, you can view documentation by clicking the &#8220;Help&#8221; tab in the upper-right-hand corner of your administration screen.', 'seo-ultimate');
-		echo "</p><p>";
+		echo "</p>\n<p>";
 		_e('The Module Manager lets you  disable or hide modules you don&#8217;t use. You can also silence modules from displaying bubble alerts on the menu.', 'seo-ultimate');
-		echo "</p>";
+		echo "</p>\n";
 		
 		if (!empty($_GET['su-modules-updated']))
 			$this->print_message('success', __('Modules updated.', 'seo-ultimate'));
@@ -176,6 +188,7 @@ STR;
 			  'id' => 'su-modules-options'
 			, 'title' => __('Options Help', 'seo-ultimate')
 			, 'content' => __("
+<p>SEO Ultimate&#8217;s features are located in groups called &#8220;modules.&#8221; By default, most of these modules are listed in the &#8220;SEO&#8221; menu on the left.</p>
 <p>The Module Manager lets you customize the visibility and accessibility of each module; here are the options available:</p>
 <ul>
 	<li><strong>Enabled</strong> &mdash; The default option. The module will be fully enabled and accessible.</li>

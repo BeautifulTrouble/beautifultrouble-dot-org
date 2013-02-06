@@ -30,55 +30,6 @@ class suwp {
 		return false;
 	}
 	
-	function get_any_posts($args = array()) {
-		if (!is_array($args)) $args = array();
-		$args['post_type'] = suwp::get_post_type_names(); //...as opposed to "any" because then get_posts() will remove search-excluded post types
-		$args['numberposts'] = -1;
-		return get_posts($args);
-	}
-	
-	function get_post_type_names() {
-		//If WP 2.9+ && WP 3.0+...
-		if (function_exists('get_post_types') && $types = get_post_types(array('public' => true), 'names'))
-			return $types;
-		
-		//WP 2.9 or less
-		return array('post', 'page', 'attachment');
-	}
-	
-	function get_post_type_objects() {
-		$types = array();
-		
-		//Custom post type support - requires WordPress 3.0 or above (won't work with 2.9 custom post types)
-		if (function_exists('get_post_types'))
-			$types = get_post_types(array('public' => true), 'objects');
-		
-		/*
-		if (function_exists('get_post_types'))
-			$types = suarr::flatten_values(get_post_types(array('public' => true), 'objects'), array('labels', 'name'));
-		*/
-		
-		//Legacy support for WordPress 2.9 and below
-		if (!count($types)) {
-			
-			$_types = array(
-				  array('post', __('Posts'), __('Post'))
-				, array('page', __('Pages'), __('Page'))
-				, array('attachment', __('Attachments'), __('Attachment'))
-			);
-			$types = array();
-			foreach ($_types as $_type) {
-				$type = new stdClass();
-				$type->name = $_type[0];
-				$type->labels->name = $_type[1];
-				$type->labels->singular_name = $_type[2];
-				$types[] = $type;
-			}
-		}
-		
-		return $types;
-	}
-	
 	function is_tax($taxonomy='', $term='') {
 		if ($taxonomy) {
 			switch ($taxonomy) {
@@ -112,33 +63,6 @@ class suwp {
 		$taxonomies = get_object_taxonomies($post_type, 'objects');
 		$taxonomies = wp_filter_object_list($taxonomies, array('public' => true, 'show_ui' => true), 'and', 'name');
 		return $taxonomies;
-	}
-	
-	function get_any_terms($args = array()) {
-		$taxonomies = get_taxonomies(array('public' => true));
-		return get_terms($taxonomies, $args);
-	}
-	
-	/**
-	 * Loads a webpage and returns its HTML as a string.
-	 * 
-	 * @param string $url The URL of the webpage to load.
-	 * @param string $ua The user agent to use.
-	 * @return string The HTML of the URL.
-	 */
-	function load_webpage($url, $ua) {
-		
-		$options = array();
-		$options['headers'] = array(
-			'User-Agent' => $ua
-		);
-		
-		$response = wp_remote_request($url, $options);
-		
-		if ( is_wp_error( $response ) ) return false;
-		if ( 200 != $response['response']['code'] ) return false;
-		
-		return trim( $response['body'] );
 	}
 	
 	/**
@@ -179,27 +103,9 @@ class suwp {
 	function get_edit_term_link($id, $taxonomy) {
 		$tax_obj = get_taxonomy($taxonomy);
 		if ($tax_obj->show_ui)
-			return get_edit_tag_link($id, $taxonomy);
+			return get_edit_term_link($id, $taxonomy);
 		else
 			return false;
-	}
-	
-	function get_all_the_terms($id = 0) {
-		
-		$id = (int)$id;
-		if (!$id) $id = suwp::get_post_id();
-		$post = get_post($id);
-		if (!$post) return false;
-		
-		$taxonomies = get_object_taxonomies($post);
-		$terms = array();
-		
-		foreach ($taxonomies as $taxonomy) {
-			$newterms = get_the_terms($id, $taxonomy);
-			if ($newterms) $terms = array_merge($terms, $newterms);
-		}
-		
-		return $terms;
 	}
 	
 	function get_term_slug($term_obj) {
@@ -225,26 +131,6 @@ class suwp {
 		return $term_slug;
 	}
 	
-	function remove_instance_action($tag, $class, $function, $priority=10) {
-		return suwp::remove_instance_filter($tag, $class, $function, $priority);
-	}
-	
-	function remove_instance_filter($tag, $class, $function, $priority=10) {
-		if (isset($GLOBALS['wp_filter'][$tag][$priority]) && count($GLOBALS['wp_filter'][$tag][$priority])) {
-			foreach ($GLOBALS['wp_filter'][$tag][$priority] as $key => $x) {
-				if (sustr::startswith($key, $class.$function)) {
-					unset($GLOBALS['wp_filter'][$tag][$priority][$key]);
-					if ( empty($GLOBALS['wp_filter'][$tag][$priority]) )
-						unset($GLOBALS['wp_filter'][$tag][$priority]);
-					unset($GLOBALS['merged_filters'][$tag]);
-					return true;
-				}
-			}
-		}
-		
-		return false;
-	}
-	
 	function permalink_mode() {
 		if (strlen($struct = get_option('permalink_structure'))) {
 			if (sustr::startswith($struct, '/index.php/'))
@@ -260,24 +146,6 @@ class suwp {
 			return get_permalink($page_id);
 		
 		return home_url('/');
-	}
-	
-	function get_user_edit_url($user_id) {
-		if (is_object($user_id)) $user_id = intval($user_id->ID);
-		
-		if ( get_current_user_id() == $user_id )
-			return 'profile.php';
-		else
-			return esc_url( add_query_arg( 'wp_http_referer', urlencode( stripslashes( $_SERVER['REQUEST_URI'] ) ), "user-edit.php?user_id=$user_id" ) );
-	}
-	
-	function is_comment_subpage() {
-		if (is_singular()) {
-			global $cpage;
-			return $cpage > 1;
-		}
-		
-		return false;
 	}
 	
 	function get_admin_scope() {

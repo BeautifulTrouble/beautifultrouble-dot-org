@@ -1,39 +1,39 @@
 <?php 
 
-/*--------------------------------------------------------------------------
-*
-*	Acf_options_page
-*
-*	@author Elliot Condon
-*	@since 2.0.4
-* 
-*-------------------------------------------------------------------------*/
- 
- 
 class acf_options_page 
 {
+	
+	/*
+	*  Vars
+	*
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 5/12/12
+	*/
+	
+	var $parent,
+		$dir,
+		$data;
+	
+	
+	/*
+	*  construct
+	*
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 5/12/12
+	*/
 
-	var $parent;
-	var $dir;
-	var $data;
-	
-	/*--------------------------------------------------------------------------------------
-	*
-	*	Acf_options_page
-	*
-	*	@author Elliot Condon
-	*	@since 2.0.4
-	* 
-	*-------------------------------------------------------------------------------------*/
-	
 	function __construct($parent)
 	{
 		// vars
 		$this->parent = $parent;
 		$this->dir = $parent->dir;
 		
+		
 		// data for passing variables
 		$this->data = array();
+		
 		
 		// actions
 		add_action('admin_menu', array($this,'admin_menu'));
@@ -41,49 +41,40 @@ class acf_options_page
 	}
 	
 	
-	/*--------------------------------------------------------------------------------------
+	/*
+	*  admin_menu
 	*
-	*	admin_menu
-	*
-	*	@author Elliot Condon
-	*	@since 2.0.4
-	* 
-	*-------------------------------------------------------------------------------------*/
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 5/12/12
+	*/
 	
 	function admin_menu() 
 	{
 		// validate
-		if(!$this->parent->is_field_unlocked('options_page'))
+		if( !$this->parent->is_field_unlocked('options_page') )
 		{
 			return true;
 		}
 		
 		
 		// vars
+		$defaults = $this->parent->defaults['options_page'];
 		$parent_slug = 'acf-options';
-		$parent_title = __('Options','acf');
-		$parent_menu = __('Options','acf');
+		$parent_title = $defaults['title'];
+		$parent_menu = $defaults['title'];
 		
 		
 		// redirect to first child
-		$custom = apply_filters( 'acf_register_options_page',array() );
-		if( !empty($custom) )
+		if( !empty($defaults['pages']) )
 		{	
-			$parent_title = $custom[0];
+			$parent_title = $defaults['pages'][0];
 			$parent_slug = 'acf-options-' . sanitize_title( $parent_title );
 		}
-		else
-		{
-			$parent_title = apply_filters('acf_options_page_title', $parent_title);
-		}
-		
-		
-		// allow override of title
-		$parent_menu = apply_filters('acf_options_page_title', $parent_menu);
 		
 		
 		// Parent
-		$parent_page = add_menu_page($parent_title, $parent_menu, 'edit_posts', $parent_slug, array($this, 'html'));	
+		$parent_page = add_menu_page($parent_title, $parent_menu, $defaults['capability'], $parent_slug, array($this, 'html'));	
 		
 		
 		// some fields require js + css
@@ -96,14 +87,14 @@ class acf_options_page
 		add_action('admin_footer-'.$parent_page, array($this,'admin_footer'));
 		
 		
-		if(!empty($custom))
+		if( !empty($defaults['pages']) )
 		{
-			foreach($custom as $c)
+			foreach($defaults['pages'] as $c)
 			{
 				$sub_title = $c;
 				$sub_slug = 'acf-options-' . sanitize_title( $sub_title );
 				
-				$child_page = add_submenu_page($parent_slug, $sub_title, $sub_title, 'edit_posts', $sub_slug, array($this, 'html'));
+				$child_page = add_submenu_page($parent_slug, $sub_title, $sub_title, $defaults['capability'], $sub_slug, array($this, 'html'));
 				
 				// some fields require js + css
 				add_action('admin_print_scripts-'.$child_page, array($this, 'admin_print_scripts'));
@@ -118,28 +109,33 @@ class acf_options_page
 	}
 	
 	
-	
-	/*--------------------------------------------------------------------------------------
+	/*
+	*  admin_head
 	*
-	*	admin_head
-	*
-	*	@author Elliot Condon
-	*	@since 2.0.4
-	* 
-	*-------------------------------------------------------------------------------------*/
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 5/12/12
+	*/
 	
 	function admin_head()
 	{	
 	
 		// save
-		if(isset($_POST['update_options']))
+		if( isset($_POST['acf_options_page']) )
 		{
-			do_action('acf_save_post', 'options');
+			if( wp_verify_nonce($_POST['acf_options_page'], 'acf_options_page') )
+			{
+				do_action('acf_save_post', 'options');
 			
-			$this->data['admin_message'] = __("Options Updated",'acf');
+				$this->data['admin_message'] = __("Options Updated",'acf');
+			}
 		}
 		
-		$metabox_ids = $this->parent->get_input_metabox_ids(false, false);
+		
+		// get field groups
+		$filter = array();
+		$metabox_ids = array();
+		$metabox_ids = apply_filters( 'acf/location/match_field_groups', $metabox_ids, $filter );
 
 		
 		if(empty($metabox_ids))
@@ -149,13 +145,7 @@ class acf_options_page
 		}
 		
 		// Style
-		echo '<link rel="stylesheet" type="text/css" href="'.$this->parent->dir.'/css/global.css?ver=' . $this->parent->version . '" />';
-		echo '<link rel="stylesheet" type="text/css" href="'.$this->parent->dir.'/css/input.css?ver=' . $this->parent->version . '" />';
 		echo '<style type="text/css">#side-sortables.empty-container { border: 0 none; }</style>';
-
-		// Javascript
-		echo '<script type="text/javascript" src="'.$this->parent->dir.'/js/input-actions.js?ver=' . $this->parent->version . '" ></script>';
-		echo '<script type="text/javascript">acf.post_id = 0; </script>';
 		
 		
 		// add user js + css
@@ -163,14 +153,15 @@ class acf_options_page
 		
 
 		// get acf's
-		$acfs = $this->parent->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
 		if($acfs)
 		{
 			foreach($acfs as $acf)
 			{
 				// hide / show
-				$show = in_array($acf['id'], $metabox_ids) ? "true" : "false";
-				if($show == "true")
+				$show = in_array($acf['id'], $metabox_ids) ? 1 : 0;
+
+				if( $show )
 				{				
 					// add meta box
 					add_meta_box(
@@ -189,14 +180,14 @@ class acf_options_page
 	}
 	
 	
-	/*--------------------------------------------------------------------------------------
+	/*
+	*  admin_footer
 	*
-	*	admin_footer
-	*
-	*	@author Elliot Condon
-	*	@since 2.0.4
-	* 
-	*-------------------------------------------------------------------------------------*/
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 5/12/12
+	*/
+	
 	function admin_footer()
 	{
 		// add togle open / close postbox
@@ -225,34 +216,42 @@ class acf_options_page
 	}
 	
 	
-	/*---------------------------------------------------------------------------------------------
-	 * admin_print_scripts / admin_print_styles
-	 *
-	 * @author Elliot Condon
-	 * @since 2.0.4
-	 * 
-	 ---------------------------------------------------------------------------------------------*/
-	function admin_print_scripts() {
-
+	/*
+	*  admin_print_scripts
+	*
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 5/12/12
+	*/
+	
+	function admin_print_scripts()
+	{
   		do_action('acf_print_scripts-input');
-
 	}
 	
-	function admin_print_styles() {
-		
+	
+	/*
+	*  admin_print_styles
+	*
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 5/12/12
+	*/
+	
+	function admin_print_styles()
+	{
 		do_action('acf_print_styles-input');
-		
 	}
 	
 	
-	/*--------------------------------------------------------------------------------------
+	/*
+	*  html
 	*
-	*	options_page
-	*
-	*	@author Elliot Condon
-	*	@since 2.0.4
-	* 
-	*-------------------------------------------------------------------------------------*/
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 5/12/12
+	*/
+	
 	function html()
 	{
 		?>
@@ -280,7 +279,8 @@ class acf_options_page
 						<h3 class="hndle"><span><?php _e("Publish",'acf'); ?></span></h3>
 						<div class="inside">
 							<input type="hidden" name="HTTP_REFERER" value="<?php echo $_SERVER['HTTP_REFERER'] ?>" />
-							<input type="submit" class="acf-button" value="<?php _e("Save Options",'acf'); ?>" name="update_options" />
+							<input type="hidden" name="acf_options_page" value="<?php echo wp_create_nonce( 'acf_options_page' ); ?>" />
+							<input type="submit" class="acf-button" value="<?php _e("Save Options",'acf'); ?>" />
 						</div>
 					</div>
 					

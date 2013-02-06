@@ -1,5 +1,15 @@
+#su-modules table.widefat {
+	clear: left;
+}
+
+#su-modules td {
+	vertical-align: middle;
+}
+
 #su-modules td.module-status {
 	padding-right: 2em;
+	white-space: nowrap;
+	min-width: 25em;
 }
 
 #su-modules td.module-status input {
@@ -27,3 +37,8 @@
 #su-modules td.module-status .status-5  a.current { color: black; }
 #su-modules td.module-status .status-0 a.current  { color: darkorange; }
 #su-modules td.module-status .status-n10 a.current{ color: red; }
+
+#su-modules #wp-ultimate {
+	float: right;
+	margin: 0 1em 1em;
+}

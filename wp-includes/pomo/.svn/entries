@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/pomo
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/pomo
+http://core.svn.wordpress.org
 
 
 
-2011-10-27T20:00:09.855892Z
-19072
-ryan
+2012-10-31T23:56:23.599003Z
+22355
+nbachiyski
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2012-08-28T16:32:52.000000Z
-511cd0422f545e7a7221f1c622185c63
-2011-10-27T20:00:09.855892Z
-19072
-ryan
+2013-02-06T00:42:22.000000Z
+c7aea72d10f387a63f768981483b6d57
+2012-10-31T22:13:51.947790Z
+22349
+nbachiyski
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-7271
+7419
 
 po.php
 file
@@ -66,10 +66,10 @@ file
 
 
 
-2012-08-28T16:32:52.000000Z
-9ac1709c3dc3ba1e5d9c71aa72657b0f
-2011-08-11T04:29:35.099497Z
-18528
+2013-02-06T00:42:22.000000Z
+cb909cc0b3e3999d344b9f37f3bcc6a0
+2012-10-31T22:26:20.272581Z
+22350
 nbachiyski
 has-props
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-11303
+11485
 
 streams.php
 file
@@ -100,10 +100,10 @@ file
 
 
 
-2012-08-28T16:32:52.000000Z
-88314719a69b819c9116885b238e934a
-2011-08-11T04:29:35.099497Z
-18528
+2013-02-06T00:42:22.000000Z
+2bff9b99c510536c517e72b2d1f2a731
+2012-10-31T22:13:51.947790Z
+22349
 nbachiyski
 has-props
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-4551
+4531
 
 entry.php
 file
@@ -134,10 +134,10 @@ file
 
 
 
-2012-08-28T16:32:52.000000Z
-4ce3d1f20ac04637342f333aeb8dd891
-2011-08-11T04:29:35.099497Z
-18528
+2013-02-06T00:42:22.000000Z
+eb148c7d02db4c96c7bcc6a2d276c22e
+2012-10-31T22:13:51.947790Z
+22349
 nbachiyski
 has-props
 
@@ -160,7 +160,7 @@ has-props
 
 
 
-2581
+2578
 
 translations.php
 file
@@ -168,11 +168,11 @@ file
 
 
 
-2012-08-28T16:32:52.000000Z
-56a99a395a042cb3c198a2cc9f48230d
-2011-09-29T22:57:43.818803Z
-18827
-ryan
+2013-02-06T00:42:22.000000Z
+f2fb63c95dcd9fa8a876d57fa20c21b7
+2012-10-31T23:56:23.599003Z
+22355
+nbachiyski
 has-props
 
 
@@ -194,5 +194,5 @@ has-props
 
 
 
-7538
+7532
 

@@ -44,10 +44,10 @@ class acf_Select extends acf_Field
 		// vars
 		$defaults = array(
 			'value'			=>	array(),
-			'multiple' 		=>	'0',
-			'allow_null' 	=>	'0',
+			'multiple' 		=>	0,
+			'allow_null' 	=>	0,
 			'choices'		=>	array(),
-			'optgroup'		=>	false,
+			'optgroup'		=>	0,
 		);
 		
 		$field = array_merge($defaults, $field);
@@ -63,7 +63,7 @@ class acf_Select extends acf_Field
 		
 		// multiple select
 		$multiple = '';
-		if($field['multiple'] == '1')
+		if( $field['multiple'] )
 		{
 			// create a hidden field to allow for no selections
 			echo '<input type="hidden" name="' . $field['name'] . '" />';
@@ -78,7 +78,7 @@ class acf_Select extends acf_Field
 		
 		
 		// null
-		if($field['allow_null'] == '1')
+		if( $field['allow_null'] )
 		{
 			echo '<option value="null"> - Select - </option>';
 		}
@@ -154,11 +154,17 @@ class acf_Select extends acf_Field
 	
 	function create_options($key, $field)
 	{	
-		// defaults
-		$field['multiple'] = isset($field['multiple']) ? $field['multiple'] : '0';
-		$field['allow_null'] = isset($field['allow_null']) ? $field['allow_null'] : '0';
-		$field['default_value'] = isset($field['default_value']) ? $field['default_value'] : '';
+		// vars
+		$defaults = array(
+			'multiple'		=>	0,
+			'allow_null'	=>	0,
+			'default_value' => '',
+			'choices'		=>	'',
+		);
 		
+		$field = array_merge($defaults, $field);
+		
+				
 		// implode selects so they work in a textarea
 		if(isset($field['choices']) && is_array($field['choices']))
 		{		
@@ -188,7 +194,7 @@ class acf_Select extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'textarea',
 					'class' => 	'textarea field_option-choices',
 					'name'	=>	'fields['.$key.'][choices]',
@@ -203,7 +209,7 @@ class acf_Select extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'text',
 					'name'	=>	'fields['.$key.'][default_value]',
 					'value'	=>	$field['default_value'],
@@ -217,13 +223,13 @@ class acf_Select extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][allow_null]',
 					'value'	=>	$field['allow_null'],
 					'choices'	=>	array(
-						'1'	=>	__("Yes",'acf'),
-						'0'	=>	__("No",'acf'),
+						1	=>	__("Yes",'acf'),
+						0	=>	__("No",'acf'),
 					),
 					'layout'	=>	'horizontal',
 				));
@@ -236,13 +242,13 @@ class acf_Select extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][multiple]',
 					'value'	=>	$field['multiple'],
 					'choices'	=>	array(
-						'1'	=>	__("Yes",'acf'),
-						'0'	=>	__("No",'acf'),
+						1	=>	__("Yes",'acf'),
+						0	=>	__("No",'acf'),
 					),
 					'layout'	=>	'horizontal',
 				));

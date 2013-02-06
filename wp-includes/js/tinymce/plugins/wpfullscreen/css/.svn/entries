@@ -1,15 +1,15 @@
 10
 
 dir
-22559
-http://svn.automattic.com/wordpress/branches/3.4/wp-includes/js/tinymce/plugins/wpfullscreen/css
-http://svn.automattic.com/wordpress
+23387
+http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wpfullscreen/css
+http://core.svn.wordpress.org
 
 
 
-2012-05-16T07:02:55.566901Z
-20804
-azaozz
+2012-11-21T22:31:55.432126Z
+22798
+duck_
 
 
 
@@ -32,11 +32,12 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
-47e03ab3c3dffa3156931d74ef44d52b
-2012-05-16T07:02:55.566901Z
-20804
-azaozz
+2013-02-06T00:42:24.000000Z
+de3ad9d8c97491f41feaaf5d5d4d60b5
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
 
 
 
@@ -57,6 +58,5 @@ azaozz
 
 
 
-
-234
+221
 
