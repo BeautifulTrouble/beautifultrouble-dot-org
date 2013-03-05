@@ -5,7 +5,7 @@
                                     Published by <b>OR Books</b>. Order your copy today:
                                     </p>
                                     <p>
-                                    <img src="/wp-content/themes/beautifultrouble/img/Beautiful_Trouble_Book_Cover.png" /><br />
+                                    <img src="/wp-content/themes/beautifultrouble/img/Beautiful_Trouble_Book_Cover_med.png" width="150" height="185" /><br />
                                     <a class="img" href="http://orbooks.mybigcommerce.com/cart.php?action=add&product_id=264"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a>&nbsp;Paperback:&nbsp;$25&nbsp;<br />
                                     <a class="img" href="http://orbooks.mybigcommerce.com/cart.php?action=add&product_id=265"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a>&nbsp;Ebook:&nbsp;$10&nbsp;<br />
                                     <a class="img" href="http://orbooks.mybigcommerce.com/cart.php?action=add&product_id=266"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a>&nbsp;Both:&nbsp;$28&nbsp;
