@@ -20,16 +20,25 @@ get_header(); ?>
         <div id="myCarousel" class="carousel slide span8 hidden-phone">
         <!-- Carousel items -->
             <div class="carousel-inner">
+            <! -- default module slides -->
+            <?php $types = array( 'tactic', 'principle', 'theory', 'case', 'practitioner' ); ?>
+            <?php foreach ($types as $type) { 
+            $active = $type == $types[0] ? 'active' : '';
+            ?>
+                <div class="item <?php echo $active ?>">
+                    <a href="/<? echo $type ?>"><img src="/wp-content/themes/beautifultrouble/img/bt_slides_<?php echo $type ?>.png" /></a>
+                </div>
+            <?php } ?>
 <?php if( $fields['slideshow'] ) {
     // Let's loop through any repeating elements and create seperate
     // arrays for each type of repeating element, i.e., Insights, Epigraphs
     $slides = $fields['slideshow'];
-        //echo "<pre>", print_r( $slide ), "</pre>";
     foreach( $slides as $slide ) {
         if ( get_the_post_thumbnail($slide->ID, 'bt-featured') ) {
-    $active = $slide == $slides[0] ? 'active' : '';
+    // Can't use this now, as the defaults need the active class
+    //$active = $slide == $slides[0] ? 'active' : '';
                 ?>
-                <div class="item <?php echo $active ?>">
+                <div class="item <?php // echo $active ?>">
                     <a href="<?php echo get_permalink( $slide->ID ); ?>"><?php echo get_the_post_thumbnail($slide->ID, 'bt-featured', array( 'alt' => $slide->post_title, 'title' => $slide->post_title ) ); ?></a>
                     <div class="carousel-caption">
                     <h4><?php $obj = get_post_type_object( get_post_type( $slide->ID) ); echo strtoupper( $obj->labels->singular_name ); ?>: <?php echo $slide->post_title; ?></h4>
@@ -44,13 +53,8 @@ get_header(); ?>
 <?php  }
     }
 } ?>    
-                <div class="item">
-                    <a href="/the-book/"><img src="/wp-content/themes/beautifultrouble/img/slide-book-promo.jpg" /></a>
-                </div> 
             </div>
         <!-- Carousel nav -->
-        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
         </div>
 
         <div class="span4">
@@ -65,9 +69,6 @@ get_header(); ?>
       ?>
     </div>
     <div class="span4">
-      <?php
-      if ( function_exists('dynamic_sidebar')) dynamic_sidebar("home-two");
-      ?>
         <div class="upcoming_events">
             <?php $args = array('nopaging' => 'true', 'orderby' => 'meta_value', 'meta_key' => 'date', 'order' => 'ASC', 'post_type' => array('bt_event') );
             $my_query = null;
@@ -92,6 +93,11 @@ get_header(); ?>
             }
             wp_reset_query();  // Restore global post data stomped by the_post().
             ?>
+          <?php
+            if ( function_exists('dynamic_sidebar') ) 
+                echo '<hr class="soften" />';
+                dynamic_sidebar("home-two");
+          ?>
             </div>
     </div>
     <div class="span4">
