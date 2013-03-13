@@ -89,7 +89,7 @@ get_header(); ?>
         </div>
 
         <br />
-        <p class="alert alert-info hidden-phone">Hey there! Did you know that can jump in to our <a href="http://beautifultrouble.org/2013/03/12/visualize-beautiful-trouble/">experimental visualization interface</a> right from <a href="http://www.explore.beautifultrouble.org/#<?php echo $post->post_name; ?>">this point</a>? <b><a href="http://www.explore.beautifultrouble.org/#<?php echo $post->post_name; ?>">Give it a try and send us your feedback!</a></b></p>
+        <p class="alert alert-info hidden-phone">Hey there! Did you know that can jump into our <a href="http://beautifultrouble.org/2013/03/12/visualize-beautiful-trouble/">experimental visualization interface</a> right from <a href="http://www.explore.beautifultrouble.org/#<?php echo $post->post_name; ?>">this point</a>? <b><a href="http://www.explore.beautifultrouble.org/#<?php echo $post->post_name; ?>">Give it a try and send us your feedback!</a></b></p>
 <?php endwhile; // end of the loop. ?>
 
         </div><!-- /.span8 -->
