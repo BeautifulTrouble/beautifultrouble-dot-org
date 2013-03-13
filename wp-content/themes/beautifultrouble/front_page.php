@@ -21,9 +21,12 @@ get_header(); ?>
         <!-- Carousel items -->
             <div class="carousel-inner">
             <! -- default module slides -->
+                <div class="item active">
+                    <a href="http://www.explore.beautifultrouble.org" "Visualizing Trouble: take our new beta visualization for a spin!"><img src="/wp-content/themes/beautifultrouble/img/visualize4.png"></a>
+                </div>
             <?php $types = array( 'tactic', 'principle', 'theory', 'case', 'practitioner' ); ?>
             <?php foreach ($types as $type) { 
-            $active = $type == $types[0] ? 'active' : '';
+            //$active = $type == $types[0] ? 'active' : '';
             ?>
                 <div class="item <?php echo $active ?>">
                     <a href="/<? echo $type ?>"><img src="/wp-content/themes/beautifultrouble/img/bt_slides_<?php echo $type ?>.png" /></a>
