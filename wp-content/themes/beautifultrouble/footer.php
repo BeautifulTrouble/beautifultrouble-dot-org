@@ -71,5 +71,11 @@ jQuery(document).ready(function(){
   });
 });
 </script>
-  </body>
+<script>
+$('#editions a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+</script>
+</body>
 </html>

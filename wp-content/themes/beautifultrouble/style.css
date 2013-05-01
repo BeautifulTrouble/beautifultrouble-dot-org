@@ -192,42 +192,6 @@ input#searchsubmit {
     margin: 0px;
 }
 
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) { 
-
-body h1.logo {
-    background: url('../beautifultrouble/img/bt-small-banner.png') no-repeat;
-    height: 240px;
-}
- 
-.jumbotron h1, .jumbotron p {
-    text-align: left;
-}
-form[role="search"] {
-    width: 300px;
-    margin: 0px;
-    float: none;
-}
-form[role="search"] input#s {
-    width: 170px;
-}
-
-}
-
-
-@media (min-width: 768px) and (max-width: 979px) { 
-
-body h1.logo {
-    background: url('../beautifultrouble/img/bt-med-banner.png') no-repeat;
-}
-form[role="search"] {
-    width: 300px;
-    margin: 0px;
-    float: none;
-}
-
-}
-
 ul.author-social-links li {
     list-style: none;
     display: inline;
@@ -246,4 +210,41 @@ li.google {
     background: url('../beautifultrouble/img/google-16x16.png') no-repeat top left;
     padding-left: 18px;
 }
+
+ul#editions {
+    width: 80%;
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+    body h1.logo {
+        background: url('../beautifultrouble/img/bt-small-banner.png') no-repeat;
+        height: 240px;
+    }
+     
+    .jumbotron h1, .jumbotron p {
+        text-align: left;
+    }
+    form[role="search"] {
+        width: 300px;
+        margin: 0px;
+        float: none;
+    }
+    form[role="search"] input#s {
+        width: 170px;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 979px) { 
+    body h1.logo {
+        background: url('../beautifultrouble/img/bt-med-banner.png') no-repeat;
+    }
+    form[role="search"] {
+        width: 300px;
+        margin: 0px;
+        float: none;
+    }
+}
+
 
