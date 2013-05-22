@@ -524,7 +524,7 @@ class CustomPostCount_Widget extends WP_Widget {
 			echo $before_title . $title . $after_title;
                 //echo __( 'Hello, World!', 'text_domain' );
                 echo '<ul id="widget-custompostcount">';
-                $post_types = array( 'bt_case', 'bt_tactic', 'bt_theory', 'bt_principle', 'bt_practitioner' );
+                $post_types = array( 'bt_tactic', 'bt_principle', 'bt_theory', 'bt_case', 'bt_practitioner' );
                 foreach ( $post_types as $post_type ) { 
                     $obj = get_post_type_object( $post_type );
                     $post_type_name = $obj->labels->name;
