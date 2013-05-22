@@ -108,7 +108,7 @@ get_header(); ?>
                 }
             } ?> 
             <?php 
-                $types = array( 'tactics' => 'Tactics', 'theories' => 'Theories', 'case_studies' => 'Case Studies', 'principles' => 'Principles', 'practitioners' => 'Practitioners' );
+                $types = array( 'tactics' => 'Tactics', 'principles' => 'Principles', 'theories' => 'Theories', 'case_studies' => 'Case Studies', 'practitioners' => 'Practitioners' );
                 foreach( array_keys( $types ) as $type ) {
                 $relateds = get_field( "related_$type" ); 
                 if( $relateds ) {
