@@ -1,65 +1,41 @@
 K 25
 svn:wc:ra_dav:version-url
 V 35
-/!svn/ver/638848/akismet/tags/2.5.7
-END
-akismet.gif
-K 25
-svn:wc:ra_dav:version-url
-V 47
-/!svn/ver/638848/akismet/tags/2.5.7/akismet.gif
+/!svn/ver/728958/akismet/tags/2.5.8
 END
 akismet.php
 K 25
 svn:wc:ra_dav:version-url
 V 47
-/!svn/ver/638848/akismet/tags/2.5.7/akismet.php
+/!svn/ver/728647/akismet/tags/2.5.8/akismet.php
 END
 akismet.css
 K 25
 svn:wc:ra_dav:version-url
 V 47
-/!svn/ver/638848/akismet/tags/2.5.7/akismet.css
+/!svn/ver/728647/akismet/tags/2.5.8/akismet.css
 END
 akismet.js
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/!svn/ver/638848/akismet/tags/2.5.7/akismet.js
-END
-widget.php
-K 25
-svn:wc:ra_dav:version-url
-V 46
-/!svn/ver/638848/akismet/tags/2.5.7/widget.php
-END
-legacy.php
-K 25
-svn:wc:ra_dav:version-url
-V 46
-/!svn/ver/638848/akismet/tags/2.5.7/legacy.php
+/!svn/ver/728647/akismet/tags/2.5.8/akismet.js
 END
 .htaccess
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/!svn/ver/638848/akismet/tags/2.5.7/.htaccess
+/!svn/ver/728647/akismet/tags/2.5.8/.htaccess
 END
 readme.txt
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/!svn/ver/638848/akismet/tags/2.5.7/readme.txt
-END
-index.php
-K 25
-svn:wc:ra_dav:version-url
-V 45
-/!svn/ver/638848/akismet/tags/2.5.7/index.php
+/!svn/ver/728837/akismet/tags/2.5.8/readme.txt
 END
 admin.php
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/!svn/ver/638848/akismet/tags/2.5.7/admin.php
+/!svn/ver/728958/akismet/tags/2.5.8/admin.php
 END

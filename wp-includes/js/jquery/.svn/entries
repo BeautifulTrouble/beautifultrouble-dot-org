@@ -1,7 +1,7 @@
 10
 
 dir
-23387
+24620
 http://core.svn.wordpress.org/branches/3.5/wp-includes/js/jquery
 http://core.svn.wordpress.org
 
@@ -230,40 +230,6 @@ has-props
 
 93658
 
-jquery.form.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-1210dad363fcd0a43dc28244b69369f9
-2012-08-23T00:04:18.101198Z
-21592
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-24074
-
 suggest.js
 file
 
@@ -297,6 +263,40 @@ has-props
 
 
 7301
+
+jquery.form.js
+file
+
+
+
+
+2013-02-06T00:42:23.000000Z
+1210dad363fcd0a43dc28244b69369f9
+2012-08-23T00:04:18.101198Z
+21592
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+24074
 
 jquery.query.js
 file

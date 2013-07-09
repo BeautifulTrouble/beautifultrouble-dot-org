@@ -1,7 +1,7 @@
 10
 
 dir
-23387
+24620
 http://core.svn.wordpress.org/branches/3.5/wp-includes/js/jquery/ui
 http://core.svn.wordpress.org
 
@@ -502,40 +502,6 @@ has-props
 
 4693
 
-jquery.ui.tabs.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-490d0168365536638cb63e97b69494b1
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-18572
-
 jquery.ui.progressbar.min.js
 file
 
@@ -570,14 +536,14 @@ has-props
 
 1589
 
-jquery.ui.tooltip.min.js
+jquery.ui.tabs.min.js
 file
 
 
 
 
 2013-02-06T00:42:23.000000Z
-a0c1fb100694e7e398afd0a3517e8273
+490d0168365536638cb63e97b69494b1
 2012-11-26T01:20:40.418692Z
 22833
 koopersmith
@@ -602,7 +568,7 @@ has-props
 
 
 
-4774
+18572
 
 jquery.ui.effect-slide.min.js
 file
@@ -637,6 +603,40 @@ has-props
 
 
 813
+
+jquery.ui.tooltip.min.js
+file
+
+
+
+
+2013-02-06T00:42:23.000000Z
+a0c1fb100694e7e398afd0a3517e8273
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4774
 
 jquery.ui.effect-drop.min.js
 file
@@ -706,40 +706,6 @@ has-props
 
 11264
 
-jquery.ui.autocomplete.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-697382ab550d87badbc9e4f8ba547b60
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-7723
-
 jquery.ui.effect-highlight.min.js
 file
 
@@ -773,6 +739,40 @@ has-props
 
 
 636
+
+jquery.ui.autocomplete.min.js
+file
+
+
+
+
+2013-02-06T00:42:23.000000Z
+697382ab550d87badbc9e4f8ba547b60
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7723
 
 jquery.ui.selectable.min.js
 file
@@ -910,40 +910,6 @@ has-props
 
 647
 
-jquery.ui.draggable.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-8c3ca109cbf3a09e50c356b6a1826c05
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-18614
-
 jquery.ui.droppable.min.js
 file
 
@@ -977,6 +943,40 @@ has-props
 
 
 5881
+
+jquery.ui.draggable.min.js
+file
+
+
+
+
+2013-02-06T00:42:23.000000Z
+8c3ca109cbf3a09e50c356b6a1826c05
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18614
 
 jquery.ui.button.min.js
 file
@@ -1012,40 +1012,6 @@ has-props
 
 7222
 
-jquery.ui.effect-fold.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-8074c41343e8123a8567de8af452fc72
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-882
-
 jquery.ui.spinner.min.js
 file
 
@@ -1079,6 +1045,40 @@ has-props
 
 
 6643
+
+jquery.ui.effect-fold.min.js
+file
+
+
+
+
+2013-02-06T00:42:23.000000Z
+8074c41343e8123a8567de8af452fc72
+2012-11-26T01:20:40.418692Z
+22833
+koopersmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+882
 
 jquery.ui.resizable.min.js
 file

@@ -1,7 +1,7 @@
 10
 
 dir
-23387
+24620
 http://core.svn.wordpress.org/branches/3.5/wp-includes/images
 http://core.svn.wordpress.org
 
@@ -60,8 +60,39 @@ has-props
 
 793
 
-crystal
-dir
+rss-2x.png
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+c71759615ba051c1e6f597fd726a9d11
+2012-11-07T20:54:08.779035Z
+22439
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1306
 
 admin-bar-sprite.png
 file
@@ -97,39 +128,8 @@ has-props
 
 2470
 
-rss-2x.png
-file
-
-
-
-
-2013-02-06T00:42:29.000000Z
-c71759615ba051c1e6f597fd726a9d11
-2012-11-07T20:54:08.779035Z
-22439
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1306
+crystal
+dir
 
 toggle-arrow-2x.png
 file
@@ -335,40 +335,6 @@ has-props
 
 43
 
-toggle-arrow.png
-file
-
-
-
-
-2013-02-06T00:42:29.000000Z
-8e9022f98e990584452838f85d77c928
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-333
-
 wpicons-2x.png
 file
 
@@ -402,6 +368,40 @@ has-props
 
 
 125467
+
+toggle-arrow.png
+file
+
+
+
+
+2013-02-06T00:42:29.000000Z
+8e9022f98e990584452838f85d77c928
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+333
 
 uploader-icons-2x.png
 file

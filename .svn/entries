@@ -1,14 +1,14 @@
 10
 
 dir
-23387
+24620
 http://core.svn.wordpress.org/branches/3.5
 http://core.svn.wordpress.org
 
 
 
-2013-01-25T19:28:47.590931Z
-23348
+2013-06-21T20:38:54.798639Z
+24501
 nacin
 has-props
 
@@ -60,6 +60,40 @@ has-props
 
 18219
 
+wp-login.php
+file
+
+
+
+
+2013-07-09T23:05:30.000000Z
+59801e42e72a5dbefc69668cbf9d5f54
+2013-06-21T03:02:28.398279Z
+24467
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+29217
+
 wp-comments-post.php
 file
 
@@ -93,40 +127,6 @@ has-props
 
 
 3522
-
-wp-login.php
-file
-
-
-
-
-2013-02-06T00:42:44.000000Z
-1e8e7a9f1f094b813c9fa9c7990d68f6
-2012-11-30T13:40:59.238541Z
-22948
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-29310
 
 wp-blog-header.php
 file
@@ -301,6 +301,9 @@ has-props
 
 395
 
+wp-content
+dir
+
 wp-config-sample.php
 file
 
@@ -334,43 +337,6 @@ has-props
 
 
 3177
-
-wp-content
-dir
-
-wp-trackback.php
-file
-
-
-
-
-2012-08-28T16:32:52.000000Z
-ad11ff8af8966609839af21c0af5cd56
-2012-01-08T17:01:11.911209Z
-19712
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3700
 
 wp-links-opml.php
 file
@@ -406,6 +372,74 @@ has-props
 
 1997
 
+wp-trackback.php
+file
+
+
+
+
+2012-08-28T16:32:52.000000Z
+ad11ff8af8966609839af21c0af5cd56
+2012-01-08T17:01:11.911209Z
+19712
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3700
+
+readme.html
+file
+
+
+
+
+2013-07-09T23:05:30.000000Z
+caf7946275c3e885419b1d36b22cb5f3
+2013-06-21T17:26:11.278222Z
+24492
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9177
+
 license.txt
 file
 
@@ -439,40 +473,6 @@ has-props
 
 
 19929
-
-readme.html
-file
-
-
-
-
-2013-02-06T00:42:44.000000Z
-05d50a04ef19bd4b0a280362469bf22f
-2013-01-24T20:50:28.276211Z
-23344
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9177
 
 wp-activate.php
 file

@@ -1,7 +1,7 @@
 10
 
 dir
-23387
+24620
 http://core.svn.wordpress.org/branches/3.5/wp-admin/images
 http://core.svn.wordpress.org
 
@@ -162,40 +162,6 @@ has-props
 
 232
 
-arrows-dark-vs-2x.png
-file
-
-
-
-
-2013-02-06T00:42:42.000000Z
-bf96d253f8dfcad84f9d649de07dd797
-2012-09-27T02:12:54.098838Z
-22031
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-761
-
 resize-2x.gif
 file
 
@@ -229,6 +195,40 @@ has-props
 
 
 234
+
+arrows-dark-vs-2x.png
+file
+
+
+
+
+2013-02-06T00:42:42.000000Z
+bf96d253f8dfcad84f9d649de07dd797
+2012-09-27T02:12:54.098838Z
+22031
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+761
 
 wp-logo-vs.png
 file
@@ -366,40 +366,6 @@ markjaquith
 
 243
 
-bubble_bg.gif
-file
-
-
-
-
-2012-08-28T16:32:58.000000Z
-b78fd5758e486128cf448c5973ca6ee4
-2008-03-23T06:41:43.231424Z
-7484
-matt
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-395
-
 wp-logo.png
 file
 
@@ -434,17 +400,17 @@ has-props
 
 661
 
-media-button-music.gif
+bubble_bg.gif
 file
 
 
 
 
 2012-08-28T16:32:58.000000Z
-423f910219d605ddd355681816a08b45
-2010-05-25T17:14:17.561804Z
-14893
-nacin
+b78fd5758e486128cf448c5973ca6ee4
+2008-03-23T06:41:43.231424Z
+7484
+matt
 has-props
 
 
@@ -466,7 +432,7 @@ has-props
 
 
 
-205
+395
 
 align-none.png
 file
@@ -501,6 +467,40 @@ has-props
 
 
 417
+
+media-button-music.gif
+file
+
+
+
+
+2012-08-28T16:32:58.000000Z
+423f910219d605ddd355681816a08b45
+2010-05-25T17:14:17.561804Z
+14893
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+205
 
 media-button.png
 file
@@ -1148,40 +1148,6 @@ has-props
 
 30324
 
-loading.gif
-file
-
-
-
-
-
-9a8269421303631316be4ab5e34870e1
-2012-11-22T19:08:22.200566Z
-22829
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2530
-
 date-button-2x.gif
 file
 
@@ -1215,6 +1181,40 @@ has-props
 
 
 992
+
+loading.gif
+file
+
+
+
+
+
+9a8269421303631316be4ab5e34870e1
+2012-11-22T19:08:22.200566Z
+22829
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2530
 
 sort-2x.gif
 file
@@ -1352,40 +1352,6 @@ has-props
 
 143
 
-list.png
-file
-
-
-
-
-2013-02-06T00:42:43.000000Z
-1e123e96bd2a1ce2c0d3b305d153f1c3
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1003
-
 wp-logo-2x.png
 file
 
@@ -1419,6 +1385,40 @@ has-props
 
 
 1806
+
+list.png
+file
+
+
+
+
+2013-02-06T00:42:43.000000Z
+1e123e96bd2a1ce2c0d3b305d153f1c3
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1003
 
 media-button-video.gif
 file
@@ -1454,40 +1454,6 @@ has-props
 
 139
 
-wpspin_light-2x.gif
-file
-
-
-
-
-2013-02-06T00:42:43.000000Z
-450b52bd860e667a0fa3c00b82b58a18
-2012-11-22T19:08:22.200566Z
-22829
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9097
-
 media-button-2x.png
 file
 
@@ -1521,6 +1487,40 @@ has-props
 
 
 850
+
+wpspin_light-2x.gif
+file
+
+
+
+
+2013-02-06T00:42:43.000000Z
+450b52bd860e667a0fa3c00b82b58a18
+2012-11-22T19:08:22.200566Z
+22829
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9097
 
 resize-rtl.gif
 file
@@ -1556,17 +1556,17 @@ has-props
 
 1418
 
-align-left.png
+stars-rtl-2x.png
 file
 
 
 
 
 2013-02-06T00:42:43.000000Z
-5cfd7930cffa6412f75af26f2e689ed4
-2012-09-24T19:44:42.509299Z
-21980
-azaozz
+6ec2333cc32894b25402a1d21924a6c9
+2012-11-09T01:34:48.399666Z
+22479
+nacin
 has-props
 
 
@@ -1588,7 +1588,7 @@ has-props
 
 
 
-554
+3212
 
 imgedit-icons-2x.png
 file
@@ -1624,50 +1624,16 @@ has-props
 
 14853
 
-stars-rtl-2x.png
+align-left.png
 file
 
 
 
 
 2013-02-06T00:42:43.000000Z
-6ec2333cc32894b25402a1d21924a6c9
-2012-11-09T01:34:48.399666Z
-22479
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3212
-
-arrows-dark-2x.png
-file
-
-
-
-
-2013-02-06T00:42:43.000000Z
-bc97d62061c943dd6ff71d964c7d8425
-2012-09-27T02:12:54.098838Z
-22031
+5cfd7930cffa6412f75af26f2e689ed4
+2012-09-24T19:44:42.509299Z
+21980
 azaozz
 has-props
 
@@ -1690,7 +1656,7 @@ has-props
 
 
 
-719
+554
 
 stars-2x.png
 file
@@ -1725,6 +1691,40 @@ has-props
 
 
 1257
+
+arrows-dark-2x.png
+file
+
+
+
+
+2013-02-06T00:42:43.000000Z
+bc97d62061c943dd6ff71d964c7d8425
+2012-09-27T02:12:54.098838Z
+22031
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+719
 
 menu-shadow-rtl.png
 file
@@ -1964,40 +1964,6 @@ has-props
 
 12920
 
-align-center.png
-file
-
-
-
-
-2013-02-06T00:42:43.000000Z
-09d91addb6b53479e68c645931d9658e
-2012-09-24T19:44:42.509299Z
-21980
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-546
-
 sort.gif
 file
 
@@ -2031,6 +1997,40 @@ has-props
 
 
 54
+
+align-center.png
+file
+
+
+
+
+2013-02-06T00:42:43.000000Z
+09d91addb6b53479e68c645931d9658e
+2012-09-24T19:44:42.509299Z
+21980
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+546
 
 bubble_bg-rtl-2x.gif
 file
@@ -2100,9 +2100,6 @@ has-props
 
 507
 
-screenshots
-dir
-
 wordpress-logo-2x.png
 file
 
@@ -2136,6 +2133,9 @@ has-props
 
 
 4867
+
+screenshots
+dir
 
 wp-badge-2x.png
 file

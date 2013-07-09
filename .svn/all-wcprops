@@ -1,5 +1,17 @@
 K 25
 svn:wc:ra_dav:version-url
 V 28
-/!svn/ver/23348/branches/3.5
+/!svn/ver/24501/branches/3.5
+END
+readme.html
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/!svn/ver/24492/branches/3.5/readme.html
+END
+wp-login.php
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/!svn/ver/24467/branches/3.5/wp-login.php
 END
