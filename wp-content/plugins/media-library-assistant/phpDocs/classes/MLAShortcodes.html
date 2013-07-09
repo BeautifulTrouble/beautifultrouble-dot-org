@@ -1,0 +1,379 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>Media Library Assistant » \MLAShortcodes</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Media Library Assistant</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu"></ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#initialize" title="initialize :: Initialization function, similar to __construct()"><span class="description">Initialization function, similar to __construct()</span><pre>initialize()</pre></a></li>
+<li class="method public "><a href="#mla_attachment_list_shortcode" title="mla_attachment_list_shortcode :: WordPress Shortcode; renders a complete list of all attachments and references to them"><span class="description">WordPress Shortcode; renders a complete list of all attachments and references to them</span><pre>mla_attachment_list_shortcode()</pre></a></li>
+<li class="method public "><a href="#mla_gallery_shortcode" title="mla_gallery_shortcode :: The MLA Gallery shortcode."><span class="description">The MLA Gallery shortcode.</span><pre>mla_gallery_shortcode()</pre></a></li>
+<li class="method public "><a href="#mla_get_shortcode_attachments" title="mla_get_shortcode_attachments :: Parses shortcode parameters and returns the gallery objects"><span class="description">Parses shortcode parameters and returns the gallery objects</span><pre>mla_get_shortcode_attachments()</pre></a></li>
+<li class="method public "><a href="#mla_shortcode_query_posts_clauses_filter" title="mla_shortcode_query_posts_clauses_filter :: Filters all clauses for shortcode queries, pre caching plugins"><span class="description">Filters all clauses for shortcode queries, pre caching plugins</span><pre>mla_shortcode_query_posts_clauses_filter()</pre></a></li>
+<li class="method public "><a href="#mla_shortcode_query_posts_clauses_request_filter" title="mla_shortcode_query_posts_clauses_request_filter :: Filters all clauses for shortcode queries, post caching plugins"><span class="description">Filters all clauses for shortcode queries, post caching plugins</span><pre>mla_shortcode_query_posts_clauses_request_filter()</pre></a></li>
+<li class="method public "><a href="#mla_shortcode_query_posts_orderby_filter" title="mla_shortcode_query_posts_orderby_filter :: Filters the ORDERBY clause for shortcode queries"><span class="description">Filters the ORDERBY clause for shortcode queries</span><pre>mla_shortcode_query_posts_orderby_filter()</pre></a></li>
+<li class="method public "><a href="#mla_shortcode_query_posts_where_filter" title="mla_shortcode_query_posts_where_filter :: Filters the WHERE clause for shortcode queries"><span class="description">Filters the WHERE clause for shortcode queries</span><pre>mla_shortcode_query_posts_where_filter()</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="method private "><a href="#_process_shortcode_parameter" title="_process_shortcode_parameter :: Handles brace/bracket escaping and parses template for a shortcode parameter"><span class="description">Handles brace/bracket escaping and parses template for a shortcode parameter</span><pre>_process_shortcode_parameter()</pre></a></li>
+<li class="method private "><a href="#_sanitize_query_specification" title="_sanitize_query_specification :: Cleans up damage caused by the Visual Editor to the tax_query and meta_query specifications"><span class="description">Cleans up damage caused by the Visual Editor to the tax_query and meta_query specifications</span><pre>_sanitize_query_specification()</pre></a></li>
+<li class="method private "><a href="#_validate_sql_orderby" title="_validate_sql_orderby :: Translates query parameters to a valid SQL order by clause."><span class="description">Translates query parameters to a valid SQL order by clause.</span><pre>_validate_sql_orderby()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="property public "><a href="#%24mla_debug_messages" title="$mla_debug_messages :: Accumulates debug messages"><span class="description">Accumulates debug messages</span><pre>$mla_debug_messages</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="property private "><a href="#%24data_selection_parameters" title="$data_selection_parameters :: Data selection parameters for the WP_Query in [mla_gallery]"><span class="description">Data selection parameters for the WP_Query in [mla_gallery]</span><pre>$data_selection_parameters</pre></a></li>
+<li class="property private "><a href="#%24mla_debug" title="$mla_debug :: Turn debug collection and display on or off"><span class="description">Turn debug collection and display on or off</span><pre>$mla_debug</pre></a></li>
+<li class="property private "><a href="#%24query_parameters" title='$query_parameters :: WP_Query filter "parameters"'><span class="description">WP_Query filter "parameters"</span><pre>$query_parameters</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CMLAShortcodes" id="\MLAShortcodes"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/MLAShortcodes.html">MLAShortcodes</a>
+</li>
+</ul>
+<div href="../classes/MLAShortcodes.html" class="element class">
+<p class="short_description">Class MLA (Media Library Assistant) Shortcodes defines the shortcodes available to MLA users</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/Media%20Library%20Assistant.html">Media Library Assistant</a></td>
+</tr>
+<tr>
+<th>since</th>
+<td>0.20</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="initialize" id="initialize"></a><div class="element clickable method public initialize" data-toggle="collapse" data-target=".initialize .collapse">
+<h2>Initialization function, similar to __construct()</h2>
+<pre>initialize() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.20</td>
+</tr></table>
+</div></div>
+</div>
+<a name="mla_attachment_list_shortcode" id="mla_attachment_list_shortcode"></a><div class="element clickable method public mla_attachment_list_shortcode" data-toggle="collapse" data-target=".mla_attachment_list_shortcode .collapse">
+<h2>WordPress Shortcode; renders a complete list of all attachments and references to them</h2>
+<pre>mla_attachment_list_shortcode() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.1</td>
+</tr></table>
+</div></div>
+</div>
+<a name="mla_gallery_shortcode" id="mla_gallery_shortcode"></a><div class="element clickable method public mla_gallery_shortcode" data-toggle="collapse" data-target=".mla_gallery_shortcode .collapse">
+<h2>The MLA Gallery shortcode.</h2>
+<pre>mla_gallery_shortcode(array $attr) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>This is a superset of the WordPress Gallery shortcode for displaying images on a post,
+page or custom post type. It is adapted from /wp-includes/media.php gallery_shortcode.
+Enhancements include many additional selection parameters and full taxonomy support.</p></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>.50</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$attr</h4>
+<code>array</code><p>Attributes of the shortcode.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>HTML content to display gallery.</div>
+</div></div>
+</div>
+<a name="mla_get_shortcode_attachments" id="mla_get_shortcode_attachments"></a><div class="element clickable method public mla_get_shortcode_attachments" data-toggle="collapse" data-target=".mla_get_shortcode_attachments .collapse">
+<h2>Parses shortcode parameters and returns the gallery objects</h2>
+<pre>mla_get_shortcode_attachments(int $post_parent, array $attr) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>.50</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$post_parent</h4>
+<code>int</code><p>Post ID of the parent</p></div>
+<div class="subelement argument">
+<h4>$attr</h4>
+<code>array</code><p>Attributes of the shortcode</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>List of attachments returned from WP_Query</div>
+</div></div>
+</div>
+<a name="mla_shortcode_query_posts_clauses_filter" id="mla_shortcode_query_posts_clauses_filter"></a><div class="element clickable method public mla_shortcode_query_posts_clauses_filter" data-toggle="collapse" data-target=".mla_shortcode_query_posts_clauses_filter .collapse">
+<h2>Filters all clauses for shortcode queries, pre caching plugins</h2>
+<pre>mla_shortcode_query_posts_clauses_filter(array $pieces) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>This is for debug purposes only.
+Defined as public because it's a filter.</p></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.30</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pieces</h4>
+<code>array</code><p>query clauses before modification</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>query clauses after modification (none)</div>
+</div></div>
+</div>
+<a name="mla_shortcode_query_posts_clauses_request_filter" id="mla_shortcode_query_posts_clauses_request_filter"></a><div class="element clickable method public mla_shortcode_query_posts_clauses_request_filter" data-toggle="collapse" data-target=".mla_shortcode_query_posts_clauses_request_filter .collapse">
+<h2>Filters all clauses for shortcode queries, post caching plugins</h2>
+<pre>mla_shortcode_query_posts_clauses_request_filter(array $pieces) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>This is for debug purposes only.
+Defined as public because it's a filter.</p></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.30</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pieces</h4>
+<code>array</code><p>query clauses before modification</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>query clauses after modification (none)</div>
+</div></div>
+</div>
+<a name="mla_shortcode_query_posts_orderby_filter" id="mla_shortcode_query_posts_orderby_filter"></a><div class="element clickable method public mla_shortcode_query_posts_orderby_filter" data-toggle="collapse" data-target=".mla_shortcode_query_posts_orderby_filter .collapse">
+<h2>Filters the ORDERBY clause for shortcode queries</h2>
+<pre>mla_shortcode_query_posts_orderby_filter(string $orderby_clause) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>This is an enhanced version of the code found in wp-includes/query.php, function get_posts.
+Defined as public because it's a filter.</p></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.20</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$orderby_clause</h4>
+<code>string</code><p>query clause before modification</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>query clause after modification</div>
+</div></div>
+</div>
+<a name="mla_shortcode_query_posts_where_filter" id="mla_shortcode_query_posts_where_filter"></a><div class="element clickable method public mla_shortcode_query_posts_where_filter" data-toggle="collapse" data-target=".mla_shortcode_query_posts_where_filter .collapse">
+<h2>Filters the WHERE clause for shortcode queries</h2>
+<pre>mla_shortcode_query_posts_where_filter(string $where_clause) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Captures debug information. Adds whitespace to the post_type = 'attachment'
+phrase to circumvent subsequent Role Scoper modification of the clause.
+Handles post_parent "any" and "none" cases.
+Defined as public because it's a filter.</p></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.70</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$where_clause</h4>
+<code>string</code><p>query clause before modification</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>query clause after modification</div>
+</div></div>
+</div>
+<a name="_process_shortcode_parameter" id="_process_shortcode_parameter"></a><div class="element clickable method private _process_shortcode_parameter" data-toggle="collapse" data-target="._process_shortcode_parameter .collapse">
+<h2>Handles brace/bracket escaping and parses template for a shortcode parameter</h2>
+<pre>_process_shortcode_parameter(string $text, string $markup_values) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.14</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$text</h4>
+<code>string</code><p>raw shortcode parameter, e.g., "text {+field+} {brackets} \{braces\}"</p>
+</div>
+<div class="subelement argument">
+<h4>$markup_values</h4>
+<code>string</code><p>template substitution values, e.g., ('instance' => '1', ... )</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>query specification with HTML escape sequences and line breaks removed</div>
+</div></div>
+</div>
+<a name="_sanitize_query_specification" id="_sanitize_query_specification"></a><div class="element clickable method private _sanitize_query_specification" data-toggle="collapse" data-target="._sanitize_query_specification .collapse">
+<h2>Cleans up damage caused by the Visual Editor to the tax_query and meta_query specifications</h2>
+<pre>_sanitize_query_specification(string $specification) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.14</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$specification</h4>
+<code>string</code><p>query specification; PHP nested arrays</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>query specification with HTML escape sequences and line breaks removed</div>
+</div></div>
+</div>
+<a name="_validate_sql_orderby" id="_validate_sql_orderby"></a><div class="element clickable method private _validate_sql_orderby" data-toggle="collapse" data-target="._validate_sql_orderby .collapse">
+<h2>Translates query parameters to a valid SQL order by clause.</h2>
+<pre>_validate_sql_orderby(array $query_parameters) : string | bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Accepts one or more valid columns, with or without ASC/DESC.
+Enhanced version of /wp-includes/formatting.php function sanitize_sql_orderby().</p></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.20</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$query_parameters</h4>
+<code>array</code><p>Validated query parameters</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><code>bool</code>Returns the orderby clause if present, false otherwise.</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24mla_debug_messages" id="$mla_debug_messages"> </a><div class="element clickable property public $mla_debug_messages" data-toggle="collapse" data-target=".$mla_debug_messages .collapse">
+<h2>Accumulates debug messages</h2>
+<pre>$mla_debug_messages : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.60</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24data_selection_parameters" id="$data_selection_parameters"> </a><div class="element clickable property private $data_selection_parameters" data-toggle="collapse" data-target=".$data_selection_parameters .collapse">
+<h2>Data selection parameters for the WP_Query in [mla_gallery]</h2>
+<pre>$data_selection_parameters : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.30</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24mla_debug" id="$mla_debug"> </a><div class="element clickable property private $mla_debug" data-toggle="collapse" data-target=".$mla_debug .collapse">
+<h2>Turn debug collection and display on or off</h2>
+<pre>$mla_debug : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.70</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24query_parameters" id="$query_parameters"> </a><div class="element clickable property private $query_parameters" data-toggle="collapse" data-target=".$query_parameters .collapse">
+<h2>WP_Query filter "parameters"</h2>
+<pre>$query_parameters : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>This array defines parameters for the query's where and orderby filters,
+mla_shortcode_query_posts_where_filter and mla_shortcode_query_posts_orderby_filter.
+The parameters are set up in the mla_get_shortcode_attachments function, and
+any further logic required to translate those values is contained in the filter.</p>
+
+<p>Array index values are: orderby, post_parent</p></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.13</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
+            generated on 2013-06-30T13:10:25-07:00.<br></footer></div>
+</div>
+</body>
+</html>

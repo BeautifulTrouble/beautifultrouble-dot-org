@@ -1,0 +1,195 @@
+@charset "utf-8";
+/**
+ * CSS Document
+ *
+ * This file contains styling attributes, adapted from wp-admin.css and given unique names
+ * to avoid conflicts.
+ */
+
+/*
+ * MLA List Table, single edit and settings page message DIV
+ */
+div.mla_messages {
+	background:#FFFFE0;
+	border:1px solid #CCC;
+	padding:0 10px;
+	margin-top:5px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+}
+
+div.mla_errors {
+	background:#FFE0E0;
+	border:1px solid #CCC;
+	padding:0 10px;
+	margin-top:5px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+}
+
+/*
+ * MLA List Table ID_parent column
+ */
+td.column-ID_parent, th.column-ID_parent {
+	width: 100px;
+	max-width: 100px;
+}
+
+/*
+ * MLA List Table ID_parent column
+ */
+img.mla_media_thumbnail_64_64 {
+	max-width: 64px;
+	max-height: 64px;
+}
+
+img.mla_media_thumbnail_80_60 {
+	max-width: 80px;
+	max-height: 60px;
+}
+
+/*
+ * MLA Edit single item field labels column
+ */
+.mla-media-item .describe th {
+	width: 150px
+}
+
+/*
+ * MLA Display Single Item Image Metadata, Featured in, Inserted in
+ */
+textarea[readonly] {
+	background-color: rgb(238, 238, 238)
+}
+
+/*
+ * MLA Display Single Item
+ */
+.has-right-sidebar .mla-inner-sidebar {
+	clear: right;
+	float: right;
+	position: relative;
+	width: 286px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: auto;
+	display:block
+}
+
+.has-right-sidebar .mla-media-single {
+	width: 100%;
+	clear: left;
+	margin-right: -2000px;
+	float: left
+}
+
+.has-right-sidebar .mla-media-item {
+	margin-right: 300px;
+}
+
+.has-right-sidebar .mla-media-item table {
+	width: 100%
+}
+
+.mla-media-item .describe input[type='text'],
+.mla-media-item .describe textarea {
+	width: 100%
+}
+
+/*
+ * MLA Inline editing - adapted from load-styles.php
+ */
+.mla_bulk_taxonomy_options {
+	margin-bottom: 10px
+}
+
+#wpbody-content .quick-edit-row-attachment .inline-edit-col-left,
+#wpbody-content .bulk-edit-row-attachment .inline-edit-col-left {
+	width: 40%
+}
+
+#wpbody-content .quick-edit-row-attachment .inline-edit-col-center,
+#wpbody-content .bulk-edit-row-attachment .inline-edit-col-center {
+	width: 20%
+}
+
+#wpbody-content .quick-edit-row-attachment .inline-edit-col-right,
+#wpbody-content .bulk-edit-row-attachment .inline-edit-col-right {
+	width: 39%
+}
+
+.quick-edit-row-attachment fieldset.inline-edit-col-left label span.title,
+.bulk-edit-row-attachment fieldset.inline-edit-col-right label span.title {
+	width: 6em
+}
+
+.quick-edit-row-attachment fieldset.inline-edit-col-left label span.input-text-wrap,
+.bulk-edit-row-attachment fieldset.inline-edit-col-right label span.input-text-wrap {
+	margin-left: 6em
+}
+
+.quick-edit-row-attachment fieldset.inline-edit-col-left label.inline-edit-post-parent span.input-text-wrap,
+.bulk-edit-row-attachment fieldset.inline-edit-col-right label.inline-edit-post-parent span.input-text-wrap {
+	width: 5em
+}
+
+.quick-edit-row-attachment fieldset.inline-edit-col-left label.inline-edit-menu-order span.input-text-wrap {
+	width: 5em
+}
+
+.quick-edit-row-attachment fieldset.inline-edit-col-right label span.title,
+.bulk-edit-row-attachment fieldset.inline-edit-col-right label.inline-edit-tags span.title {
+	width: 99%
+}
+
+/*
+ * MLA Settings page, Views and Uploads tab inline editing - adapted from load-styles.php
+ */
+#wpbody-content .bulk-edit-row-upload .inline-edit-col-left,
+#wpbody-content .bulk-edit-row-view .inline-edit-col-left {
+	width: 40%
+}
+
+#wpbody-content .bulk-edit-row-upload .inline-edit-col-right,
+#wpbody-content .bulk-edit-row-view .inline-edit-col-right {
+	width: 59%
+}
+
+.quick-edit-row-upload fieldset.inline-edit-col label span.title,
+.bulk-edit-row-upload fieldset.inline-edit-col-right label span.title,
+.quick-edit-row-view fieldset.inline-edit-col label span.title,
+.bulk-edit-row-view fieldset.inline-edit-col-right label span.title {
+	width: 8em
+}
+
+.quick-edit-row-upload fieldset.inline-edit-col label span.input-text-wrap,
+.bulk-edit-row-upload fieldset.inline-edit-col-right label span.input-text-wrap,
+.quick-edit-row-view fieldset.inline-edit-col label span.input-text-wrap,
+.bulk-edit-row-view fieldset.inline-edit-col-right label span.input-text-wrap {
+	margin-left: 8em;
+	width: 12em
+}
+
+.quick-edit-row-upload fieldset.inline-edit-col label,
+.quick-edit-row-view fieldset.inline-edit-col label {
+	float:left;
+	width: 23em
+}
+
+.quick-edit-row-upload fieldset.inline-edit-col input.inline-edit-menu-order,
+.bulk-edit-row-upload fieldset.inline-edit-col-right label.inline-edit-menu-order span.input-text-wrap,
+.quick-edit-row-view fieldset.inline-edit-col input.inline-edit-menu-order,
+.bulk-edit-row-view fieldset.inline-edit-col-right label.inline-edit-menu-order span.input-text-wrap {
+	width: 5em
+}
+
+/*
+ * MLA Settings page
+ */
+ 
+ul.mla_settings { 
+	list-style-type: disc;
+	list-style-position: inside
+}
