@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/!svn/ver/24501/branches/3.5/wp-includes
+END
+class-oembed.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/24481/branches/3.5/wp-includes/class-oembed.php
+END
+post-template.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/24467/branches/3.5/wp-includes/post-template.php
+END
+deprecated.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/24437/branches/3.5/wp-includes/deprecated.php
+END
+class-wp-xmlrpc-server.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/24481/branches/3.5/wp-includes/class-wp-xmlrpc-server.php
+END
+class-phpass.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/24458/branches/3.5/wp-includes/class-phpass.php
+END
+comment.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/24481/branches/3.5/wp-includes/comment.php
+END
+pluggable.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/24462/branches/3.5/wp-includes/pluggable.php
+END
+class-feed.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/24481/branches/3.5/wp-includes/class-feed.php
+END
+rss.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/24481/branches/3.5/wp-includes/rss.php
+END
+functions.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/24481/branches/3.5/wp-includes/functions.php
+END
+script-loader.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/24489/branches/3.5/wp-includes/script-loader.php
+END
+wp-db.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/24495/branches/3.5/wp-includes/wp-db.php
+END
+formatting.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/24449/branches/3.5/wp-includes/formatting.php
+END
+user.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/24441/branches/3.5/wp-includes/user.php
+END
+http.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/24481/branches/3.5/wp-includes/http.php
+END
+class-wp-admin-bar.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/24443/branches/3.5/wp-includes/class-wp-admin-bar.php
+END
+class-http.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/24498/branches/3.5/wp-includes/class-http.php
+END
+post.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/23903/branches/3.5/wp-includes/post.php
+END
+version.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/24501/branches/3.5/wp-includes/version.php
+END
+media-template.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/24162/branches/3.5/wp-includes/media-template.php
+END
