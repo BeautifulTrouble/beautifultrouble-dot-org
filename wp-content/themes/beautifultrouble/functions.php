@@ -214,7 +214,7 @@ add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
  */
 function my_addquicktag_post_types( $post_types ) {
 
-    $post_types = array( 'bt_case', 'bt_tactic', 'bt_principle', 'bt_theory' );
+    $post_types = array( 'bt_tactic', 'bt_principle', 'bt_theory', 'bt_case' );
 
     return $post_types;
 }
@@ -482,7 +482,7 @@ function truncate ($string, $max = 50, $rep = '') {
 
 function count_user_modules( $userid ) {
     global $wpdb;
-    $post_types = array( 'bt_case', 'bt_tactic', 'bt_theory', 'bt_principle' );
+    $post_types = array( 'bt_tactic', 'bt_principle', 'bt_theory', 'bt_case' );
     $modules = 0;
     foreach ( $post_types as $post_type ) {
       $where = get_posts_by_author_sql($post_type, true, $userid);
@@ -524,7 +524,7 @@ class CustomPostCount_Widget extends WP_Widget {
 			echo $before_title . $title . $after_title;
                 //echo __( 'Hello, World!', 'text_domain' );
                 echo '<ul id="widget-custompostcount">';
-                $post_types = array( 'bt_case', 'bt_tactic', 'bt_theory', 'bt_principle', 'bt_practitioner' );
+                $post_types = array( 'bt_tactic', 'bt_principle', 'bt_theory', 'bt_case', 'bt_practitioner' );
                 foreach ( $post_types as $post_type ) { 
                     $obj = get_post_type_object( $post_type );
                     $post_type_name = $obj->labels->name;
