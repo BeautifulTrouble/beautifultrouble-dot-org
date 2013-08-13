@@ -68,7 +68,11 @@ get_header(); ?>
   <div class="row">
     <div class="span4">
       <?php
-      if ( function_exists('dynamic_sidebar')) dynamic_sidebar("home-one");
+        //if ( function_exists('dynamic_sidebar')) dynamic_sidebar("home-one");
+	// Hard-coding the layout to add 'more news' link
+	$instance = array('number' => 6, 'title' => 'News & Updates');
+	$args = array('after_widget' => '<a href="news">More news...</a></div>');
+      	the_widget('WP_Widget_Recent_Posts', $instance, $args);
       ?>
     </div>
     <div class="span4">
