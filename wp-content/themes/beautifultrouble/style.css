@@ -220,6 +220,10 @@ ul#editions {
     width: 80%;
 }
 
+.wp-caption-text {
+    font-size: 0.9em;
+}
+
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) { 
     body h1.logo {
