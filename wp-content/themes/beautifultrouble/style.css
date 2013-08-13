@@ -111,6 +111,11 @@ body.single-bt_theory header h1 {
     background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_theory.png') no-repeat;
     color: #b50035;
 }
+body.single-bt_practitioner header h1 {
+    padding: 26px 0 10px 80px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_practitioner.png') no-repeat;
+    color: #373535;
+}
 body.post-type-archive-bt_theory header h1 {
     text-indent: -5000px;
     background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_theories.png') no-repeat;
