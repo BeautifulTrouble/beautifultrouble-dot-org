@@ -14,7 +14,7 @@
 
 get_header();
      $posts = query_posts($query_string . 
-'&orderby=title&order=asc&posts_per_page=10');
+'&orderby=title&order=asc&posts_per_page=100');
 if (have_posts() ) ;?>
 <div class="row">
 	<div class="container">
