@@ -115,7 +115,11 @@ get_header(); ?>
                     echo '<strong id="related-' . $type . '">Related ' . $types[ $type ] . '</strong>';
                     echo '<ul id="' . $type . '">';
                     foreach( $relateds as $related ) {
-                       echo '<li><a href="'. $related->guid . '" title="' . $related->post_excerpt . '">' . $related->post_title . '</a></li>'; 
+                       if ( $related->post_status == "publish" ) {
+                           echo '<li><a href="'. $related->guid . '" title="' . $related->post_excerpt . '">' . $related->post_title . '</a></li>'; 
+                       } else {
+                           echo '<li>' . $related->post_title . '</li>'; 
+                       }
                     }
                     echo '</ul>';
                 }
