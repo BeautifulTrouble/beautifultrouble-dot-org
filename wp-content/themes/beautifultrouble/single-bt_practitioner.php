@@ -55,7 +55,7 @@ $original_posts = $query_string;
                     'orderby'         => 'title',
                     'order'           => 'DESC',
                     'post_type'       => array('bt_tactic', 'bt_principle', 'bt_theory', 'bt_case'),
-                    'post_status'     => 'any',
+                    'post_status'     => 'publish',
                     'meta_query' => array(
                             array(
                                     'key' => 'related_practitioners',
