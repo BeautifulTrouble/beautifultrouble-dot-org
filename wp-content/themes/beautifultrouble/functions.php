@@ -581,7 +581,7 @@ class SpotlightedContributor_Widget extends WP_Widget {
     public function form( $instance ) { }
     public function update( $new_instance, $old_instance ) { return $new_instance; }
 }
-add_action( 'widgets_init', create_function( '', 'register_widget( "UpcomingEvent_Widget" );' ) );
+add_action( 'widgets_init', create_function( '', 'register_widget( "SpotlightedContributor_Widget" );' ) );
 
 
 /**
