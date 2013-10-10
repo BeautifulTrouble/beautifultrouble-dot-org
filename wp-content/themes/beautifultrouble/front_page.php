@@ -116,35 +116,16 @@ get_header(); ?>
           <?php
           if ( function_exists('dynamic_sidebar')) dynamic_sidebar("home-four");
           ?>
-<?php if( $fields['spotlight_module'] ) {
-    $module  = array_shift( $fields['spotlight_module'] );
-?>
-    <h2>Spotlighted Module</h2>
-    <?php echo get_the_post_thumbnail($module->ID, 'thumbnail', array( 'class' => "spotlight-module-img", 'alt' => $module->post_title, 'title' => $module->post_title ) ); ?>
-    <a href="<?php echo get_permalink( $module->ID ); ?>"><h3><?php echo $module->post_title; ?></h3></a>
-        <p><?php if ( $module->post_excerpt ) { 
-                        echo $module->post_excerpt;
-                    } else {
-                        echo truncate( $module->post_content, 300, '...' );
-                        echo ' <a href="', get_permalink( $module->ID ), '">Read more</a>'; 
-                    } ?></p>   
-<?php } ?>    
         </div>
         <div class="span4">
-      <?php
-      if ( function_exists('dynamic_sidebar')) dynamic_sidebar("home-five");
-?>
-        <h2>Spotlighted Contributor</h2> 
-        <?php if ( validate_gravatar( get_the_author_meta('user_email') ) ) { 
-            echo get_avatar( get_the_author_meta('user_email') );  
-        } ?>
-        <h3><?php the_author_posts_link(); ?></h3>
-        <?php the_author_meta( 'description' ); ?> 
+          <?php
+          if ( function_exists('dynamic_sidebar')) dynamic_sidebar("home-five");
+          ?>
         </div>
         <div class="span4">
-      <?php
-      if ( function_exists('dynamic_sidebar')) dynamic_sidebar("home-six");
-      ?>
+          <?php
+          if ( function_exists('dynamic_sidebar')) dynamic_sidebar("home-six");
+          ?>
         </div>
     </div>
 </div>

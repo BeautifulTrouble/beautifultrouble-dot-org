@@ -521,6 +521,70 @@ add_action( 'widgets_init', create_function( '', 'register_widget( "CustomRecent
 
 
 /**
+ * Adds SpotlightedModule_Widget widget.
+ */
+class SpotlightedModule_Widget extends WP_Widget {
+    public function __construct() {
+        parent::__construct(
+            'spotlightedmodule_widget', 'Spotlighted Module',
+            array( 'description' => 'Displays one spotlighted module' )
+        );
+    }
+    public function widget( $args, $instance ) {
+        echo $args['before_widget'];
+        $fields = get_fields(); 
+        if( $fields['spotlight_module'] ) {
+            $module  = array_shift( $fields['spotlight_module'] );
+        ?>
+        <h2>Spotlighted Module</h2>
+        <?php echo get_the_post_thumbnail($module->ID, 'thumbnail', array( 'class' => "spotlight-module-img", 'alt' => $module->post_title, 'title' => $module->post_title ) ); ?>
+        <a href="<?php echo get_permalink( $module->ID ); ?>"><h3><?php echo $module->post_title; ?></h3></a>
+            <p><?php 
+            if ( $module->post_excerpt ) { 
+                echo $module->post_excerpt;
+            } else {
+                echo truncate( $module->post_content, 300, '...' );
+                echo ' <a href="', get_permalink( $module->ID ), '">Read more</a>'; 
+            } 
+            ?></p>   
+        <?php 
+        }    
+        echo $args['after_widget'];
+    }
+    public function form( $instance ) { }
+    public function update( $new_instance, $old_instance ) { return $new_instance; }
+}
+add_action( 'widgets_init', create_function( '', 'register_widget( "SpotlightedModule_Widget" );' ) );
+
+
+/**
+ * Adds SpotlightedContributor_Widget widget.
+ */
+class SpotlightedContributor_Widget extends WP_Widget {
+    public function __construct() {
+        parent::__construct(
+            'spotlightedcontributor_widget', 'Spotlighted Contributor',
+            array( 'description' => 'Displays spotlighted contributor' )
+        );
+    }
+    public function widget( $args, $instance ) {
+        echo $args['before_widget'];
+        ?>
+        <h2>Spotlighted Contributor</h2> 
+        <?php if ( validate_gravatar( get_the_author_meta('user_email') ) ) { 
+            echo get_avatar( get_the_author_meta('user_email') );  
+        } ?>
+        <h3><?php the_author_posts_link(); ?></h3>
+        <?php the_author_meta( 'description' );
+        echo $args['after_widget'];
+    }
+    public function form( $instance ) { }
+    public function update( $new_instance, $old_instance ) { return $new_instance; }
+}
+add_action( 'widgets_init', create_function( '', 'register_widget( "UpcomingEvent_Widget" );' ) );
+
+
+/**
  * Adds CustomPostCount_Widget widget.
  */
 class CustomPostCount_Widget extends WP_Widget {
