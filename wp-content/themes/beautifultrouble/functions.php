@@ -504,6 +504,23 @@ add_filter('user_contactmethods','bt_add_user_fields',10,1);
 
 
 /**
+ * Customize recent posts widget to add 'more news' link
+ * OO in wordpress?! Fingers crossed.
+ */
+class CustomRecentPosts_Widget extends WP_Widget_Recent_Posts {
+    public function widget( $args, $instance ) {
+        $args['after_widget'] = '<ul><li><a href="'
+            . esc_url( get_permalink( get_page_by_title( 'News' ))) // Better way to do this?
+            . '">More news...</a></li></ul></div>'
+            ;
+        parent::widget( $args, $instance );
+    }
+}
+add_action( 'widgets_init', create_function( '', 'unregister_widget( "WP_Widget_Recent_Posts" );' ) );
+add_action( 'widgets_init', create_function( '', 'register_widget( "CustomRecentPosts_Widget" );' ) );
+
+
+/**
  * Adds CustomPostCount_Widget widget.
  */
 class CustomPostCount_Widget extends WP_Widget {
