@@ -1,15 +1,15 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/Text
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/Text
 http://core.svn.wordpress.org
 
 
 
-2010-02-19T01:25:26.204773Z
-13211
-nacin
+2013-05-25T22:10:53.268536Z
+24363
+ocean90
 
 
 
@@ -26,20 +26,17 @@ nacin
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-Diff
-dir
-
 Diff.php
 file
 
 
 
 
-2012-08-28T16:32:55.000000Z
-c91d4f0612f583bbca20f446e9d46502
-2010-02-19T01:25:26.204773Z
-13211
-nacin
+2013-10-15T12:36:43.964586Z
+25fe9d676b0c6a4062c025c6dfdc00d9
+2013-05-25T22:10:53.268536Z
+24363
+ocean90
 has-props
 
 
@@ -61,5 +58,8 @@ has-props
 
 
 
-11942
+11945
+
+Diff
+dir
 

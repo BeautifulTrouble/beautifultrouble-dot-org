@@ -1,14 +1,14 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins
 http://core.svn.wordpress.org
 
 
 
-2013-06-21T05:58:32.113858Z
-24477
+2013-09-11T02:41:04.037918Z
+25298
 nacin
 
 
@@ -25,18 +25,6 @@ nacin
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-media
-dir
-
-wpeditimage
-dir
-
-wpview
-dir
-
-fullscreen
-dir
 
 directionality
 dir
@@ -66,5 +54,17 @@ wpfullscreen
 dir
 
 paste
+dir
+
+media
+dir
+
+wpeditimage
+dir
+
+wpview
+dir
+
+fullscreen
 dir
 

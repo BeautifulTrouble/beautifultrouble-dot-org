@@ -1,8 +1,8 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/media/js
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/media/js
 http://core.svn.wordpress.org
 
 
@@ -32,7 +32,7 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
+2013-10-15T12:32:49.381944Z
 5df3783492b848adde42124a1e9cf383
 2011-04-11T18:23:51.811830Z
 17628
@@ -66,7 +66,7 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
+2013-10-15T12:32:49.381944Z
 1c9dba9ba82579d5e865bbd33e325354
 2012-12-06T04:50:31.479089Z
 23090

@@ -1,15 +1,15 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wpfullscreen
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/wpfullscreen
 http://core.svn.wordpress.org
 
 
 
-2012-11-21T22:31:55.432126Z
-22798
-duck_
+2013-02-15T16:26:46.811593Z
+23425
+markjaquith
 
 
 
@@ -26,13 +26,50 @@ duck_
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
+editor_plugin_src.js
+file
+
+
+
+
+2013-10-15T12:36:43.644746Z
+a5356abede54850eae9c4444bb914750
+2013-02-15T16:26:46.811593Z
+23425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5354
+
+css
+dir
+
 editor_plugin.js
 file
 
 
 
 
-2013-02-06T00:42:24.000000Z
+2013-10-15T12:32:49.389940Z
 24b30b63b51ccaea07d4f8c13f058032
 2012-09-24T03:24:33.153813Z
 21964
@@ -59,41 +96,4 @@ has-props
 
 
 3030
-
-editor_plugin_src.js
-file
-
-
-
-
-2013-02-06T00:42:24.000000Z
-393aaad342ffa662acffe4b7ebd77fe1
-2012-09-24T03:08:31.855151Z
-21963
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5362
-
-css
-dir
 

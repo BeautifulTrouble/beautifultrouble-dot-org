@@ -1,14 +1,14 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/themes/advanced/skins
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/themes/advanced/skins
 http://core.svn.wordpress.org
 
 
 
-2012-11-14T23:21:59.699312Z
-22586
+2013-05-09T00:24:45.802673Z
+24215
 azaozz
 
 
@@ -26,15 +26,15 @@ azaozz
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-o2k7
-dir
-
-default
-dir
-
 wp_theme
 dir
 
 highcontrast
+dir
+
+o2k7
+dir
+
+default
 dir
 

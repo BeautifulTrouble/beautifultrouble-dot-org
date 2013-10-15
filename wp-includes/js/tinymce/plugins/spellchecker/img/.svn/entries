@@ -1,8 +1,8 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/spellchecker/img
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/spellchecker/img
 http://core.svn.wordpress.org
 
 
@@ -32,7 +32,7 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
+2013-10-15T12:32:49.385942Z
 c136c9f8e00718a98947a21d8adbcc56
 2008-01-17T15:44:05.937376Z
 6632

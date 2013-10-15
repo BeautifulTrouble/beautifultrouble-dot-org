@@ -1,14 +1,14 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-content
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-content
 http://core.svn.wordpress.org
 
 
 
-2013-06-20T02:45:26.392288Z
-24452
+2013-08-01T19:40:36.836466Z
+24968
 nacin
 
 
@@ -26,12 +26,6 @@ nacin
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-plugins
-dir
-
-themes
-dir
-
 index.php
 file
 
@@ -44,4 +38,10 @@ file
 19712
 ryan
 has-props
+
+plugins
+dir
+
+themes
+dir
 

@@ -1,14 +1,14 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-content/themes/twentyten
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-content/themes/twentyten
 http://core.svn.wordpress.org
 
 
 
-2013-01-01T00:19:29.760677Z
-23237
+2013-08-01T18:14:08.957238Z
+24961
 potbot
 
 
@@ -26,57 +26,39 @@ potbot
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-footer.php
-file
-
-
-
-
-
-2016acf0e7d283eab3bc99f028475076
-2012-10-12T16:13:37.357258Z
-22214
-lancewillett
-has-props
-
-loop-attachment.php
-file
-
-
-
-
-
-33512bd42e322ed22c08e9f37380fa6d
-2011-12-16T17:13:16.705346Z
-19599
-ryan
-has-props
-
 style.css
 file
 
 
 
 
-
-bb0b1c0a3d3189581f3956eab671a4c8
-2012-12-07T20:43:34.517691Z
-23125
+2013-10-15T12:36:44.512312Z
+e3430b7c03f0b1594a2de87c2bdad693
+2013-08-01T17:55:05.884350Z
+24959
 nacin
 has-props
-
-author.php
-file
 
 
 
 
 
-240b8e7f734a86ce4dab1ada222cfbc3
-2010-06-11T16:55:41.131338Z
-15226
-nacin
-has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+23379
 
 rtl.css
 file
@@ -84,12 +66,67 @@ file
 
 
 
-
-bff06d272495f6ccd539583a5c798316
-2012-11-28T17:49:43.594316Z
-22897
+2013-10-15T12:36:44.512312Z
+d1634b71bb9800b1ed83e5c7056cda24
+2013-05-07T22:17:23.292452Z
+24196
 lancewillett
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4380
+
+author.php
+file
+
+
+
+
+2013-10-15T12:32:49.289990Z
+240b8e7f734a86ce4dab1ada222cfbc3
+2010-06-11T16:55:41.131338Z
+15226
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2010
 
 search.php
 file
@@ -97,12 +134,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.297986Z
 4b23519c6fbcf41b994c6f0d21d159b5
 2010-06-11T16:55:41.131338Z
 15226
 nacin
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1227
 
 sidebar-footer.php
 file
@@ -110,12 +168,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.297986Z
 a14f15208e4b969054f88509481804ec
 2010-05-17T06:36:11.829226Z
 14708
 nacin
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1802
 
 index.php
 file
@@ -123,12 +202,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.297986Z
 ffe6b0bae4e69246b6815b732d2c1535
 2010-11-19T05:37:47.971224Z
 16480
 nacin
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+915
 
 404.php
 file
@@ -136,12 +236,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.289990Z
 766edcbe7b2d4c632d7305079c55397c
 2010-06-11T16:55:41.131338Z
 15226
 nacin
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+870
 
 functions.php
 file
@@ -149,25 +270,33 @@ file
 
 
 
-
-183a403bc5261213efd9e62f8b992b08
-2012-11-02T16:52:53.892281Z
-22359
+2013-10-15T12:36:44.512312Z
+f0c0e3e34553a5451003fc7a1a73057e
+2013-05-07T21:57:49.821944Z
+24195
 lancewillett
 has-props
-
-loop.php
-file
 
 
 
 
 
-6408aa211fc69d9e22f4d90d1c903d1a
-2012-10-11T20:12:40.677708Z
-22197
-lancewillett
-has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+20526
 
 onecolumn-page.php
 file
@@ -175,12 +304,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.297986Z
 192f1d8d59f7bf5313058e0930fcef8b
 2010-10-09T09:17:42.620840Z
 15762
 nacin
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+731
 
 sidebar.php
 file
@@ -188,23 +338,44 @@ file
 
 
 
-
+2013-10-15T12:32:49.297986Z
 03f7d2eb6a6b5081df1bb3a318f6e1c8
 2010-11-19T05:37:47.971224Z
 16480
 nacin
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1559
 
-screenshot.png
+loop.php
 file
 
 
 
 
-2013-02-06T00:42:32.000000Z
-d04c5be9de11eb79fd0a69e4a6b587e7
-2012-10-26T23:25:08.215000Z
-22317
+2013-10-15T12:36:44.512312Z
+4c7b38b6201ece3af79a8df8a31d0caa
+2013-04-29T16:57:30.454905Z
+24131
 lancewillett
 has-props
 
@@ -227,7 +398,7 @@ has-props
 
 
 
-256242
+8669
 
 license.txt
 file
@@ -235,7 +406,7 @@ file
 
 
 
-2012-11-13T17:59:08.000000Z
+2013-10-15T12:34:06.815206Z
 6687cd9232ae1025beca4feb43453ec5
 2010-02-07T16:16:26.819022Z
 13012
@@ -263,18 +434,73 @@ has-props
 
 15129
 
+screenshot.png
+file
+
+
+
+
+2013-10-15T12:32:49.297986Z
+d04c5be9de11eb79fd0a69e4a6b587e7
+2012-10-26T23:25:08.215000Z
+22317
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+256242
+
 tag.php
 file
 
 
 
 
-
+2013-10-15T12:32:49.297986Z
 572297105a427d7d6ec2bd95e629a4c3
 2010-06-11T16:55:41.131338Z
 15226
 nacin
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+733
 
 page.php
 file
@@ -282,12 +508,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.297986Z
 fd282aee4a3967240290218286cac85d
 2011-01-20T23:09:37.528903Z
 17340
 nacin
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+783
 
 category.php
 file
@@ -295,12 +542,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.289990Z
 5420d57540c9ff83cd30b567ceb6e263
 2010-06-11T16:55:41.131338Z
 15226
 nacin
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+962
 
 images
 dir
@@ -314,12 +582,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.289990Z
 92263f5bd04a77ec3282d2b286417817
 2011-11-10T18:37:20.249817Z
 19241
 ryan
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1860
 
 single.php
 file
@@ -327,12 +616,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.297986Z
 148de8bb62d7ea8596fc2a62c78c754f
 2011-01-20T23:09:37.528903Z
 17340
 nacin
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+582
 
 loop-page.php
 file
@@ -340,12 +650,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.297986Z
 87e2cab875eb5731e31a475e1749a5a5
 2011-12-16T17:13:16.705346Z
 19599
 ryan
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1194
 
 editor-style-rtl.css
 file
@@ -353,12 +684,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.289990Z
 18e277ba6ab2e2ba80a2521dd393cb9b
 2011-10-29T00:17:37.746630Z
 19085
 azaozz
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+409
 
 editor-style.css
 file
@@ -366,12 +718,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.289990Z
 6b167169308b258e6060958f99334614
 2011-09-28T15:16:30.864702Z
 18800
 azaozz
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4045
 
 comments.php
 file
@@ -379,38 +752,33 @@ file
 
 
 
-
+2013-10-15T12:32:49.289990Z
 fd6e8ba4f3135d64a258f4da1b1e96d5
 2012-11-16T22:06:01.973866Z
 22621
 lancewillett
 has-props
-
-header.php
-file
 
 
 
 
 
-1da633291ff4634f4ad3b5f47a647648
-2012-06-04T14:43:19.537655Z
-20983
-ryan
-has-props
-
-attachment.php
-file
 
 
 
 
 
-c52d43b55ff99eb2fb3b76a13e5f3fbf
-2011-01-20T23:09:37.528903Z
-17340
-nacin
-has-props
+
+
+
+
+
+
+
+
+
+
+3022
 
 loop-single.php
 file
@@ -418,10 +786,167 @@ file
 
 
 
-
+2013-10-15T12:32:49.297986Z
 b90d42a570b34c866b62cc57ff0b4359
 2011-12-16T17:13:16.705346Z
 19599
 ryan
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3063
+
+attachment.php
+file
+
+
+
+
+2013-10-15T12:32:49.289990Z
+c52d43b55ff99eb2fb3b76a13e5f3fbf
+2011-01-20T23:09:37.528903Z
+17340
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+592
+
+header.php
+file
+
+
+
+
+2013-10-15T12:32:49.289990Z
+1da633291ff4634f4ad3b5f47a647648
+2013-03-22T16:15:24.208634Z
+23778
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4518
+
+footer.php
+file
+
+
+
+
+2013-10-15T12:32:49.289990Z
+2016acf0e7d283eab3bc99f028475076
+2012-10-12T16:13:37.357258Z
+22214
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1365
+
+loop-attachment.php
+file
+
+
+
+
+2013-10-15T12:32:49.297986Z
+33512bd42e322ed22c08e9f37380fa6d
+2011-12-16T17:13:16.705346Z
+19599
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5250
 

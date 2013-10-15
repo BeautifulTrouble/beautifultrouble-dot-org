@@ -1,8 +1,8 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/Text/Diff/Renderer
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/Text/Diff/Renderer
 http://core.svn.wordpress.org
 
 
@@ -32,7 +32,7 @@ file
 
 
 
-2012-08-28T16:32:55.000000Z
+2013-10-15T12:32:49.333968Z
 880ae56e35b150b4b2c7e9d94227e81e
 2010-02-19T01:25:26.204773Z
 13211

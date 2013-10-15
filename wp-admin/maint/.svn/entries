@@ -1,15 +1,15 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-admin/maint
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-admin/maint
 http://core.svn.wordpress.org
 
 
 
-2012-11-30T13:40:59.238541Z
-22948
-ryan
+2013-02-14T05:52:23.535007Z
+23413
+SergeyBiryukov
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2013-02-06T00:42:43.000000Z
-ceb4b0e44e0ba90514594637c4c35c25
-2012-11-30T13:40:59.238541Z
-22948
-ryan
+2013-10-15T12:36:43.372882Z
+9cbfe9d0c72caeacf7986505da7c44b1
+2013-02-14T05:52:23.535007Z
+23413
+SergeyBiryukov
 has-props
 
 
@@ -58,5 +58,5 @@ has-props
 
 
 
-5172
+5180
 

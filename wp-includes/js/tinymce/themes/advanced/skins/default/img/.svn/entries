@@ -1,8 +1,8 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/themes/advanced/skins/default/img
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/themes/advanced/skins/default/img
 http://core.svn.wordpress.org
 
 
@@ -26,81 +26,13 @@ azaozz
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-buttons.png
-file
-
-
-
-
-
-33b2f2e08cc3ade5254fec64c4183558
-2012-11-12T21:20:46.260192Z
-22550
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3133
-
-menu_arrow.gif
-file
-
-
-
-
-2012-08-28T16:32:54.000000Z
-e21752451a9d80e276fef7b602bdbdba
-2008-01-17T15:44:05.937376Z
-6632
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-68
-
 items.gif
 file
 
 
 
 
-2012-08-28T16:32:54.000000Z
+2013-10-15T12:32:49.397936Z
 d201498a710fc8aac6e117820b9814b7
 2011-09-09T20:08:40.327340Z
 18660
@@ -134,7 +66,7 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
+2013-10-15T12:32:49.397936Z
 c7d003885737f94768eecae49dcbca63
 2008-01-17T15:44:05.937376Z
 6632
@@ -168,7 +100,7 @@ file
 
 
 
-
+2013-10-15T12:32:49.397936Z
 50c5e3e79b276c92df6cc52caeb464f0
 2012-11-12T21:20:46.260192Z
 22550
@@ -202,7 +134,7 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
+2013-10-15T12:32:49.397936Z
 6473bbcd0a011e9fcdd9f777ef437410
 2011-09-09T20:08:40.327340Z
 18660
@@ -229,4 +161,72 @@ has-props
 
 
 1322
+
+buttons.png
+file
+
+
+
+
+2013-10-15T12:32:49.397936Z
+33b2f2e08cc3ade5254fec64c4183558
+2012-11-12T21:20:46.260192Z
+22550
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3133
+
+menu_arrow.gif
+file
+
+
+
+
+2013-10-15T12:32:49.397936Z
+e21752451a9d80e276fef7b602bdbdba
+2008-01-17T15:44:05.937376Z
+6632
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+68
 

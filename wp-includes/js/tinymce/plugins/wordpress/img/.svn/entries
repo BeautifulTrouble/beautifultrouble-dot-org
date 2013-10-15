@@ -1,8 +1,8 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wordpress/img
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/wordpress/img
 http://core.svn.wordpress.org
 
 
@@ -26,115 +26,13 @@ markjaquith
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-page.gif
-file
-
-
-
-
-2012-08-28T16:32:53.000000Z
-ec8d1ed1b0fd137cacdda9e316ebed31
-2008-01-31T18:10:46.017893Z
-6694
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-108
-
-media.gif
-file
-
-
-
-
-2012-08-28T16:32:53.000000Z
-b1a62e29a44128ae7a3d932b4941ea33
-2008-07-03T15:55:45.181379Z
-8248
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-149
-
-audio.gif
-file
-
-
-
-
-2012-08-28T16:32:53.000000Z
-edc58dce8aab5d12e83fd4aac849cc05
-2008-07-03T15:55:45.181379Z
-8248
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-146
-
 image.gif
 file
 
 
 
 
-2013-02-06T00:42:24.000000Z
+2013-10-15T12:32:49.385942Z
 fe5bd0edc99f44dfe3ec2302359a7f81
 2012-11-07T18:49:10.703842Z
 22425
@@ -168,7 +66,7 @@ file
 
 
 
-2013-02-06T00:42:24.000000Z
+2013-10-15T12:32:49.385942Z
 233f9a78eadddb26f8976682e6d1bf44
 2012-11-07T18:49:10.703842Z
 22425
@@ -202,7 +100,7 @@ file
 
 
 
-2012-08-28T16:32:53.000000Z
+2013-10-15T12:32:49.385942Z
 12bf9e19374920de3146a64775f46a5e
 2008-01-31T18:10:46.017893Z
 6694
@@ -229,4 +127,106 @@ has-props
 
 
 43
+
+page.gif
+file
+
+
+
+
+2013-10-15T12:32:49.385942Z
+ec8d1ed1b0fd137cacdda9e316ebed31
+2008-01-31T18:10:46.017893Z
+6694
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+108
+
+media.gif
+file
+
+
+
+
+2013-10-15T12:32:49.385942Z
+b1a62e29a44128ae7a3d932b4941ea33
+2008-07-03T15:55:45.181379Z
+8248
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+149
+
+audio.gif
+file
+
+
+
+
+2013-10-15T12:32:49.385942Z
+edc58dce8aab5d12e83fd4aac849cc05
+2008-07-03T15:55:45.181379Z
+8248
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+146
 

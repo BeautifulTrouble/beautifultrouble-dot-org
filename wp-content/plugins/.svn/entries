@@ -1,14 +1,14 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-content/plugins
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-content/plugins
 http://core.svn.wordpress.org
 
 
 
-2013-06-20T02:45:26.392288Z
-24452
+2013-08-01T19:40:36.836466Z
+24968
 nacin
 has-props
 
@@ -32,10 +32,10 @@ file
 
 
 
-2012-11-13T17:59:07.000000Z
-29e34b280a057483545b48e1d3770760
-2010-11-10T12:43:04.582454Z
-16270
+2013-10-15T12:36:44.340398Z
+52a7f011f362416f939a74215f7ebd12
+2013-05-22T21:08:40.710944Z
+24322
 nacin
 has-props
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-2262
+2255
 
 index.php
 file
@@ -66,7 +66,7 @@ file
 
 
 
-2012-11-13T17:59:07.000000Z
+2013-10-15T12:32:49.202034Z
 96137494913a1f730a592e8932af394e
 2009-04-15T19:57:04.920883Z
 10940

@@ -1,15 +1,15 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/jquery/ui
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/jquery/ui
 http://core.svn.wordpress.org
 
 
 
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -26,289 +26,17 @@ has-props
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-jquery.ui.mouse.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-2b09e33474c5641d8b63eaf28e870a66
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2864
-
-jquery.ui.effect-fade.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-36eebb647c0021b081027d95a4681a08
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-367
-
-jquery.ui.effect-explode.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-ffec1f546e53676923f4a05ca20790a8
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1027
-
-jquery.ui.effect.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-14927dd90ee28ed46043547c56638549
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-12970
-
-jquery.ui.accordion.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-75ac483f270380c9a0a4e8eb5b6f3dd0
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-10454
-
-jquery.ui.position.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-dd2ebb2a9d3b4d3e6fc95142fe607e34
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6645
-
-jquery.ui.sortable.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-4a6b8c51735314ad669b4a73eab51726
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-23582
-
-jquery.ui.datepicker.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-e36a086123756412293231aead17f24f
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-37629
-
 jquery.ui.effect-transfer.min.js
 file
 
 
 
 
-2013-02-06T00:42:23.000000Z
-0df5a22bfac5e648139f4a3cabfb39b6
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.840648Z
+e91b94a47085eac01afbf48c8cd515f0
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -330,41 +58,7 @@ has-props
 
 
 
-705
-
-jquery.ui.effect-scale.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-ebae30aac3140e8c77dff67bfe0aba5d
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4391
+663
 
 jquery.ui.effect-clip.min.js
 file
@@ -372,11 +66,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-c566a56516cfa9b0f5f0af9515edd008
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.840648Z
+71a13d33f3fc7de23f13adcc4593a5a2
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -398,7 +92,41 @@ has-props
 
 
 
-770
+732
+
+jquery.ui.effect-scale.min.js
+file
+
+
+
+
+2013-10-15T12:36:43.852642Z
+783b0ad56b1a8a97b76079a1d41c6f88
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4355
 
 jquery.ui.effect-blind.min.js
 file
@@ -406,11 +134,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-77bc3e84b750f288c68d789dfb28144f
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.856640Z
+625c5e7376d305ce4a11fd1277de5734
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -432,7 +160,7 @@ has-props
 
 
 
-994
+955
 
 jquery.ui.effect-shake.min.js
 file
@@ -440,11 +168,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-4b5ef540c8212613d8bc80c90386b522
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.856640Z
+782fbb6948781cffd80ddf4030196952
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -466,7 +194,7 @@ has-props
 
 
 
-952
+913
 
 jquery.ui.core.min.js
 file
@@ -474,11 +202,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-f8d56d3c5539aa7af2a7d5c3b8769fad
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.856640Z
+739cf68f21c10e04cde3ad13fcff9063
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -500,7 +228,7 @@ has-props
 
 
 
-4693
+4289
 
 jquery.ui.progressbar.min.js
 file
@@ -508,11 +236,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-e90017815cdefec31a27eef26a1df6f7
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.844646Z
+35086553121b0423a8f2eaaedca79152
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -534,7 +262,7 @@ has-props
 
 
 
-1589
+2178
 
 jquery.ui.tabs.min.js
 file
@@ -542,11 +270,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-490d0168365536638cb63e97b69494b1
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.856640Z
+3d531a65189ab04b164e9ac6ff708c06
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -568,7 +296,7 @@ has-props
 
 
 
-18572
+11591
 
 jquery.ui.effect-slide.min.js
 file
@@ -576,11 +304,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-d1d2843cdbebec3ec262539e8f482655
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.860638Z
+945300af618d04041dc49a0a5d36a917
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -602,7 +330,7 @@ has-props
 
 
 
-813
+774
 
 jquery.ui.tooltip.min.js
 file
@@ -610,11 +338,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-a0c1fb100694e7e398afd0a3517e8273
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.844646Z
+4fbdb31340b01c249a0fe5112e0eeec9
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -636,7 +364,7 @@ has-props
 
 
 
-4774
+4781
 
 jquery.ui.effect-drop.min.js
 file
@@ -644,11 +372,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-82eab8c3912d259f462a229b7b4f2081
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.848644Z
+1d045fd3777c8376972022e868891b86
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -670,7 +398,7 @@ has-props
 
 
 
-849
+811
 
 jquery.ui.dialog.min.js
 file
@@ -678,11 +406,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-29610778c84d9db4858c8aafe9315229
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.860638Z
+3248497acc4c9a3eae7d094860937708
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -704,7 +432,7 @@ has-props
 
 
 
-11264
+11185
 
 jquery.ui.effect-highlight.min.js
 file
@@ -712,11 +440,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-da7641af95d688d998c837bec535ea88
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.860638Z
+15b8d390675cf17bc3a73c3619557fb4
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -738,7 +466,7 @@ has-props
 
 
 
-636
+593
 
 jquery.ui.autocomplete.min.js
 file
@@ -746,11 +474,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-697382ab550d87badbc9e4f8ba547b60
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.860638Z
+c6c4d43ac586574589a0ec4542a890a8
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -772,7 +500,7 @@ has-props
 
 
 
-7723
+7728
 
 jquery.ui.selectable.min.js
 file
@@ -780,11 +508,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-5498a8027d4314a6b7aecc07400c15f8
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.860638Z
+6908d69d10dae3d04c23ca83a884ba6f
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -806,7 +534,7 @@ has-props
 
 
 
-4079
+4065
 
 jquery.ui.menu.min.js
 file
@@ -814,11 +542,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-3b0fa982a618f8885056b51d41076d0c
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.864636Z
+e0b94d0041ca790b68af39edf821d238
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -840,7 +568,7 @@ has-props
 
 
 
-9225
+9408
 
 jquery.ui.effect-bounce.min.js
 file
@@ -848,11 +576,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-575070d688f2df8beb11595b36a5406d
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.848644Z
+81ee7ab27ed9b0f3556a406ff6aad80b
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -874,7 +602,7 @@ has-props
 
 
 
-1097
+1057
 
 jquery.ui.effect-pulsate.min.js
 file
@@ -882,11 +610,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-5ac5c5ca652b881fe4073440719f9102
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.864636Z
+3d639b4c14c1f6b080f746b7250554c3
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -908,41 +636,7 @@ has-props
 
 
 
-647
-
-jquery.ui.droppable.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-0d6eef31f7bd7215fc554b1455435efc
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5881
+608
 
 jquery.ui.draggable.min.js
 file
@@ -950,11 +644,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-8c3ca109cbf3a09e50c356b6a1826c05
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.848644Z
+67b603ea0e4abe708f871111fcf45738
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -976,7 +670,41 @@ has-props
 
 
 
-18614
+18559
+
+jquery.ui.droppable.min.js
+file
+
+
+
+
+2013-10-15T12:36:43.848644Z
+79ea08a1eb866ba2039cc617ada702de
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5902
 
 jquery.ui.button.min.js
 file
@@ -984,11 +712,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-841ae1782456e0e034e446bc34c18a82
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.840648Z
+1cc433c88d349c513c801378c4493f19
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -1010,41 +738,7 @@ has-props
 
 
 
-7222
-
-jquery.ui.spinner.min.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-7a5e4203edf87c7e35b57c63bcc34903
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6643
+7143
 
 jquery.ui.effect-fold.min.js
 file
@@ -1052,11 +746,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-8074c41343e8123a8567de8af452fc72
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.852642Z
+f8cda9cadd854d552cc429d799274962
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -1078,7 +772,41 @@ has-props
 
 
 
-882
+844
+
+jquery.ui.spinner.min.js
+file
+
+
+
+
+2013-10-15T12:36:43.852642Z
+ab6ea5b371afc02315dfaa7dfd4a1063
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6870
 
 jquery.ui.resizable.min.js
 file
@@ -1086,11 +814,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-ea9fbda91a34e85949e727926665f4af
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.852642Z
+1cca9d1d61a8a9bef77cfea0f39e793d
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -1112,7 +840,7 @@ has-props
 
 
 
-17325
+17273
 
 jquery.ui.slider.min.js
 file
@@ -1120,11 +848,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-38d250e04af3d561f01156273f08d578
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.844646Z
+f1b234712eabc4fea71eaadcf2e73ffa
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -1146,7 +874,7 @@ has-props
 
 
 
-9913
+10202
 
 jquery.ui.widget.min.js
 file
@@ -1154,11 +882,11 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
-a5626b56956b854edc4435086b81e642
-2012-11-26T01:20:40.418692Z
-22833
-koopersmith
+2013-10-15T12:36:43.844646Z
+2425a542e6dde093dd85ac0b5adc0141
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
 has-props
 
 
@@ -1180,5 +908,277 @@ has-props
 
 
 
-6759
+6488
+
+jquery.ui.mouse.min.js
+file
+
+
+
+
+2013-10-15T12:36:43.856640Z
+513bb6d79ab29c58ab1b32646216a3a0
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2841
+
+jquery.ui.effect-fade.min.js
+file
+
+
+
+
+2013-10-15T12:36:43.856640Z
+79debe8459f8ceca8443086bf29e16a0
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+329
+
+jquery.ui.effect-explode.min.js
+file
+
+
+
+
+2013-10-15T12:36:43.844646Z
+3ae92de7419e58815544147641a87930
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+984
+
+jquery.ui.effect.min.js
+file
+
+
+
+
+2013-10-15T12:36:43.844646Z
+ea7d13d6d2212ba59159c40b2a57bd3b
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12972
+
+jquery.ui.accordion.min.js
+file
+
+
+
+
+2013-10-15T12:36:43.860638Z
+1da489eb8b596be7a49f1be959249988
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8368
+
+jquery.ui.position.min.js
+file
+
+
+
+
+2013-10-15T12:36:43.848644Z
+eb63c3d2dace62e102af74004ccd0ff1
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6273
+
+jquery.ui.sortable.min.js
+file
+
+
+
+
+2013-10-15T12:36:43.848644Z
+cccbd3de04d2ff8cd30164925353c394
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+24178
+
+jquery.ui.datepicker.min.js
+file
+
+
+
+
+2013-10-15T12:36:43.852642Z
+4eac58ed8deb3189c8d05bab9187f1ce
+2013-05-08T20:54:30.555668Z
+24204
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+35806
 

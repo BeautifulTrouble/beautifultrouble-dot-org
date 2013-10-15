@@ -1,15 +1,15 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-content/themes/twentytwelve/inc
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-content/themes/twentytwelve/inc
 http://core.svn.wordpress.org
 
 
 
-2012-11-14T20:13:04.252953Z
-22573
-lancewillett
+2013-04-22T19:40:28.230489Z
+24050
+nacin
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2013-02-06T00:42:33.000000Z
-62d21e84c6c0eadcc25998cc4f02636a
-2012-11-14T20:13:04.252953Z
-22573
-lancewillett
+2013-10-15T12:36:44.516310Z
+adb7014773a54906afa27a1b0815ea87
+2013-04-22T19:40:28.230489Z
+24050
+nacin
 has-props
 
 
@@ -58,5 +58,5 @@ has-props
 
 
 
-4124
+4671
 

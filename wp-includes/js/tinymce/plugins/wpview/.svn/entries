@@ -1,8 +1,8 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wpview
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/wpview
 http://core.svn.wordpress.org
 
 
@@ -26,47 +26,13 @@ duck_
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-editor_plugin.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-cd36cae0d297bfcc3bb4884f539d9840
-2012-11-21T22:31:55.432126Z
-22798
-duck_
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1955
-
 editor_plugin_src.js
 file
 
 
 
 
-2013-02-06T00:42:23.000000Z
+2013-10-15T12:32:49.393938Z
 fdfef23447596978a7af1c589a704bd3
 2012-11-21T22:31:55.432126Z
 22798
@@ -93,4 +59,38 @@ has-props
 
 
 5148
+
+editor_plugin.js
+file
+
+
+
+
+2013-10-15T12:32:49.393938Z
+cd36cae0d297bfcc3bb4884f539d9840
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1955
 

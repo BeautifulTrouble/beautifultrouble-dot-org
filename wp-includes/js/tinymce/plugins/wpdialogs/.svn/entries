@@ -1,15 +1,15 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wpdialogs
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/wpdialogs
 http://core.svn.wordpress.org
 
 
 
-2012-11-09T22:58:35.441724Z
-22515
-bumpbot
+2013-03-04T04:23:00.343730Z
+23604
+SergeyBiryukov
 
 
 
@@ -26,13 +26,50 @@ bumpbot
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
+editor_plugin_src.js
+file
+
+
+
+
+2013-10-15T12:36:43.640748Z
+a6438b9df6aa7af17ad9c1ca2019d014
+2013-02-15T16:26:46.811593Z
+23425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1783
+
+js
+dir
+
 editor_plugin.js
 file
 
 
 
 
-2012-08-28T16:32:53.000000Z
+2013-10-15T12:32:49.385942Z
 0f132c90124ed40d6df71f1d4fabe557
 2011-04-23T02:12:56.857742Z
 17687
@@ -59,41 +96,4 @@ has-props
 
 
 1018
-
-editor_plugin_src.js
-file
-
-
-
-
-2012-08-28T16:32:53.000000Z
-48784cf4970b78b03ce5d6da9cac5621
-2012-02-18T06:43:47.830148Z
-19945
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1792
-
-js
-dir
 

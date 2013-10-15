@@ -1,8 +1,8 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/themes/advanced/skins/highcontrast
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/themes/advanced/skins/highcontrast
 http://core.svn.wordpress.org
 
 
@@ -32,7 +32,7 @@ file
 
 
 
-2012-08-28T16:32:54.000000Z
+2013-10-15T12:32:49.397936Z
 581e2436d2cafd2141f4a75657e06245
 2012-02-04T22:23:27.930128Z
 19830
@@ -66,7 +66,7 @@ file
 
 
 
-2013-02-06T00:42:25.000000Z
+2013-10-15T12:32:49.397936Z
 8beb8f4a330b1294c488f435873328ef
 2012-07-07T16:22:53.967176Z
 21228
@@ -100,7 +100,7 @@ file
 
 
 
-2013-02-06T00:42:25.000000Z
+2013-10-15T12:32:49.397936Z
 b66af30667a23ece1521fe354331c534
 2012-07-07T16:22:53.967176Z
 21228

@@ -1,8 +1,8 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wpeditimage/img
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/wpeditimage/img
 http://core.svn.wordpress.org
 
 
@@ -26,81 +26,13 @@ azaozz
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-delete.png
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-6de18e0045263b20400e284eb2731939
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1386
-
-image.png
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-528e8e81d99bf63d0b7f88bdd0051d3a
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-946
-
 delete-2x.png
 file
 
 
 
 
-2013-02-06T00:42:23.000000Z
+2013-10-15T12:32:49.389940Z
 fc29fcdb63500be0c6096b4621840f24
 2012-11-14T23:21:59.699312Z
 22586
@@ -134,7 +66,7 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
+2013-10-15T12:32:49.389940Z
 e122da77cc3ef946e42cf76288800cba
 2012-11-14T23:21:59.699312Z
 22586
@@ -161,4 +93,72 @@ has-props
 
 
 2687
+
+delete.png
+file
+
+
+
+
+2013-10-15T12:32:49.389940Z
+6de18e0045263b20400e284eb2731939
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1386
+
+image.png
+file
+
+
+
+
+2013-10-15T12:32:49.389940Z
+528e8e81d99bf63d0b7f88bdd0051d3a
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+946
 

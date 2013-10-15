@@ -1,14 +1,14 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-content/themes
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-content/themes
 http://core.svn.wordpress.org
 
 
 
-2013-04-26T13:58:47.148992Z
-24108
+2013-08-01T18:14:19.166213Z
+24967
 potbot
 
 
@@ -26,22 +26,13 @@ potbot
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-twentyten
-dir
-
-twentytwelve
-dir
-
-twentyeleven
-dir
-
 index.php
 file
 
 
 
 
-2012-11-13T17:59:10.000000Z
+2013-10-15T12:32:49.270000Z
 96137494913a1f730a592e8932af394e
 2009-04-15T19:57:04.920883Z
 10940
@@ -68,4 +59,16 @@ has-props
 
 
 30
+
+twentythirteen
+dir
+
+twentyten
+dir
+
+twentytwelve
+dir
+
+twentyeleven
+dir
 

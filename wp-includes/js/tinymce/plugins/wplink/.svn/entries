@@ -1,15 +1,15 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wplink
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/wplink
 http://core.svn.wordpress.org
 
 
 
-2012-07-13T00:58:19.111177Z
-21269
-bumpbot
+2012-12-20T15:55:32.158461Z
+23191
+helen
 
 
 
@@ -26,13 +26,47 @@ bumpbot
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
+editor_plugin_src.js
+file
+
+
+
+
+2013-10-15T12:36:43.612762Z
+bfcceea9af0abd6cca120cbdd76af2f2
+2012-12-20T15:55:32.158461Z
+23191
+helen
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1680
+
 editor_plugin.js
 file
 
 
 
 
-2013-02-06T00:42:24.000000Z
+2013-10-15T12:32:49.393938Z
 b1f0a677a64e08005a093b4049f54d53
 2012-07-13T00:58:19.111177Z
 21269
@@ -59,38 +93,4 @@ has-props
 
 
 586
-
-editor_plugin_src.js
-file
-
-
-
-
-2013-02-06T00:42:24.000000Z
-0c8c4f07f089e8ae86166ab16201cda9
-2012-07-13T00:26:49.983740Z
-21266
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1681
 

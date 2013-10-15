@@ -1,14 +1,14 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/media
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/media
 http://core.svn.wordpress.org
 
 
 
-2013-06-21T05:58:32.113858Z
-24477
+2013-06-21T05:57:22.596239Z
+24476
 nacin
 
 
@@ -26,51 +26,17 @@ nacin
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-editor_plugin.js
-file
-
-
-
-
-2013-02-06T00:42:23.000000Z
-5ad7db86c5008f98ec135595db4a4973
-2012-07-07T16:22:53.967176Z
-21228
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-12655
-
 editor_plugin_src.js
 file
 
 
 
 
-2013-02-06T00:42:23.000000Z
-30d8cd0fe92587476fab267f2598ad7d
-2012-08-18T23:24:27.211302Z
-21545
-azaozz
+2013-10-15T12:36:43.652742Z
+3f0d7eef1ba22024488ddffcb3bb0e55
+2013-04-03T20:55:20.958858Z
+23896
+nacin
 has-props
 
 
@@ -92,7 +58,7 @@ has-props
 
 
 
-25521
+25582
 
 media.htm
 file
@@ -100,7 +66,7 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
+2013-10-15T12:32:49.381944Z
 d8ada489c50c283c5732ff06aa72b4f8
 2012-12-06T04:50:31.479089Z
 23090
@@ -140,10 +106,10 @@ file
 
 
 
-2013-07-09T23:05:29.000000Z
+2013-10-15T12:32:49.381944Z
 f1cb08168139602b35bc61f1d9823ea3
-2013-06-21T05:58:32.113858Z
-24477
+2013-06-21T05:57:22.596239Z
+24476
 nacin
 has-props
 
@@ -167,4 +133,38 @@ has-props
 
 
 145
+
+editor_plugin.js
+file
+
+
+
+
+2013-10-15T12:32:49.381944Z
+5ad7db86c5008f98ec135595db4a4973
+2012-07-07T16:22:53.967176Z
+21228
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12655
 

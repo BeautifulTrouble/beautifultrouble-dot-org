@@ -1,8 +1,8 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/jcrop
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/jcrop
 http://core.svn.wordpress.org
 
 
@@ -26,13 +26,47 @@ duck_
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
+jquery.Jcrop.min.js
+file
+
+
+
+
+2013-10-15T12:32:49.357956Z
+23e42f2bd8a5b091d0eb8a80eeb79453
+2012-08-27T23:37:03.881908Z
+21633
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15899
+
 Jcrop.gif
 file
 
 
 
 
-2013-02-06T00:42:25.000000Z
+2013-10-15T12:32:49.357956Z
 5a8bfd37651305bdafbcf2cd51b0254b
 2012-11-07T18:49:10.703842Z
 22425
@@ -66,7 +100,7 @@ file
 
 
 
-2013-02-06T00:42:25.000000Z
+2013-10-15T12:32:49.357956Z
 1a6073b9ad2ed6318c1ff41a5aa76c04
 2012-11-21T22:31:55.432126Z
 22798
@@ -93,38 +127,4 @@ has-props
 
 
 2029
-
-jquery.Jcrop.min.js
-file
-
-
-
-
-2013-02-06T00:42:25.000000Z
-23e42f2bd8a5b091d0eb8a80eeb79453
-2012-08-27T23:37:03.881908Z
-21633
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-15899
 

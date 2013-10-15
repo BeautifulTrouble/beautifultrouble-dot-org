@@ -1,8 +1,8 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/js/tinymce/plugins/wpeditimage/css
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/wpeditimage/css
 http://core.svn.wordpress.org
 
 
@@ -32,7 +32,7 @@ file
 
 
 
-2013-02-06T00:42:23.000000Z
+2013-10-15T12:32:49.389940Z
 be84c8843d5da59cde1aaa472acf86a6
 2012-12-04T19:51:35.666031Z
 23039

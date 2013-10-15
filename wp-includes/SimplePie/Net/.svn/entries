@@ -1,8 +1,8 @@
 10
 
 dir
-24620
-http://core.svn.wordpress.org/branches/3.5/wp-includes/SimplePie/Net
+25697
+http://core.svn.wordpress.org/tags/3.6.1/wp-includes/SimplePie/Net
 http://core.svn.wordpress.org
 
 
@@ -32,7 +32,7 @@ file
 
 
 
-2013-02-06T00:42:27.000000Z
+2013-10-15T12:32:49.329970Z
 a546790e216abdd9801795949fb6b40f
 2012-11-21T22:31:55.432126Z
 22798
