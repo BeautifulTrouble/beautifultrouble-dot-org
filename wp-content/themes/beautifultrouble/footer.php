@@ -23,7 +23,7 @@
             echo '<div id="partner-logos">';
             foreach( $partners as $partner ) {
         ?>
-        <a title="<?php echo get_the_title( $partner->ID ); ?>" href="<?php echo get_permalink( $partner->ID ); ?>"><?php echo get_the_post_thumbnail( $partner->ID ); ?></a>
+        <a title="<?php echo get_the_title( $partner->ID ); ?>" href="<?php echo get_permalink( $partner->ID ); ?>"><?php echo get_the_post_thumbnail( $partner->ID, array(100, 50)); ?></a>
 <?php }
         echo '</div>';
         }
