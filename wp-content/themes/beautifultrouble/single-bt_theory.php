@@ -125,6 +125,7 @@ get_header(); ?>
                 }
                 }
             ?>
+            <hr class="soften" />
             <?php get_sidebar('book'); ?>
         </div>
     </div><!-- /.row .content -->
