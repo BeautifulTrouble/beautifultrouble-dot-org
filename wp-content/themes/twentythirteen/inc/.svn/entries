@@ -1,15 +1,15 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-content/themes/twentythirteen/inc
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-content/themes/twentythirteen/inc
 http://core.svn.wordpress.org
 
 
 
-2013-07-18T18:11:43.241990Z
-24735
-ryan
+2013-10-15T16:47:09.832958Z
+25701
+lancewillett
 
 
 
@@ -32,44 +32,10 @@ file
 
 
 
-2013-10-15T12:36:44.424356Z
-6f864612cf4ea840bcc406f9b75dd4f7
-2013-07-18T18:11:43.241990Z
-24735
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6325
-
-back-compat.php
-file
-
-
-
-
-2013-10-15T12:36:44.424356Z
-c476403fd84c85a046db57ac6dc77baa
-2013-06-06T00:22:09.176991Z
-24411
+2013-10-31T17:42:22.375831Z
+2b74e04dcce92f6af9add753f3e13bda
+2013-10-15T16:47:09.832958Z
+25701
 lancewillett
 has-props
 
@@ -92,5 +58,39 @@ has-props
 
 
 
-2202
+6431
+
+back-compat.php
+file
+
+
+
+
+2013-10-31T17:42:22.375831Z
+063ea62bed87482dc9c35b2d69bd9ba7
+2013-09-20T19:34:10.329877Z
+25442
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2257
 

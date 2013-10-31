@@ -1,15 +1,15 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-content/themes/twentytwelve/languages
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-content/themes/twentytwelve/languages
 http://core.svn.wordpress.org
 
 
 
-2013-08-01T18:14:16.380152Z
-24965
-potbot
+2013-10-24T20:38:08.910619Z
+25822
+nacin
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2013-10-15T12:36:44.532302Z
-e725469f1f05d18781e026350b90142c
-2013-08-01T18:14:16.380152Z
-24965
-potbot
+2013-10-31T17:42:22.479831Z
+b702f59d7a9235fcbb76e5a04e1e1f47
+2013-10-24T20:38:08.910619Z
+25822
+nacin
 
 
 
@@ -58,5 +58,5 @@ potbot
 
 
 
-7765
+7770
 

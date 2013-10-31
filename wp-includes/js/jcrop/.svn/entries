@@ -1,15 +1,15 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/jcrop
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/jcrop
 http://core.svn.wordpress.org
 
 
 
-2012-11-21T22:31:55.432126Z
-22798
-duck_
+2013-09-21T12:46:09.078366Z
+25469
+ocean90
 
 
 
@@ -25,40 +25,6 @@ duck_
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-jquery.Jcrop.min.js
-file
-
-
-
-
-2013-10-15T12:32:49.357956Z
-23e42f2bd8a5b091d0eb8a80eeb79453
-2012-08-27T23:37:03.881908Z
-21633
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-15899
 
 Jcrop.gif
 file
@@ -100,11 +66,11 @@ file
 
 
 
-2013-10-15T12:32:49.357956Z
-1a6073b9ad2ed6318c1ff41a5aa76c04
-2012-11-21T22:31:55.432126Z
-22798
-duck_
+2013-10-31T17:42:19.751831Z
+56cc9ea201dc2f4b910e78bfacac9211
+2013-09-21T12:46:09.078366Z
+25469
+ocean90
 has-props
 
 
@@ -126,5 +92,39 @@ has-props
 
 
 
-2029
+2124
+
+jquery.Jcrop.min.js
+file
+
+
+
+
+2013-10-31T17:42:19.755831Z
+2f61ab984c177275c71e34ff1a17c102
+2013-09-21T12:46:09.078366Z
+25469
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15893
 

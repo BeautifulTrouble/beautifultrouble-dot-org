@@ -1,8 +1,8 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-includes/ID3
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-includes/ID3
 http://core.svn.wordpress.org
 
 
@@ -25,6 +25,74 @@ nacin
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+module.audio.flac.php
+file
+
+
+
+
+2013-10-15T12:36:44.216460Z
+bcedd6489fb8e0d5c15cc30397a0d28b
+2013-03-21T04:55:42.652249Z
+23766
+markjaquith
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18001
+
+module.audio.ac3.php
+file
+
+
+
+
+2013-10-15T12:36:44.216460Z
+edb7eab23a46d7e7a327f9da9b27c7b7
+2013-03-21T04:55:42.652249Z
+23766
+markjaquith
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18943
 
 module.tag.apetag.php
 file
@@ -502,40 +570,6 @@ nacin
 
 43337
 
-module.tag.id3v2.php
-file
-
-
-
-
-2013-10-15T12:36:44.216460Z
-6cebe454f1d197d2f450efcddc6fb279
-2013-07-13T00:37:36.319147Z
-24696
-nacin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-134165
-
 readme.txt
 file
 
@@ -570,6 +604,40 @@ nacin
 
 24517
 
+module.tag.id3v2.php
+file
+
+
+
+
+2013-10-15T12:36:44.216460Z
+6cebe454f1d197d2f450efcddc6fb279
+2013-07-13T00:37:36.319147Z
+24696
+nacin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+134165
+
 module.tag.lyrics3.php
 file
 
@@ -603,72 +671,4 @@ markjaquith
 
 
 11076
-
-module.audio.flac.php
-file
-
-
-
-
-2013-10-15T12:36:44.216460Z
-bcedd6489fb8e0d5c15cc30397a0d28b
-2013-03-21T04:55:42.652249Z
-23766
-markjaquith
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-18001
-
-module.audio.ac3.php
-file
-
-
-
-
-2013-10-15T12:36:44.216460Z
-edb7eab23a46d7e7a327f9da9b27c7b7
-2013-03-21T04:55:42.652249Z
-23766
-markjaquith
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-18943
 

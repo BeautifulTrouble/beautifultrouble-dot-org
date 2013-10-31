@@ -1,15 +1,15 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/wpdialogs/js
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/tinymce/plugins/wpdialogs/js
 http://core.svn.wordpress.org
 
 
 
-2013-03-04T04:23:00.343730Z
-23604
-SergeyBiryukov
+2013-10-22T23:56:26.892932Z
+25789
+nacin
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2013-10-15T12:36:43.636750Z
-6ec150b7987caaef98b59c87b9f471be
-2013-03-04T04:23:00.343730Z
-23604
-SergeyBiryukov
+2013-10-31T17:42:20.199831Z
+6ceb647592588bcf463befd9408e27ad
+2013-10-09T21:05:10.072625Z
+25661
+azaozz
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-11842
+12025
 
 popup.min.js
 file
@@ -66,10 +66,10 @@ file
 
 
 
-2013-10-15T12:32:49.389940Z
-a38ac5266924938a4ff5514369c6b40d
-2012-08-23T00:04:18.101198Z
-21592
+2013-10-31T17:42:20.199831Z
+63b0aed9b02f879a6e0295fbea7db854
+2013-10-22T23:56:26.892932Z
+25789
 nacin
 has-props
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-4674
+4702
 
 wpdialog.js
 file
@@ -134,11 +134,11 @@ file
 
 
 
-2013-10-15T12:32:49.389940Z
-6f509c02257266b9ae4b7686b348b6e9
-2012-11-09T22:58:35.441724Z
-22515
-bumpbot
+2013-10-31T17:42:20.199831Z
+11c54c73d65807fda84de489cc293213
+2013-08-07T05:49:02.593278Z
+25001
+nacin
 has-props
 
 
@@ -160,5 +160,5 @@ has-props
 
 
 
-392
+374
 

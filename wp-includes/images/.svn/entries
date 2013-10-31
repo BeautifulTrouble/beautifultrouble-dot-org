@@ -1,8 +1,8 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-includes/images
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-includes/images
 http://core.svn.wordpress.org
 
 
@@ -60,9 +60,6 @@ has-props
 
 2087
 
-smilies
-dir
-
 wpicons.png
 file
 
@@ -97,39 +94,8 @@ has-props
 
 16089
 
-arrow-pointer-blue-2x.png
-file
-
-
-
-
-2013-10-15T12:32:49.345962Z
-431a3e3d7139b7a17b7663c02246445d
-2012-11-20T02:09:37.078376Z
-22698
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-52574
+smilies
+dir
 
 uploader-icons.png
 file
@@ -165,17 +131,17 @@ has-props
 
 1593
 
-admin-bar-sprite-2x.png
+arrow-pointer-blue-2x.png
 file
 
 
 
 
 2013-10-15T12:32:49.345962Z
-aae29dcdbdab4a1fbe6696c9f6b82cf0
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
+431a3e3d7139b7a17b7663c02246445d
+2012-11-20T02:09:37.078376Z
+22698
+nacin
 has-props
 
 
@@ -197,7 +163,7 @@ has-props
 
 
 
-4122
+52574
 
 xit.gif
 file
@@ -233,20 +199,17 @@ has-props
 
 182
 
-wlw
-dir
-
-wpspin-2x.gif
+admin-bar-sprite-2x.png
 file
 
 
 
 
-2013-10-15T12:32:49.349960Z
-450b52bd860e667a0fa3c00b82b58a18
-2012-12-04T16:18:53.945302Z
-23023
-nacin
+2013-10-15T12:32:49.345962Z
+aae29dcdbdab4a1fbe6696c9f6b82cf0
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 has-props
 
 
@@ -268,7 +231,10 @@ has-props
 
 
 
-9097
+4122
+
+wlw
+dir
 
 wpmini-blue.png
 file
@@ -303,6 +269,40 @@ has-props
 
 
 751
+
+wpspin-2x.gif
+file
+
+
+
+
+2013-10-15T12:32:49.349960Z
+450b52bd860e667a0fa3c00b82b58a18
+2012-12-04T16:18:53.945302Z
+23023
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9097
 
 down_arrow-2x.gif
 file
@@ -647,40 +647,6 @@ has-props
 
 43
 
-wpicons-2x.png
-file
-
-
-
-
-2013-10-15T12:32:49.349960Z
-e7792025943f6c6f219e566bf2f79aa9
-2012-11-21T15:34:24.861577Z
-22766
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-125467
-
 toggle-arrow.png
 file
 
@@ -714,6 +680,40 @@ has-props
 
 
 333
+
+wpicons-2x.png
+file
+
+
+
+
+2013-10-15T12:32:49.349960Z
+e7792025943f6c6f219e566bf2f79aa9
+2012-11-21T15:34:24.861577Z
+22766
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+125467
 
 uploader-icons-2x.png
 file

@@ -1,15 +1,15 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/wpeditimage/js
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/tinymce/plugins/wpeditimage/js
 http://core.svn.wordpress.org
 
 
 
-2012-08-23T00:04:18.101198Z
-21592
-nacin
+2013-10-09T21:05:10.072625Z
+25661
+azaozz
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2013-10-15T12:32:49.389940Z
-0a25f1ee5635ea5c98d12fe6a25124dd
-2012-08-23T00:04:18.101198Z
-21592
-nacin
+2013-10-31T17:42:20.327831Z
+decdce43a5ea753c53801b436614249e
+2013-10-09T21:05:10.072625Z
+25661
+azaozz
 has-props
 
 
@@ -58,39 +58,5 @@ has-props
 
 
 
-17070
-
-editimage.min.js
-file
-
-
-
-
-2013-10-15T12:32:49.389940Z
-b7f2ab839344415015809824e6d1ee27
-2012-08-23T00:04:18.101198Z
-21592
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-12534
+17060
 

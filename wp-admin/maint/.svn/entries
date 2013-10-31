@@ -1,15 +1,15 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-admin/maint
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-admin/maint
 http://core.svn.wordpress.org
 
 
 
-2013-02-14T05:52:23.535007Z
-23413
-SergeyBiryukov
+2013-10-08T00:30:09.601561Z
+25638
+DrewAPicture
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2013-10-15T12:36:43.372882Z
-9cbfe9d0c72caeacf7986505da7c44b1
-2013-02-14T05:52:23.535007Z
-23413
-SergeyBiryukov
+2013-10-31T17:42:25.455831Z
+c378b36e4c2f48503af47ff8c5b0527d
+2013-10-08T00:30:09.601561Z
+25638
+DrewAPicture
 has-props
 
 
@@ -58,5 +58,5 @@ has-props
 
 
 
-5180
+5338
 

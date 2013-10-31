@@ -1,14 +1,14 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/paste
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/tinymce/plugins/paste
 http://core.svn.wordpress.org
 
 
 
-2012-12-06T04:50:31.479089Z
-23090
+2013-10-10T21:50:09.974013Z
+25674
 azaozz
 
 
@@ -66,10 +66,10 @@ file
 
 
 
-2013-10-15T12:32:49.381944Z
-7e2ab5dcd71147801312f12d9ad99d53
-2012-12-06T04:50:31.479089Z
-23090
+2013-10-31T17:42:20.243831Z
+e8598b664a0f4578a88c7c34e46c029d
+2013-10-10T21:50:09.974013Z
+25674
 azaozz
 has-props
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-1217
+1218
 
 js
 dir
@@ -137,10 +137,10 @@ file
 
 
 
-2013-10-15T12:32:49.381944Z
-7db62fe5ecea992a47ad567a59fddf4a
-2012-12-06T04:50:31.479089Z
-23090
+2013-10-31T17:42:20.243831Z
+75afde509924223eab0c0b2535141192
+2013-10-10T21:50:09.974013Z
+25674
 azaozz
 has-props
 

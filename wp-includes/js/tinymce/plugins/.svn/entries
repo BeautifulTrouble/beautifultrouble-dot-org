@@ -1,14 +1,14 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/tinymce/plugins
 http://core.svn.wordpress.org
 
 
 
-2013-09-11T02:41:04.037918Z
-25298
+2013-10-26T02:52:09.675999Z
+25881
 nacin
 
 
@@ -25,18 +25,6 @@ nacin
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-directionality
-dir
-
-spellchecker
-dir
-
-wplink
-dir
-
-inlinepopups
-dir
 
 tabfocus
 dir
@@ -66,5 +54,17 @@ wpview
 dir
 
 fullscreen
+dir
+
+directionality
+dir
+
+spellchecker
+dir
+
+wplink
+dir
+
+inlinepopups
 dir
 

@@ -1,14 +1,14 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/jquery
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/jquery
 http://core.svn.wordpress.org
 
 
 
-2013-08-21T18:17:04.747478Z
-25058
+2013-09-16T21:06:09.611569Z
+25383
 nacin
 
 
@@ -25,6 +25,74 @@ nacin
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+jquery.masonry.min.js
+file
+
+
+
+
+2013-10-15T12:32:49.361954Z
+fc2d7669d58e909815f1994047bf671c
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5467
+
+jquery.table-hotkeys.js
+file
+
+
+
+
+2013-10-15T12:32:49.361954Z
+baa8747ae1cb2d15755733fa4f96f1b7
+2012-08-23T00:04:18.101198Z
+21592
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3725
 
 ui
 dir
@@ -69,10 +137,10 @@ file
 
 
 
-2013-10-15T12:32:49.361954Z
-5b000ac69e0bc5325856cfe2ce588b88
-2012-08-23T00:04:18.101198Z
-21592
+2013-10-31T17:42:20.583831Z
+dbc3808473def00fce45fe564dc72dcb
+2013-09-16T21:06:09.611569Z
+25383
 nacin
 has-props
 
@@ -95,7 +163,7 @@ has-props
 
 
 
-11116
+14720
 
 jquery.hotkeys.js
 file
@@ -307,10 +375,10 @@ file
 
 
 
-2013-10-15T12:36:43.868634Z
+
 92c9ccfa9216499d48ecc11e6d9887d5
-2013-08-21T18:17:04.747478Z
-25058
+2013-08-21T15:41:10.175924Z
+25057
 nacin
 has-props
 
@@ -375,10 +443,10 @@ file
 
 
 
-2013-10-15T12:32:49.361954Z
-1210dad363fcd0a43dc28244b69369f9
-2012-08-23T00:04:18.101198Z
-21592
+2013-10-31T17:42:20.587831Z
+e5afd8e41d2ec22c19932b068cd90a71
+2013-09-16T21:06:09.611569Z
+25383
 nacin
 has-props
 
@@ -401,7 +469,7 @@ has-props
 
 
 
-24074
+41719
 
 jquery.query.js
 file
@@ -538,72 +606,4 @@ nacin
 
 
 7200
-
-jquery.masonry.min.js
-file
-
-
-
-
-2013-10-15T12:32:49.361954Z
-fc2d7669d58e909815f1994047bf671c
-2012-11-21T22:31:55.432126Z
-22798
-duck_
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5467
-
-jquery.table-hotkeys.js
-file
-
-
-
-
-2013-10-15T12:32:49.361954Z
-baa8747ae1cb2d15755733fa4f96f1b7
-2012-08-23T00:04:18.101198Z
-21592
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3725
 

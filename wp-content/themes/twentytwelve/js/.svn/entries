@@ -1,8 +1,8 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-content/themes/twentytwelve/js
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-content/themes/twentytwelve/js
 http://core.svn.wordpress.org
 
 
@@ -25,40 +25,6 @@ lancewillett
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-navigation.js
-file
-
-
-
-
-2013-10-15T12:32:49.301984Z
-dd806ed73c1705a49400483699b1427a
-2012-11-14T20:21:01.713588Z
-22574
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-863
 
 theme-customizer.js
 file
@@ -127,4 +93,38 @@ has-props
 
 
 2487
+
+navigation.js
+file
+
+
+
+
+2013-10-15T12:32:49.301984Z
+dd806ed73c1705a49400483699b1427a
+2012-11-14T20:21:01.713588Z
+22574
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+863
 

@@ -1,8 +1,8 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-includes/Text
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-includes/Text
 http://core.svn.wordpress.org
 
 
@@ -25,6 +25,9 @@ ocean90
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+Diff
+dir
 
 Diff.php
 file
@@ -59,7 +62,4 @@ has-props
 
 
 11945
-
-Diff
-dir
 

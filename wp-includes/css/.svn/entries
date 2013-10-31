@@ -1,15 +1,15 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-includes/css
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-includes/css
 http://core.svn.wordpress.org
 
 
 
-2013-07-13T00:58:52.392538Z
-24697
-bumpbot
+2013-10-22T23:56:26.892932Z
+25789
+nacin
 
 
 
@@ -66,11 +66,11 @@ file
 
 
 
-2013-10-15T12:36:43.568784Z
-1e949d2c91490fed06cb0b747b913872
-2013-07-05T15:42:57.638079Z
-24561
-bumpbot
+2013-10-31T17:42:19.147831Z
+f1ad6ac5d3f3f0ad4d5865c8b3e60195
+2013-10-22T23:56:26.892932Z
+25789
+nacin
 has-props
 
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-46006
+46153
 
 jquery-ui-dialog.min.css
 file
@@ -100,11 +100,11 @@ file
 
 
 
-2013-10-15T12:36:43.568784Z
-438f7bb958e6bfdb80110ee0efcada79
-2013-02-28T19:07:34.462131Z
-23530
-bumpbot
+2013-10-31T17:42:19.147831Z
+aa0b126055663de33e6bf670b002c635
+2013-10-22T23:56:26.892932Z
+25789
+nacin
 has-props
 
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-4366
+4361
 
 media-views-rtl.css
 file
@@ -236,11 +236,11 @@ file
 
 
 
-2013-10-15T12:36:43.568784Z
-c6eafec474a03263c37fa159dd794525
-2013-04-10T16:58:41.097480Z
-23953
-bumpbot
+2013-10-31T17:42:19.147831Z
+b13c1e5aa68a4038c1bc0582fc04d295
+2013-10-22T23:56:26.892932Z
+25789
+nacin
 has-props
 
 
@@ -262,7 +262,7 @@ has-props
 
 
 
-12854
+12832
 
 buttons.min.css
 file
@@ -270,11 +270,11 @@ file
 
 
 
-2013-10-15T12:32:49.341964Z
-9047fdac8c32de54996c846d8979f186
-2012-11-30T13:52:16.403083Z
-22949
-bumpbot
+2013-10-31T17:42:19.147831Z
+da093d1bd20e5e366150d97118a39ae4
+2013-08-07T05:49:02.593278Z
+25001
+nacin
 has-props
 
 
@@ -296,7 +296,7 @@ has-props
 
 
 
-7007
+6976
 
 wp-auth-check.min.css
 file
@@ -338,11 +338,11 @@ file
 
 
 
-2013-10-15T12:32:49.341964Z
-f4911a0d886fb507fac33870531837ce
-2012-11-21T22:31:55.432126Z
-22798
-duck_
+2013-10-31T17:42:19.151831Z
+09aba215976d5cba6afa711a1cd777f3
+2013-08-07T05:49:02.593278Z
+25001
+nacin
 has-props
 
 
@@ -372,10 +372,10 @@ file
 
 
 
-2013-10-15T12:36:43.564786Z
-c599b07c5f3d814e9d0adf6ae57885df
-2013-07-03T02:03:19.867687Z
-24545
+2013-10-31T17:42:19.151831Z
+17f5a58fc4d053bffb8cb79efbb603a0
+2013-10-10T21:50:09.974013Z
+25674
 azaozz
 has-props
 
@@ -398,7 +398,7 @@ has-props
 
 
 
-53433
+53577
 
 jquery-ui-dialog.css
 file
@@ -508,11 +508,11 @@ file
 
 
 
-2013-10-15T12:36:43.564786Z
-d2d68944a09ea1e709f2f0167c9ed0d5
-2013-07-01T16:11:01.120245Z
-24534
-bumpbot
+2013-10-31T17:42:19.147831Z
+7dff4cd1a1c6a83b48aa548a885d9368
+2013-08-07T05:49:02.593278Z
+25001
+nacin
 has-props
 
 
@@ -534,7 +534,7 @@ has-props
 
 
 
-3665
+3664
 
 media-views.min.css
 file
@@ -542,11 +542,11 @@ file
 
 
 
-2013-10-15T12:32:49.341964Z
-31c7fd5c7249914b37af335db01fb3a8
-2012-12-07T11:41:16.133962Z
-23121
-bumpbot
+2013-10-31T17:42:19.147831Z
+cad366eb2eaf38f62aa97c073a4277a3
+2013-10-22T23:56:26.892932Z
+25789
+nacin
 has-props
 
 
@@ -568,7 +568,7 @@ has-props
 
 
 
-23789
+23732
 
 buttons.css
 file

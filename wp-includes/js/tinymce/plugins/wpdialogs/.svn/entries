@@ -1,15 +1,15 @@
 10
 
 dir
-25697
-http://core.svn.wordpress.org/tags/3.6.1/wp-includes/js/tinymce/plugins/wpdialogs
+25931
+http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/tinymce/plugins/wpdialogs
 http://core.svn.wordpress.org
 
 
 
-2013-03-04T04:23:00.343730Z
-23604
-SergeyBiryukov
+2013-10-22T23:56:26.892932Z
+25789
+nacin
 
 
 
@@ -69,11 +69,11 @@ file
 
 
 
-2013-10-15T12:32:49.385942Z
-0f132c90124ed40d6df71f1d4fabe557
-2011-04-23T02:12:56.857742Z
-17687
-azaozz
+2013-10-31T17:42:20.211831Z
+7bb6e432495c6711766e3c395ee95b01
+2013-08-07T05:49:02.593278Z
+25001
+nacin
 has-props
 
 
@@ -95,5 +95,5 @@ has-props
 
 
 
-1018
+990
 
