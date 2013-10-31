@@ -154,7 +154,7 @@ get_header(); ?>
             }
         ?>
         <hr class="soften" />
-        <?php get_sidebar('book'); ?>
+        <?php get_sidebar('promo'); ?>
     </div>
     </div><!-- /.row .content -->
     <hr />

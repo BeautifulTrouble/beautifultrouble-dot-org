@@ -104,7 +104,7 @@ echo $obj->labels->name;
                     <?php
                         if ( function_exists('dynamic_sidebar')) dynamic_sidebar("sidebar-event");
                     ?>
-                    <?php get_sidebar('book'); ?>
+                    <?php get_sidebar('promo'); ?>
                 </div>
             </div><!-- /.row .content -->
 <?php get_footer(); ?>

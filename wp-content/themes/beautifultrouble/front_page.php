@@ -61,7 +61,7 @@ get_header(); ?>
         </div>
 
         <div class="span4">
-            <?php get_sidebar('book'); ?>
+            <?php get_sidebar('promo'); ?>
         </div>
     </div> <!-- row -->
 <div class="marketing">

@@ -58,6 +58,6 @@ get_header(); ?>
  <?php bootstrapwp_content_nav('nav-below');?>
 
     </div><!-- /.span8 -->
-<?php get_sidebar('book'); ?>
+<?php get_sidebar('promo'); ?>
 </div><!-- row -->
 <?php get_footer(); ?>

@@ -22,7 +22,7 @@ get_header(); ?>
 <?php endwhile; // end of the loop. ?>
           </div><!-- /.span8 -->
           
-          <?php get_sidebar('book'); ?>
+          <?php get_sidebar('promo'); ?>
 </div> <!-- row -->
 
 
