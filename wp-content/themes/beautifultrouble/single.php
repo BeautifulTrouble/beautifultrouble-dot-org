@@ -38,7 +38,9 @@ get_header(); ?>
  <?php bootstrapwp_content_nav('nav-below');?>
 
           </div><!-- /.span8 -->
-          <?php get_sidebar('promo'); ?>
+          <div class="span4">
+              <?php get_sidebar('promo'); ?>
+          </div><!-- /.span4 -->
 
 </div> <!--row -->
 

@@ -33,7 +33,9 @@ get_header(); ?>
 <?php endwhile; // end of the loop. ?>
           </div><!-- /.span8 -->
           
+          <div class="span4">
           <?php get_sidebar('promo'); ?>
+          </div><!-- /.span4 -->
 
 </div> <!--row -->
 

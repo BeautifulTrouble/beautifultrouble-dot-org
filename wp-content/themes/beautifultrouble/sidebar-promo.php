@@ -1,4 +1,3 @@
-    <div class="span4">
         <?php
           if ( function_exists('dynamic_sidebar')) dynamic_sidebar("page-sidebar");
         ?>
@@ -25,5 +24,3 @@
 </div>
                                     <p><i class="highlight">Not sure yet? <b><a href="/the-book">Find out more about both books</a>!</b></i></p>
         </div><!--/.well .sidebar-nav -->
-        <hr class="soften" />
-    </div><!-- /.span4 -->
