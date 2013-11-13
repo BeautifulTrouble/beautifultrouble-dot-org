@@ -259,7 +259,7 @@ class RFBP {
 					?>
 
 					<<?php echo $el; ?> class="rfbp-post">
-					<div class="rfbp-text">
+					<div class="rfbp-text clearfix">
 
                                                 <!-- Custom -->
                                                 <?php if($opts['img_size'] != 'dont_show' && isset($p['image']) && !empty($p['image'])) { ?>
