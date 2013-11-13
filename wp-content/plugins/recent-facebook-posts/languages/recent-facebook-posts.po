@@ -1,0 +1,271 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Recent Facebook Posts\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/recent-facebook-posts\n"
+"POT-Creation-Date: 2013-11-03 20:23+0100\n"
+"PO-Revision-Date: 2013-11-03 20:25+0100\n"
+"Last-Translator: Danny van Kooten <hi@dannyvankooten.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _e;__;_n:1,2\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SearchPath-0: ../.\n"
+
+#: .././includes/helper-functions.php:19
+msgid "just now"
+msgstr ""
+
+#: .././includes/helper-functions.php:38
+#, php-format
+msgid "1 year ago"
+msgid_plural "%d years ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .././includes/helper-functions.php:42
+#, php-format
+msgid "1 month ago"
+msgid_plural "%d months ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .././includes/helper-functions.php:46
+#, php-format
+msgid "1 week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .././includes/helper-functions.php:50
+#, php-format
+msgid "1 day ago"
+msgid_plural "%d days ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .././includes/helper-functions.php:54
+#, php-format
+msgid "1 hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .././includes/helper-functions.php:58
+#, php-format
+msgid "1 minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .././includes/helper-functions.php:62
+#, php-format
+msgid "1 second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .././includes/helper-functions.php:66
+msgid "Some time ago"
+msgstr ""
+
+#: .././includes/RFBP.php:300
+msgid "likes"
+msgstr ""
+
+#: .././includes/RFBP.php:301
+msgid "comments"
+msgstr ""
+
+#: .././includes/RFBP.php:303
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: .././includes/RFBP.php:314
+msgid "No recent Facebook posts to show"
+msgstr ""
+
+#: .././includes/RFBP.php:316
+msgid "Admins only notice"
+msgstr ""
+
+#: .././includes/RFBP_Admin.php:68
+msgid "Some settings have changed which invalidated the cached Facebook posts."
+msgstr ""
+
+#: .././includes/RFBP_Admin.php:68
+msgid "Renew Cache"
+msgstr ""
+
+#: .././includes/RFBP_Admin.php:99
+msgid "<strong>Cache renewed!</strong> You succesfully renewed the cache."
+msgstr ""
+
+#: .././includes/RFBP_Admin.php:112
+msgid "Settings"
+msgstr ""
+
+#: .././includes/RFBP_Widget.php:12
+msgid "Lists a number of your most recent Facebook posts."
+msgstr ""
+
+#: .././includes/RFBP_Widget.php:16
+msgid "Recent Facebook Posts"
+msgstr ""
+
+#: .././includes/RFBP_Widget.php:38
+msgid "Title:"
+msgstr ""
+
+#: .././includes/RFBP_Widget.php:43
+msgid "Number of posts:"
+msgstr ""
+
+#: .././includes/RFBP_Widget.php:48
+msgid "Excerpt length:"
+msgstr ""
+
+#: .././includes/RFBP_Widget.php:54
+msgid "Show like count?"
+msgstr ""
+
+#: .././includes/RFBP_Widget.php:59
+msgid "Show comment count?"
+msgstr ""
+
+#: .././includes/RFBP_Widget.php:64
+msgid "Show link to Facebook page?"
+msgstr ""
+
+#: .././includes/RFBP_Widget.php:69
+msgid "Show link previews?"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:29
+msgid "Facebook Settings"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:32
+msgid "Facebook App ID/API Key"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:40
+msgid "Facebook App Secret"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:48
+msgid "Facebook Page ID or Slug"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:51
+msgid ""
+"Use this tool to find the numeric ID of the Facebook page you want to fetch "
+"posts from"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:56
+msgid "Appearance"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:60
+msgid "Link text"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:65
+msgid "Open links in new window?"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:70
+msgid "Load some default CSS?"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:76
+msgid "Image size"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:79
+msgid "Don't show images"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:80
+msgid "Thumbnail"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:81
+msgid "Normal"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:88
+msgid "Image dimensions"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:91
+msgid "Max Width"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:95
+msgid "Max Height"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:99
+msgid "Leave empty for default sizing"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:106
+msgid "Save Changes"
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:113
+msgid ""
+"Because fetching posts from Facebook is slow the posts are cached for "
+"<strong>30 minutes</strong>. You can manually renew the cache or test your "
+"configuration using the button below."
+msgstr ""
+
+#: .././includes/views/settings_page.html.php:117
+msgid "Renew Facebook Posts"
+msgstr ""
+
+#~ msgid "Show attached links?"
+#~ msgstr "Toon bijgevoegde links?"
+
+#~ msgid "Configuration"
+#~ msgstr "Instellingen"
+
+#~ msgid "Cache expiry time"
+#~ msgstr "Cache tijd"
+
+#~ msgid "(in seconds)"
+#~ msgstr "(in seconden)"
+
+#~ msgid ""
+#~ "Leave empty for default sizing (maximum of 100&#37; of containing element)"
+#~ msgstr ""
+#~ "Laat leeg voor een standaard grootte van maximaal 100&#37; van het "
+#~ "omvattende element."
+
+#~ msgid "year"
+#~ msgstr "jaar"
+
+#~ msgid "month"
+#~ msgstr "maand"
+
+#~ msgid "week"
+#~ msgstr "week"
+
+#~ msgid "day"
+#~ msgstr "dag"
+
+#~ msgid "hour"
+#~ msgstr "uur"
+
+#~ msgid "minute"
+#~ msgstr "minuut"
+
+#~ msgid "%d %ss ago"
+#~ msgstr "%d %sen geleden"

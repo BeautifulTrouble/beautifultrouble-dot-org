@@ -1,0 +1,24 @@
+.rfbp-column{ float:left; }
+.rfbp-sidebar{ width:30%; float:right; margin-left:1%; }
+.rfbp-error{ color:red; }
+
+.rfbp-box{ margin:0 0 24px;}
+.rfbp-well { background:#222; color:#eee; padding:10px 20px; margin-top:10px; }
+
+.rfbp-row-error label{ color:red; }
+p.status{ font-weight:bold;}
+span.connected, span.disconnected{ font-weight:bold; display:inline-block; color:white; padding:3px; }
+span.connected{ background:green; }
+span.disconnected{ background:lightGrey; }
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */

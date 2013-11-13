@@ -1,0 +1,278 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Recent Facebook Posts\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/recent-facebook-posts\n"
+"POT-Creation-Date: 2013-11-03 20:23+0100\n"
+"PO-Revision-Date: 2013-11-03 20:24+0100\n"
+"Last-Translator: Danny van Kooten <hi@dannyvankooten.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _e;__;_n:1,2\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SearchPath-0: ../.\n"
+
+#: .././includes/helper-functions.php:19
+msgid "just now"
+msgstr "Zojuist"
+
+#: .././includes/helper-functions.php:38
+#, php-format
+msgid "1 year ago"
+msgid_plural "%d years ago"
+msgstr[0] "1 jaar geleden"
+msgstr[1] "%d jaren geleden"
+
+#: .././includes/helper-functions.php:42
+#, php-format
+msgid "1 month ago"
+msgid_plural "%d months ago"
+msgstr[0] "1 maand geleden"
+msgstr[1] "%d maanden geleden"
+
+#: .././includes/helper-functions.php:46
+#, php-format
+msgid "1 week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "1 week geleden"
+msgstr[1] "%d weken geleden"
+
+#: .././includes/helper-functions.php:50
+#, php-format
+msgid "1 day ago"
+msgid_plural "%d days ago"
+msgstr[0] "1 dag geleden"
+msgstr[1] "%d dagen geleden"
+
+#: .././includes/helper-functions.php:54
+#, php-format
+msgid "1 hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "1 uur geleden"
+msgstr[1] "%d uren geleden"
+
+#: .././includes/helper-functions.php:58
+#, php-format
+msgid "1 minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "1 minuut geleden"
+msgstr[1] "%d minuten geleden"
+
+#: .././includes/helper-functions.php:62
+#, php-format
+msgid "1 second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] "1 seconde geleden"
+msgstr[1] "%d seconden geleden"
+
+#: .././includes/helper-functions.php:66
+msgid "Some time ago"
+msgstr "Een tijdje geleden"
+
+#: .././includes/RFBP.php:300
+msgid "likes"
+msgstr "vind ik leuks"
+
+#: .././includes/RFBP.php:301
+msgid "comments"
+msgstr "reacties"
+
+#: .././includes/RFBP.php:303
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s om %2$s"
+
+#: .././includes/RFBP.php:314
+msgid "No recent Facebook posts to show"
+msgstr "Er zijn geen recente Facebook berichten om te tonen."
+
+#: .././includes/RFBP.php:316
+msgid "Admins only notice"
+msgstr "Bericht voor Administrators"
+
+#: .././includes/RFBP_Admin.php:68
+msgid "Some settings have changed which invalidated the cached Facebook posts."
+msgstr ""
+"Bepaalde instellingen zijn gewijzigd waardoor de gecachte Facebook berichten "
+"niet meer kloppen."
+
+#: .././includes/RFBP_Admin.php:68
+msgid "Renew Cache"
+msgstr "Vernieuw Cache"
+
+#: .././includes/RFBP_Admin.php:99
+msgid "<strong>Cache renewed!</strong> You succesfully renewed the cache."
+msgstr "<strong>Cache vernieuwd!</strong> De cache is succesvol vernieuwd."
+
+#: .././includes/RFBP_Admin.php:112
+msgid "Settings"
+msgstr "Instellingen"
+
+#: .././includes/RFBP_Widget.php:12
+msgid "Lists a number of your most recent Facebook posts."
+msgstr "Toont de meest recente Facebook updates van een Facebook pagina."
+
+#: .././includes/RFBP_Widget.php:16
+msgid "Recent Facebook Posts"
+msgstr "Recente Facebook Berichten"
+
+#: .././includes/RFBP_Widget.php:38
+msgid "Title:"
+msgstr "Titel:"
+
+#: .././includes/RFBP_Widget.php:43
+msgid "Number of posts:"
+msgstr "Aantal berichten"
+
+#: .././includes/RFBP_Widget.php:48
+msgid "Excerpt length:"
+msgstr "Lengte van uitreksel"
+
+#: .././includes/RFBP_Widget.php:54
+msgid "Show like count?"
+msgstr "Toon aantal vind-ik-leuks?"
+
+#: .././includes/RFBP_Widget.php:59
+msgid "Show comment count?"
+msgstr "Toon aantal reacties?"
+
+#: .././includes/RFBP_Widget.php:64
+#, fuzzy
+msgid "Show link to Facebook page?"
+msgstr "Toon link naar Facebook pagina?"
+
+#: .././includes/RFBP_Widget.php:69
+msgid "Show link previews?"
+msgstr "Toon link voorbeelden?"
+
+#: .././includes/views/settings_page.html.php:29
+msgid "Facebook Settings"
+msgstr "Facebook Instellingen"
+
+#: .././includes/views/settings_page.html.php:32
+msgid "Facebook App ID/API Key"
+msgstr "ID van Facebook app/API-sleutel"
+
+#: .././includes/views/settings_page.html.php:40
+msgid "Facebook App Secret"
+msgstr "Geheime sleutel van de Facebook app"
+
+#: .././includes/views/settings_page.html.php:48
+msgid "Facebook Page ID or Slug"
+msgstr "Facebook Pagina ID of slug"
+
+#: .././includes/views/settings_page.html.php:51
+msgid ""
+"Use this tool to find the numeric ID of the Facebook page you want to fetch "
+"posts from"
+msgstr ""
+"Gebruik deze website om het numerieke ID van je Facebook pagina te vinden."
+
+#: .././includes/views/settings_page.html.php:56
+msgid "Appearance"
+msgstr "Weergave"
+
+#: .././includes/views/settings_page.html.php:60
+msgid "Link text"
+msgstr "Link tekst"
+
+#: .././includes/views/settings_page.html.php:65
+msgid "Open links in new window?"
+msgstr "Open links in een nieuw venster?"
+
+#: .././includes/views/settings_page.html.php:70
+msgid "Load some default CSS?"
+msgstr "Laad standaard CSS (stijlregels) bestand?"
+
+#: .././includes/views/settings_page.html.php:76
+msgid "Image size"
+msgstr "Afbeeldingsgrootte"
+
+#: .././includes/views/settings_page.html.php:79
+msgid "Don't show images"
+msgstr "Toon geen afbeeldingen"
+
+#: .././includes/views/settings_page.html.php:80
+msgid "Thumbnail"
+msgstr "Thumbnail"
+
+#: .././includes/views/settings_page.html.php:81
+msgid "Normal"
+msgstr "Normaal"
+
+#: .././includes/views/settings_page.html.php:88
+msgid "Image dimensions"
+msgstr "Afbeelding afmetingen"
+
+#: .././includes/views/settings_page.html.php:91
+msgid "Max Width"
+msgstr "Maximale breedte"
+
+#: .././includes/views/settings_page.html.php:95
+msgid "Max Height"
+msgstr "Maximale hoogte"
+
+#: .././includes/views/settings_page.html.php:99
+msgid "Leave empty for default sizing"
+msgstr "Laat leeg voor standaard afmetingen."
+
+#: .././includes/views/settings_page.html.php:106
+msgid "Save Changes"
+msgstr "Wijzigen Opslaan"
+
+#: .././includes/views/settings_page.html.php:113
+msgid ""
+"Because fetching posts from Facebook is slow the posts are cached for "
+"<strong>30 minutes</strong>. You can manually renew the cache or test your "
+"configuration using the button below."
+msgstr ""
+"Omdat berichten van Facebook afhalen langzaam is worden berichten gecached "
+"voor <strong>30 minuten</strong>. Je kunt de cache manueel vernieuwen of je "
+"instellingen testen door op onderstaande button te klikken."
+
+#: .././includes/views/settings_page.html.php:117
+msgid "Renew Facebook Posts"
+msgstr "Vernieuw Facebook berichten"
+
+#~ msgid "Show attached links?"
+#~ msgstr "Toon bijgevoegde links?"
+
+#~ msgid "Configuration"
+#~ msgstr "Instellingen"
+
+#~ msgid "Cache expiry time"
+#~ msgstr "Cache tijd"
+
+#~ msgid "(in seconds)"
+#~ msgstr "(in seconden)"
+
+#~ msgid ""
+#~ "Leave empty for default sizing (maximum of 100&#37; of containing element)"
+#~ msgstr ""
+#~ "Laat leeg voor een standaard grootte van maximaal 100&#37; van het "
+#~ "omvattende element."
+
+#~ msgid "year"
+#~ msgstr "jaar"
+
+#~ msgid "month"
+#~ msgstr "maand"
+
+#~ msgid "week"
+#~ msgstr "week"
+
+#~ msgid "day"
+#~ msgstr "dag"
+
+#~ msgid "hour"
+#~ msgstr "uur"
+
+#~ msgid "minute"
+#~ msgstr "minuut"
+
+#~ msgid "%d %ss ago"
+#~ msgstr "%d %sen geleden"
