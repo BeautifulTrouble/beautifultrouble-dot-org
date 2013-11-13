@@ -72,7 +72,7 @@ get_header(); ?>
       ?>
     </div>
     <div class="span4">
-        <div class="upcoming_events">
+        <div class="upcoming_events" style="display:none">
             <?php $args = array('nopaging' => 'true', 'orderby' => 'meta_value', 'meta_key' => 'date', 'order' => 'ASC', 'post_type' => array('bt_event') );
             $my_query = null;
             $my_query = new WP_Query($args);
@@ -96,12 +96,11 @@ get_header(); ?>
             }
             wp_reset_query();  // Restore global post data stomped by the_post().
             ?>
+        </div>
           <?php
             if ( function_exists('dynamic_sidebar') ) 
-                echo '<hr class="soften" />';
                 dynamic_sidebar("home-two");
           ?>
-            </div>
     </div>
     <div class="span4">
       <?php

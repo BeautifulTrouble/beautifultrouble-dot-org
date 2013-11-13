@@ -536,9 +536,10 @@ class SpotlightedModule_Widget extends WP_Widget {
         if( $fields['spotlight_module'] ) {
             $module  = array_shift( $fields['spotlight_module'] );
         ?>
-        <h2>Spotlighted Module</h2>
-        <?php echo get_the_post_thumbnail($module->ID, 'thumbnail', array( 'class' => "spotlight-module-img", 'alt' => $module->post_title, 'title' => $module->post_title ) ); ?>
-        <a href="<?php echo get_permalink( $module->ID ); ?>"><h3><?php echo $module->post_title; ?></h3></a>
+        <div class="clearfix">
+            <h2>Spotlighted Module</h2>
+            <?php echo get_the_post_thumbnail($module->ID, 'thumbnail', array( 'class' => "spotlight-module-img", 'alt' => $module->post_title, 'title' => $module->post_title ) ); ?>
+            <a href="<?php echo get_permalink( $module->ID ); ?>"><h3><?php echo $module->post_title; ?></h3></a>
             <p><?php 
             if ( $module->post_excerpt ) { 
                 echo $module->post_excerpt;
@@ -547,6 +548,7 @@ class SpotlightedModule_Widget extends WP_Widget {
                 echo ' <a href="', get_permalink( $module->ID ), '">Read more</a>'; 
             } 
             ?></p>   
+        </div>
         <?php 
         }    
         echo $args['after_widget'];
@@ -570,13 +572,15 @@ class SpotlightedContributor_Widget extends WP_Widget {
     public function widget( $args, $instance ) {
         echo $args['before_widget'];
         ?>
-        <h2>Spotlighted Contributor</h2> 
-        <?php if ( validate_gravatar( get_the_author_meta('user_email') ) ) { 
-            echo get_avatar( get_the_author_meta('user_email') );  
-        } ?>
-        <h3><?php the_author_posts_link(); ?></h3>
-        <?php the_author_meta( 'description' );
-        echo $args['after_widget'];
+        <div class="clearfix">
+            <h2>Spotlighted Contributor</h2> 
+            <?php if ( validate_gravatar( get_the_author_meta('user_email') ) ) { 
+                echo get_avatar( get_the_author_meta('user_email') );  
+            } ?>
+            <h3><?php the_author_posts_link(); ?></h3>
+            <?php the_author_meta( 'description' );?>
+        </div>
+        <?php echo $args['after_widget'];
     }
     public function form( $instance ) { }
     public function update( $new_instance, $old_instance ) { return $new_instance; }
