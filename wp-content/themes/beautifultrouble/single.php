@@ -28,7 +28,9 @@ get_header(); ?>
          
         <div class="row content">
 <div class="span8">
-   <p class="meta"><?php echo bootstrapwp_posted_on();?></p>
+   <p class="meta"><?php echo bootstrapwp_posted_on();?> on <span class="entry-date"><?php echo get_the_date(); ?></span></p>
+   
+    
             <?php the_content();?>
             <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
 <?php endwhile; // end of the loop. ?>

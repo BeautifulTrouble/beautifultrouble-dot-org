@@ -295,10 +295,11 @@ function bootstrapwp_content_nav( $nav_id ) {
 
 	?>
 
-	<?php if ( is_single() ) : // navigation links for single posts ?>
+	<?php if ( is_single()  ) : // navigation links for single posts ?>
+        <?php $sort_by = get_post_type( $post ) == 'post' ? 'post_date' : 'post_title' ?>
 <ul class="pager">
-		<?php previous_post_link_plus( array('order_by' => 'post_title', 'format' => '<li class="previous">%link</li>', 'link' => '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'beautifultrouble' ) . '</span> %title' ) ); ?>
-		<?php next_post_link_plus( array('order_by' => 'post_title', 'format' => '<li class="next">%link</li>', 'link' => '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'bootstrapwp' ) . '</span>') ); ?>
+		<?php previous_post_link_plus( array('order_by' => $sort_by, 'format' => '<li class="previous">%link</li>', 'link' => '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'beautifultrouble' ) . '</span> %title' ) ); ?>
+		<?php next_post_link_plus( array('order_by' => $sort_by, 'format' => '<li class="next">%link</li>', 'link' => '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'bootstrapwp' ) . '</span>') ); ?>
 </ul>
 	<?php elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) : // navigation links for home, archive, and search pages ?>
 					<?php if (function_exists('page_navi')) { // if expirimental feature is active ?>
