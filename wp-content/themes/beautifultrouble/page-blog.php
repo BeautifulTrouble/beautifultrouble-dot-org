@@ -41,7 +41,7 @@ get_header(); ?>
     if (have_posts()) : while ( have_posts() ) : the_post(); ?>
     <div <?php post_class(); ?>>
       <a href="<?php the_permalink(); ?>" title="<?php the_title();?>"><h3><?php the_title();?></h3></a>
-      <p class="meta"><?php echo bootstrapwp_posted_on();?></p>
+      <p class="meta"><?php echo bootstrapwp_posted_on();?> on <span class="entry-date"><?php echo get_the_date(); ?></span></p>
       <div class="row">
         <div class="span2"><?php // Checking for a post thumbnail
         if ( has_post_thumbnail() ) ?>
