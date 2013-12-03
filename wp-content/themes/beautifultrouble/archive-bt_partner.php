@@ -51,19 +51,6 @@ print $obj->labels->name;
 				    <hr />
 				</div><!-- /.post_class -->
 			<?php endwhile; ?>
-
-					<?php if (function_exists('page_navi')) { // if expirimental feature is active ?>
-						
-						<?php page_navi(); // use the page navi function ?>
-						
-					<?php } else { // if it is disabled, display regular wp prev & next links ?>
-						<nav class="wp-prev-next">
-							<ul class="clearfix">
-								<li class="prev-link"><?php next_posts_link(_e('&laquo; Older Entries', "bonestheme")) ?></li>
-								<li class="next-link"><?php previous_posts_link(_e('Newer Entries &raquo;', "bonestheme")) ?></li>
-							</ul>
-						</nav>
-					<?php } ?>			
 		</div><!-- /.span8 -->
                 <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
                 &nbsp;
