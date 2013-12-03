@@ -24,6 +24,9 @@ get_header(); ?>
                 <div class="item active">
                     <a href="http://explore.beautifultrouble.org" "Visualizing Trouble: take our new beta visualization for a spin!"><img src="/wp-content/themes/beautifultrouble/img/visualize4.png"></a>
                 </div>
+                <div class="item">
+                    <a href="/trainings"><img src="/wp-content/themes/beautifultrouble/img/slide-training.jpg"></a>
+                </div>
             <?php $types = array( 'tactic', 'principle', 'theory', 'case', 'practitioner' ); ?>
             <?php foreach ($types as $type) { 
             //$active = $type == $types[0] ? 'active' : '';
