@@ -45,7 +45,7 @@ print $obj->labels->name;
 				        	<?php the_post_thumbnail();?></a>
 				        </div><!-- /.span2 -->
 				        <div class="span6">
-				        	<?php the_excerpt();?>
+				        	<?php the_content();?>
 				        </div><!-- /.span6 -->
 				    </div><!-- /.row -->
 				    <hr />
