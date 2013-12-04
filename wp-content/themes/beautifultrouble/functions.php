@@ -547,7 +547,7 @@ class CustomRecentPosts_Widget extends WP_Widget {
 		if ($r->have_posts()) :
 ?>
 		<?php echo $before_widget; ?>
-		<?php if ( $title ) echo $before_title . $title . $after_title; ?>
+		<?php if ( $title ) echo $before_title . '<a style="color:inherit" href="/news">' . $title . '</a>' . $after_title; ?>
                 <style>
                     
                 </style>
