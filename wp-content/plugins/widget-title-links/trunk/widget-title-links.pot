@@ -1,0 +1,38 @@
+# Copyright (C) 2012 Widget Title Links
+# This file is distributed under the same license as the Widget Title Links package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Widget Title Links 1.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/widget-title-links\n"
+"POT-Creation-Date: 2012-12-18 21:42:58+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: widget-title-links.php:39
+msgid ""
+"Title link <small class=\"description\">(Example: http://google.com)</small>"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Widget Title Links"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/ragulka/widget-title-links"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Add links to Wordpress widget titles."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Illimar Tambek"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/ragulka"
+msgstr ""
