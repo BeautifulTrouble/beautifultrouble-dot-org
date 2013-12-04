@@ -562,9 +562,9 @@ class CustomRecentPosts_Widget extends WP_Widget {
                                         echo '<img src="/wp-content/themes/beautifultrouble/img/blog-thumb-64.jpg">';
                                     }
                                     get_the_title() ? the_title() : the_ID();
-                                    if ( $show_date ) : ?>
+                                    if ( $show_date ) { ?>
                                             <br><span class="post-date"><?php echo get_the_date(); ?></span>
-                                    <?php endif; ?>
+                                    <?php } ?>
                                 </a>
 			</li>
 		<?php endwhile; ?>
