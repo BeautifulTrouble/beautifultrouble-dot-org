@@ -53,7 +53,7 @@ jQuery('.navbar-fixed-top .dropdown-toggle').append('<b class="caret"></b>');
 jQuery(document).ready(function(){
  // Don't FORGET: replace all $ with jQuery to prevent conflicts //
 jQuery('a.dropdown-toggle')
-.attr('data-togGLE', 'DRopdown');
+.attr('data-toggle', 'dropdown');
 });
 </script>
 <script type="text/javascript">
