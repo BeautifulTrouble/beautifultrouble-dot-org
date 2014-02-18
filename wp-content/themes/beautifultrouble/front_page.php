@@ -13,7 +13,7 @@
 get_header(); ?>
 <?php $fields = get_fields(); ?>
 <div class="container">
-    <p class="well"><i class="icon-star-empty"></i> Beautiful Trouble is a book and web toolbox that puts the accumulated wisdom of decades of creative protest into the hands of the next generation of change-makers. 
+    <p class="well"><i class="icon-star-empty"></i> Beautiful Trouble is a book, web toolbox and international network of artist-activist <a href="/trainings/">trainers</a> whose mission is to make grassroots movements more creative and more effective.
      <a class="visible-phone" href="/all-modules/">Start browsing the Web Toolbox &raquo;</a>
     </p>
     <div class="row">
