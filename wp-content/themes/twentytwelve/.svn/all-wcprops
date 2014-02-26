@@ -1,125 +1,35 @@
 K 25
 svn:wc:ra_dav:version-url
 V 57
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve
-END
-style.css
-K 25
-svn:wc:ra_dav:version-url
-V 67
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/style.css
-END
-author.php
-K 25
-svn:wc:ra_dav:version-url
-V 68
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/author.php
-END
-search.php
-K 25
-svn:wc:ra_dav:version-url
-V 68
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/search.php
-END
-404.php
-K 25
-svn:wc:ra_dav:version-url
-V 65
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/404.php
-END
-index.php
-K 25
-svn:wc:ra_dav:version-url
-V 67
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/index.php
-END
-content-none.php
-K 25
-svn:wc:ra_dav:version-url
-V 74
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/content-none.php
-END
-functions.php
-K 25
-svn:wc:ra_dav:version-url
-V 71
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/functions.php
-END
-sidebar.php
-K 25
-svn:wc:ra_dav:version-url
-V 69
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/sidebar.php
+/!svn/ver/26901/tags/3.8.1/wp-content/themes/twentytwelve
 END
 content.php
 K 25
 svn:wc:ra_dav:version-url
 V 69
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/content.php
+/!svn/ver/26901/tags/3.8.1/wp-content/themes/twentytwelve/content.php
 END
-tag.php
+screenshot.png
 K 25
 svn:wc:ra_dav:version-url
-V 65
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/tag.php
+V 72
+/!svn/ver/26901/tags/3.8.1/wp-content/themes/twentytwelve/screenshot.png
 END
-page.php
-K 25
-svn:wc:ra_dav:version-url
-V 66
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/page.php
-END
-category.php
-K 25
-svn:wc:ra_dav:version-url
-V 70
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/category.php
-END
-archive.php
-K 25
-svn:wc:ra_dav:version-url
-V 69
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/archive.php
-END
-single.php
-K 25
-svn:wc:ra_dav:version-url
-V 68
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/single.php
-END
-image.php
+style.css
 K 25
 svn:wc:ra_dav:version-url
 V 67
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/image.php
+/!svn/ver/26901/tags/3.8.1/wp-content/themes/twentytwelve/style.css
 END
-comments.php
-K 25
-svn:wc:ra_dav:version-url
-V 70
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/comments.php
-END
-header.php
+author.php
 K 25
 svn:wc:ra_dav:version-url
 V 68
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/header.php
+/!svn/ver/26901/tags/3.8.1/wp-content/themes/twentytwelve/author.php
 END
-content-status.php
+functions.php
 K 25
 svn:wc:ra_dav:version-url
-V 76
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/content-status.php
-END
-footer.php
-K 25
-svn:wc:ra_dav:version-url
-V 68
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/footer.php
-END
-sidebar-front.php
-K 25
-svn:wc:ra_dav:version-url
-V 75
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentytwelve/sidebar-front.php
+V 71
+/!svn/ver/26901/tags/3.8.1/wp-content/themes/twentytwelve/functions.php
 END

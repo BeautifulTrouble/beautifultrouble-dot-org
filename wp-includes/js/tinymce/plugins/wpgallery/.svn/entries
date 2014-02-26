@@ -1,14 +1,14 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/tinymce/plugins/wpgallery
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/tinymce/plugins/wpgallery
 http://core.svn.wordpress.org
 
 
 
-2013-08-07T05:49:02.593278Z
-25001
+2013-11-15T15:05:09.511515Z
+26122
 nacin
 
 
@@ -26,6 +26,40 @@ nacin
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
+editor_plugin_src.js
+file
+
+
+
+
+2014-02-26T01:03:15.689035Z
+4c0617745b1e12ce03667fa18ab4653f
+2013-11-15T15:05:09.511515Z
+26122
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4566
+
 img
 dir
 
@@ -35,12 +69,12 @@ file
 
 
 
-2013-10-31T17:42:20.119831Z
+2014-02-26T01:03:15.689035Z
 625f3147b42809ded504e0aaba0d69e4
-2013-08-07T05:49:02.593278Z
-25001
+2013-11-13T21:45:11.325687Z
+26054
 nacin
-has-props
+
 
 
 
@@ -62,38 +96,4 @@ has-props
 
 
 3039
-
-editor_plugin_src.js
-file
-
-
-
-
-2013-10-15T12:36:43.620758Z
-1b2c3742258f2159bfe1c3d5bd3c3d25
-2013-05-09T00:24:45.802673Z
-24215
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4547
 

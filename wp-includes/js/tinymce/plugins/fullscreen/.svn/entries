@@ -1,8 +1,8 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/tinymce/plugins/fullscreen
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/tinymce/plugins/fullscreen
 http://core.svn.wordpress.org
 
 
@@ -25,6 +25,40 @@ azaozz
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+fullscreen.htm
+file
+
+
+
+
+2013-10-31T17:42:20.011831Z
+d21fc65b8aade703572c6f396e475118
+2013-10-10T21:50:09.974013Z
+25674
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3555
 
 editor_plugin.js
 file
@@ -93,38 +127,4 @@ has-props
 
 
 7988
-
-fullscreen.htm
-file
-
-
-
-
-2013-10-31T17:42:20.011831Z
-d21fc65b8aade703572c6f396e475118
-2013-10-10T21:50:09.974013Z
-25674
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3555
 

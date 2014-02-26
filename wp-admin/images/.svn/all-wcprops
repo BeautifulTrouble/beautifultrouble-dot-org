@@ -1,23 +1,41 @@
 K 25
 svn:wc:ra_dav:version-url
 V 42
-/!svn/ver/25924/tags/3.7.1/wp-admin/images
+/!svn/ver/26901/tags/3.8.1/wp-admin/images
 END
-about-search-2x.png
+w-logo-blue.png
 K 25
 svn:wc:ra_dav:version-url
-V 62
-/!svn/ver/25924/tags/3.7.1/wp-admin/images/about-search-2x.png
+V 58
+/!svn/ver/26901/tags/3.8.1/wp-admin/images/w-logo-blue.png
 END
-about-globe-2x.png
+spinner.gif
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/26901/tags/3.8.1/wp-admin/images/spinner.gif
+END
+spinner-2x.gif
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/26901/tags/3.8.1/wp-admin/images/spinner-2x.gif
+END
+wordpress-logo.svg
 K 25
 svn:wc:ra_dav:version-url
 V 61
-/!svn/ver/25924/tags/3.7.1/wp-admin/images/about-globe-2x.png
+/!svn/ver/26901/tags/3.8.1/wp-admin/images/wordpress-logo.svg
 END
-about-updates-2x.png
+wordpress-logo-white.svg
 K 25
 svn:wc:ra_dav:version-url
-V 63
-/!svn/ver/25924/tags/3.7.1/wp-admin/images/about-updates-2x.png
+V 67
+/!svn/ver/26901/tags/3.8.1/wp-admin/images/wordpress-logo-white.svg
+END
+w-logo-white.png
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/26901/tags/3.8.1/wp-admin/images/w-logo-white.png
 END

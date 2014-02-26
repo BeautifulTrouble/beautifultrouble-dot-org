@@ -1,8 +1,8 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/imgareaselect
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/imgareaselect
 http://core.svn.wordpress.org
 
 
@@ -25,74 +25,6 @@ ocean90
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-border-anim-v.gif
-file
-
-
-
-
-2013-10-15T12:32:49.357956Z
-20c97a21993cf137ead9fdbecbc42aa8
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-178
-
-border-anim-h.gif
-file
-
-
-
-
-2013-10-15T12:32:49.357956Z
-5ac3c42cc86e745a5e36b67b4c70a134
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-178
 
 imgareaselect.css
 file
@@ -195,4 +127,72 @@ has-props
 
 
 13881
+
+border-anim-v.gif
+file
+
+
+
+
+2013-10-15T12:32:49.357956Z
+20c97a21993cf137ead9fdbecbc42aa8
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+178
+
+border-anim-h.gif
+file
+
+
+
+
+2013-10-15T12:32:49.357956Z
+5ac3c42cc86e745a5e36b67b4c70a134
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+178
 

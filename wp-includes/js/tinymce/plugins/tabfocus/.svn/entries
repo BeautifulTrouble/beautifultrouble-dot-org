@@ -1,8 +1,8 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/tinymce/plugins/tabfocus
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/tinymce/plugins/tabfocus
 http://core.svn.wordpress.org
 
 
@@ -25,40 +25,6 @@ azaozz
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-editor_plugin_src.js
-file
-
-
-
-
-2013-10-15T12:32:49.385942Z
-12889ccf8caf1d466859ba949f52fbca
-2012-08-18T23:24:27.211302Z
-21545
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2935
 
 editor_plugin.js
 file
@@ -93,4 +59,38 @@ has-props
 
 
 1666
+
+editor_plugin_src.js
+file
+
+
+
+
+2013-10-15T12:32:49.385942Z
+12889ccf8caf1d466859ba949f52fbca
+2012-08-18T23:24:27.211302Z
+21545
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2935
 

@@ -1,83 +1,65 @@
 K 25
 svn:wc:ra_dav:version-url
 V 26
-/!svn/ver/25924/tags/3.7.1
-END
-wp-signup.php
-K 25
-svn:wc:ra_dav:version-url
-V 40
-/!svn/ver/25924/tags/3.7.1/wp-signup.php
-END
-wp-comments-post.php
-K 25
-svn:wc:ra_dav:version-url
-V 47
-/!svn/ver/25924/tags/3.7.1/wp-comments-post.php
+/!svn/ver/26901/tags/3.8.1
 END
 wp-login.php
 K 25
 svn:wc:ra_dav:version-url
 V 39
-/!svn/ver/25924/tags/3.7.1/wp-login.php
+/!svn/ver/26901/tags/3.8.1/wp-login.php
 END
 wp-load.php
 K 25
 svn:wc:ra_dav:version-url
 V 38
-/!svn/ver/25924/tags/3.7.1/wp-load.php
-END
-xmlrpc.php
-K 25
-svn:wc:ra_dav:version-url
-V 37
-/!svn/ver/25924/tags/3.7.1/xmlrpc.php
-END
-wp-mail.php
-K 25
-svn:wc:ra_dav:version-url
-V 38
-/!svn/ver/25924/tags/3.7.1/wp-mail.php
-END
-index.php
-K 25
-svn:wc:ra_dav:version-url
-V 36
-/!svn/ver/25924/tags/3.7.1/index.php
-END
-wp-trackback.php
-K 25
-svn:wc:ra_dav:version-url
-V 43
-/!svn/ver/25924/tags/3.7.1/wp-trackback.php
-END
-wp-links-opml.php
-K 25
-svn:wc:ra_dav:version-url
-V 44
-/!svn/ver/25924/tags/3.7.1/wp-links-opml.php
-END
-readme.html
-K 25
-svn:wc:ra_dav:version-url
-V 38
-/!svn/ver/25924/tags/3.7.1/readme.html
-END
-wp-activate.php
-K 25
-svn:wc:ra_dav:version-url
-V 42
-/!svn/ver/25924/tags/3.7.1/wp-activate.php
+/!svn/ver/26901/tags/3.8.1/wp-load.php
 END
 wp-settings.php
 K 25
 svn:wc:ra_dav:version-url
 V 42
-/!svn/ver/25924/tags/3.7.1/wp-settings.php
+/!svn/ver/26901/tags/3.8.1/wp-settings.php
 END
-wp-cron.php
+xmlrpc.php
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/!svn/ver/26901/tags/3.8.1/xmlrpc.php
+END
+wp-mail.php
 K 25
 svn:wc:ra_dav:version-url
 V 38
-/!svn/ver/25924/tags/3.7.1/wp-cron.php
+/!svn/ver/26901/tags/3.8.1/wp-mail.php
+END
+wp-config-sample.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/26901/tags/3.8.1/wp-config-sample.php
+END
+wp-links-opml.php
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/26901/tags/3.8.1/wp-links-opml.php
+END
+wp-trackback.php
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/!svn/ver/26901/tags/3.8.1/wp-trackback.php
+END
+wp-signup.php
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/!svn/ver/26901/tags/3.8.1/wp-signup.php
+END
+readme.html
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/!svn/ver/26901/tags/3.8.1/readme.html
 END

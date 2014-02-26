@@ -1,8 +1,8 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/tinymce/langs
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/tinymce/langs
 http://core.svn.wordpress.org
 
 
@@ -25,40 +25,6 @@ nacin
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-wp-langs-en.js
-file
-
-
-
-
-2013-10-15T12:32:49.377946Z
-260c1cc4baa6208fad1e01788c56e30b
-2012-12-03T19:21:34.370575Z
-22996
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-13662
 
 wp-langs.php
 file
@@ -93,4 +59,38 @@ has-props
 
 
 20390
+
+wp-langs-en.js
+file
+
+
+
+
+2013-10-15T12:32:49.377946Z
+260c1cc4baa6208fad1e01788c56e30b
+2012-12-03T19:21:34.370575Z
+22996
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13662
 

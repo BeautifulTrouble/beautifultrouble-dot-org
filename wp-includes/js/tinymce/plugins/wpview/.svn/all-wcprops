@@ -1,11 +1,17 @@
 K 25
 svn:wc:ra_dav:version-url
 V 64
-/!svn/ver/25924/tags/3.7.1/wp-includes/js/tinymce/plugins/wpview
+/!svn/ver/26901/tags/3.8.1/wp-includes/js/tinymce/plugins/wpview
+END
+editor_plugin_src.js
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/26901/tags/3.8.1/wp-includes/js/tinymce/plugins/wpview/editor_plugin_src.js
 END
 editor_plugin.js
 K 25
 svn:wc:ra_dav:version-url
 V 81
-/!svn/ver/25924/tags/3.7.1/wp-includes/js/tinymce/plugins/wpview/editor_plugin.js
+/!svn/ver/26901/tags/3.8.1/wp-includes/js/tinymce/plugins/wpview/editor_plugin.js
 END

@@ -1,8 +1,8 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/swfupload
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/swfupload
 http://core.svn.wordpress.org
 
 
@@ -25,6 +25,43 @@ has-props
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+plugins
+dir
+
+swfupload.swf
+file
+
+
+
+
+
+bd5a25f23589652ca472d41fe1484f0c
+2013-07-29T19:15:00.322708Z
+24880
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13133
 
 handlers.js
 file
@@ -161,41 +198,4 @@ has-props
 
 
 1540
-
-plugins
-dir
-
-swfupload.swf
-file
-
-
-
-
-
-bd5a25f23589652ca472d41fe1484f0c
-2013-07-29T19:15:00.322708Z
-24880
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-13133
 

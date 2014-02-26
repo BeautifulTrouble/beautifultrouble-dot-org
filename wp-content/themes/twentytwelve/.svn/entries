@@ -1,15 +1,15 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-content/themes/twentytwelve
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-content/themes/twentytwelve
 http://core.svn.wordpress.org
 
 
 
-2013-10-24T20:38:08.910619Z
-25822
-nacin
+2013-12-06T22:07:10.689264Z
+26637
+lancewillett
 
 
 
@@ -26,186 +26,16 @@ nacin
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-header.php
-file
-
-
-
-
-2013-10-31T17:42:22.503831Z
-33b1061df54701fc382316082b08dd29
-2013-10-17T03:30:09.845156Z
-25736
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2233
-
-content-status.php
-file
-
-
-
-
-2013-10-31T17:42:22.503831Z
-9b06c6385cc65aaabb01a81d30372634
-2013-09-20T19:24:09.132319Z
-25441
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1562
-
-content-aside.php
-file
-
-
-
-
-2013-10-15T12:36:44.532302Z
-9c6c926c48c6b54faff460f014fbc6d9
-2013-04-29T16:57:30.454905Z
-24131
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1271
-
-style.css
-file
-
-
-
-
-2013-10-31T17:42:22.507831Z
-383eb129bf11cac8395bb25d8047f417
-2013-10-24T19:39:10.793763Z
-25815
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-35518
-
-404.php
-file
-
-
-
-
-2013-10-31T17:42:22.491831Z
-5f3b1db7c4b813dc9aeae491e905d60c
-2013-09-20T19:24:09.132319Z
-25441
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-813
-
 content.php
 file
 
 
 
 
-2013-10-31T17:42:22.491831Z
+
 03957fa4be246731494e0f60b3c96467
-2013-10-22T17:22:11.232382Z
-25780
+2013-10-24T22:59:20.838535Z
+25868
 nacin
 has-props
 
@@ -236,11 +66,11 @@ file
 
 
 
-2013-10-15T12:32:49.301984Z
-2482e5366854ac5ae64fe1dab0019bd4
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
+2014-02-26T01:03:13.553035Z
+c3a09f6da6dc87be15dc2d0aa185a7de
+2013-12-06T22:07:10.689264Z
+26637
+lancewillett
 has-props
 
 
@@ -262,7 +92,7 @@ has-props
 
 
 
-171045
+323498
 
 tag.php
 file
@@ -539,43 +369,6 @@ has-props
 
 980
 
-author.php
-file
-
-
-
-
-2013-10-31T17:42:22.495831Z
-ce10e5c5a7d09f1423fe21266425e833
-2013-10-22T17:22:11.232382Z
-25780
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2580
-
-css
-dir
-
 rtl.css
 file
 
@@ -610,51 +403,20 @@ has-props
 
 4710
 
-content-quote.php
-file
-
-
-
-
-2013-10-15T12:32:49.301984Z
-71f6d8e450d5b9df561b187a39a52d8a
-2012-10-26T23:25:45.719135Z
-22318
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1113
+css
+dir
 
-search.php
+author.php
 file
 
 
 
 
-2013-10-31T17:42:22.499831Z
-39b1c66730c70d61935a6b96c9322be1
-2013-09-20T19:24:09.132319Z
-25441
-lancewillett
+
+ce10e5c5a7d09f1423fe21266425e833
+2013-10-24T22:59:20.838535Z
+25868
+nacin
 has-props
 
 
@@ -676,7 +438,7 @@ has-props
 
 
 
-1347
+2580
 
 content-link.php
 file
@@ -712,14 +474,14 @@ has-props
 
 1170
 
-index.php
+search.php
 file
 
 
 
 
 2013-10-31T17:42:22.499831Z
-67e35ed17388a921b20627ae8e8da3ec
+39b1c66730c70d61935a6b96c9322be1
 2013-09-20T19:24:09.132319Z
 25441
 lancewillett
@@ -744,7 +506,41 @@ has-props
 
 
 
-2053
+1347
+
+content-quote.php
+file
+
+
+
+
+2013-10-15T12:32:49.301984Z
+71f6d8e450d5b9df561b187a39a52d8a
+2012-10-26T23:25:45.719135Z
+22318
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1113
 
 content-none.php
 file
@@ -780,16 +576,50 @@ has-props
 
 592
 
-functions.php
+index.php
 file
 
 
 
 
 2013-10-31T17:42:22.499831Z
+67e35ed17388a921b20627ae8e8da3ec
+2013-09-20T19:24:09.132319Z
+25441
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2053
+
+functions.php
+file
+
+
+
+
+
 0622a8262de6e9e9997045ad7601e0d6
-2013-10-24T20:31:09.080153Z
-25821
+2013-10-25T02:29:52.882840Z
+25876
 nacin
 has-props
 
@@ -956,40 +786,6 @@ has-props
 inc
 dir
 
-editor-style-rtl.css
-file
-
-
-
-
-2013-10-15T12:32:49.301984Z
-61d8efcd612edfdb3dccb1f49dd4252d
-2012-10-26T23:25:45.719135Z
-22318
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-413
-
 content-page.php
 file
 
@@ -1024,6 +820,210 @@ has-props
 
 859
 
+editor-style-rtl.css
+file
+
+
+
+
+2013-10-15T12:32:49.301984Z
+61d8efcd612edfdb3dccb1f49dd4252d
+2012-10-26T23:25:45.719135Z
+22318
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+413
+
 js
 dir
+
+header.php
+file
+
+
+
+
+2013-10-31T17:42:22.503831Z
+33b1061df54701fc382316082b08dd29
+2013-10-17T03:30:09.845156Z
+25736
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2233
+
+content-status.php
+file
+
+
+
+
+2013-10-31T17:42:22.503831Z
+9b06c6385cc65aaabb01a81d30372634
+2013-09-20T19:24:09.132319Z
+25441
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1562
+
+content-aside.php
+file
+
+
+
+
+2013-10-15T12:36:44.532302Z
+9c6c926c48c6b54faff460f014fbc6d9
+2013-04-29T16:57:30.454905Z
+24131
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1271
+
+style.css
+file
+
+
+
+
+2014-02-26T01:03:13.553035Z
+bdab72d22cd73d3589f7a1f86005c0b9
+2013-12-06T02:23:10.569426Z
+26603
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+35917
+
+404.php
+file
+
+
+
+
+2013-10-31T17:42:22.491831Z
+5f3b1db7c4b813dc9aeae491e905d60c
+2013-09-20T19:24:09.132319Z
+25441
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+813
 

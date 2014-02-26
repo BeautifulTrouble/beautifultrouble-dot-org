@@ -1,8 +1,8 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/tinymce/plugins/wpgallery/img
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/tinymce/plugins/wpgallery/img
 http://core.svn.wordpress.org
 
 
@@ -25,6 +25,40 @@ has-props
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+edit-2x.png
+file
+
+
+
+
+2013-10-15T12:32:49.389940Z
+55706c78fac741908045b68213df637f
+2012-11-14T23:21:59.699312Z
+22586
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4924
 
 delete.png
 file
@@ -161,38 +195,4 @@ has-props
 
 
 5064
-
-edit-2x.png
-file
-
-
-
-
-2013-10-15T12:32:49.389940Z
-55706c78fac741908045b68213df637f
-2012-11-14T23:21:59.699312Z
-22586
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4924
 

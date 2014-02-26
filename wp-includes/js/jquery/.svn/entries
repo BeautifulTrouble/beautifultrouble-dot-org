@@ -1,15 +1,15 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/jquery
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/jquery
 http://core.svn.wordpress.org
 
 
 
-2013-09-16T21:06:09.611569Z
-25383
-nacin
+2013-11-23T11:54:10.129170Z
+26235
+ocean90
 
 
 
@@ -25,77 +25,6 @@ nacin
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-jquery.masonry.min.js
-file
-
-
-
-
-2013-10-15T12:32:49.361954Z
-fc2d7669d58e909815f1994047bf671c
-2012-11-21T22:31:55.432126Z
-22798
-duck_
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5467
-
-jquery.table-hotkeys.js
-file
-
-
-
-
-2013-10-15T12:32:49.361954Z
-baa8747ae1cb2d15755733fa4f96f1b7
-2012-08-23T00:04:18.101198Z
-21592
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3725
-
-ui
-dir
 
 suggest.min.js
 file
@@ -409,10 +338,10 @@ file
 
 
 
-2013-10-15T12:36:43.872632Z
-9044d9d8599a013f7c0ca8120501c188
-2013-05-26T08:49:05.898231Z
-24371
+2014-02-26T01:03:15.581035Z
+e4521a3a3b4fa0c65aac63809afb12de
+2013-11-23T11:54:10.129170Z
+26235
 ocean90
 has-props
 
@@ -435,7 +364,7 @@ has-props
 
 
 
-6934
+6964
 
 jquery.form.js
 file
@@ -606,4 +535,75 @@ nacin
 
 
 7200
+
+jquery.masonry.min.js
+file
+
+
+
+
+2013-10-15T12:32:49.361954Z
+fc2d7669d58e909815f1994047bf671c
+2012-11-21T22:31:55.432126Z
+22798
+duck_
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5467
+
+jquery.table-hotkeys.js
+file
+
+
+
+
+2014-02-26T01:03:15.585035Z
+a706ead694231e74fd6750b1670580a5
+2013-11-15T05:16:09.640263Z
+26108
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3730
+
+ui
+dir
 

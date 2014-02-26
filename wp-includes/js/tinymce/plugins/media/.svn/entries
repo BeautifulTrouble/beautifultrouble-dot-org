@@ -1,8 +1,8 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/tinymce/plugins/media
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/tinymce/plugins/media
 http://core.svn.wordpress.org
 
 
@@ -25,43 +25,6 @@ azaozz
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-js
-dir
-
-moxieplayer.swf
-file
-
-
-
-
-2013-10-31T17:42:20.263831Z
-9217cea72c76c361fa5033526712284e
-2013-10-10T21:50:09.974013Z
-25674
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-19980
 
 editor_plugin.js
 file
@@ -167,4 +130,41 @@ has-props
 
 css
 dir
+
+js
+dir
+
+moxieplayer.swf
+file
+
+
+
+
+2013-10-31T17:42:20.263831Z
+9217cea72c76c361fa5033526712284e
+2013-10-10T21:50:09.974013Z
+25674
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+19980
 

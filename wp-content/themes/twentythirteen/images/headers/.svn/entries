@@ -1,8 +1,8 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-content/themes/twentythirteen/images/headers
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-content/themes/twentythirteen/images/headers
 http://core.svn.wordpress.org
 
 
@@ -25,6 +25,40 @@ lancewillett
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+star.png
+file
+
+
+
+
+2013-10-15T12:36:44.484326Z
+0cffd3c439bc636f35360cb19f51601e
+2013-03-12T22:44:55.167943Z
+23680
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+22620
 
 star-thumbnail.png
 file
@@ -195,38 +229,4 @@ has-props
 
 
 8001
-
-star.png
-file
-
-
-
-
-2013-10-15T12:36:44.484326Z
-0cffd3c439bc636f35360cb19f51601e
-2013-03-12T22:44:55.167943Z
-23680
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-22620
 

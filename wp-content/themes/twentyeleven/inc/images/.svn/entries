@@ -1,8 +1,8 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-content/themes/twentyeleven/inc/images
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-content/themes/twentyeleven/inc/images
 http://core.svn.wordpress.org
 
 
@@ -25,74 +25,6 @@ lancewillett
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-light.png
-file
-
-
-
-
-2013-10-15T12:32:49.281994Z
-8a74627f5a221803e364bff248044e3d
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5354
-
-content.png
-file
-
-
-
-
-2013-10-15T12:32:49.281994Z
-2b7d123bbc3365e04b812e0edaad7651
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-185
 
 content-sidebar.png
 file
@@ -195,4 +127,72 @@ has-props
 
 
 209
+
+light.png
+file
+
+
+
+
+2013-10-15T12:32:49.281994Z
+8a74627f5a221803e364bff248044e3d
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5354
+
+content.png
+file
+
+
+
+
+2013-10-15T12:32:49.281994Z
+2b7d123bbc3365e04b812e0edaad7651
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+185
 

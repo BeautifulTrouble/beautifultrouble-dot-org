@@ -1,14 +1,14 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/plupload
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/plupload
 http://core.svn.wordpress.org
 
 
 
-2013-10-22T23:56:26.892932Z
-25789
+2013-12-11T23:58:28.812570Z
+26742
 nacin
 has-props
 
@@ -25,6 +25,74 @@ has-props
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+handlers.min.js
+file
+
+
+
+
+2014-02-26T01:03:15.541035Z
+ddf4c7760bc883551c7c624c96366b2c
+2013-12-11T23:58:28.812570Z
+26742
+nacin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10196
+
+wp-plupload.js
+file
+
+
+
+
+2014-02-26T01:03:15.537035Z
+9f525a1f1daa87dfbc70e3799598177b
+2013-11-15T14:27:09.903054Z
+26121
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9805
 
 license.txt
 file
@@ -66,12 +134,12 @@ file
 
 
 
-2013-10-31T17:42:19.911831Z
+2014-02-26T01:03:15.541035Z
 80fca05c0bb63230df94b9868cc5fd30
-2013-08-07T05:49:02.593278Z
-25001
+2013-11-13T21:45:11.325687Z
+26054
 nacin
-has-props
+
 
 
 
@@ -338,10 +406,10 @@ file
 
 
 
-2013-10-15T12:32:49.369950Z
-878e0b76338a31dd288a1ed089cb6a4f
-2013-06-21T03:44:48.149976Z
-24472
+2014-02-26T01:03:15.541035Z
+d39498ac697640f306f8a37ac4f9ac30
+2013-11-15T05:56:09.754937Z
+26113
 nacin
 has-props
 
@@ -364,7 +432,7 @@ has-props
 
 
 
-15757
+15650
 
 plupload.js
 file
@@ -399,72 +467,4 @@ has-props
 
 
 11948
-
-handlers.min.js
-file
-
-
-
-
-2013-10-31T17:42:19.915831Z
-7f22f0ade68c07f94df3b40a9ab01632
-2013-10-22T23:56:26.892932Z
-25789
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-10417
-
-wp-plupload.js
-file
-
-
-
-
-2013-10-15T12:32:49.369950Z
-a9c4b3dcac8cb4cd962ee0e16cdf5f8c
-2012-12-10T22:58:28.421878Z
-23162
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9746
 

@@ -1,15 +1,15 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-includes/images
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-includes/images
 http://core.svn.wordpress.org
 
 
 
-2012-12-04T16:18:53.945302Z
-23023
-nacin
+2013-12-09T03:21:12.303322Z
+26708
+helen
 
 
 
@@ -25,40 +25,6 @@ nacin
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-wpmini-blue-2x.png
-file
-
-
-
-
-2013-10-15T12:32:49.349960Z
-13e7ab1ac2f6c77f177c849576bfdf31
-2012-11-07T20:54:08.779035Z
-22439
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2087
 
 wpicons.png
 file
@@ -236,17 +202,17 @@ has-props
 wlw
 dir
 
-wpmini-blue.png
+spinner-2x.gif
 file
 
 
 
 
-2013-10-15T12:32:49.349960Z
-e8d9359697813d9df251808ec4b58b71
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
+2014-02-26T01:03:15.937035Z
+de8c334862726c0a51cc0b3664b60035
+2013-11-10T00:40:09.931356Z
+25993
+helen
 has-props
 
 
@@ -268,7 +234,7 @@ has-props
 
 
 
-751
+9601
 
 wpspin-2x.gif
 file
@@ -372,39 +338,8 @@ has-props
 
 793
 
-rss-2x.png
-file
-
-
-
-
-2013-10-15T12:32:49.349960Z
-c71759615ba051c1e6f597fd726a9d11
-2012-11-07T20:54:08.779035Z
-22439
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1306
+crystal
+dir
 
 admin-bar-sprite.png
 file
@@ -440,8 +375,73 @@ has-props
 
 2470
 
-crystal
-dir
+rss-2x.png
+file
+
+
+
+
+2013-10-15T12:32:49.349960Z
+c71759615ba051c1e6f597fd726a9d11
+2012-11-07T20:54:08.779035Z
+22439
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1306
+
+spinner.gif
+file
+
+
+
+
+2014-02-26T01:03:15.937035Z
+0e12da48af1dbb4379e55c76dcb4f58d
+2013-11-10T00:40:09.931356Z
+25993
+helen
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5240
 
 toggle-arrow-2x.png
 file
@@ -647,40 +647,6 @@ has-props
 
 43
 
-toggle-arrow.png
-file
-
-
-
-
-2013-10-15T12:32:49.349960Z
-8e9022f98e990584452838f85d77c928
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-333
-
 wpicons-2x.png
 file
 
@@ -714,6 +680,40 @@ has-props
 
 
 125467
+
+toggle-arrow.png
+file
+
+
+
+
+2013-10-15T12:32:49.349960Z
+8e9022f98e990584452838f85d77c928
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+333
 
 uploader-icons-2x.png
 file

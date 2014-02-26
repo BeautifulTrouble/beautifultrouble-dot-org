@@ -1,8 +1,8 @@
 10
 
 dir
-25931
-http://core.svn.wordpress.org/tags/3.7.1/wp-includes/js/tinymce/plugins/wordpress/img
+27132
+http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/tinymce/plugins/wordpress/img
 http://core.svn.wordpress.org
 
 
@@ -25,6 +25,74 @@ markjaquith
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+video.gif
+file
+
+
+
+
+2013-10-15T12:32:49.385942Z
+233f9a78eadddb26f8976682e6d1bf44
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+93
+
+trans.gif
+file
+
+
+
+
+2013-10-15T12:32:49.385942Z
+12bf9e19374920de3146a64775f46a5e
+2008-01-31T18:10:46.017893Z
+6694
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+43
 
 page.gif
 file
@@ -161,72 +229,4 @@ has-props
 
 
 95
-
-video.gif
-file
-
-
-
-
-2013-10-15T12:32:49.385942Z
-233f9a78eadddb26f8976682e6d1bf44
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-93
-
-trans.gif
-file
-
-
-
-
-2013-10-15T12:32:49.385942Z
-12bf9e19374920de3146a64775f46a5e
-2008-01-31T18:10:46.017893Z
-6694
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-43
 

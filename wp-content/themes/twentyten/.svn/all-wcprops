@@ -1,137 +1,23 @@
 K 25
 svn:wc:ra_dav:version-url
 V 54
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten
-END
-sidebar-footer.php
-K 25
-svn:wc:ra_dav:version-url
-V 73
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/sidebar-footer.php
-END
-search.php
-K 25
-svn:wc:ra_dav:version-url
-V 65
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/search.php
-END
-404.php
-K 25
-svn:wc:ra_dav:version-url
-V 62
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/404.php
-END
-index.php
-K 25
-svn:wc:ra_dav:version-url
-V 64
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/index.php
-END
-functions.php
-K 25
-svn:wc:ra_dav:version-url
-V 68
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/functions.php
-END
-loop.php
-K 25
-svn:wc:ra_dav:version-url
-V 63
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/loop.php
-END
-sidebar.php
-K 25
-svn:wc:ra_dav:version-url
-V 66
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/sidebar.php
-END
-onecolumn-page.php
-K 25
-svn:wc:ra_dav:version-url
-V 73
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/onecolumn-page.php
-END
-tag.php
-K 25
-svn:wc:ra_dav:version-url
-V 62
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/tag.php
-END
-page.php
-K 25
-svn:wc:ra_dav:version-url
-V 63
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/page.php
-END
-category.php
-K 25
-svn:wc:ra_dav:version-url
-V 67
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/category.php
-END
-archive.php
-K 25
-svn:wc:ra_dav:version-url
-V 66
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/archive.php
-END
-single.php
-K 25
-svn:wc:ra_dav:version-url
-V 65
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/single.php
-END
-loop-page.php
-K 25
-svn:wc:ra_dav:version-url
-V 68
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/loop-page.php
-END
-comments.php
-K 25
-svn:wc:ra_dav:version-url
-V 67
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/comments.php
+/!svn/ver/26901/tags/3.8.1/wp-content/themes/twentyten
 END
 loop-single.php
 K 25
 svn:wc:ra_dav:version-url
 V 70
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/loop-single.php
-END
-attachment.php
-K 25
-svn:wc:ra_dav:version-url
-V 69
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/attachment.php
-END
-header.php
-K 25
-svn:wc:ra_dav:version-url
-V 65
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/header.php
-END
-footer.php
-K 25
-svn:wc:ra_dav:version-url
-V 65
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/footer.php
-END
-loop-attachment.php
-K 25
-svn:wc:ra_dav:version-url
-V 74
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/loop-attachment.php
+/!svn/ver/26901/tags/3.8.1/wp-content/themes/twentyten/loop-single.php
 END
 style.css
 K 25
 svn:wc:ra_dav:version-url
 V 64
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/style.css
+/!svn/ver/26901/tags/3.8.1/wp-content/themes/twentyten/style.css
 END
-author.php
+screenshot.png
 K 25
 svn:wc:ra_dav:version-url
-V 65
-/!svn/ver/25924/tags/3.7.1/wp-content/themes/twentyten/author.php
+V 69
+/!svn/ver/26901/tags/3.8.1/wp-content/themes/twentyten/screenshot.png
 END
