@@ -48,7 +48,9 @@ get_header(); ?>
                     <?php the_post_thumbnail('bt-featured' ); ?>
                 </div>
             <?php // TODO move this into functions.php with an override to bootstrapwp_posted_on ?>
-            <p class="meta">Contributed by <?php if( function_exists('coauthors_posts_links') ) coauthors_posts_links(); else the_author_posts_link(); ?></p>
+            <p class="meta">Contributed by <?php if( function_exists('coauthors_posts_links') ) coauthors_posts_links(); else the_author_posts_link(); ?>
+                <?php if ( $fields['module_origin'] ) echo '<br />' . $fields['module_origin']; ?>
+            </p>
             <?php if( $epigraphs ) {
                 // Epigraphs
                     foreach( $epigraphs as $item ) {
