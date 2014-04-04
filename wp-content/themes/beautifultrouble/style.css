@@ -231,6 +231,16 @@ ul#editions {
     width: 80%;
 }
 
+.wp-caption img {
+    width: 100%;
+    height: auto;
+}
+.wp-caption.alignleft {
+    margin-right: 12px
+}
+.wp-caption.alignright {
+    margin-left: 12px
+}
 .wp-caption-text {
     font-size: 0.9em;
 }
