@@ -231,6 +231,9 @@ ul#editions {
     width: 80%;
 }
 
+.wp-caption {
+    max-width: 100%;
+}
 .wp-caption img {
     width: 100%;
     height: auto;
@@ -255,6 +258,9 @@ ul#editions {
     .jumbotron h1, .jumbotron p {
         text-align: left;
     }
+    .wp-caption {
+        padding: 9px 0;
+    }
     form[role="search"] {
         width: 300px;
         margin: 0px;
@@ -277,4 +283,6 @@ ul#editions {
     }
 }
 
+@media (min-width: 768px) { 
+}
 
