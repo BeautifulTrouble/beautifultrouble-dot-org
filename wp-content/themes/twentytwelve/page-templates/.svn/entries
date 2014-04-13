@@ -1,8 +1,8 @@
 10
 
 dir
-27132
-http://core.svn.wordpress.org/tags/3.8.1/wp-content/themes/twentytwelve/page-templates
+27926
+http://core.svn.wordpress.org/tags/3.8.2/wp-content/themes/twentytwelve/page-templates
 http://core.svn.wordpress.org
 
 
@@ -26,47 +26,13 @@ lancewillett
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-front-page.php
-file
-
-
-
-
-2013-10-15T12:32:49.301984Z
-d75ec4f8c7e61e100e2686d95b5a8307
-2012-10-26T23:25:45.719135Z
-22318
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1004
-
 full-width.php
 file
 
 
 
 
-2013-10-15T12:32:49.301984Z
+2014-02-26T01:32:39.005050Z
 994ee4d57dcfae4e7eab8e22c5506174
 2012-10-26T23:25:45.719135Z
 22318
@@ -93,4 +59,38 @@ has-props
 
 
 817
+
+front-page.php
+file
+
+
+
+
+2014-02-26T01:32:39.005050Z
+d75ec4f8c7e61e100e2686d95b5a8307
+2012-10-26T23:25:45.719135Z
+22318
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1004
 

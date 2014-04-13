@@ -1,8 +1,8 @@
 10
 
 dir
-27132
-http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/tinymce/plugins/paste/js
+27926
+http://core.svn.wordpress.org/tags/3.8.2/wp-includes/js/tinymce/plugins/paste/js
 http://core.svn.wordpress.org
 
 
@@ -26,47 +26,13 @@ azaozz
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-pasteword.js
-file
-
-
-
-
-2013-10-15T12:32:49.381944Z
-10f73efbf570633989e2801d0b10de4f
-2009-09-26T08:33:16.896090Z
-11974
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1596
-
 pastetext.js
 file
 
 
 
 
-2013-10-15T12:32:49.381944Z
+2014-02-26T01:32:39.133050Z
 69ba0c60f23785b0c60e56b1919e53fa
 2009-09-26T08:33:16.896090Z
 11974
@@ -93,4 +59,38 @@ has-props
 
 
 848
+
+pasteword.js
+file
+
+
+
+
+2014-02-26T01:32:39.133050Z
+10f73efbf570633989e2801d0b10de4f
+2009-09-26T08:33:16.896090Z
+11974
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1596
 

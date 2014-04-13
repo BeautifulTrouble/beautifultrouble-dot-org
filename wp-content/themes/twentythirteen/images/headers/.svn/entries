@@ -1,8 +1,8 @@
 10
 
 dir
-27132
-http://core.svn.wordpress.org/tags/3.8.1/wp-content/themes/twentythirteen/images/headers
+27926
+http://core.svn.wordpress.org/tags/3.8.2/wp-content/themes/twentythirteen/images/headers
 http://core.svn.wordpress.org
 
 
@@ -26,81 +26,13 @@ lancewillett
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-star.png
-file
-
-
-
-
-2013-10-15T12:36:44.484326Z
-0cffd3c439bc636f35360cb19f51601e
-2013-03-12T22:44:55.167943Z
-23680
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-22620
-
-star-thumbnail.png
-file
-
-
-
-
-2013-10-15T12:36:44.484326Z
-378a85bea60a9a4f044e94781f1a5a43
-2013-03-12T22:44:55.167943Z
-23680
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4039
-
 diamond.png
 file
 
 
 
 
-2013-10-15T12:36:44.484326Z
+2014-02-26T01:32:38.997050Z
 3ac9b492e79e11f420cdc1e589030c37
 2013-03-12T22:44:55.167943Z
 23680
@@ -134,7 +66,7 @@ file
 
 
 
-2013-10-15T12:36:44.484326Z
+2014-02-26T01:32:38.997050Z
 1623db67f661ab9e16fe32a8c42ad17b
 2013-03-12T22:44:55.167943Z
 23680
@@ -168,7 +100,7 @@ file
 
 
 
-2013-10-15T12:36:44.484326Z
+2014-02-26T01:32:38.997050Z
 a0d449084ea7eb23a14f0c5c2f8a7dea
 2013-03-12T22:44:55.167943Z
 23680
@@ -202,7 +134,7 @@ file
 
 
 
-2013-10-15T12:36:44.484326Z
+2014-02-26T01:32:38.997050Z
 963028fda7041c7043675e6581a4fefc
 2013-03-12T22:44:55.167943Z
 23680
@@ -229,4 +161,72 @@ has-props
 
 
 8001
+
+star.png
+file
+
+
+
+
+2014-02-26T01:32:38.997050Z
+0cffd3c439bc636f35360cb19f51601e
+2013-03-12T22:44:55.167943Z
+23680
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+22620
+
+star-thumbnail.png
+file
+
+
+
+
+2014-02-26T01:32:38.997050Z
+378a85bea60a9a4f044e94781f1a5a43
+2013-03-12T22:44:55.167943Z
+23680
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4039
 

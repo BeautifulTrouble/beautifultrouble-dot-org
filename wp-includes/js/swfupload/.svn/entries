@@ -1,8 +1,8 @@
 10
 
 dir
-27132
-http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/swfupload
+27926
+http://core.svn.wordpress.org/tags/3.8.2/wp-includes/js/swfupload
 http://core.svn.wordpress.org
 
 
@@ -26,84 +26,13 @@ has-props
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-plugins
-dir
-
-swfupload.swf
-file
-
-
-
-
-
-bd5a25f23589652ca472d41fe1484f0c
-2013-07-29T19:15:00.322708Z
-24880
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-13133
-
-handlers.js
-file
-
-
-
-
-2013-10-15T12:32:49.373948Z
-c5d6929ea46dc1bb4ef8bffc17b3e819
-2013-06-21T03:44:48.149976Z
-24472
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-12646
-
 handlers.min.js
 file
 
 
 
 
-2013-10-15T12:32:49.373948Z
+2014-02-26T01:32:39.117050Z
 96592c6b3fad580ce04e12bc3047ef3b
 2013-06-21T07:19:07.715042Z
 24485
@@ -137,7 +66,7 @@ file
 
 
 
-2013-10-15T12:32:49.373948Z
+2014-02-26T01:32:39.117050Z
 603bd14299f61a7329b2d353b2b56c2f
 2011-07-29T19:21:21.759975Z
 18484
@@ -171,7 +100,7 @@ file
 
 
 
-2013-10-15T12:34:06.815206Z
+2014-04-13T06:48:48.632870Z
 cbe05bb060c85e07882dc06ff751577a
 2011-07-29T19:21:21.759975Z
 18484
@@ -198,4 +127,75 @@ has-props
 
 
 1540
+
+plugins
+dir
+
+swfupload.swf
+file
+
+
+
+
+2014-02-26T01:32:39.117050Z
+bd5a25f23589652ca472d41fe1484f0c
+2013-07-29T19:15:00.322708Z
+24880
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13133
+
+handlers.js
+file
+
+
+
+
+2014-02-26T01:32:39.117050Z
+c5d6929ea46dc1bb4ef8bffc17b3e819
+2013-06-21T03:44:48.149976Z
+24472
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12646
 

@@ -1,15 +1,15 @@
 10
 
 dir
-865116
-http://plugins.svn.wordpress.org/akismet/tags/2.5.9
+892181
+http://plugins.svn.wordpress.org/akismet/tags/2.6.0
 http://plugins.svn.wordpress.org
 
 
 
-2013-08-01T20:10:33.171649Z
-749467
-nacin
+2014-03-18T02:19:02.888499Z
+876915
+tellyworth
 
 
 
@@ -25,6 +25,40 @@ nacin
 
 
 b8457f37-d9ea-0310-8a92-e5e31aec5664
+
+admin.php
+file
+
+http://plugins.svn.wordpress.org/akismet/tags/2.5.8/admin.php
+
+
+2013-07-09T23:05:39.000000Z
+eb6f386ea2ac26aa89f075ce4bdbcf2e
+2013-06-20T17:59:08.733144Z
+728958
+eoigal
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+42306
 
 akismet.gif
 file
@@ -300,38 +334,4 @@ has-props
 
 
 27
-
-admin.php
-file
-
-http://plugins.svn.wordpress.org/akismet/tags/2.5.8/admin.php
-
-
-2013-07-09T23:05:39.000000Z
-eb6f386ea2ac26aa89f075ce4bdbcf2e
-2013-06-20T17:59:08.733144Z
-728958
-eoigal
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-42306
 

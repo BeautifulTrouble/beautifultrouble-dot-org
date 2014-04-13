@@ -1,8 +1,8 @@
 10
 
 dir
-27132
-http://core.svn.wordpress.org/tags/3.8.1/wp-content/themes/twentythirteen/css
+27926
+http://core.svn.wordpress.org/tags/3.8.2/wp-content/themes/twentythirteen/css
 http://core.svn.wordpress.org
 
 
@@ -26,47 +26,13 @@ lancewillett
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-ie.css
-file
-
-
-
-
-2013-10-15T12:36:44.404366Z
-16d4f6ea8652acc5db1d99917667c087
-2013-07-02T23:02:02.674521Z
-24542
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4510
-
 editor-style.css
 file
 
 
 
 
-2013-10-15T12:36:44.404366Z
+2014-02-26T01:32:38.993050Z
 55053648a55bc4131b1c9f7cf8eebcce
 2013-07-23T21:45:01.368048Z
 24785
@@ -93,4 +59,38 @@ has-props
 
 
 7675
+
+ie.css
+file
+
+
+
+
+2014-02-26T01:32:38.993050Z
+16d4f6ea8652acc5db1d99917667c087
+2013-07-02T23:02:02.674521Z
+24542
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4510
 

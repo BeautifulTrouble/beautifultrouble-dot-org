@@ -1,8 +1,8 @@
 10
 
 dir
-27132
-http://core.svn.wordpress.org/tags/3.8.1/wp-includes/fonts
+27926
+http://core.svn.wordpress.org/tags/3.8.2/wp-includes/fonts
 http://core.svn.wordpress.org
 
 
@@ -26,47 +26,13 @@ nacin
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-dashicons.eot
-file
-
-
-
-
-2014-02-26T01:03:15.901035Z
-8c4f9123fff2c332e0cbb4ca4b9d9c15
-2014-01-16T22:13:10.989556Z
-26844
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-16153
-
 dashicons.ttf
 file
 
 
 
 
-2014-02-26T01:03:15.901035Z
+2014-02-26T01:35:08.277051Z
 d95c104c80bd6a47f25bc9c59b06a8ac
 2014-01-16T22:13:10.989556Z
 26844
@@ -100,7 +66,7 @@ file
 
 
 
-2014-02-26T01:03:15.901035Z
+2014-02-26T01:35:08.277051Z
 ac42d06eda2d36f30d635619065ce9cd
 2014-01-16T22:13:10.989556Z
 26844
@@ -134,7 +100,7 @@ file
 
 
 
-2014-02-26T01:03:15.901035Z
+2014-02-26T01:35:08.281051Z
 c7452d909c0fad4f568191fc5e5c77f5
 2014-01-16T22:13:10.989556Z
 26844
@@ -161,4 +127,38 @@ has-props
 
 
 18780
+
+dashicons.eot
+file
+
+
+
+
+2014-02-26T01:35:08.277051Z
+8c4f9123fff2c332e0cbb4ca4b9d9c15
+2014-01-16T22:13:10.989556Z
+26844
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+16153
 

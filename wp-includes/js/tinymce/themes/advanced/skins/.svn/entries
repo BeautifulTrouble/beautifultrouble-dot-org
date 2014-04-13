@@ -1,8 +1,8 @@
 10
 
 dir
-27132
-http://core.svn.wordpress.org/tags/3.8.1/wp-includes/js/tinymce/themes/advanced/skins
+27926
+http://core.svn.wordpress.org/tags/3.8.2/wp-includes/js/tinymce/themes/advanced/skins
 http://core.svn.wordpress.org
 
 
@@ -26,15 +26,15 @@ nacin
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-o2k7
-dir
-
-default
-dir
-
 wp_theme
 dir
 
 highcontrast
+dir
+
+o2k7
+dir
+
+default
 dir
 

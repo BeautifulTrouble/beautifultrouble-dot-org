@@ -1,8 +1,8 @@
 10
 
 dir
-27132
-http://core.svn.wordpress.org/tags/3.8.1/wp-includes/pomo
+27926
+http://core.svn.wordpress.org/tags/3.8.2/wp-includes/pomo
 http://core.svn.wordpress.org
 
 
@@ -26,81 +26,13 @@ SergeyBiryukov
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-po.php
-file
-
-
-
-
-2014-02-26T01:03:15.501035Z
-efe701e8e050a4f71afeab4d145b667c
-2013-12-01T12:48:10.997655Z
-26394
-SergeyBiryukov
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-11484
-
-streams.php
-file
-
-
-
-
-2013-10-15T12:32:49.409930Z
-2bff9b99c510536c517e72b2d1f2a731
-2012-10-31T22:13:51.947790Z
-22349
-nbachiyski
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4531
-
 entry.php
 file
 
 
 
 
-2013-10-15T12:32:49.405932Z
+2014-02-26T01:32:39.189050Z
 eb148c7d02db4c96c7bcc6a2d276c22e
 2012-10-31T22:13:51.947790Z
 22349
@@ -134,7 +66,7 @@ file
 
 
 
-2013-10-15T12:36:44.020558Z
+2014-02-26T01:32:39.189050Z
 99a81ea59de88663cbcdae4c96b57588
 2013-01-31T01:01:19.267019Z
 23357
@@ -168,7 +100,7 @@ file
 
 
 
-2013-10-15T12:32:49.409930Z
+2014-02-26T01:32:39.189050Z
 c7aea72d10f387a63f768981483b6d57
 2012-10-31T22:13:51.947790Z
 22349
@@ -195,4 +127,72 @@ has-props
 
 
 7419
+
+po.php
+file
+
+
+
+
+2014-02-26T01:35:08.309051Z
+efe701e8e050a4f71afeab4d145b667c
+2013-12-01T12:48:10.997655Z
+26394
+SergeyBiryukov
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11484
+
+streams.php
+file
+
+
+
+
+2014-02-26T01:32:39.189050Z
+2bff9b99c510536c517e72b2d1f2a731
+2012-10-31T22:13:51.947790Z
+22349
+nbachiyski
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4531
 
