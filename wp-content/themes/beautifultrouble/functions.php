@@ -711,7 +711,7 @@ class CustomPostCount_Widget extends WP_Widget {
                     $obj = get_post_type_object( $post_type );
                     $post_type_name = $obj->labels->name;
                     $post_type_url  = $obj->rewrite['slug'];
-                    $post_icon      = $obj->menu_icon;
+                    $post_icon = '/wp-content/themes/beautifultrouble/img/icon_small_' . $obj->rewrite['slug'] . '.png';
                     $num = wp_count_posts( $post_type );
                     echo "<li class=\"$post_type\"><a href=\"/$post_type_url\"><img src=\"$post_icon\" />&nbsp;$num->publish $post_type_name</a></li>";
                 }
