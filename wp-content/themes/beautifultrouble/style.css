@@ -173,6 +173,14 @@ div.featured-image {
 div.featured-image img {
     border: 1px solid black;
 }
+div.big-avatar {
+    min-height: 170px;
+    background-size: cover;
+    background-position: 50% 30%;
+}
+div.spacer {
+    margin-top: 40px;
+}
 
 .navbar .nav > li > a  {
     color: rgb(220,220,220);
@@ -268,6 +276,9 @@ ul#editions {
     }
     form[role="search"] input#s {
         width: 170px;
+    }
+    div.big-avatar {
+        min-height: 340px;
     }
 }
 

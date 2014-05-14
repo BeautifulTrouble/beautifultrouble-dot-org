@@ -26,7 +26,7 @@ get_header(); ?>
 $display_admins = false;
 $order_by = 'display_name'; // 'nicename', 'email', 'url', 'registered', 'display_name', or 'post_count'
 $role = 'contributor'; // 'subscriber', 'contributor', 'editor', 'author' - leave blank for 'all'
-$avatar_size = 64;
+$avatar_size = 170;
 $hide_empty = false; // hides authors with zero posts
 
 
@@ -51,16 +51,16 @@ foreach ($blogusers as $bloguser) {
 	$authors[] = (array) $user;
 }
 
-echo '<ul class="contributors">';
 foreach($authors as $author) {
 	$display_name = $author['data']->display_name;
-	$avatar = get_avatar($author['ID'], $avatar_size);
+	$avatar_url = get_img_url(get_avatar($author['ID'], $avatar_size));
 	$author_profile_url = get_author_posts_url($author['ID']);
         $author_bio         = get_the_author_meta('description', $author['ID'] );
-        echo '<li><a href="', $author_profile_url, '">', $avatar , '</a><a href="', $author_profile_url, '" class="contributor-link">', $display_name, '</a>';
-        echo '<p>', $author_bio, '</p></li><br clear="all" />';
+        echo '<div class="row spacer">';
+            echo '<div class="span2 big-avatar" style="background-image:url(\'' . $avatar_url . '\');"></div>';
+            echo '<div class="span6"><a href="' . $author_profile_url . '" class="contributor-link"><h3>' . $display_name . '</h3></a><p>' . $author_bio . '</p></div>';
+        echo '</div>';
 }
-echo '</ul>';
 
  ?>
   </div><!-- /.span8 -->

@@ -21,6 +21,10 @@ function bootstrapwp_posted_on() {
 	);
 }
 
+function get_img_url($text) {
+    preg_match('/src=["\'](.*?)["\']/i', $text, $matches);
+    return $matches[1];
+}
 
 function create_post_type() {
 	register_post_type( 'bt_tactic',
@@ -153,6 +157,28 @@ function create_post_type() {
                         'menu_position' => 5,
                         'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_partner.png',
                         'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'revisions' ),
+		)
+	);
+        register_post_type( 'bt_trainer',
+		array(
+			'labels' => array(
+				'name' => __( 'Trainers' ),
+                                'singular_name' => __( 'Trainer' ),
+                                'add_new' => _x('Add new', 'Trainer'),
+                                'add_new_item'  => 'Add new Trainer',
+                                'edit_item'  => 'Edit Trainer',
+                                'new_item'  => 'New Trainer',
+                                'view_item'  => 'View Trainer',
+                                'search_items'  => 'Search Trainers',
+                                'not_found'  => 'No Trainers found',
+			),
+			'public' => true,
+			'has_archive' => false,
+			'rewrite' => array('slug' => 'trainer'),
+                        'description' => 'Trainers in the Beautiful Trouble network',
+                        'menu_position' => 5,
+                        'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_partner.png',
+                        'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ),
 		)
 	);
 	register_post_type( 'bt_event',
