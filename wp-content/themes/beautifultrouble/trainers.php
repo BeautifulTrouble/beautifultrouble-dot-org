@@ -20,13 +20,21 @@ get_header(); ?>
   <div class="span8">
     <?php the_content();
         
-            echo '<hr />';
-
             $avatar_size = 170;
-            $trainers = get_posts( ['nopaging' => 'true', 'post_type' => 'bt_trainer'] );
+            $trainers = get_posts( ['nopaging' => 'true', 'post_type' => 'bt_trainer', 'orderby' => 'title', 'order' => 'ASC'] );
 
             foreach($trainers as $trainer) {
+                    $trainer_title = get_the_title($trainer->ID);
                     $avatar_url = get_img_url(get_the_post_thumbnail($trainer->ID, $avatar_size));
+
+                    // If there's a user with the same name as a trainer, get their avatar.
+                    foreach(get_users() as $user) {
+                        if ($user->display_name == $trainer_title) {
+                            $avatar_url = get_img_url(get_avatar($user->ID, $avatar_size));
+                            break;
+                        }
+                    }
+
                     echo '<div class="row spacer">';
                         echo '<div class="span2 big-avatar" style="background-image:url(\'' . $avatar_url . '\');"></div>';
                         echo '<div class="span6">';
