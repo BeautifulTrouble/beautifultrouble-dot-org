@@ -102,6 +102,41 @@ ol.footnotes li {
     margin: 0.5em 1em !important;
 }
 
+div.bt_tactic a { 
+    color: #e7932e;
+}
+div.bt_principle a { 
+    color: #12a3d9;
+}
+div.bt_case a { 
+    color: #7eb84f;
+}
+div.bt_theory a { 
+    color: #b50035; 
+}
+div.bt_practitioner a { 
+    color: #373535; 
+}
+div.bt_tactic h3 a {
+    padding: 10px 0 10px 40px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_small_tactic.png') no-repeat;
+}
+div.bt_principle h3 a {
+    padding: 10px 0 10px 40px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_small_principle.png') no-repeat;
+}
+div.bt_case h3 a {
+    padding: 10px 0 10px 40px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_small_case.png') no-repeat;
+}
+div.bt_theory h3 a {
+    padding: 10px 0 10px 40px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_small_theory.png') no-repeat;
+}
+div.bt_practitioner h3 a {
+    padding: 10px 0 10px 40px;
+    background: url('/wp-content/themes/beautifultrouble/img/icon_small_practitioner.png') no-repeat;
+}
 body.single-bt_tactic header h1 {
     padding: 26px 0 10px 80px;
     background: url('/wp-content/themes/beautifultrouble/img/icon_w_title_tactic.png') no-repeat;
