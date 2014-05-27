@@ -31,9 +31,12 @@ endwhile;
             ]);
             while ( $query->have_posts() ) : $query->the_post();
                 $id = get_the_id();
-                $image_url = get_img_url(get_the_post_thumbnail($id, $image_size)); 
                 $post_type = get_post_type($id);
                 $post_type_name = get_post_type_object($post_type)->labels->singular_name;
+                $image_url = get_img_url(get_the_post_thumbnail($id, $image_size)); 
+                if ($post_type == 'bt_practitioner') {
+                    $image_url = '/wp-content/themes/beautifultrouble/img/bt-square.png';
+                }
                 ?>
 
                 <div class="row spacer">
