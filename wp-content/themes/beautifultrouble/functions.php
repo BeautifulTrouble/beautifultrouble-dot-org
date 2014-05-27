@@ -729,9 +729,8 @@ class CustomPostCount_Widget extends WP_Widget {
 
 		echo $before_widget;
 		if ( ! empty( $title ) )
-			echo $before_title . $title . $after_title;
-                //echo __( 'Hello, World!', 'text_domain' );
-                echo '<ul id="widget-custompostcount">';
+                    echo $before_title . $title . $after_title;
+                    echo '<div class="span4" style="margin-left:10px;"><a href="/new"><img src="/wp-content/themes/beautifultrouble/img/new.png">&nbsp;New Modules</a></div>';
                 $post_types = array( 'bt_tactic', 'bt_principle', 'bt_theory', 'bt_case', 'bt_practitioner' );
                 foreach ( $post_types as $post_type ) { 
                     $obj = get_post_type_object( $post_type );
@@ -739,10 +738,8 @@ class CustomPostCount_Widget extends WP_Widget {
                     $post_type_url  = $obj->rewrite['slug'];
                     $post_icon = '/wp-content/themes/beautifultrouble/img/icon_small_' . $obj->rewrite['slug'] . '.png';
                     $num = wp_count_posts( $post_type );
-                    echo "<li class=\"$post_type\"><a href=\"/$post_type_url\"><img src=\"$post_icon\" />&nbsp;$num->publish $post_type_name</a></li>";
+                    echo "<div class=\"span4 $post_type\" style=\"margin-top:5px;\"><a href=\"/$post_type_url\"><img src=\"$post_icon\" />&nbsp;$num->publish $post_type_name</a></div>";
                 }
-                echo '</ul>';
-                //print_r( $num_bt_case );
 		echo $after_widget;
 	}
 
