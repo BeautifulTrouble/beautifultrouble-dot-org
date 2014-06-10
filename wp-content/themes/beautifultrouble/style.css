@@ -241,7 +241,10 @@ p.meta {
 form[role="search"] {
     float: right;
     margin: 4px 0px;
-    width: 300px;
+    width: 250px;
+}
+form[role="search"] input#s {
+    width: 150px;
 }
 form[role="search"] label {
     display: none;
