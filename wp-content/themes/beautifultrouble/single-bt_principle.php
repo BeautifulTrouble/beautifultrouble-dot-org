@@ -92,7 +92,8 @@ get_header(); ?>
 
         <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
         <br />
-        <p class="alert alert-info hidden-phone">Hey there! Did you know that you can jump into our <a href="http://beautifultrouble.org/2013/03/12/visualize-beautiful-trouble/">experimental visualization interface</a> right from <a href="http://explore.beautifultrouble.org/#<?php echo $post->post_name; ?>">this point</a>? <b><a href="http://explore.beautifultrouble.org/#<?php echo $post->post_name; ?>">Give it a try and send us your feedback!</a></b></p>
+        <?php $exploreurl = 'http://explore.beautifultrouble.org/#' . urlencode( get_permalink( $post->ID )); ?>
+        <p class="alert alert-info hidden-phone">Hey there! Did you know that you can jump into our <a href="http://beautifultrouble.org/2013/03/12/visualize-beautiful-trouble/">experimental visualization interface</a> right from <a href="<?php echo $exploreurl; ?>">this point</a>? <b><a href="<?php echo $exploreurl ?>">Give it a try and send us your feedback!</a></b></p>
 <?php endwhile; // end of the loop. ?>
     </div><!-- /.span8 -->
     <div id="marginalia" class="fluid-sidebar sidebar span4" role="complementary">
