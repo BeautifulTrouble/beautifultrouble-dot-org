@@ -20,6 +20,8 @@ get_header(); ?>
    </div><!--/.container -->
    </div><!--/.row -->
    <div class="container">
+        <div class="row content">
+            <div class="span8">
      
  <!-- Masthead
       ================================================== -->
@@ -27,8 +29,6 @@ get_header(); ?>
         <h1><?php the_title();?></h1>
       </header>
          
-        <div class="row content">
-            <div class="span8">
             <?php the_post_thumbnail('bt-featured' ); ?>
             <?php // TODO move this into functions.php with an override to bootstrapwp_posted_on ?>
             <?php 

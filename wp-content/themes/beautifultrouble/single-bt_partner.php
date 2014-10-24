@@ -22,14 +22,14 @@ $original_posts = $query_string;
         </div><!--/.container -->
     </div><!--/.row -->
     <div class="container">
+    <div class="row content">
+    <div class="span8">
  <!-- Masthead
       ================================================== -->
       <header class="jumbotron subhead" id="overview">
         <?php the_post_thumbnail('bt-featured' ); ?>
       </header>
          
-    <div class="row content">
-    <div class="span8">
         <?php the_content();?>
         <?php endwhile; // end of the loop. ?>
 

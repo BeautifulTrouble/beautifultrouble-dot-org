@@ -22,6 +22,8 @@ if (have_posts() ) ;?>
 	</div><!--/.container -->
 </div><!--/.row -->
 <div class="container">
+<div class="row content">
+	<div class="span8">
 	<header class="jumbotron subhead" id="overview">
                 <h1>
 <?php  
@@ -31,8 +33,6 @@ print $obj->labels->name;
         </h1>
 </header>
 
-<div class="row content">
-	<div class="span8">
 		<?php while ( have_posts() ) : the_post(); ?>
 		<div <?php post_class(); ?>>
 			<div class="row">

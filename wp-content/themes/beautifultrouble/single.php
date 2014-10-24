@@ -19,6 +19,8 @@ get_header(); ?>
    </div><!--/.container -->
    </div><!--/.row -->
    <div class="container">
+        <div class="row content">
+<div class="span8">
      
  <!-- Masthead
       ================================================== -->
@@ -26,8 +28,6 @@ get_header(); ?>
         <h1><?php the_title();?></h1>
       </header>
          
-        <div class="row content">
-<div class="span8">
    <p class="meta"><?php echo bootstrapwp_posted_on();?> on <span class="entry-date"><?php echo get_the_date(); ?></span></p>
    
     

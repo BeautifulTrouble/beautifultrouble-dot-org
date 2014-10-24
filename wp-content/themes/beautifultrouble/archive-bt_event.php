@@ -22,6 +22,8 @@ if (have_posts() ) ;?>
 	</div><!--/.container -->
 </div><!--/.row -->
 <div class="container">
+<div class="row content">
+	<div class="span8">
 	<header class="jumbotron subhead" id="overview">
                 <h1>
 <?php  
@@ -32,8 +34,6 @@ echo $obj->labels->name;
 
 </header>
 
-<div class="row content">
-	<div class="span8">
 
 <p>We are currently adapting the book into specific training modules and hands-on action design tools. Many members of the Beautiful Trouble network are professional trainers. Contact us at helpout at beautifultrouble dot org to request a training in Beautiful Trouble 101, Nonviolent Direct Action, or Advanced Creative Action. We can come to your campus, organization or gathering.</p>
 <p>And here&#8217;s a <a href="https://docs.google.com/document/d/1jbrGrYTI3qiMTyRFvftmNpTTSzUMfGuZw4iGiH9Q4Dg/edit">draft curriculum</a> for a week-long training we did in New York in July. More to come, soon.</p>

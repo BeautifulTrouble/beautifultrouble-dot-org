@@ -16,14 +16,14 @@ get_header(); ?>
     </div><!--/.container -->
   </div><!--/.row -->
   <div class="container">
+<div class="row content">
+  <div class="span8">
  <!-- Masthead
  ================================================== -->
  <header class="jumbotron subhead" id="overview">
   <h1><?php the_title();?></h1>
 </header>
 
-<div class="row content">
-  <div class="span8">
     <?php the_content();
     endwhile;
            // end of the loop
@@ -31,9 +31,7 @@ get_header(); ?>
           // resetting the loop
     ?>
     <hr />
-  </div><!-- /.span8 -->
 
-  <div class="span8">
     <?php
               // Blog post query
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;

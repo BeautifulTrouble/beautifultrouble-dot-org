@@ -12,6 +12,8 @@
  */
 get_header(); ?>
  <div class="container">
+			 <div class="row content">
+<div class="span8">
 <?php if ( have_posts() ) : ?>
   
     <!-- Masthead
@@ -20,8 +22,6 @@ get_header(); ?>
         <h1><?php printf( __( 'Search Results for: %s', 'bootstrapwp' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
        
       </header>
-			 <div class="row content">
-<div class="span8">
 					<?php while ( have_posts() ) : the_post(); ?>
 <a href="<?php the_permalink(); ?>" title="<?php the_title();?>"><h2> <?php the_title();?></h2></a>
 <p><?php the_excerpt();?></p>
@@ -35,8 +35,6 @@ get_header(); ?>
         <h1><?php _e( 'No Results Found', 'bootstrapwp' ); ?></h1>
       <p class="lead"><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps you should try again with a different search term.', 'bootstrapwp' ); ?></p>
       </header>
-			 <div class="row content">
-<div class="span8">
 					
 
 <div class="well">

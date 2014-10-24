@@ -15,6 +15,8 @@ get_header(); ?>
    </div><!--/.container -->
    </div><!--/.row -->
    <div class="container">
+        <div class="row content">
+<div class="span8">
 
       
  <!-- Masthead
@@ -24,8 +26,6 @@ get_header(); ?>
         <p class="lead"><?php _e( 'You&apos;ve reached the known limits of the Beautiful Trouble universe.', 'bootstrapwp' ); ?></p>
       </header>
 	  
-        <div class="row content">
-<div class="span8">
 					
 <p>So many more tactic, principle, theory and case study modules could be written than we've managed to write so far. Rather than only reference already-existing modules, we've deliberately designed the project to be expansive and outward looking, freely referencing modules that have yet to be written in the hopes they someday might.
 

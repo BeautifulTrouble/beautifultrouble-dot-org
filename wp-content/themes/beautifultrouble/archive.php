@@ -20,6 +20,8 @@ if (have_posts() ) ;?>
 	</div><!--/.container -->
 </div><!--/.row -->
 <div class="container">
+<div class="row content">
+	<div class="span8">
 	<header class="jumbotron subhead" id="overview">
 		<h1><?php
 		if ( is_day() ) {
@@ -45,8 +47,6 @@ if (have_posts() ) ;?>
 		}
 		?></h1>
         </header>
-<div class="row content">
-	<div class="span8">
 		<?php while ( have_posts() ) : the_post(); ?>
 		<div <?php post_class(); ?>>
 			<a href="<?php the_permalink(); ?>" title="<?php the_title();?>"><h3><?php the_title();?></h3></a>

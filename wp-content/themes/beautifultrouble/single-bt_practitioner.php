@@ -22,14 +22,14 @@ $original_posts = $query_string;
         </div><!--/.container -->
     </div><!--/.row -->
     <div class="container">
+    <div class="row content">
+    <div class="span8">
  <!-- Masthead
       ================================================== -->
       <header class="jumbotron subhead" id="overview">
         <h1><?php the_title();?></h1>
       </header>
          
-    <div class="row content">
-    <div class="span8">
         <?php the_post_thumbnail('bt-featured' ); ?>
         <?php the_content();?>
         <?php $values = get_field('sources');
