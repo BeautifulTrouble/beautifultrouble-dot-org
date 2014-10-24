@@ -21,7 +21,7 @@ while ( have_posts() ) : the_post(); ?>
 
     <?php the_content();
 endwhile; 
-            $image_size = 170;
+            $image_size = 440;
             $query = new WP_Query([
                 'post_type' => ['bt_case', 'bt_theory', 'bt_principle', 'bt_tactic', 'bt_practitioner'], 
                 'orderby' => 'date', 
@@ -33,7 +33,7 @@ endwhile;
                 $id = get_the_id();
                 $post_type = get_post_type($id);
                 $post_type_name = get_post_type_object($post_type)->labels->singular_name;
-                $image_url = get_img_url(get_the_post_thumbnail($id, $image_size)); 
+                $image_url = get_img_url(get_the_post_thumbnail($id, array($image_size, $image_size) )); 
                 if ($post_type == 'bt_practitioner') {
                     $image_url = '/wp-content/themes/beautifultrouble/img/icon_practitioner.png';
                 }
