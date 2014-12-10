@@ -35,10 +35,6 @@ body.home .avatar, body.author .avatar {
     margin: 0 10px 10px 0;
 }
 
-#buy-the-book a img {
-    margin-bottom: 10px;
-}
-
 hr, hr.soften {
     margin: 27px 0;
 }
@@ -216,6 +212,28 @@ div.big-avatar {
 div.spacer {
     margin-top: 40px;
 }
+div.tab-pane {
+    min-height: 200px;
+    overflow-y: hidden;
+}
+div.tab-pane > img {
+    display: inline-block;
+    margin-right: 10px;
+}
+div.tab-pane a.img img {
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+div.tab-pane span.price {
+    font-size: 90%;
+    position: relative;
+    top: 2px;
+    display: inline-block;
+    line-height: 100%;
+}
+div.tab-content {
+    margin-bottom: 8px;
+}
 
 .navbar .nav > li > a  {
     color: rgb(220,220,220);
@@ -273,8 +291,8 @@ li.google {
     padding-left: 18px;
 }
 
-ul#editions {
-    width: 80%;
+ul#editions li a {
+    line-height: 100%;
 }
 
 .wp-caption {
@@ -324,6 +342,9 @@ ul#editions {
 @media (min-width: 768px) and (max-width: 979px) { 
     body h1.logo {
         background: url('../beautifultrouble/img/bt-med-banner.png') no-repeat;
+    }
+    div.tab-pane span.price {
+        top: 0;
     }
     form[role="search"] {
         width: 300px;
