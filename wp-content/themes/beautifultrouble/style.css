@@ -336,6 +336,12 @@ ul#editions li a {
     div.big-avatar {
         min-height: 340px;
     }
+    div.tab-pane > img {
+        margin-right: 0;
+    }
+    div.tab-pane:last-of-type > img {
+        margin-right: 10px;
+    }
 }
 
 
