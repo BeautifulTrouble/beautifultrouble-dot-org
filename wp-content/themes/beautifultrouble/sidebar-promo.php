@@ -7,9 +7,9 @@
                                     Published by <b>OR Books</b>. Order your copy today:
                                     </p>
 <ul class="nav nav-tabs" id="editions">
-  <li><a href="#full" data-toggle="tab"><br />Full<br />Edition</a></li>
-  <li><a href="#pocket" data-toggle="tab"><br />Pocket<br />Edition</a></li>
-  <li class="active" ><a href="#donate" data-toggle="tab">Give an<br />activist<br /><em>Trouble</em></a></li>
+  <li><a href="#full" data-toggle="tab">Full<br />Edition</a></li>
+  <li><a href="#pocket" data-toggle="tab">Pocket<br />Edition</a></li>
+  <li class="active" ><a href="#donate" data-toggle="tab">Gift<br />Edition</a></li>
 </ul>
 <div class="tab-content">
   <div class="tab-pane" id="full">
@@ -25,10 +25,9 @@
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=447"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$18<br />both</span>
   </div>
   <div class="tab-pane active" id="donate">
-    <img class="alignleft" src="/wp-content/themes/beautifultrouble/img/Beautiful_Trouble_Book_Donate.png" width="150" height="191" />
+    <img class="alignleft" src="/wp-content/themes/beautifultrouble/img/Beautiful_Trouble_Book_Donate.png" width="150" height="190" />
     <span class="promo-copy">Help us get <em>Beautiful Trouble</em> into the hands that need it most! Purchase a gift copy of the book and we'll donate it to a deserving revolutionary on a tight budget.<br /><br /></span>
-    <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=648"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">give $25<br />full edition</span><br />
-    <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=651"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">give $13<br />pocket edition</span>
+    <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=648"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$25<br />gift edition</span>
   </div>
 </div>
     <p><i class="highlight">Not sure yet? <b><a href="/the-book">Find out more about the books!</a></b></i></p>
