@@ -1,14 +1,14 @@
 10
 
 dir
-27926
-http://core.svn.wordpress.org/tags/3.8.2/wp-includes/js/tinymce/plugins/directionality
+31685
+http://core.svn.wordpress.org/tags/4.1.1/wp-includes/js/tinymce/plugins/directionality
 http://core.svn.wordpress.org
 
 
 
-2012-08-18T23:24:27.211302Z
-21545
+2014-10-23T02:08:20.053191Z
+29735
 azaozz
 
 
@@ -26,18 +26,17 @@ azaozz
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-editor_plugin_src.js
+plugin.js
 file
 
 
 
 
-2014-02-26T01:32:39.125050Z
-9da7f763c6a1f1b7fc61582e7d454cc3
-2012-08-18T23:24:27.211302Z
-21545
+2015-03-10T21:34:35.468046Z
+2a8fc756a0859acaac1b9d20481979f5
+2013-12-28T23:53:15.661789Z
+26759
 azaozz
-has-props
 
 
 
@@ -58,20 +57,20 @@ has-props
 
 
 
-2105
+
+1441
 
-editor_plugin.js
+plugin.min.js
 file
 
 
 
 
-2014-02-26T01:32:39.125050Z
-e2d925fe1e778dbcade06d55164fc276
-2012-08-18T23:24:27.211302Z
-21545
+2015-03-10T21:34:35.468046Z
+60de57253ca9143a6f1e4aff10fc39d2
+2014-10-23T02:08:20.053191Z
+29735
 azaozz
-has-props
 
 
 
@@ -92,5 +91,6 @@ has-props
 
 
 
-1259
+
+726
 

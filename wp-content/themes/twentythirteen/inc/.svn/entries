@@ -1,15 +1,15 @@
 10
 
 dir
-27926
-http://core.svn.wordpress.org/tags/3.8.2/wp-content/themes/twentythirteen/inc
+31685
+http://core.svn.wordpress.org/tags/4.1.1/wp-content/themes/twentythirteen/inc
 http://core.svn.wordpress.org
 
 
 
-2013-10-15T16:47:09.832958Z
-25701
-lancewillett
+2014-11-13T12:00:57.994084Z
+30326
+ocean90
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2014-02-26T01:32:38.997050Z
-2b74e04dcce92f6af9add753f3e13bda
-2013-10-15T16:47:09.832958Z
-25701
-lancewillett
+2015-03-10T21:34:36.748046Z
+11ef9de60bedb666594baca3e000e063
+2014-11-13T12:00:57.994084Z
+30326
+ocean90
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-6431
+6535
 
 back-compat.php
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2014-02-26T01:32:38.997050Z
-063ea62bed87482dc9c35b2d69bd9ba7
-2013-09-20T19:34:10.329877Z
-25442
-lancewillett
+2015-03-10T21:34:36.748046Z
+a7d8955a04266243fb256dffdf04ccc9
+2014-10-15T17:21:19.106239Z
+29658
+ocean90
 has-props
 
 
@@ -92,5 +92,5 @@ has-props
 
 
 
-2257
+2175
 

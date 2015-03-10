@@ -1,15 +1,15 @@
 10
 
 dir
-27926
-http://core.svn.wordpress.org/tags/3.8.2/wp-includes/js/tinymce/plugins/wpfullscreen
+31685
+http://core.svn.wordpress.org/tags/4.1.1/wp-includes/js/tinymce/plugins/wpfullscreen
 http://core.svn.wordpress.org
 
 
 
-2013-11-15T15:05:09.511515Z
-26122
-nacin
+2014-12-16T12:15:24.881023Z
+30882
+johnbillion
 
 
 
@@ -26,17 +26,17 @@ nacin
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-editor_plugin.js
+plugin.js
 file
 
 
 
 
-2014-02-26T01:35:08.297051Z
-5d779b1702467d3ff8daf053f809a602
-2013-11-15T15:05:09.511515Z
-26122
-nacin
+2015-03-10T21:34:35.336046Z
+dd83030fdd725c148b2b7a4aded9da13
+2014-12-16T12:15:24.881023Z
+30882
+johnbillion
 
 
 
@@ -58,20 +58,19 @@ nacin
 
 
 
-2933
+2000
 
-editor_plugin_src.js
+plugin.min.js
 file
 
 
 
 
-2014-02-26T01:35:08.297051Z
-c59d928618f4eb94397ba801a3c100cb
-2013-11-15T15:05:09.511515Z
-26122
-nacin
-has-props
+2015-03-10T21:34:35.336046Z
+76c195e5f157603feb495fe3fffbc33d
+2014-12-16T12:15:24.881023Z
+30882
+johnbillion
 
 
 
@@ -92,8 +91,6 @@ has-props
 
 
 
-5378
-
-css
-dir
+
+990
 

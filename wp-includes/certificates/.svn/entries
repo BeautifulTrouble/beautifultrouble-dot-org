@@ -1,14 +1,14 @@
 10
 
 dir
-27926
-http://core.svn.wordpress.org/tags/3.8.2/wp-includes/certificates
+31685
+http://core.svn.wordpress.org/tags/4.1.1/wp-includes/certificates
 http://core.svn.wordpress.org
 
 
 
-2013-09-23T13:59:11.147766Z
-25487
+2014-12-07T03:13:22.891617Z
+30755
 dd32
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2014-02-26T01:32:39.057050Z
-34120794e34a546b6de505bc6a89bcc2
-2013-09-23T13:59:11.147766Z
-25487
+2015-03-10T21:34:36.216046Z
+978976c7bbfab9219a6f0a8a66a4da6f
+2014-12-07T03:13:22.891617Z
+30755
 dd32
 
 
@@ -58,5 +58,5 @@ dd32
 
 
 
-229043
+244983
 

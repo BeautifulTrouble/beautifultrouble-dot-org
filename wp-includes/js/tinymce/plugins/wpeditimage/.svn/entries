@@ -1,15 +1,15 @@
 10
 
 dir
-27926
-http://core.svn.wordpress.org/tags/3.8.2/wp-includes/js/tinymce/plugins/wpeditimage
+31685
+http://core.svn.wordpress.org/tags/4.1.1/wp-includes/js/tinymce/plugins/wpeditimage
 http://core.svn.wordpress.org
 
 
 
-2013-11-15T15:05:09.511515Z
-26122
-nacin
+2015-02-12T06:02:24.145185Z
+31418
+dd32
 
 
 
@@ -26,21 +26,17 @@ nacin
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-css
-dir
-
-editimage.html
+plugin.js
 file
 
 
 
 
-2014-02-26T01:32:39.137050Z
-216788f7dbe172a3d3fb827a05d0f837
-2013-08-15T03:13:36.630120Z
-25013
-azaozz
-has-props
+2015-03-10T21:34:35.236046Z
+bf8fa9a1830d020a8191eb02c7f74b54
+2015-02-12T06:02:24.145185Z
+31418
+dd32
 
 
 
@@ -61,25 +57,20 @@ has-props
 
 
 
-11985
+
+33939
 
-img
-dir
-
-js
-dir
-
-editor_plugin.js
+plugin.min.js
 file
 
 
 
 
-2014-02-26T01:35:08.297051Z
-cb1aec084f3cd28d6f37990e80174863
-2013-11-15T15:05:09.511515Z
-26122
-nacin
+2015-03-10T21:34:35.236046Z
+5b122550eec0c22e85083aab44c80b18
+2015-02-12T06:02:24.145185Z
+31418
+dd32
 
 
 
@@ -101,39 +92,5 @@ nacin
 
 
 
-5758
-
-editor_plugin_src.js
-file
-
-
-
-
-2014-02-26T01:35:08.297051Z
-4de9f6b1aafe968e8509ffe7ee9bc973
-2013-11-15T15:05:09.511515Z
-26122
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9159
+16001
 

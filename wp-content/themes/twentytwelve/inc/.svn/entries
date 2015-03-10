@@ -1,15 +1,15 @@
 10
 
 dir
-27926
-http://core.svn.wordpress.org/tags/3.8.2/wp-content/themes/twentytwelve/inc
+31685
+http://core.svn.wordpress.org/tags/4.1.1/wp-content/themes/twentytwelve/inc
 http://core.svn.wordpress.org
 
 
 
-2013-09-20T19:24:09.132319Z
-25441
-lancewillett
+2014-11-13T12:00:57.994084Z
+30326
+ocean90
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2014-02-26T01:32:39.005050Z
-d69c9cc6660741ba352f5609f444757d
-2013-09-20T19:24:09.132319Z
-25441
-lancewillett
+2015-03-10T21:34:36.864046Z
+f2c0b02cccb45be2ad9df9f4dc5932b2
+2014-11-13T12:00:57.994084Z
+30326
+ocean90
 has-props
 
 
@@ -58,5 +58,5 @@ has-props
 
 
 
-4670
+4667
 
