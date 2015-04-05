@@ -1,6 +1,6 @@
 <?php
 /**
- * Provides basic run-time tests to ensure the plugin can run in the current WordPress envrionment
+ * Provides basic run-time tests to ensure the plugin can run in the current WordPress environment
  *
  * @package Media Library Assistant
  * @since 0.1
@@ -32,6 +32,11 @@ class MLATest {
 	 */
 	public static function initialize() {
 		MLATest::$wordpress_3point5_plus = version_compare( get_bloginfo( 'version' ), '3.5', '>=' );
+		
+		/*
+		 * This is the earliest effective place to add E_STRICT to error_reporting
+		 */
+		//error_reporting( E_ALL | E_STRICT );
 	}
 
 	/**
@@ -58,7 +63,7 @@ class MLATest {
 	 *
 	 * @since 0.1
 	 *
-	 * @param string	representing the minimum required version of WordPress, e.g. '3.3.0'
+	 * @param string	representing the minimum required version of WordPress, e.g. '3.5.0'
 	 *
 	 * @return	string	'' if pass else error message
 	 */

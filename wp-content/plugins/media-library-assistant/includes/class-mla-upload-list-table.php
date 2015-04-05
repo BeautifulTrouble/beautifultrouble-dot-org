@@ -25,33 +25,21 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	/*
 	 * These arrays define the table columns.
 	 */
-	
+
 	/**
 	 * Table column definitions
 	 *
 	 * This array defines table columns and titles where the key is the column slug (and class)
 	 * and the value is the column's title text.
 	 * 
+	 * All of the columns are added to this array by MLA_Upload_List_Table::mla_admin_init_action.
+	 *
 	 * @since 1.40
 	 *
 	 * @var	array
 	 */
-	private static $default_columns = array(
-//		'_title' => 'underscore title',
-		'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-		'icon'   => '',		
-		'name' => 'Extension',
-		'mime_type' => 'MIME Type',
-		'icon_type' => 'Icon Type',
-		'source' => 'Source',
-		'status'  => 'Status',
-		'core_type'  => 'WordPress Type',
-		'mla_type' => 'MLA Type',
-		'standard_source' => 'Std. Source',
-		'core_icon_type' => 'Std. Icon Type',
-		'description' => 'Description'
-	);
-	
+	private static $default_columns = array();
+
 	/**
 	 * Default values for hidden columns
 	 *
@@ -77,7 +65,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 		'core_icon_type',
 		'description'
 	);
-	
+
 	/**
 	 * Sortable column definitions
 	 *
@@ -116,7 +104,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	private static function _default_hidden_columns( ) {
 		return self::$default_hidden_columns;
 	}
-	
+
 	/**
 	 * Return the names and display values of the sortable columns
 	 *
@@ -124,18 +112,17 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 *
 	 * @return	array	name => array( orderby value, heading ) for sortable columns
 	 */
-	public static function mla_get_sortable_columns( )
-	{
+	public static function mla_get_sortable_columns( ) {
 		$results = array() ;
-			
+
 		foreach ( self::$default_sortable_columns as $key => $value ) {
 			$value[1] = self::$default_columns[ $key ];
 			$results[ $key ] = $value;
 		}
-		
+
 		return $results;
 	}
-	
+
 	/**
 	 * Handler for filter 'get_user_option_managesettings_page_mla-settings-menu-uploadcolumnshidden'
 	 *
@@ -152,12 +139,9 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 * @return	array	updated list of hidden columns
 	 */
 	public static function mla_manage_hidden_columns_filter( $result, $option, $user_data ) {
-		if ( $result )
-			return $result;
-		else
-			return self::_default_hidden_columns();
+		return $result ? $result : self::_default_hidden_columns();
 	}
-	
+
 	/**
 	 * Handler for filter 'manage_settings_page_mla-settings-menu_columns'
 	 *
@@ -169,11 +153,40 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 *
 	 * @return	array	list of table columns
 	 */
-	public static function mla_manage_columns_filter( )
-	{
+	public static function mla_manage_columns_filter( ) {
 		return self::$default_columns;
 	}
-	
+
+	/**
+	 * Builds the $default_columns array with translated source texts.
+	 *
+	 * Called from MLA:mla_plugins_loaded_action because the $default_columns information might be
+	 * accessed from "front end" posts/pages.
+	 *
+	 * @since 1.71
+	 *
+	 * @return	void
+	 */
+	public static function mla_localize_default_columns_array( ) {
+		/*
+		 * Build the default columns array at runtime to accomodate calls to the localization functions
+		 */
+		self::$default_columns = array(
+			'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
+			'icon'   => '',		
+			'name' => _x( 'Extension', 'list_table_column', 'media-library-assistant' ),
+			'mime_type' => _x( 'MIME Type', 'list_table_column', 'media-library-assistant' ),
+			'icon_type' => _x( 'Icon Type', 'list_table_column', 'media-library-assistant' ),
+			'source' => _x( 'Source', 'list_table_column', 'media-library-assistant' ),
+			'status'  => _x( 'Status', 'list_table_column', 'media-library-assistant' ),
+			'core_type'  => _x( 'WordPress Type', 'list_table_column', 'media-library-assistant' ),
+			'mla_type' => _x( 'MLA Type', 'list_table_column', 'media-library-assistant' ),
+			'standard_source' => _x( 'Std. Source', 'list_table_column', 'media-library-assistant' ),
+			'core_icon_type' => _x( 'Std. Icon Type', 'list_table_column', 'media-library-assistant' ),
+			'description' => _x( 'Description', 'list_table_column', 'media-library-assistant' )
+		);
+	}
+
 	/**
 	 * Called in the admin_init action because the list_table object isn't
 	 * created in time to affect the "screen options" setup.
@@ -182,17 +195,17 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 *
 	 * @return	void
 	 */
-	public static function mla_admin_init_action( )
-	{
- 		if ( isset( $_REQUEST['mla-optional-uploads-display'] ) || isset( $_REQUEST['mla-optional-uploads-search'] ) )
+	public static function mla_admin_init_action( ) {
+ 		if ( isset( $_REQUEST['mla-optional-uploads-display'] ) || isset( $_REQUEST['mla-optional-uploads-search'] ) ) {
 			return;
-			
+		}
+
 		if ( isset( $_REQUEST['mla_tab'] ) && $_REQUEST['mla_tab'] == 'upload' ) {
 			add_filter( 'get_user_option_managesettings_page_' . MLASettings::MLA_SETTINGS_SLUG . '-uploadcolumnshidden', 'MLA_Upload_list_Table::mla_manage_hidden_columns_filter', 10, 3 );
 			add_filter( 'manage_settings_page_' . MLASettings::MLA_SETTINGS_SLUG . '-upload_columns', 'MLA_Upload_list_Table::mla_manage_columns_filter', 10, 0 );
 		}
 	}
-	
+
 	/**
 	 * Initializes some properties from $_REQUEST variables, then
 	 * calls the parent constructor to set some default configs.
@@ -209,13 +222,12 @@ class MLA_Upload_List_Table extends WP_List_Table {
 			'ajax' => true, //does this table support ajax?
 			'screen' => 'settings_page_' . MLASettings::MLA_SETTINGS_SLUG . '-upload'
 		) );
-		
+
 		/*
 		 * NOTE: There is one add_action call at the end of this source file.
-		 * NOTE: There are two add_filter calls at the end of this source file.
 		 */
 	}
-	
+
 	/**
 	 * Supply a column value if no column-specific function has been defined
 	 *
@@ -231,9 +243,10 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 */
 	function column_default( $item, $column_name ) {
 		//Show the whole array for troubleshooting purposes
-		return 'column_default: ' . $column_name . ', ' . print_r( $item, true );
+		/* translators: 1: column_name 2: column_values */
+		return sprintf( __( 'column_default: %1$s, %2$s', 'media-library-assistant' ), $column_name, print_r( $item, true ) );
 	}
-	
+
 	/**
 	 * Displays checkboxes for using bulk actions. The 'cb' column
 	 * is given special treatment when columns are processed.
@@ -243,13 +256,12 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 * @param	object	An MLA upload_type object
 	 * @return	string	HTML markup to be placed inside the column
 	 */
-	function column_cb( $item )
-	{
+	function column_cb( $item ) {
 		return sprintf( '<input type="checkbox" name="cb_mla_item_ID[]" value="%1$s" />',
 		/*%1$s*/ $item->post_ID
 		);
 	}
-	
+
 	/**
 	 * Supply the content for a custom column
 	 *
@@ -258,11 +270,10 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 * @param	array	A singular attachment (post) object
 	 * @return	string	HTML markup to be placed inside the column
 	 */
-	function column_icon( $item )
-	{
+	function column_icon( $item ) {
 		return MLAMime::mla_get_icon_type_image( $item->icon_type );
 	}
-	
+
 	/**
 	 * Add rollover actions to a table column
 	 *
@@ -275,40 +286,44 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 */
 	private function _build_rollover_actions( $item, $column ) {
 		$actions = array();
-		
+
 		/*
 		 * Compose view arguments
 		 */
-		
+
 		$view_args = array(
 			'page' => MLASettings::MLA_SETTINGS_SLUG . '-upload',
 			'mla_tab' => 'upload',
 			'mla_item_slug' => urlencode( $item->slug )
 		);
 
-		if ( isset( $_REQUEST['paged'] ) )
+		if ( isset( $_REQUEST['paged'] ) ) {
 			$view_args['paged'] = $_REQUEST['paged'];
-		
-		if ( isset( $_REQUEST['order'] ) )
-			$view_args['order'] = $_REQUEST['order'];
-		
-		if ( isset( $_REQUEST['orderby'] ) )
-			$view_args['orderby'] = $_REQUEST['orderby'];
-		
-		$actions['edit'] = '<a href="' . add_query_arg( $view_args, wp_nonce_url( '?mla_admin_action=' . MLA::MLA_ADMIN_SINGLE_EDIT_DISPLAY, MLA::MLA_ADMIN_NONCE ) ) . '" title="Edit this item">Edit</a>';
+		}
 
-		$actions['inline hide-if-no-js'] = '<a class="editinline" href="#" title="Edit this item inline">Quick Edit</a>';
-			
+		if ( isset( $_REQUEST['order'] ) ) {
+			$view_args['order'] = $_REQUEST['order'];
+		}
+
+		if ( isset( $_REQUEST['orderby'] ) ) {
+			$view_args['orderby'] = $_REQUEST['orderby'];
+		}
+
+		$actions['edit'] = '<a href="' . add_query_arg( $view_args, wp_nonce_url( '?mla_admin_action=' . MLA::MLA_ADMIN_SINGLE_EDIT_DISPLAY, MLA::MLA_ADMIN_NONCE ) ) . '" title="' . __( 'Edit this item', 'media-library-assistant' ) . '">' . __( 'Edit', 'media-library-assistant' ) . '</a>';
+
+		$actions['inline hide-if-no-js'] = '<a class="editinline" href="#" title="' . __( 'Edit this item inline', 'media-library-assistant' ) . '">' . __( 'Quick Edit', 'media-library-assistant' ) . '</a>';
+
 		if ( 'custom' == $item->source ) {
-			if ( empty( $item->standard_source ) )
-				$actions['delete'] = '<a class="delete-tag"' . ' href="' . add_query_arg( $view_args, wp_nonce_url( '?mla_admin_action=' . MLA::MLA_ADMIN_SINGLE_DELETE, MLA::MLA_ADMIN_NONCE ) ) . '" title="Delete this item permanently">Delete Permanently</a>';
-			else
-				$actions['delete'] = '<a class="delete-tag"' . ' href="' . add_query_arg( $view_args, wp_nonce_url( '?mla_admin_action=' . MLA::MLA_ADMIN_SINGLE_DELETE, MLA::MLA_ADMIN_NONCE ) ) . '" title="Revert to standard item">Revert to Standard</a>';
+			if ( empty( $item->standard_source ) ) {
+				$actions['delete'] = '<a class="delete-tag"' . ' href="' . add_query_arg( $view_args, wp_nonce_url( '?mla_admin_action=' . MLA::MLA_ADMIN_SINGLE_DELETE, MLA::MLA_ADMIN_NONCE ) ) . '" title="' . __( 'Delete this item Permanently', 'media-library-assistant' ) . '">' . __( 'Delete Permanently', 'media-library-assistant' ) . '</a>';
+			} else {
+				$actions['delete'] = '<a class="delete-tag"' . ' href="' . add_query_arg( $view_args, wp_nonce_url( '?mla_admin_action=' . MLA::MLA_ADMIN_SINGLE_DELETE, MLA::MLA_ADMIN_NONCE ) ) . '" title="' . __( 'Revert to standard item', 'media-library-assistant' ) . '">' . __( 'Revert to Standard', 'media-library-assistant' ) . '</a>';
+			}
 		}
 
 		return $actions;
 	}
-	
+
 	/**
 	 * Add hidden fields with the data for use in the inline editor
 	 *
@@ -336,7 +351,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 		$inline_data .= "</div>\r\n";
 		return $inline_data;
 	}
-	
+
 	/**
 	 * Supply the content for a custom column
 	 *
@@ -350,7 +365,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 		$slug = esc_attr( $item->slug );
 		return sprintf( '%1$s<br>%2$s%3$s', /*%1$s*/ $slug, /*%2$s*/ $this->row_actions( $row_actions ), /*%3$s*/ $this->_build_inline_data( $item ) );
 	}
-	
+
 	/**
 	 * Supply the content for a custom column
 	 *
@@ -362,7 +377,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	function column_mime_type( $item ) {
 		return esc_attr( $item->mime_type );
 	}
-	
+
 	/**
 	 * Supply the content for a custom column
 	 *
@@ -374,7 +389,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	function column_icon_type( $item ) {
 		return esc_attr( $item->icon_type );
 	}
-	
+
 	/**
 	 * Supply the content for a custom column
 	 *
@@ -386,7 +401,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	function column_source( $item ) {
 		return esc_attr( $item->source );
 	}
-	
+
 	/**
 	 * Supply the content for a custom column
 	 *
@@ -396,12 +411,13 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 * @return	string	HTML markup to be placed inside the column
 	 */
 	function column_status( $item ) {
-		if ( $item->disabled )
-			return 'inactive';
-		else
-			return 'active';
+		if ( $item->disabled ) {
+			return __( 'Inactive', 'media-library-assistant' );
+		} else {
+			return __( 'Active', 'media-library-assistant' );
+		}
 	}
-	
+
 	/**
 	 * Supply the content for a custom column
 	 *
@@ -413,7 +429,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	function column_core_type( $item ) {
 		return esc_attr( $item->core_type );
 	}
-	
+
 	/**
 	 * Supply the content for a custom column
 	 *
@@ -425,7 +441,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	function column_mla_type( $item ) {
 		return esc_attr( $item->mla_type );
 	}
-	
+
 	/**
 	 * Supply the content for a custom column
 	 *
@@ -437,7 +453,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	function column_standard_source( $item ) {
 		return (string) $item->standard_source;
 	}
-	
+
 	/**
 	 * Supply the content for a custom column
 	 *
@@ -449,7 +465,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	function column_core_icon_type( $item ) {
 		return esc_attr( $item->core_icon_type );
 	}
-	
+
 	/**
 	 * Supply the content for a custom column
 	 *
@@ -461,7 +477,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	function column_description( $item ) {
 		return esc_attr( $item->description );
 	}
-	
+
 	/**
 	 * This method dictates the table's columns and titles
 	 *
@@ -472,7 +488,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	function get_columns( ) {
 		return MLA_Upload_list_Table::mla_manage_columns_filter();
 	}
-	
+
 	/**
 	 * Returns the list of currently hidden columns from a user option or
 	 * from default values if the option is not set
@@ -481,17 +497,16 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 * 
 	 * @return	array	Column information,e.g., array(0 => 'ID_parent, 1 => 'title_name')
 	 */
-	function get_hidden_columns( )
-	{
+	function get_hidden_columns( ) {
 		$columns = get_user_option( 'managesettings_page_' . MLASettings::MLA_SETTINGS_SLUG . '-uploadcolumnshidden' );
 
 		if ( is_array( $columns ) ) {
 			return $columns;
 		}
-		else
-			return self::_default_hidden_columns();
+
+		return self::_default_hidden_columns();
 	}
-	
+
 	/**
 	 * Returns an array where the  key is the column that needs to be sortable
 	 * and the value is db column to sort by. Also notes the current sort column,
@@ -504,22 +519,20 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 */
 	function get_sortable_columns( ) {
 		$columns = self::$default_sortable_columns;
-		
+
 		if ( isset( $_REQUEST['orderby'] ) ) {
-			$needle = array(
-				 $_REQUEST['orderby'],
-				false 
-			);
+			$needle = array( $_REQUEST['orderby'], false );
 			$key = array_search( $needle, $columns );
-			if ( $key )
+			if ( $key ) {
 				$columns[ $key ][ 1 ] = true;
+			}
 		} else {
 			$columns['menu_order'][ 1 ] = true;
 		}
 
 		return $columns;
 	}
-	
+
 	/**
 	 * Returns HTML markup for one view that can be used with this table
 	 *
@@ -533,7 +546,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 */
 	function _get_view( $view_slug, $upload_item, $current_view ) {
 		static $base_url = NULL;
-		
+
 		$class = ( $view_slug == $current_view ) ? ' class="current"' : '';
 
 		/*
@@ -544,20 +557,19 @@ class MLA_Upload_List_Table extends WP_List_Table {
 			 * Remember the view filters
 			 */
 			$base_url = 'options-general.php?page=' . MLASettings::MLA_SETTINGS_SLUG . '-upload&mla_tab=upload';
-			
-			if ( isset( $_REQUEST['s'] ) )
-				$base_url = add_query_arg( array(
-					 's' => $_REQUEST['s'] 
-				), $base_url );
+
+			if ( isset( $_REQUEST['s'] ) ) {
+				$base_url = add_query_arg( array( 's' => $_REQUEST['s'] ), $base_url );
+			}
 		}
-		
+
 		$singular = sprintf('%s <span class="count">(%%s)</span>', $upload_item['singular'] );
 		$plural = sprintf('%s <span class="count">(%%s)</span>', $upload_item['plural'] );
-		$nooped_plural = _n_noop( $singular, $plural );
+		$nooped_plural = _n_noop( $singular, $plural, 'media-library-assistant' );
 		return "<a href='" . add_query_arg( array( 'mla_upload_view' => $view_slug ), $base_url )
-			. "'$class>" . sprintf( translate_nooped_plural( $nooped_plural, $upload_item['count'] ), number_format_i18n( $upload_item['count'] ) ) . '</a>';
+			. "'$class>" . sprintf( translate_nooped_plural( $nooped_plural, $upload_item['count'], 'media-library-assistant' ), number_format_i18n( $upload_item['count'] ) ) . '</a>';
 	} // _get_view
-	
+
 	/**
 	 * Returns an associative array listing all the views that can be used with this table.
 	 * These are listed across the top of the page and managed by WordPress.
@@ -571,19 +583,19 @@ class MLA_Upload_List_Table extends WP_List_Table {
 		 * Find current view
 		 */
 		$current_view = isset( $_REQUEST['mla_upload_view'] ) ? $_REQUEST['mla_upload_view'] : 'all';
-			
+
 		/*
 		 * Generate the list of views, retaining keyword search criterion
 		 */
 		$s = isset( $_REQUEST['s'] ) ? $_REQUEST['s'] : '';
 		$upload_items = MLAMime::mla_tabulate_upload_items( $s );
 		$view_links = array();
-		foreach( $upload_items as $slug => $item )
+		foreach ( $upload_items as $slug => $item )
 			$view_links[ $slug ] = self::_get_view( $slug, $item, $current_view );
 
 		return $view_links;
 	}
-	
+
 	/**
 	 * Get an associative array ( option_name => option_title ) with the list
 	 * of bulk actions available on this table.
@@ -592,16 +604,15 @@ class MLA_Upload_List_Table extends WP_List_Table {
 	 * 
 	 * @return	array	Contains all the bulk actions: 'slugs'=>'Visible Titles'
 	 */
-	function get_bulk_actions( )
-	{
+	function get_bulk_actions( ) {
 		$actions = array();
 
-		$actions['edit'] = 'Edit';
-		$actions['delete'] = 'Delete/Revert Custom';
-		
+		$actions['edit'] = __( 'Edit', 'media-library-assistant' );
+		$actions['delete'] = __( 'Delete/Revert Custom', 'media-library-assistant' );
+
 		return $actions;
 	}
-	
+
 	/**
 	 * Prepares the list of items for displaying
 	 *
@@ -620,7 +631,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 			$this->get_hidden_columns(),
 			$this->get_sortable_columns() 
 		);
-		
+
 		/*
 		 * REQUIRED for pagination.
 		 */
@@ -628,14 +639,16 @@ class MLA_Upload_List_Table extends WP_List_Table {
 		$user = get_current_user_id();
 		$screen = get_current_screen();
 		$option = $screen->get_option( 'per_page', 'option' );
-		if ( is_string( $option ) )
+		if ( is_string( $option ) ) {
 			$per_page = get_user_meta( $user, $option, true );
-		else
+		} else {
 			$per_page = 10;
-			
-		if ( empty( $per_page ) || $per_page < 1 )
+		}
+
+		if ( empty( $per_page ) || $per_page < 1 ) {
 			$per_page = $screen->get_option( 'per_page', 'default' );
-		
+		}
+
 		/*
 		 * REQUIRED. We also have to register our pagination options & calculations.
 		 */
@@ -653,7 +666,7 @@ class MLA_Upload_List_Table extends WP_List_Table {
 		 */
 		$this->items = MLAMime::mla_query_upload_items( $_REQUEST, ( ( $current_page - 1 ) * $per_page ), $per_page );
 	}
-	
+
 	/**
 	 * Generates (echoes) content for a single row of the table
 	 *

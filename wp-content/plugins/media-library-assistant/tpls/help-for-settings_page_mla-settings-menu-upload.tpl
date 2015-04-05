@@ -42,5 +42,5 @@
 <p><strong>NOTE:</strong> This option does <em><strong>NOT</strong></em> enable or disable uploading files; it simply turns off MLA support for managing the list of extensions and MIME types.</p>
 <!-- template="sidebar" -->
 <p><strong>For more information:</strong></p>
-<p><a href="http:/wp-admin/options-general.php?page=mla-settings-menu-documentation&mla_tab=documentation#mla_uploads" target="_blank">Documentation on Upload MIME Types</a></p>
-<p><a href="http://wordpress.org/support/plugin/media-library-assistant" target="_blank">Support Forum</a></p>
+<p><a href="[+settingsURL+]?page=mla-settings-menu-documentation&mla_tab=documentation#mla_uploads" target="_blank">MLA Documentation on Upload MIME Types</a></p>
+<p><a href="http://wordpress.org/support/plugin/media-library-assistant" target="_blank">MLA Support Forum</a></p>

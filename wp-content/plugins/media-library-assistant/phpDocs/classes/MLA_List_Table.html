@@ -18,7 +18,10 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Media Library Assistant</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu"></ul>
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Media%20Library%20Assistant.html"><i class="icon-folder-open"></i> Media Library Assistant</a></li>
+</ul>
 </li>
 <li class="dropdown" id="charts-menu">
 <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
@@ -30,7 +33,9 @@
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
                 <span class="label label-info">0</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul></ul></a></li>
+                <ul><li>todo 
+                <span class="label label-info">1</span>
+</li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
 </ul>
@@ -52,8 +57,8 @@
 <ul class="side-nav nav nav-list">
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
-<li class="method public "><a href="#__construct" title="__construct :: Initializes some properties from $_REQUEST vairables, then
-calls the parent constructor to set some default configs."><span class="description">Initializes some properties from $_REQUEST vairables, then
+<li class="method public "><a href="#__construct" title="__construct :: Initializes some properties from $_REQUEST variables, then
+calls the parent constructor to set some default configs."><span class="description">Initializes some properties from $_REQUEST variables, then
 calls the parent constructor to set some default configs.</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#_get_view" title="_get_view :: Returns HTML markup for one view that can be used with this table"><span class="description">Returns HTML markup for one view that can be used with this table</span><pre>_get_view()</pre></a></li>
 <li class="method public "><a href="#column_ID_parent" title="column_ID_parent :: Supply the content for a custom column"><span class="description">Supply the content for a custom column</span><pre>column_ID_parent()</pre></a></li>
@@ -67,6 +72,7 @@ calls the parent constructor to set some default configs.</span><pre>__construct
 <li class="method public "><a href="#column_default" title="column_default :: Supply a column value if no column-specific function has been defined"><span class="description">Supply a column value if no column-specific function has been defined</span><pre>column_default()</pre></a></li>
 <li class="method public "><a href="#column_description" title="column_description :: Supply the content for a custom column"><span class="description">Supply the content for a custom column</span><pre>column_description()</pre></a></li>
 <li class="method public "><a href="#column_featured" title="column_featured :: Supply the content for a custom column"><span class="description">Supply the content for a custom column</span><pre>column_featured()</pre></a></li>
+<li class="method public "><a href="#column_file_url" title="column_file_url :: Supply the content for a custom column"><span class="description">Supply the content for a custom column</span><pre>column_file_url()</pre></a></li>
 <li class="method public "><a href="#column_galleries" title="column_galleries :: Supply the content for a custom column"><span class="description">Supply the content for a custom column</span><pre>column_galleries()</pre></a></li>
 <li class="method public "><a href="#column_icon" title="column_icon :: Supply the content for a custom column"><span class="description">Supply the content for a custom column</span><pre>column_icon()</pre></a></li>
 <li class="method public "><a href="#column_inserted" title="column_inserted :: Supply the content for a custom column"><span class="description">Supply the content for a custom column</span><pre>column_inserted()</pre></a></li>
@@ -87,31 +93,38 @@ of bulk actions available on this table.</span><pre>get_bulk_actions()</pre></a>
 from default values if the option is not set"><span class="description">Returns the list of currently hidden columns from a user option or
 from default values if the option is not set</span><pre>get_hidden_columns()</pre></a></li>
 <li class="method public "><a href="#get_sortable_columns" title="get_sortable_columns :: Returns an array where the  key is the column that needs to be sortable
-and the value is db column to sort by."><span class="description">Returns an array where the  key is the column that needs to be sortable
-and the value is db column to sort by.</span><pre>get_sortable_columns()</pre></a></li>
+and the value is db column (or other criteria) to sort by."><span class="description">Returns an array where the  key is the column that needs to be sortable
+and the value is db column (or other criteria) to sort by.</span><pre>get_sortable_columns()</pre></a></li>
 <li class="method public "><a href="#get_views" title="get_views :: Returns an associative array listing all the views that can be used with this table."><span class="description">Returns an associative array listing all the views that can be used with this table.</span><pre>get_views()</pre></a></li>
 <li class="method public "><a href="#mla_admin_init_action" title="mla_admin_init_action :: Adds support for taxonomy and custom field columns"><span class="description">Adds support for taxonomy and custom field columns</span><pre>mla_admin_init_action()</pre></a></li>
 <li class="method public "><a href="#mla_get_sortable_columns" title="mla_get_sortable_columns :: Return the names and display values of the sortable columns"><span class="description">Return the names and display values of the sortable columns</span><pre>mla_get_sortable_columns()</pre></a></li>
 <li class="method public "><a href="#mla_get_taxonomy_filter_dropdown" title="mla_get_taxonomy_filter_dropdown :: Get dropdown box of terms to filter by, if available"><span class="description">Get dropdown box of terms to filter by, if available</span><pre>mla_get_taxonomy_filter_dropdown()</pre></a></li>
+<li class="method public "><a href="#mla_localize_default_columns_array" title="mla_localize_default_columns_array :: Builds the $default_columns array with translated source texts."><span class="description">Builds the $default_columns array with translated source texts.</span><pre>mla_localize_default_columns_array()</pre></a></li>
 <li class="method public "><a href="#mla_manage_columns_filter" title="mla_manage_columns_filter :: Handler for filter 'manage_media_page_mla-menu_columns'"><span class="description">Handler for filter 'manage_media_page_mla-menu_columns'</span><pre>mla_manage_columns_filter()</pre></a></li>
 <li class="method public "><a href="#mla_manage_hidden_columns_filter" title="mla_manage_hidden_columns_filter :: Handler for filter 'get_user_option_managemedia_page_mla-menucolumnshidden'"><span class="description">Handler for filter 'get_user_option_managemedia_page_mla-menucolumnshidden'</span><pre>mla_manage_hidden_columns_filter()</pre></a></li>
+<li class="method public "><a href="#mla_submenu_arguments" title="mla_submenu_arguments :: Process $_REQUEST, building $submenu_arguments"><span class="description">Process $_REQUEST, building $submenu_arguments</span><pre>mla_submenu_arguments()</pre></a></li>
+<li class="method public "><a href="#mla_views_media_page_mla_menu_filter" title='mla_views_media_page_mla_menu_filter :: Handler for filter "views_{$this-&gt;screen-&gt;id}" in /admin/includes/class-wp-list-table.php'><span class="description">Handler for filter "views_{$this-&gt;screen-&gt;id}" in /admin/includes/class-wp-list-table.php</span><pre>mla_views_media_page_mla_menu_filter()</pre></a></li>
+<li class="method public "><a href="#mla_wpml_media_view_upload_count_filter" title='mla_wpml_media_view_upload_count_filter :: Handler for filter "wpml-media_view-upload-count" in /plugins/wpml-media/inc/wpml-media.class.php'><span class="description">Handler for filter "wpml-media_view-upload-count" in /plugins/wpml-media/inc/wpml-media.class.php</span><pre>mla_wpml_media_view_upload_count_filter()</pre></a></li>
+<li class="method public "><a href="#mla_wpml_media_view_upload_page_count_filter" title='mla_wpml_media_view_upload_page_count_filter :: Handler for filter "wpml-media_view-upload-page-count" in /plugins/wpml-media/inc/wpml-media.class.php'><span class="description">Handler for filter "wpml-media_view-upload-page-count" in /plugins/wpml-media/inc/wpml-media.class.php</span><pre>mla_wpml_media_view_upload_page_count_filter()</pre></a></li>
+<li class="method public "><a href="#pagination" title="pagination :: Display the pagination, adding view, search and filter arguments"><span class="description">Display the pagination, adding view, search and filter arguments</span><pre>pagination()</pre></a></li>
 <li class="method public "><a href="#prepare_items" title="prepare_items :: Prepares the list of items for displaying"><span class="description">Prepares the list of items for displaying</span><pre>prepare_items()</pre></a></li>
+<li class="method public "><a href="#print_column_headers" title="print_column_headers :: Print column headers, adding view, search and filter arguments"><span class="description">Print column headers, adding view, search and filter arguments</span><pre>print_column_headers()</pre></a></li>
 <li class="method public "><a href="#single_row" title="single_row :: Generates (echoes) content for a single row of the table"><span class="description">Generates (echoes) content for a single row of the table</span><pre>single_row()</pre></a></li>
-<li class="nav-header private">» Private</li>
-<li class="method private "><a href="#_avail_mime_types" title="_avail_mime_types :: Get MIME types with one or more attachments for view preparation"><span class="description">Get MIME types with one or more attachments for view preparation</span><pre>_avail_mime_types()</pre></a></li>
-<li class="method private "><a href="#_build_inline_data" title="_build_inline_data :: Add hidden fields with the data for use in the inline editor"><span class="description">Add hidden fields with the data for use in the inline editor</span><pre>_build_inline_data()</pre></a></li>
-<li class="method private "><a href="#_build_rollover_actions" title="_build_rollover_actions :: Add rollover actions to exactly one of the following displayed columns:
+<li class="nav-header protected">» Protected</li>
+<li class="method protected "><a href="#_avail_mime_types" title="_avail_mime_types :: Get MIME types with one or more attachments for view preparation"><span class="description">Get MIME types with one or more attachments for view preparation</span><pre>_avail_mime_types()</pre></a></li>
+<li class="method protected "><a href="#_build_inline_data" title="_build_inline_data :: Add hidden fields with the data for use in the inline editor"><span class="description">Add hidden fields with the data for use in the inline editor</span><pre>_build_inline_data()</pre></a></li>
+<li class="method protected "><a href="#_build_rollover_actions" title="_build_rollover_actions :: Add rollover actions to exactly one of the following displayed columns:
 'ID_parent', 'title_name', 'post_title', 'post_name'"><span class="description">Add rollover actions to exactly one of the following displayed columns:
 'ID_parent', 'title_name', 'post_title', 'post_name'</span><pre>_build_rollover_actions()</pre></a></li>
-<li class="method private "><a href="#_default_hidden_columns" title="_default_hidden_columns :: Access the default list of hidden columns"><span class="description">Access the default list of hidden columns</span><pre>_default_hidden_columns()</pre></a></li>
+<li class="method protected "><a href="#_format_post_status" title="_format_post_status :: Translate post_status 'future', 'pending' and 'draft' to label"><span class="description">Translate post_status 'future', 'pending' and 'draft' to label</span><pre>_format_post_status()</pre></a></li>
 <li class="nav-header">
 <i class="icon-custom icon-property"></i> Properties</li>
-<li class="nav-header private">» Private</li>
-<li class="property private "><a href="#%24currently_hidden" title="$currently_hidden :: Currently hidden columns"><span class="description">Currently hidden columns</span><pre>$currently_hidden</pre></a></li>
-<li class="property private "><a href="#%24default_columns" title="$default_columns :: Table column definitions"><span class="description">Table column definitions</span><pre>$default_columns</pre></a></li>
-<li class="property private "><a href="#%24default_hidden_columns" title="$default_hidden_columns :: Default values for hidden columns"><span class="description">Default values for hidden columns</span><pre>$default_hidden_columns</pre></a></li>
-<li class="property private "><a href="#%24default_sortable_columns" title="$default_sortable_columns :: Sortable column definitions"><span class="description">Sortable column definitions</span><pre>$default_sortable_columns</pre></a></li>
-<li class="property private "><a href="#%24rollover_id" title="$rollover_id :: Records assignment of row-level actions to a table row"><span class="description">Records assignment of row-level actions to a table row</span><pre>$rollover_id</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected "><a href="#%24currently_hidden" title="$currently_hidden :: Currently hidden columns"><span class="description">Currently hidden columns</span><pre>$currently_hidden</pre></a></li>
+<li class="property protected "><a href="#%24default_columns" title="$default_columns :: Table column definitions"><span class="description">Table column definitions</span><pre>$default_columns</pre></a></li>
+<li class="property protected "><a href="#%24default_hidden_columns" title="$default_hidden_columns :: Default values for hidden columns"><span class="description">Default values for hidden columns</span><pre>$default_hidden_columns</pre></a></li>
+<li class="property protected "><a href="#%24default_sortable_columns" title="$default_sortable_columns :: Sortable column definitions"><span class="description">Sortable column definitions</span><pre>$default_sortable_columns</pre></a></li>
+<li class="property protected "><a href="#%24rollover_id" title="$rollover_id :: Records assignment of row-level actions to a table row"><span class="description">Records assignment of row-level actions to a table row</span><pre>$rollover_id</pre></a></li>
 </ul>
 </div>
 <div class="span8">
@@ -141,7 +154,7 @@ and the value is db column to sort by.</span><pre>get_sortable_columns()</pre></
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
-<h2>Initializes some properties from $_REQUEST vairables, then
+<h2>Initializes some properties from $_REQUEST variables, then
 calls the parent constructor to set some default configs.</h2>
 <pre>__construct() : void</pre>
 <div class="labels"></div>
@@ -385,6 +398,26 @@ a specific method, so this function returns a troubleshooting message.</p></p>
 <a name="column_featured" id="column_featured"></a><div class="element clickable method public column_featured" data-toggle="collapse" data-target=".column_featured .collapse">
 <h2>Supply the content for a custom column</h2>
 <pre>column_featured(array $item) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.1</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$item</h4>
+<code>array</code><p>A singular attachment (post) object</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>HTML markup to be placed inside the column</div>
+</div></div>
+</div>
+<a name="column_file_url" id="column_file_url"></a><div class="element clickable method public column_file_url" data-toggle="collapse" data-target=".column_file_url .collapse">
+<h2>Supply the content for a custom column</h2>
+<pre>column_file_url(array $item) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -691,19 +724,18 @@ from default values if the option is not set</h2>
 </div>
 <a name="get_sortable_columns" id="get_sortable_columns"></a><div class="element clickable method public get_sortable_columns" data-toggle="collapse" data-target=".get_sortable_columns .collapse">
 <h2>Returns an array where the  key is the column that needs to be sortable
-and the value is db column to sort by.</h2>
+and the value is db column (or other criteria) to sort by.</h2>
 <pre>get_sortable_columns() : array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>Also notes the current sort column,
-if set.</p></p>
+<p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>since</th>
 <td>0.1</td>
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>array</code>Sortable column information,e.g., 'slugs'=>array('data_values',boolean)</div>
+<code>array</code>Sortable column information,e.g., 'slug' => array('data_value', (boolean) initial_descending )</div>
 </div></div>
 </div>
 <a name="get_views" id="get_views"></a><div class="element clickable method public get_views" data-toggle="collapse" data-target=".get_views .collapse">
@@ -769,6 +801,19 @@ created in time to affect the "screen options" setup.</p></p>
 <code>string</code>HTML markup for dropdown box</div>
 </div></div>
 </div>
+<a name="mla_localize_default_columns_array" id="mla_localize_default_columns_array"></a><div class="element clickable method public mla_localize_default_columns_array" data-toggle="collapse" data-target=".mla_localize_default_columns_array .collapse">
+<h2>Builds the $default_columns array with translated source texts.</h2>
+<pre>mla_localize_default_columns_array() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Called from MLA:mla_plugins_loaded_action because the $default_columns information might be
+accessed from "front end" posts/pages.</p></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.71</td>
+</tr></table>
+</div></div>
+</div>
 <a name="mla_manage_columns_filter" id="mla_manage_columns_filter"></a><div class="element clickable method public mla_manage_columns_filter" data-toggle="collapse" data-target=".mla_manage_columns_filter .collapse">
 <h2>Handler for filter 'manage_media_page_mla-menu_columns'</h2>
 <pre>mla_manage_columns_filter() : array</pre>
@@ -814,6 +859,120 @@ is not created in time for the call from screen.php.</p></p>
 <code>array</code>updated list of hidden columns</div>
 </div></div>
 </div>
+<a name="mla_submenu_arguments" id="mla_submenu_arguments"></a><div class="element clickable method public mla_submenu_arguments" data-toggle="collapse" data-target=".mla_submenu_arguments .collapse">
+<h2>Process $_REQUEST, building $submenu_arguments</h2>
+<pre>mla_submenu_arguments(boolean $include_filters) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.42</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$include_filters</h4>
+<code>boolean</code><p>Optional: Include the "click filter" values in the results</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>non-empty view, search, filter and sort arguments</div>
+</div></div>
+</div>
+<a name="mla_views_media_page_mla_menu_filter" id="mla_views_media_page_mla_menu_filter"></a><div class="element clickable method public mla_views_media_page_mla_menu_filter" data-toggle="collapse" data-target=".mla_views_media_page_mla_menu_filter .collapse">
+<h2>Handler for filter "views_{$this-&gt;screen-&gt;id}" in /admin/includes/class-wp-list-table.php</h2>
+<pre>mla_views_media_page_mla_menu_filter(array $views) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Filter the list of available list table views. Set when the
+file is loaded because the list_table object isn't created in time
+to affect the "screen options" setup.</p></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.82</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$views</h4>
+<code>array</code><p>A list of available list table views</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Updated list of available list table views</div>
+</div></div>
+</div>
+<a name="mla_wpml_media_view_upload_count_filter" id="mla_wpml_media_view_upload_count_filter"></a><div class="element clickable method public mla_wpml_media_view_upload_count_filter" data-toggle="collapse" data-target=".mla_wpml_media_view_upload_count_filter .collapse">
+<h2>Handler for filter "wpml-media_view-upload-count" in /plugins/wpml-media/inc/wpml-media.class.php</h2>
+<pre>mla_wpml_media_view_upload_count_filter(NULL $count, string $key, string $view, string $lang) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Computes the number of attachments that satisfy a meta_query specification.
+The count is automatically made language-specific by WPML filters.</p></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.90</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$count</h4>
+<code>NULL</code><p>default return value if not replacing count</p></div>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>key/slug value for the selected view</p>
+</div>
+<div class="subelement argument">
+<h4>$view</h4>
+<code>string</code><p>HTML <a></a> tag for the link to the selected view</p>
+</div>
+<div class="subelement argument">
+<h4>$lang</h4>
+<code>string</code><p>language code, e.g., 'en', 'es'</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>NULL to allow SQL query or replacement count value</div>
+</div></div>
+</div>
+<a name="mla_wpml_media_view_upload_page_count_filter" id="mla_wpml_media_view_upload_page_count_filter"></a><div class="element clickable method public mla_wpml_media_view_upload_page_count_filter" data-toggle="collapse" data-target=".mla_wpml_media_view_upload_page_count_filter .collapse">
+<h2>Handler for filter "wpml-media_view-upload-page-count" in /plugins/wpml-media/inc/wpml-media.class.php</h2>
+<pre>mla_wpml_media_view_upload_page_count_filter(NULL $count, string $lang) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Computes the number of language-specific attachments that satisfy a meta_query specification.
+The count is made language-specific by WPML filters when the current_language is set.</p></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.90</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$count</h4>
+<code>NULL</code><p>default return value if not replacing count</p></div>
+<div class="subelement argument">
+<h4>$lang</h4>
+<code>string</code><p>language code, e.g., 'en', 'es'</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>NULL to allow SQL query or replacement count value</div>
+</div></div>
+</div>
+<a name="pagination" id="pagination"></a><div class="element clickable method public pagination" data-toggle="collapse" data-target=".pagination .collapse">
+<h2>Display the pagination, adding view, search and filter arguments</h2>
+<pre>pagination(string $which) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.42</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$which</h4>
+<code>string</code><p>'top' | 'bottom'</p>
+</div>
+</div></div>
+</div>
 <a name="prepare_items" id="prepare_items"></a><div class="element clickable method public prepare_items" data-toggle="collapse" data-target=".prepare_items .collapse">
 <h2>Prepares the list of items for displaying</h2>
 <pre>prepare_items() : void</pre>
@@ -827,6 +986,22 @@ $this->set_pagination_args().</p></p>
 <th>since</th>
 <td>0.1</td>
 </tr></table>
+</div></div>
+</div>
+<a name="print_column_headers" id="print_column_headers"></a><div class="element clickable method public print_column_headers" data-toggle="collapse" data-target=".print_column_headers .collapse">
+<h2>Print column headers, adding view, search and filter arguments</h2>
+<pre>print_column_headers(bool $with_id) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.42</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$with_id</h4>
+<code>bool</code><p>Whether to set the id attribute or not</p></div>
 </div></div>
 </div>
 <a name="single_row" id="single_row"></a><div class="element clickable method public single_row" data-toggle="collapse" data-target=".single_row .collapse">
@@ -845,7 +1020,7 @@ $this->set_pagination_args().</p></p>
 <code>object</code><p>the current item</p></div>
 </div></div>
 </div>
-<a name="_avail_mime_types" id="_avail_mime_types"></a><div class="element clickable method private _avail_mime_types" data-toggle="collapse" data-target="._avail_mime_types .collapse">
+<a name="_avail_mime_types" id="_avail_mime_types"></a><div class="element clickable method protected _avail_mime_types" data-toggle="collapse" data-target="._avail_mime_types .collapse">
 <h2>Get MIME types with one or more attachments for view preparation</h2>
 <pre>_avail_mime_types(array $num_posts) : array</pre>
 <div class="labels"></div>
@@ -865,7 +1040,7 @@ but uses the output of wp_count_attachments() as input.</p></p>
 <code>array</code>Mime type names</div>
 </div></div>
 </div>
-<a name="_build_inline_data" id="_build_inline_data"></a><div class="element clickable method private _build_inline_data" data-toggle="collapse" data-target="._build_inline_data .collapse">
+<a name="_build_inline_data" id="_build_inline_data"></a><div class="element clickable method protected _build_inline_data" data-toggle="collapse" data-target="._build_inline_data .collapse">
 <h2>Add hidden fields with the data for use in the inline editor</h2>
 <pre>_build_inline_data(object $item) : string</pre>
 <div class="labels"></div>
@@ -885,7 +1060,7 @@ but uses the output of wp_count_attachments() as input.</p></p>
 <code>string</code>HTML <div> with row data</div>
 </div></div>
 </div>
-<a name="_build_rollover_actions" id="_build_rollover_actions"></a><div class="element clickable method private _build_rollover_actions" data-toggle="collapse" data-target="._build_rollover_actions .collapse">
+<a name="_build_rollover_actions" id="_build_rollover_actions"></a><div class="element clickable method protected _build_rollover_actions" data-toggle="collapse" data-target="._build_rollover_actions .collapse">
 <h2>Add rollover actions to exactly one of the following displayed columns:
 'ID_parent', 'title_name', 'post_title', 'post_name'</h2>
 <pre>_build_rollover_actions(object $item, string $column) : array</pre>
@@ -909,24 +1084,28 @@ but uses the output of wp_count_attachments() as input.</p></p>
 <code>array</code>Names and URLs of row-level actions</div>
 </div></div>
 </div>
-<a name="_default_hidden_columns" id="_default_hidden_columns"></a><div class="element clickable method private _default_hidden_columns" data-toggle="collapse" data-target="._default_hidden_columns .collapse">
-<h2>Access the default list of hidden columns</h2>
-<pre>_default_hidden_columns() : array</pre>
+<a name="_format_post_status" id="_format_post_status"></a><div class="element clickable method protected _format_post_status" data-toggle="collapse" data-target="._format_post_status .collapse">
+<h2>Translate post_status 'future', 'pending' and 'draft' to label</h2>
+<pre>_format_post_status(string $post_status) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
 <th>since</th>
-<td>0.1</td>
+<td>2.01</td>
 </tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$post_status</h4>
+<code>string</code><p>post_status</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>array</code>default list of hidden columns</div>
+<code>string</code>Status label or empty string</div>
 </div></div>
 </div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
-<a name="%24currently_hidden" id="$currently_hidden"> </a><div class="element clickable property private $currently_hidden" data-toggle="collapse" data-target=".$currently_hidden .collapse">
+<a name="%24currently_hidden" id="$currently_hidden"> </a><div class="element clickable property protected $currently_hidden" data-toggle="collapse" data-target=".$currently_hidden .collapse">
 <h2>Currently hidden columns</h2>
 <pre>$currently_hidden : array</pre>
 <div class="labels"></div>
@@ -938,7 +1117,7 @@ but uses the output of wp_count_attachments() as input.</p></p>
 </tr></table>
 </div></div>
 </div>
-<a name="%24default_columns" id="$default_columns"> </a><div class="element clickable property private $default_columns" data-toggle="collapse" data-target=".$default_columns .collapse">
+<a name="%24default_columns" id="$default_columns"> </a><div class="element clickable property protected $default_columns" data-toggle="collapse" data-target=".$default_columns .collapse">
 <h2>Table column definitions</h2>
 <pre>$default_columns : array</pre>
 <div class="labels"></div>
@@ -951,15 +1130,14 @@ use the special slug "cb".</p>
 column in your table you must create a column_cb() method. If you don't need
 bulk actions or checkboxes, simply leave the 'cb' entry out of your array.</p>
 
-<p>Taxonomy columns are added to this array by mla_admin_init_action.
-Custom field columns are added to this array by mla_admin_init_action.</p></p>
+<p>All of the columns are added to this array by MLA_List_Table::mla_admin_init_action.</p></p>
 <table class="table table-bordered"><tr>
 <th>since</th>
 <td>0.1</td>
 </tr></table>
 </div></div>
 </div>
-<a name="%24default_hidden_columns" id="$default_hidden_columns"> </a><div class="element clickable property private $default_hidden_columns" data-toggle="collapse" data-target=".$default_hidden_columns .collapse">
+<a name="%24default_hidden_columns" id="$default_hidden_columns"> </a><div class="element clickable property protected $default_hidden_columns" data-toggle="collapse" data-target=".$default_hidden_columns .collapse">
 <h2>Default values for hidden columns</h2>
 <pre>$default_hidden_columns : array</pre>
 <div class="labels"></div>
@@ -970,15 +1148,15 @@ the user has not altered the selection of hidden columns.</p>
 <p>The value on the right-hand side must match the column slug, e.g.,
 array(0 => 'ID_parent, 1 => 'title_name').</p>
 
-<p>Taxonomy columns are added to this array by mla_admin_init_action.
-Custom field columns are added to this array by mla_admin_init_action.</p></p>
+<p>Taxonomy and custom field columns are added to this array by
+MLA_List_Table::mla_admin_init_action.</p></p>
 <table class="table table-bordered"><tr>
 <th>since</th>
 <td>0.1</td>
 </tr></table>
 </div></div>
 </div>
-<a name="%24default_sortable_columns" id="$default_sortable_columns"> </a><div class="element clickable property private $default_sortable_columns" data-toggle="collapse" data-target=".$default_sortable_columns .collapse">
+<a name="%24default_sortable_columns" id="$default_sortable_columns"> </a><div class="element clickable property protected $default_sortable_columns" data-toggle="collapse" data-target=".$default_sortable_columns .collapse">
 <h2>Sortable column definitions</h2>
 <pre>$default_sortable_columns : array</pre>
 <div class="labels"></div>
@@ -988,18 +1166,18 @@ is the column slug that needs to be sortable, and the value is database column
 to sort by. Often, the key and value will be the same, but this is not always
 the case (as the value is a column name from the database, not the list table).</p>
 
-<p>The array value also contains a boolean which is 'true' if the data is currently
-sorted by that column. This is computed each time the table is displayed.</p>
+<p>The array value also contains a boolean which is 'true' if the initial sort order
+for the column is DESC/Descending.</p>
 
-<p>Taxonomy columns, if any, are added to this array by mla_admin_init_action.
-Custom field columns are added to this array by mla_admin_init_action.</p></p>
+<p>Taxonomy and custom field columns are added to this array by
+MLA_List_Table::mla_admin_init_action.</p></p>
 <table class="table table-bordered"><tr>
 <th>since</th>
 <td>0.1</td>
 </tr></table>
 </div></div>
 </div>
-<a name="%24rollover_id" id="$rollover_id"> </a><div class="element clickable property private $rollover_id" data-toggle="collapse" data-target=".$rollover_id .collapse">
+<a name="%24rollover_id" id="$rollover_id"> </a><div class="element clickable property protected $rollover_id" data-toggle="collapse" data-target=".$rollover_id .collapse">
 <h2>Records assignment of row-level actions to a table row</h2>
 <pre>$rollover_id : int</pre>
 <div class="labels"></div>
@@ -1018,7 +1196,7 @@ Custom field columns are added to this array by mla_admin_init_action.</p></p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
-            generated on 2013-06-30T13:10:24-07:00.<br></footer></div>
+            generated on 2015-02-17T16:36:12-08:00.<br></footer></div>
 </div>
 </body>
 </html>

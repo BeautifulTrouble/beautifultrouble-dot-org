@@ -21,5 +21,5 @@
 <p>If you have some other plugin or mechanism for handling the Post MIME Type items, you can disable MLA support entirely. Clear the checkbox at the bottom-left corner of the screen and click "Save Changes". The Views table will be replaced by a "disabled" screen and a checkbox that lets you turn MLA support back on when you want it.</p>
 <!-- template="sidebar" -->
 <p><strong>For more information:</strong></p>
-<p><a href="http:/wp-admin/options-general.php?page=mla-settings-menu-documentation&mla_tab=documentation#mla_views" target="_blank">Documentation on MIME Type Views</a></p>
-<p><a href="http://wordpress.org/support/plugin/media-library-assistant" target="_blank">Support Forum</a></p>
+<p><a href="[+settingsURL+]?page=mla-settings-menu-documentation&mla_tab=documentation#mla_views" target="_blank">MLA Documentation on MIME Type Views</a></p>
+<p><a href="http://wordpress.org/support/plugin/media-library-assistant" target="_blank">MLA Support Forum</a></p>

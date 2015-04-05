@@ -5,7 +5,7 @@
  * @package Media Library Assistant
  * @since 0.1
  */
- 
+
 /**
  * Class MLA (Media Library Assistant) Data provides database and template file access for MLA needs
  *
@@ -17,21 +17,24 @@
  */
 class MLAData {
 	/**
-	 * Provides a unique suffix for the ALT Text SQL VIEW
+	 * Provides a unique suffix for the ALT Text/custom field SQL View
+	 *
+	 * The SQL View is used to sort the Media/Assistant submenu table on
+	 * ALT Text and custom field columns.
 	 *
 	 * @since 0.40
 	 */
 	const MLA_ALT_TEXT_VIEW_SUFFIX = 'alt_text_view';
-	
+
 	/**
-	 * Provides a unique name for the ALT Text SQL VIEW
+	 * Provides a unique name for the ALT Text/custom field SQL View
 	 *
 	 * @since 0.40
 	 *
 	 * @var	array
 	 */
 	private static $mla_alt_text_view = NULL;
-	
+
 	/**
 	 * Initialization function, similar to __construct()
 	 *
@@ -45,7 +48,7 @@ class MLAData {
 		add_action( 'edit_attachment', 'MLAData::mla_save_post_action', 10, 1);
 		add_action( 'add_attachment', 'MLAData::mla_save_post_action', 10, 1);
 	}
-	
+
 	/**
 	 * Load an HTML template from a file
 	 *
@@ -55,8 +58,8 @@ class MLAData {
 	 *
 	 * @since 0.1
 	 *
-	 * @param	string 	Complete path and name of the template file, option name or the raw template
-	 * @param	string 	Optional type of template source; 'file' (default), 'option', 'string'
+	 * @param	string 	Complete path and/or name of the template file, option name or the raw template
+	 * @param	string 	Optional type of template source; 'path', 'file' (default), 'option', 'string'
 	 *
 	 * @return	string|array|false|NULL
 	 *  		string for files that do not contain template divider comments,
@@ -67,12 +70,35 @@ class MLAData {
 	public static function mla_load_template( $source, $type = 'file' ) {
 		switch ( $type ) {
 			case 'file':
-				if ( !file_exists( $source ) )
+				/*
+				 * Look in three places, in this order:
+				 * 1) Custom templates  
+				 * 2) Language-specific templates
+				 * 3) Standard templates
+				 */
+				$text_domain = 'media-library-assistant';
+				$locale = apply_filters( 'mla_plugin_locale', get_locale(), $text_domain );
+				$path = trailingslashit( WP_LANG_DIR ) . $text_domain . '/tpls/' . $locale . '/' . $source;
+				if ( file_exists( $path ) ) {
+					$source = $path;
+				} else {
+					$path = MLA_PLUGIN_PATH . 'languages/tpls/' . $locale . '/' . $source;
+					if ( file_exists( $path ) ) {
+						$source = $path;
+					} else {
+						$source = MLA_PLUGIN_PATH . 'tpls/' . $source;
+					}
+				}
+				// fallthru
+			case 'path':
+				if ( !file_exists( $source ) ) {
 					return false;
-				
+				}
+
 				$template = file_get_contents( $source, true );
 				if ( $template == false ) {
-					error_log( 'ERROR: mla_load_template file not found ' . var_export( $source, true ), 0 );
+					/* translators: 1: ERROR tag 2: path and file name */
+					error_log( sprintf( _x( '%1$s: mla_load_template file "%2$s" not found.', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), var_export( $source, true ) ), 0 );
 					return NULL;
 				}
 				break;
@@ -89,17 +115,19 @@ class MLAData {
 				}
 				break;
 			default:
-				error_log( 'ERROR: mla_load_template bad source type ' . var_export( $type, true ), 0 );
+				/* translators: 1: ERROR tag 2: path and file name 3: source type, e.g., file, option, string */
+				error_log( sprintf( _x( '%1$s: mla_load_template file "%2$s" bad source type "%3$s".', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $source, $type ), 0 );
 				return NULL;
 		}
-		
+
 		$match_count = preg_match_all( '#\<!-- template=".+" --\>#', $template, $matches, PREG_OFFSET_CAPTURE );
-		
-		if ( ( $match_count == false ) || ( $match_count == 0 ) )
+
+		if ( ( $match_count == false ) || ( $match_count == 0 ) ) {
 			return $template;
-		
+		}
+
 		$matches = array_reverse( $matches[0] );
-		
+
 		$template_array = array();
 		$current_offset = strlen( $template );
 		foreach ( $matches as $key => $value ) {
@@ -109,46 +137,185 @@ class MLAData {
 			/*
 			 * Trim exactly one newline sequence from the start of the value
 			 */
-			if ( 0 === strpos( $template_value, "\r\n" ) )
+			if ( 0 === strpos( $template_value, "\r\n" ) ) {
 				$offset = 2;
-			elseif ( 0 === strpos( $template_value, "\n\r" ) )
+			} elseif ( 0 === strpos( $template_value, "\n\r" ) ) {
 				$offset = 2;
-			elseif ( 0 === strpos( $template_value, "\n" ) )
+			} elseif ( 0 === strpos( $template_value, "\n" ) ) {
 				$offset = 1;
-			elseif ( 0 === strpos( $template_value, "\r" ) )
+			} elseif ( 0 === strpos( $template_value, "\r" ) ) {
 				$offset = 1;
-			else
+			} else {
 				$offset = 0;
+			}
 
 			$template_value = substr( $template_value, $offset );
-				
+
 			/*
 			 * Trim exactly one newline sequence from the end of the value
 			 */
 			$length = strlen( $template_value );
-			if ( $length > 2)
+			if ( $length > 2) {
 				$postfix = substr( $template_value, ($length - 2), 2 );
-			else
+			} else {
 				$postfix = $template_value;
-				
-			if ( 0 === strpos( $postfix, "\r\n" ) )
+			}
+
+			if ( 0 === strpos( $postfix, "\r\n" ) ) {
 				$length -= 2;
-			elseif ( 0 === strpos( $postfix, "\n\r" ) )
+			} elseif ( 0 === strpos( $postfix, "\n\r" ) ) {
 				$length -= 2;
-			elseif ( 0 === strpos( $postfix, "\n" ) )
+			} elseif ( 0 === strpos( $postfix, "\n" ) ) {
 				$length -= 1;
-			elseif ( 0 === strpos( $postfix, "\r" ) )
+			} elseif ( 0 === strpos( $postfix, "\r" ) ) {
 				$length -= 1;
-				
+			}
+
 			$template_array[ $template_key ] = substr( $template_value, 0, $length );
 			$current_offset = $value[1];
 		} // foreach $matches
-		
+
 		return $template_array;
 	}
-	
+
 	/**
-	 * Expand a template, replacing place holders with their values
+	 * Find a complete template, balancing opening and closing delimiters
+	 *
+	 * @since 1.50
+	 *
+	 * @param	string	A string possibly starting with '[+template:'
+	 *
+	 * @return	string	'' or template string starting with '[+template:' and ending with the matching '+]'
+	 */
+	private static function _find_template_substring( $tpl ) {
+		if ( '[+template:' == substr( $tpl, 0, 11 ) ) {
+			$nest = 11;
+			$level = 1;
+			do {
+				$template_end = strpos( $tpl, '+]', $nest );
+				if ( false === $template_end ) {
+					/* translators: 1: ERROR tag 2: template excerpt */
+					error_log( sprintf( _x( '%1$s: _find_template_substring no template end delimiter, tail = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), substr( $tpl, $offset ) ), 0 );
+					return '';
+				}
+
+				$nest = strpos( $tpl, '[+', $nest );
+				if ( false === $nest ) {
+					$nest = $template_end + 2;
+					$level--;
+				} elseif ( $nest < $template_end ) {
+					$nest += 2;
+					$level++;
+				} else {
+					$nest = $template_end + 2;
+					$level--;
+				}
+
+			} while ( $level );
+
+			$template_length = $template_end + 2;
+			$template_content = substr( $tpl, 0, $template_length );
+			return $template_content;
+		} // found template
+
+		return '';
+	}
+
+	/**
+	 * Expand a template, replacing placeholders with their values
+	 *
+	 * Will return an array of values if one or more of the placeholders returns an array.
+	 *
+	 * @since 1.50
+	 *
+	 * @param	string	A formatting string containing [+placeholders+]
+	 * @param	array	An associative array containing keys and values e.g. array('key' => 'value')
+	 *
+	 * @return	mixed	string or array, depending on placeholder values. Placeholders corresponding
+	 * to the keys of the markup_values will be replaced with their values.
+	 */
+	public static function mla_parse_array_template( $tpl, $markup_values ) {
+		$result = array();	
+		$offset = 0;
+		while ( false !== $start = strpos( $tpl, '[+', $offset ) ) {
+			if ( $offset < $start ) {
+				$result[] = substr( $tpl, $offset, ( $start - $offset ) );
+			}
+
+			if ( $template_content = self::_find_template_substring( substr( $tpl, $start ) ) ) {
+				$template_length = strlen( $template_content );
+				$template_content = substr( $template_content, 11, $template_length - (11 + 2) );
+				$template_content = self::_expand_field_level_template( $template_content, $markup_values, true );
+
+				foreach ( $template_content as $value )
+					$result[] = $value;
+
+				$offset = $start + $template_length;
+			} else { // found template
+				if ( false === $end = strpos( $tpl, '+]', $offset ) ) {
+					/* translators: 1: ERROR tag 2: template excerpt */
+					error_log( sprintf( _x( '%1$s: mla_parse_array_template no template end delimiter, tail = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), substr( $tpl, $offset ) ), 0 );
+					return $tpl;
+				} // no end delimiter
+
+				$key = substr( $tpl, $start + 2, $end - $start - 2 );
+				if ( isset( $markup_values[ $key ] ) ) {
+					$result[] = $markup_values[ $key ];
+				} else { // found key and scalar value
+					$result[] = substr( $tpl, $start, ( $end + 2 ) - $start );
+				}
+
+				$offset = $end + 2;
+			} // simple substitution
+		} // while substitution parameter present
+
+		if ( $offset < strlen( $tpl ) ) {
+			$result[] = substr( $tpl, $offset );
+		}
+
+		/*
+		 * Build a final result, eliminating empty elements and expanding array elements
+		 */
+		$final = array();
+		foreach ( $result as $element ) {
+			if ( is_scalar( $element ) ) {
+				$element = trim( $element );
+				if ( ! empty( $element ) ) {
+					$final[] = $element;	
+				}
+			} elseif ( is_array( $element ) ) {
+				foreach ($element as $key => $value ) {
+					if ( is_scalar( $value ) ) {
+						$value = trim( $value );
+					} elseif ( ! empty( $value ) ) {
+						$value = var_export( $value, true );
+					}
+
+					/*
+					 * Preserve any keys with string values
+					 */
+					if ( ! empty( $value ) ) {
+						if ( is_integer( $key ) ) {
+							$final[] = $value;
+						} else {
+							$final[ $key ] = $value;					
+						}
+					}
+				}
+			} elseif ( ! empty( $element ) ) {
+				$final[] = var_export( $element, true );
+			}
+		}
+
+		if ( 1 == count( $final ) ) {
+			$final = $final[0];
+		}
+
+		return $final;
+	}
+
+	/**
+	 * Expand a template, replacing placeholders with their values
 	 *
 	 * A simple parsing function for basic templating.
 	 *
@@ -157,60 +324,1004 @@ class MLAData {
 	 * @param	string	A formatting string containing [+placeholders+]
 	 * @param	array	An associative array containing keys and values e.g. array('key' => 'value')
 	 *
-	 * @return	string	Placeholders corresponding to the keys of the hash will be replaced with their values
+	 * @return	strng	Placeholders corresponding to the keys of the markup_values will be replaced with their values.
 	 */
-	public static function mla_parse_template( $tpl, $hash ) {
-		foreach ( $hash as $key => $value ) {
-			if ( is_scalar( $value ) )
-				$tpl = str_replace( '[+' . $key . '+]', $value, $tpl );
+	public static function mla_parse_template( $tpl, $markup_values ) {
+		/*
+		 * If templates are present we must step through $tpl and expand them
+		 */
+		if ( isset( $markup_values['[+template_count+]'] ) ) {
+			$offset = 0;
+			while ( false !== $start = strpos( $tpl, '[+', $offset ) ) {
+				if ( $template_content = self::_find_template_substring( substr( $tpl, $start ) ) ) {
+					$template_length = strlen( $template_content );
+					$template_content = substr( $template_content, 11, $template_length - (11 + 2) );
+					$template_content = self::_expand_field_level_template( $template_content, $markup_values );
+					$tpl = substr_replace( $tpl, $template_content, $start, $template_length );
+					$offset = $start;
+				} else { // found template
+					if ( false === $end = strpos( $tpl, '+]', $offset ) ) {
+					/* translators: 1: ERROR tag 2: template excerpt */
+					error_log( sprintf( _x( '%1$s: mla_parse_template no end delimiter, tail = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), substr( $tpl, $offset ) ), 0 );
+						return $tpl;
+					} // no end delimiter
+
+					$key = substr( $tpl, $start + 2, $end - $start - 2 );
+					if ( isset( $markup_values[ $key ] ) && is_scalar( $markup_values[ $key ] ) ) {
+						$tpl = substr_replace( $tpl, $markup_values[ $key ], $start, strlen( $key ) + 4 );
+						$offset = $start;
+					} else { // found key and scalar value
+						$offset += strlen( $key ) + 4;
+					}
+				} // simple substitution
+			} // while substitution parameter present
+		} else { // template(s) present
+			/*
+			 * No templates means a simple string substitution will suffice
+			 */
+			foreach ( $markup_values as $key => $value ) {
+				if ( is_scalar( $value ) ) {
+					$tpl = str_replace( '[+' . $key . '+]', $value, $tpl );
+				}
+			}
 		}
-		
+
 		return $tpl;
 	}
-	
+
 	/**
-	 * Analyze a template, returning an array of the place holders it contains
+	 * Find a complete (test) element, balancing opening and closing delimiters
+	 *
+	 * @since 1.50
+	 *
+	 * @param	string	A string possibly starting with '('
+	 *
+	 * @return	string	'' or template string starting with '(' and ending with the matching ')'
+	 */
+	private static function _find_test_substring( $tpl ) {
+		if ( '(' == $tpl[0] ) {
+			$nest = 1;
+			$level = 1;
+			do {
+				$test_end = strpos( $tpl, ')', $nest );
+				if ( false === $test_end ) {
+					/* translators: 1: ERROR tag 2: template string */
+					error_log( sprintf( _x( '%1$s: _find_test_substring no end delimiter, tail = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), substr( $tpl, $nest ) ), 0 );
+					return '';
+				}
+
+				$nest = strpos( $tpl, '(', $nest );
+				if ( false === $nest ) {
+					$nest = $test_end + 1;
+					$level--;
+				} elseif ( $nest < $test_end ) {
+					$nest += 1;
+					$level++;
+				} else {
+					$nest = $test_end + 1;
+					$level--;
+				}
+			} while ( $level );
+
+			$test_length = $test_end + 1;
+			$test_content = substr( $tpl, 0, $test_length );
+			return $test_content;
+		} // found test element
+
+		return '';
+	}
+
+	/**
+	 * Convert field-level "template:" string into its component parts
+	 *
+	 * @since 1.50
+	 *
+	 * @param	string	Template content with string, test and choice elements
+	 *
+	 * @return	array	( node => array( type => "string | test | choice | template", length => bytes, value => string | node(s) ) )
+	 */
+	private static function _parse_field_level_template( $tpl ) {
+		$index = 0;
+		$max_length = strlen( $tpl );
+		$test_level = 0;
+		$output = '';
+		$output_values = array();
+		$choice_values = array();
+		while ( $index < $max_length ) {
+			$byte = $tpl[ $index++ ];
+			if ( '\\' == $byte ) {
+				if ( $index == $max_length ) {
+					$output .= $byte;
+					continue;
+				} // template ends with a backslash
+
+				switch ( $tpl[ $index ] ) {
+					case 'n':
+						$output .= chr( 0x0A );
+						break;
+					case 'r':
+						$output .= chr( 0x0D );
+						break;
+					case 't':
+						$output .= chr( 0x09 );
+						break;
+					case 'b':
+						$output .= chr( 0x08 );
+						break;
+					case 'f':
+						$output .= chr( 0x0C );
+						break;
+					default: // could be a 1- to 3-digit octal value
+						if ( $max_length < ( $digit_limit = $index + 3 ) ) {
+							$digit_limit = $max_length;
+						}
+
+						$digit_index = $index;
+						while ( $digit_index < $digit_limit )
+							if ( ! ctype_digit( $tpl[ $digit_index ] ) ) {
+								break;
+							} else {
+								$digit_index++;
+							}
+
+						if ( $digit_count = $digit_index - $index ) {
+							$output .= chr( octdec( substr( $tpl, $index, $digit_count ) ) );
+							$index += $digit_count - 1;
+						} else { // accept the character following the backslash
+							$output .= $tpl[ $index ];
+						}
+				} // switch
+
+				$index++;
+			} // REVERSE SOLIDUS (backslash)
+			elseif ( '(' == $byte ) {
+				if ( ! empty( $output ) ) {
+					$output_values[] = array( 'type' => 'string', 'value' => $output, 'length' => strlen( $output ) );
+					$output = '';				
+				}
+
+				$test_content = self::_find_test_substring( substr( $tpl, $index - 1 ) );
+				if ( 2 < $test_length = strlen( $test_content ) ) {
+					$values = self::_parse_field_level_template( substr( $test_content, 1, strlen( $test_content ) - 2 ) );
+					$output_values[] = array( 'type' => 'test', 'value' => $values, 'length' => strlen( $test_content ) );
+					$index += strlen( $test_content ) - 1;
+				} // found a value
+				elseif ( 2 == $test_length ) {
+					$index++; // empty test string
+				} else {
+					$test_content = __( 'ERROR', 'media-library-assistant' ) . ': ' . __( 'Test; no closing parenthesis ', 'media-library-assistant' );
+					$output_values[] = array( 'type' => 'string', 'value' => $test_content, 'length' => strlen( $test_content ) );
+				} // bad test string
+			} // (test) element
+			elseif ( '|' == $byte ) {
+				/*
+				 * Turn each alternative within a choice element into a conditional
+				 */
+
+				if ( ! empty( $output ) ) {
+					$output_values[] = array( 'type' => 'string', 'value' => $output, 'length' => strlen( $output ) );
+					$output = '';				
+				}
+
+				$length = 0;
+				foreach ( $output_values as $value ) 
+					if ( isset( $value['length'] ) ) {
+						$length += $value['length'];
+					}
+
+				$choice_values[] = array( 'type' => 'test', 'value' => $output_values, 'length' => $length );
+				$output_values = array();
+			} // choice element
+			elseif ( '[' == $byte && '+template:' == substr( $tpl, $index, 10 ) ) {
+				if ( ! empty( $output ) ) {
+					$output_values[] = array( 'type' => 'string', 'value' => $output, 'length' => strlen( $output ) );
+					$output = '';				
+				}
+
+				$template_content = self::_find_template_substring( substr( $tpl, $index - 1 ) );
+				$values = self::_parse_field_level_template( substr( $template_content, 11, strlen( $template_content ) - (11 + 2) ) );
+				if ( 'template' == $values['type'] ) {
+					$output_values = array_merge( $output_values, $values['value'] );
+				} else {
+					$output_values[] = $values;
+				}
+
+				$index += strlen( $template_content ) - 1;
+			} // nested template
+			elseif ( '[' == $byte ) {
+				$match_count = preg_match( '/\[\+.+?\+\]/', $tpl, $matches, 0, $index - 1 );
+				if ( $match_count ) {
+					// found substitution parameter
+					$output .= $matches[0];
+					$index += strlen( $matches[0] ) - 1;
+				} else {
+					$output .= $byte;
+				}
+			} // maybe substitution parameter
+			else {
+				$output .= $byte;
+			}
+		} // $index < $max_length
+
+		if ( ! empty( $output ) ) {
+			$output_values[] = array( 'type' => 'string', 'value' => $output, 'length' => strlen( $output ) );
+		}
+
+		if ( ! empty( $choice_values ) ) {
+			if ( ! empty( $output_values ) ) {
+				$length = 0;
+				foreach ( $output_values as $value ) 
+					if ( isset( $value['length'] ) ) {
+						$length += $value['length'];
+					}
+
+				$choice_values[] = array( 'type' => 'test', 'value' => $output_values, 'length' => $length );
+			}
+
+			return array( 'type' => 'choice', 'value' => $choice_values, 'length' => $max_length );
+		}
+
+		if ( 1 == count( $output_values ) ) {
+			return $output_values[0];
+		}
+
+		return array ( 'type' => 'template', 'value' => $output_values, 'length' => $max_length );
+	}
+
+	/**
+	 * Analyze a field-level "template:" element, expanding Field-level Markup Substitution Parameters
+	 *
+	 * Will return an array of values if one or more of the placeholders returns an array.
+	 *
+	 * @since 1.50
+	 *
+	 * @param	array	A field-level template element node
+	 * @param	array	An array of markup substitution values
+	 *
+	 * @return	mixed	string or array, depending on placeholder values. Placeholders corresponding to the keys of the markup_values will be replaced with their values.
+	 */
+	private static function _evaluate_template_array_node( $node, $markup_values = array() ) {
+		$result = array();
+		/*
+		 * Check for an array of sub-nodes
+		 */
+		if ( ! isset( $node['type'] ) ) {
+			foreach ( $node as $value ) {
+				$node_result = self::_evaluate_template_array_node( $value, $markup_values );
+				foreach ( $node_result as $value )
+					$result[] = $value;
+			}
+		} else { // array of sub-nodes
+			switch ( $node['type'] ) {
+				case 'string':
+					$result[] =  self::mla_parse_array_template( $node['value'], $markup_values );
+					break;
+				case 'test':
+					$node_value = $node['value'];
+
+					if ( isset( $node_value['type'] ) ) {
+						$node_result = self::_evaluate_template_array_node( $node_value, $markup_values );
+						foreach ( $node_result as $value )
+							$result[] = $value;
+					} else { // single node
+						foreach ( $node_value as $value ) {
+							$node_result = self::_evaluate_template_array_node( $value, $markup_values );
+							foreach ( $node_result as $value )
+								$result[] = $value;
+						}
+					} // array of nodes
+
+					foreach ($result as $element )
+						if ( is_scalar( $element ) && false !== strpos( $element, '[+' ) ) {
+							$result = array();
+							break;
+						} elseif ( is_array( $element ) ) {
+							foreach ( $element as $value ) 
+								if ( is_scalar( $value ) && false !== strpos( $value, '[+' ) ) {
+									$result = array();
+									break;
+								}
+						} // is_array
+
+					break;
+				case 'choice':
+					foreach ( $node['value'] as $value ) {
+						$node_result = self::_evaluate_template_array_node( $value, $markup_values );
+						if ( ! empty( $node_result ) ) {
+							foreach ( $node_result as $value )
+								$result[] = $value;
+							break;
+						}
+					}
+
+					break;
+				case 'template':
+					foreach ( $node['value'] as $value ) {
+						$node_result = self::_evaluate_template_array_node( $value, $markup_values );
+						foreach ( $node_result as $value )
+							$result[] = $value;
+					}
+
+					break;
+				default:
+					/* translators: 1: ERROR tag 2: node type, e.g., template */
+					error_log( sprintf( _x( '%1$s: _evaluate_template_array_node unknown type "%2$s".', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $node ), 0 );
+			} // node type
+		} // isset node type
+
+		return $result;				
+	}
+
+	/**
+	 * Analyze a field-level "template:" element, expanding Field-level Markup Substitution Parameters
+	 *
+	 * @since 1.50
+	 *
+	 * @param	array	A field-level template element node
+	 * @param	array	An array of markup substitution values
+	 *
+	 * @return	string	String with expanded values, if any
+	 */
+	private static function _evaluate_template_node( $node, $markup_values = array() ) {
+		$results = '';
+		/*
+		 * Check for an array of sub-nodes
+		 */
+		if ( ! isset( $node['type'] ) ) {
+			foreach ( $node as $value )
+				$results .= self::_evaluate_template_node( $value, $markup_values );
+
+			return $results;
+		} // array of sub-nodes
+
+		switch ( $node['type'] ) {
+			case 'string':
+				return self::mla_parse_template( $node['value'], $markup_values );
+			case 'test':
+				$node_value = $node['value'];
+
+				if ( isset( $node_value['type'] ) ) {
+					$results = self::_evaluate_template_node( $node_value, $markup_values );
+				} else { // single node
+					foreach ( $node_value as $value )
+						$results .= self::_evaluate_template_node( $value, $markup_values );
+				} // array of nodes
+
+				if ( false === strpos( $results, '[+' ) ) {
+					return $results;
+				}
+
+				break;
+			case 'choice':
+				foreach ( $node['value'] as $value ) {
+					$results = self::_evaluate_template_node( $value, $markup_values );
+					if ( ! empty( $results ) ) {
+						return $results;
+					}
+				}
+
+				break;
+			case 'template':
+				foreach ( $node['value'] as $value )
+					$results .= self::_evaluate_template_node( $value, $markup_values );
+
+				return $results;
+			default:
+				/* translators: 1: ERROR tag 2: node type, e.g., template */
+				error_log( sprintf( _x( '%1$s: _evaluate_template_node unknown type "%2$s".', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $node ), 0 );
+		} // node type
+
+		return '';				
+	}
+
+	/**
+	 * Analyze a field-level "template:" element, expanding Field-level Markup Substitution Parameters
+	 *
+	 * @since 1.50
+	 *
+	 * @param	string	A formatting string containing [+placeholders+]
+	 * @param	array	An array of markup substitution values
+	 * @param	boolean	True to return array value(s), false to return a string
+	 *
+	 * @return	mixed	Element with expanded string/array values, if any
+	 */
+	private static function _expand_field_level_template( $tpl, $markup_values = array(), $return_arrays = false ) {
+		/*
+	 	 * Step 1: parse the template and build the tree of its elements
+		 * root node => array( type => "string | test | choice | template", value => string | node(s) )
+		 */
+		$root_element = self::_parse_field_level_template( $tpl );
+		unset( $markup_values['[+template_count+]'] );
+
+		/*
+		 * Step 2: Remove all the empty elements from the $markup_values,
+		 * so the evaluation of conditional and choice elements is simplified.
+		 */
+		foreach ( $markup_values as $key => $value ) {
+			if ( is_scalar( $value ) ) {
+				$value = trim( $value );
+			}
+
+			if ( empty( $value ) ) {
+				unset( $markup_values[ $key ] );
+			}
+		}
+
+		/*
+		 * Step 3: walk the element tree and process each node
+		 */
+		if ( $return_arrays ) {
+			$results = self::_evaluate_template_array_node( $root_element, $markup_values );
+		} else {
+			$results = self::_evaluate_template_node( $root_element, $markup_values );
+		}
+
+		return $results;
+	}
+
+	/**
+	 * Process an markup field array value according to the supplied data-format option
+	 *
+	 * @since 1.50
+	 *
+	 * @param	array	an array of scalar values
+	 * @param	string	data option  'text'|'single'|'export'|'array'|'multi'
+	 * @param	boolean	Optional: for option 'multi', retain existing values
+	 *
+	 * @return	array	( parameter => value ) for all field-level parameters and anything in $markup_values
+	 */
+	private static function _process_field_level_array( $record, $option = 'text', $keep_existing = false ) {
+		switch ( $option ) {
+			case 'single':
+				$text = sanitize_text_field( current( $record ) );
+				break;
+			case 'export':
+				$text = sanitize_text_field( var_export( $record, true ) );
+				break;
+			case 'multi':
+				$record[0x80000000] = 'multi';
+				$record[0x80000001] = $keep_existing;
+				// fallthru
+			case 'array':
+				$text = $record;
+				break;
+			default:
+				$text = '';
+				foreach ( $record as $term ) {
+					$term_name = sanitize_text_field( $term );
+					$text .= strlen( $text ) ? ', ' . $term_name : $term_name;
+				}
+		} // $option
+
+		return $text;
+	}
+
+	/**
+	 * Process an argument list within a field-level parameter format specification
+	 *
+	 * @since 2.02
+	 *
+	 * @param	string	arguments, e.g., ('d/m/Y H:i:s' , "arg, \" two" ) without parens
+	 *
+	 * @return	array	individual arguments, e.g. array( 0 => 'd/m/Y H:i:s', 1 => 'arg, \" two' )
+	 */
+	private static function _parse_arguments( $argument_string ) {
+		$argument_string = trim( $argument_string, " \n\t\r\0\x0B," );
+		$arguments = array();
+		
+		while ( strlen( $argument_string ) ) {
+			$argument = '';
+			$index = 0;
+			
+			// Check for enclosing quotes
+			$delimiter = $argument_string[0];
+			if ( '\'' == $delimiter || '"' == $delimiter ) {
+				$index++;
+			} else {
+				$delimiter = '';
+			}
+			
+			while ( $index < strlen( $argument_string ) ) {
+				$byte = $argument_string[ $index++ ];
+				if ( '\\' == $byte ) {
+					switch ( $source_string[ $index ] ) {
+						case 'n':
+							$argument .= chr( 0x0A );
+							break;
+						case 'r':
+							$argument .= chr( 0x0D );
+							break;
+						case 't':
+							$argument .= chr( 0x09 );
+							break;
+						case 'b':
+							$argument .= chr( 0x08 );
+							break;
+						case 'f':
+							$argument .= chr( 0x0C );
+							break;
+						default: // could be a 1- to 3-digit octal value
+							$digit_limit = $index + 3;
+							$digit_index = $index;
+							while ( $digit_index < $digit_limit ) {
+								if ( ! ctype_digit( $argument_string[ $digit_index ] ) ) {
+									break;
+								} else {
+									$digit_index++;
+								}
+							}
+	
+							if ( $digit_count = $digit_index - $index ) {
+								$argument .= chr( octdec( substr( $argument_string, $index, $digit_count ) ) );
+								$index += $digit_count - 1;
+							} else { // accept the character following the backslash
+								$argument .= $argument_string[ $index ];
+							}
+					} // switch
+	
+					$index++;
+				} else { // backslash
+					if ( $delimiter == $byte ) {
+						break;
+					}
+	
+					$argument .= $byte;
+				} // just another 8-bit value, but check for closing delimiter
+			} // index < strlen
+
+			$arguments[] = $argument;
+			$argument_string = trim( substr( $argument_string, $index ), " \n\t\r\0\x0B," );
+		} // strlen( $argument_string )
+		
+		return $arguments;
+	}
+
+	/**
+	 * Analyze a template, expanding Field-level Markup Substitution Parameters
+	 *
+	 * Field-level parameters must have one of the following prefix values:
+	 * template, request, query, custom, terms, meta, iptc, exif, pdf.
+	 * All but request and query require an attachment ID.
+	 *
+	 * @since 1.50
+	 *
+	 * @param	string	A formatting string containing [+placeholders+]
+	 * @param	array	Optional: an array of values from the query, if any, e.g. shortcode parameters
+	 * @param	array	Optional: an array of values to add to the returned array
+	 * @param	integer	Optional: attachment ID for attachment-specific placeholders
+	 * @param	boolean	Optional: for option 'multi', retain existing values
+	 * @param	string	Optional: default option value
+	 *
+	 * @return	array	( parameter => value ) for all field-level parameters and anything in $markup_values
+	 */
+	public static function mla_expand_field_level_parameters( $tpl, $query = NULL, $markup_values = array(), $post_id = 0, $keep_existing = false, $default_option = 'text' ) {
+		static $cached_post_id = 0, $item_metadata = NULL, $attachment_metadata = NULL;
+		if ( $cached_post_id != $post_id ) {
+			$item_metadata = NULL;
+			$attachment_metadata = NULL;
+			$cached_post_id = $post_id;
+		}
+
+		$placeholders = self::mla_get_template_placeholders( $tpl, $default_option );
+		$template_count = 0;
+		foreach ($placeholders as $key => $value ) {
+			if ( isset( $markup_values[ $key ] ) ) {
+				continue;
+			}
+
+			switch ( $value['prefix'] ) {
+				case 'template':
+					$markup_values = self::mla_expand_field_level_parameters( $value['value'], $query , $markup_values, $post_id, $keep_existing, $default_option );
+					$template_count++;
+					break;
+				case 'meta':
+					if ( is_null( $item_metadata ) ) {
+						if ( 0 < $post_id ) {
+							$item_metadata = get_metadata( 'post', $post_id, '_wp_attachment_metadata', true );
+						} else {
+							break;
+						}
+					}
+
+					$markup_values[ $key ] = self::mla_find_array_element( $value['value'], $item_metadata, $value['option'] );
+					break;
+				case 'query':
+					if ( isset( $query ) && isset( $query[ $value['value'] ] ) ) {
+						$markup_values[ $key ] = $query[ $value['value'] ];
+					} else {
+						$markup_values[ $key ] = '';
+					}
+
+					break;
+				case 'request':
+					if ( isset( $_REQUEST[ $value['value'] ] ) ) {
+						$record = $_REQUEST[ $value['value'] ];
+					} else {
+						$record = '';
+					}
+
+					if ( is_scalar( $record ) ) {
+						$text = sanitize_text_field( (string) $record );
+					} elseif ( is_array( $record ) ) {
+						if ( 'export' == $value['option'] ) {
+							$text = sanitize_text_field( var_export( $record, true ) );
+						} else {
+							$text = '';
+							foreach ( $record as $term ) {
+								$term_name = sanitize_text_field( $term );
+								$text .= strlen( $text ) ? ',' . $term_name : $term_name;
+							}
+						}
+					} // is_array
+
+					$markup_values[ $key ] = $text;
+					break;
+				case 'terms':
+					if ( 0 < $post_id ) {
+						$terms = get_object_term_cache( $post_id, $value['value'] );
+						if ( false === $terms ) {
+							$terms = wp_get_object_terms( $post_id, $value['value'] );
+							wp_cache_add( $post_id, $terms, $value['value'] . '_relationships' );
+						}
+					} else {
+						break;
+					}
+
+					$text = '';
+					if ( is_wp_error( $terms ) ) {
+						$text = implode( ',', $terms->get_error_messages() );
+					} elseif ( ! empty( $terms ) ) {
+						if ( 'single' == $value['option'] || 1 == count( $terms ) ) {
+							reset( $terms );
+							$term = current( $terms );
+							$text = sanitize_term_field( 'name', $term->name, $term->term_id, $value['value'], 'display' );
+						} elseif ( 'export' == $value['option'] ) {
+							$text = sanitize_text_field( var_export( $terms, true ) );
+						} else {
+							foreach ( $terms as $term ) {
+								$term_name = sanitize_term_field( 'name', $term->name, $term->term_id, $value['value'], 'display' );
+								$text .= strlen( $text ) ? ', ' . $term_name : $term_name;
+							}
+						}
+					}
+
+					$markup_values[ $key ] = $text;
+					break;
+				case 'custom':
+					if ( 0 < $post_id ) {
+						$record = get_metadata( 'post', $post_id, $value['value'], 'single' == $value['option'] );
+						if ( empty( $record ) && 'ALL_CUSTOM' == $value['value'] ) {
+							$meta_values = self::mla_fetch_attachment_metadata( $post_id );
+							$clean_data = array();
+							foreach( $meta_values as $meta_key => $meta_value ) {
+								if ( 0 !== strpos( $meta_key, 'mla_item_' ) ) {
+									continue;
+								}
+
+								$meta_key = substr( $meta_key, 9 );
+								if ( is_array( $meta_value ) ) {
+									$clean_data[ $meta_key ] = '(ARRAY)';
+								} elseif ( is_string( $meta_value ) ) {
+									$clean_data[ $meta_key ] = self::_bin_to_utf8( substr( $meta_value, 0, 256 ) );
+								} else {
+									$clean_data[ $meta_key ] = $meta_value;
+								}
+							} // foreach value
+
+							/*
+							 * Convert the array to text, strip the outer "array( ... ,)" literal,
+							 * the interior linefeed/space/space separators and backslashes.
+							 */
+							$record = var_export( $clean_data, true);
+							$record = substr( $record, 7, strlen( $record ) - 10 );
+							$record = str_replace( chr(0x0A).'  ', ' ', $record );
+							$record = str_replace( '\\', '', $record );
+						} // ALL_CUSTOM
+					} else {
+						break;
+					}
+
+					$text = '';
+					if ( is_wp_error( $record ) ) {
+						$text = implode( ',', $record->get_error_messages() );
+					} elseif ( ! empty( $record ) ) {
+						if ( is_scalar( $record ) ) {
+							$text = ( 'raw' == $value['format'] ) ? (string) $record : sanitize_text_field( (string) $record );
+						} elseif ( is_array( $record ) ) {
+							if ( 'export' == $value['option'] ) {
+								$text = ( 'raw' == $value['format'] ) ? var_export( $record, true ) : sanitize_text_field( var_export( $record, true ) );
+							} else {
+								$text = '';
+								foreach ( $record as $term ) {
+									$term_name = ( 'raw' == $value['format'] ) ? $term : sanitize_text_field( $term );
+									$text .= strlen( $text ) ? ', ' . $term_name : $term_name;
+								}
+							}
+						} // is_array
+					} // ! empty
+
+					$markup_values[ $key ] = $text;
+					break;
+				case 'iptc':
+					if ( is_null( $attachment_metadata ) ) {
+						if ( 0 < $post_id ) {
+							$attachment_metadata = self::mla_fetch_attachment_image_metadata( $post_id );
+						} else {
+							break;
+						}
+					}
+
+					$record = self::mla_iptc_metadata_value( $value['value'], $attachment_metadata );
+					if ( is_array( $record ) ) {
+						$markup_values[ $key ] = self::_process_field_level_array( $record, $value['option'], $keep_existing );
+					} else {
+						$markup_values[ $key ] = $record;
+					}
+
+					break;
+				case 'exif':
+					if ( is_null( $attachment_metadata ) ) {
+						if ( 0 < $post_id ) {
+							$attachment_metadata = self::mla_fetch_attachment_image_metadata( $post_id );
+						} else {
+							break;
+						}
+					}
+
+					$record = self::mla_exif_metadata_value( $value['value'], $attachment_metadata );
+					if ( is_array( $record ) ) {
+						$markup_values[ $key ] = self::_process_field_level_array( $record, $value['option'], $keep_existing );
+					} else {
+						$markup_values[ $key ] = $record;
+					}
+
+					break;
+				case 'pdf':
+					if ( is_null( $attachment_metadata ) ) {
+						if ( 0 < $post_id ) {
+							$attachment_metadata = self::mla_fetch_attachment_image_metadata( $post_id );
+						} else {
+							break;
+						}
+					}
+
+					$record = self::mla_pdf_metadata_value( $value['value'], $attachment_metadata );
+					if ( is_array( $record ) ) {
+						$markup_values[ $key ] = self::_process_field_level_array( $record, $value['option'], $keep_existing );
+					} else {
+						$markup_values[ $key ] = $record;
+					}
+
+				case '':
+					$candidate = str_replace( '{', '[', str_replace( '}', ']', $value['value'] ) );
+					$key = str_replace( '{', '[', str_replace( '}', ']', $key ) );
+
+					if ( MLAOptions::mla_is_data_source( $candidate ) ) {
+						$data_value = array(
+							'data_source' => $candidate,
+							'keep_existing' => false,
+							'format' => 'raw',
+							'option' => 'text' );
+
+						$markup_values[ $key ] =  MLAOptions::mla_get_data_source( $post_id, 'single_attachment_mapping', $data_value );
+					} elseif ( isset( $markup_values[ $value['value'] ] ) ) {
+						/*
+						 * A standard element can have a format modifier, e.g., commas, attr
+						 */
+						$markup_values[ $key ] = $markup_values[ $value['value'] ];
+					}
+					
+					break;
+				default:
+					// ignore anything else
+			} // switch
+			
+			if ( isset( $markup_values[ $key ] ) ) {
+				if ( 'attr' == $value['format'] ) {
+					$markup_values[ $key ] = esc_attr( $markup_values[ $key ] );
+				} elseif ( 'url' == $value['format'] ) {
+					$markup_values[ $key ] = urlencode( $markup_values[ $key ] );
+				} elseif ( ( 'commas' == $value['format'] ) && is_numeric( $markup_values[ $key ] ) ) {
+					$markup_values[ $key ] = number_format( (float)$markup_values[ $key ] );
+				} elseif ( 'timestamp' == $value['format'] && is_numeric( $markup_values[ $key ] ) ) {
+					/*
+					 * date "Returns a string formatted according to the given format string using the given integer"
+					 */
+					$format = empty( $value['args'] ) ? 'd/m/Y H:i:s' : $value['args'];
+					$markup_values[ $key ] = date( $format , (integer) $markup_values[ $key ] );
+				} elseif ( 'date' == $value['format'] ) {
+					/*
+					 * strtotime will "Parse about any English textual datetime description into a Unix timestamp"
+					 * If it succeeds we can format the timestamp for display
+					 */
+					$format = empty( $value['args'] ) ? 'd/m/Y H:i:s' : $value['args'];
+					$timestamp = strtotime( $markup_values[ $key ] );
+					if( false !== $timestamp ) {
+						$markup_values[ $key ] = date( $format, $timestamp );
+					}
+				} elseif ( 'fraction' == $value['format'] ) {
+					$show_fractions = true;
+					if ( ! empty( $value['args'] ) ) {
+						if ( is_array( $value['args'] ) ) {
+							if ( is_numeric( $value['args'][0] ) ) {
+								$format = '%1$+.' . absint( $value['args'][0] ) . 'f';
+							} else {
+								$format = $value['args'][0];
+							}
+							
+							$show_fractions = ( 'false' !== strtolower( trim( $value['args'][1] ) ) );
+						} else {
+							if ( is_numeric( $value['args'] ) ) {
+								$format = '%1$+.' . absint( $value['args'] ) . 'f';
+							} else {
+								$format = $value['args'];
+							}
+						}
+					} else {
+						$format = '%1$+.2f';
+					}
+					
+					$fragments = array_map( 'intval', explode( '/', $markup_values[ $key ] ) );
+					if ( 1 == count( $fragments ) ) {
+						$value = trim( $markup_values[ $key ] );
+						if ( ! empty( $value ) ) {
+							$markup_values[ $key ] = $value;
+						}
+					} else {
+						if ( $fragments[0] ) {
+							if ( 1 == $fragments[1] ) {
+								$markup_values[ $key ] = sprintf( '%1$+d', $fragments[0] );
+							} elseif ( 0 != $fragments[1] ) {
+								$value = $fragments[0] / $fragments[1];
+								if ( $show_fractions && ( -1 <= $value ) && ( 1 >= $value ) ) {
+									$markup_values[ $key ] = sprintf( '%1$+d/%2$d', $fragments[0], $fragments[1] );
+								} else {
+									$markup_values[ $key ] = sprintf( $format, $value );
+								}
+							} // fractional value
+						} // non-zero numerator
+					} // valid denominator
+				} 
+			} // isset( $markup_values[ $key ] )
+		} // foreach placeholder
+
+		if ( $template_count ) {
+			$markup_values['[+template_count+]'] = $template_count;
+		}
+
+		return $markup_values;
+	}
+
+	/**
+	 * Analyze a template, returning an array of the placeholders it contains
 	 *
 	 * @since 0.90
 	 *
 	 * @param	string	A formatting string containing [+placeholders+]
+	 * @param	string	Optional: default option value
 	 *
 	 * @return	array	Placeholder information: each entry is an array with
-	 * 					['prefix'] => string, ['value'] => string, ['option'] => string 'single'|'export'
+	 * 					['prefix'] => string, ['value'] => string, ['option'] => string 'text'|single'|'export'|'array'|'multi'
 	 */
-	public static function mla_get_template_placeholders( $tpl ) {
+	public static function mla_get_template_placeholders( $tpl, $default_option = 'text' ) {
 		$results = array();
-		$match_count = preg_match_all( '/\[\+[^+]+\+\]/', $tpl, $matches );
-		if ( ( $match_count == false ) || ( $match_count == 0 ) )
+
+		/*
+		 * Look for and process templates, removing them from the input so substitution parameters within
+		 * the template are not expanded. They will be expanded when the template itself is expanded.
+		 */
+		while ( false !== ( $template_offset = strpos( $tpl, '[+template:' ) ) ) {
+			$nest = $template_offset + 11;
+			$level = 1;
+			do {
+				$template_end = strpos( $tpl, '+]', $nest );
+				if ( false === $template_end ) {
+					/* translators: 1: ERROR tag 2: template excerpt */
+					error_log( sprintf( _x( '%1$s: mla_get_template_placeholders no template-end delimiter dump = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), self::_hex_dump( substr( $tpl, $template_offset, 128 ), 128, 16 ) ), 0 );
+					return array();
+				}
+
+				$nest = strpos( $tpl, '[+', $nest );
+				if ( false === $nest ) {
+					$nest = $template_end + 2;
+					$level--;
+				} elseif ( $nest < $template_end ) {
+					$nest += 2;
+					$level++;
+				} else {
+					$nest = $template_end + 2;
+					$level--;
+				}
+
+			} while ( $level );
+
+			$template_length = $template_end + 2 - $template_offset;
+			$template_content = substr( $tpl, $template_offset + 11, $template_length - (11 + 2) );
+			$placeholders = self::mla_get_template_placeholders( $template_content );
+			$result = array( 'template:' . $template_content => array( 'prefix' => 'template', 'value' => $template_content, 'option' => $default_option, 'format' => 'native' ) );
+			$results = array_merge( $results, $result, $placeholders );
+			$tpl = substr_replace( $tpl, '', $template_offset, $template_length );
+		} // found a template
+
+		$match_count = preg_match_all( '/\[\+.+?\+\]/', $tpl, $matches );
+		if ( ( $match_count == false ) || ( $match_count == 0 ) ) {
 			return $results;
-			
+		}
+
 		foreach ( $matches[0] as $match ) {
 			$key = substr( $match, 2, (strlen( $match ) - 4 ) );
-			$result = array( 'prefix' => '', 'value' => '', 'option' => 'text' );
-			$match_count = preg_match( '/\[\+(.+):(.+)/', $match, $matches );
+			$result = array( 'prefix' => '', 'value' => '', 'option' => $default_option, 'format' => 'native' );
+			$match_count = preg_match( '/\[\+([^:]+):(.+)/', $match, $matches );
 			if ( 1 == $match_count ) {
 				$result['prefix'] = $matches[1];
 				$tail = $matches[2];
-			}
-			else {
+			} else {
 				$tail = substr( $match, 2);
 			}
-			
-			$match_count = preg_match( '/([^,]+)(,(single|export))\+\]/', $tail, $matches );
+
+			$match_count = preg_match( '/([^,]+)(,(text|single|export|array|multi|commas|raw|attr|url|timestamp|date|fraction))(\(([^)]+)\))*\+\]/', $tail, $matches );
 			if ( 1 == $match_count ) {
 				$result['value'] = $matches[1];
-				$result['option'] = $matches[3];
-			}
-			else {
+				if ( ! empty( $matches[5] ) ) {
+					/* $args =  array_map( 'trim', explode( ',', trim( $matches[5], " \n\t\r\0\x0B," ) ) );
+					foreach ( $args as $index => $arg ) {
+						// trim exactly one pair of balanced quotes, if present 
+						$length = strlen( $arg );
+						if ( $length > 1 ) {
+							$first = $arg[0];
+							$last = $arg[ $length - 1 ];
+							if ( $first === $last && in_array( $first, array ( '\'', '"' ) ) ) {
+								$args[ $index ] = ( 2 < $length ) ? substr( $arg, 1, $length - 2 ) : '';;
+							}
+						}
+					} */
+					$args = self::_parse_arguments( $matches[5] );
+					
+					if ( 1 == count( $args ) ) {
+						$args = $args[0];
+					}
+				} else {
+					$args = '';
+				}
+
+				if ( 'commas' == $matches[3] ) {		
+					$result['option'] = 'text';
+					$result['format'] = 'commas';
+				} elseif ( 'raw' == $matches[3] ) {		
+					$result['option'] = 'text';
+					$result['format'] = 'raw';
+				} elseif ( 'attr' == $matches[3] ) {		
+					$result['option'] = 'text';
+					$result['format'] = 'attr';
+				} elseif ( 'url' == $matches[3] ) {		
+					$result['option'] = 'text';
+					$result['format'] = 'url';
+				} elseif ( 'timestamp' == $matches[3] ) {		
+					$result['option'] = 'text';
+					$result['format'] = 'timestamp';
+					$result['args'] = $args;
+				} elseif ( 'date' == $matches[3] ) {		
+					$result['option'] = 'text';
+					$result['format'] = 'date';
+					$result['args'] = $args;
+				} elseif ( 'fraction' == $matches[3] ) {		
+					$result['option'] = 'text';
+					$result['format'] = 'fraction';
+					$result['args'] = $args;
+				} else {
+					$result['option'] = $matches[3];
+				}
+
+			} else {
 				$result['value'] = substr( $tail, 0, (strlen( $tail ) - 2 ) );
 			}
-			
+
 		$results[ $key ] = $result;
 		} // foreach
-		
+
 		return $results;
 	}
-	
+
 	/**
 	 * Cache the results of mla_count_list_table_items for reuse in mla_query_list_table_items
 	 *
@@ -219,7 +1330,7 @@ class MLAData {
 	 * @var	array
 	 */
 	private static $mla_list_table_items = NULL;
-	
+
 	/**
 	 * Get the total number of attachment posts
 	 *
@@ -231,9 +1342,8 @@ class MLAData {
 	 *
 	 * @return	integer	Number of attachment posts
 	 */
-	public static function mla_count_list_table_items( $request, $offset = NULL, $count = NULL )
-	{
-		if ( NULL != $offset && NULL != $count ) {
+	public static function mla_count_list_table_items( $request, $offset = NULL, $count = NULL ) {
+		if ( NULL !== $offset && NULL !== $count ) {
 			$request = self::_prepare_list_table_query( $request, $offset, $count );
 			self::$mla_list_table_items = self::_execute_list_table_query( $request );
 			return self::$mla_list_table_items->found_posts;
@@ -242,10 +1352,10 @@ class MLAData {
 		$request = self::_prepare_list_table_query( $request );
 		$results = self::_execute_list_table_query( $request );
 		self::$mla_list_table_items = NULL;
-		
+
 		return $results->found_posts;
 	}
-	
+
 	/**
 	 * Retrieve attachment objects for list table display
 	 *
@@ -275,7 +1385,7 @@ class MLAData {
 			foreach ( $parent_data as $parent_key => $parent_value ) {
 				$attachments[ $index ]->$parent_key = $parent_value;
 			}
-			
+
 			/*
 			 * Add meta data
 			 */
@@ -283,16 +1393,16 @@ class MLAData {
 			foreach ( $meta_data as $meta_key => $meta_value ) {
 				$attachments[ $index ]->$meta_key = $meta_value;
 			}
-			/*
-			 * Add references
-			 */
-			$references = self::mla_fetch_attachment_references( $attachment->ID, $attachment->post_parent );
-			$attachments[ $index ]->mla_references = $references;
 		}
-		
+
+		/*
+		 * Add references
+		 */
+		self::mla_attachment_array_fetch_references( $attachments );
+
 		return $attachments;
 	}
-	
+
 	/**
 	 * Retrieve attachment objects for the WordPress Media Manager
 	 *
@@ -310,7 +1420,7 @@ class MLAData {
 		$request = self::_prepare_list_table_query( $request, $offset, $count );
 		return self::_execute_list_table_query( $request );
 	}
-	
+
 	/**
 	 * WP_Query filter "parameters"
 	 *
@@ -318,13 +1428,43 @@ class MLAData {
 	 * The parameters are set up in the _prepare_list_table_query function, and
 	 * any further logic required to translate those values is contained in the filters.
 	 *
-	 * Array index values are: use_postmeta_view, postmeta_key, postmeta_value, patterns, detached, orderby, order, mla-metavalue, debug, s, mla_search_connector, mla_search_fields, sentence, exact
+	 * Array index values are: use_postmeta_view, postmeta_key, postmeta_value, patterns,
+	 * detached, orderby, order, mla-metavalue, debug (also in search_parameters)
 	 *
 	 * @since 0.30
 	 *
 	 * @var	array
 	 */
 	private static $query_parameters = array();
+
+	/**
+	 * WP_Query 'posts_search' filter "parameters"
+	 *
+	 * This array defines parameters for the query's posts_search filter, which uses
+	 * 'search_string' to add a clause to the query's WHERE clause. It is shared between
+	 * the list_table-query functions here and the mla_get_shortcode_attachments function
+	 * in class-mla-shortcodes.php. This array passes the relevant parameters to the filter.
+	 *
+	 * Array index values are:
+	 * ['mla_terms_search']['phrases']
+	 * ['mla_terms_search']['taxonomies']
+	 * ['mla_terms_search']['radio_phrases'] => AND/OR
+	 * ['mla_terms_search']['radio_terms'] => AND/OR
+	 * ['s'] => numeric for ID/parent search
+	 * ['mla_search_fields'] => 'content', 'title', 'excerpt', 'alt-text', 'name', 'terms'
+	 * Note: 'alt-text' is not supported in [mla_gallery]
+	 * ['mla_search_connector'] => AND/OR
+	 * ['sentence'] => entire string must match as one "keyword"
+	 * ['exact'] => entire string must match entire field value
+	 * ['debug'] => internal element, console/log/shortcode/none
+	 * ['mla_debug_messages'] => internal element, added when debug = 'shortcode'
+	 * ['tax_terms_count'] => internal element, shared with JOIN and GROUP BY filters
+	 *
+	 * @since 2.00
+	 *
+	 * @var	array
+	 */
+	public static $search_parameters = array();
 
 	/**
 	 * Sanitize and expand query arguments from request variables
@@ -346,20 +1486,39 @@ class MLAData {
 		 * sanitize or validate them.
 		 */
 		if ( ! is_array( $raw_request ) ) {
-			error_log( 'ERROR: _prepare_list_table_query $raw_request = ' . var_export( $raw_request, true ), 0 );
+			/* translators: 1: ERROR tag 2: function name 3: non-array value */
+			error_log( sprintf( _x( '%1$s: %2$s non-array "%3$s"', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'MLAData::_prepare_list_table_query', var_export( $raw_request, true ) ), 0 );
 			return null;
 		}
-		
+
+		/*
+		 * Make sure the current orderby choice still exists or revert to default.
+		 */
+		$default_orderby = array_merge( array( 'none' => array('none',false) ), MLA_List_Table::mla_get_sortable_columns( ) );
+		$current_orderby = MLAOptions::mla_get_option( MLAOptions::MLA_DEFAULT_ORDERBY );
+		$found_current = false;
+		foreach ($default_orderby as $key => $value ) {
+			if ( $current_orderby == $value[0] ) {
+				$found_current = true;
+				break;
+			}
+		}
+
+		if ( ! $found_current ) {
+			MLAOptions::mla_delete_option( MLAOptions::MLA_DEFAULT_ORDERBY );
+			$current_orderby = MLAOptions::mla_get_option( MLAOptions::MLA_DEFAULT_ORDERBY );
+		}
+
 		$clean_request = array (
 			'm' => 0,
-			'orderby' => MLAOptions::mla_get_option( 'default_orderby' ),
-			'order' => MLAOptions::mla_get_option( 'default_order' ),
+			'orderby' => $current_orderby,
+			'order' => MLAOptions::mla_get_option( MLAOptions::MLA_DEFAULT_ORDER ),
 			'post_type' => 'attachment',
 			'post_status' => 'inherit',
 			'mla_search_connector' => 'AND',
 			'mla_search_fields' => array()
 		);
-		
+
 		foreach ( $raw_request as $key => $value ) {
 			switch ( $key ) {
 				/*
@@ -373,16 +1532,45 @@ class MLAData {
 					$clean_request[ $key ] = sanitize_key( $value );
 					break;
 				case 'orderby':
-					if ( 'none' == $value )
+					if ( in_array( $value, array( 'none', 'post__in' ) ) ) {
 						$clean_request[ $key ] = $value;
-					else {
-						$sortable_columns = MLA_List_Table::mla_get_sortable_columns( );
+					} else {
+						$orderby = NULL;
+						/*
+						 * Custom fields can have HTML reserved characters, which are encoded by
+						 * mla_get_sortable_columns, so a separate, unencoded list is required.
+						 */
+						$sortable_columns = MLAOptions::mla_custom_field_support( 'custom_sortable_columns' );
 						foreach ($sortable_columns as $sort_key => $sort_value ) {
 							if ( $value == $sort_value[0] ) {
-								$clean_request[ $key ] = $value;
+								$orderby = 'c_' . $value;
 								break;
 							}
 						} // foreach
+
+						if ( NULL === $orderby ) {
+							$sortable_columns = MLA_List_Table::mla_get_sortable_columns();
+							foreach ($sortable_columns as $sort_key => $sort_value ) {
+								if ( $value == $sort_value[0] ) {
+									$orderby = $value;
+									break;
+								}
+							} // foreach
+						}
+						
+						if ( NULL !== $orderby ) {
+							$clean_request[ $key ] = $orderby;
+						}
+					}
+					break;
+				/*
+				 * ids allows hooks to supply a persistent list of items
+				 */
+				case 'ids':
+					if ( is_array( $value ) ) {
+						$clean_request[ 'post__in' ] = $value;
+					} else {
+						$clean_request[ 'post__in' ] = array_map( 'absint', explode( ',', $value ) );
 					}
 					break;
 				/*
@@ -421,12 +1609,16 @@ class MLAData {
 					}
 					break;
 				case 'detached':
-					if ( '1' == $value )
-						$clean_request['detached'] = '1';
+					if ( ( '0' == $value ) || ( '1' == $value ) ) {
+						$clean_request['detached'] = $value;
+					}
+
 					break;
 				case 'status':
-					if ( 'trash' == $value )
+					if ( 'trash' == $value ) {
 						$clean_request['post_status'] = 'trash';
+					}
+
 					break;
 				/*
 				 * ['s'] - Search Media by one or more keywords
@@ -441,14 +1633,25 @@ class MLAData {
 							$clean_request['debug'] = 'log';
 							break;
 					}
-					
-					if ( isset( $clean_request['debug'] ) )
+
+					if ( isset( $clean_request['debug'] ) ) {
 						$value = substr( $value, 3 );
-				
+					}
+
 					$value = stripslashes( trim( $value ) );
-					
-					if ( ! empty( $value ) )
+
+					if ( ! empty( $value ) ) {
 						$clean_request[ $key ] = $value;
+					}
+
+					break;
+				case 'mla_terms_search':
+					if ( ! empty( $value['phrases'] ) && ! empty( $value['taxonomies'] ) ) {
+						$value['phrases'] = stripslashes( trim( $value['phrases'] ) );
+						if ( ! empty( $value['phrases'] ) ) {
+							$clean_request[ $key ] = $value;
+						}
+					}
 					break;
 				case 'mla_search_connector':
 				case 'mla_search_fields':
@@ -460,23 +1663,26 @@ class MLAData {
 					break;
 				case 'meta_query':
 					if ( ! empty( $value ) ) {
-						if ( is_array( $value ) )
+						if ( is_array( $value ) ) {
 							$clean_request[ $key ] = $value;
-						else {
+						} else {
 							$clean_request[ $key ] = unserialize( stripslashes( $value ) );
+							unset( $clean_request[ $key ]['slug'] );
 						} // not array
 					}
+
 					break;
 				default:
 					// ignore anything else in $_REQUEST
 			} // switch $key
 		} // foreach $raw_request
-		
+
 		/*
-		 * Pass query parameters to the filters for _execute_list_table_query
+		 * Pass query and search parameters to the filters for _execute_list_table_query
 		 */
 		self::$query_parameters = array( 'use_postmeta_view' => false, 'orderby' => $clean_request['orderby'], 'order' => $clean_request['order'] );
-		self::$query_parameters['detached'] = isset( $clean_request['detached'] );
+		self::$query_parameters['detached'] = isset( $clean_request['detached'] ) ? $clean_request['detached'] : NULL;
+		self::$search_parameters = array( 'debug' => 'none' );
 		
 		/*
 		 * Matching a meta_value to NULL requires a LEFT JOIN to a view and a special WHERE clause
@@ -487,40 +1693,57 @@ class MLAData {
 			self::$query_parameters['postmeta_key'] = $clean_request['meta_query']['key'];
 			self::$query_parameters['postmeta_value'] = NULL;
 			unset( $clean_request['meta_query'] );
-		}
-		elseif ( isset( $clean_request['meta_query']['patterns'] ) ) {
+		} elseif ( isset( $clean_request['meta_query']['patterns'] ) ) {
 			self::$query_parameters['patterns'] = $clean_request['meta_query']['patterns'];
 			unset( $clean_request['meta_query']['patterns'] );
 		}
 
 		if ( isset( $clean_request['debug'] ) ) {
 			self::$query_parameters['debug'] = $clean_request['debug'];
+			self::$search_parameters['debug'] = $clean_request['debug'];
 			unset( $clean_request['debug'] );
 		}
-		
+
 		/*
 		 * We must patch the WHERE clause if there are leading spaces in the meta_value
 		 */
-		if ( isset( $clean_request['mla-metavalue'] ) && (' ' == $clean_request['mla-metavalue'][0] ) )
+		if ( isset( $clean_request['mla-metavalue'] ) && (' ' == $clean_request['mla-metavalue'][0] ) ) {
 			self::$query_parameters['mla-metavalue'] = $clean_request['mla-metavalue'];
+		}
+
+		/*
+		 * We will handle "Terms Search" in the mla_query_posts_search_filter.
+		 */
+		if ( isset( $clean_request['mla_terms_search'] ) ) {
+			self::$search_parameters['mla_terms_search'] = $clean_request['mla_terms_search'];
+
+			/*
+			 * The Terms Search overrides any terms-based keyword search for now; too complicated.
+			 */
+			if ( isset( $clean_request['mla_search_fields'] ) ) {
+				foreach ( $clean_request['mla_search_fields'] as $index => $field ) {
+					if ( 'terms' == $field ) {
+						unset ( $clean_request['mla_search_fields'][ $index ] );
+					}
+				}
+			}
+		}
 
 		/*
 		 * We will handle keyword search in the mla_query_posts_search_filter.
-		 * There must be at least one search field to do a search.
 		 */
 		if ( isset( $clean_request['s'] ) ) {
-			if ( ! empty( $clean_request['mla_search_fields'] ) ) {
-				self::$query_parameters['s'] = $clean_request['s'];
-				self::$query_parameters['mla_search_connector'] = $clean_request['mla_search_connector'];
-				self::$query_parameters['mla_search_fields'] = $clean_request['mla_search_fields'];
-				self::$query_parameters['sentence'] = isset( $clean_request['sentence'] );
-				self::$query_parameters['exact'] = isset( $clean_request['exact'] );
-				
-			 	if ( in_array( 'alt-text', self::$query_parameters['mla_search_fields'] ) )
-					self::$query_parameters['use_postmeta_view'] = true;
-					self::$query_parameters['postmeta_key'] = '_wp_attachment_image_alt';
-			} // !empty
-			
+			self::$search_parameters['s'] = $clean_request['s'];
+			self::$search_parameters['mla_search_fields'] = apply_filters( 'mla_list_table_search_filter_fields', $clean_request['mla_search_fields'], array( 'content', 'title', 'excerpt', 'alt-text', 'name', 'terms' ) );
+			self::$search_parameters['mla_search_connector'] = $clean_request['mla_search_connector'];
+			self::$search_parameters['sentence'] = isset( $clean_request['sentence'] );
+			self::$search_parameters['exact'] = isset( $clean_request['exact'] );
+
+			if ( in_array( 'alt-text', self::$search_parameters['mla_search_fields'] ) ) {
+			  self::$query_parameters['use_postmeta_view'] = true;
+			  self::$query_parameters['postmeta_key'] = '_wp_attachment_image_alt';
+			}
+
 			unset( $clean_request['s'] );
 			unset( $clean_request['mla_search_connector'] );
 			unset( $clean_request['mla_search_fields'] );
@@ -532,18 +1755,21 @@ class MLAData {
 		 * We have to handle custom field/post_meta values here
 		 * because they need a JOIN clause supplied by WP_Query
 		 */
-		if ( 'c_' == substr( self::$query_parameters['orderby'], 0, 2 ) ) {
-			$option_value = MLAOptions::mla_custom_field_option_value( self::$query_parameters['orderby'] );
+		if ( 'c_' == substr( $clean_request['orderby'], 0, 2 ) ) {
+			$option_value = MLAOptions::mla_custom_field_option_value( $clean_request['orderby'] );
 			if ( isset( $option_value['name'] ) ) {
 				self::$query_parameters['use_postmeta_view'] = true;
 				self::$query_parameters['postmeta_key'] = $option_value['name'];
-				if ( isset($clean_request['orderby']) )
+
+				if ( isset($clean_request['orderby']) ) {
 					unset($clean_request['orderby']);
-				if ( isset($clean_request['order']) )
+				}
+
+				if ( isset($clean_request['order']) ) {
 					unset($clean_request['order']);
+				}
 			}
-		} // custom field
-		else {
+		} else { // custom field
 			switch ( self::$query_parameters['orderby'] ) {
 				/*
 				 * '_wp_attachment_image_alt' is special; we'll handle it in the JOIN and ORDERBY filters
@@ -551,10 +1777,14 @@ class MLAData {
 				case '_wp_attachment_image_alt':
 					self::$query_parameters['use_postmeta_view'] = true;
 					self::$query_parameters['postmeta_key'] = '_wp_attachment_image_alt';
-					if ( isset($clean_request['orderby']) )
+					if ( isset($clean_request['orderby']) ) {
 						unset($clean_request['orderby']);
-					if ( isset($clean_request['order']) )
+					}
+
+					if ( isset($clean_request['order']) ) {
 						unset($clean_request['order']);
+					}
+
 					break;
 				case '_wp_attached_file':
 					$clean_request['meta_key'] = '_wp_attached_file';
@@ -570,10 +1800,10 @@ class MLAData {
 		if ( ( (int) $count ) > 0 ) {
 			$clean_request['offset'] = $offset;
 			$clean_request['posts_per_page'] = $count;
-		}
-		elseif ( ( (int) $count ) == -1 )
+		} elseif ( ( (int) $count ) == -1 ) {
 			$clean_request['posts_per_page'] = $count;
-		
+		}
+
 		/*
 		 * ['mla_filter_term'] - filter by taxonomy
 		 *
@@ -596,23 +1826,23 @@ class MLAData {
 							'operator' => 'NOT IN' 
 						) 
 					);
-				}  // mla_filter_term == -1
-				else {
+				} else { // mla_filter_term == -1
 					$clean_request['tax_query'] = array(
 						array(
 							'taxonomy' => $tax_filter,
 							'field' => 'id',
 							'terms' => array(
-								(int) $clean_request['mla_filter_term'] 
-							) 
+								(int) $clean_request['mla_filter_term']
+							),
+							'include_children' => ( 'checked' == MLAOptions::mla_get_option( MLAOptions::MLA_TAXONOMY_FILTER_INCLUDE_CHILDREN ) )
 						) 
 					);
 				} // mla_filter_term != -1
 			} // mla_filter_term != 0
-			
+
 			unset( $clean_request['mla_filter_term'] );
 		} // isset mla_filter_term
-		
+
 		if ( isset( $clean_request['mla-tax'] )  && isset( $clean_request['mla-term'] )) {
 			$clean_request['tax_query'] = array(
 				array(
@@ -622,11 +1852,11 @@ class MLAData {
 					'include_children' => false 
 				) 
 			);
-			
+
 			unset( $clean_request['mla-tax'] );
 			unset( $clean_request['mla-term'] );
 		} // isset mla_tax
-		
+
 		if ( isset( $clean_request['mla-metakey'] ) && isset( $clean_request['mla-metavalue'] ) ) {
 			$clean_request['meta_key'] = $clean_request['mla-metakey'];
 			$clean_request['meta_value'] = $clean_request['mla-metavalue'];
@@ -634,7 +1864,7 @@ class MLAData {
 			unset( $clean_request['mla-metakey'] );
 			unset( $clean_request['mla-metavalue'] );
 		} // isset mla_tax
-		
+
 		return $clean_request;
 	}
 
@@ -648,7 +1878,7 @@ class MLAData {
 	 * @return	object	WP_Query object with query results
 	 */
 	private static function _execute_list_table_query( $request ) {
-		global $wpdb, $table_prefix;
+		global $wpdb;
 
 		/*
 		 * Custom fields are special; we have to use an SQL VIEW to build 
@@ -658,7 +1888,7 @@ class MLAData {
 		if ( self::$query_parameters['use_postmeta_view'] ) {
 			$view_name = self::$mla_alt_text_view;
 			$key_name = self::$query_parameters['postmeta_key'];
-			$table_name = $table_prefix . 'postmeta';
+			$table_name = $wpdb->postmeta;
 
 			$result = $wpdb->query(
 					"
@@ -671,38 +1901,65 @@ class MLAData {
 		}
 
 		add_filter( 'posts_search', 'MLAData::mla_query_posts_search_filter', 10, 2 ); // $search, &$this
-		add_filter( 'posts_join', 'MLAData::mla_query_posts_join_filter' );
 		add_filter( 'posts_where', 'MLAData::mla_query_posts_where_filter' );
+		add_filter( 'posts_join', 'MLAData::mla_query_posts_join_filter' );
+		add_filter( 'posts_groupby', 'MLAData::mla_query_posts_groupby_filter' );
 		add_filter( 'posts_orderby', 'MLAData::mla_query_posts_orderby_filter' );
+
+		/*
+		 * Disable Relevanssi - A Better Search, v3.2 by Mikko Saari 
+		 * relevanssi_prevent_default_request( $request, $query )
+		 * apply_filters('relevanssi_admin_search_ok', $admin_search_ok, $query );
+		 */
+		if ( function_exists( 'relevanssi_prevent_default_request' ) ) {
+			add_filter( 'relevanssi_admin_search_ok', 'MLAData::mla_query_relevanssi_admin_search_ok_filter' );
+		}
 
 		if ( isset( self::$query_parameters['debug'] ) ) {
 			global $wp_filter;
 			$debug_array = array( 'posts_search' => $wp_filter['posts_search'], 'posts_join' => $wp_filter['posts_join'], 'posts_where' => $wp_filter['posts_where'], 'posts_orderby' => $wp_filter['posts_orderby'] );
-			
+
 			if ( 'console' == self::$query_parameters['debug'] ) {
-				trigger_error( '_execute_list_table_query $wp_filter = ' . var_export( $debug_array, true ), E_USER_WARNING );
+				/* translators: 1: DEBUG tag 2: query filter details */
+				trigger_error( sprintf( __( '%1$s: _execute_list_table_query $wp_filter = "%2$s".', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $debug_array, true ) ), E_USER_WARNING );
+			} else {
+				/* translators: 1: DEBUG tag 2: query filter details */
+				error_log( sprintf( _x( '%1$s: _execute_list_table_query $wp_filter = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $debug_array, true ) ), 0 );
 			}
-			else {
-				error_log( '_execute_list_table_query $wp_filter = ' . var_export( $debug_array, true ), 0 );
-			}
+
+			add_filter( 'posts_clauses', 'MLAData::mla_query_posts_clauses_filter', 0x7FFFFFFF, 1 );
+			add_filter( 'posts_clauses_request', 'MLAData::mla_query_posts_clauses_request_filter', 0x7FFFFFFF, 1 );
 		} // debug
 
 		$results = new WP_Query( $request );
-		
+
 		if ( isset( self::$query_parameters['debug'] ) ) {
-			$debug_array = array( 'request' => $request, 'query_parameters' => self::$query_parameters, 'SQL_request' => $results->request, 'post_count' => $results->post_count, 'found_posts' => $results->found_posts );
+			remove_filter( 'posts_clauses', 'MLAData::mla_query_posts_clauses_filter', 0x7FFFFFFF );
+			remove_filter( 'posts_clauses_request', 'MLAData::mla_query_posts_clauses_request_filter', 0x7FFFFFFF );
+
+			$debug_array = array( 'request' => $request, 'query_parameters' => self::$query_parameters, 'post_count' => $results->post_count, 'found_posts' => $results->found_posts );
 
 			if ( 'console' == self::$query_parameters['debug'] ) {
-				trigger_error( '_execute_list_table_query WP_Query = ' . var_export( $debug_array, true ), E_USER_WARNING );
-			}
-			else {
-				error_log( '_execute_list_table_query WP_Query = ' . var_export( $debug_array, true ), 0 );
+				/* translators: 1: DEBUG tag 2: query details */
+				trigger_error( sprintf( __( '%1$s: _execute_list_table_query WP_Query = "%2$s".', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $debug_array, true ) ), E_USER_WARNING );
+				/* translators: 1: DEBUG tag 2: SQL statement */
+				trigger_error( sprintf( __( '%1$s: _execute_list_table_query SQL_request = "%2$s".', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $results->request, true ) ), E_USER_WARNING );
+			} else {
+				/* translators: 1: DEBUG tag 2: query details */
+				error_log( sprintf( _x( '%1$s: _execute_list_table_query WP_Query = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $debug_array, true ) ), 0 );
+				/* translators: 1: DEBUG tag 2: SQL statement */
+				error_log( sprintf( _x( '%1$s: _execute_list_table_query SQL_request = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $results->request, true ) ), 0 );
 			}
 		} // debug
 
+		if ( function_exists( 'relevanssi_prevent_default_request' ) ) {
+			remove_filter( 'relevanssi_admin_search_ok', 'MLAData::mla_query_relevanssi_admin_search_ok_filter' );
+		}
+
 		remove_filter( 'posts_orderby', 'MLAData::mla_query_posts_orderby_filter' );
-		remove_filter( 'posts_where', 'MLAData::mla_query_posts_where_filter' );
+		remove_filter( 'posts_groupby', 'MLAData::mla_query_posts_groupby_filter' );
 		remove_filter( 'posts_join', 'MLAData::mla_query_posts_join_filter' );
+		remove_filter( 'posts_where', 'MLAData::mla_query_posts_where_filter' );
 		remove_filter( 'posts_search', 'MLAData::mla_query_posts_search_filter' );
 
 		if ( self::$query_parameters['use_postmeta_view'] ) {
@@ -711,7 +1968,22 @@ class MLAData {
 
 		return $results;
 	}
-	
+
+	/**
+	 * Replaces a WordPress function deprecated in v3.7
+	 * 
+	 * Defined as public because it's a callback from array_map().
+	 *
+	 * @since 1.51
+	 *
+	 * @param	string	search term before modification
+	 *
+	 * @return	string	cleaned up search term
+	 */
+	public static function mla_search_terms_tidy( $term ) {
+		return trim( $term, "\"'\n\r " );
+	}
+
 	/**
 	 * Adds a keyword search to the WHERE clause, if required
 	 * 
@@ -725,103 +1997,330 @@ class MLAData {
 	 * @return	string	query clause after keyword search addition
 	 */
 	public static function mla_query_posts_search_filter( $search_string, &$query_object ) {
-		global $table_prefix, $wpdb;
+		global $wpdb;
+
+		$numeric_clause = '';
+		$search_clause = '';
+		$tax_clause = '';
+		$tax_connector = 'AND';
+		$tax_index = 0;
+
+		/*
+		 * Process the Terms Search arguments, if present.
+		 */
+		if ( isset( self::$search_parameters['mla_terms_search']['phrases'] ) ) {
+			$terms = array_map( 'trim', explode( ',', self::$search_parameters['mla_terms_search']['phrases'] ) );
+			if ( 1 < count( $terms ) ) {
+				$terms_connector = '(';			
+			} else {
+				$terms_connector = '';			
+			}
+
+			foreach ( $terms as $term ) {
+				preg_match_all('/".*?("|$)|((?<=[\t ",+])|^)[^\t ",+]+/', $term, $matches);
+				$phrases = array_map('MLAData::mla_search_terms_tidy', $matches[0]);
+
+				$tax_terms = array();
+				$tax_counts = array();
+				foreach ( $phrases as $phrase ) {
+					$the_terms = get_terms( self::$search_parameters['mla_terms_search']['taxonomies'], array( 'name__like' => $phrase, 'fields' => 'all', 'hide_empty' => false ) );
+					foreach( $the_terms as $the_term ) {
+						$tax_terms[ $the_term->taxonomy ][ $the_term->term_id ] = (integer) $the_term->term_taxonomy_id;
+
+						if ( isset( $tax_counts[ $the_term->taxonomy ][ $the_term->term_id ] ) ) {
+							$tax_counts[ $the_term->taxonomy ][ $the_term->term_id ]++;
+						} else {
+							$tax_counts[ $the_term->taxonomy ][ $the_term->term_id ] = 1;
+						}
+					}
+				} // foreach phrase
+
+				/*
+				 * For the AND connector, a taxonomy term must have all of the search terms within it
+				 */
+				if ( 'AND' == self::$search_parameters['mla_terms_search']['radio_phrases'] ) {
+					$search_term_count = count( $phrases );
+					foreach ($tax_terms as $taxonomy => $term_ids ) {
+						foreach ( $term_ids as $term_id => $term_taxonomy_id ) {
+							if ( $search_term_count != $tax_counts[ $taxonomy ][ $term_id ] ) {
+								unset( $term_ids[ $term_id ] );
+							}
+						}
+
+						if ( empty( $term_ids ) ) {
+							unset( $tax_terms[ $taxonomy ] );
+						} else {
+							$tax_terms[ $taxonomy ] = $term_ids;
+						}
+					} // foreach taxonomy
+				} // AND (i.e., All phrases)
+
+				if ( ! empty( $tax_terms ) ) {
+					$inner_connector = '';
+
+					$tax_clause .= $terms_connector;
+					foreach( $tax_terms as $tax_term ) {
+						$prefix = 'mlatt' . $tax_index++;
+						$tax_clause .= sprintf( '%1$s %2$s.term_taxonomy_id IN (%3$s)', $inner_connector, $prefix, implode( ',', $tax_term ) );
+						$inner_connector = ' OR';
+					} // foreach tax_term
+
+					$terms_connector = ' ) ' . self::$search_parameters['mla_terms_search']['radio_terms'] . ' (';
+				} // tax_terms present
+			} // foreach term
+
+			if ( 1 < count( $terms ) && ! empty( $tax_clause ) ) {
+				$tax_clause .= ')';
+			}
+
+			if ( empty( $tax_clause ) ) {
+				$tax_clause = '1=0';
+			} else {
+				self::$search_parameters['tax_terms_count'] = $tax_index;
+			};
+		} // isset mla_terms_search
+
 		/*
 		 * Process the keyword search argument, if present.
 		 */
-		$search_clause = '';
-		if ( isset( self::$query_parameters['s'] ) ) {
-		
-			if ( isset( self::$query_parameters['debug'] ) ) {
-				$debug_array = array( 's' => self::$query_parameters['s'] );
-			} // debug
-	
+		if ( isset( self::$search_parameters['s'] ) ) {
 			/*
-			 * Interpret a numeric value as the ID of a specific attachment or the ID of a parent post/page
+			 * Interpret a numeric value as the ID of a specific attachment or the ID of
+			 * a parent post/page; add it to the regular text-based search.
 			 */
-			if( is_numeric( self::$query_parameters['s'] ) ) {
-				$id = absint( self::$query_parameters['s'] );
-				$search_clause = ' AND ( ( ' . $wpdb->posts . '.ID = ' . $id . ' ) OR ( ' . $wpdb->posts . '.post_parent = ' . $id . ' ) ) ';
-		
-				if ( isset( self::$query_parameters['debug'] ) ) {
-					$debug_array['search_clause'] = $search_clause;
-					$debug_array['search_string'] = $search_string;
-					
-					if ( 'console' == self::$query_parameters['debug'] ) {
-						trigger_error( 'mla_query_posts_search_filter is_numeric = ' . var_export( $debug_array, true ), E_USER_WARNING );
-					}
-					else {
-						error_log( 'mla_query_posts_search_filter is_numeric = ' . var_export( $debug_array, true ), 0 );
-					}
-				} // debug
-		
-				return $search_clause;
-			}
-			
-			if (  self::$query_parameters['sentence'] ) {
-				$search_terms = array( self::$query_parameters['s'] );
+			if ( is_numeric( self::$search_parameters['s'] ) ) {
+				$id = absint( self::$search_parameters['s'] );
+				$numeric_clause = '( ( ' . $wpdb->posts . '.ID = ' . $id . ' ) OR ( ' . $wpdb->posts . '.post_parent = ' . $id . ' ) ) OR ';
 			} else {
-				preg_match_all('/".*?("|$)|((?<=[\r\n\t ",+])|^)[^\r\n\t ",+]+/', self::$query_parameters['s'], $matches);
-				$search_terms = array_map('_search_terms_tidy', $matches[0]);
+				$numeric_clause = '';
 			}
-			
-			$fields = self::$query_parameters['mla_search_fields'];
-			$percent = self::$query_parameters['exact'] ? '' : '%';
-			$connector = '';
-			foreach ( $search_terms as $term ) {
-				$term = esc_sql( like_escape( $term ) );
-				$inner_connector = '';
-				$search_clause .= "{$connector}(";
-				
-				if ( in_array( 'content', $fields ) ) {
-					$search_clause .= "{$inner_connector}({$wpdb->posts}.post_content LIKE '{$percent}{$term}{$percent}')";
-					$inner_connector = ' OR ';
-				}
-				
-				if ( in_array( 'title', $fields ) ) {
-					$search_clause .= "{$inner_connector}({$wpdb->posts}.post_title LIKE '{$percent}{$term}{$percent}')";
-					$inner_connector = ' OR ';
-				}
-				
-				if ( in_array( 'excerpt', $fields ) ) {
-					$search_clause .= "{$inner_connector}({$wpdb->posts}.post_excerpt LIKE '{$percent}{$term}{$percent}')";
-					$inner_connector = ' OR ';
-				}
-				
-				if ( in_array( 'alt-text', $fields ) ) {
-					$view_name = self::$mla_alt_text_view;
-					$search_clause .= "{$inner_connector}({$view_name}.meta_value LIKE '{$percent}{$term}{$percent}')";
-					$inner_connector = ' OR ';
-				}
-				
-				if ( in_array( 'name', $fields ) ) {
-					$search_clause .= "{$inner_connector}({$wpdb->posts}.post_name LIKE '{$percent}{$term}{$percent}')";
-				}
-				
-				$search_clause .= ")";
-				$connector = ' ' . self::$query_parameters['mla_search_connector'] . ' ';
-			} // foreach
 
-			if ( !empty($search_clause) ) {
-				$search_clause = " AND ({$search_clause}) ";
-				if ( !is_user_logged_in() )
-					$search_clause .= " AND ($wpdb->posts.post_password = '') ";
+			// WordPress v3.7 says: there are no line breaks in <input /> fields
+			self::$search_parameters['s'] = str_replace( array( "\r", "\n" ), '', self::$search_parameters['s'] );
+
+			if (  self::$search_parameters['sentence'] || self::$search_parameters['exact'] ) {
+				$terms_search = array( self::$search_parameters['s'] );
+			} else {
+				// v3.6.1 was '/".*?("|$)|((?<=[\r\n\t ",+])|^)[^\r\n\t ",+]+/'
+				preg_match_all('/".*?("|$)|((?<=[\t ",+])|^)[^\t ",+]+/', self::$search_parameters['s'], $matches);
+				$terms_search = array_map('MLAData::mla_search_terms_tidy', $matches[0]);
 			}
-			
-			if ( isset( self::$query_parameters['debug'] ) ) {
-				$debug_array['search_clause'] = $search_clause;
-				$debug_array['search_string'] = $search_string;
-				
-				if ( 'console' == self::$query_parameters['debug'] ) {
-					trigger_error( 'mla_query_posts_search_filter not numeric = ' . var_export( $debug_array, true ), E_USER_WARNING );
-				}
-				else {
-					error_log( 'mla_query_posts_search_filter not numeric = ' . var_export( $debug_array, true ), 0 );
-				}
-			} // debug
+
+			$fields = self::$search_parameters['mla_search_fields'];
+			$percent = self::$search_parameters['exact'] ? '' : '%';
+			$connector = '';
+
+			if ( empty( $fields ) ) {
+				$search_clause = '1=0';
+			} else {
+				$tax_terms = array();
+				$tax_counts = array();
+				$wp_4dot0_plus = version_compare( get_bloginfo('version'), '4.0', '>=' );
+				foreach ( $terms_search as $term ) {
+					if ( $wp_4dot0_plus ) {
+						$sql_term = $percent . $wpdb->esc_like( $term ) . $percent;
+						$sql_term = $wpdb->prepare( '%s', $sql_term );
+					} else {
+						$sql_term = "'" . $percent . esc_sql( like_escape( $term ) ) . $percent . "'";
+					}
+
+					$inner_connector = '';
+					$inner_clause = '';
+
+					if ( in_array( 'content', $fields ) ) {
+					  $inner_clause .= "{$inner_connector}({$wpdb->posts}.post_content LIKE {$sql_term})";
+					  $inner_connector = ' OR ';
+					}
+
+					if ( in_array( 'title', $fields ) ) {
+					  $inner_clause .= "{$inner_connector}({$wpdb->posts}.post_title LIKE {$sql_term})";
+					  $inner_connector = ' OR ';
+					}
+
+					if ( in_array( 'excerpt', $fields ) ) {
+					  $inner_clause .= "{$inner_connector}({$wpdb->posts}.post_excerpt LIKE {$sql_term})";
+					  $inner_connector = ' OR ';
+					}
+
+					if ( in_array( 'alt-text', $fields ) ) {
+					  $view_name = self::$mla_alt_text_view;
+					  $inner_clause .= "{$inner_connector}({$view_name}.meta_value LIKE {$sql_term})";
+					  $inner_connector = ' OR ';
+					}
+
+					if ( in_array( 'name', $fields ) ) {
+					  $inner_clause .= "{$inner_connector}({$wpdb->posts}.post_name LIKE {$sql_term})";
+					}
+					
+					$inner_clause = apply_filters( 'mla_list_table_search_filter_inner_clause', $inner_clause, $inner_connector, $wpdb->posts, $sql_term );
+
+					if ( ! empty($inner_clause) ) {
+						$search_clause .= "{$connector}({$inner_clause})";
+						$connector = ' ' . self::$search_parameters['mla_search_connector'] . ' ';
+					}
+
+					/*
+					 * Convert search term text to term_taxonomy_id value(s),
+					 * separated by taxonomy.
+					 */
+					if ( in_array( 'terms', $fields ) ) {
+						$the_terms = get_terms( self::$search_parameters['mla_search_taxonomies'], array( 'name__like' => $term, 'fields' => 'all', 'hide_empty' => false ) );
+						foreach( $the_terms as $the_term ) {
+							$tax_terms[ $the_term->taxonomy ][ $the_term->term_id ] = (integer) $the_term->term_taxonomy_id;
+
+							if ( isset( $tax_counts[ $the_term->taxonomy ][ $the_term->term_id ] ) ) {
+								$tax_counts[ $the_term->taxonomy ][ $the_term->term_id ]++;
+							} else {
+								$tax_counts[ $the_term->taxonomy ][ $the_term->term_id ] = 1;
+							}
+						}
+					} // in_array terms
+				} // foreach term
+			  
+				if ( in_array( 'terms', $fields ) ) {
+					/*
+					 * For the AND connector, a taxonomy term must have all of the search terms within it
+					 */
+					if ( 'AND' == self::$search_parameters['mla_search_connector'] ) {
+						$search_term_count = count( $terms_search );
+						foreach ($tax_terms as $taxonomy => $term_ids ) {
+							foreach ( $term_ids as $term_id => $term_taxonomy_id ) {
+								if ( $search_term_count != $tax_counts[ $taxonomy ][ $term_id ] ) {
+									unset( $term_ids[ $term_id ] );
+								}
+							}
+
+							if ( empty( $term_ids ) ) {
+								unset( $tax_terms[ $taxonomy ] );
+							} else {
+								$tax_terms[ $taxonomy ] = $term_ids;
+							}
+						} // foreach taxonomy
+					} // AND connector
+
+					if ( empty( $tax_terms ) ) {
+						/*
+						 * If "Terms" is the only field and no terms are present,
+						 * the search must fail.
+						 */
+						if ( array( 'terms' ) == $fields ) {
+							$tax_clause = '1=0';
+						}
+					} else {
+						$tax_index = 0;
+						$inner_connector = '';
+
+						foreach( $tax_terms as $tax_term ) {
+							$prefix = 'mlatt' . $tax_index++;
+							$tax_clause .= sprintf( '%1$s %2$s.term_taxonomy_id IN (%3$s)', $inner_connector, $prefix, implode( ',', $tax_term ) );
+							$inner_connector = ' OR';
+						} // foreach tax_term
+
+						self::$search_parameters['tax_terms_count'] = $tax_index;
+						$tax_connector = 'OR';
+					} // tax_terms present
+				} // terms in fields
+			} // fields not empty
 		} // isset 's'
-		
+
+		if ( ! empty( $tax_clause ) && ! empty( $search_clause ) ) {
+			$tax_clause = " {$tax_connector} ({$tax_clause} )";
+		}
+
+		if ( ! empty( $search_clause ) || ! empty( $tax_clause ) ) {
+			$search_clause = " AND ( {$numeric_clause}{$search_clause}{$tax_clause} ) ";
+
+			if ( ! is_user_logged_in() ) {
+				$search_clause .= " AND ( {$wpdb->posts}.post_password = '' ) ";
+			}
+		}
+
+		if ( 'none' != self::$search_parameters['debug'] ) {
+			$debug_array['search_string'] = $search_string;
+			$debug_array['search_parameters'] = self::$search_parameters;
+			$debug_array['search_clause'] = $search_clause;
+
+			if ( 'shortcode' == self::$search_parameters['debug'] ) {
+				self::$search_parameters['mla_debug_messages'] = '<p><strong>mla_debug posts_search filter</strong> = ' . var_export( $debug_array, true ) . '</p>';
+			} elseif ( 'console' == self::$search_parameters['debug'] ) {
+				/* translators: 1: DEBUG tag 2: search filter details */
+				trigger_error( sprintf( __( '%1$s: mla_query_posts_search_filter = "%2$s".', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $debug_array, true ) ), E_USER_WARNING );
+			} else {
+				/* translators: 1: DEBUG tag 2: search filter details */
+				error_log( sprintf( _x( '%1$s: mla_query_posts_search_filter = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $debug_array, true ) ), 0 );
+			}
+		} // debug
+
 		return $search_clause;
+	}
+
+	/**
+	 * Adds/modifies the WHERE clause for meta values, LIKE patterns and detached items
+	 * 
+	 * Modeled after _edit_attachments_query_helper in wp-admin/post.php.
+	 * Defined as public because it's a filter.
+	 *
+	 * @since 0.1
+	 *
+	 * @param	string	query clause before modification
+	 *
+	 * @return	string	query clause after modification
+	 */
+	public static function mla_query_posts_where_filter( $where_clause ) {
+		global $wpdb;
+
+		if ( isset( self::$query_parameters['debug'] ) ) {
+			$debug_array = array( 'where_string' => $where_clause );
+		}
+
+		/*
+		 * WordPress filters meta_value thru trim() - which we must reverse
+		 */
+		if ( isset( self::$query_parameters['mla-metavalue'] ) ) {
+			$where_clause = preg_replace( '/(^.*meta_value AS CHAR\) = \')([^\']*)/', '${1}' . self::$query_parameters['mla-metavalue'], $where_clause );
+		}
+
+		/*
+		 * Matching a NULL meta value 
+		 */
+		if ( array_key_exists( 'postmeta_value', self::$query_parameters ) && NULL == self::$query_parameters['postmeta_value'] ) {
+			$where_clause .= ' AND ' . self::$mla_alt_text_view . '.meta_value IS NULL';
+		}
+
+		/*
+		 * WordPress modifies the LIKE clause - which we must reverse
+		 */
+		if ( isset( self::$query_parameters['patterns'] ) ) {
+			foreach ( self::$query_parameters['patterns'] as $pattern ) {
+				$match_clause = '%' . str_replace( '%', '\\\\%', $pattern ) . '%';
+				$where_clause = str_replace( "LIKE '{$match_clause}'", "LIKE '{$pattern}'", $where_clause );
+			}
+		}
+
+		/*
+		 * Unattached items require some help
+		 */
+		if ( isset( self::$query_parameters['detached'] ) ) {
+			if ( '1' == self::$query_parameters['detached'] ) {
+				$where_clause .= sprintf( ' AND %1$s.post_parent < 1', $wpdb->posts );
+			} elseif ( '0' == self::$query_parameters['detached'] ) {
+				$where_clause .= sprintf( ' AND %1$s.post_parent > 0', $wpdb->posts );
+			}
+		}
+
+		if ( isset( self::$query_parameters['debug'] ) ) {
+			$debug_array['where_clause'] = $where_clause;
+
+			if ( 'console' == self::$query_parameters['debug'] ) {
+				/* translators: 1: DEBUG tag 2: where filter details */
+				trigger_error( sprintf( __( '%1$s: mla_query_posts_where_filter = "%2$s".', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $debug_array, true ) ), E_USER_WARNING );
+			} else {
+				/* translators: 1: DEBUG tag 2: where filter details */
+				error_log( sprintf( _x( '%1$s: mla_query_posts_where_filter = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $debug_array, true ) ), 0 );
+			}
+		} // debug
+
+		return $where_clause;
 	}
 
 	/**
@@ -836,66 +2335,68 @@ class MLAData {
 	 * @return	string	query clause after "LEFT JOIN view ON post_id" item modification
 	 */
 	public static function mla_query_posts_join_filter( $join_clause ) {
-		global $table_prefix;
+		global $wpdb;
+
+		if ( isset( self::$query_parameters['debug'] ) ) {
+			$debug_array = array( 'join_string' => $join_clause );
+		}
+
 		/*
 		 * '_wp_attachment_image_alt' is special; we have to use an SQL VIEW to
 		 * build an intermediate table and modify the JOIN to include posts with
 		 * no value for this metadata field.
 		 */
 		if ( self::$query_parameters['use_postmeta_view'] ) {
-			$view_name = self::$mla_alt_text_view;
-			$join_clause .= " LEFT JOIN {$view_name} ON ({$table_prefix}posts.ID = {$view_name}.post_id)";
+			$join_clause .= sprintf( ' LEFT JOIN %1$s ON (%2$s.ID = %1$s.post_id)', self::$mla_alt_text_view, $wpdb->posts );
 		}
+
+		if ( isset( self::$search_parameters['tax_terms_count'] ) ) {
+			$tax_index = 0;
+			$tax_clause = '';
+
+			while ( $tax_index < self::$search_parameters['tax_terms_count'] ) {
+				$prefix = 'mlatt' . $tax_index++;
+				$tax_clause .= sprintf( ' INNER JOIN %1$s AS %2$s ON (%3$s.ID = %2$s.object_id)', $wpdb->term_relationships, $prefix, $wpdb->posts );
+			}
+
+			$join_clause .= $tax_clause;
+		}
+
+		if ( isset( self::$query_parameters['debug'] ) ) {
+			$debug_array['join_clause'] = $join_clause;
+
+			if ( 'console' == self::$query_parameters['debug'] ) {
+				/* translators: 1: DEBUG tag 2: join filter details */
+				trigger_error( sprintf( __( '%1$s: mla_query_posts_join_filter = "%2$s".', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $debug_array, true ) ), E_USER_WARNING );
+			} else {
+				/* translators: 1: DEBUG tag 2: join filter details */
+				error_log( sprintf( _x( '%1$s: mla_query_posts_join_filter = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $debug_array, true ) ), 0 );
+			}
+		} // debug
 
 		return $join_clause;
 	}
 
 	/**
-	 * Adds a WHERE clause for detached items
+	 * Adds a GROUPBY clause, if required
 	 * 
-	 * Modeled after _edit_attachments_query_helper in wp-admin/post.php.
+	 * Taxonomy text queries require a GROUPBY clause.
 	 * Defined as public because it's a filter.
 	 *
-	 * @since 0.1
+	 * @since 1.90
 	 *
 	 * @param	string	query clause before modification
 	 *
-	 * @return	string	query clause after "detached" item modification
+	 * @return	string	updated query clause
 	 */
-	public static function mla_query_posts_where_filter( $where_clause ) {
-		global $table_prefix;
+	public static function mla_query_posts_groupby_filter( $groupby_clause ) {
+		global $wpdb;
 
-		/*
-		 * WordPress filters meta_value thru trim() - which we must reverse
-		 */
-		if ( isset( self::$query_parameters['mla-metavalue'] ) ) {
-			$where_clause = preg_replace( '/(^.*meta_value AS CHAR\) = \')([^\']*)/', '${1}' . self::$query_parameters['mla-metavalue'], $where_clause );
+		if ( isset( self::$search_parameters['tax_terms_count'] ) ) {
+			$groupby_clause = "{$wpdb->posts}.ID";
 		}
-			
-		/*
-		 * Matching a NULL meta value 
-		 */
-		if ( array_key_exists( 'postmeta_value', self::$query_parameters ) && NULL == self::$query_parameters['postmeta_value'] ) {
-			$where_clause .= ' AND ' . self::$mla_alt_text_view . '.meta_value IS NULL';
-		}
-		
-		/*
-		 * WordPress modifies the LIKE clause - which we must reverse
-		 */
-		if ( isset( self::$query_parameters['patterns'] ) ) {
-			foreach ( self::$query_parameters['patterns'] as $pattern ) {
-				$match_clause = '%' . str_replace( '%', '\\\\%', $pattern ) . '%';
-				$where_clause = str_replace( "LIKE '{$match_clause}'", "LIKE '{$pattern}'", $where_clause );
-			}
-		}
-			
-		/*
-		 * Unattached items require some help
-		 */
-		if ( self::$query_parameters['detached'] )
-			$where_clause .= " AND {$table_prefix}posts.post_parent < 1";
 
-		return $where_clause;
+		return $groupby_clause;
 	}
 
 	/**
@@ -911,25 +2412,33 @@ class MLAData {
 	 * @return	string	updated query clause
 	 */
 	public static function mla_query_posts_orderby_filter( $orderby_clause ) {
-		global $table_prefix;
+		global $wpdb;
+
+		if ( isset( self::$query_parameters['debug'] ) ) {
+			$debug_array = array( 'orderby_string' => $orderby_clause );
+		}
 
 		if ( isset( self::$query_parameters['orderby'] ) ) {
 			if ( 'c_' == substr( self::$query_parameters['orderby'], 0, 2 ) ) {
 				$orderby = self::$mla_alt_text_view . '.meta_value';
-			} // custom field sort
-			else {
+			} /* custom field sort */ else { 
 				switch ( self::$query_parameters['orderby'] ) {
 					case 'none':
 						$orderby = '';
 						$orderby_clause = '';
 						break;
 					/*
+					 * post__in is passed from Media Manager Modal Window
+					 */
+					case 'post__in':
+						return $orderby_clause;
+					/*
 					 * There are two columns defined that end up sorting on post_title,
 					 * so we can't use the database column to identify the column but
 					 * we actually sort on the database column.
 					 */
 					case 'title_name':
-						$orderby = "{$table_prefix}posts.post_title";
+						$orderby = $wpdb->posts . '.post_title';
 						break;
 					/*
 					 * The _wp_attached_file meta data value is present for all attachments, and the
@@ -946,17 +2455,92 @@ class MLAData {
 						$orderby = self::$mla_alt_text_view . '.meta_value';
 						break;
 					default:
-						$orderby = "{$table_prefix}posts." . self::$query_parameters['orderby'];
+						$orderby = $wpdb->posts . '.' . self::$query_parameters['orderby'];
 				} // $query_parameters['orderby']
 			}
-			
-			if ( ! empty( $orderby ) )
+
+			if ( ! empty( $orderby ) ) {
 				$orderby_clause = $orderby . ' ' . self::$query_parameters['order'];
+			}
 		} // isset
+
+		if ( isset( self::$query_parameters['debug'] ) ) {
+			$debug_array['orderby_clause'] = $orderby_clause;
+
+			if ( 'console' == self::$query_parameters['debug'] ) {
+				/* translators: 1: DEBUG tag 2: orderby details details */
+				trigger_error( sprintf( __( '%1$s: mla_query_posts_orderby_filter = "%2$s".', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $debug_array, true ) ), E_USER_WARNING );
+			} else {
+				/* translators: 1: DEBUG tag 2: orderby details details */
+				error_log( sprintf( _x( '%1$s: mla_query_posts_orderby_filter = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $debug_array, true ) ), 0 );
+			}
+		} // debug
 
 		return $orderby_clause;
 	}
-	
+
+	/**
+	 * Disable Relevanssi - A Better Search, v3.2 by Mikko Saari
+	 * Defined as public because it's a filter.
+	 *
+	 * @since 1.80
+	 *
+	 * @param	boolean	Default setting
+	 *
+	 * @return	boolean	Updated setting
+	 */
+	public static function mla_query_relevanssi_admin_search_ok_filter( $admin_search_ok ) {
+		return false;
+	}
+
+	/**
+	 * Filters all clauses for shortcode queries, pre caching plugins
+	 * 
+	 * This is for debug purposes only.
+	 * Defined as public because it's a filter.
+	 *
+	 * @since 1.80
+	 *
+	 * @param	array	query clauses before modification
+	 *
+	 * @return	array	query clauses after modification (none)
+	 */
+	public static function mla_query_posts_clauses_filter( $pieces ) {
+		if ( 'console' == self::$query_parameters['debug'] ) {
+			/* translators: 1: DEBUG tag 2: SQL clauses */
+			trigger_error( sprintf( __( '%1$s: mla_query_posts_clauses_filter = "%2$s".', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $pieces, true ) ), E_USER_WARNING );
+		} else {
+			/* translators: 1: DEBUG tag 2: SQL clauses */
+			error_log( sprintf( _x( '%1$s: mla_query_posts_clauses_filter = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $pieces, true ) ), 0 );
+		}
+
+		return $pieces;
+	}
+
+	/**
+	 * Filters all clauses for shortcode queries, post caching plugins
+	 * 
+	 * This is for debug purposes only.
+	 * Defined as public because it's a filter.
+	 *
+	 * @since 1.80
+	 *
+	 * @param	array	query clauses before modification
+	 *
+	 * @return	array	query clauses after modification (none)
+	 */
+	public static function mla_query_posts_clauses_request_filter( $pieces ) {
+		if ( 'console' == self::$query_parameters['debug'] ) {
+			/* translators: 1: DEBUG tag 2: SQL clauses */
+			trigger_error( sprintf( __( '%1$s: mla_query_posts_clauses_request_filter = "%2$s".', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $pieces, true ) ), E_USER_WARNING );
+		} else {
+			/* translators: 1: DEBUG tag 2: SQL clauses */
+			error_log( sprintf( _x( '%1$s: mla_query_posts_clauses_request_filter = "%2$s".', 'error_log', 'media-library-assistant' ), __( 'DEBUG', 'media-library-assistant' ), var_export( $pieces, true ) ), 0 );
+		}
+
+		return $pieces;
+	}
+
 	/** 
 	 * Retrieve an Attachment array given a $post_id
 	 *
@@ -966,54 +2550,58 @@ class MLAData {
 	 * @since 0.1
 	 * @uses $post WordPress global variable
 	 * 
-	 * @param	int		The ID of the attachment post
+	 * @param	integer	The ID of the attachment post
+	 * @param	boolean	True to add references, false to skip references
+	 *
 	 * @return	NULL|array NULL on failure else associative array
 	 */
-	function mla_get_attachment_by_id( $post_id ) {
+	public static function mla_get_attachment_by_id( $post_id, $add_references = true ) {
 		global $post;
 		static $save_id = -1, $post_data;
-		
-		if ( $post_id == $save_id )
+
+		if ( $post_id == $save_id ) {
 			return $post_data;
-		elseif ( $post_id == -1 ) {
+		} elseif ( $post_id == -1 ) {
 			$save_id = -1;
 			return NULL;
 		}
-		
+
 		$item = get_post( $post_id );
 		if ( empty( $item ) ) {
-			error_log( "ERROR: mla_get_attachment_by_id(" . $post_id . ") not found", 0 );
+			/* translators: 1: ERROR tag 2: post ID */
+			error_log( sprintf( _x( '%1$s: mla_get_attachment_by_id(%2$d) not found.', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $post_id ), 0 );
 			return NULL;
 		}
-		
+
 		if ( $item->post_type != 'attachment' ) {
-			error_log( "ERROR: mla_get_attachment_by_id(" . $post_id . ") wrong post_type: " . $item->post_type, 0 );
+			/* translators: 1: ERROR tag 2: post ID 3: post_type */
+			error_log( sprintf( _x( '%1$s: mla_get_attachment_by_id(%2$d) wrong post_type "%3$s".', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $post_id, $item->post_type ), 0 );
 			return NULL;
 		}
-		
+
 		$post_data = (array) $item;
 		$post = $item;
 		setup_postdata( $item );
-		
+
 		/*
 		 * Add parent data
 		 */
 		$post_data = array_merge( $post_data, self::mla_fetch_attachment_parent_data( $post_data['post_parent'] ) );
-		
+
 		/*
 		 * Add meta data
 		 */
 		$post_data = array_merge( $post_data, self::mla_fetch_attachment_metadata( $post_id ) );
-		
+
 		/*
-		 * Add references
+		 * Add references, if requested, or "empty" references array
 		 */
-		$post_data['mla_references'] = self::mla_fetch_attachment_references( $post_id, $post_data['post_parent'] );
-		
+		$post_data['mla_references'] = self::mla_fetch_attachment_references( $post_id, $post_data['post_parent'], $add_references );
+
 		$save_id = $post_id;
 		return $post_data;
 	}
-	
+
 	/**
 	 * Returns information about an attachment's parent, if found
 	 *
@@ -1025,27 +2613,110 @@ class MLAData {
 	 */
 	public static function mla_fetch_attachment_parent_data( $parent_id ) {
 		static $save_id = -1, $parent_data;
-		
-		if ( $save_id == $parent_id )
+
+		if ( $save_id == $parent_id ) {
 			return $parent_data;
-			
+		} elseif ( $parent_id == -1 ) {
+			$save_id = -1;
+			return NULL;
+		}
+
 		$parent_data = array();
 		if ( $parent_id ) {
 			$parent = get_post( $parent_id );
-			if ( isset( $parent->post_date ) )
-				$parent_data['parent_date'] = $parent->post_date;
-			if ( isset( $parent->post_title ) )
-				$parent_data['parent_title'] = $parent->post_title;
-			if ( isset( $parent->post_type ) )
+
+			if ( isset( $parent->post_name ) ) {
+				$parent_data['parent_name'] = $parent->post_name;
+			}
+
+			if ( isset( $parent->post_type ) ) {
 				$parent_data['parent_type'] = $parent->post_type;
+			}
+
+			if ( isset( $parent->post_title ) ) {
+				$parent_data['parent_title'] = $parent->post_title;
+			}
+
+			if ( isset( $parent->post_date ) ) {
+				$parent_data['parent_date'] = $parent->post_date;
+			}
+
+			if ( isset( $parent->post_status ) ) {
+				$parent_data['parent_status'] = $parent->post_status;
+			}
 		}
-		
+
 		$save_id = $parent_id;
 		return $parent_data;
 	}
-	
+
 	/**
-	 * Finds the value of a key in a possibily nested array structure
+	 * Adds or replaces the value of a key in a possibly nested array structure
+	 *
+	 * @since 1.51
+	 *
+	 * @param string key value, e.g. array1.array2.element
+	 * @param mixed replacement value, string or array, by reference
+	 * @param array PHP nested arrays, by reference
+	 *
+	 * @return boolean	true if $needle element set, false if not
+	 */
+	private static function _set_array_element( $needle, &$value, &$haystack ) {
+		$key_array = explode( '.', $needle );
+		$key = array_shift( $key_array );
+
+		if ( empty( $key_array ) ) {
+			$haystack[ $key ] = $value;
+			return true;
+		} // lowest level
+
+		/*
+		 * If an intermediate key is not an array, leave it alone and fail.
+		 * If an intermediate key does not exist, create an empty array for it.
+		 */
+		if ( isset( $haystack[ $key ] ) ) {
+			if ( ! is_array( $haystack[ $key ] ) ) {
+				return false;
+			}
+		} else {
+			$haystack[ $key ] = array();
+		}
+
+		return self::_set_array_element( implode( $key_array, '.' ), $value, $haystack[ $key ] );
+	}
+
+	/**
+	 * Deletes the value of a key in a possibly nested array structure
+	 *
+	 * @since 1.51
+	 *
+	 * @param string key value, e.g. array1.array2.element
+	 * @param array PHP nested arrays, by reference
+	 *
+	 * @return boolean	true if $needle element found, false if not
+	 */
+	private static function _unset_array_element( $needle, &$haystack ) {
+		$key_array = explode( '.', $needle );
+		$key = array_shift( $key_array );
+
+		if ( empty( $key_array ) ) {
+			if ( isset( $haystack[ $key ] ) ) {
+				unset( $haystack[ $key ] );
+				return true;
+			}
+
+			return false;
+		} // lowest level
+
+		if ( isset( $haystack[ $key ] ) ) {
+			return self::_unset_array_element( implode( $key_array, '.' ), $haystack[ $key ] );
+		}
+
+		return false;
+	}
+
+	/**
+	 * Finds the value of a key in a possibly nested array structure
 	 *
 	 * Used primarily to extract fields from the _wp_attachment_metadata custom field.
 	 * Could also be used with the ID3 metadata exposed in WordPress 3.6 and later.
@@ -1054,32 +2725,34 @@ class MLAData {
 	 *
 	 * @param string key value, e.g. array1.array2.element
 	 * @param array PHP nested arrays
-	 * @param string format option  'text'|'single'|'export'|'array'|'multi'
+	 * @param string data option  'text'|'single'|'export'|'array'|'multi'
 	 * @param boolean keep existing values - for 'multi' option
 	 *
-	 * @return string value matching key(.key ...) or ''
+	 * @return mixed string or array value matching key(.key ...) or ''
 	 */
 	public static function mla_find_array_element( $needle, $haystack, $option, $keep_existing = false ) {
 		$key_array = explode( '.', $needle );
 		if ( is_array( $key_array ) ) {
-			foreach( $key_array as $key ) {
+			foreach ( $key_array as $key ) {
 				if ( is_array( $haystack ) ) {
-					if ( isset( $haystack[ $key ] ) )
+					if ( isset( $haystack[ $key ] ) ) {
 						$haystack = $haystack[ $key ];
-					else
+					} else {
 						$haystack = '';
-				}
-				else
+					}
+				} else {
 					$haystack = '';
+				}
 			} // foreach $key
+		} else {
+			$haystack = '';
 		}
-		else $haystack = '';
 
-		if ( 'single' == $option && is_array( $haystack )) 
-			$haystack = current( $haystack );
-			
 		if ( is_array( $haystack ) ) {
 			switch ( $option ) {
+				case 'single':
+					$haystack = current( $haystack );
+					break;
 				case 'export':
 					$haystack = var_export( $haystack, true );
 					break;
@@ -1091,19 +2764,18 @@ class MLAData {
 					return $haystack;
 					break;
 				default:
-					$haystack = implode( ',', $haystack );
+					$haystack = implode( ', ', $haystack );
 			} // $option
 		}
-			
+
 		return sanitize_text_field( $haystack );
 	} // mla_find_array_element
-	
+
 	/**
 	 * Fetch and filter meta data for an attachment
 	 * 
 	 * Returns a filtered array of a post's meta data. Internal values beginning with '_'
-	 * are stripped out or converted to an 'mla_' equivalent. Array data is replaced with
-	 * a string containing the first array element.
+	 * are stripped out or converted to an 'mla_' equivalent. 
 	 *
 	 * @since 0.1
 	 *
@@ -1112,64 +2784,77 @@ class MLAData {
 	 * @return	array	Meta data variables
 	 */
 	public static function mla_fetch_attachment_metadata( $post_id ) {
-		static $save_id = 0, $results;
-		
-		if ( $save_id == $post_id )
+		static $save_id = -1, $results;
+
+		if ( $save_id == $post_id ) {
 			return $results;
-			
+		} elseif ( $post_id == -1 ) {
+			$save_id = -1;
+			return NULL;
+		}
+
 		$attached_file = NULL;
 		$results = array();
 		$post_meta = get_metadata( 'post', $post_id );
-
 		if ( is_array( $post_meta ) ) {
 			foreach ( $post_meta as $post_meta_key => $post_meta_value ) {
-				if ( empty( $post_meta_key ) )
+				if ( empty( $post_meta_key ) ) {
 					continue;
-					
+				}
+
 				if ( '_' == $post_meta_key{0} ) {
 					if ( stripos( $post_meta_key, '_wp_attached_file' ) === 0 ) {
 						$key = 'mla_wp_attached_file';
 						$attached_file = $post_meta_value[0];
 					} elseif ( stripos( $post_meta_key, '_wp_attachment_metadata' ) === 0 ) {
 						$key = 'mla_wp_attachment_metadata';
-						$post_meta_value = unserialize( $post_meta_value[0] );
 					} elseif ( stripos( $post_meta_key, '_wp_attachment_image_alt' ) === 0 ) {
 						$key = 'mla_wp_attachment_image_alt';
 					} else {
 						continue;
 					}
 				} else {
-					if ( stripos( $post_meta_key, 'mla_' ) === 0 )
+					if ( stripos( $post_meta_key, 'mla_' ) === 0 ) {
 						$key = $post_meta_key;
-					else
+					} else {
 						$key = 'mla_item_' . $post_meta_key;
+					}
 				}
-				
-				if ( is_array( $post_meta_value ) && count( $post_meta_value ) == 1 )
-					$value = $post_meta_value[0];
-				else
-					$value = $post_meta_value;
-				
-				$results[ $key ] = $value;
+
+				/*
+				 * At this point, every value is an array; one element per instance of the key.
+				 * We'll test anyway, just to be sure, then convert single-instance values to a scalar.
+				 * Metadata array values are serialized for storage in the database.
+				 */
+				if ( is_array( $post_meta_value ) ) {
+					if ( count( $post_meta_value ) == 1 ) {
+						$post_meta_value = maybe_unserialize( $post_meta_value[0] );
+					} else {
+						foreach ( $post_meta_value as $single_key => $single_value ) {
+							$post_meta_value[ $single_key ] = maybe_unserialize( $single_value );
+						}
+					}
+				}
+
+				$results[ $key ] = $post_meta_value;
 			} // foreach $post_meta
 
-			if ( !empty( $attached_file ) ) {
+			if ( ! empty( $attached_file ) ) {
 				$last_slash = strrpos( $attached_file, '/' );
 				if ( false === $last_slash ) {
 					$results['mla_wp_attached_path'] = '';
 					$results['mla_wp_attached_filename'] = $attached_file;
-				}
-				else {
+				} else {
 					$results['mla_wp_attached_path'] = substr( $attached_file, 0, $last_slash + 1 );
 					$results['mla_wp_attached_filename'] = substr( $attached_file, $last_slash + 1 );
 				}
 			} // $attached_file
 		} // is_array($post_meta)
-		
+
 		$save_id = $post_id;
 		return $results;
 	}
-	
+
 	/**
 	 * Find Featured Image and inserted image/link references to an attachment
 	 * 
@@ -1180,17 +2865,23 @@ class MLAData {
 	 *
 	 * @param	int	post ID of attachment
 	 * @param	int	post ID of attachment's parent, if any
+	 * @param	boolean	True to compute references, false to return empty values
 	 *
 	 * @return	array	Reference information; see $references array comments
 	 */
-	public static function mla_fetch_attachment_references( $ID, $parent ) {
+	public static function mla_fetch_attachment_references( $ID, $parent, $add_references = true ) {
 		global $wpdb;
-		static $save_id = 0, $references, $inserted_in_option = NULL;
-		
-		if ( $save_id == $ID )
+		static $save_id = -1, $references, $inserted_in_option = NULL;
+
+		if ( $save_id == $ID ) {
 			return $references;
+		} elseif ( $ID == -1 ) {
+			$save_id = -1;
+			return NULL;
+		}
 		
 		/*
+		 * inserted_option  'enabled', 'base' or 'disabled'
 		 * tested_reference	true if any of the four where-used types was processed
 		 * found_reference	true if any where-used array is not empty()
 		 * found_parent		true if $parent matches a where-used post ID
@@ -1211,10 +2902,12 @@ class MLAData {
 		 * galleries		Array of objects with the post_type and post_title of each post
 		 *					that was returned by a [gallery] shortcode
 		 * parent_type		'post' or 'page' or the custom post type of the attachment's parent
+		 * parent_status	'publish', 'private', 'future', 'pending', 'draft'
 		 * parent_title		post_title of the attachment's parent
 		 * parent_errors	UNATTACHED, ORPHAN, BAD/INVALID PARENT
 		 */
 		$references = array(
+			'inserted_option' => '',
 			'tested_reference' => false,
 			'found_reference' => false,
 			'found_parent' => false,
@@ -1228,44 +2921,69 @@ class MLAData {
 			'mla_galleries' => array(),
 			'galleries' => array(),
 			'parent_type' => '',
+			'parent_status' => '',
 			'parent_title' => '',
 			'parent_errors' => ''
 		);
+
+		if ( ! $add_references ) {
+			return $references;
+		}
 		
 		/*
 		 * Fill in Parent data
 		 */
 		$parent_data = self::mla_fetch_attachment_parent_data( $parent );
-		if ( isset( $parent_data['parent_type'] ) ) 
+		if ( isset( $parent_data['parent_type'] ) ) {
 			$references['parent_type'] =  $parent_data['parent_type'];
-		if ( isset( $parent_data['parent_title'] ) ) 
+		}
+
+		if ( isset( $parent_data['parent_status'] ) ) {
+			$references['parent_status'] =  $parent_data['parent_status'];
+		}
+
+		if ( isset( $parent_data['parent_title'] ) )  {
 			$references['parent_title'] =  $parent_data['parent_title'];
+		}
 
 		$references['base_file'] = get_post_meta( $ID, '_wp_attached_file', true );
+		$pathinfo = pathinfo($references['base_file']);
+		$references['file'] = $pathinfo['basename'];
+		if ( ( ! isset( $pathinfo['dirname'] ) ) || '.' == $pathinfo['dirname'] ) {
+			$references['path'] = '/';
+		} else {
+			$references['path'] = $pathinfo['dirname'] . '/';
+		}
+
 		$attachment_metadata = get_post_meta( $ID, '_wp_attachment_metadata', true );
 		$sizes = isset( $attachment_metadata['sizes'] ) ? $attachment_metadata['sizes'] : NULL;
-		if ( !empty( $sizes ) ) {
-			/* Using the name as the array key ensures each name is added only once */
-			foreach ( $sizes as $size ) {
-				$references['files'][ $references['path'] . $size['file'] ] = $size;
+		if ( ! empty( $sizes ) ) {
+			// Using the name as the array key ensures each name is added only once
+			foreach ( $sizes as $size => $size_info ) {
+				$size_info['size'] = $size;
+				$references['files'][ $references['path'] . $size_info['file'] ] = $size_info;
 			}
 		}
 		
-		$references['files'][ $references['base_file'] ] = $references['base_file'];
-		$pathinfo = pathinfo($references['base_file']);
-		$references['file'] = $pathinfo['basename'];
-		if ( '.' == $pathinfo['dirname'] )
-			$references['path'] = '';
-		else
-			$references['path'] = $pathinfo['dirname'] . '/';
+		$base_type = wp_check_filetype( $references['file'] );
+		$base_reference = array(
+			'file' => $references['file'],
+			'width' => isset( $attachment_metadata['width'] ) ? $attachment_metadata['width'] : 0,
+			'height' => isset( $attachment_metadata['height'] ) ? $attachment_metadata['height'] : 0,
+			'mime_type' => isset( $base_type['type'] ) ? $base_type['type'] : 'unknown',
+			'size' => 'full',
+			);
+			
+		$references['files'][ $references['base_file'] ] = $base_reference;
 
 		/*
 		 * Process the where-used settings option
 		 */
-		if ('checked' == MLAOptions::mla_get_option( 'exclude_revisions' ) )
+		if ('checked' == MLAOptions::mla_get_option( MLAOptions::MLA_EXCLUDE_REVISIONS ) ) {
 			$exclude_revisions = "(post_type <> 'revision') AND ";
-		else
+		} else {
 			$exclude_revisions = '';
+		}
 
 		/*
 		 * Accumulate reference test types, e.g.,  0 = no tests, 4 = all tests
@@ -1284,92 +3002,114 @@ class MLAData {
 					WHERE meta_key = '_thumbnail_id' AND meta_value = {$ID}
 					"
 			);
-			
-			if ( !empty( $features ) ) {
+
+			if ( ! empty( $features ) ) {
 				foreach ( $features as $feature ) {
 					$feature_results = $wpdb->get_results(
 							"
-							SELECT post_type, post_title
+							SELECT ID, post_type, post_status, post_title
 							FROM {$wpdb->posts}
 							WHERE {$exclude_revisions}(ID = {$feature->post_id})
 							"
 					);
-						
-					if ( !empty( $feature_results ) ) {
+
+					if ( ! empty( $feature_results ) ) {
 						$references['found_reference'] = true;
 						$references['features'][ $feature->post_id ] = $feature_results[0];
-					
+
 						if ( $feature->post_id == $parent ) {
 							$references['found_parent'] = true;
 						}
-					} // !empty
+					} // ! empty
 				} // foreach $feature
 			}
 		} // $process_featured_in
-		
+
 		/*
 		 * Look for item(s) inserted in post_content
 		 */
+		$references['inserted_option'] = $inserted_in_option;
 		if ( MLAOptions::$process_inserted_in ) {
 			$reference_tests++;
 
-			if ( NULL == $inserted_in_option )
+			if ( NULL == $inserted_in_option ) {
 				$inserted_in_option = MLAOptions::mla_get_option( MLAOptions::MLA_INSERTED_IN_TUNING );
-				
+				$references['inserted_option'] = $inserted_in_option;
+			}
+			
+			$wp_4dot0_plus = version_compare( get_bloginfo('version'), '4.0', '>=' );
 			if ( 'base' == $inserted_in_option ) {
-				$like = like_escape( $references['path'] . $pathinfo['filename'] ) . '%.' . like_escape( $pathinfo['extension'] );
+				$query_parameters = array();
+				$query = array();
+				$query[] = "SELECT ID, post_type, post_status, post_title, CONVERT(`post_content` USING utf8 ) AS POST_CONTENT FROM {$wpdb->posts} WHERE {$exclude_revisions} ( %s=%s";
+				$query_parameters[] = '1'; // for empty file name array
+				$query_parameters[] = '0'; // for empty file name array
+
+				foreach ( $references['files'] as $file => $file_data ) {
+					if ( empty( $file ) ) {
+						continue;
+					}
+					
+					$query[] = 'OR ( POST_CONTENT LIKE %s)';
+					
+					if ( $wp_4dot0_plus ) {
+						$query_parameters[] = '%' . $wpdb->esc_like( $file ) . '%';
+					} else {
+						$query_parameters[] = '%' . like_escape( $file ) . '%';
+					}
+				}
+
+				$query[] = ')';
+				$query =  join(' ', $query);
+
 				$inserts = $wpdb->get_results(
-					$wpdb->prepare(
-						"
-						SELECT ID, post_type, post_title 
-						FROM {$wpdb->posts}
-						WHERE {$exclude_revisions}(
-							CONVERT(`post_content` USING utf8 )
-							LIKE %s)
-						", "%{$like}%"
-					)
+					$wpdb->prepare( $query, $query_parameters )
 				);
-				
-				if ( !empty( $inserts ) ) {
+
+				if ( ! empty( $inserts ) ) {
 					$references['found_reference'] = true;
 					$references['inserts'][ $pathinfo['filename'] ] = $inserts;
-					
-					foreach ( $inserts as $insert ) {
+
+					foreach ( $inserts as $index => $insert ) {
+						unset( $references['inserts'][ $pathinfo['filename'] ][ $index ]->POST_CONTENT );
 						if ( $insert->ID == $parent ) {
 							$references['found_parent'] = true;
 						}
 					} // foreach $insert
-				} // !empty
-			} // process base names
-			else {
+				} // ! empty
+			} else { // process base names
 				foreach ( $references['files'] as $file => $file_data ) {
-					$like = like_escape( $file );
+					if ( empty( $file ) ) {
+						continue;
+					}
+					
+					if ( $wp_4dot0_plus ) {
+						$like = $wpdb->esc_like( $file );
+					} else {
+						$like = like_escape( $file );
+					}
+		
 					$inserts = $wpdb->get_results(
 						$wpdb->prepare(
-							"
-							SELECT ID, post_type, post_title 
-							FROM {$wpdb->posts}
-							WHERE {$exclude_revisions}(
-								CONVERT(`post_content` USING utf8 )
-								LIKE %s)
-							", "%{$like}%"
+							"SELECT ID, post_type, post_status, post_title FROM {$wpdb->posts}
+							WHERE {$exclude_revisions}(CONVERT(`post_content` USING utf8 ) LIKE %s)", "%{$like}%"
 						)
 					);
-					
-					if ( !empty( $inserts ) ) {
+
+					if ( ! empty( $inserts ) ) {
 						$references['found_reference'] = true;
-						$references['inserts'][ $file ] = $inserts;
-						
+						$references['inserts'][ $file_data['file'] ] = $inserts;
+
 						foreach ( $inserts as $insert ) {
 							if ( $insert->ID == $parent ) {
 								$references['found_parent'] = true;
 							}
 						} // foreach $insert
-					} // !empty
+					} // ! empty
 				} // foreach $file
 			} // process intermediate sizes
 		} // $process_inserted_in
-		
+
 		/*
 		 * Look for [mla_gallery] references
 		 */
@@ -1377,21 +3117,21 @@ class MLAData {
 			$reference_tests++;
 			if ( self::_build_mla_galleries( MLAOptions::MLA_MLA_GALLERY_IN_TUNING, self::$mla_galleries, '[mla_gallery', $exclude_revisions ) ) {
 				$galleries = self::_search_mla_galleries( self::$mla_galleries, $ID );
-				if ( !empty( $galleries ) ) {
+				if ( ! empty( $galleries ) ) {
 					$references['found_reference'] = true;
 					$references['mla_galleries'] = $galleries;
-	
+
 					foreach ( $galleries as $post_id => $gallery ) {
 						if ( $post_id == $parent ) {
 							$references['found_parent'] = true;
 						}
 					} // foreach $gallery
-				} // !empty
-				else
+				} else { // ! empty
 					$references['mla_galleries'] = array();
+				}
 			}
 		} // $process_mla_gallery_in
-		
+
 		/*
 		 * Look for [gallery] references
 		 */
@@ -1399,51 +3139,396 @@ class MLAData {
 			$reference_tests++;
 			if ( self::_build_mla_galleries( MLAOptions::MLA_GALLERY_IN_TUNING, self::$galleries, '[gallery', $exclude_revisions ) ) {
 				$galleries = self::_search_mla_galleries( self::$galleries, $ID );
-				if ( !empty( $galleries ) ) {
+				if ( ! empty( $galleries ) ) {
 					$references['found_reference'] = true;
 					$references['galleries'] = $galleries;
-	
+
 					foreach ( $galleries as $post_id => $gallery ) {
 						if ( $post_id == $parent ) {
 							$references['found_parent'] = true;
 						}
 					} // foreach $gallery
-				} // !empty
-				else
+				} else { // ! empty
 					$references['galleries'] = array();
+				}
 			}
 		} // $process_gallery_in
-		
+
 		/*
 		 * Evaluate and summarize reference tests
 		 */
 		$errors = '';
 		if ( 0 == $reference_tests ) {
 			$references['tested_reference'] = false;
-			$errors .= '(NO REFERENCE TESTS)';
-		}
-		else {
+			$errors .= '(' . __( 'NO REFERENCE TESTS', 'media-library-assistant' ) . ')';
+		} else {
 			$references['tested_reference'] = true;
 			$suffix = ( 4 == $reference_tests ) ? '' : '?';
 
-			if ( !$references['found_reference'] )
-				$errors .= "(ORPHAN{$suffix}) ";
-			
-			if ( !$references['found_parent'] && !empty( $references['parent_title'] ) )
-				$errors .= "(BAD PARENT{$suffix})";
+			if ( !$references['found_reference'] ) {
+				$errors .= '(' . sprintf( __( 'ORPHAN', 'media-library-assistant' ) . '%1$s) ', $suffix );
+			}
+
+			if ( !$references['found_parent'] && ! empty( $references['parent_title'] ) ) {
+				$errors .= '(' . sprintf( __( 'UNUSED', 'media-library-assistant' ) . '%1$s) ', $suffix );
+			}
 		}
-		
-		if ( $references['is_unattached'] )
-			$errors .= '(UNATTACHED) ';
-		elseif ( empty( $references['parent_title'] ) ) 
-			$errors .= '(INVALID PARENT) ';
+
+		if ( $references['is_unattached'] ) {
+			$errors .= '(' . __( 'UNATTACHED', 'media-library-assistant' ) . ')';
+		} elseif ( empty( $references['parent_title'] ) )  {
+			$errors .= '(' . __( 'INVALID PARENT', 'media-library-assistant' ) . ')';
+		}
 
 		$references['parent_errors'] = trim( $errors );
-		
+
 		$save_id = $ID;
+		$references = apply_filters( 'mla_fetch_attachment_references', $references, $ID, $parent );
 		return $references;
 	}
+
+	/**
+	 * Add Featured Image and inserted image/link references to an array of attachments
+	 * 
+	 * Searches all post and page content to see if the attachmenta are used 
+	 * as a Featured Image or inserted in the post as an image or link.
+	 *
+	 * @since 1.94
+	 *
+	 * @param	array	WP_Post objects, passed by reference
+	 *
+	 * @return	void	updates WP_Post objects with new mla_references property
+	 */
+	public static function mla_attachment_array_fetch_references( &$attachments ) {
+		global $wpdb;
+
+		/*
+		 * See element definitions above
+		 */
+		$initial_references = array(
+			'inserted_option' => '',
+			'tested_reference' => false,
+			'found_reference' => false,
+			'found_parent' => false,
+			'is_unattached' => true,
+			'base_file' => '',
+			'path' => '',
+			'file' => '',
+			'files' => array(),
+			'features' => array(),
+			'inserts' => array(),
+			'mla_galleries' => array(),
+			'galleries' => array(),
+			'parent_type' => '',
+			'parent_status' => '',
+			'parent_title' => '',
+			'parent_errors' => ''
+		);
+
+		$inserted_in_option = MLAOptions::mla_get_option( MLAOptions::MLA_INSERTED_IN_TUNING );
+		$initial_references['inserted_option'] = $inserted_in_option;
+
+		/*
+		 * Make sure there's work to do; otherwise initialize the attachment data and return
+		 */
+		if ( false == ( MLAOptions::$process_featured_in || MLAOptions::$process_inserted_in || MLAOptions::$process_gallery_in || MLAOptions::$process_mla_gallery_in ) ) {
+			foreach ( $attachments as $attachment_index => $attachment ) {
+				$attachments[ $attachment_index ]->mla_references = $initial_references;
+			}
+
+			return;
+		}
+		
+		/*
+		 * Collect the raw data for where-used analysis
+		 */
+		$attachment_ids = array();
+		$files = array();
+		foreach ( $attachments as $index => $attachment ) {
+			$attachment_ids[ $index ] = $attachment->ID;
+			$references = array( 'files' => array() );
+			if ( isset( $attachment->mla_wp_attached_file ) )  {
+				$references['base_file'] = $attachment->mla_wp_attached_file;
+			} else {
+				$references['base_file'] = '';
+			}
+			
+			$pathinfo = pathinfo($references['base_file']);
+			if ( ( ! isset( $pathinfo['dirname'] ) ) || '.' == $pathinfo['dirname'] ) {
+				$references['path'] = '/';
+			} else {
+				$references['path'] = $pathinfo['dirname'] . '/';
+			}
+
+			$references['file'] = $pathinfo['basename'];
 	
+			if ( isset( $attachment->mla_wp_attachment_metadata ) )  {
+				$attachment_metadata = $attachment->mla_wp_attachment_metadata;
+			} else {
+				$attachment_metadata = '';
+			}
+			
+			$sizes = isset( $attachment_metadata['sizes'] ) ? $attachment_metadata['sizes'] : NULL;
+			if ( ! empty( $sizes ) && is_array( $sizes ) ) {
+				/* Using the path and name as the array key ensures each name is added only once */
+				foreach ( $sizes as $size => $size_info ) {
+					$size_info['size'] = $size;
+					$references['files'][ $references['path'] . $size_info['file'] ] = $size_info;
+				}
+			}
+			
+			if ( ! empty( $references['base_file'] ) ) {
+				$base_type = wp_check_filetype( $references['file'] );
+				$base_reference = array(
+					'file' => $references['file'],
+					'width' => isset( $attachment_metadata['width'] ) ? $attachment_metadata['width'] : 0,
+					'height' => isset( $attachment_metadata['height'] ) ? $attachment_metadata['height'] : 0,
+					'mime_type' => ( isset( $base_type['type'] ) && false !== $base_type['type'] ) ? $base_type['type'] : 'unknown',
+					'size' => 'full',
+					);
+				
+				$references['files'][ $references['base_file'] ] = $base_reference;
+			}
+			
+			$files[ $index ] = $references;
+		}
+
+		if ('checked' == MLAOptions::mla_get_option( MLAOptions::MLA_EXCLUDE_REVISIONS ) ) {
+			$exclude_revisions = " AND (p.post_type <> 'revision')";
+		} else {
+			$exclude_revisions = '';
+		}
+		
+		$features = array();
+		if ( MLAOptions::$process_featured_in && ! empty( $attachment_ids ) ) {
+			$attachment_ids = implode( ',', $attachment_ids );
+			$results = $wpdb->get_results( 
+					"
+					SELECT m.meta_value, p.ID, p.post_type, p.post_status, p.post_title
+					FROM {$wpdb->postmeta} AS m INNER JOIN {$wpdb->posts} AS p ON m.post_id = p.ID
+					WHERE ( m.meta_key = '_thumbnail_id' )
+					AND ( m.meta_value IN ( {$attachment_ids} ) ){$exclude_revisions}
+					"
+			);
+			
+			foreach ( $results as $result ) {
+				$features[ $result->meta_value ][ $result->ID ] = (object) array( 'ID' => $result->ID, 'post_title' => $result->post_title, 'post_type' => $result->post_type, 'post_status' => $result->post_status );
+			}
+		} // $process_featured_in
+
+		if ( ! empty( $exclude_revisions ) ) {
+			$exclude_revisions = " AND (post_type <> 'revision')";
+		}
+
+		if ( MLAOptions::$process_inserted_in ) {
+			$wp_4dot0_plus = version_compare( get_bloginfo('version'), '4.0', '>=' );
+			$query_parameters = array();
+			$query = array();
+			$query[] = "SELECT ID, post_type, post_status, post_title, CONVERT(`post_content` USING utf8 ) AS POST_CONTENT FROM {$wpdb->posts} WHERE ( %s=%s";
+			// for empty file name array
+			$query_parameters[] = '1';
+			$query_parameters[] = '0';
+
+			foreach ( $files as $file ) {
+				foreach ( $file['files'] as $base_name => $file_data ) {
+					$query[] = 'OR ( POST_CONTENT LIKE %s)';
+
+					if ( $wp_4dot0_plus ) {
+						$query_parameters[] = '%' . $wpdb->esc_like( $base_name ) . '%';
+					} else {
+						$query_parameters[] = '%' . like_escape( $base_name ) . '%';
+					}
+				}
+			}
+
+			$query[] = "){$exclude_revisions}";
+			$query =  join(' ', $query);
+
+			$results = $wpdb->get_results(
+				$wpdb->prepare( $query, $query_parameters )
+			);
+
+			/*
+			 * Match each post with inserts back to the attachments
+			 */
+			$inserts = array();
+			if ( ! empty( $results ) ) {
+				foreach ( $files as $index => $file ) {
+					foreach ( $file['files'] as $base_name => $file_data ) {
+						foreach ( $results as $result ) {
+							if ( false !== strpos( $result->POST_CONTENT, $base_name ) ) {
+								$insert = clone $result;
+								unset( $insert->POST_CONTENT);
+								$insert->file_name = $file_data['file'];
+								$inserts[ $index ][] = $insert;
+							}
+						} // foreach post with inserts
+					} // foreach base_name
+				} // foreach attachment
+			} // results
+		} // process_inserted_in
+
+		if ( MLAOptions::$process_mla_gallery_in ) {
+			$have_mla_galleries = self::_build_mla_galleries( MLAOptions::MLA_MLA_GALLERY_IN_TUNING, self::$mla_galleries, '[mla_gallery', $exclude_revisions );
+		} else {
+			$have_mla_galleries = false;
+		}
+
+		if ( MLAOptions::$process_gallery_in ) {
+			$have_galleries = self::_build_mla_galleries( MLAOptions::MLA_GALLERY_IN_TUNING, self::$galleries, '[gallery', $exclude_revisions );
+		} else {
+			$have_mla_galleries = false;
+		}
+
+		foreach ( $attachments as $attachment_index => $attachment ) {
+			$references = array_merge( $initial_references, $files[ $attachment_index ] );
+			
+			/*
+			 * Fill in Parent data
+			 */
+			if ( ( (int) $attachment->post_parent ) === 0 ) {
+				$references['is_unattached'] = true;
+			} else {
+				$references['is_unattached'] = false;
+				
+				if ( isset( $attachment->parent_type ) ) {
+					$references['parent_type'] =  $attachment->parent_type;
+				}
+		
+				if ( isset( $attachment->parent_status ) ) {
+					$references['parent_status'] =  $attachment->parent_status;
+				}
+		
+				if ( isset( $attachment->parent_title ) )  {
+					$references['parent_title'] =  $attachment->parent_title;
+				}
+			}
+
+			/*
+			 * Accumulate reference test types, e.g.,  0 = no tests, 4 = all tests
+			 */
+			$reference_tests = 0;
+	
+			/*
+			 * Look for the "Featured Image(s)", if enabled
+			 */
+			if ( MLAOptions::$process_featured_in ) {
+				$reference_tests++;
+				if ( isset( $features[ $attachment->ID ] ) ) {
+					foreach ( $features[ $attachment->ID ] as $id => $feature ) {
+						$references['found_reference'] = true;
+						$references['features'][ $id ] = $feature;
+	
+						if ( $id == $attachment->post_parent ) {
+							$references['found_parent'] = true;
+						}
+					} // foreach $feature
+				}
+			} // $process_featured_in
+	
+			/*
+			 * Look for item(s) inserted in post_content
+			 */
+			if ( MLAOptions::$process_inserted_in ) {
+				$reference_tests++;
+
+				if ( isset( $inserts[ $attachment_index ] ) ) {
+					$references['found_reference'] = true;
+					foreach( $inserts[ $attachment_index ] as $insert ) {
+						$ref_insert = clone $insert;
+						unset( $ref_insert->file_name );
+						
+						if ( 'base' == $inserted_in_option ) {
+							$ref_key = pathinfo( $references['base_file'], PATHINFO_FILENAME );
+						} else {
+							$ref_key = $insert->file_name;
+						}
+						
+						$references['inserts'][ $ref_key ][ $insert->ID ] = $ref_insert;
+						if ( $insert->ID == $attachment->post_parent ) {
+							$references['found_parent'] = true;
+						}
+					} // each insert
+				} else {
+					$references['inserts'] = array();
+				}
+			} // $process_inserted_in
+	
+			/*
+			 * Look for [mla_gallery] references
+			 */
+			if ( MLAOptions::$process_mla_gallery_in ) {
+				$reference_tests++;
+				if ( self::_build_mla_galleries( MLAOptions::MLA_MLA_GALLERY_IN_TUNING, self::$mla_galleries, '[mla_gallery', $exclude_revisions ) ) {
+					$galleries = self::_search_mla_galleries( self::$mla_galleries, $attachment->ID );
+					if ( ! empty( $galleries ) ) {
+						$references['found_reference'] = true;
+						$references['mla_galleries'] = $galleries;
+	
+						foreach ( $galleries as $post_id => $gallery ) {
+							if ( $post_id == $attachment->post_parent ) {
+								$references['found_parent'] = true;
+							}
+						} // foreach $gallery
+					} else { // ! empty
+						$references['mla_galleries'] = array();
+					}
+				}
+			} // $process_mla_gallery_in
+	
+			/*
+			 * Look for [gallery] references
+			 */
+			if ( MLAOptions::$process_gallery_in ) {
+				$reference_tests++;
+				if ( self::_build_mla_galleries( MLAOptions::MLA_GALLERY_IN_TUNING, self::$galleries, '[gallery', $exclude_revisions ) ) {
+					$galleries = self::_search_mla_galleries( self::$galleries, $attachment->ID );
+					if ( ! empty( $galleries ) ) {
+						$references['found_reference'] = true;
+						$references['galleries'] = $galleries;
+	
+						foreach ( $galleries as $post_id => $gallery ) {
+							if ( $post_id == $attachment->post_parent ) {
+								$references['found_parent'] = true;
+							}
+						} // foreach $gallery
+					} else { // ! empty
+						$references['galleries'] = array();
+					}
+				}
+			} // $process_gallery_in
+	
+			/*
+			 * Evaluate and summarize reference tests
+			 */
+			$errors = '';
+			if ( 0 == $reference_tests ) {
+				$references['tested_reference'] = false;
+				$errors .= '(' . __( 'NO REFERENCE TESTS', 'media-library-assistant' ) . ')';
+			} else {
+				$references['tested_reference'] = true;
+				$suffix = ( 4 == $reference_tests ) ? '' : '?';
+	
+				if ( !$references['found_reference'] ) {
+					$errors .= '(' . sprintf( __( 'ORPHAN', 'media-library-assistant' ) . '%1$s) ', $suffix );
+				}
+	
+				if ( !$references['found_parent'] && ! empty( $references['parent_title'] ) ) {
+					$errors .= '(' . sprintf( __( 'UNUSED', 'media-library-assistant' ) . '%1$s) ', $suffix );
+				}
+			}
+	
+			if ( $references['is_unattached'] ) {
+				$errors .= '(' . __( 'UNATTACHED', 'media-library-assistant' ) . ')';
+			} elseif ( empty( $references['parent_title'] ) )  {
+				$errors .= '(' . __( 'INVALID PARENT', 'media-library-assistant' ) . ')';
+			}
+	
+			$references['parent_errors'] = trim( $errors );
+			$attachments[ $attachment_index ]->mla_references = apply_filters( 'mla_fetch_attachment_references', $references, $attachment->ID, (int) $attachment->post_parent );
+		} // foreach $attachment
+	}
+
 	/**
 	 * Objects containing [gallery] shortcodes
 	 *
@@ -1454,6 +3539,7 @@ class MLAData {
 	 * The outer array is keyed by post_id. It contains an associative array with:
 	 * ['parent_title'] post_title of the gallery parent, 
 	 * ['parent_type'] 'post' or 'page' or the custom post_type of the gallery parent,
+	 * ['parent_status'] 'publish', 'private', 'future', 'pending', 'draft'
 	 * ['results'] array ( ID => ID ) of attachments appearing in ANY of the parent's galleries.
 	 * ['galleries'] array of [gallery] entries numbered from one (1), containing:
 	 * galleries[X]['query'] contains a string with the arguments of the [gallery], 
@@ -1501,7 +3587,7 @@ class MLAData {
 				//	ignore everything else
 		} // switch
 	}
-	
+
 	/**
 	 * Invalidates $mla_galleries and $galleries arrays and cached values after post, page or attachment updates
 	 *
@@ -1515,7 +3601,7 @@ class MLAData {
 		self::mla_flush_mla_galleries( MLAOptions::MLA_GALLERY_IN_TUNING );
 		self::mla_flush_mla_galleries( MLAOptions::MLA_MLA_GALLERY_IN_TUNING );
 	}
-	
+
 	/**
 	 * Builds the $mla_galleries or $galleries array
 	 *
@@ -1540,9 +3626,9 @@ class MLAData {
 		}
 
 		$option_value = MLAOptions::mla_get_option( $option_name );
-		if ( 'disabled' == $option_value )
+		if ( 'disabled' == $option_value ) {
 			return false;
-		elseif ( 'cached' == $option_value ) {
+		} elseif ( 'cached' == $option_value ) {
 			$galleries_array = get_transient( MLA_OPTION_PREFIX . 't_' . $option_name );
 			if ( is_array( $galleries_array ) ) {
 				if ( ! empty( $galleries_array ) ) {
@@ -1550,26 +3636,33 @@ class MLAData {
 				} else {
 					return false;
 				}
-			}
-			else
+			} else {
 				$galleries_array = NULL;
+			}
 		} // cached
-		
+
 		/*
 		 * $galleries_array is null, so build the array
 		 */
 		$galleries_array = array();
-		
-		if ( $exclude_revisions )
+
+		if ( $exclude_revisions ) {
 			$exclude_revisions = "(post_type <> 'revision') AND ";
-		else
+		} else {
 			$exclude_revisions = '';
+		}
+
+		$wp_4dot0_plus = version_compare( get_bloginfo('version'), '4.0', '>=' );
+		if ( $wp_4dot0_plus ) {
+			$like = $wpdb->esc_like( $shortcode );
+		} else {
+			$like = like_escape( $shortcode );
+		}
 		
-		$like = like_escape( $shortcode );
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
 				"
-				SELECT ID, post_type, post_title, post_content
+				SELECT ID, post_type, post_status, post_title, post_content
 				FROM {$wpdb->posts}
 				WHERE {$exclude_revisions}(
 					CONVERT(`post_content` USING utf8 )
@@ -1578,39 +3671,44 @@ class MLAData {
 			)
 		);
 
-		if ( empty( $results ) )
+		if ( empty( $results ) ) {
 			return false;
-			
+		}
+
 		foreach ( $results as $result ) {
 			$count = preg_match_all( "/\\{$shortcode}([^\\]]*)\\]/", $result->post_content, $matches, PREG_PATTERN_ORDER );
 			if ( $count ) {
 				$result_id = $result->ID;
 				$galleries_array[ $result_id ]['parent_title'] = $result->post_title;
 				$galleries_array[ $result_id ]['parent_type'] = $result->post_type;
+				$galleries_array[ $result_id ]['parent_status'] = $result->post_status;
 				$galleries_array[ $result_id ]['results'] = array();
 				$galleries_array[ $result_id ]['galleries'] = array();
 				$instance = 0;
-				
+
 				foreach ( $matches[1] as $index => $match ) {
 					/*
 					 * Filter out shortcodes that are not an exact match
 					 */
 					if ( empty( $match ) || ( ' ' == substr( $match, 0, 1 ) ) ) {
 						$instance++;
-						$galleries_array[ $result_id ]['galleries'][ $instance ]['query'] = trim( $matches[1][$index] );
+						/*
+						 * Remove trailing "/" from XHTML-style self-closing shortcodes
+						 */
+						$galleries_array[ $result_id ]['galleries'][ $instance ]['query'] = trim( rtrim( $matches[1][$index], '/' ) );
 						$galleries_array[ $result_id ]['galleries'][ $instance ]['results'] = array();
-						
 						$post = $result; // set global variable for mla_gallery_shortcode
-						$attachments = MLAShortcodes::mla_get_shortcode_attachments( $result_id, $galleries_array[ $result_id ]['galleries'][ $instance ]['query'] );
+						$attachments = MLAShortcodes::mla_get_shortcode_attachments( $result_id, $galleries_array[ $result_id ]['galleries'][ $instance ]['query'] . ' cache_results=false update_post_meta_cache=false update_post_term_cache=false where_used_query=this-is-a-where-used-query' );
 
 						if ( is_string( $attachments ) ) {
-							trigger_error( htmlentities( sprintf( '(%1$s) %2$s (ID %3$d) query "%4$s" failed, returning "%5$s"', $result->post_type, $result->post_title, $result->ID, $galleries_array[ $result_id ]['galleries'][ $instance ]['query'], $attachments) ), E_USER_WARNING );
-						}
-						elseif ( ! empty( $attachments ) )
+							/* translators: 1: post_type, 2: post_title, 3: post ID, 4: query string, 5: error message */
+							trigger_error( htmlentities( sprintf( __( '(%1$s) %2$s (ID %3$d) query "%4$s" failed, returning "%5$s"', 'media-library-assistant' ), $result->post_type, $result->post_title, $result->ID, $galleries_array[ $result_id ]['galleries'][ $instance ]['query'], $attachments) ), E_USER_WARNING );
+						} elseif ( ! empty( $attachments ) ) {
 							foreach ( $attachments as $attachment ) {
 								$galleries_array[ $result_id ]['results'][ $attachment->ID ] = $attachment->ID;
 								$galleries_array[ $result_id ]['galleries'][ $instance ]['results'][] = $attachment->ID;
-							} // foreach $attachment
+							}
+						}
 					} // exact match
 				} // foreach $match
 			} // if $count
@@ -1625,7 +3723,7 @@ class MLAData {
 
 	return true;
 	}
-	
+
 	/**
 	 * Search the $mla_galleries or $galleries array
 	 *
@@ -1642,228 +3740,1129 @@ class MLAData {
 		if ( ! empty( $galleries_array ) ) {
 			foreach ( $galleries_array as $parent_id => $gallery ) {
 				if ( in_array( $attachment_id, $gallery['results'] ) ) {
-					$gallery_refs[ $parent_id ] = array ( 'post_title' => $gallery['parent_title'], 'post_type' => $gallery['parent_type'] );
+					$gallery_refs[ $parent_id ] = array ( 'ID' => $parent_id, 'post_title' => $gallery['parent_title'], 'post_type' => $gallery['parent_type'], 'post_status' => $gallery['parent_status'] );
 				}
 			} // foreach gallery
-		} // !empty
-		
+		} // ! empty
+
 		return $gallery_refs;
 	}
-		
+
 	/**
 	 * Array of PDF indirect objects
 	 *
-	 * This array contains all of the indirect object offsets and lengths
+	 * This array contains all of the indirect object offsets and lengths.
+	 * The array key is ( object ID * 1000 ) + object generation.
+	 * The array value is array( number, generation, start, optional /length )
 	 *
-	 * @since 1.4x
+	 * @since 1.50
 	 *
 	 * @var	array
 	 */
 	private static $pdf_indirect_objects = NULL;
 
 	/**
+	 * Parse a cross-reference table subsection into the array of indirect object definitions
+	 * 
+	 * A cross-reference subsection is a sequence of 20-byte entries, each with offset and generation values.
+	 * @since 1.50
+	 *
+	 * @param	string	buffer containing the subsection
+	 * @param	integer	offset within the buffer of the first entry
+	 * @param	integer	number of the first object in the subsection
+	 * @param	integer	number of entries in the subsection
+	 * 
+	 * @return	void
+	 */
+	private static function _parse_pdf_xref_subsection( &$xref_section, $offset, $object_id, $count ) {
+
+		while ( $count-- ) {
+			$match_count = preg_match( '/(\d+) (\d+) (.)/', $xref_section, $matches, 0, $offset);
+
+			if ( $match_count ) {
+				if ( 'n' == $matches[3] ) {
+					$key = ( $object_id * 1000 ) + $matches[2];
+					if ( ! isset( self::$pdf_indirect_objects[ $key ] ) ) {
+						self::$pdf_indirect_objects[ $key ] = array( 'number' => $object_id, 'generation' => (integer) $matches[2], 'start' => (integer) $matches[1] );
+					}
+				}
+
+				$object_id++;
+				$offset += 20;
+			} else {
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Parse a cross-reference table section into the array of indirect object definitions
+	 * 
+	 * Creates the array of indirect object offsets and lengths
+	 * @since 1.50
+	 *
+	 * @param	string	full path and file name
+	 * @param	integer	offset within the file of the xref id and count entry
+	 * 
+	 * @return	integer	length of the section
+	 */
+	private static function _parse_pdf_xref_section( $file_name, $file_offset ) {
+		$xref_max = $chunksize = 16384;			
+		$xref_section = file_get_contents( $file_name, true, NULL, $file_offset, $chunksize );
+		$xref_length = 0;
+
+		while ( preg_match( '/^[\x00-\x20]*(\d+) (\d+)[\x00-\x20]*/', substr($xref_section, $xref_length), $matches, 0 ) ) {
+			$object_id = $matches[1];
+			$count = $matches[2];
+			$offset = $xref_length + strlen( $matches[0] );
+			$xref_length = $offset + ( 20 * $count );
+
+			if ( $xref_max < $xref_length ) {
+				$xref_max += $chunksize;
+				$xref_section = file_get_contents( $file_name, true, NULL, $file_offset, $xref_max );
+			}
+
+			self::_parse_pdf_xref_subsection( $xref_section, $offset, $object_id, $count );
+		} // while preg_match subsection header
+
+		return $xref_length;
+	}
+
+	/**
+	 * Parse a cross-reference steam into the array of indirect object definitions
+	 * 
+	 * Creates the array of indirect object offsets and lengths
+	 * @since 1.50
+	 *
+	 * @param	string	full path and file name
+	 * @param	integer	offset within the file of the xref id and count entry
+	 * @param	string	"/W" entry, representing the size of the fields in a single entry
+	 * 
+	 * @return	integer	length of the stream
+	 */
+	private static function _parse_pdf_xref_stream( $file_name, $file_offset, $entry_parms_string ) {
+		$chunksize = 16384;			
+		$xref_section = file_get_contents( $file_name, true, NULL, $file_offset, $chunksize );
+
+		if ( 'stream' == substr( $xref_section, 0, 6 ) ) {
+			$tag_length = 7;
+			if ( chr(0x0D) == $xref_section[6] ) {
+				$tag_length++;
+			}
+		} else {
+			return 0;
+		}
+
+		/*
+		 * If necessary and possible, expand the $xmp_chunk until it contains the end tag
+		 */
+		$new_chunksize = $chunksize;
+		if ( false === ( $end_tag = strpos( $xref_section, 'endstream', $tag_length ) ) && ( $chunksize == strlen( $xref_section ) ) ) {
+			$new_chunksize = $chunksize + $chunksize;
+			$xref_section = file_get_contents( $file_name, true, NULL, $file_offset, $new_chunksize );
+			while ( false === ( $end_tag = strpos( $xref_section, 'endstream' ) ) && ( $new_chunksize == strlen( $xref_section ) ) ) {
+				$new_chunksize = $new_chunksize + $chunksize;
+				$xref_section = file_get_contents( $file_name, true, NULL, $file_offset, $new_chunksize );
+			} // while not found
+		} // if not found
+
+		if ( false == $end_tag ) {
+			$length = 0;
+		} else {
+			$length = $end_tag - $tag_length;
+		}
+
+		if ( false == $end_tag ) {
+			return 0;
+		}
+
+		return $length;
+
+		$entry_parms = explode( ' ', $entry_parms_string );
+		$object_id = $matches[1];
+		$count = $matches[2];
+		$offset = strlen( $matches[0] );
+		$length = $offset + ( 20 * $count );
+
+		if ( $chunksize < $length ) {
+			$xref_section = file_get_contents( $file_name, true, NULL, $file_offset, $length );
+			$offset = 0;
+		}
+
+		while ( $count-- ) {
+			$match_count = preg_match( '/(\d+) (\d+) (.)/', $xref_section, $matches, 0, $offset);
+			if ( $match_count ) {
+				if ( 'n' == $matches[3] ) {
+					$key = ( $object_id * 1000 ) + $matches[2];
+					if ( ! isset( self::$pdf_indirect_objects[ $key ] ) ) {
+						self::$pdf_indirect_objects[ $key ] = array( 'number' => $object_id, 'generation' => (integer) $matches[2], 'start' => (integer) $matches[1] );
+					}
+				}
+
+				$object_id++;
+				$offset += 20;
+			} else {
+				break;
+			}
+		}
+
+		return $length;
+	}
+
+	/**
 	 * Build an array of indirect object definitions
 	 * 
 	 * Creates the array of indirect object offsets and lengths
-	 * @since 1.4x
+	 * @since 1.50
 	 *
 	 * @param	string	The entire PDF document, passsed by reference
 	 *
 	 * @return	void
 	 */
 	private static function _build_pdf_indirect_objects( &$string ) {
-		$match_count = preg_match_all( '!(\d+)\h+(\d+)\h+obj\x0D|endobj\x0D|stream(\x0D\x0A|\x0A)|endstream!', $string, $matches, PREG_OFFSET_CAPTURE );
-//error_log( '_build_pdf_indirect_objects $match_count = ' . var_export( $match_count, true ), 0 );
-//error_log( '_build_pdf_indirect_objects $matches = ' . var_export( $matches, true ), 0 );
+		if ( ! is_null( self::$pdf_indirect_objects ) ) {
+			return;
+		}
 
+		$match_count = preg_match_all( '!(\d+)\\h+(\d+)\\h+obj|endobj|stream(\x0D\x0A|\x0A)|endstream!', $string, $matches, PREG_OFFSET_CAPTURE );
 		self::$pdf_indirect_objects = array();
 		$object_level = 0;
 		$is_stream = false;
 		for ( $index = 0; $index < $match_count; $index++ ) {
-		//error_log( '_build_pdf_indirect_objects match dump = ' . var_export( self::_hex_dump( $matches[0][ $index ][0], strlen( $matches[0][ $index ][0] ), 16 ), true ), 0 );
 			if ( $is_stream ) {
 				if ( 'endstream' == substr( $matches[0][ $index ][0], 0, 9 ) ) {
 					$is_stream = false;
-		//error_log( '_build_pdf_indirect_objects $pdf endstream = ' . "\r\n" . var_export( self::_hex_dump( substr( $pdf, $matches[0][ $index ][1] - 64) , 128, 32 ), true ) . "\r\n", 0 );
 				}
-			}
-			elseif ( 'endobj' == substr( $matches[0][ $index ][0], 0, 6 ) ) {
+			} elseif ( 'endobj' == substr( $matches[0][ $index ][0], 0, 6 ) ) {
 				$object_level--;
-				$object_entry['length'] = $matches[0][ $index ][1] - $object_entry['start'];
+				$object_entry['/length'] = $matches[0][ $index ][1] - $object_entry['start'];
 				self::$pdf_indirect_objects[ ($object_entry['number'] * 1000) + $object_entry['generation'] ] = $object_entry;
-			}
-			elseif ( 'obj' == substr( $matches[0][ $index ][0], -4, 3 ) ) {
-		//error_log( '_build_pdf_indirect_objects pdf $matches[1] = ' . var_export( $matches[1][ $index ], true ), 0 );
-		//error_log( '_build_pdf_indirect_objects pdf $matches[2] = ' . var_export( $matches[2][ $index ], true ), 0 );
-		//error_log( '_build_pdf_indirect_objects pdf $matches[3] = ' . var_export( $matches[3][ $index ], true ), 0 );
+			} elseif ( 'obj' == substr( $matches[0][ $index ][0], -3 ) ) {
 				$object_level++;
 				$object_entry = array( 
 					'number' => $matches[1][ $index ][0],
 					'generation' => $matches[2][ $index ][0],
 					'start' => $matches[0][ $index ][1] + strlen( $matches[0][ $index ][0] )
 					);
-			}
-			elseif ( 'stream' == substr( $matches[0][ $index ][0], 0, 6 ) ) {
+			} elseif ( 'stream' == substr( $matches[0][ $index ][0], 0, 6 ) ) {
 				$is_stream = true;
-		//error_log( '_build_pdf_indirect_objects $pdf stream = ' . "\r\n" . var_export( self::_hex_dump( substr( $pdf, $matches[0][ $index ][1] - 64) , 128, 32 ), true ) . "\r\n", 0 );
+			} else {
+				/* translators: 1: ERROR tag 2: index */
+				error_log( sprintf( _x( '%1$s: _build_pdf_indirect_objects bad value at $index = "%2$d".', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $index ), 0 );
 			}
-			else
-				error_log( 'bad value $index = ' . $index, 0 );
-			
-		//error_log( "in_stream[ {$is_stream} ] Level is {$level} Object Level is {$object_level} after index {$index} at offset " . var_export( $matches[0][ $index ][1], true ), 0 );
-		}
-//error_log( '_build_pdf_indirect_objects self::$pdf_indirect_objects = ' . var_export( self::$pdf_indirect_objects, true ), 0 );
+		} // for each match
 	}
-		
+
+	/**
+	 * Find the offset, length and contents of an indirect object containing a dictionary
+	 *
+	 * The function searches the entire file, if necessary, to find the last/most recent copy of the object.
+	 * This is required because Adobe Acrobat does NOT increment the generation number when it reuses an object.
+	 * 
+	 * @since 1.50
+	 *
+	 * @param	string	full path and file name
+	 * @param	integer	The object number
+	 * @param	integer	The object generation number; default zero (0)
+	 *
+	 * @return	mixed	NULL on failure else array( 'start' => offset in the file, 'length' => object length, 'content' => dictionary contents )
+	 */
+	private static function _find_pdf_indirect_dictionary( $file_name, $object, $generation = 0 ) {
+		$chunksize = 16384;			
+		$key = ( $object * 1000 ) + $generation;
+		if ( isset( self::$pdf_indirect_objects ) && isset( self::$pdf_indirect_objects[ $key ] ) ) {
+			$file_offset = self::$pdf_indirect_objects[ $key ]['start'];
+		} else { // found object location
+			$file_offset = 0;
+		}
+
+		$object_starts = array();
+		$object_content = file_get_contents( $file_name, true, NULL, $file_offset, $chunksize );
+
+		/*
+		 * Match the object header
+		 */
+		$pattern = sprintf( '!%1$d\\h+%2$d\\h+obj[\\x00-\\x20]*(<<)!', $object, $generation );
+		$match_count = preg_match( $pattern, $object_content, $matches, PREG_OFFSET_CAPTURE );
+		if ( $match_count ) {
+			$object_starts[] = array( 'offset' => $file_offset, 'start' => $matches[1][1]);
+			$match_count = 0;
+		}
+
+		/*
+		 * If necessary and possible, advance the $object_content through the file until it contains the start tag
+		 */
+		if ( 0 == $match_count && ( $chunksize == strlen( $object_content ) ) ) {
+			$file_offset += ( $chunksize - 16 );
+			$object_content = file_get_contents( $file_name, true, NULL, $file_offset, $chunksize );
+			$match_count = preg_match( $pattern, $object_content, $matches, PREG_OFFSET_CAPTURE );
+
+			if ( $match_count ) {
+				$object_starts[] = array( 'offset' => $file_offset, 'start' => $matches[1][1]);
+				$match_count = 0;
+			}
+
+			while ( 0 == $match_count && ( $chunksize == strlen( $object_content ) ) ) {
+				$file_offset += ( $chunksize - 16 );
+				$object_content = file_get_contents( $file_name, true, NULL, $file_offset, $chunksize );
+				$match_count = preg_match( $pattern, $object_content, $matches, PREG_OFFSET_CAPTURE );
+
+				if ( $match_count ) {
+					$object_starts[] = array( 'offset' => $file_offset, 'start' => $matches[1][1]);
+					$match_count = 0;
+				}
+			} // while not found
+		} // if not found
+
+		$object_start = array_pop( $object_starts );
+		if ( is_null( $object_start ) ) {
+			return NULL;
+		} else {
+			$file_offset = $object_start['offset'];
+			$object_content = file_get_contents( $file_name, true, NULL, $file_offset, $chunksize );
+			$start = $object_start['start'];
+		}
+
+		/*
+		 * If necessary and possible, expand the $object_content until it contains the end tag
+		 */
+		$pattern = '!>>[\\x00-\\x20]*[endobj|stream]!';
+		$match_count = preg_match( $pattern, $object_content, $matches, PREG_OFFSET_CAPTURE, $start );
+		if ( 0 == $match_count && ( $chunksize == strlen( $object_content ) ) ) {
+			$file_offset = $file_offset + $start;
+			$start = 0;
+			$new_chunksize = $chunksize + $chunksize;
+			$object_content = file_get_contents( $file_name, true, NULL, $file_offset, $new_chunksize );
+			$match_count = preg_match( $pattern, $object_content, $matches, PREG_OFFSET_CAPTURE, $start );
+
+			while ( 0 == $match_count && ( $new_chunksize == strlen( $object_content ) ) ) {
+				$new_chunksize = $new_chunksize + $chunksize;
+				$object_content = file_get_contents( $file_name, true, NULL, $file_offset, $new_chunksize );
+				$match_count = preg_match( $pattern, $object_content, $matches, PREG_OFFSET_CAPTURE, $start );
+			} // while not found
+		} // if not found
+
+		if ( 0 == $match_count ) {
+			return NULL;
+		}
+
+		if ($match_count) {
+			$results = array( 'start' => $file_offset + $start, 'length' => ($matches[0][1] + 2) - $start );
+			$results['content'] = substr( $object_content, $start, $results['length'] );
+			return $results;
+		} // found trailer
+
+		return NULL; 
+	}
+
+	/**
+	 * Parse a ISO 8601 Timestamp
+	 * 
+	 * @since 1.50
+	 *
+	 * @param	string	ISO string of the form YYYY-MM-DDTHH:MM:SS-HH:MM (inc time zone)
+	 *
+	 * @return	string	formatted date string YYYY-MM-DD HH:mm:SS
+	 */
+	private static function _parse_iso8601_date( $source_string ) {
+		if ( 1 == preg_match( '/^\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d-\\d\\d:\\d\\d/', $source_string ) ) {
+			return sprintf( '%1$s-%2$s-%3$s %4$s:%5$s:%6$s',
+				substr( $source_string, 0, 4),
+				substr( $source_string, 5, 2),
+				substr( $source_string, 8, 2),
+				substr( $source_string, 11, 2),
+				substr( $source_string, 14, 2),
+				substr( $source_string, 17, 2) );
+		}
+
+		return $source_string;
+	}
+
+	/**
+	 * Parse a PDF date string
+	 * 
+	 * @since 1.50
+	 *
+	 * @param	string	PDF date string of the form D:YYYYMMDDHHmmSSOHH'mm
+	 *
+	 * @return	string	formatted date string YYYY-MM-DD HH:mm:SS
+	 */
+	private static function _parse_pdf_date( $source_string ) {
+		if ( 'D:' == substr( $source_string, 0, 2) && ctype_digit( substr( $source_string, 2, 12 ) ) ) {
+			return sprintf( '%1$s-%2$s-%3$s %4$s:%5$s:%6$s',
+				substr( $source_string, 2, 4),
+				substr( $source_string, 6, 2),
+				substr( $source_string, 8, 2),
+				substr( $source_string, 10, 2),
+				substr( $source_string, 12, 2),
+				substr( $source_string, 14, 2) );
+		}
+
+		return $source_string;
+	}
+
+	/**
+	 * Parse a PDF Unicode (16-bit Big Endian) object
+	 * 
+	 * @since 1.50
+	 *
+	 * @param	string	PDF string of 16-bit characters
+	 *
+	 * @return	string	UTF-8 encoded string
+	 */
+	private static function _parse_pdf_UTF16BE( &$source_string ) {
+		$output = '';
+		for ($index = 2; $index < strlen( $source_string ); ) {
+			$value = ( ord( $source_string[ $index++ ] ) << 8 ) + ord( $source_string[ $index++ ] );
+ 			if ( $value < 0x80 ) {
+				$output .= chr( $value );
+			} elseif ( $value < 0x100 ) {
+				$output .= self::$utf8_chars[ $value - 0x80 ];
+			} else {
+				$output .= '.'; // TODO encode the rest
+			}
+		}
+
+		return $output;
+	}
+
+	/**
+	 * Parse a PDF string object
+	 * 
+	 * Returns an array with one dictionary entry. The array also has a '/length' element containing
+	 * the number of bytes occupied by the string in the source string, including the enclosing parentheses. 
+	 *
+	 * @since 1.50
+	 *
+	 * @param	string	data within which the string occurs
+	 * @param	integer	offset within the source string of the opening '(' character.
+	 *
+	 * @return	array	( key => array( 'type' => type, 'value' => value, '/length' => length ) ) for the string
+	 */
+	private static function _parse_pdf_string( &$source_string, $offset ) {
+		if ( '(' != $source_string[ $offset ] ) {
+			return array( 'type' => 'unknown', 'value' => '', '/length' => 0 );
+		}
+
+		/*
+		 * Brute force, here we come...
+		 */
+		$output = '';
+		$level = 0;
+		$in_string = true;
+		$index = $offset + 1;
+		while ( $in_string ) {
+			$byte = $source_string[ $index++ ];
+			if ( '\\' == $byte ) {
+				switch ( $source_string[ $index ] ) {
+					case chr( 0x0A ):
+						if ( chr( 0x0D ) == $source_string[ $index + 1 ] ) {
+							$index++;
+						}
+
+						break;
+					case chr( 0x0D ):
+						if ( chr( 0x0A ) == $source_string[ $index + 1 ] ) {
+							$index++;
+						}
+
+						break;
+					case 'n':
+						$output .= chr( 0x0A );
+						break;
+					case 'r':
+						$output .= chr( 0x0D );
+						break;
+					case 't':
+						$output .= chr( 0x09 );
+						break;
+					case 'b':
+						$output .= chr( 0x08 );
+						break;
+					case 'f':
+						$output .= chr( 0x0C );
+						break;
+					default: // could be a 1- to 3-digit octal value
+						$digit_limit = $index + 3;
+						$digit_index = $index;
+						while ( $digit_index < $digit_limit ) {
+							if ( ! ctype_digit( $source_string[ $digit_index ] ) ) {
+								break;
+							} else {
+								$digit_index++;
+							}
+						}
+
+						if ( $digit_count = $digit_index - $index ) {
+							$output .= chr( octdec( substr( $source_string, $index, $digit_count ) ) );
+							$index += $digit_count - 1;
+						} else { // accept the character following the backslash
+							$output .= $source_string[ $index ];
+						}
+				} // switch
+
+				$index++;
+			} else { // REVERSE SOLIDUS
+				if ( '(' == $byte ) {
+					$level++;
+				} elseif ( ')' == $byte ) {
+					if ( 0 == $level-- ) {
+						$in_string = false;
+						continue;
+					}
+				}
+
+				$output .= $byte;
+			} // just another 8-bit value, but check for balanced parentheses
+		} // $in_string
+
+		return array( 'type' => 'string', 'value' => $output, '/length' => $index - $offset );
+	}
+
+	/**
+	 * Parse a PDF Linearization Parameter Dictionary object
+	 * 
+	 * Returns an array of dictionary contents, classified by object type: boolean, numeric, string, hex (string),
+	 * indirect (object), name, array, dictionary, stream, and null.
+	 * The array also has a '/length' element containing the number of bytes occupied by the
+	 * dictionary in the source string, excluding the enclosing delimiters, if passed in.
+	 * @since 1.50
+	 *
+	 * @param	string	data within which the object occurs, typically the start of a PDF document
+	 * @param	integer	filesize of the PDF document, for validation purposes, or zero (0) to ignore filesize
+	 *
+	 * @return	mixed	array of dictionary objects on success, false on failure
+	 */
+	private static function _parse_pdf_LPD_dictionary( &$source_string, $filesize ) {
+		$header = substr( $source_string, 0, 1024 );
+		$match_count = preg_match( '!obj[\x00-\x20]*<<(/Linearized).*(>>)[\x00-\x20]*endobj!', $header, $matches, PREG_OFFSET_CAPTURE );
+
+		if ( $match_count ) {
+			$LPD = self::_parse_pdf_dictionary( $header, $matches[1][1] );
+		}
+
+		return false;
+	}
+
 	/**
 	 * Parse a PDF dictionary object
 	 * 
-	 * Returns an array of dictionary contents, classified by object type: boolean, numeric, string, hex (string), indirect (object), name, array, dictionary, stream, and null.
-	 * @since 1.4x
+	 * Returns an array of dictionary contents, classified by object type: boolean, numeric, string, hex (string),
+	 * indirect (object), name, array, dictionary, stream, and null.
+	 * The array also has a '/length' element containing the number of bytes occupied by the
+	 * dictionary in the source string, excluding the enclosing delimiters.
+	 * @since 1.50
 	 *
-	 * @param	string	dictionary content, without enclosing << and >> delimiters
+	 * @param	string	data within which the string occurs
+	 * @param	integer	offset within the source string of the opening '<<' characters or the first content character.
 	 *
-	 * @return	array	( key => array( 'type' => type, 'value' => value ) ) for each dictionary field
+	 * @return	array	( '/length' => length, key => array( 'type' => type, 'value' => value ) ) for each dictionary field
 	 */
-	private static function _parse_pdf_dictionary( $string ) {
-error_log( '_parse_pdf_dictionary $string dump = ' . var_export( self::_hex_dump( $string, strlen( $string ), 16 ), true ), 0 );
-//error_log( '_parse_pdf_dictionary $string = '. var_export( $string, true ), 0 );
-		$dictionary = array();
-		while ( 0 < strlen( $string) ) {
-// \x00-\x20 for whitespace
-// \(|\)|\<|\>|\[|\]|\{|\}|\/|\% for delimiters
-			$match_count = preg_match_all( '!/([^\x00-\x20|\(|\)|\<|\>|\[|\]|\{|\}|\/|\%]*)([\x00-\x20]*)!', $string, $matches, PREG_OFFSET_CAPTURE );
-//error_log( '_parse_pdf_dictionary trailer dictionary name $match_count = ' . var_export( $match_count, true ), 0 );
-//error_log( '_extract_pdf_metadata trailer dictionary name $matches[1] = ' . var_export( $matches[1], true ), 0 );
-//error_log( '_parse_pdf_dictionary trailer dictionary name $matches = ' . var_export( $matches, true ), 0 );
-
-			for ( $match_index = 0; $match_index < $match_count; $match_index++ ) {
-				$name = $matches[1][ $match_index ][0];
-//error_log( '_parse_pdf_dictionary name = ' . var_export( $name, true ), 0 );
-				$value_count = preg_match(
-					'!(\/?[^\/\x0D\x0A]*)!',
-					substr( $string, $matches[2][ $match_index ][1] + strlen( $matches[2][ $match_index ][0] ) ), $value_matches, PREG_OFFSET_CAPTURE );
-//error_log( '_parse_pdf_dictionary $value_count = ' . var_export( $value_count, true ), 0 );
-//error_log( '_parse_pdf_dictionary $value_matches = ' . var_export( $value_matches, true ), 0 );
-
-				if ( 1 == $value_count ) {
-					$value = $value_matches[0][0];
-					$dictionary[ $name ]['value'] = $value;
-					if ( ! isset( $value[0] ) ) {
-error_log( 'bad value $name = ' . var_export( $name, true ), 0 );
-error_log( 'bad value $value = ' . var_export( $value, true ), 0 );
-					}
-					if ( in_array( $value, array( 'true', 'false' ) ) )
-						$dictionary[ $name ]['type'] = 'boolean';
-					elseif ( is_numeric( $value ) )
-						$dictionary[ $name ]['type'] = 'numeric';
-					elseif ( '(' == $value[0] )
-						$dictionary[ $name ]['type'] = 'string';
-					elseif ( '<' == $value[0] ) {
-						if ( '<' == $value[1] )
-							$dictionary[ $name ]['type'] = 'dictionary';
-						else
-							$dictionary[ $name ]['type'] = 'hex';
-					}
-					elseif ( '/' == $value[0] ) {
-						$dictionary[ $name ]['type'] = 'name';
-						$match_index++; // Skip to the next key
-					}
-					elseif ( '[' == $value[0] )
-						$dictionary[ $name ]['type'] = 'array';
-					elseif ( 'null' == $value )
-						$dictionary[ $name ]['type'] = 'null';
-					elseif ( 'stream' == substr( $value, 0, 6 ) )
-						$dictionary[ $name ]['type'] = 'stream';
-					else {
-						$object_count = preg_match( '!(\d+)\h+(\d+)\h+R!', $value, $object_matches );
-						if ( 1 == $object_count ) {
-							$dictionary[ $name ]['type'] = 'indirect';
-							$dictionary[ $name ]['object'] = $object_matches[1];
-							$dictionary[ $name ]['generation'] = $object_matches[2];
-//error_log( '_parse_pdf_dictionary object_matches = ' . var_export( $object_matches, true ), 0 );
-						}
-						else {
-//error_log( '_parse_pdf_dictionary unknown dump = ' . var_export( self::_hex_dump( $value, strlen( $value ), 16 ), true ), 0 );
-//error_log( '_parse_pdf_dictionary unknown numeric = ' . var_export( is_numeric( $value ), true ), 0 );
-//error_log( '_parse_pdf_dictionary unknown length = ' . var_export( strlen( $value ), true ), 0 );
-//error_log( '_parse_pdf_dictionary unknown $value = ' . var_export( $value, true ), 0 );
-							$dictionary[ $name ]['type'] = 'unknown';
-						}
-					}
-				}
-				else {
-					$dictionary[ $matches[1][ $match_index ][0] ] = array( 'value' => '' );
-					$dictionary[ $matches[1][ $match_index ][0] ]['type'] = 'nomatch';
-				}
-			} // foreach match
-			
-			$string = '';
+	private static function _parse_pdf_dictionary( &$source_string, $offset ) {
+		/*
+		 * Find the end of the dictionary
+		 */
+		if ( '<<' == substr( $source_string, $offset, 2 ) ) {
+			$nest = $offset + 2;
+		} else {
+			$nest = $offset;
 		}
-		
-error_log( '_parse_pdf_dictionary $dictionary = '. var_export( $dictionary, true ), 0 );
+
+		$level = 1;
+		do {
+			$dictionary_end = strpos( $source_string, '>>', $nest );
+			if ( false === $dictionary_end ) {
+					/* translators: 1: ERROR tag 2: source offset 3: nest level */
+				error_log( sprintf( _x( '%1$s: _parse_pdf_dictionary offset = %2$d, nest = %3$d.', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $offset, $nest ), 0 );
+					/* translators: 1: ERROR tag 2: dictionary excerpt */
+				error_log( sprintf( _x( '%1$s: _parse_pdf_dictionary no end delimiter dump = %2$s.', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), self::_hex_dump( substr( $source_string, $offset, 128 ), 128, 16 ) ), 0 );
+				return array( '/length' => 0 );
+			}
+
+			$nest = strpos( $source_string, '<<', $nest );
+			if ( false === $nest ) {
+				$nest = $dictionary_end + 2;
+				$level--;
+			} elseif ( $nest < $dictionary_end ) {
+				$nest += 2;
+				$level++;
+			} else {
+				$nest = $dictionary_end + 2;
+				$level--;
+			}
+		} while ( $level );
+
+		$dictionary_length = $dictionary_end + 2 - $offset;
+		$dictionary = array();
+
+		// \x00-\x20 for whitespace
+		// \(|\)|\<|\>|\[|\]|\{|\}|\/|\% for delimiters
+		$match_count = preg_match_all( '!/([^\x00-\x20|\(|\)|\<|\>|\[|\]|\{|\}|\/|\%]*)([\x00-\x20]*)!', substr( $source_string, $offset, $dictionary_length ), $matches, PREG_OFFSET_CAPTURE );
+		$end_data = -1;
+		for ( $match_index = 0; $match_index < $match_count; $match_index++ ) {
+			$name = $matches[1][ $match_index ][0];
+			$value_start = $offset + $matches[2][ $match_index ][1] + strlen( $matches[2][ $match_index ][0] );
+
+			/*
+			 * Skip over false matches within a string or nested dictionary
+			 */
+			if ( $value_start < $end_data ) {
+				continue;
+			}
+
+			$end_data = -1;
+			$value_count = preg_match(
+				'!(\/?[^\/\x0D\x0A]*)!',
+				substr( $source_string, $value_start, ($dictionary_end - $value_start ) ), $value_matches, PREG_OFFSET_CAPTURE );
+
+			if ( 1 == $value_count ) {
+				$value = trim( $value_matches[0][0] );
+				$length = strlen( $value );
+				$dictionary[ $name ]['value'] = $value;
+				if ( ! isset( $value[0] ) ) {
+					/* translators: 1: ERROR tag 2: entry name 3: value excerpt */
+					error_log( sprintf( _x( '%1$s: _parse_pdf_dictionary bad value [ %2$s ] dump = %3$s', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $name, self::_hex_dump( $value, 32, 16 ) ), 0 );
+					continue;
+				}
+
+				if ( in_array( $value, array( 'true', 'false' ) ) ) {
+					$dictionary[ $name ]['type'] = 'boolean';
+				} elseif ( is_numeric( $value ) ) {
+					$dictionary[ $name ]['type'] = 'numeric';
+				} elseif ( '(' == $value[0] ) {
+					$dictionary[ $name ] = self::_parse_pdf_string( $source_string, $value_start );
+					$end_data = $value_start + $dictionary[ $name ]['/length'];
+					unset( $dictionary[ $name ]['/length'] );
+				} elseif ( '<' == $value[0] ) {
+					if ( '<' == $value[1] ) {
+						$dictionary[ $name ]['value'] = self::_parse_pdf_dictionary( $source_string, $value_start );
+						$dictionary[ $name ]['type'] = 'dictionary';
+						$end_data = $value_start + 4 + $dictionary[ $name ]['value']['/length'];
+						unset( $dictionary[ $name ]['value']['/length'] );
+					} else {
+						$dictionary[ $name ]['type'] = 'hex';
+					}
+				} elseif ( '/' == $value[0] ) {
+					$dictionary[ $name ]['value'] = substr( $value, 1 );
+					$dictionary[ $name ]['type'] = 'name';
+					$match_index++; // Skip to the next key
+				} elseif ( '[' == $value[0] ) {
+					$dictionary[ $name ]['type'] = 'array';
+					$array_length = strpos( $source_string, ']', $value_start ) - ($value_start + 1);
+					$dictionary[ $name ]['value'] = substr( $source_string, $value_start + 1, $array_length );
+					$end_data = 2 + $value_start + $array_length;
+				} elseif ( 'null' == $value ) {
+					$dictionary[ $name ]['type'] = 'null';
+				} elseif ( 'stream' == substr( $value, 0, 6 ) ) {
+					$dictionary[ $name ]['type'] = 'stream';
+				} else {
+					$object_count = preg_match( '!(\d+)\h+(\d+)\h+R!', $value, $object_matches );
+
+					if ( 1 == $object_count ) {
+						$dictionary[ $name ]['type'] = 'indirect';
+						$dictionary[ $name ]['object'] = $object_matches[1];
+						$dictionary[ $name ]['generation'] = $object_matches[2];
+					} else {
+						$dictionary[ $name ]['type'] = 'unknown';
+					}
+				}
+			} else {
+				$dictionary[ $matches[1][ $match_index ][0] ] = array( 'value' => '' );
+				$dictionary[ $matches[1][ $match_index ][0] ]['type'] = 'nomatch';
+			}
+		} // foreach match
+
+		$dictionary['/length'] = $dictionary_length;
 		return $dictionary;
 	}
-		
+
+	/**
+	 * Parse an XMP object
+	 * 
+	 * Returns an array of dictionary contents, classified by object type: boolean, numeric, string, hex (string),
+	 * indirect (object), name, array, dictionary, stream, and null.
+	 * The array also has a '/length' element containing the number of bytes occupied by the
+	 * dictionary in the source string, excluding the enclosing delimiters, if passed in.
+	 * @since 1.50
+	 *
+	 * @param	string	full path and file name
+	 * @param	integer	offset within the file of the search start point
+	 *
+	 * @return	mixed	array of metadata values or NULL on failure
+	 */
+	private static function _parse_xmp_metadata( $file_name, $file_offset ) {
+		$chunksize = 16384;			
+		$xmp_chunk = file_get_contents( $file_name, true, NULL, $file_offset, $chunksize );
+
+		/*
+		 * If necessary and possible, advance the $xmp_chunk through the file until it contains the start tag
+		 */
+		if ( false === ( $start_tag = strpos( $xmp_chunk, '<x:xmpmeta' ) ) && ( $chunksize == strlen( $xmp_chunk ) ) ) {
+			$new_offset = $file_offset + ( $chunksize - 16 );
+			$xmp_chunk = file_get_contents( $file_name, true, NULL, $new_offset, $chunksize );
+			while ( false === ( $start_tag = strpos( $xmp_chunk, '<x:xmpmeta' ) ) && ( $chunksize == strlen( $xmp_chunk ) ) ) {
+				$new_offset = $new_offset + ( $chunksize - 16 );
+				$xmp_chunk = file_get_contents( $file_name, true, NULL, $new_offset, $chunksize );
+			} // while not found
+		} else { // if not found
+			$new_offset = $file_offset;
+		}
+
+		if ( false === $start_tag ) {
+			return NULL;
+		}
+
+		/*
+		 * If necessary and possible, expand the $xmp_chunk until it contains the start tag
+		 */
+		if ( false === ( $end_tag = strpos( $xmp_chunk, '</x:xmpmeta>', $start_tag ) ) && ( $chunksize == strlen( $xmp_chunk ) ) ) {
+			$new_offset = $new_offset + $start_tag;
+			$start_tag = 0;
+			$new_chunksize = $chunksize + $chunksize;
+			$xmp_chunk = file_get_contents( $file_name, true, NULL, $new_offset, $new_chunksize );
+			while ( false === ( $end_tag = strpos( $xmp_chunk, '</x:xmpmeta>' ) ) && ( $new_chunksize == strlen( $xmp_chunk ) ) ) {
+				$new_chunksize = $new_chunksize + $chunksize;
+				$xmp_chunk = file_get_contents( $file_name, true, NULL, $new_offset, $new_chunksize );
+			} // while not found
+		} // if not found
+
+		if ( false === $end_tag ) {
+			return NULL;
+		}
+
+		$xmp_string = "<?xml version='1.0'?>\n" . substr($xmp_chunk, $start_tag, ( $end_tag + 12 ) - $start_tag );
+		$xmp_values = array();
+		$xml_parser = xml_parser_create('UTF-8');
+		if ( xml_parser_set_option( $xml_parser, XML_OPTION_SKIP_WHITE, 0 ) && xml_parser_set_option( $xml_parser, XML_OPTION_CASE_FOLDING, 0 ) ) {
+			if (xml_parse_into_struct( $xml_parser, $xmp_string, $xmp_values ) == 0) {
+				error_log( __( 'ERROR', 'media-library-assistant' ) . ': ' . _x( '_parse_xmp_metadata xml_parse_into_struct failed.', 'error_log', 'media-library-assistant' ), 0 );
+			}
+		} else {
+			error_log( __( 'ERROR', 'media-library-assistant' ) . ': ' . _x( '_parse_xmp_metadata set option failed.', 'error_log', 'media-library-assistant' ), 0 );
+		}
+
+		xml_parser_free($xml_parser);
+
+		if ( empty( $xmp_values ) ) {
+			return NULL;
+		}
+
+		$results = array();
+		$xmlns = array();
+		$array_name = '';
+		$array_index = -1;
+		foreach ( $xmp_values as $value ) {
+			$language = 'x-default';
+			if ( isset( $value['attributes'] ) ) {
+				foreach ( $value['attributes'] as $att_tag => $att_value ) {
+					if ( 'xmlns:' == substr( $att_tag, 0, 6 ) ) {
+						$xmlns[ substr( $att_tag, 6 ) ] = $att_value;
+					} elseif ( 'x:xmptk' == $att_tag ) {
+						$results['xmptk'] = $att_value;
+					} elseif ( 'xml:lang' == $att_tag ) {
+						$language = $att_value;
+					}
+				}
+			} // attributes
+
+			switch ( $value['tag'] ) {
+				case 'x:xmpmeta':
+				case 'rdf:RDF':
+				case 'rdf:Description':
+				case 'rdf:ID':
+				case 'rdf:nodeID':
+					break;
+				case 'rdf:li':
+					if ( $value['type'] == 'complete' ) {
+						if ( 'x-default' != $language ) {
+							break;
+						}
+
+						if ( ! empty ( $array_name ) ) {
+							if ( isset( $value['value'] ) ) {
+								$results[ $array_name ][ $array_index++ ] = $value['value'];
+							} else {
+								$results[ $array_name ][ $array_index++ ] = '';
+							}
+						}
+					} // complete
+
+					break;
+				case 'rdf:Seq':
+				case 'rdf:Bag':
+				case 'rdf:Alt':
+					switch ( $value['type'] ) {
+						case 'open':
+							$array_index = 0;
+							break;
+						case 'close':
+							$array_index = -1;
+					}
+
+					break;
+				default:
+					switch ( $value['type'] ) {
+						case 'open':
+							$array_name = $value['tag'];
+							break;
+						case 'close':
+							$array_name = '';
+							break;
+						case 'complete':
+							if ( isset( $value['attributes'] ) ) {
+								$results[ $value['tag'] ] = $value['attributes'];
+							} elseif ( isset( $value['value'] ) ) {
+								$results[ $value['tag'] ] = $value['value'];
+							} else {
+								$results[ $value['tag'] ] = '';
+							}
+					} // type
+			} // switch tag
+		} // foreach value
+
+		/*
+		 * Parse "namespace:name" names into arrays of simple names
+		 * NOTE: The string "XAP" or "xap" appears in some namespaces, keywords,
+		 * and related names in stored XMP data. It reflects an early internal
+		 * code name for XMP; the names have been preserved for compatibility purposes.
+		 */
+		$namespace_arrays = array();
+		foreach ( $results as $key => $value ) {
+			if ( is_string( $value ) ) {
+				$value = self::_parse_iso8601_date( self::_parse_pdf_date( $value ) );
+			}
+
+			if ( false !== ($colon = strpos( $key, ':' ) ) ) {
+				$array_name = substr( $key, 0, $colon );
+				$array_index = substr( $key, $colon + 1 );
+				$namespace_arrays[ $array_name ][ $array_index ] = $value;
+
+				if ( ! isset( $results[ $array_index ] ) && in_array( $array_name, array( 'xmp', 'xmpMM', 'xmpRights', 'xap', 'xapMM', 'dc', 'pdf', 'pdfx' ) ) ) {
+					if ( is_array( $value ) && 1 == count( $value ) && isset( $value[0] ) ) {
+						$results[ $array_index ] = $value[0];
+					} else {
+						$results[ $array_index ] = $value;
+					}
+				}
+
+				unset( $results[ $key ] );
+			}
+		}
+
+		/*
+		 * Try to populate all the PDF-standard keys (except Trapped)
+		 * Title - The document's title
+		 * Author - The name of the person who created the document
+		 * Subject - The subject of the document
+		 * Keywords - Keywords associated with the document
+		 * Creator - the name of the conforming product that created the original document
+		 * Producer - the name of the conforming product that converted it to PDF
+		 * CreationDate - The date and time the document was created
+		 * ModDate - The date and time the document was most recently modified
+		 */
+		if ( ! isset( $results['Title'] ) ) {
+			if ( isset( $namespace_arrays['dc'] ) && isset( $namespace_arrays['dc']['title'] ) ) {
+				$results['Title'] = implode( ',', $namespace_arrays['dc']['title'] );
+			}
+		}
+
+		if ( ! isset( $results['Author'] ) ) {
+			if ( isset( $namespace_arrays['dc'] ) && isset( $namespace_arrays['dc']['creator'] ) ) {
+				$results['Author'] = implode( ',', $namespace_arrays['dc']['creator'] );
+			}
+		}
+
+		if ( ! isset( $results['Subject'] ) ) {
+			if ( isset( $namespace_arrays['dc'] ) && isset( $namespace_arrays['dc']['description'] ) ) {
+				$results['Subject'] = implode( ',', $namespace_arrays['dc']['description'] );
+			}
+		}
+
+		/*
+		 * Keywords are special, since they are often assigned to taxonomy terms.
+		 * Build or preserve an array if there are multiple values; string for single values.
+		 * "pdf:Keywords" uses a ';' delimiter, "dc:subject" uses an array.
+		 */
+		$keywords = array();
+		if ( isset( $results['Keywords'] ) ) {
+			if ( false !== strpos( $results['Keywords'], ';' ) ) {
+				$terms = array_map( 'trim', explode( ';', $results['Keywords'] ) );
+				foreach ( $terms as $term )
+					if ( ! empty( $term ) ) {
+						$keywords[ $term ] = $term;
+					}
+			} elseif ( false !== strpos( $results['Keywords'], ',' ) ) {
+				$terms = array_map( 'trim', explode( ',', $results['Keywords'] ) );
+				foreach ( $terms as $term )
+					if ( ! empty( $term ) ) {
+						$keywords[ $term ] = $term;
+					}
+			} else {
+				$term = trim( $results['Keywords'] );
+				if ( ! empty( $term ) ) {
+					$keywords[ $term ] = $term;
+				}
+			}
+		} // Keywords
+
+		if ( isset( $namespace_arrays['dc'] ) && isset( $namespace_arrays['dc']['subject'] ) ) {
+			if ( is_array( $namespace_arrays['dc']['subject'] ) ) {
+				foreach ( $namespace_arrays['dc']['subject'] as $term ) {
+					$term = trim( $term );
+					if ( ! empty( $term ) ) {
+						$keywords[ $term ] = $term;
+					}
+				}
+			} elseif ( is_string( $namespace_arrays['dc']['subject'] ) ) {
+				$term = trim ( $namespace_arrays['dc']['subject'] );
+				if ( ! empty( $term ) ) {
+					$keywords[ $term ] = $term;
+				}
+			}
+		} // dc:subject
+
+		if ( ! empty( $keywords ) ) {
+			if ( 1 == count( $keywords ) ) {
+				$results['Keywords'] = array_shift( $keywords );
+			} else {
+				$results['Keywords'] = array();
+				foreach ( $keywords as $term ) {
+					$results['Keywords'][] = $term;
+				}
+			}
+		}
+
+//		if ( ! isset( $results['Producer'] ) ) {
+//		}
+
+		if ( ! isset( $results['Creator'] ) ) {
+			if ( isset( $namespace_arrays['xmp'] ) && isset( $namespace_arrays['xmp']['CreatorTool'] ) ) {
+				$results['Creator'] = $namespace_arrays['xmp']['CreatorTool'];
+			} elseif ( isset( $namespace_arrays['xap'] ) && isset( $namespace_arrays['xap']['CreatorTool'] ) ) {
+				$results['Creator'] = $namespace_arrays['xap']['CreatorTool'];
+			} elseif ( ! empty( $results['Producer'] ) ) {
+				$results['Creator'] = $results['Producer'];
+			}
+		}
+
+		if ( ! isset( $results['CreationDate'] ) ) {
+			if ( isset( $namespace_arrays['xmp'] ) && isset( $namespace_arrays['xmp']['CreateDate'] ) ) {
+				$results['CreationDate'] = $namespace_arrays['xmp']['CreateDate'];
+			} elseif ( isset( $namespace_arrays['xap'] ) && isset( $namespace_arrays['xap']['CreateDate'] ) ) {
+				$results['CreationDate'] = $namespace_arrays['xap']['CreateDate'];
+			}
+		}
+
+		if ( ! isset( $results['ModDate'] ) ) {
+			if ( isset( $namespace_arrays['xmp'] ) && isset( $namespace_arrays['xmp']['ModifyDate'] ) ) {
+				$results['ModDate'] = $namespace_arrays['xmp']['ModifyDate'];
+			} elseif ( isset( $namespace_arrays['xap'] ) && isset( $namespace_arrays['xap']['ModifyDate'] ) ) {
+				$results['ModDate'] = $namespace_arrays['xap']['ModifyDate'];
+			}
+		}
+
+		if ( ! empty( $xmlns ) ) {
+			$results['xmlns'] = $xmlns;
+		}
+
+		$results = array_merge( $results, $namespace_arrays );
+		return $results;
+	}
+
+	/**
+	 * Extract dictionary from traditional cross-reference + trailer documents
+	 * 
+	 * @since 1.50
+	 *
+	 * @param	string	full path to the desired file
+	 * @param	integer	offset within file of the cross-reference table
+	 *
+	 * @return	mixed	array of "PDF dictionary arrays", newest first, or NULL on failure
+	 */
+	private static function _extract_pdf_trailer( $file_name, $file_offset ) {
+		$chunksize = 16384; 
+		$tail = file_get_contents( $file_name, true, NULL, $file_offset, $chunksize );
+		$chunk_offset = 0;
+
+		/*
+		 * look for traditional xref and trailer
+		 */
+		if ( 'xref' == substr( $tail, $chunk_offset, 4 ) ) {
+			$xref_length =	self::_parse_pdf_xref_section( $file_name, $file_offset + $chunk_offset + 4 );
+				$chunk_offset += 4 + $xref_length;
+
+				if ( $chunk_offset > ( $chunksize - 1024 ) ) {
+					$file_offset += $chunk_offset;
+					$tail = file_get_contents( $file_name, true, NULL, $file_offset, $chunksize );
+					$chunk_offset = 0; 
+			}
+
+			$match_count = preg_match( '/[\x00-\x20]*trailer[\x00-\x20]+/', $tail, $matches, PREG_OFFSET_CAPTURE, $chunk_offset );
+			if ( $match_count ) {
+				$chunk_offset = $matches[0][1] + strlen( $matches[0][0] );
+				$match_count = preg_match( '/<<(.*)>>/', $tail, $matches, 0, $chunk_offset );
+
+				if ( 0 < $match_count ) {
+					$dictionary = self::_parse_pdf_dictionary( $matches[0], 0 );
+
+					if ( isset( $dictionary['Prev'] ) ) {
+						$other_trailers =  self::_extract_pdf_trailer( $file_name, $dictionary['Prev']['value'] );
+					} else {
+						$other_trailers = NULL;
+					}
+
+					if ( is_array( $other_trailers ) ) {
+						$other_trailers = array_merge( $other_trailers, array( $dictionary ) );
+						return $other_trailers;
+					} else {
+						return array( $dictionary );
+					}
+				} // found trailer dictionary
+			} // found 'trailer'
+		} else { // found 'xref'
+		/*
+		 * Look for a cross-reference stream
+		 */
+		$match_count = preg_match( '!(\d+)\\h+(\d+)\\h+obj[\x00-\x20]*!', $tail, $matches, PREG_OFFSET_CAPTURE );
+		if ( $match_count ) {
+			$chunk_offset = $matches[0][1] + strlen( $matches[0][0] );
+
+			if ( '<<' == substr( $tail, $chunk_offset, 2) ) {
+				$dictionary = self::_parse_pdf_dictionary( $tail, $chunk_offset );
+
+				/*
+				 * Parse the cross-reference stream following the dictionary, if present
+				 */
+				 if ( isset( $dictionary['Type'] ) && 'XRef' == $dictionary['Type']['value'] ) {
+		 			$xref_length =	self::_parse_pdf_xref_stream( $file_name, $file_offset + $chunk_offset + (integer) $dictionary['/length'], $dictionary['W']['value'] );
+				 }
+
+				if ( isset( $dictionary['Prev'] ) ) {
+					$other_trailers =  self::_extract_pdf_trailer( $file_name, $dictionary['Prev']['value'] );
+				} else {
+					$other_trailers = NULL;
+				}
+
+				if ( is_array( $other_trailers ) ) {
+					$other_trailers = array_merge( array( $dictionary ), $other_trailers );
+					return $other_trailers;
+				} else {
+					return array( $dictionary );
+				}
+			} // found cross-reference stream dictionary
+		} // found cross-reference stream object
+	}
+
+		return NULL;
+	}
+
 	/**
 	 * Extract Metadata from a PDF file
 	 * 
-	 * @since 1.4x
+	 * @since 1.50
 	 *
 	 * @param	string	full path to the desired file
 	 *
 	 * @return	array	( key => value ) for each metadata field, in string format
 	 */
-	private static function _extract_pdf_metadata( $string ) {
-error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
+	private static function _extract_pdf_metadata( $file_name ) {
 		$metadata = array();
-		$pdf = file_get_contents( $string, true );
-		if ( $pdf == false ) {
-			error_log( 'ERROR: PDF file not found ' . var_export( $path, true ), 0 );
+		self::$pdf_indirect_objects = NULL;
+		$chunksize = 16384;
+
+		if ( ! file_exists( $file_name ) ) {
 			return $metadata;
 		}
-		
-//error_log( '_extract_pdf_metadata $pdf start = ' . "\r\n" . var_export( self::_hex_dump( $pdf, 2048, 32 ), true ) . "\r\n", 0 );
 
-		self::_build_pdf_indirect_objects( $pdf );
-		
-		$header = substr( $pdf, 0, 8 );
-		if ( '%PDF-' == substr( $header, 0, 5 ) ) {
-			$metadata['Version'] = substr( $header, 1, 7 );
-			$metadata['VersionNumber'] = substr( $header, 5, 3 );
+		$filesize = filesize( $file_name );
+		$file_offset = ( $chunksize < $filesize ) ? ( $filesize - $chunksize ) : 0;
+		$tail = file_get_contents( $file_name, false, NULL, $file_offset );
+
+		if ( 0 == $file_offset ) {
+			$header = substr( $tail, 0, 128 );
+		} else {
+			$header = file_get_contents( $file_name, false, NULL, 0, 128 );
 		}
 
-//		$match_count = preg_match_all( '/[\r|\n]+<<(.*)>>[\r|\n]+/', $pdf, $matches, PREG_OFFSET_CAPTURE );
-//		$match_count = preg_match_all( '/[\r|\n]+startxref[\r|\n]+([0-9]+)[\r|\n]+\%\%EOF[\r|\n]*/', $pdf, $matches, PREG_OFFSET_CAPTURE );
+		if ( '%PDF-' == substr( $header, 0, 5 ) ) {
+			$metadata['PDF_Version'] = substr( $header, 1, 7 );
+			$metadata['PDF_VersionNumber'] = substr( $header, 5, 3 );
+		}
 
-		$match_count = preg_match_all( '/[\r|\n]+trailer[\r|\n]+/', $pdf, $matches, PREG_OFFSET_CAPTURE );
-		if ( 0 < $match_count ) {
-			$tail = substr( $pdf, (integer) $matches[0][ $match_count - 1 ][1] );
-//			$match_count = preg_match_all( '/[\r|\n]+<<(.*)>>[\r|\n]+/', $pdf, $matches ); //, PREG_OFFSET_CAPTURE );
-			$match_count = preg_match_all( '/[\r|\n]+<<(.*)>>[\r|\n]+/', $tail, $matches ); //, PREG_OFFSET_CAPTURE );
-//error_log( '_extract_pdf_metadata trailer dictionary  $match_count = ' . var_export( $match_count, true ), 0 );
-//error_log( '_extract_pdf_metadata trailer dictionary $matches = ' . var_export( $matches, true ), 0 );
-			 if ( 0 < $match_count ) {
-//				 for ( $index = 0; $index < $match_count; $index++ )
-//					 $dictionary = self::_parse_pdf_dictionary( $matches[1][ $index ] );
-				 $dictionary = self::_parse_pdf_dictionary( $matches[1][ $match_count - 1 ] );
-				 
-				 if ( isset( $dictionary['Info'] ) ) {
-//error_log( '_extract_pdf_metadata trailer dictionary  Info = ' . var_export( $dictionary['Info'], true ), 0 );
-					 $info_ref = ($dictionary['Info']['object'] * 1000) + $dictionary['Info']['generation'];
-//error_log( '_extract_pdf_metadata trailer dictionary  $info_ref = ' . var_export( $info_ref, true ), 0 );
-					 if ( isset( self::$pdf_indirect_objects[ $info_ref ] ) ) {
-//error_log( '_extract_pdf_metadata trailer dictionary  start = ' . var_export( self::$pdf_indirect_objects[ $info_ref ], true ), 0 );
-//error_log( '_extract_pdf_metadata Object = ' . "\r\n" . var_export( self::_hex_dump( substr( $pdf, self::$pdf_indirect_objects[ $info_ref ]['start'], self::$pdf_indirect_objects[ $info_ref ]['length'] ), self::$pdf_indirect_objects[ $info_ref ]['length'], 32 ), true ) . "\r\n", 0 );
-						 $info_dictionary = self::_parse_pdf_dictionary( substr( $pdf, self::$pdf_indirect_objects[ $info_ref ]['start'], self::$pdf_indirect_objects[ $info_ref ]['length'] ) );
-					 } // found Info object
-				 } // found Info ref
-			 } // found dictionary
-		} // found trailer
-		
+		/*
+		 * Find the xref and (optional) trailer
+		 */
+		$match_count = preg_match_all( '/startxref[\x00-\x20]+(\d+)[\x00-\x20]+\%\%EOF/', $tail, $matches, PREG_OFFSET_CAPTURE );
+		if ( 0 == $match_count ) {
+			/* translators: 1: ERROR tag 2: path and file */
+			error_log( sprintf( _x( '%1$s: File "%2$s", startxref not found.', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $path ), 0 );
+			return $metadata;
+		}
+
+		$startxref = (integer) $matches[1][ $match_count - 1 ][0];
+		$trailer_dictionaries = self::_extract_pdf_trailer( $file_name, $startxref );
+		if ( is_array( $trailer_dictionaries ) ) {
+			$info_reference = NULL;
+			foreach ( $trailer_dictionaries as $trailer_dictionary ) 
+			if ( isset( $trailer_dictionary['Info'] ) ) {
+				$info_reference = $trailer_dictionary['Info'];
+				break;
+			}
+
+			if ( isset( $info_reference ) ) {	
+				$info_object = self::_find_pdf_indirect_dictionary( $file_name, $info_reference['object'], $info_reference['generation'] );
+				if ( $info_object ) {
+					$info_dictionary = self::_parse_pdf_dictionary( $info_object['content'], 0 );
+					unset( $info_dictionary['/length'] );
+
+					foreach ( $info_dictionary as $name => $value ) {
+						if ( 'string' == $value['type'] ) {
+							$prefix = substr( $value['value'], 0, 2 );
+							if ( 'D:' == $prefix ) {
+								$metadata[ $name ] = self::_parse_pdf_date( $value['value'] );
+							} elseif ( ( chr(0xFE) . chr(0xFF) ) == $prefix )  {
+								$metadata[ $name ] = self::_parse_pdf_UTF16BE( $value['value'] );
+							} else {
+								$metadata[ $name ] = $value['value'];
+							}
+						 } else {
+							$metadata[ $name ] = $value['value'];
+						 }
+					} // each info entry
+				} // found Info object
+			} // found Info reference
+
+			/*
+			 * Look for XMP Metadata
+			 */
+			$root_reference = NULL;
+			foreach ( $trailer_dictionaries as $trailer_dictionary ) 
+			if ( isset( $trailer_dictionary['Root'] ) ) {
+				$root_reference = $trailer_dictionary['Root'];
+				break;
+			}
+
+			if ( isset( $root_reference ) ) {	
+				$root_object = self::_find_pdf_indirect_dictionary( $file_name, $root_reference['object'], $root_reference['generation'] );
+				if ( $root_object ) {
+					$root_dictionary = self::_parse_pdf_dictionary( $root_object['content'], 0 );
+					unset( $root_dictionary['/length'] );
+
+					if ( isset( $root_dictionary['Metadata'] ) ) {
+						$xmp_object = self::_find_pdf_indirect_dictionary( $file_name, $root_dictionary['Metadata']['object'], $root_dictionary['Metadata']['generation'] );
+						$xmp = self::_parse_xmp_metadata( $file_name, $xmp_object['start'] + $xmp_object['length'] );
+
+						if ( is_array( $xmp ) ) {
+							$metadata = array_merge( $metadata, $xmp );
+						}
+					} // found Metadata reference
+				} // found Root object
+			} // found Root reference
+		} // found trailer_dictionaries
+
 		return $metadata;
 	}
-		
+
 	/**
 	 * UTF-8 replacements for invalid SQL characters
 	 *
@@ -1900,24 +4899,27 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 	 * @return	string	UTF-8 encoded string
 	 */
 	private static function _bin_to_utf8( $string ) {
-		if ( seems_utf8( $string ) )
+		if ( seems_utf8( $string ) ) {
 			return $string;
+		}
 
-		if(function_exists('utf8_encode'))
+		if (function_exists('utf8_encode')) {
 			return utf8_encode( $string );
+		}
 
 		$output = '';
 		for ($index = 0; $index < strlen( $string ); $index++ ) {
 			$value = ord( $string[ $index ] );
-			if ( $value < 0x80 )
+			if ( $value < 0x80 ) {
 				$output .= chr( $value );
-			else
+			} else {
 				$output .= self::$utf8_chars[ $value - 0x80 ];
+			}
 		}
 
 		return $output;
 	}
-		
+
 	/**
 	 * IPTC Dataset identifiers and names
 	 *
@@ -1944,7 +4946,7 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 		"1#100" => "UNO",
 		"1#120" => "ARM Identifier",
 		"1#122" => "ARM Version",
-		
+
 		// Application Record
 		"2#000" => "Record Version",
 		"2#003" => "Object Type Reference",
@@ -2003,16 +5005,16 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 		"2#200" => "ObjectData Preview File Format",
 		"2#201" => "ObjectData Preview File Format Version",
 		"2#202" => "ObjectData Preview Data",
-		
+
 		// Pre ObjectData Descriptor Record
 		"7#010"  => "Size Mode",
 		"7#020"  => "Max Subfile Size",
 		"7#090"  => "ObjectData Size Announced",
 		"7#095"  => "Maximum ObjectData Size",
-		
+
 		// ObjectData Record
 		"8#010"  => "Subfile",
-		
+
 		// Post ObjectData Descriptor Record
 		"9#010"  => "Confirmed ObjectData Size"
 	);
@@ -2102,16 +5104,16 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 		'objectdata-preview-file-format' => '2#200',
 		'objectdata-preview-file-format-version' => '2#201',
 		'objectdata-preview-data' => '2#202',
-		
+
 		// Pre ObjectData Descriptor Record
 		'size-mode' => '7#010',
 		'max-subfile-size' => '7#020',
 		'objectdata-size-announced' => '7#090',
 		'maximum-objectdata-size' => '7#095',
-		
+
 		// ObjectData Record
 		'subfile' => '8#010',
-		
+
 		// Post ObjectData Descriptor Record
 		'confirmed-objectdata-size' => '9#010'
 );
@@ -2142,7 +5144,7 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 		"1#100" => "14 to 80 characters of eternal, globally unique identification for objects",
 		"1#120" => "2 octet binary Abstract Relationship Model Identifier",
 		"1#122" => "2 octet binary Abstract Relationship Model Version",
-		
+
 		// Application Record
 		"2#000" => "2 octet binary Information Interchange Model, Part II version number",
 		"2#003" => "3 to 67 Characters of Object Type Reference number and optional text",
@@ -2201,16 +5203,16 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 		"2#200" => "2 octet binary file format of the ObjectData Preview",
 		"2#201" => "2 octet binary particular version of the ObjectData Preview File Format",
 		"2#202" => "Max 256000 binary octets containing the ObjectData Preview data",
-		
+
 		// Pre ObjectData Descriptor Record
 		"7#010"  => "1 numeric character - 0=objectdata size not known, 1=objectdata size known at beginning of transfer",
 		"7#020"  => "4 octet binary maximum subfile dataset(s) size",
 		"7#090"  => "4 octet binary objectdata size if known at beginning of transfer",
 		"7#095"  => "4 octet binary largest possible objectdata size",
-		
+
 		// ObjectData Record
 		"8#010"  => "Subfile DataSet containing the objectdata itself; repeatable",
-		
+
 		// Post ObjectData Descriptor Record
 		"9#010"  => "4 octet binary total objectdata size"
 	);
@@ -2287,151 +5289,586 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 	/**
 	 * Parse one IPTC metadata field
 	 * 
-	 * Returns a string value, converting array data to a string as necessary.
-	 *
 	 * @since 1.41
 	 *
 	 * @param	string	field name - IPTC Identifier or friendly name/slug
-	 * @param	string	metadata array containing 'mla_iptc_metadata' array
+	 * @param	string	metadata array containing iptc, exif, and pdf metadata arrays
 	 *
 	 * @return	mixed	string/array representation of metadata value or an empty string
 	 */
-	public static function mla_iptc_metadata_value( $iptc_key, $image_metadata ) {
+	public static function mla_iptc_metadata_value( $iptc_key, $item_metadata ) {
 		// convert friendly name/slug to identifier
 		if ( array_key_exists( $iptc_key, self::$mla_iptc_keys ) ) {
 			$iptc_key = self::$mla_iptc_keys[ $iptc_key ];
 		}
-				
+
 		$text = '';
-		if ( array_key_exists( $iptc_key, $image_metadata['mla_iptc_metadata'] ) ) {
-			$text = $image_metadata['mla_iptc_metadata'][ $iptc_key ];
+		if ( array_key_exists( $iptc_key, $item_metadata['mla_iptc_metadata'] ) ) {
+			$text = $item_metadata['mla_iptc_metadata'][ $iptc_key ];
 			if ( is_array( $text ) ) {
 				foreach ($text as $key => $value )
 					$text[ $key ] = self::_bin_to_utf8( $value );
-			}
-			elseif ( is_string( $text ) )
+			} elseif ( is_string( $text ) ) {
 				$text = self::_bin_to_utf8( $text );
+			}
+		} elseif ( 'ALL_IPTC' == $iptc_key ) {
+			$clean_data = array();
+			foreach ( $item_metadata['mla_iptc_metadata'] as $key => $value ) {
+				if ( is_array( $value ) ) {
+					foreach ($value as $text_key => $text )
+						$value[ $text_key ] = self::_bin_to_utf8( $text );
+
+					$clean_data[ $key ] = 'ARRAY(' . implode( ',', $value ) . ')';
+				} elseif ( is_string( $value ) ) {
+					$clean_data[ $key ] = self::_bin_to_utf8( substr( $value, 0, 256 ) );
+				} else {
+					$clean_data[ $key ] = self::_bin_to_utf8( $value );
+				}
+			}
+
+			$text = var_export( $clean_data, true);
 		}
-		
+
 		return $text;
 	}
-		
+
 	/**
 	 * Parse one EXIF metadata field
 	 * 
-	 * Returns a string value, converting array data to a string as necessary.
 	 * Also handles the special pseudo-values 'ALL_EXIF' and 'ALL_IPTC'.
 	 *
 	 * @since 1.13
 	 *
 	 * @param	string	field name
-	 * @param	string	metadata array containing 'mla_exif_metadata' and 'mla_iptc_metadata' arrays
+	 * @param	string	metadata array containing iptc, exif, and pdf metadata arrays
 	 *
-	 * @return	string	string representation of metadata value or an empty string
+	 * @return	mixed	string/array representation of metadata value or an empty string
 	 */
-	public static function mla_exif_metadata_value( $exif_key, $image_metadata ) {
+	public static function mla_exif_metadata_value( $exif_key, $item_metadata ) {
 		$text = '';
-		if ( array_key_exists( $exif_key, $image_metadata['mla_exif_metadata'] ) ) {
-			$text = $image_metadata['mla_exif_metadata'][ $exif_key ];
+		if ( array_key_exists( $exif_key, $item_metadata['mla_exif_metadata'] ) ) {
+			$text = $item_metadata['mla_exif_metadata'][ $exif_key ];
 			if ( is_array( $text ) ) {
 				foreach ($text as $key => $value ) {
-					if ( is_array( $value ) )
+					if ( is_array( $value ) ) {
 						$text[ $key ] = self::_bin_to_utf8( var_export( $value, true ) );
-					else
+					} else {
 						$text[ $key ] = self::_bin_to_utf8( $value );
+					}
 				}
-			}
-			elseif ( is_string( $text ) )
+			} elseif ( is_string( $text ) ) {
 				$text = self::_bin_to_utf8( $text );
+			}
 		} elseif ( 'ALL_EXIF' == $exif_key ) {
 			$clean_data = array();
-			foreach ( $image_metadata['mla_exif_metadata'] as $key => $value ) {
-				if ( is_array( $value ) ) 
+			foreach ( $item_metadata['mla_exif_metadata'] as $key => $value ) {
+				if ( is_array( $value ) ) {
 					$clean_data[ $key ] = '(ARRAY)';
-				elseif ( is_string( $value ) )
+				} elseif ( is_string( $value ) ) {
 					$clean_data[ $key ] = self::_bin_to_utf8( substr( $value, 0, 256 ) );
-				else
+				} else {
 					$clean_data[ $key ] = $value;
+				}
 			}
-			
+
 			$text = var_export( $clean_data, true);
 		} elseif ( 'ALL_IPTC' == $exif_key ) {
 			$clean_data = array();
-			foreach ( $image_metadata['mla_iptc_metadata'] as $key => $value ) {
+			foreach ( $item_metadata['mla_iptc_metadata'] as $key => $value ) {
 				if ( is_array( $value ) ) {
 					foreach ($value as $text_key => $text )
 						$value[ $text_key ] = self::_bin_to_utf8( $text );
-						
+
 					$clean_data[ $key ] = 'ARRAY(' . implode( ',', $value ) . ')';
-				}
-				elseif ( is_string( $value ) )
+				} elseif ( is_string( $value ) ) {
 					$clean_data[ $key ] = self::_bin_to_utf8( substr( $value, 0, 256 ) );
-				else
+				} else {
 					$clean_data[ $key ] = self::_bin_to_utf8( $value );
+				}
 			}
 
 			$text = var_export( $clean_data, true);
 		}
-		
+
 		return $text;
 	}
-		
+
 	/**
-	 * Fetch and filter IPTC and EXIF meta data for an image attachment
+	 * Parse one PDF metadata field
 	 * 
-	 * Returns 
+	 * Also handles the special pseudo-value 'ALL_PDF'.
 	 *
+	 * @since 1.50
+	 *
+	 * @param	string	field name
+	 * @param	string	metadata array containing iptc, exif, and pdf metadata arrays
+	 *
+	 * @return	mixed	string/array representation of metadata value or an empty string
+	 */
+	public static function mla_pdf_metadata_value( $pdf_key, $item_metadata ) {
+		$text = '';
+		if ( array_key_exists( $pdf_key, $item_metadata['mla_pdf_metadata'] ) ) {
+			$text = $item_metadata['mla_pdf_metadata'][ $pdf_key ];
+			if ( is_array( $text ) ) {
+				foreach ($text as $key => $value ) {
+					if ( is_array( $value ) ) {
+						$text[ $key ] = self::_bin_to_utf8( var_export( $value, true ) );
+					} else {
+						$text[ $key ] = self::_bin_to_utf8( $value );
+					}
+				}
+			} elseif ( is_string( $text ) ) {
+				$text = self::_bin_to_utf8( $text );
+			}
+		} elseif ( 'ALL_PDF' == $pdf_key ) {
+			$clean_data = array();
+			foreach ( $item_metadata['mla_pdf_metadata'] as $key => $value ) {
+				if ( is_array( $value ) ) {
+					$clean_data[ $key ] = '(ARRAY)';
+				} elseif ( is_string( $value ) ) {
+					$clean_data[ $key ] = self::_bin_to_utf8( substr( $value, 0, 256 ) );
+				} else {
+					$clean_data[ $key ] = $value;
+				}
+			}
+
+			$text = var_export( $clean_data, true);
+		} // ALL_PDF
+
+		return $text;
+	}
+
+	/**
+	 * Convert an EXIF GPS rational value to a PHP float value
+	 * 
+	 * @since 1.50
+	 *
+	 * @param	array	array( 0 => numerator, 1 => denominator )
+	 *
+	 * @return	float	numerator/denominator
+	 */
+	private static function _rational_to_decimal( $rational ) {
+		$parts = explode('/', $rational);
+		return $parts[0] / ( $parts[1] ? $parts[1] : 1);
+	}
+
+	/**
+	 * Convert an EXIF rational value to a formatted string
+	 * 
+	 * @since 2.02
+	 *
+	 * @param	string	numerator/denominator
+	 * @param	string	format for integer values
+	 * @param	string	format for fractional values from -1 to +1
+	 * @param	string	format for integer.fraction values 
+	 *
+	 * @return	mixed	formatted value or boolean false if no value available
+	 */
+	private static function _rational_to_string( $rational, $integer_format, $fraction_format, $mixed_format ) {
+		$fragments = array_map( 'intval', explode( '/', $rational ) );
+		if ( 1 == count( $fragments ) ) {
+			$value = trim( $rational );
+			if ( ! empty( $value ) ) {
+				return $value;
+			}
+		} else {
+			if ( $fragments[0] ) {
+				if ( 1 == $fragments[1] ) {
+					return sprintf( $integer_format, $fragments[0] );
+				} elseif ( 0 != $fragments[1] ) {
+					$value = $fragments[0] / $fragments[1];
+						if ( ( -1 <= $value ) && ( 1 >= $value ) ) {
+							return sprintf( $fraction_format, $fragments[0], $fragments[1] );
+						} else {
+							if ( $value == intval( $value ) ) {
+								return sprintf( $integer_format, $value );
+							}else {
+								return sprintf( $mixed_format, $value );
+							}
+						} // mixed value
+				} // fractional or mixed value
+			} // non-zero numerator
+		} // valid denominator
+		
+		return false;
+	}
+
+	/**
+	 * Passes IPTC/EXIF parse errors between mla_IPTC_EXIF_error_handler
+	 * and mla_fetch_attachment_image_metadata
+	 *
+	 * @since 1.81
+	 *
+	 * @var	array
+	 */
+	private static $mla_IPTC_EXIF_errors = array();
+
+	/**
+	 * Intercept IPTC and EXIF parse errors
+	 * 
+	 * @since 1.81
+	 *
+	 * @param	int		the level of the error raised
+	 * @param	string	the error message
+	 * @param	string	the filename that the error was raised in
+	 * @param	int		the line number the error was raised at
+	 *
+	 * @return	boolean	true, to bypass PHP error handler
+	 */
+	public static function mla_IPTC_EXIF_error_handler( $type, $string, $file, $line ) {
+//error_log( 'DEBUG: mla_IPTC_EXIF_error_handler $type = ' . var_export( $type, true ), 0 );
+//error_log( 'DEBUG: mla_IPTC_EXIF_error_handler $string = ' . var_export( $string, true ), 0 );
+//error_log( 'DEBUG: mla_IPTC_EXIF_error_handler $file = ' . var_export( $file, true ), 0 );
+//error_log( 'DEBUG: mla_IPTC_EXIF_error_handler $line = ' . var_export( $line, true ), 0 );
+
+		switch ( $type ) {
+			case E_ERROR:
+				$level = 'E_ERROR';
+				break;
+			case E_WARNING:
+				$level = 'E_WARNING';
+				break;
+			case E_NOTICE:
+				$level = 'E_NOTICE';
+				break;
+			default:
+				$level = 'OTHER';
+		}
+
+		$path_info = pathinfo( $file );
+		$file_name = $path_info['basename'];
+		MLAData::$mla_IPTC_EXIF_errors[] = "{$level} ({$type}) - {$string} [{$file_name} : {$line}]";
+
+	    /* Don't execute PHP internal error handler */
+    	return true;
+	}
+
+	/**
+	 * Fetch and filter IPTC and EXIF or PDF metadata for an image attachment
+	 * 
 	 * @since 0.90
 	 *
 	 * @param	int		post ID of attachment
 	 * @param	string	optional; if $post_id is zero, path to the image file.
 	 *
-	 * @return	array	Meta data variables
+	 * @return	array	Meta data variables, IPTC and EXIF or PDF
 	 */
 	public static function mla_fetch_attachment_image_metadata( $post_id, $path = '' ) {
 		$results = array(
+			'post_id' => $post_id,
 			'mla_iptc_metadata' => array(),
 			'mla_exif_metadata' => array(),
 			'mla_pdf_metadata' => array()
 			);
 
-		if ( 0 != $post_id )
+		if ( 0 != $post_id ) {
 			$path = get_attached_file($post_id);
+		}
 
 		if ( ! empty( $path ) ) {
-/*
 			if ( 'pdf' == strtolower( pathinfo( $path, PATHINFO_EXTENSION ) ) ) {
 				$results['mla_pdf_metadata'] = self::_extract_pdf_metadata( $path );
 				return $results;
 			}
- */
+
 			$size = getimagesize( $path, $info );
-			
+
 			if ( is_callable( 'iptcparse' ) ) {
-				if ( !empty( $info['APP13'] ) ) {
+				if ( ! empty( $info['APP13'] ) ) {
+					//set_error_handler( 'MLAData::mla_IPTC_EXIF_error_handler' );
 					$iptc_values = iptcparse( $info['APP13'] );
-					if ( ! is_array( $iptc_values ) )
+					//restore_error_handler();
+
+					if ( ! empty( MLAData::$mla_IPTC_EXIF_errors ) ) {
+						$results['mla_iptc_errors'] = MLAData::$mla_IPTC_EXIF_errors;
+						MLAData::$mla_IPTC_EXIF_errors = array();
+						error_log( __( 'ERROR', 'media-library-assistant' ) . ': ' . '$results[mla_iptc_errors] = ' . var_export( $results['mla_exif_errors'], true ), 0 );
+					}
+
+					if ( ! is_array( $iptc_values ) ) {
 						$iptc_values = array();
-						
+					}
+
 					foreach ( $iptc_values as $key => $value ) {
 						if ( in_array( $key, array( '1#000', '1#020', '1#022', '1#120', '1#122', '2#000',  '2#200', '2#201' ) ) ) {
 							$value = unpack( 'nbinary', $value[0] );
 							$results['mla_iptc_metadata'][ $key ] = (string) $value['binary'];
-						}
-						elseif ( 1 == count( $value ) )
+						} elseif ( 1 == count( $value ) ) {
 							$results['mla_iptc_metadata'][ $key ] = $value[0];
-						else
+						} else {
 							$results['mla_iptc_metadata'][ $key ] = $value;
-							
+						}
 					} // foreach $value
-				} // !empty
+				} // ! empty
 			}
-				
+
 			if ( is_callable( 'exif_read_data' ) && in_array( $size[2], array( IMAGETYPE_JPEG, IMAGETYPE_TIFF_II, IMAGETYPE_TIFF_MM ) ) ) {
-				$results['mla_exif_metadata'] = exif_read_data( $path );
+				//set_error_handler( 'MLAData::mla_IPTC_EXIF_error_handler' );
+				$results['mla_exif_metadata'] = $exif_data = @exif_read_data( $path );
+				//restore_error_handler();
+				if ( ! empty( MLAData::$mla_IPTC_EXIF_errors ) ) {
+					$results['mla_exif_errors'] = MLAData::$mla_IPTC_EXIF_errors;
+					MLAData::$mla_IPTC_EXIF_errors = array();
+					error_log( __( 'ERROR', 'media-library-assistant' ) . ': ' . '$results[mla_exif_errors] = ' . var_export( $results['mla_exif_errors'], true ), 0 );
+				}
 			}
 		}
+
+		/*
+		 * Expand EXIF Camera-related values:
+		 *
+		 * ExposureBiasValue
+		 * ExposureTime
+		 * Flash
+		 * FNumber 
+		 * FocalLength
+		 * ShutterSpeed from ExposureTime
+		 */
+		$new_data = array();
+		if ( isset( $exif_data['FNumber'] ) ) {
+			if ( false !== ( $value = self::_rational_to_string( $exif_data['FNumber'], '%1$d', '%1$d/%2$d', '%1$.1f' ) ) ) {
+				$new_data['FNumber'] = $value;
+			}
+		} // FNumber
 		
+		if ( isset( $exif_data['ExposureBiasValue'] ) ) {
+			$fragments = array_map( 'intval', explode( '/', $exif_data['ExposureBiasValue'] ) );
+			if ( ! is_null( $fragments[1] ) ) {
+				$numerator = $fragments[0];
+				$denominator = $fragments[1];
+				
+				// Clean up some common format issues, e.g. 4/6, 2/4
+				while ( ( 0 == ( $numerator & 0x1 ) ) && ( 0 == ( $denominator & 0x1 ) ) ) {
+					$numerator = ( $numerator >> 1 );
+					$denominator = ( $denominator >> 1 );
+				}
+				
+				// Remove excess precision
+				if ( ( $denominator > $numerator) && ( 1000 < $numerator ) && ( 1000 < $denominator ) ) {
+					$exif_data['ExposureBiasValue'] = sprintf( '%1$+.3f', ( $numerator/$denominator ) );
+				} else {
+					$fragments[0] = $numerator;
+					$fragments[1] = $denominator;
+					$exif_data['ExposureBiasValue'] = $numerator . '/' . $denominator;
+				}
+			}
+			
+			if ( false !== ( $value = self::_rational_to_string( $exif_data['ExposureBiasValue'], '%1$+d', '%1$+d/%2$d', '%1$+.2f' ) ) ) {
+				$new_data['ExposureBiasValue'] = $value;
+			}
+		} // ExposureBiasValue
+		
+		if ( isset( $exif_data['Flash'] ) ) {
+			$value = ( absint( $exif_data['Flash'] ) );
+			if ( $value & 0x1 ) {
+				$new_data['Flash'] = __( 'Yes', 'media-library-assistant' );
+			} else {
+				$new_data['Flash'] = __( 'No', 'media-library-assistant' );
+			}
+		} // Flash
+		
+		if ( isset( $exif_data['FocalLength'] ) ) {
+			if ( false !== ( $value = self::_rational_to_string( $exif_data['FocalLength'], '%1$d', '%1$d/%2$d', '%1$.2f' ) ) ) {
+				$new_data['FocalLength'] = $value;
+			}
+		} // FocalLength
+		
+		if ( isset( $exif_data['ExposureTime'] ) ) {
+			if ( false !== ( $value = self::_rational_to_string( $exif_data['ExposureTime'], '%1$d', '%1$d/%2$d', '%1$.2f' ) ) ) {
+				$new_data['ExposureTime'] = $value;
+			}
+		} // ExposureTime
+		
+		/*
+		 * ShutterSpeed in "1/" format, from ExposureTime
+		 * Special logic for "fractional shutter speed" values 1.3, 1.5, 1.6, 2.5
+		 */
+		if ( isset( $exif_data['ExposureTime'] ) ) {
+			$fragments = array_map( 'intval', explode( '/', $exif_data['ExposureTime'] ) );
+			if ( ! is_null( $fragments[1] && $fragments[0] ) ) {
+				if ( 1 == $fragments[1] ) {
+					$new_data['ShutterSpeed'] = $new_data['ExposureTime'] = sprintf( '%1$d', $fragments[0] );
+				} elseif ( 0 != $fragments[1] ) {
+					$value = $fragments[0] / $fragments[1];
+					if ( 1 > $value ) {
+						// Convert to "1/" value for shutter speed
+						if ( 1 == $fragments[0] ) {
+							$new_data['ShutterSpeed'] = $new_data['ExposureTime'];
+						} else {
+							$test = (float) number_format( 1.0 / $value, 1, '.', '');
+							if ( in_array( $test, array( 1.3, 1.5, 1.6, 2.5 ) ) ) {
+								$new_data['ShutterSpeed'] = '1/' . number_format( 1.0 / $value, 1, '.', '' );
+							} else {
+								$new_data['ShutterSpeed'] = '1/' .  number_format( 1.0 / $value, 0, '.', '' );
+							}
+						}
+					} else {
+						$new_data['ShutterSpeed'] = $new_data['ExposureTime'] = sprintf( '%1$.2f', $value );
+					}
+				} // fractional value
+			} // valid denominator and non-zero numerator
+		} // ShutterSpeed
+
+		if ( isset( $exif_data['UndefinedTag:0xA420'] ) ) {
+			$new_data['ImageUniqueID'] = $exif_data['UndefinedTag:0xA420'];
+		}
+		
+		if ( isset( $exif_data['UndefinedTag:0xA430'] ) ) {
+			$new_data['CameraOwnerName'] = $exif_data['UndefinedTag:0xA430'];
+		}
+		
+		if ( isset( $exif_data['UndefinedTag:0xA431'] ) ) {
+			$new_data['BodySerialNumber'] = $exif_data['UndefinedTag:0xA431'];
+		}
+		
+		if ( isset( $exif_data['UndefinedTag:0xA432'] ) && is_array( $exif_data['UndefinedTag:0xA432'] ) ) {
+			$array = $new_data['LensSpecification'] = $exif_data['UndefinedTag:0xA432'];
+
+			if ( isset ( $array[0] ) ) {
+				if ( false !== ( $value = self::_rational_to_string( $array[0], '%1$d', '%1$d/%2$d', '%1$.2f' ) ) ) {
+					$new_data['LensMinFocalLength'] = $value;
+				}
+			}
+			
+			if ( isset ( $array[1] ) ) {
+				if ( false !== ( $value = self::_rational_to_string( $array[1], '%1$d', '%1$d/%2$d', '%1$.2f' ) ) ) {
+					$new_data['LensMaxFocalLength'] = $value;
+				}
+			}
+			
+			if ( isset ( $array[2] ) ) {
+				if ( false !== ( $value = self::_rational_to_string( $array[2], '%1$d', '%1$d/%2$d', '%1$.1f' ) ) ) {
+					$new_data['LensMinFocalLengthFN'] = $value;
+				}
+			}
+			
+			if ( isset ( $array[3] ) ) {
+				if ( false !== ( $value = self::_rational_to_string( $array[3], '%1$d', '%1$d/%2$d', '%1$.1f' ) ) ) {
+					$new_data['LensMaxFocalLengthFN'] = $value;
+				}
+			}
+			
+		}
+		
+		if ( isset( $exif_data['UndefinedTag:0xA433'] ) ) {
+			$new_data['LensMake'] = $exif_data['UndefinedTag:0xA433'];
+		}
+		
+		if ( isset( $exif_data['UndefinedTag:0xA434'] ) ) {
+			$new_data['LensModel'] = $exif_data['UndefinedTag:0xA434'];
+		}
+		
+		if ( isset( $exif_data['UndefinedTag:0xA435'] ) ) {
+			$new_data['LensSerialNumber'] = $exif_data['UndefinedTag:0xA435'];
+		}
+		
+		if ( ! empty( $new_data ) ) {
+			$results['mla_exif_metadata']['CAMERA'] = $new_data;
+		}
+
+		/*
+		 * Expand EXIF GPS values
+		 */
+		$new_data = array();
+		if ( isset( $exif_data['GPSVersion'] ) ) {
+			$new_data['Version'] = sprintf( '%1$d.%2$d.%3$d.%4$d', ord( $exif_data['GPSVersion'][0] ), ord( $exif_data['GPSVersion'][1] ), ord( $exif_data['GPSVersion'][2] ), ord( $exif_data['GPSVersion'][3] ) );
+		}
+
+		if ( isset( $exif_data['GPSLatitudeRef'] ) ) {
+			$new_data['LatitudeRef'] = $exif_data['GPSLatitudeRef'];
+			$new_data['LatitudeRefS'] = ( 'N' == $exif_data['GPSLatitudeRef'] ) ? '' : '-';
+			$ref = $new_data['LatitudeRef'];
+			$refs = $new_data['LatitudeRefS'];
+		} else {
+			$ref = '';
+			$refs = '';
+		}
+
+		if ( isset( $exif_data['GPSLatitude'] ) ) {
+			$rational = $exif_data['GPSLatitude'];
+			$new_data['LatitudeD'] = $degrees = self::_rational_to_decimal( $rational[0] );
+			$new_data['LatitudeM'] = $minutes = self::_rational_to_decimal( $rational[1] );
+			$new_data['LatitudeS'] = sprintf( '%1$01.4f', $seconds = self::_rational_to_decimal( $rational[2] ) );
+			$decimal_minutes = $minutes + ( $seconds / 60 );
+			$decimal_degrees = ( $decimal_minutes / 60 );
+
+			$new_data['Latitude'] = sprintf( '%1$dd %2$d\' %3$01.4f" %4$s', $degrees, $minutes, $seconds, $ref );
+			$new_data['LatitudeDM'] = sprintf( '%1$d %2$01.4f', $degrees, $decimal_minutes );
+			$new_data['LatitudeDD'] = sprintf( '%1$01f', $degrees + $decimal_degrees );
+			$new_data['LatitudeMinDec'] = substr( $new_data['LatitudeDM'], strpos( $new_data['LatitudeDM'], ' ' ) + 1 );
+			$new_data['LatitudeDegDec'] = substr( $new_data['LatitudeDD'], strpos( $new_data['LatitudeDD'], '.' ) );
+			$new_data['LatitudeSDM'] = $refs . $new_data['LatitudeDM'];
+			$new_data['LatitudeSDD'] = $refs . $new_data['LatitudeDD'];
+			$new_data['LatitudeDM'] = $new_data['LatitudeDM'] . $ref;
+			$new_data['LatitudeDD'] = $new_data['LatitudeDD'] . $ref;
+		}
+
+		if ( isset( $exif_data['GPSLongitudeRef'] ) ) {
+			$new_data['LongitudeRef'] = $exif_data['GPSLongitudeRef'];
+			$new_data['LongitudeRefS'] = ( 'E' == $exif_data['GPSLongitudeRef'] ) ? '' : '-';
+			$ref = $new_data['LongitudeRef'];
+			$refs = $new_data['LongitudeRefS'];
+		} else {
+			$ref = '';
+			$refs = '';
+		}
+
+		if ( isset( $exif_data['GPSLongitude'] ) ) {
+			$rational = $exif_data['GPSLongitude'];
+			$new_data['LongitudeD'] = $degrees = self::_rational_to_decimal( $rational[0] );
+			$new_data['LongitudeM'] = $minutes = self::_rational_to_decimal( $rational[1] );
+			$new_data['LongitudeS'] = sprintf( '%1$01.4f', $seconds = self::_rational_to_decimal( $rational[2] ) );
+			$decimal_minutes = $minutes + ( $seconds / 60 );
+			$decimal_degrees = ( $decimal_minutes / 60 );
+
+			$new_data['Longitude'] = sprintf( '%1$dd %2$d\' %3$01.4f" %4$s', $degrees, $minutes, $seconds, $ref );
+			$new_data['LongitudeDM'] = sprintf( '%1$d %2$01.4f', $degrees, $decimal_minutes );
+			$new_data['LongitudeDD'] = sprintf( '%1$01f', $degrees + $decimal_degrees );
+			$new_data['LongitudeMinDec'] = substr( $new_data['LongitudeDM'], strpos( $new_data['LongitudeDM'], ' ' ) + 1 );
+			$new_data['LongitudeDegDec'] = substr( $new_data['LongitudeDD'], strpos( $new_data['LongitudeDD'], '.' ) );
+			$new_data['LongitudeSDM'] = $refs . $new_data['LongitudeDM'];
+			$new_data['LongitudeSDD'] = $refs . $new_data['LongitudeDD'];
+			$new_data['LongitudeDM'] = $new_data['LongitudeDM'] . $ref;
+			$new_data['LongitudeDD'] = $new_data['LongitudeDD'] . $ref;
+		}
+
+		if ( isset( $exif_data['GPSAltitudeRef'] ) ) {
+			$new_data['AltitudeRef'] = sprintf( '%1$d', ord( $exif_data['GPSAltitudeRef'][0] ) );
+			$new_data['AltitudeRefS'] = ( '0' == $new_data['AltitudeRef'] ) ? '' : '-';
+			$refs = $new_data['AltitudeRefS'];
+		} else {
+			$refs = '';
+		}
+
+		if ( isset( $exif_data['GPSAltitude'] ) ) {
+			$new_data['Altitude'] = sprintf( '%1$s%2$01.4f', $refs, $meters = self::_rational_to_decimal( $exif_data['GPSAltitude'] ) );
+			$new_data['AltitudeFeet'] = sprintf( '%1$s%2$01.2f', $refs, $meters * 3.280839895013 );
+		}
+
+		if ( isset( $exif_data['GPSTimeStamp'] ) ) {
+			$rational = $exif_data['GPSTimeStamp'];
+			$new_data['TimeStampH'] = sprintf( '%1$02d', $hours = self::_rational_to_decimal( $rational[0] ) );
+			$new_data['TimeStampM'] = sprintf( '%1$02d', $minutes = self::_rational_to_decimal( $rational[1] ) );
+			$new_data['TimeStampS'] = sprintf( '%1$02d', $seconds = self::_rational_to_decimal( $rational[2] ) );
+			$new_data['TimeStamp'] = sprintf( '%1$02d:%2$02d:%3$02d', $hours, $minutes, $seconds );
+		}
+
+		if ( isset( $exif_data['GPSDateStamp'] ) ) {
+			$parts = explode( ':', $exif_data['GPSDateStamp'] );		
+			$new_data['DateStampY'] = $parts[0];
+			$new_data['DateStampM'] = $parts[1];
+			$new_data['DateStampD'] = $parts[2];
+			$new_data['DateStamp'] = $exif_data['GPSDateStamp'];
+		}
+
+		if ( isset( $exif_data['GPSMapDatum'] ) ) {
+			$new_data['MapDatum'] = $exif_data['GPSMapDatum'];
+		}
+
+		if ( ! empty( $new_data ) ) {
+			$results['mla_exif_metadata']['GPS'] = $new_data;
+		}
+
 		/*
 		 * Expand EXIF array values
 		 */
@@ -2445,9 +5882,93 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 
 		return $results;
 	}
-	
+
 	/**
-	 * Update custom field data for a single attachment.
+	 * Update "meta:" data for a single attachment
+	 * 
+	 * @since 1.51
+	 * 
+	 * @param	array	The current wp_attachment_metadata value
+	 * @param	array	Field name => value pairs
+	 *
+	 * @return	string	success/failure message(s); empty string if no changes.
+	 */
+	public static function mla_update_wp_attachment_metadata( &$current_values, $new_meta ) {
+		$message = '';
+
+		foreach( $new_meta as $key => $value ) {
+			/*
+			 * The "Multi" option has no meaning for attachment_metadata;
+			 * convert to a simple array or string
+			 */ 
+			if ( isset( $value[0x80000000] ) ) {
+				unset( $value[0x80000000] );
+				unset( $value[0x80000001] );
+				unset( $value[0x80000002] );
+
+				if ( 1 == count( $value ) ) {
+					foreach ( $value as $single_key => $single_value ) {
+						if ( is_integer( $single_key ) ) {
+							$value = $single_value;
+						}
+					}
+				} // one-element array
+			} // Multi-key value
+
+			$value = sanitize_text_field( $value );
+			$old_value = self::mla_find_array_element( $key, $current_values, 'array' );
+			if ( ! empty( $old_value ) ) {
+				if ( empty( $value ) ) {
+					if ( self::_unset_array_element( $key, $current_values ) ) {
+						/* translators: 1: meta_key */
+						$message .= sprintf( __( 'Deleting %1$s', 'media-library-assistant' ) . '<br>', $key );
+					} else {
+						/* translators: 1: ERROR tag 2: meta_key */
+						$message .= sprintf( __( '%1$s: meta:%2$s not found', 'media-library-assistant' ) . '<br>', __( 'ERROR', 'media-library-assistant' ), $key );
+					}
+
+					continue;
+				}
+			} else { // old_value present
+				if ( ! empty( $value ) ) {
+					if ( self::_set_array_element( $key, $value, $current_values ) ) {
+						/* translators: 1: meta_key 2: meta_value */
+						$message .= sprintf( __( 'Adding %1$s = %2$s', 'media-library-assistant' ) . '<br>', $key,
+							( is_array( $value ) ) ? var_export( $value, true ) : $value );
+					} else {
+						/* translators: 1: ERROR tag 2: meta_key */
+						$message .= sprintf( __( '%1$s: Adding meta:%2$s; not found', 'media-library-assistant' ) . '<br>', __( 'ERROR', 'media-library-assistant' ), $key );
+					}
+
+					continue;
+				} elseif ( NULL == $value ) {
+					if ( self::_unset_array_element( $key, $current_values ) ) {
+						/* translators: 1: meta_key */
+						$message .= sprintf( __( 'Deleting Null meta:%1$s', 'media-library-assistant' ) . '<br>', $key );
+					}
+
+					continue;
+				}
+			} // old_value empty
+
+			if ( $old_value !== $value ) {
+				if ( self::_set_array_element( $key, $value, $current_values ) ) {
+					/* translators: 1: element name 2: old_value 3: new_value */
+					$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', 'meta:' . $key,
+						( is_array( $old_value ) ) ? var_export( $old_value, true ) : $old_value,
+						( is_array( $value ) ) ? var_export( $value, true ) : $value );
+				} else {
+					/* translators: 1: ERROR tag 2: meta_key */
+					$message .= sprintf( __( '%1$s: Changing meta:%2$s; not found', 'media-library-assistant' ) . '<br>', __( 'ERROR', 'media-library-assistant' ), $key );
+				}
+			}
+		} // foreach new_meta
+
+		return $message;
+	}
+
+	/**
+	 * Update custom field and "meta:" data for a single attachment
 	 * 
 	 * @since 1.40
 	 * 
@@ -2457,62 +5978,73 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 	 * @return	string	success/failure message(s)
 	 */
 	public static function mla_update_item_postmeta( $post_id, $new_meta ) {
-		$post_data = MLAData::mla_fetch_attachment_metadata( $post_id );
+		$post_data = self::mla_fetch_attachment_metadata( $post_id );
 		$message = '';
-		
+
+		$attachment_meta_values = array();
 		foreach ( $new_meta as $meta_key => $meta_value ) {
-			if ( $multi_key = isset( $meta_value[0x80000000] ) )
+			if ( 'meta:' == substr( $meta_key, 0, 5 ) ) {
+				$meta_key = substr( $meta_key, 5 );
+				$attachment_meta_values[ $meta_key ] = $meta_value;
+				continue;
+			}
+
+			if ( $multi_key = isset( $meta_value[0x80000000] ) ) {
 				unset( $meta_value[0x80000000] );
-				
+			}
+
 			if ( $keep_existing = isset( $meta_value[0x80000001] ) ) {
 				$keep_existing = (boolean) $meta_value[0x80000001];
 				unset( $meta_value[0x80000001] );
 			}
-				
+
 			if ( $no_null = isset( $meta_value[0x80000002] ) ) {
 				$no_null = (boolean) $meta_value[0x80000002];
 				unset( $meta_value[0x80000002] );
 			}
-				
+
 			if ( isset( $post_data[ 'mla_item_' . $meta_key ] ) ) {
 				$old_meta_value = $post_data[ 'mla_item_' . $meta_key ];
-				
+
 				if ( $multi_key && $no_null ) {
-					if ( is_string( $old_meta_value ) )
+					if ( is_string( $old_meta_value ) ) {
 						$old_meta_value = trim( $old_meta_value );
-						
+					}
+
 					$delete = empty( $old_meta_value );
+				} else  {
+					$delete = NULL === $meta_value;
 				}
-				else 
-					$delete = NULL == $meta_value;
-				
+
 				if ( $delete) {
-					if ( delete_post_meta( $post_id, $meta_key ) )
-						$message .= sprintf( 'Deleting %1$s<br>', $meta_key );
-						
+					if ( delete_post_meta( $post_id, $meta_key ) ) {
+						/* translators: 1: meta_key */
+						$message .= sprintf( __( 'Deleting %1$s', 'media-library-assistant' ) . '<br>', $meta_key );
+					}
+
 					continue;
 				}
-			}
-			else {
-				if ( NULL != $meta_value ) {
-					if ( $multi_key )
+			} else {
+				if ( NULL !== $meta_value ) {
+					if ( $multi_key ) {
 						foreach ( $meta_value as $new_value ) {
-							if ( add_post_meta( $post_id, $meta_key, $new_value ) )
-								$message .= sprintf( 'Adding %1$s = [%2$s]<br>', $meta_key, $new_value );
+							if ( add_post_meta( $post_id, $meta_key, $new_value ) ) {
+								/* translators: 1: meta_key 2: new_value */
+								$message .= sprintf( __( 'Adding %1$s = %2$s', 'media-library-assistant' ) . '<br>', $meta_key, '[' . $new_value . ']' );
+							}
 						}
-					else		
-						if ( add_post_meta( $post_id, $meta_key, $meta_value ) )
-							$message .= sprintf( 'Adding %1$s = %2$s<br>', $meta_key, $meta_value );
+					} else {
+						if ( add_post_meta( $post_id, $meta_key, $meta_value ) ) {
+							/* translators: 1: meta_key 2: meta_value */
+							$message .= sprintf( __( 'Adding %1$s = %2$s', 'media-library-assistant' ) . '<br>', $meta_key, $meta_value );
+						}
+					}
 				}
 
 				continue; // no change or message if old and new are both NULL
 			} // no old value
-			
-			if ( is_array( $old_meta_value ) ) {
-				$old_text = var_export( $old_meta_value, true );
-			}
-			else
-				$old_text = $old_meta_value;
+
+			$old_text = ( is_array( $old_meta_value ) ) ? var_export( $old_meta_value, true ) : $old_meta_value;
 
 			/*
 			 * Multi-key change from existing values to new values
@@ -2521,16 +6053,20 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 				/*
 				 * Test for "no changes"
 				 */
-				if ( $meta_value == (array) $old_meta_value )
+				if ( $meta_value == (array) $old_meta_value ) {
 					continue;
-					
-				if ( ! $keep_existing ) {
-					if ( delete_post_meta( $post_id, $meta_key ) )
-						$message .= sprintf( 'Deleting old %1$s values<br>', $meta_key );
-					$old_meta_value = array();
 				}
-				elseif ( $old_text == $old_meta_value ) // single value
+
+				if ( ! $keep_existing ) {
+					if ( delete_post_meta( $post_id, $meta_key ) ) {
+						/* translators: 1: meta_key */
+						$message .= sprintf( __( 'Deleting old %1$s values', 'media-library-assistant' ) . '<br>', $meta_key );
+					}
+
+					$old_meta_value = array();
+				} elseif ( $old_text == $old_meta_value ) { // single value
 					$old_meta_value = array( $old_meta_value );
+				}
 
 				$updated = 0;
 				foreach ( $meta_value as $new_value ) {
@@ -2540,40 +6076,64 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 						$updated++;
 					}
 				}
-					
+
 				if ( $updated ) {
 					$meta_value = get_post_meta( $post_id, $meta_key );
-					if ( is_array( $meta_value ) )
-						if ( 1 == count( $meta_value ) )
+					if ( is_array( $meta_value ) ) {
+						if ( 1 == count( $meta_value ) ) {
 							$new_text = $meta_value[0];
-						else
+						} else {
 							$new_text = var_export( $meta_value, true );
-					else
+						}
+					} else {
 						$new_text = $meta_value;
-	
-						$message .= sprintf( 'Changing %1$s from "%2$s" to "%3$s"; %4$d updates<br>', $meta_key, $old_text, $new_text, $updated );
+					}
+
+					/* translators: 1: meta_key 2: old_value 3: new_value 4: update count*/
+					$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"; %4$d updates', 'media-library-assistant' ) . '<br>', 'meta:' . $meta_key, $old_text, $new_text, $updated );
+				}
+			} elseif ( $old_meta_value !== $meta_value ) {
+				if ( is_array( $old_meta_value ) ) {
+					delete_post_meta( $post_id, $meta_key );
+				}
+
+				if ( is_array( $meta_value ) ) {
+					$new_text = var_export( $meta_value, true );
+				} else {
+					$new_text = $meta_value;
+				}
+
+				if ( update_post_meta( $post_id, $meta_key, $meta_value ) ) {
+					/* translators: 1: element name 2: old_value 3: new_value */
+					$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', 'meta:' . $meta_key, $old_text, $new_text );
 				}
 			}
-			elseif ( $old_meta_value != $meta_value ) {
-				if ( is_array( $old_meta_value ) )
-					delete_post_meta( $post_id, $meta_key );
-
-				if ( is_array( $meta_value ) )
-					$new_text = var_export( $meta_value, true );
-				else
-					$new_text = $meta_value;
-				
-				$message .= sprintf( 'Changing %1$s from "%2$s" to "%3$s"<br>', $meta_key, $old_text, $new_text );
-				$results = update_post_meta( $post_id, $meta_key, $meta_value );
-			}
 		} // foreach $new_meta
-		
+
+		/*
+		 * Process the "meta:" updates, if any
+		 */
+		if ( ! empty( $attachment_meta_values ) ) {
+			if ( isset( $post_data['mla_wp_attachment_metadata'] ) ) {
+				$current_values = $post_data['mla_wp_attachment_metadata'];
+			} else {
+				$current_values = array();
+			}
+
+			$results = self::mla_update_wp_attachment_metadata( $current_values, $attachment_meta_values );
+			if ( ! empty( $results ) ) {
+				if ( update_post_meta( $post_id, '_wp_attachment_metadata', $current_values ) ) {
+					$message .= $results;
+				}
+			}
+		}
+
 		return $message;
 	}
-	
+
 	/**
-	 * Update a single item; change the meta data 
-	 * for a single attachment.
+	 * Update a single item; change the "post" data, taxonomy terms 
+	 * and meta data for a single attachment
 	 * 
 	 * @since 0.1
 	 * 
@@ -2585,14 +6145,14 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 	 * @return	array	success/failure message and NULL content
 	 */
 	public static function mla_update_single_item( $post_id, $new_data, $tax_input = NULL, $tax_actions = NULL ) {
-		$post_data = MLAData::mla_get_attachment_by_id( $post_id );
-		
-		if ( !isset( $post_data ) )
+		$post_data = self::mla_get_attachment_by_id( $post_id, false );
+		if ( !isset( $post_data ) ) {
 			return array(
-				'message' => 'ERROR: Could not retrieve Attachment.',
+				'message' =>  __( 'ERROR', 'media-library-assistant' ) . ': ' . __( 'Could not retrieve Attachment.', 'media-library-assistant' ),
 				'body' => '' 
 			);
-		
+		}
+
 		$message = '';
 		$updates = array( 'ID' => $post_id );
 		$new_data = stripslashes_deep( $new_data );
@@ -2601,18 +6161,21 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 		foreach ( $new_data as $key => $value ) {
 			switch ( $key ) {
 				case 'post_title':
-					if ( $value == $post_data[ $key ] )
+					if ( $value == $post_data[ $key ] ) {
 						break;
-						
-					$message .= sprintf( 'Changing Title from "%1$s" to "%2$s"<br>', esc_attr( $post_data[ $key ] ), esc_attr( $value ) );
+					}
+
+					/* translators: 1: element name 2: old_value 3: new_value */
+					$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', __( 'Title', 'media-library-assistant' ), esc_attr( $post_data[ $key ] ), esc_attr( $value ) );
 					$updates[ $key ] = $value;
 					break;
 				case 'post_name':
-					if ( $value == $post_data[ $key ] )
+					if ( $value == $post_data[ $key ] ) {
 						break;
-					
+					}
+
 					$value = sanitize_title( $value );
-					
+
 					/*
 					 * Make sure new slug is unique
 					 */
@@ -2623,75 +6186,122 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 						'showposts' => 1 
 					);
 					$my_posts = get_posts( $args );
-					
+
 					if ( $my_posts ) {
-						$message .= sprintf( 'ERROR: Could not change Name/Slug "%1$s"; name already exists<br>', $value );
+						/* translators: 1: ERROR tag 2: old_value */
+						$message .= sprintf( __( '%1$s: Could not change Name/Slug "%2$s"; name already exists', 'media-library-assistant' ) . '<br>', __( 'ERROR', 'media-library-assistant' ), $value );
 					} else {
-						$message .= sprintf( 'Changing Name/Slug from "%1$s" to "%2$s"<br>', esc_attr( $post_data[ $key ] ), $value );
+						/* translators: 1: element name 2: old_value 3: new_value */
+						$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', __( 'Name/Slug', 'media-library-assistant' ), esc_attr( $post_data[ $key ] ), esc_attr( $value ) );
 						$updates[ $key ] = $value;
 					}
 					break;
+				/*
+				 * bulk_image_alt requires a separate key because some attachment types
+				 * should not get a value, e.g., text or PDF documents
+				 */
+				case 'bulk_image_alt':
+					if ( empty( $post_data[ 'mla_wp_attachment_metadata' ] ) ) {
+						break;
+					}
+					// fallthru
 				case 'image_alt':
 					$key = 'mla_wp_attachment_image_alt';
-					if ( !isset( $post_data[ $key ] ) )
-						$post_data[ $key ] = '';
-					
-					if ( $value == $post_data[ $key ] )
+					if ( !isset( $post_data[ $key ] ) ) {
+						$post_data[ $key ] = NULL;
+					}
+
+					if ( $value == $post_data[ $key ] ) {
 						break;
-					
+					}
+
 					if ( empty( $value ) ) {
-						if ( delete_post_meta( $post_id, '_wp_attachment_image_alt', $value ) )
-							$message .= sprintf( 'Deleting Alternate Text, was "%1$s"<br>', esc_attr( $post_data[ $key ] ) );
-						else
-							$message .= sprintf( 'ERROR: Could not delete Alternate Text, remains "%1$s"<br>', esc_attr( $post_data[ $key ] ) );
+						if ( delete_post_meta( $post_id, '_wp_attachment_image_alt' ) ) {
+							/* translators: 1: old_value */
+							$message .= sprintf( __( 'Deleting ALT Text, was "%1$s"', 'media-library-assistant' ) . '<br>', esc_attr( $post_data[ $key ] ) );
+						} else {
+							/* translators: 1: ERROR tag 2: old_value */
+							$message .= sprintf( __( '%1$s: Could not delete ALT Text, remains "%2$s"', 'media-library-assistant' ) . '<br>', __( 'ERROR', 'media-library-assistant' ), esc_attr( $post_data[ $key ] ) );
+						}
 					} else {
-						if ( update_post_meta( $post_id, '_wp_attachment_image_alt', $value ) )
-							$message .= sprintf( 'Changing Alternate Text from "%1$s" to "%2$s"<br>', esc_attr( $post_data[ $key ] ), esc_attr( $value ) );
-						else
-							$message .= sprintf( 'ERROR: Could not change Alternate Text from "%1$s" to "%2$s"<br>', esc_attr( $post_data[ $key ] ), esc_attr( $value ) );
+						if ( update_post_meta( $post_id, '_wp_attachment_image_alt', $value ) ) {
+							/* translators: 1: element name 2: old_value 3: new_value */
+							$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', __( 'ALT Text', 'media-library-assistant' ), esc_attr( $post_data[ $key ] ), esc_attr( $value ) );
+						} else {
+							/* translators: 1: ERROR tag 2: old_value 3: new_value */
+							$message .= sprintf( __( '%1$s: Could not change ALT Text from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', __( 'ERROR', 'media-library-assistant' ), esc_attr( $post_data[ $key ] ), esc_attr( $value ) );
+						}
 					}
 					break;
 				case 'post_excerpt':
-					if ( $value == $post_data[ $key ] )
+					if ( $value == $post_data[ $key ] ) {
 						break;
-						
-					$message .= sprintf( 'Changing Caption from "%1$s" to "%2$s"<br>', esc_attr( $post_data[ $key ] ), esc_attr( $value ) );
+					}
+
+					/* translators: 1: element name 2: old_value 3: new_value */
+					$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', __( 'Caption', 'media-library-assistant' ), esc_attr( $post_data[ $key ] ), esc_attr( $value ) );
 					$updates[ $key ] = $value;
 					break;
 				case 'post_content':
-					if ( $value == $post_data[ $key ] )
+					if ( $value == $post_data[ $key ] ) {
 						break;
-						
-					$message .= sprintf( 'Changing Description from "%1$s" to "%2$s"<br>', esc_textarea( $post_data[ $key ] ), esc_textarea( $value ) );
+					}
+
+					/* translators: 1: element name 2: old_value 3: new_value */
+					$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', __( 'Description', 'media-library-assistant' ), esc_textarea( $post_data[ $key ] ), esc_textarea( $value ) );
 					$updates[ $key ] = $value;
 					break;
 				case 'post_parent':
-					if ( $value == $post_data[ $key ] )
+					if ( $value == $post_data[ $key ] ) {
 						break;
-						
+					}
+
 					$value = absint( $value );
-					
-					$message .= sprintf( 'Changing Parent from "%1$s" to "%2$s"<br>', $post_data[ $key ], $value );
+
+					/* translators: 1: element name 2: old_value 3: new_value */
+					$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', __( 'Parent', 'media-library-assistant' ), $post_data[ $key ], $value );
 					$updates[ $key ] = $value;
 					break;
 				case 'menu_order':
-					if ( $value == $post_data[ $key ] )
+					if ( $value == $post_data[ $key ] ) {
 						break;
-						
+					}
+
 					$value = absint( $value );
-					
-					$message .= sprintf( 'Changing Menu Order from "%1$s" to "%2$s"<br>', $post_data[ $key ], $value );
+
+					/* translators: 1: element name 2: old_value 3: new_value */
+					$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', __( 'Menu Order', 'media-library-assistant' ), $post_data[ $key ], $value );
 					$updates[ $key ] = $value;
 					break;
 				case 'post_author':
-					if ( $value == $post_data[ $key ] )
+					if ( $value == $post_data[ $key ] ) {
 						break;
-						
+					}
+
 					$value = absint( $value );
-					
+
 					$from_user = get_userdata( $post_data[ $key ] );
 					$to_user = get_userdata( $value );
-					$message .= sprintf( 'Changing Author from "%1$s" to "%2$s"<br>', $from_user->display_name, $to_user->display_name );
+					/* translators: 1: element name 2: old_value 3: new_value */
+					$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', __( 'Author', 'media-library-assistant' ), $from_user->display_name, $to_user->display_name );
+					$updates[ $key ] = $value;
+					break;
+				case 'comment_status':
+					if ( $value == $post_data[ $key ] ) {
+						break;
+					}
+
+					/* translators: 1: element name 2: old_value 3: new_value */
+					$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', __( 'Comments', 'media-library-assistant' ), esc_attr( $post_data[ $key ] ), esc_attr( $value ) );
+					$updates[ $key ] = $value;
+					break;
+				case 'ping_status':
+					if ( $value == $post_data[ $key ] ) {
+						break;
+					}
+
+					/* translators: 1: element name 2: old_value 3: new_value */
+					$message .= sprintf( __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ) . '<br>', __( 'Pings', 'media-library-assistant' ), esc_attr( $post_data[ $key ] ), esc_attr( $value ) );
 					$updates[ $key ] = $value;
 					break;
 				case 'taxonomy_updates':
@@ -2705,131 +6315,156 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 					// Ignore anything else
 			} // switch $key
 		} // foreach $new_data
-		
-		if ( !empty( $tax_input ) ) {
+
+		if ( ! empty( $tax_input ) ) {
 			foreach ( $tax_input as $taxonomy => $tags ) {
-				if ( !empty( $tax_actions ) ) 
+				if ( ! empty( $tax_actions ) ) {
 					$tax_action = $tax_actions[ $taxonomy ];
-				else
+				} else {
 					$tax_action = 'replace';
-					
+				}
+
 				$taxonomy_obj = get_taxonomy( $taxonomy );
 
 				if ( current_user_can( $taxonomy_obj->cap->assign_terms ) ) {
-					$terms_before = wp_get_post_terms( $post_id, $taxonomy, array(
-						'fields' => 'ids' // all' 
-					) );
-					if ( is_array( $tags ) ) // array = hierarchical, string = non-hierarchical.
+					if ( is_array( $tags ) ) // array of int = hierarchical, array of string = non-hierarchical.
 						$tags = array_filter( $tags );
-					
+
 					switch ( $tax_action ) {
 						case 'add':
-							$action_name = 'Adding';
+							$action_name = __( 'Adding', 'media-library-assistant' );
 							$result = wp_set_post_terms( $post_id, $tags, $taxonomy, true );
 							break;
 						case 'remove':
-							$action_name = 'Removing';
-							$tags = self::_remove_tags( $terms_before, $tags, $taxonomy_obj );
+							$action_name = __( 'Removing', 'media-library-assistant' );
+							$tags = self::_remove_terms( $post_id, $tags, $taxonomy_obj );
 							$result = wp_set_post_terms( $post_id, $tags, $taxonomy );
+							
+							if ( empty( $tags ) ) {
+								$result = true;
+							}
 							break;
 						case 'replace':
-							$action_name = 'Replacing';
+							$action_name = __( 'Replacing', 'media-library-assistant' );
 							$result = wp_set_post_terms( $post_id, $tags, $taxonomy );
+							
+							if ( empty( $tags ) ) {
+								$result = true;
+							}
 							break;
 						default:
-							$action_name = 'Ignoring';
+							$action_name = __( 'Ignoring', 'media-library-assistant' );
 							$result = NULL;
 							// ignore anything else
 					}
 					
-					$terms_after = wp_get_post_terms( $post_id, $taxonomy, array(
-						'fields' => 'ids' // all' 
-					) );
-					
-					if ( $terms_before != $terms_after )
-						$message .= sprintf( '%1$s "%2$s" terms<br>', $action_name, $taxonomy );
-				} // current_user_can
-				else {
-					$message .= sprintf( 'You cannot assign "%1$s" terms<br>', $action_name, $taxonomy );
+					/*
+					 * Definitive results check would use:
+					 * do_action( 'set_object_terms', $object_id, $terms, $tt_ids, $taxonomy, $append, $old_tt_ids );
+					 * in /wp_includes/taxonomy.php function wp_set_object_terms()
+					 */
+					if ( ! empty( $result ) ) {
+						delete_transient( MLA_OPTION_PREFIX . 't_term_counts_' . $taxonomy );
+						/* translators: 1: action_name, 2: taxonomy */
+						$message .= sprintf( __( '%1$s "%2$s" terms', 'media-library-assistant' ) . '<br>', $action_name, $taxonomy );
+					}
+				} else { // current_user_can
+					/* translators: 1: taxonomy */
+					$message .= sprintf( __( 'You cannot assign "%1$s" terms', 'media-library-assistant' ) . '<br>', $taxonomy );
 				}
 			} // foreach $tax_input
-		} // !empty $tax_input
-		
-		if ( is_array( $new_meta ) )
+		} // ! empty $tax_input
+
+		if ( is_array( $new_meta ) ) {
 			$message .= self::mla_update_item_postmeta( $post_id, $new_meta );
-		
-		if ( empty( $message ) )
+		}
+
+		if ( empty( $message ) ) {
 			return array(
-				'message' => 'Item: ' . $post_id . ', no changes detected.',
+				/* translators: 1: post ID */
+				'message' => sprintf( __( 'Item %1$d, no changes detected.', 'media-library-assistant' ), $post_id ),
 				'body' => '' 
 			);
-		else {
-			MLAData::mla_get_attachment_by_id( -1 ); // invalidate the cached item
+		} else {
+			// invalidate the cached item
+			self::mla_get_attachment_by_id( -1 );
+			self::mla_fetch_attachment_parent_data( -1 );
+			self::mla_fetch_attachment_metadata( -1 );
+			self::mla_fetch_attachment_references( -1, 0 );
 
 			if ( wp_update_post( $updates ) ) {
-				$final_message = 'Item: ' . $post_id . ' updated.';
+				/* translators: 1: post ID */
+				$final_message = sprintf( __( 'Item %1$d updated.', 'media-library-assistant' ), $post_id );
 				/*
 				 * Uncomment this for debugging.
 				 */
 				// $final_message .= '<br>' . $message;
-				// error_log( 'message = ' . var_export( $message, true ), 0 );
-				
+				//error_log( 'DEBUG: mla_update_single_item message = ' . var_export( $message, true ), 0 );
+
 				return array(
 					'message' => $final_message,
 					'body' => '' 
 				);
-			}
-			else
+			} else {
 				return array(
-					'message' => 'ERROR: Item ' . $post_id . ' update failed.',
+					/* translators: 1: ERROR tag 2: post ID */
+					'message' => sprintf( __( '%1$s: Item %2$d update failed.', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $post_id ),
 					'body' => '' 
 				);
+			}
 		}
 	}
-	
+
 	/**
-	 * Remove tags from a term ids list
+	 * Remove terms from an attachment's assignments
 	 * 
 	 * @since 0.40
 	 * 
-	 * @param	array	The term ids currently assigned
-	 * @param	array | string	The term ids (array) or names (string) to remove
+	 * @param	integer	The ID of the attachment to be updated
+	 * @param	array	The term ids (integer array) or names (string array) to remove
 	 * @param	object	The taxonomy object
 	 *
-	 * @return	array	Term ids of the surviving tags
+	 * @return	array	Term ids/names of the surviving terms
 	 */
-	private static function _remove_tags( $terms_before, $tags, $taxonomy_obj ) {
-		if ( ! is_array( $tags ) ) {
-			/*
-			 * Convert names to term ids
-			 */
-			$comma = _x( ',', 'tag delimiter' );
-			if ( ',' !== $comma )
-				$tags = str_replace( $comma, ',', $tags );
-			$terms = explode( ',', trim( $tags, " \n\t\r\0\x0B," ) );
-
-			$tags = array();
-			foreach ( (array) $terms as $term) {
-				if ( !strlen(trim($term)) )
-					continue;
-
-				// Skip if a non-existent term name is passed.
-				if ( ! $term_info = term_exists($term, $taxonomy_obj->name ) )
-					continue;
-
-				if ( is_wp_error($term_info) )
-					continue;
-
-				$tags[] = $term_info['term_id'];
-			} // foreach term
-		} // not an array
+	private static function _remove_terms( $post_id, $terms, $taxonomy_obj ) {
+		$taxonomy = $taxonomy_obj->name;
+		$hierarchical = $taxonomy_obj->hierarchical;
 		
-		$tags = array_map( 'intval', $tags );
-		$tags = array_unique( $tags );
-		$terms_after = array_diff( array_map( 'intval', $terms_before ), $tags );
+		/*
+		 * Get the current terms for the terms_after check
+		 */
+		$current_terms = get_object_term_cache( $post_id, $taxonomy );
+		if ( false === $current_terms ) {
+			$current_terms = wp_get_object_terms( $post_id, $taxonomy );
+			wp_cache_add( $post_id, $current_terms, $taxonomy . '_relationships' );
+		}
+		
+		$terms_before = array();
+		foreach( $current_terms as $term ) {
+			$terms_before[ $term->term_id ] = $term->name;
+		}
+		
+		$terms_after = array();
+		if ( $hierarchical ) {
+			$terms = array_map( 'intval', $terms );
+			$terms = array_unique( $terms );
+			
+			foreach( $terms_before as $index => $term ) {
+				if ( ! in_array( $index, $terms ) ) {
+					$terms_after[] = $index;
+				}
+			}
+		} else {
+			foreach( $terms_before as $index => $term ) {
+				if ( ! in_array( $term, $terms ) ) {
+					$terms_after[] = $term;
+				}
+			}
+		}
+		
 		return $terms_after;
 	}
-	
+
 	/**
 	 * Format printable version of binary data
 	 * 
@@ -2838,43 +6473,64 @@ error_log( '_extract_pdf_metadata $string = '. var_export( $string, true ), 0 );
 	 * @param	string	Binary data
 	 * @param	integer	Bytes to format, default = 0 (all bytes)
 	 * @param	intger	Bytes to format on each line
+	 * @param	integer	offset of initial byte, or -1 to suppress printing offset information
 	 *
 	 * @return	string	Printable representation of $data
 	 */
-	private static function _hex_dump( $data, $limit = 0, $bytes_per_row = 16 ) {
-		if ( 0 == $limit )
+	public static function _hex_dump( $data, $limit = 0, $bytes_per_row = 16, $offset = -1 ) {
+		if ( 0 == $limit ) {
 			$limit = strlen( $data );
-			
+		}
+
 		$position = 0;
 		$output = "\r\n";
-		
+		$print_offset = ( 0 <= $offset );
+
+		if ( $print_offset ) {
+			$print_length = $bytes_per_row + 5;
+		} else {
+			$print_length = $bytes_per_row;
+		}
+
 		while ( $position < $limit ) {
 			$row_length = strlen( substr( $data, $position ) );
-			
-			if ( $row_length > ( $limit - $position ) )
-				$row_length = $limit - $position;
 
-			if ( $row_length > $bytes_per_row )
+			if ( 0 == $row_length ) {
+				break;
+			}
+
+			if ( $row_length > ( $limit - $position ) ) {
+				$row_length = $limit - $position;
+			}
+
+			if ( $row_length > $bytes_per_row ) {
 				$row_length = $bytes_per_row;
-			
+			}
+
 			$row_data = substr( $data, $position, $row_length );
-			
-			$print_string = '';
+
+			if ( $print_offset ) {
+				$print_string = sprintf( '%04X ', $position + $offset );
+			} else {
+				$print_string = '';
+			}
+
 			$hex_string = '';
 			for ( $index = 0; $index < $row_length; $index++ ) {
 				$char = ord( substr( $row_data, $index, 1 ) );
-				if ( ( 31 < $char ) && ( 127 > $char ) )
+				if ( ( 31 < $char ) && ( 127 > $char ) ) {
 					$print_string .= chr($char);
-				else
+				} else {
 					$print_string .= '.';
-					
+				}
+
 				$hex_string .= ' ' . bin2hex( chr($char) );
 			} // for
-			
-			$output .= str_pad( $print_string, $bytes_per_row, ' ', STR_PAD_RIGHT ) . $hex_string . "\r\n";
+
+			$output .= str_pad( $print_string, $print_length, ' ', STR_PAD_RIGHT ) . $hex_string . "\r\n";
 			$position += $row_length;
 		} // while
-		
+
 		return $output;
 	}
 } // class MLAData

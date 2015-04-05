@@ -1,0 +1,4353 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Media Library Assistant\n"
+"POT-Creation-Date: 2015-02-20 16:02-0800\n"
+"PO-Revision-Date: 2015-02-20 16:03-0800\n"
+"Last-Translator: David Lingren <david@fairtradejudaica.org>\n"
+"Language-Team: David Lingren <david@fairtradejudaica.org>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c;_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: includes\n"
+"X-Poedit-SearchPath-1: tests\n"
+
+#. translators: 1: ERROR tag 2: path and file name
+#: includes/class-mla-data.php:101
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: mla_load_template file \"%2$s\" not found."
+msgstr ""
+
+#: includes/class-mla-data.php:101 includes/class-mla-data.php:119
+#: includes/class-mla-data.php:198 includes/class-mla-data.php:257
+#: includes/class-mla-data.php:345 includes/class-mla-data.php:389
+#: includes/class-mla-data.php:492 includes/class-mla-data.php:648
+#: includes/class-mla-data.php:711 includes/class-mla-data.php:1220
+#: includes/class-mla-data.php:1490 includes/class-mla-data.php:2572
+#: includes/class-mla-data.php:2578 includes/class-mla-data.php:3951
+#: includes/class-mla-data.php:4276 includes/class-mla-data.php:4278
+#: includes/class-mla-data.php:4324 includes/class-mla-data.php:4438
+#: includes/class-mla-data.php:4441 includes/class-mla-data.php:4798
+#: includes/class-mla-data.php:5585 includes/class-mla-data.php:5612
+#: includes/class-mla-data.php:5927 includes/class-mla-data.php:5940
+#: includes/class-mla-data.php:5962 includes/class-mla-data.php:6151
+#: includes/class-mla-data.php:6192 includes/class-mla-data.php:6224
+#: includes/class-mla-data.php:6232 includes/class-mla-data.php:6411
+#: includes/class-mla-edit-media.php:293 includes/class-mla-edit-media.php:658
+#: includes/class-mla-main.php:604 includes/class-mla-main.php:795
+#: includes/class-mla-main.php:895 includes/class-mla-main.php:1131
+#: includes/class-mla-main.php:1156 includes/class-mla-main.php:1308
+#: includes/class-mla-main.php:1420 includes/class-mla-main.php:1451
+#: includes/class-mla-main.php:1678 includes/class-mla-main.php:1685
+#: includes/class-mla-main.php:1689 includes/class-mla-main.php:1759
+#: includes/class-mla-main.php:1766 includes/class-mla-main.php:1907
+#: includes/class-mla-main.php:1982 includes/class-mla-main.php:2229
+#: includes/class-mla-main.php:2237 includes/class-mla-main.php:2270
+#: includes/class-mla-main.php:2304 includes/class-mla-main.php:2545
+#: includes/class-mla-main.php:2553 includes/class-mla-main.php:2585
+#: includes/class-mla-main.php:2593 includes/class-mla-media-modal.php:1186
+#: includes/class-mla-mime-types.php:483 includes/class-mla-mime-types.php:906
+#: includes/class-mla-mime-types.php:912 includes/class-mla-mime-types.php:916
+#: includes/class-mla-mime-types.php:961
+#: includes/class-mla-mime-types.php:1049
+#: includes/class-mla-mime-types.php:1195
+#: includes/class-mla-mime-types.php:1218
+#: includes/class-mla-mime-types.php:1972
+#: includes/class-mla-mime-types.php:1983
+#: includes/class-mla-mime-types.php:1996
+#: includes/class-mla-mime-types.php:2004
+#: includes/class-mla-mime-types.php:2009
+#: includes/class-mla-mime-types.php:2052
+#: includes/class-mla-mime-types.php:2071
+#: includes/class-mla-mime-types.php:2122
+#: includes/class-mla-mime-types.php:2156
+#: includes/class-mla-mime-types.php:2241
+#: includes/class-mla-mime-types.php:2320
+#: includes/class-mla-mime-types.php:2329
+#: includes/class-mla-mime-types.php:2361 includes/class-mla-objects.php:201
+#: includes/class-mla-options.php:1656 includes/class-mla-options.php:1833
+#: includes/class-mla-options.php:1909 includes/class-mla-options.php:3207
+#: includes/class-mla-options.php:3649 includes/class-mla-options.php:3662
+#: includes/class-mla-options.php:3666 includes/class-mla-options.php:4192
+#: includes/class-mla-options.php:4412 includes/class-mla-options.php:4851
+#: includes/class-mla-options.php:4895 includes/class-mla-options.php:4903
+#: includes/class-mla-options.php:4920 includes/class-mla-options.php:4930
+#: includes/class-mla-options.php:4940 includes/class-mla-options.php:4948
+#: includes/class-mla-options.php:4952 includes/class-mla-settings.php:555
+#: includes/class-mla-settings.php:619 includes/class-mla-settings.php:633
+#: includes/class-mla-settings.php:662 includes/class-mla-settings.php:673
+#: includes/class-mla-settings.php:763 includes/class-mla-settings.php:897
+#: includes/class-mla-settings.php:1003 includes/class-mla-settings.php:1035
+#: includes/class-mla-settings.php:1173 includes/class-mla-settings.php:1530
+#: includes/class-mla-settings.php:1562 includes/class-mla-settings.php:1639
+#: includes/class-mla-settings.php:1976 includes/class-mla-settings.php:2027
+#: includes/class-mla-settings.php:2106 includes/class-mla-settings.php:2658
+#: includes/class-mla-settings.php:2800 includes/class-mla-settings.php:2945
+#: includes/class-mla-settings.php:2948 includes/class-mla-settings.php:2952
+#: includes/class-mla-settings.php:3039 includes/class-mla-settings.php:3045
+#: includes/class-mla-settings.php:3059 includes/class-mla-settings.php:3066
+#: includes/class-mla-settings.php:3088 includes/class-mla-settings.php:3130
+#: includes/class-mla-settings.php:3136 includes/class-mla-settings.php:3150
+#: includes/class-mla-settings.php:3157 includes/class-mla-settings.php:3209
+#: includes/class-mla-settings.php:3330 includes/class-mla-settings.php:3461
+#: includes/class-mla-settings.php:3532 includes/class-mla-settings.php:3618
+#: includes/class-mla-settings.php:3952 includes/class-mla-settings.php:3956
+#: includes/class-mla-settings.php:3967 includes/class-mla-settings.php:3974
+#: includes/class-mla-settings.php:3983 includes/class-mla-settings.php:4020
+#: includes/class-mla-settings.php:4028 includes/class-mla-settings.php:4037
+#: includes/class-mla-shortcodes.php:1437
+#: includes/class-mla-shortcodes.php:1511
+#: includes/class-mla-shortcodes.php:2802
+#: includes/class-mla-shortcodes.php:3130
+#: includes/class-mla-shortcodes.php:3161
+msgid "ERROR"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: path and file name 3: source type, e.g., file, option, string
+#: includes/class-mla-data.php:119
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: mla_load_template file \"%2$s\" bad source type \"%3$s\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: template excerpt
+#: includes/class-mla-data.php:198
+#, php-format
+msgctxt "error_log"
+msgid ""
+"%1$s: _find_template_substring no template end delimiter, tail = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: template excerpt
+#: includes/class-mla-data.php:257
+#, php-format
+msgctxt "error_log"
+msgid ""
+"%1$s: mla_parse_array_template no template end delimiter, tail = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: template excerpt
+#: includes/class-mla-data.php:345
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: mla_parse_template no end delimiter, tail = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: template string
+#: includes/class-mla-data.php:389
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: _find_test_substring no end delimiter, tail = \"%2$s\"."
+msgstr ""
+
+#: includes/class-mla-data.php:492
+msgid "Test; no closing parenthesis "
+msgstr ""
+
+#. translators: 1: ERROR tag 2: node type, e.g., template
+#: includes/class-mla-data.php:648
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: _evaluate_template_array_node unknown type \"%2$s\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: node type, e.g., template
+#: includes/class-mla-data.php:711
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: _evaluate_template_node unknown type \"%2$s\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: template excerpt
+#: includes/class-mla-data.php:1220
+#, php-format
+msgctxt "error_log"
+msgid ""
+"%1$s: mla_get_template_placeholders no template-end delimiter dump = \"%2$s"
+"\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: function name 3: non-array value
+#: includes/class-mla-data.php:1490 includes/class-mla-edit-media.php:293
+#: includes/class-mla-main.php:1907 includes/class-mla-main.php:1982
+#: includes/class-mla-media-modal.php:1186
+#: includes/class-mla-mime-types.php:483
+#: includes/class-mla-mime-types.php:1218
+#: includes/class-mla-mime-types.php:2361 includes/class-mla-settings.php:1530
+#: includes/class-mla-settings.php:1976
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: %2$s non-array \"%3$s\""
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: query filter details
+#: includes/class-mla-data.php:1924
+#, php-format
+msgid "%1$s: _execute_list_table_query $wp_filter = \"%2$s\"."
+msgstr ""
+
+#: includes/class-mla-data.php:1924 includes/class-mla-data.php:1927
+#: includes/class-mla-data.php:1944 includes/class-mla-data.php:1946
+#: includes/class-mla-data.php:1949 includes/class-mla-data.php:1951
+#: includes/class-mla-data.php:2247 includes/class-mla-data.php:2250
+#: includes/class-mla-data.php:2316 includes/class-mla-data.php:2319
+#: includes/class-mla-data.php:2370 includes/class-mla-data.php:2373
+#: includes/class-mla-data.php:2472 includes/class-mla-data.php:2475
+#: includes/class-mla-data.php:2511 includes/class-mla-data.php:2514
+#: includes/class-mla-data.php:2535 includes/class-mla-data.php:2538
+msgid "DEBUG"
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: query filter details
+#: includes/class-mla-data.php:1927
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: _execute_list_table_query $wp_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: query details
+#: includes/class-mla-data.php:1944
+#, php-format
+msgid "%1$s: _execute_list_table_query WP_Query = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: SQL statement
+#: includes/class-mla-data.php:1946
+#, php-format
+msgid "%1$s: _execute_list_table_query SQL_request = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: query details
+#: includes/class-mla-data.php:1949
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: _execute_list_table_query WP_Query = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: SQL statement
+#: includes/class-mla-data.php:1951
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: _execute_list_table_query SQL_request = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: search filter details
+#: includes/class-mla-data.php:2247
+#, php-format
+msgid "%1$s: mla_query_posts_search_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: search filter details
+#: includes/class-mla-data.php:2250
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: mla_query_posts_search_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: where filter details
+#: includes/class-mla-data.php:2316
+#, php-format
+msgid "%1$s: mla_query_posts_where_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: where filter details
+#: includes/class-mla-data.php:2319
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: mla_query_posts_where_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: join filter details
+#: includes/class-mla-data.php:2370
+#, php-format
+msgid "%1$s: mla_query_posts_join_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: join filter details
+#: includes/class-mla-data.php:2373
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: mla_query_posts_join_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: orderby details details
+#: includes/class-mla-data.php:2472
+#, php-format
+msgid "%1$s: mla_query_posts_orderby_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: orderby details details
+#: includes/class-mla-data.php:2475
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: mla_query_posts_orderby_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: SQL clauses
+#: includes/class-mla-data.php:2511
+#, php-format
+msgid "%1$s: mla_query_posts_clauses_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: SQL clauses
+#: includes/class-mla-data.php:2514
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: mla_query_posts_clauses_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: SQL clauses
+#: includes/class-mla-data.php:2535
+#, php-format
+msgid "%1$s: mla_query_posts_clauses_request_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: DEBUG tag 2: SQL clauses
+#: includes/class-mla-data.php:2538
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: mla_query_posts_clauses_request_filter = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: post ID
+#: includes/class-mla-data.php:2572
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: mla_get_attachment_by_id(%2$d) not found."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: post ID 3: post_type
+#: includes/class-mla-data.php:2578
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: mla_get_attachment_by_id(%2$d) wrong post_type \"%3$s\"."
+msgstr ""
+
+#: includes/class-mla-data.php:3163 includes/class-mla-data.php:3507
+#: includes/class-mla-list-table.php:995
+msgid "NO REFERENCE TESTS"
+msgstr ""
+
+#: includes/class-mla-data.php:3169 includes/class-mla-data.php:3513
+#: includes/class-mla-options.php:2750 includes/class-mla-options.php:2751
+msgid "ORPHAN"
+msgstr ""
+
+#: includes/class-mla-data.php:3173 includes/class-mla-data.php:3517
+msgid "UNUSED"
+msgstr ""
+
+#: includes/class-mla-data.php:3178 includes/class-mla-data.php:3522
+msgid "UNATTACHED"
+msgstr ""
+
+#: includes/class-mla-data.php:3180 includes/class-mla-data.php:3524
+msgid "INVALID PARENT"
+msgstr ""
+
+#. translators: 1: post_type, 2: post_title, 3: post ID, 4: query string, 5: error message
+#: includes/class-mla-data.php:3705
+#, php-format
+msgid "(%1$s) %2$s (ID %3$d) query \"%4$s\" failed, returning \"%5$s\""
+msgstr ""
+
+#. translators: 1: ERROR tag 2: index
+#: includes/class-mla-data.php:3951
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: _build_pdf_indirect_objects bad value at $index = \"%2$d\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: source offset 3: nest level
+#: includes/class-mla-data.php:4276
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: _parse_pdf_dictionary offset = %2$d, nest = %3$d."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: dictionary excerpt
+#: includes/class-mla-data.php:4278
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: _parse_pdf_dictionary no end delimiter dump = %2$s."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: entry name 3: value excerpt
+#: includes/class-mla-data.php:4324
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: _parse_pdf_dictionary bad value [ %2$s ] dump = %3$s"
+msgstr ""
+
+#: includes/class-mla-data.php:4438
+msgctxt "error_log"
+msgid "_parse_xmp_metadata xml_parse_into_struct failed."
+msgstr ""
+
+#: includes/class-mla-data.php:4441
+msgctxt "error_log"
+msgid "_parse_xmp_metadata set option failed."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: path and file
+#: includes/class-mla-data.php:4798
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: File \"%2$s\", startxref not found."
+msgstr ""
+
+#: includes/class-mla-data.php:5664 includes/class-mla-settings.php:1763
+#: includes/class-mla-view-list-table.php:377
+#: includes/class-mla-view-list-table.php:393
+msgid "Yes"
+msgstr ""
+
+#: includes/class-mla-data.php:5666 includes/class-mla-list-table.php:241
+#: includes/class-mla-settings.php:1762
+#: includes/class-mla-view-list-table.php:379
+#: includes/class-mla-view-list-table.php:395
+msgid "No"
+msgstr ""
+
+#. translators: 1: meta_key
+#: includes/class-mla-data.php:5924 includes/class-mla-data.php:6022
+#, php-format
+msgid "Deleting %1$s"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: meta_key
+#: includes/class-mla-data.php:5927
+#, php-format
+msgid "%1$s: meta:%2$s not found"
+msgstr ""
+
+#. translators: 1: meta_key 2: meta_value
+#. translators: 1: meta_key 2: new_value
+#. translators: 1: meta_key 2: meta_value
+#: includes/class-mla-data.php:5936 includes/class-mla-data.php:6033
+#: includes/class-mla-data.php:6039
+#, php-format
+msgid "Adding %1$s = %2$s"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: meta_key
+#: includes/class-mla-data.php:5940
+#, php-format
+msgid "%1$s: Adding meta:%2$s; not found"
+msgstr ""
+
+#. translators: 1: meta_key
+#: includes/class-mla-data.php:5947
+#, php-format
+msgid "Deleting Null meta:%1$s"
+msgstr ""
+
+#. translators: 1: element name 2: old_value 3: new_value
+#: includes/class-mla-data.php:5957 includes/class-mla-data.php:6108
+#: includes/class-mla-data.php:6169 includes/class-mla-data.php:6195
+#: includes/class-mla-data.php:6229 includes/class-mla-data.php:6242
+#: includes/class-mla-data.php:6251 includes/class-mla-data.php:6262
+#: includes/class-mla-data.php:6273 includes/class-mla-data.php:6286
+#: includes/class-mla-data.php:6295 includes/class-mla-data.php:6304
+#: includes/class-mla-mime-types.php:1052
+#: includes/class-mla-mime-types.php:2125
+#, php-format
+msgid "Changing %1$s from \"%2$s\" to \"%3$s\""
+msgstr ""
+
+#. translators: 1: ERROR tag 2: meta_key
+#: includes/class-mla-data.php:5962
+#, php-format
+msgid "%1$s: Changing meta:%2$s; not found"
+msgstr ""
+
+#. translators: 1: meta_key
+#: includes/class-mla-data.php:6063
+#, php-format
+msgid "Deleting old %1$s values"
+msgstr ""
+
+#. translators: 1: meta_key 2: old_value 3: new_value 4: update count
+#: includes/class-mla-data.php:6093
+#, php-format
+msgid "Changing %1$s from \"%2$s\" to \"%3$s\"; %4$d updates"
+msgstr ""
+
+#: includes/class-mla-data.php:6151 includes/class-mla-main.php:2270
+msgid "Could not retrieve Attachment."
+msgstr ""
+
+#: includes/class-mla-data.php:6169 includes/class-mla-edit-media.php:401
+#: includes/class-mla-main.php:1620 includes/class-mla-main.php:1921
+#: includes/class-mla-main.php:2111 includes/class-mla-main.php:2488
+#: includes/class-mla-objects.php:278 includes/class-mla-options.php:1048
+#: includes/class-mla-options.php:1863
+#: includes/mla-main-search-box-template.php:42
+#: includes/mla-media-modal-js-template.php:32
+msgid "Title"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: old_value
+#: includes/class-mla-data.php:6192
+#, php-format
+msgid "%1$s: Could not change Name/Slug \"%2$s\"; name already exists"
+msgstr ""
+
+#: includes/class-mla-data.php:6195 includes/class-mla-edit-media.php:402
+#: includes/class-mla-main.php:2112 includes/class-mla-main.php:2491
+#: includes/class-mla-options.php:1055
+msgid "Name/Slug"
+msgstr ""
+
+#. translators: 1: old_value
+#: includes/class-mla-data.php:6221
+#, php-format
+msgid "Deleting ALT Text, was \"%1$s\""
+msgstr ""
+
+#. translators: 1: ERROR tag 2: old_value
+#: includes/class-mla-data.php:6224
+#, php-format
+msgid "%1$s: Could not delete ALT Text, remains \"%2$s\""
+msgstr ""
+
+#: includes/class-mla-data.php:6229 includes/class-mla-edit-media.php:405
+#: includes/class-mla-list-table.php:1285 includes/class-mla-main.php:2115
+#: includes/class-mla-main.php:2494 includes/class-mla-options.php:1062
+#: includes/class-mla-options.php:1869
+#: includes/mla-main-search-box-template.php:44
+#: includes/mla-media-modal-js-template.php:40
+msgid "ALT Text"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: old_value 3: new_value
+#: includes/class-mla-data.php:6232
+#, php-format
+msgid "%1$s: Could not change ALT Text from \"%2$s\" to \"%3$s\""
+msgstr ""
+
+#: includes/class-mla-data.php:6242 includes/class-mla-edit-media.php:403
+#: includes/class-mla-main.php:2113 includes/class-mla-main.php:2497
+#: includes/class-mla-options.php:1069 includes/class-mla-options.php:1872
+#: includes/mla-main-search-box-template.php:45
+#: includes/mla-media-modal-js-template.php:45
+msgid "Caption"
+msgstr ""
+
+#: includes/class-mla-data.php:6251 includes/class-mla-edit-media.php:404
+#: includes/class-mla-main.php:2114 includes/class-mla-main.php:2499
+#: includes/class-mla-options.php:1076 includes/class-mla-options.php:1875
+#: includes/class-mla-settings.php:1496 includes/class-mla-settings.php:1753
+#: includes/class-mla-settings.php:1851 includes/class-mla-settings.php:2215
+#: includes/mla-main-search-box-template.php:46
+#: includes/mla-media-modal-js-template.php:49
+msgid "Description"
+msgstr ""
+
+#: includes/class-mla-data.php:6262 includes/class-mla-list-table.php:969
+#: includes/class-mla-list-table.php:1061 includes/class-mla-options.php:4361
+#: includes/class-mla-options.php:4707
+msgid "Parent"
+msgstr ""
+
+#: includes/class-mla-data.php:6273 includes/class-mla-edit-media.php:592
+#: includes/class-mla-edit-media.php:745 includes/class-mla-main.php:2118
+#: includes/class-mla-main.php:2505 includes/class-mla-settings.php:1494
+#: includes/class-mla-settings.php:1751
+msgid "Menu Order"
+msgstr ""
+
+#: includes/class-mla-data.php:6286 includes/class-mla-edit-media.php:372
+#: includes/class-mla-list-table.php:1444 includes/class-mla-main.php:1988
+#: includes/class-mla-main.php:2090 includes/class-mla-main.php:2319
+msgid "Author"
+msgstr ""
+
+#: includes/class-mla-data.php:6295 includes/class-mla-edit-media.php:395
+#: includes/class-mla-main.php:2129
+msgid "Comments"
+msgstr ""
+
+#: includes/class-mla-data.php:6304 includes/class-mla-edit-media.php:396
+#: includes/class-mla-main.php:2130
+msgid "Pings"
+msgstr ""
+
+#: includes/class-mla-data.php:6335
+msgid "Adding"
+msgstr ""
+
+#: includes/class-mla-data.php:6339
+msgid "Removing"
+msgstr ""
+
+#: includes/class-mla-data.php:6348
+msgid "Replacing"
+msgstr ""
+
+#: includes/class-mla-data.php:6356
+msgid "Ignoring"
+msgstr ""
+
+#. translators: 1: action_name, 2: taxonomy
+#: includes/class-mla-data.php:6369
+#, php-format
+msgid "%1$s \"%2$s\" terms"
+msgstr ""
+
+#. translators: 1: taxonomy
+#: includes/class-mla-data.php:6373
+#, php-format
+msgid "You cannot assign \"%1$s\" terms"
+msgstr ""
+
+#. translators: 1: post ID
+#: includes/class-mla-data.php:6385 includes/class-mla-main.php:1141
+#, php-format
+msgid "Item %1$d, no changes detected."
+msgstr ""
+
+#. translators: 1: post ID
+#: includes/class-mla-data.php:6397
+#, php-format
+msgid "Item %1$d updated."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: post ID
+#: includes/class-mla-data.php:6411
+#, php-format
+msgid "%1$s: Item %2$d update failed."
+msgstr ""
+
+#: includes/class-mla-edit-media.php:133 includes/class-mla-edit-media.php:169
+#: includes/class-mla-edit-media.php:218 includes/class-mla-main.php:340
+#: includes/class-mla-main.php:377 includes/class-mla-main.php:1037
+#: includes/class-mla-main.php:1804 includes/class-mla-options.php:3907
+#: includes/class-mla-settings.php:340
+msgctxt "tag_delimiter"
+msgid ","
+msgstr ""
+
+#: includes/class-mla-edit-media.php:168
+msgid "Upload New Media items"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:170 includes/class-mla-edit-media.php:220
+#: includes/class-mla-main.php:364
+msgid "An ajax.fail error has occurred. Please reload the page and try again."
+msgstr ""
+
+#: includes/class-mla-edit-media.php:171 includes/class-mla-edit-media.php:221
+#: includes/class-mla-main.php:365
+msgid "An ajax.done error has occurred. Please reload the page and try again."
+msgstr ""
+
+#: includes/class-mla-edit-media.php:173 includes/class-mla-edit-media.php:391
+msgid "Open Bulk Edit area"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:174
+msgid "Close Bulk Edit area"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:315 includes/class-mla-main.php:2023
+msgid "more"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:316 includes/class-mla-main.php:2024
+msgid "less"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:319 includes/class-mla-edit-media.php:350
+#: includes/class-mla-main.php:2027 includes/class-mla-main.php:2065
+msgid "Add"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:320 includes/class-mla-edit-media.php:351
+#: includes/class-mla-main.php:2028 includes/class-mla-main.php:2066
+msgid "Remove"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:321 includes/class-mla-edit-media.php:352
+#: includes/class-mla-main.php:2029 includes/class-mla-main.php:2067
+#: includes/class-mla-options.php:3443 includes/class-mla-options.php:3546
+#: includes/class-mla-options.php:3590 includes/class-mla-options.php:4596
+#: includes/class-mla-options.php:4646 includes/class-mla-options.php:4765
+#: includes/class-mla-options.php:4807 includes/class-mla-options.php:4832
+msgid "Replace"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:397 includes/class-mla-main.php:2131
+#: includes/class-mla-main.php:2177 includes/class-mla-settings.php:1761
+#: includes/class-mla-settings.php:1799 includes/class-mla-settings.php:2226
+msgid "No Change"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:398 includes/class-mla-main.php:2132
+msgid "Allow"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:399 includes/class-mla-main.php:2133
+msgid "Do not allow"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:406 includes/class-mla-main.php:2116
+msgid "Parent ID"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:407 includes/class-mla-edit-media.php:725
+#: includes/class-mla-main.php:2117
+#: includes/class-mla-upload-optional-list-table.php:281
+msgid "Select"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:482
+msgid "Custom field mapping updated."
+msgstr ""
+
+#: includes/class-mla-edit-media.php:483
+msgid "IPTC/EXIF mapping updated."
+msgstr ""
+
+#. translators: date_i18n format for last modified date and time
+#: includes/class-mla-edit-media.php:501
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:503 includes/class-mla-main.php:2483
+msgid "Last modified"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:514
+msgid "Map Custom Field metadata for this item"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:514 includes/class-mla-main.php:1727
+#: includes/class-mla-main.php:2136
+msgid "Map Custom Field Metadata"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:516
+msgid "Map IPTC/EXIF metadata for this item"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:516
+msgid "Map IPTC/EXIF Metadata"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:588 includes/class-mla-edit-media.php:726
+#: includes/class-mla-main.php:2501
+msgid "Parent Info"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:598 includes/class-mla-edit-media.php:769
+msgid "Attachment Metadata"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:603 includes/class-mla-edit-media.php:803
+#: includes/class-mla-main.php:2512 includes/class-mla-options.php:472
+msgid "Featured in"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:607 includes/class-mla-edit-media.php:842
+#: includes/class-mla-main.php:2514 includes/class-mla-options.php:481
+msgid "Inserted in"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:611 includes/class-mla-edit-media.php:877
+#: includes/class-mla-main.php:2516 includes/class-mla-options.php:490
+#: includes/class-mla-settings.php:3753
+msgid "Gallery in"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:615 includes/class-mla-edit-media.php:912
+#: includes/class-mla-main.php:2518 includes/class-mla-options.php:499
+#: includes/class-mla-settings.php:3763
+msgid "MLA Gallery in"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: function name 3: template key
+#: includes/class-mla-edit-media.php:658 includes/class-mla-main.php:604
+#: includes/class-mla-settings.php:555
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: %2$s discarding \"%3$s\"; no title/order"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:704 includes/class-mla-list-table.php:770
+#: includes/class-mla-main.php:1633
+msgid "Scheduled"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:707 includes/class-mla-list-table.php:773
+msgctxt "post state"
+msgid "Pending"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:710 includes/class-mla-list-table.php:776
+#: includes/class-mla-main.php:1639
+msgid "Draft"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:724
+msgid "Post Parent"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:725 includes/class-mla-main.php:1912
+msgid "Select Parent"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:792 includes/class-mla-edit-media.php:830
+#: includes/class-mla-edit-media.php:866 includes/class-mla-edit-media.php:901
+#: includes/class-mla-list-table.php:1108
+#: includes/class-mla-list-table.php:1157
+#: includes/class-mla-list-table.php:1203
+#: includes/class-mla-list-table.php:1248 includes/class-mla-main.php:2332
+#: includes/class-mla-main.php:2351 includes/class-mla-main.php:2368
+#: includes/class-mla-main.php:2384
+msgid "PARENT"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:1095
+msgid "Most Used"
+msgstr ""
+
+#. translators: %s: add new taxonomy label
+#: includes/class-mla-edit-media.php:1124
+#, php-format
+msgid "+ %s"
+msgstr ""
+
+#: includes/class-mla-edit-media.php:1130
+msgid "?&nbsp;Search"
+msgstr ""
+
+#: includes/class-mla-list-table.php:200
+msgctxt "list_table_column"
+msgid "ID/Parent"
+msgstr ""
+
+#: includes/class-mla-list-table.php:201
+msgctxt "list_table_column"
+msgid "Title/Name"
+msgstr ""
+
+#: includes/class-mla-list-table.php:202
+msgctxt "list_table_column"
+msgid "Title"
+msgstr ""
+
+#: includes/class-mla-list-table.php:203
+msgctxt "list_table_column"
+msgid "Name"
+msgstr ""
+
+#: includes/class-mla-list-table.php:204
+msgctxt "list_table_column"
+msgid "Parent ID"
+msgstr ""
+
+#: includes/class-mla-list-table.php:205
+msgctxt "list_table_column"
+msgid "Menu Order"
+msgstr ""
+
+#: includes/class-mla-list-table.php:206
+msgctxt "list_table_column"
+msgid "Featured in"
+msgstr ""
+
+#: includes/class-mla-list-table.php:207
+msgctxt "list_table_column"
+msgid "Inserted in"
+msgstr ""
+
+#: includes/class-mla-list-table.php:208
+msgctxt "list_table_column"
+msgid "Gallery in"
+msgstr ""
+
+#: includes/class-mla-list-table.php:209
+msgctxt "list_table_column"
+msgid "MLA Gallery in"
+msgstr ""
+
+#: includes/class-mla-list-table.php:210
+msgctxt "list_table_column"
+msgid "ALT Text"
+msgstr ""
+
+#: includes/class-mla-list-table.php:211
+msgctxt "list_table_column"
+msgid "Caption"
+msgstr ""
+
+#: includes/class-mla-list-table.php:212
+#: includes/class-mla-upload-list-table.php:186
+#: includes/class-mla-upload-optional-list-table.php:171
+#: includes/class-mla-view-list-table.php:179
+msgctxt "list_table_column"
+msgid "Description"
+msgstr ""
+
+#: includes/class-mla-list-table.php:213
+#: includes/class-mla-upload-list-table.php:178
+#: includes/class-mla-upload-optional-list-table.php:168
+msgctxt "list_table_column"
+msgid "MIME Type"
+msgstr ""
+
+#: includes/class-mla-list-table.php:214
+msgctxt "list_table_column"
+msgid "File URL"
+msgstr ""
+
+#: includes/class-mla-list-table.php:215
+msgctxt "list_table_column"
+msgid "Base File"
+msgstr ""
+
+#: includes/class-mla-list-table.php:216
+msgctxt "list_table_column"
+msgid "Date"
+msgstr ""
+
+#: includes/class-mla-list-table.php:217
+msgctxt "list_table_column"
+msgid "Last Modified"
+msgstr ""
+
+#: includes/class-mla-list-table.php:218
+msgctxt "list_table_column"
+msgid "Author"
+msgstr ""
+
+#: includes/class-mla-list-table.php:219
+msgctxt "list_table_column"
+msgid "Attached to"
+msgstr ""
+
+#: includes/class-mla-list-table.php:240
+msgid "All"
+msgstr ""
+
+#: includes/class-mla-list-table.php:627
+#: includes/class-mla-list-table.php:1343 includes/class-mla-options.php:604
+#: includes/class-mla-options.php:806 includes/class-mla-options.php:830
+#: includes/class-mla-options.php:844 includes/class-mla-settings.php:2298
+msgid "None"
+msgstr ""
+
+#: includes/class-mla-list-table.php:633 includes/class-mla-list-table.php:665
+#: includes/class-mla-list-table.php:1281
+#: includes/class-mla-list-table.php:1325
+#: includes/class-mla-list-table.php:1357
+msgid "Filter by"
+msgstr ""
+
+#: includes/class-mla-list-table.php:643
+msgid "not supported"
+msgstr ""
+
+#. translators: 1: column_name 2: column_values
+#: includes/class-mla-list-table.php:685
+#: includes/class-mla-upload-list-table.php:247
+#: includes/class-mla-upload-optional-list-table.php:228
+#: includes/class-mla-view-list-table.php:236
+#, php-format
+msgid "column_default: %1$s, %2$s"
+msgstr ""
+
+#: includes/class-mla-list-table.php:751 includes/class-mla-list-table.php:824
+#: includes/class-mla-list-table.php:826
+#: includes/class-mla-upload-list-table.php:312
+#: includes/class-mla-view-list-table.php:302
+msgid "Edit this item"
+msgstr ""
+
+#: includes/class-mla-list-table.php:751 includes/class-mla-list-table.php:754
+#: includes/class-mla-list-table.php:824 includes/class-mla-list-table.php:826
+#: includes/class-mla-list-table.php:1113
+#: includes/class-mla-list-table.php:1162
+#: includes/class-mla-list-table.php:1208
+#: includes/class-mla-list-table.php:1253
+#: includes/class-mla-list-table.php:1461
+#: includes/class-mla-list-table.php:1765
+#: includes/class-mla-upload-list-table.php:312
+#: includes/class-mla-upload-list-table.php:610
+#: includes/class-mla-view-list-table.php:302
+#: includes/class-mla-view-list-table.php:513
+msgid "Edit"
+msgstr ""
+
+#: includes/class-mla-list-table.php:812
+msgid "Restore this item from the Trash"
+msgstr ""
+
+#: includes/class-mla-list-table.php:812
+#: includes/class-mla-list-table.php:1762
+msgid "Restore"
+msgstr ""
+
+#: includes/class-mla-list-table.php:829
+#: includes/class-mla-upload-list-table.php:314
+#: includes/class-mla-view-list-table.php:304
+msgid "Edit this item inline"
+msgstr ""
+
+#: includes/class-mla-list-table.php:829 includes/class-mla-main.php:2110
+#: includes/class-mla-options.php:3320 includes/class-mla-options.php:3627
+#: includes/class-mla-upload-list-table.php:314
+#: includes/class-mla-view-list-table.php:304
+msgid "Quick Edit"
+msgstr ""
+
+#: includes/class-mla-list-table.php:835
+msgid "Move this item to the Trash"
+msgstr ""
+
+#: includes/class-mla-list-table.php:835
+#: includes/class-mla-list-table.php:1768
+msgid "Move to Trash"
+msgstr ""
+
+#: includes/class-mla-list-table.php:840
+#: includes/class-mla-upload-list-table.php:318
+#: includes/class-mla-view-list-table.php:310
+msgid "Delete this item Permanently"
+msgstr ""
+
+#: includes/class-mla-list-table.php:840
+#: includes/class-mla-list-table.php:1763
+#: includes/class-mla-list-table.php:1770
+#: includes/class-mla-upload-list-table.php:318
+#: includes/class-mla-view-list-table.php:310
+#: includes/class-mla-view-list-table.php:514
+msgid "Delete Permanently"
+msgstr ""
+
+#: includes/class-mla-list-table.php:848
+msgid "Download"
+msgstr ""
+
+#: includes/class-mla-list-table.php:851 includes/class-mla-settings.php:1739
+msgid "View"
+msgstr ""
+
+#: includes/class-mla-list-table.php:891 includes/class-mla-list-table.php:963
+#: includes/class-mla-main.php:368 includes/class-mla-main.php:1624
+msgid "(no title)"
+msgstr ""
+
+#: includes/class-mla-list-table.php:966
+#: includes/class-mla-list-table.php:1058
+msgid "Filter by Parent ID"
+msgstr ""
+
+#: includes/class-mla-list-table.php:1055
+msgid "(no title: bad ID)"
+msgstr ""
+
+#: includes/class-mla-list-table.php:1090
+#: includes/class-mla-list-table.php:1135
+#: includes/class-mla-list-table.php:1185
+#: includes/class-mla-list-table.php:1230 includes/class-mla-main.php:2340
+#: includes/class-mla-main.php:2360 includes/class-mla-main.php:2376
+#: includes/class-mla-main.php:2392 includes/class-mla-options.php:476
+#: includes/class-mla-options.php:485 includes/class-mla-options.php:494
+#: includes/class-mla-options.php:503
+msgid "Disabled"
+msgstr ""
+
+#: includes/class-mla-list-table.php:1328 includes/class-mla-settings.php:1844
+#: includes/class-mla-settings.php:2209
+msgid "MIME Type"
+msgstr ""
+
+#: includes/class-mla-list-table.php:1361
+msgid "Base File"
+msgstr ""
+
+#: includes/class-mla-list-table.php:1377
+#: includes/class-mla-list-table.php:1410
+msgid "Unpublished"
+msgstr ""
+
+#. translators: 1: upload/last modified date and time
+#: includes/class-mla-list-table.php:1386
+#: includes/class-mla-list-table.php:1417
+#, php-format
+msgid "%1$s from now"
+msgstr ""
+
+#. translators: 1: upload/last modified date and time
+#: includes/class-mla-list-table.php:1389
+#: includes/class-mla-list-table.php:1419
+#, php-format
+msgid "%1$s ago"
+msgstr ""
+
+#. translators: format for upload/last modified date
+#. translators: date format in table columns, see http://php.net/date
+#: includes/class-mla-list-table.php:1393
+#: includes/class-mla-list-table.php:1422
+#: includes/class-mla-list-table.php:1478 includes/class-mla-main.php:1649
+msgid "Y/m/d"
+msgstr ""
+
+#: includes/class-mla-list-table.php:1441
+msgid "Filter by Author ID"
+msgstr ""
+
+#: includes/class-mla-list-table.php:1480 includes/class-mla-options.php:1165
+msgctxt "post_mime_types_singular"
+msgid "Unattached"
+msgstr ""
+
+#: includes/class-mla-list-table.php:1483
+msgid "Set Parent"
+msgstr ""
+
+#: includes/class-mla-list-table.php:1614
+msgctxt "uploaded files"
+msgid "All"
+msgid_plural "All"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-mla-list-table.php:1796
+msgid "Filter"
+msgstr ""
+
+#: includes/class-mla-list-table.php:1800
+#: includes/mla-media-modal-js-template.php:58
+msgid "Terms Search"
+msgstr ""
+
+#: includes/class-mla-list-table.php:1806
+msgid "Clear Filter-by"
+msgstr ""
+
+#: includes/class-mla-list-table.php:1810
+msgid "Empty Trash"
+msgstr ""
+
+#: includes/class-mla-main.php:366 includes/class-mla-settings.php:337
+msgid "Error while saving the changes."
+msgstr ""
+
+#: includes/class-mla-main.php:367 includes/class-mla-settings.php:338
+msgid "Remove From Bulk Edit"
+msgstr ""
+
+#: includes/class-mla-main.php:369
+msgid "Bulk Edit items"
+msgstr ""
+
+#: includes/class-mla-main.php:370 includes/class-mla-main.php:2137
+#: includes/class-mla-settings.php:349
+msgid "Waiting"
+msgstr ""
+
+#: includes/class-mla-main.php:371 includes/class-mla-main.php:2139
+#: includes/class-mla-settings.php:351
+msgid "Complete"
+msgstr ""
+
+#: includes/class-mla-main.php:372 includes/class-mla-settings.php:352
+msgid "Unchanged"
+msgstr ""
+
+#: includes/class-mla-main.php:373 includes/class-mla-settings.php:353
+msgid "Succeeded"
+msgstr ""
+
+#: includes/class-mla-main.php:374 includes/class-mla-settings.php:354
+msgid "Failed"
+msgstr ""
+
+#: includes/class-mla-main.php:375 includes/class-mla-settings.php:357
+msgid "CANCELED"
+msgstr ""
+
+#: includes/class-mla-main.php:486
+#, php-format
+msgid "Item permanently deleted."
+msgid_plural "%d items permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: post ID
+#: includes/class-mla-main.php:491 includes/class-mla-main.php:2600
+#, php-format
+msgid "Item %1$d moved to Trash."
+msgstr ""
+
+#: includes/class-mla-main.php:510
+msgid "Entries per page"
+msgstr ""
+
+#: includes/class-mla-main.php:895
+msgid "You are not allowed to edit Attachment: "
+msgstr ""
+
+#. translators: 1: ERROR tag 2: bulk action
+#: includes/class-mla-main.php:1131
+#, php-format
+msgid "%1$s: Unknown bulk action %2$s"
+msgstr ""
+
+#: includes/class-mla-main.php:1153
+msgid "no changes detected"
+msgstr ""
+
+#. translators: 1: action name, e.g., edit
+#: includes/class-mla-main.php:1199 includes/class-mla-settings.php:1618
+#: includes/class-mla-settings.php:2085
+#, php-format
+msgid "Bulk Action %1$s - no items selected."
+msgstr ""
+
+#: includes/class-mla-main.php:1250
+msgid "You do not have permission to manage attachments."
+msgstr ""
+
+#. translators: 1: number of items
+#: includes/class-mla-main.php:1317
+#, php-format
+msgctxt "deleted items"
+msgid "%s item deleted."
+msgid_plural "%s items deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-mla-main.php:1319
+msgid "No items deleted."
+msgstr ""
+
+#: includes/class-mla-main.php:1344
+msgid "Edit single item"
+msgstr ""
+
+#. translators: 1: post ID
+#: includes/class-mla-main.php:1359
+#, php-format
+msgid "Item %1$d cancelled."
+msgstr ""
+
+#: includes/class-mla-main.php:1394
+msgid "Empty Terms Search; ignored"
+msgstr ""
+
+#. translators: 1: row-level action, e.g., single_item_delete, single_item_edit
+#. translators: 1: bulk_action, e.g., single_item_delete, single_item_edit
+#: includes/class-mla-main.php:1406 includes/class-mla-settings.php:1655
+#: includes/class-mla-settings.php:2124
+#, php-format
+msgid "Unknown mla_admin_action - \"%1$s\""
+msgstr ""
+
+#: includes/class-mla-main.php:1439
+msgid "term search results for"
+msgstr ""
+
+#: includes/class-mla-main.php:1442
+msgid "post/parent results for"
+msgstr ""
+
+#: includes/class-mla-main.php:1444
+msgid "search results for"
+msgstr ""
+
+#: includes/class-mla-main.php:1620 includes/class-mla-main.php:1922
+msgid "Type"
+msgstr ""
+
+#: includes/class-mla-main.php:1620 includes/class-mla-main.php:1923
+msgid "Date"
+msgstr ""
+
+#: includes/class-mla-main.php:1620 includes/class-mla-main.php:1924
+#: includes/class-mla-settings.php:2225
+msgid "Status"
+msgstr ""
+
+#: includes/class-mla-main.php:1630
+msgid "Published"
+msgstr ""
+
+#: includes/class-mla-main.php:1636
+msgid "Pending Review"
+msgstr ""
+
+#: includes/class-mla-main.php:1678 includes/class-mla-main.php:1759
+msgid "No post ID found"
+msgstr ""
+
+#: includes/class-mla-main.php:1685 includes/class-mla-main.php:1766
+#: includes/class-mla-main.php:2277
+msgid "You are not allowed to edit this Attachment."
+msgstr ""
+
+#: includes/class-mla-main.php:1730 includes/class-mla-main.php:2135
+#: includes/class-mla-main.php:2476
+msgid "Map IPTC/EXIF metadata"
+msgstr ""
+
+#: includes/class-mla-main.php:1733 includes/class-mla-main.php:1934
+#: includes/class-mla-main.php:2124 includes/class-mla-main.php:2475
+#: includes/class-mla-settings.php:1498 includes/class-mla-settings.php:1759
+#: includes/class-mla-settings.php:1853 includes/class-mla-settings.php:2223
+msgid "Update"
+msgstr ""
+
+#: includes/class-mla-main.php:1869
+msgid "All Post Types"
+msgstr ""
+
+#: includes/class-mla-main.php:1913 includes/class-mla-media-modal.php:1216
+#: includes/mla-media-modal-js-template.php:20
+#: includes/mla-media-modal-js-template.php:61
+msgid "Search"
+msgstr ""
+
+#: includes/class-mla-main.php:1915
+msgid "For"
+msgstr ""
+
+#: includes/class-mla-main.php:1925 includes/class-mla-shortcodes.php:715
+msgid "Unattached"
+msgstr ""
+
+#: includes/class-mla-main.php:1930 includes/class-mla-main.php:2123
+#: includes/class-mla-main.php:2474 includes/class-mla-settings.php:1499
+#: includes/class-mla-settings.php:1758 includes/class-mla-settings.php:1854
+#: includes/class-mla-settings.php:1926 includes/class-mla-settings.php:2222
+#: includes/class-mla-settings.php:2691 includes/class-mla-settings.php:2827
+msgid "Cancel"
+msgstr ""
+
+#: includes/class-mla-main.php:2125 includes/class-mla-options.php:3334
+#: includes/class-mla-options.php:3628 includes/class-mla-settings.php:1760
+#: includes/class-mla-settings.php:2224
+msgid "Bulk Edit"
+msgstr ""
+
+#: includes/class-mla-main.php:2138
+msgid "In-process"
+msgstr ""
+
+#: includes/class-mla-main.php:2140 includes/class-mla-options.php:494
+#: includes/class-mla-options.php:503 includes/class-mla-settings.php:2694
+#: includes/class-mla-settings.php:2830
+msgid "Refresh"
+msgstr ""
+
+#: includes/class-mla-main.php:2229
+msgid "You are not allowed to delete this item."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: post ID
+#: includes/class-mla-main.php:2237
+#, php-format
+msgid "%1$s: Item %2$d could NOT be deleted."
+msgstr ""
+
+#. translators: 1: post ID
+#: includes/class-mla-main.php:2244
+#, php-format
+msgid "Item %1$d permanently deleted."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: page_template_array
+#: includes/class-mla-main.php:2304
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: MLA::_display_single_item \\$page_template_array = \"%2$s\""
+msgstr ""
+
+#: includes/class-mla-main.php:2478
+msgid "File name"
+msgstr ""
+
+#: includes/class-mla-main.php:2480
+msgid "File type"
+msgstr ""
+
+#: includes/class-mla-main.php:2481
+msgid "Upload date"
+msgstr ""
+
+#: includes/class-mla-main.php:2485
+msgid "Dimensions"
+msgstr ""
+
+#: includes/class-mla-main.php:2489
+msgid "required"
+msgstr ""
+
+#: includes/class-mla-main.php:2493
+msgid "Must be unique; will be validated."
+msgstr ""
+
+#: includes/class-mla-main.php:2496
+msgid "Alternate text for the image, e.g. &#8220;The Mona Lisa&#8221;"
+msgstr ""
+
+#: includes/class-mla-main.php:2504
+msgid "ID, type and title of parent, if any."
+msgstr ""
+
+#: includes/class-mla-main.php:2507
+msgid "File URL"
+msgstr ""
+
+#: includes/class-mla-main.php:2509
+msgid "Location of the uploaded file."
+msgstr ""
+
+#: includes/class-mla-main.php:2510
+msgid "Image Metadata"
+msgstr ""
+
+#: includes/class-mla-main.php:2545
+msgid "You are not allowed to move this item out of the Trash."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: post ID
+#: includes/class-mla-main.php:2553
+#, php-format
+msgid "%1$s: Item %2$d could NOT be restored from Trash."
+msgstr ""
+
+#. translators: 1: post ID
+#: includes/class-mla-main.php:2568
+#, php-format
+msgid "Item %1$d restored from Trash."
+msgstr ""
+
+#: includes/class-mla-main.php:2585
+msgid "You are not allowed to move this item to the Trash."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: post ID
+#: includes/class-mla-main.php:2593
+#, php-format
+msgid "%1$s: Item %2$d could NOT be moved to Trash."
+msgstr ""
+
+#: includes/class-mla-media-modal.php:245
+#: includes/class-mla-media-modal.php:251
+#: includes/class-mla-media-modal.php:812
+#: includes/class-mla-media-modal.php:847
+#: includes/class-mla-media-modal.php:892
+msgid "Click to toggle"
+msgstr ""
+
+#: includes/class-mla-media-modal.php:288
+msgid "Show all dates"
+msgstr ""
+
+#. translators: 1: month name, 2: 4-digit year
+#: includes/class-mla-media-modal.php:303
+#, php-format
+msgid "%1$s %2$d"
+msgstr ""
+
+#: includes/class-mla-media-modal.php:413
+msgctxt "tag delimiter"
+msgid ","
+msgstr ""
+
+#: includes/class-mla-media-modal.php:518
+msgid "Search Box"
+msgstr ""
+
+#: includes/class-mla-media-modal.php:519
+msgid "Loading..."
+msgstr ""
+
+#: includes/class-mla-media-modal.php:858
+msgid "Tags"
+msgstr ""
+
+#. translators: %s: add new taxonomy label
+#. translators: %s: add new View
+#. translators: %s: add new Upload MIME Type
+#: includes/class-mla-media-modal.php:860 includes/class-mla-objects.php:46
+#: includes/class-mla-objects.php:76 includes/class-mla-settings.php:1739
+#: includes/class-mla-settings.php:2205
+#, php-format
+msgid "Add New %1$s"
+msgstr ""
+
+#: includes/class-mla-media-modal.php:876
+msgid "Choose from the most used tags"
+msgstr ""
+
+#: includes/class-mla-media-modal.php:898
+msgid "Not Supported"
+msgstr ""
+
+#: includes/class-mla-media-modal.php:1199
+#: includes/class-mla-media-modal.php:1215
+msgid "Search Terms"
+msgstr ""
+
+#: includes/class-mla-media-modal.php:1200
+msgid "There are no taxonomies to search"
+msgstr ""
+
+#: includes/class-mla-media-modal.php:1218
+msgid "All phrases"
+msgstr ""
+
+#: includes/class-mla-media-modal.php:1220
+msgid "Any phrase"
+msgstr ""
+
+#: includes/class-mla-media-modal.php:1222
+msgid "All terms"
+msgstr ""
+
+#: includes/class-mla-media-modal.php:1224
+msgid "Any term"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:364
+msgctxt "post_mime_types"
+msgid "Manage"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:764
+msgctxt "post_mime_types_description"
+msgid "Copied from previous filter/plugin"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: raw_mime_type
+#: includes/class-mla-mime-types.php:906
+#, php-format
+msgid "%1$s: Bad specification part \"%2$s\""
+msgstr ""
+
+#. translators: 1: ERROR tag 2: option, e.g., any, match, null
+#: includes/class-mla-mime-types.php:912
+#, php-format
+msgid "%1$s: Bad specification option \"%2$s\""
+msgstr ""
+
+#. translators: 1: ERROR tag 2: prefix, e.g., custom
+#: includes/class-mla-mime-types.php:916
+#, php-format
+msgid "%1$s: Bad specification prefix \"%2$s\""
+msgstr ""
+
+#: includes/class-mla-mime-types.php:947
+#: includes/class-mla-mime-types.php:1064
+msgid "Ignoring specification for Post MIME Type; using slug"
+msgstr ""
+
+#. translators: 1: element name 2: bad_value 3: good_value
+#: includes/class-mla-mime-types.php:953
+#: includes/class-mla-mime-types.php:1988
+#, php-format
+msgid "<br>Changing %1$s \"%2$s\" to valid value \"%3$s\""
+msgstr ""
+
+#: includes/class-mla-mime-types.php:953
+#: includes/class-mla-mime-types.php:1041
+#: includes/class-mla-mime-types.php:1052 includes/class-mla-settings.php:1483
+#: includes/class-mla-settings.php:1740
+msgid "Slug"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: slug
+#: includes/class-mla-mime-types.php:961
+#: includes/class-mla-mime-types.php:1049
+#, php-format
+msgid "%1$s: Could not add Slug \"%2$s\"; value already exists"
+msgstr ""
+
+#. translators: 1: slug
+#: includes/class-mla-mime-types.php:996
+#, php-format
+msgid "Edit view \"%1$s\"; added"
+msgstr ""
+
+#. translators: 1: element name 2: bad_value 3: good_value
+#: includes/class-mla-mime-types.php:1041
+#: includes/class-mla-mime-types.php:2114
+#, php-format
+msgid "<br>Changing new %1$s \"%2$s\" to valid value \"%3$s\""
+msgstr ""
+
+#. translators: 1: slug
+#: includes/class-mla-mime-types.php:1094
+#, php-format
+msgid "Edit view \"%1$s\"; no changes detected"
+msgstr ""
+
+#. translators: 1: slug
+#: includes/class-mla-mime-types.php:1108
+#, php-format
+msgid "Edit view \"%1$s\"; updated"
+msgstr ""
+
+#. translators: 1: slug
+#: includes/class-mla-mime-types.php:1181
+#, php-format
+msgid "View \"%1$s\" reverted to standard"
+msgstr ""
+
+#. translators: 1: slug
+#: includes/class-mla-mime-types.php:1187
+#, php-format
+msgid "View \"%1$s\" deleted"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: slug
+#: includes/class-mla-mime-types.php:1195
+#, php-format
+msgid "%1$s: Did not find view \"%2$s\""
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1454
+msgctxt "upload_list_table_view_singular"
+msgid "All"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1455
+msgctxt "upload_list_table_view_plural"
+msgid "All"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1458
+msgctxt "upload_list_table_view_singular"
+msgid "Active"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1459
+msgctxt "upload_list_table_view_plural"
+msgid "Active"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1462
+msgctxt "upload_list_table_view_singular"
+msgid "Inactive"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1463
+msgctxt "upload_list_table_view_plural"
+msgid "Inactive"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1466
+msgctxt "upload_list_table_view_singular"
+msgid "WordPress"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1467
+msgctxt "upload_list_table_view_plural"
+msgid "WordPress"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1470
+msgctxt "upload_list_table_view_singular"
+msgid "MLA"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1471
+msgctxt "upload_list_table_view_plural"
+msgid "MLA"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1474
+msgctxt "upload_list_table_view_singular"
+msgid "Custom"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1475
+msgctxt "upload_list_table_view_plural"
+msgid "Custom"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1666
+msgid "icon"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1972
+#: includes/class-mla-mime-types.php:2071
+msgid "Cannot load Upload MIME Types"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1983
+msgid "Extension is required"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:1988
+#: includes/class-mla-mime-types.php:2114
+#: includes/class-mla-mime-types.php:2125
+msgid "extension"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: slug
+#: includes/class-mla-mime-types.php:1996
+#, php-format
+msgid "%1$s: Could not add extension \"%2$s\"; value already exists"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:2004
+msgid "MIME type is required"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: clean_mime_type
+#: includes/class-mla-mime-types.php:2009
+#: includes/class-mla-mime-types.php:2156
+#, php-format
+msgid "%1$s: Bad MIME type; try \"%2$s\""
+msgstr ""
+
+#. translators: 1: slug
+#: includes/class-mla-mime-types.php:2046
+#, php-format
+msgid "Upload MIME Type \"%1$s\"; added"
+msgstr ""
+
+#: includes/class-mla-mime-types.php:2052
+#: includes/class-mla-mime-types.php:2241
+#: includes/class-mla-mime-types.php:2320
+msgid "Cannot update Upload MIME Types"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: slug
+#: includes/class-mla-mime-types.php:2122
+#, php-format
+msgid "%1$s: Could not add new extension \"%2$s\"; value already exists"
+msgstr ""
+
+#. translators: 1: slug
+#: includes/class-mla-mime-types.php:2221
+#, php-format
+msgid "Edit type \"%1$s\"; no changes detected"
+msgstr ""
+
+#. translators: 1: slug
+#: includes/class-mla-mime-types.php:2235
+#, php-format
+msgid "Edit type \"%1$s\"; updated"
+msgstr ""
+
+#. translators: 1: slug
+#: includes/class-mla-mime-types.php:2308
+#, php-format
+msgid "Upload MIME Type \"%1$s\"; reverted to standard"
+msgstr ""
+
+#. translators: 1: slug
+#: includes/class-mla-mime-types.php:2314
+#, php-format
+msgid "Upload MIME Type \"%1$s\"; deleted"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: slug
+#: includes/class-mla-mime-types.php:2329
+#, php-format
+msgid "%1$s: Did not find Upload type \"%2$s\""
+msgstr ""
+
+#: includes/class-mla-objects.php:37
+msgctxt "taxonomy_name_plural"
+msgid "Att. Categories"
+msgstr ""
+
+#: includes/class-mla-objects.php:38
+msgctxt "taxonomy_name_singular"
+msgid "Att. Category"
+msgstr ""
+
+#: includes/class-mla-objects.php:39
+msgid "Search Att. Categories"
+msgstr ""
+
+#: includes/class-mla-objects.php:40
+msgid "All Att. Categories"
+msgstr ""
+
+#: includes/class-mla-objects.php:41 includes/class-mla-objects.php:42
+msgid "Parent Att. Category"
+msgstr ""
+
+#: includes/class-mla-objects.php:43
+msgid "Edit Att. Category"
+msgstr ""
+
+#: includes/class-mla-objects.php:44
+msgid "Update Att. Category"
+msgstr ""
+
+#: includes/class-mla-objects.php:46 includes/class-mla-objects.php:48
+msgid "Att. Category"
+msgstr ""
+
+#: includes/class-mla-objects.php:47
+msgid "New Att. Category Name"
+msgstr ""
+
+#: includes/class-mla-objects.php:67
+msgctxt "taxonomy_name_plural"
+msgid "Att. Tags"
+msgstr ""
+
+#: includes/class-mla-objects.php:68
+msgctxt "taxonomy_name_singular"
+msgid "Att. Tag"
+msgstr ""
+
+#: includes/class-mla-objects.php:69
+msgid "Search Att. Tags"
+msgstr ""
+
+#: includes/class-mla-objects.php:70
+msgid "All Att. Tags"
+msgstr ""
+
+#: includes/class-mla-objects.php:71 includes/class-mla-objects.php:72
+msgid "Parent Att. Tag"
+msgstr ""
+
+#: includes/class-mla-objects.php:73
+msgid "Edit Att. Tag"
+msgstr ""
+
+#: includes/class-mla-objects.php:74
+msgid "Update Att. Tag"
+msgstr ""
+
+#: includes/class-mla-objects.php:76 includes/class-mla-objects.php:78
+msgid "Att. Tag"
+msgstr ""
+
+#: includes/class-mla-objects.php:77
+msgid "New Att. Tag Name"
+msgstr ""
+
+#: includes/class-mla-objects.php:133
+msgid "Attachments"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: taxonomy 3: error message
+#: includes/class-mla-objects.php:201
+#, php-format
+msgctxt "error_log"
+msgid ""
+"%1$s: mla_taxonomy_column_filter( \"%2$s\" ) - get_term failed: \"%3$s\""
+msgstr ""
+
+#: includes/class-mla-objects.php:206
+msgid "click to search"
+msgstr ""
+
+#: includes/class-mla-objects.php:233
+msgid "Shortcode(s), HTML and/or Plain Text"
+msgstr ""
+
+#: includes/class-mla-objects.php:241
+msgid "MLA Text"
+msgstr ""
+
+#: includes/class-mla-objects.php:283
+msgid "Automatically add paragraphs"
+msgstr ""
+
+#: includes/class-mla-options.php:385
+msgid "error loading tpls/mla-option-templates.tpl"
+msgstr ""
+
+#: includes/class-mla-options.php:388
+msgid "tpls/mla-option-templates.tpl not found"
+msgstr ""
+
+#: includes/class-mla-options.php:441 includes/class-mla-options.php:1690
+msgid "Attachment Categories"
+msgstr ""
+
+#: includes/class-mla-options.php:444
+msgid "Check this option to add support for Attachment Categories."
+msgstr ""
+
+#: includes/class-mla-options.php:448 includes/class-mla-options.php:1705
+msgid "Attachment Tags"
+msgstr ""
+
+#: includes/class-mla-options.php:451
+msgid "Check this option to add support for Attachment Tags."
+msgstr ""
+
+#: includes/class-mla-options.php:455 includes/class-mla-settings.php:1325
+msgid "Where-used Reporting"
+msgstr ""
+
+#: includes/class-mla-options.php:460
+msgid "Exclude Revisions"
+msgstr ""
+
+#: includes/class-mla-options.php:463
+msgid "Check this option to exclude revisions from where-used reporting."
+msgstr ""
+
+#: includes/class-mla-options.php:467
+msgid "Where-used database access tuning"
+msgstr ""
+
+#: includes/class-mla-options.php:476 includes/class-mla-options.php:485
+msgid "Enabled"
+msgstr ""
+
+#: includes/class-mla-options.php:477
+msgid "Search database posts and pages for Featured Image attachments."
+msgstr ""
+
+#: includes/class-mla-options.php:485
+msgid "Base"
+msgstr ""
+
+#: includes/class-mla-options.php:486
+msgid ""
+"Search database posts and pages for attachments embedded in content."
+"<br>&nbsp;&nbsp;Base = ignore intermediate size suffixes; use path, base "
+"name and extension only."
+msgstr ""
+
+#: includes/class-mla-options.php:494 includes/class-mla-options.php:503
+msgid "Dynamic"
+msgstr ""
+
+#: includes/class-mla-options.php:494 includes/class-mla-options.php:503
+msgid "Cached"
+msgstr ""
+
+#: includes/class-mla-options.php:495
+msgid ""
+"Search database posts and pages for [gallery] shortcode results.<br>&nbsp;"
+"&nbsp;Dynamic = once every page load, Cached = once every login, Disabled = "
+"never.<br>&nbsp;&nbsp;Refresh = update references, then set to Cached."
+msgstr ""
+
+#: includes/class-mla-options.php:504
+msgid ""
+"Search database posts and pages for [mla_gallery] shortcode results."
+"<br>&nbsp;&nbsp;Dynamic = once every page load, Cached = once every login, "
+"Disabled = never.<br>&nbsp;&nbsp;Refresh = update references, then set to "
+"Cached."
+msgstr ""
+
+#: includes/class-mla-options.php:508 includes/class-mla-settings.php:1325
+msgid "Taxonomy Support"
+msgstr ""
+
+#: includes/class-mla-options.php:513
+msgid "Compute Attachments Column"
+msgstr ""
+
+#: includes/class-mla-options.php:516
+msgid ""
+"Check this option to calculate attachments per term in the Attachments "
+"Column."
+msgstr ""
+
+#: includes/class-mla-options.php:520
+msgid ""
+"Check the \"<strong>Support</strong>\" box to add the taxonomy to the "
+"Assistant and the Edit Media screen."
+msgstr ""
+
+#: includes/class-mla-options.php:521
+msgid ""
+"Check the \"<strong>Inline Edit</strong>\" box to display the taxonomy in "
+"the Quick Edit and Bulk Edit areas."
+msgstr ""
+
+#: includes/class-mla-options.php:522
+msgid ""
+"Check the \"<strong>Term Search</strong>\" box to add the taxonomy to the "
+"\"Search Media/Terms\" list."
+msgstr ""
+
+#: includes/class-mla-options.php:523 includes/class-mla-options.php:704
+#: includes/class-mla-settings.php:1357 includes/class-mla-settings.php:1358
+msgid "For complete documentation"
+msgstr ""
+
+#: includes/class-mla-options.php:523 includes/class-mla-options.php:704
+#: includes/class-mla-settings.php:1357 includes/class-mla-settings.php:1358
+msgid "click here"
+msgstr ""
+
+#: includes/class-mla-options.php:525
+msgid ""
+"Check the \"<strong>Checklist</strong>\" box to enable the checklist-style "
+"meta box for a flat taxonomy."
+msgstr ""
+
+#: includes/class-mla-options.php:526
+msgid ""
+"You must also check the <strong>\"Enable enhanced checklist taxonomies\"</"
+"strong> box below to enable this feature."
+msgstr ""
+
+#: includes/class-mla-options.php:527
+msgid ""
+"Check the \"<strong>Checked On Top</strong>\" box to moved checked terms to "
+"the top of the checklist-style meta box."
+msgstr ""
+
+#: includes/class-mla-options.php:528
+msgid ""
+"Use the \"<strong>List Filter</strong>\" option to select the taxonomy on "
+"which to filter the Assistant table listing."
+msgstr ""
+
+#: includes/class-mla-options.php:554
+msgid "Media/Assistant Screen Options"
+msgstr ""
+
+#: includes/class-mla-options.php:559
+msgid "Admin Menu Options"
+msgstr ""
+
+#: includes/class-mla-options.php:564
+msgid "Page Title"
+msgstr ""
+
+#: includes/class-mla-options.php:566 includes/class-mla-settings.php:442
+#: includes/class-mla-settings.php:2933
+msgid "Media Library Assistant"
+msgstr ""
+
+#: includes/class-mla-options.php:568
+msgid "Enter the title for the Media/Assistant submenu page"
+msgstr ""
+
+#: includes/class-mla-options.php:572
+msgid "Menu Title"
+msgstr ""
+
+#: includes/class-mla-options.php:574
+msgid "Assistant"
+msgstr ""
+
+#: includes/class-mla-options.php:576
+msgid "Enter the title for the Media/Assistant submenu entry"
+msgstr ""
+
+#: includes/class-mla-options.php:580
+msgid "Submenu Order"
+msgstr ""
+
+#: includes/class-mla-options.php:584
+msgid ""
+"Enter the position of the Media/Assistant submenu entry.<br>&nbsp;&nbsp;0 = "
+"natural order (at bottom),&nbsp;&nbsp;&nbsp;&nbsp;1 - 4 = at top<br>&nbsp;"
+"&nbsp;6-9 = after \"Library\",&nbsp;&nbsp;&nbsp;&nbsp;11-16 = after \"Add New"
+"\""
+msgstr ""
+
+#: includes/class-mla-options.php:588
+msgid "Display Media/Library"
+msgstr ""
+
+#: includes/class-mla-options.php:591
+msgid ""
+"Check/uncheck this option to display/remove the WordPress Media/Library "
+"submenu entry."
+msgstr ""
+
+#: includes/class-mla-options.php:595
+msgid "Table Defaults"
+msgstr ""
+
+#: includes/class-mla-options.php:600
+msgid "Order By"
+msgstr ""
+
+#: includes/class-mla-options.php:604 includes/class-mla-options.php:806
+msgid "Title/Name"
+msgstr ""
+
+#: includes/class-mla-options.php:605
+msgid "Select the column for the sort order of the Assistant table listing."
+msgstr ""
+
+#: includes/class-mla-options.php:609
+msgid "Order"
+msgstr ""
+
+#: includes/class-mla-options.php:613
+msgid "Ascending"
+msgstr ""
+
+#: includes/class-mla-options.php:613
+msgid "Descending"
+msgstr ""
+
+#: includes/class-mla-options.php:614 includes/class-mla-options.php:816
+msgid "Choose the sort order."
+msgstr ""
+
+#: includes/class-mla-options.php:618
+msgid "Views Width"
+msgstr ""
+
+#: includes/class-mla-options.php:622
+msgid "Enter the width for the views list, in pixels (px) or percent (%)"
+msgstr ""
+
+#: includes/class-mla-options.php:626
+msgid "Icon Size"
+msgstr ""
+
+#: includes/class-mla-options.php:630
+msgid "Enter the size of the thumbnail/icon images, in pixels"
+msgstr ""
+
+#: includes/class-mla-options.php:634
+msgid "Bulk Chunk Size"
+msgstr ""
+
+#: includes/class-mla-options.php:638
+msgid "Enter the size of the Bulk Edit and Map All processing chunks"
+msgstr ""
+
+#: includes/class-mla-options.php:642
+msgid "Taxonomy Filter parameters"
+msgstr ""
+
+#: includes/class-mla-options.php:647
+msgid "Maximum Depth"
+msgstr ""
+
+#: includes/class-mla-options.php:651
+msgid ""
+"Enter the number of levels displayed for hierarchial taxonomies; enter zero "
+"for no limit."
+msgstr ""
+
+#: includes/class-mla-options.php:655
+msgid "Include Children"
+msgstr ""
+
+#: includes/class-mla-options.php:658
+msgid ""
+"Check/uncheck this option to include/exclude children for hierarchical "
+"taxonomies."
+msgstr ""
+
+#: includes/class-mla-options.php:662
+msgid "Search Media Defaults"
+msgstr ""
+
+#: includes/class-mla-options.php:667
+msgid "Display Search Controls"
+msgstr ""
+
+#: includes/class-mla-options.php:670 includes/class-mla-options.php:777
+msgid ""
+"Check/uncheck this option to display/hide the and/or connector and search "
+"fields controls."
+msgstr ""
+
+#: includes/class-mla-options.php:674
+msgid ""
+"Use these controls to set defaults for the and/or connector and search "
+"fields controls.<br>These defaults will be used for the Search Media boxes "
+"on both the Media/Assistant submenu<br>and the Media Manager Modal Window."
+msgstr ""
+
+#: includes/class-mla-options.php:687
+msgid "Media/Edit Media Enhancements"
+msgstr ""
+
+#: includes/class-mla-options.php:692
+msgid "Enable enhanced \"checklist\" taxonomies"
+msgstr ""
+
+#: includes/class-mla-options.php:695
+msgid ""
+"Check this option to enable the \"? Search\" feature for hierarchical "
+"taxonomies, e.g., Att. Categories.<br>&nbsp;&nbsp;This option also enables "
+"the \"checklist-style\" support for flat taxonomies, e.g., Att. Tags."
+msgstr ""
+
+#: includes/class-mla-options.php:699
+msgid "Enable Edit Media additional meta boxes"
+msgstr ""
+
+#: includes/class-mla-options.php:702
+msgid ""
+"Check this option to add \"Parent Info\", \"Menu Order\", \"Attachment "
+"Metadata\" and four \"where-used\" meta boxes to the Edit Media screen."
+msgstr ""
+
+#: includes/class-mla-options.php:703
+msgid "You can also use Filters to customize the meta boxes."
+msgstr ""
+
+#: includes/class-mla-options.php:708
+msgid "Media/Add New Enhancements"
+msgstr ""
+
+#: includes/class-mla-options.php:713
+msgid "Enable \"bulk edit\" area"
+msgstr ""
+
+#: includes/class-mla-options.php:716
+msgid ""
+"Check this option to enable the \"Bulk Edit area\" feature on the Media/Add "
+"New screen."
+msgstr ""
+
+#: includes/class-mla-options.php:720
+msgid "Media Manager/Media Grid Enhancements"
+msgstr ""
+
+#: includes/class-mla-options.php:725
+msgid "Enable Media Grid Enhancements"
+msgstr ""
+
+#: includes/class-mla-options.php:728
+msgid ""
+"Check/uncheck this option to enable/disable Media Library Grid View "
+"Enhancements."
+msgstr ""
+
+#: includes/class-mla-options.php:732
+msgid "Enable Media Manager Enhancements"
+msgstr ""
+
+#: includes/class-mla-options.php:735
+msgid ""
+"Check/uncheck this option to enable/disable Media Manager Modal Window "
+"Enhancements."
+msgstr ""
+
+#: includes/class-mla-options.php:739
+msgid "Media Manager Enhanced MIME Type filter"
+msgstr ""
+
+#: includes/class-mla-options.php:742
+msgid ""
+"Check this option to filter by more MIME Types, e.g., text, applications."
+msgstr ""
+
+#: includes/class-mla-options.php:746
+msgid "Media Manager Month and Year filter"
+msgstr ""
+
+#: includes/class-mla-options.php:749
+msgid "Check this option to filter by month and year uploaded."
+msgstr ""
+
+#: includes/class-mla-options.php:753
+msgid "Media Manager Category/Tag filter"
+msgstr ""
+
+#: includes/class-mla-options.php:756
+msgid "Check this option to filter by taxonomy terms."
+msgstr ""
+
+#: includes/class-mla-options.php:760
+msgid "Media Manager Terms Search popup"
+msgstr ""
+
+#: includes/class-mla-options.php:763
+msgid "Check this option to enable the \"Terms Search\" popup window."
+msgstr ""
+
+#: includes/class-mla-options.php:767
+msgid "Media Manager Enhanced Search Media box"
+msgstr ""
+
+#: includes/class-mla-options.php:770
+msgid "Check this option to enable search box enhancements."
+msgstr ""
+
+#: includes/class-mla-options.php:774
+msgid "Media Manager Enhanced Search Media Controls"
+msgstr ""
+
+#: includes/class-mla-options.php:781
+msgid "Media Manager Checklist meta boxes"
+msgstr ""
+
+#: includes/class-mla-options.php:784
+msgid ""
+"Check this option to enable MLA-enhanced meta boxes in the \"ATTACHMENT "
+"DETAILS\" pane.<br>&nbsp;&nbsp;This option is for any taxonomy that uses a "
+"<strong>\"checklist-style\"</strong> meta box.</strong>"
+msgstr ""
+
+#: includes/class-mla-options.php:788
+msgid "Media Manager Flat meta boxes"
+msgstr ""
+
+#: includes/class-mla-options.php:791
+msgid ""
+"Check this option to enable MLA-enhanced meta boxes in the \"ATTACHMENT "
+"DETAILS\" pane.<br>&nbsp;&nbsp;This option is for <strong>flat taxonomies</"
+"strong>, e.g., \"Tags\" or \"Att. Tags\", that do not use the \"checklist-"
+"style\" meta box."
+msgstr ""
+
+#: includes/class-mla-options.php:795
+msgid "Media Manager auto-fill meta boxes"
+msgstr ""
+
+#: includes/class-mla-options.php:798
+msgid ""
+"Check this option to automatically fill MLA-enhanced meta boxes in the "
+"\"ATTACHMENT DETAILS\" pane<br>&nbsp;&nbsp;when the item is selected."
+msgstr ""
+
+#: includes/class-mla-options.php:802
+msgid "Media Manager Order By"
+msgstr ""
+
+#: includes/class-mla-options.php:806 includes/class-mla-options.php:815
+#: includes/class-mla-options.php:830 includes/class-mla-options.php:844
+#: includes/class-mla-options.php:858 includes/class-mla-settings.php:1407
+msgid "Media Manager Default"
+msgstr ""
+
+#: includes/class-mla-options.php:807
+msgid ""
+"If you want to override the Media Manager default,<br>&nbsp;&nbsp;select a "
+"column for the sort order of the Media Library listing."
+msgstr ""
+
+#: includes/class-mla-options.php:811
+msgid "Media Manager Order"
+msgstr ""
+
+#: includes/class-mla-options.php:820
+msgid "Attachment Display Settings"
+msgstr ""
+
+#. translators: 1: option name, e.g., Alignment, Link To or Size
+#: includes/class-mla-options.php:825 includes/class-mla-options.php:827
+msgid "Alignment"
+msgstr ""
+
+#: includes/class-mla-options.php:830
+msgid "Left"
+msgstr ""
+
+#: includes/class-mla-options.php:830
+msgid "Center"
+msgstr ""
+
+#: includes/class-mla-options.php:830
+msgid "Right"
+msgstr ""
+
+#. translators: 1: option name, e.g., Alignment, Link To or Size
+#: includes/class-mla-options.php:839 includes/class-mla-options.php:841
+msgid "Link To"
+msgstr ""
+
+#: includes/class-mla-options.php:844
+msgid "Media File"
+msgstr ""
+
+#: includes/class-mla-options.php:844
+msgid "Attachment Page"
+msgstr ""
+
+#: includes/class-mla-options.php:844
+msgid "Custom URL"
+msgstr ""
+
+#. translators: 1: option name, e.g., Alignment, Link To or Size
+#: includes/class-mla-options.php:853 includes/class-mla-options.php:855
+msgid "Size"
+msgstr ""
+
+#: includes/class-mla-options.php:858
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/class-mla-options.php:858
+msgid "Medium"
+msgstr ""
+
+#: includes/class-mla-options.php:858
+msgid "Large"
+msgstr ""
+
+#: includes/class-mla-options.php:858
+msgid "Full Size"
+msgstr ""
+
+#: includes/class-mla-options.php:867
+msgid "Default [mla_gallery] Templates and Settings"
+msgstr ""
+
+#: includes/class-mla-options.php:872 includes/class-mla-options.php:916
+msgid "Style Template"
+msgstr ""
+
+#. translators: 1: template type 2: shortcode
+#: includes/class-mla-options.php:878 includes/class-mla-options.php:888
+#: includes/class-mla-options.php:922 includes/class-mla-options.php:932
+#, php-format
+msgid "Select the default %1$s for your %2$s shortcodes."
+msgstr ""
+
+#: includes/class-mla-options.php:878 includes/class-mla-options.php:922
+#: includes/class-mla-settings.php:3028 includes/class-mla-settings.php:3039
+#: includes/class-mla-settings.php:3045 includes/class-mla-settings.php:3049
+#: includes/class-mla-settings.php:3077 includes/class-mla-settings.php:3088
+msgid "style template"
+msgstr ""
+
+#: includes/class-mla-options.php:882 includes/class-mla-options.php:926
+msgid "Markup Template"
+msgstr ""
+
+#: includes/class-mla-options.php:888 includes/class-mla-options.php:932
+#: includes/class-mla-settings.php:3117 includes/class-mla-settings.php:3130
+#: includes/class-mla-settings.php:3136 includes/class-mla-settings.php:3140
+#: includes/class-mla-settings.php:3209
+msgid "markup template"
+msgstr ""
+
+#: includes/class-mla-options.php:892 includes/class-mla-options.php:936
+msgid "Default columns"
+msgstr ""
+
+#: includes/class-mla-options.php:896
+msgid ""
+"Enter the number of [mla_tag_cloud] columns; must be a positive integer."
+msgstr ""
+
+#: includes/class-mla-options.php:900 includes/class-mla-options.php:944
+msgid "Default mla_margin"
+msgstr ""
+
+#: includes/class-mla-options.php:904 includes/class-mla-options.php:948
+msgid ""
+"Enter the CSS \"margin\" property value, in length (px, em, pt, etc.), "
+"percent (%), \"auto\" or \"inherit\".<br>&nbsp;&nbsp;Enter \"none\" to "
+"remove the property entirely."
+msgstr ""
+
+#: includes/class-mla-options.php:908 includes/class-mla-options.php:952
+msgid "Default mla_itemwidth"
+msgstr ""
+
+#: includes/class-mla-options.php:912 includes/class-mla-options.php:956
+msgid ""
+"Enter the CSS \"width\" property value, in length (px, em, pt, etc.), "
+"percent (%), \"auto\" or \"inherit\".<br>&nbsp;&nbsp;Enter \"calculate"
+"\" (the default) to calculate the value taking the \"margin\" value into "
+"account.<br>&nbsp;&nbsp;Enter \"exact\" to calculate the value without "
+"considering the \"margin\" value.<br>&nbsp;&nbsp;Enter \"none\" to remove "
+"the property entirely."
+msgstr ""
+
+#: includes/class-mla-options.php:940
+msgid "Enter the number of [mla_gallery] columns; must be a positive integer."
+msgstr ""
+
+#: includes/class-mla-options.php:976
+msgid "Enable custom field mapping when adding new media"
+msgstr ""
+
+#: includes/class-mla-options.php:979
+msgid ""
+"Check this option to enable mapping when uploading new media (attachments)."
+"<br>&nbsp;&nbsp;Click Save Changes at the bottom of the screen if you change "
+"this option.<br>&nbsp;&nbsp;Does NOT affect the operation of the \"Map\" "
+"buttons on the bulk edit, single edit and settings screens."
+msgstr ""
+
+#: includes/class-mla-options.php:983
+msgid "Enable custom field mapping when updating media metadata"
+msgstr ""
+
+#: includes/class-mla-options.php:986 includes/class-mla-options.php:1010
+msgid ""
+"Check this option to enable mapping when media (attachments) metadata is "
+"regenerated,<br>&nbsp;&nbsp;e.g., when the Media/Edit Media \"Edit Image\" "
+"functions are used."
+msgstr ""
+
+#: includes/class-mla-options.php:990
+msgid ""
+"Update the custom field mapping values above, then click Save Changes to "
+"make the updates permanent.<br>You can also make temporary updates and click "
+"a Map All Attachments button to apply the rule(s) to all attachments without "
+"saving any rule changes."
+msgstr ""
+
+#: includes/class-mla-options.php:1000
+msgid "Enable IPTC/EXIF Mapping when adding new media"
+msgstr ""
+
+#: includes/class-mla-options.php:1003
+msgid ""
+"Check this option to enable mapping when uploading new media (attachments)."
+"<br>&nbsp;&nbsp;Does NOT affect the operation of the \"Map\" buttons on the "
+"bulk edit, single edit and settings screens."
+msgstr ""
+
+#: includes/class-mla-options.php:1007
+msgid "Enable IPTC/EXIF Mapping when updating media metadata"
+msgstr ""
+
+#: includes/class-mla-options.php:1014
+msgid ""
+"Update the standard field mapping values above, then click <strong>Save "
+"Changes</strong> to make the updates permanent.<br>You can also make "
+"temporary updates and click <strong>Map All Attachments, Standard Fields "
+"Now</strong> to apply the updates to all attachments without saving the rule "
+"changes."
+msgstr ""
+
+#: includes/class-mla-options.php:1024
+msgid ""
+"Update the taxonomy term mapping values above, then click <strong>Save "
+"Changes</strong> or <strong>Map All Attachments, Taxonomy Terms Now</strong>."
+msgstr ""
+
+#: includes/class-mla-options.php:1034
+msgid ""
+"<strong>Update</strong> individual custom field mapping values above, or "
+"make several updates and click <strong>Save Changes</strong> below to apply "
+"them all at once.<br>You can also <strong>add a new rule</strong> for an "
+"existing field or <strong>add a new field</strong> and rule.<br>You can make "
+"temporary updates and click <strong>Map All Attachments, Custom Fields Now</"
+"strong> to apply the updates to all attachments without saving the rule "
+"changes."
+msgstr ""
+
+#: includes/class-mla-options.php:1044
+msgid "IPTC/EXIF Mapping help"
+msgstr ""
+
+#: includes/class-mla-options.php:1096
+msgid "Enable View and Post MIME Type Support"
+msgstr ""
+
+#: includes/class-mla-options.php:1099
+msgid ""
+"Check/uncheck this option to enable/disable Post MIME Type Support, then "
+"click <strong>Save Changes</strong> to record the new setting."
+msgstr ""
+
+#: includes/class-mla-options.php:1108
+msgid "Post MIME Types help."
+msgstr ""
+
+#: includes/class-mla-options.php:1111
+msgctxt "post_mime_types_singular"
+msgid "All"
+msgstr ""
+
+#: includes/class-mla-options.php:1112
+msgctxt "post_mime_types_plural"
+msgid "All"
+msgstr ""
+
+#: includes/class-mla-options.php:1117 includes/class-mla-options.php:1171
+#: includes/class-mla-options.php:1180
+msgctxt "post_mime_types_description"
+msgid "Built-in view"
+msgstr ""
+
+#: includes/class-mla-options.php:1120
+msgctxt "post_mime_types_singular"
+msgid "Image"
+msgstr ""
+
+#: includes/class-mla-options.php:1121
+msgctxt "post_mime_types_plural"
+msgid "Images"
+msgstr ""
+
+#: includes/class-mla-options.php:1126
+msgctxt "post_mime_types_description"
+msgid "All image subtypes"
+msgstr ""
+
+#: includes/class-mla-options.php:1129
+msgctxt "post_mime_types_singular"
+msgid "Audio"
+msgstr ""
+
+#: includes/class-mla-options.php:1130
+msgctxt "post_mime_types_plural"
+msgid "Audio"
+msgstr ""
+
+#: includes/class-mla-options.php:1135
+msgctxt "post_mime_types_description"
+msgid "All audio subtypes"
+msgstr ""
+
+#: includes/class-mla-options.php:1138
+msgctxt "post_mime_types_singular"
+msgid "Video"
+msgstr ""
+
+#: includes/class-mla-options.php:1139
+msgctxt "post_mime_types_plural"
+msgid "Video"
+msgstr ""
+
+#: includes/class-mla-options.php:1144
+msgctxt "post_mime_types_description"
+msgid "All video subtypes"
+msgstr ""
+
+#: includes/class-mla-options.php:1147
+msgctxt "post_mime_types_singular"
+msgid "Text"
+msgstr ""
+
+#: includes/class-mla-options.php:1148
+msgctxt "post_mime_types_plural"
+msgid "Text"
+msgstr ""
+
+#: includes/class-mla-options.php:1153
+msgctxt "post_mime_types_description"
+msgid "All text subtypes"
+msgstr ""
+
+#: includes/class-mla-options.php:1156
+msgctxt "post_mime_types_singular"
+msgid "Application"
+msgstr ""
+
+#: includes/class-mla-options.php:1157
+msgctxt "post_mime_types_plural"
+msgid "Applications"
+msgstr ""
+
+#: includes/class-mla-options.php:1162
+msgctxt "post_mime_types_description"
+msgid "All application subtypes"
+msgstr ""
+
+#: includes/class-mla-options.php:1166
+msgctxt "post_mime_types_plural"
+msgid "Unattached"
+msgstr ""
+
+#: includes/class-mla-options.php:1174
+msgctxt "post_mime_types_singular"
+msgid "Trash"
+msgstr ""
+
+#: includes/class-mla-options.php:1175
+msgctxt "post_mime_types_plural"
+msgid "Trash"
+msgstr ""
+
+#: includes/class-mla-options.php:1186
+msgid "Enable Upload MIME Type Support"
+msgstr ""
+
+#: includes/class-mla-options.php:1189
+msgid ""
+"Check/uncheck this option to enable/disable Upload MIME Type Support, then "
+"click <strong>Save Changes</strong> to record the new setting."
+msgstr ""
+
+#: includes/class-mla-options.php:1198
+msgid "Upload MIME Types help."
+msgstr ""
+
+#: includes/class-mla-options.php:1203
+msgid "Enable MLA File Type Icons Support"
+msgstr ""
+
+#: includes/class-mla-options.php:1206
+msgid ""
+"Check/uncheck this option to enable/disable MLA File Type Icons Support, "
+"then click <strong>Save Changes</strong> to record the new setting."
+msgstr ""
+
+#: includes/class-mla-options.php:1258 includes/class-mla-options.php:1280
+#: includes/class-mla-options.php:1322
+msgid "no templates exist"
+msgstr ""
+
+#: includes/class-mla-options.php:1266
+msgid "not found"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: option name 3: action, e.g., update, delete, reset
+#: includes/class-mla-options.php:1656 includes/class-mla-options.php:1833
+#: includes/class-mla-options.php:1909 includes/class-mla-options.php:3666
+#: includes/class-mla-options.php:4952
+#, php-format
+msgid "%1$s: Custom %2$s unknown action \"%3$s\""
+msgstr ""
+
+#: includes/class-mla-options.php:1747
+msgid "Support"
+msgstr ""
+
+#: includes/class-mla-options.php:1748
+msgid "Inline Edit"
+msgstr ""
+
+#: includes/class-mla-options.php:1749
+msgid "Term Search"
+msgstr ""
+
+#: includes/class-mla-options.php:1750
+msgid "Checklist"
+msgstr ""
+
+#: includes/class-mla-options.php:1751
+msgid "Checked On Top"
+msgstr ""
+
+#: includes/class-mla-options.php:1752
+msgid "List Filter"
+msgstr ""
+
+#: includes/class-mla-options.php:1753
+msgid "Taxonomy"
+msgstr ""
+
+#. translators: 1: taxonomy name
+#: includes/class-mla-options.php:1772
+#, php-format
+msgid "List Filter ignored; %1$s not supported."
+msgstr ""
+
+#. translators: 1: taxonomy name
+#: includes/class-mla-options.php:1779
+#, php-format
+msgid "Inline Edit ignored; %1$s not supported."
+msgstr ""
+
+#. translators: 1: taxonomy name
+#: includes/class-mla-options.php:1787
+#, php-format
+msgid "Term Search ignored; %1$s not supported."
+msgstr ""
+
+#. translators: 1: taxonomy name
+#: includes/class-mla-options.php:1797
+#, php-format
+msgid "Checklist ignored; %1$s not supported."
+msgstr ""
+
+#. translators: 1: taxonomy name
+#: includes/class-mla-options.php:1805
+#, php-format
+msgid "Checked On Top ignored; %1$s not supported."
+msgstr ""
+
+#. translators: 1: option name, e.g., taxonomy_support
+#: includes/class-mla-options.php:1823 includes/class-mla-options.php:1899
+#, php-format
+msgid "Update custom %1$s"
+msgstr ""
+
+#. translators: 1: option name, e.g., taxonomy_support
+#: includes/class-mla-options.php:1830 includes/class-mla-options.php:1906
+#: includes/class-mla-options.php:4945
+#, php-format
+msgid "Reset custom %1$s"
+msgstr ""
+
+#: includes/class-mla-options.php:1859
+#: includes/mla-main-search-box-template.php:38
+#: includes/mla-media-modal-js-template.php:24
+msgid "and"
+msgstr ""
+
+#: includes/class-mla-options.php:1861
+#: includes/mla-main-search-box-template.php:40
+#: includes/mla-media-modal-js-template.php:28
+msgid "or"
+msgstr ""
+
+#: includes/class-mla-options.php:1866 includes/class-mla-settings.php:2353
+#: includes/class-mla-settings.php:2386 includes/class-mla-settings.php:2412
+#: includes/class-mla-settings.php:2447 includes/class-mla-settings.php:2504
+#: includes/class-mla-settings.php:2554
+#: includes/mla-main-search-box-template.php:43
+#: includes/mla-media-modal-js-template.php:36
+msgid "Name"
+msgstr ""
+
+#: includes/class-mla-options.php:1878
+#: includes/mla-main-search-box-template.php:47
+#: includes/mla-media-modal-js-template.php:53
+msgid "Terms"
+msgstr ""
+
+#: includes/class-mla-options.php:2998 includes/class-mla-options.php:3126
+#: includes/class-mla-options.php:4107 includes/class-mla-options.php:4138
+#: includes/class-mla-settings.php:1805
+msgid "None (select a value)"
+msgstr ""
+
+#: includes/class-mla-options.php:3133
+msgid "Metadata (see below)"
+msgstr ""
+
+#: includes/class-mla-options.php:3140
+msgid "Template (see below)"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: custom field name
+#: includes/class-mla-options.php:3207 includes/class-mla-options.php:4412
+#, php-format
+msgid "%1$s: New field %2$s already exists."
+msgstr ""
+
+#. translators: 1: custom field name
+#: includes/class-mla-options.php:3212 includes/class-mla-options.php:4417
+#, php-format
+msgid "Adding new field %1$s."
+msgstr ""
+
+#. translators: 1: custom field name
+#: includes/class-mla-options.php:3220 includes/class-mla-options.php:4425
+#, php-format
+msgid "Adding new rule for %1$s."
+msgstr ""
+
+#. translators: 1: custom field name
+#: includes/class-mla-options.php:3248 includes/class-mla-options.php:4287
+#: includes/class-mla-options.php:4448
+#, php-format
+msgid "Deleting rule for %1$s."
+msgstr ""
+
+#. translators: 1: custom field name 2: attribute 3: old value 4: new value
+#: includes/class-mla-options.php:3271 includes/class-mla-options.php:3292
+#: includes/class-mla-options.php:3342 includes/class-mla-options.php:3349
+#: includes/class-mla-options.php:4204 includes/class-mla-options.php:4211
+#: includes/class-mla-options.php:4218 includes/class-mla-options.php:4312
+#: includes/class-mla-options.php:4319 includes/class-mla-options.php:4354
+#: includes/class-mla-options.php:4361 includes/class-mla-options.php:4458
+#: includes/class-mla-options.php:4465
+#, php-format
+msgid "%1$s changing %2$s from %3$s to %4$s."
+msgstr ""
+
+#: includes/class-mla-options.php:3271 includes/class-mla-options.php:3623
+msgid "Data Source"
+msgstr ""
+
+#: includes/class-mla-options.php:3277 includes/class-mla-options.php:4238
+#: includes/class-mla-options.php:4339 includes/class-mla-options.php:4485
+msgid "Replace to Keep"
+msgstr ""
+
+#: includes/class-mla-options.php:3280 includes/class-mla-options.php:4241
+#: includes/class-mla-options.php:4342 includes/class-mla-options.php:4488
+msgid "Keep to Replace"
+msgstr ""
+
+#. translators: 1: custom field name 2: attribute 3: old value 'to' new value
+#: includes/class-mla-options.php:3285 includes/class-mla-options.php:3306
+#: includes/class-mla-options.php:3320 includes/class-mla-options.php:3334
+#: includes/class-mla-options.php:3363 includes/class-mla-options.php:4232
+#: includes/class-mla-options.php:4246 includes/class-mla-options.php:4333
+#: includes/class-mla-options.php:4347 includes/class-mla-options.php:4479
+#: includes/class-mla-options.php:4493
+#, php-format
+msgid "%1$s changing %2$s value from %3$s."
+msgstr ""
+
+#: includes/class-mla-options.php:3285 includes/class-mla-options.php:3624
+#: includes/class-mla-options.php:4246 includes/class-mla-options.php:4347
+#: includes/class-mla-options.php:4493 includes/class-mla-options.php:4619
+#: includes/class-mla-options.php:4705 includes/class-mla-options.php:4843
+msgid "Existing Text"
+msgstr ""
+
+#: includes/class-mla-options.php:3292 includes/class-mla-options.php:3625
+msgid "Format"
+msgstr ""
+
+#: includes/class-mla-options.php:3298 includes/class-mla-options.php:3312
+#: includes/class-mla-options.php:3326 includes/class-mla-options.php:3355
+msgid "unchecked to checked"
+msgstr ""
+
+#: includes/class-mla-options.php:3301 includes/class-mla-options.php:3315
+#: includes/class-mla-options.php:3329 includes/class-mla-options.php:3358
+msgid "checked to unchecked"
+msgstr ""
+
+#: includes/class-mla-options.php:3306 includes/class-mla-options.php:3626
+msgid "MLA Column"
+msgstr ""
+
+#: includes/class-mla-options.php:3342
+msgid "Metavalue name"
+msgstr ""
+
+#: includes/class-mla-options.php:3349 includes/class-mla-options.php:3457
+#: includes/class-mla-options.php:3559 includes/class-mla-options.php:3603
+msgid "Option"
+msgstr ""
+
+#: includes/class-mla-options.php:3363 includes/class-mla-options.php:3469
+#: includes/class-mla-options.php:3571 includes/class-mla-options.php:3615
+msgid "Delete NULL values"
+msgstr ""
+
+#: includes/class-mla-options.php:3402 includes/class-mla-options.php:4717
+msgid "No Custom Field Mapping Rules Defined"
+msgstr ""
+
+#: includes/class-mla-options.php:3441 includes/class-mla-options.php:3544
+#: includes/class-mla-options.php:3588 includes/class-mla-options.php:4594
+#: includes/class-mla-options.php:4644 includes/class-mla-options.php:4763
+#: includes/class-mla-options.php:4805 includes/class-mla-options.php:4830
+msgid "Keep"
+msgstr ""
+
+#: includes/class-mla-options.php:3445 includes/class-mla-options.php:3548
+#: includes/class-mla-options.php:3592
+msgid "Native"
+msgstr ""
+
+#: includes/class-mla-options.php:3447 includes/class-mla-options.php:3550
+#: includes/class-mla-options.php:3594
+msgid "Commas"
+msgstr ""
+
+#: includes/class-mla-options.php:3449 includes/class-mla-options.php:3552
+#: includes/class-mla-options.php:3596
+msgid "Raw"
+msgstr ""
+
+#: includes/class-mla-options.php:3459 includes/class-mla-options.php:3561
+#: includes/class-mla-options.php:3605
+msgid "Text"
+msgstr ""
+
+#: includes/class-mla-options.php:3461 includes/class-mla-options.php:3563
+#: includes/class-mla-options.php:3607
+msgid "Single"
+msgstr ""
+
+#: includes/class-mla-options.php:3463 includes/class-mla-options.php:3565
+#: includes/class-mla-options.php:3609
+msgid "Export"
+msgstr ""
+
+#: includes/class-mla-options.php:3465 includes/class-mla-options.php:3567
+#: includes/class-mla-options.php:3611
+msgid "Array"
+msgstr ""
+
+#: includes/class-mla-options.php:3467 includes/class-mla-options.php:3569
+#: includes/class-mla-options.php:3613
+msgid "Multi"
+msgstr ""
+
+#: includes/class-mla-options.php:3470 includes/class-mla-options.php:4766
+msgid "Delete Rule"
+msgstr ""
+
+#: includes/class-mla-options.php:3471 includes/class-mla-options.php:4767
+msgid "Delete Rule AND Field"
+msgstr ""
+
+#: includes/class-mla-options.php:3472 includes/class-mla-options.php:4768
+msgid "Update Rule"
+msgstr ""
+
+#: includes/class-mla-options.php:3473 includes/class-mla-options.php:4769
+#: includes/class-mla-settings.php:706 includes/class-mla-settings.php:837
+msgid "Map All Attachments"
+msgstr ""
+
+#: includes/class-mla-options.php:3539 includes/class-mla-options.php:4794
+msgid "Add a new Mapping Rule"
+msgstr ""
+
+#: includes/class-mla-options.php:3572 includes/class-mla-options.php:4808
+msgid "Add Rule"
+msgstr ""
+
+#: includes/class-mla-options.php:3573 includes/class-mla-options.php:4809
+msgid "Add Rule and Map All Attachments"
+msgstr ""
+
+#: includes/class-mla-options.php:3583 includes/class-mla-options.php:4819
+msgid "Add a new Field and Mapping Rule"
+msgstr ""
+
+#: includes/class-mla-options.php:3616 includes/class-mla-options.php:4833
+msgid "Add Field"
+msgstr ""
+
+#: includes/class-mla-options.php:3617 includes/class-mla-options.php:4834
+msgid "Add Field and Map All Attachments"
+msgstr ""
+
+#: includes/class-mla-options.php:3622 includes/class-mla-options.php:4204
+#: includes/class-mla-options.php:4615 includes/class-mla-options.php:4701
+#: includes/class-mla-options.php:4839
+msgid "Field Title"
+msgstr ""
+
+#: includes/class-mla-options.php:3647
+msgid "Custom field mapping rules updated."
+msgstr ""
+
+#: includes/class-mla-options.php:3649
+msgid "Custom field mapping rules update failed."
+msgstr ""
+
+#: includes/class-mla-options.php:3652 includes/class-mla-settings.php:751
+#: includes/class-mla-settings.php:757
+msgid "Custom field no mapping rule changes detected."
+msgstr ""
+
+#: includes/class-mla-options.php:3660
+msgid "Custom field mapping settings saved."
+msgstr ""
+
+#: includes/class-mla-options.php:3662
+msgid "Custom field mapping settings reset failed."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: custom field name
+#: includes/class-mla-options.php:4192
+#, php-format
+msgid "%1$s: No old values for %2$s."
+msgstr ""
+
+#: includes/class-mla-options.php:4211 includes/class-mla-options.php:4312
+#: includes/class-mla-options.php:4458 includes/class-mla-options.php:4616
+#: includes/class-mla-options.php:4702 includes/class-mla-options.php:4840
+msgid "IPTC Value"
+msgstr ""
+
+#: includes/class-mla-options.php:4218 includes/class-mla-options.php:4319
+#: includes/class-mla-options.php:4465
+msgid "EXIF Value"
+msgstr ""
+
+#: includes/class-mla-options.php:4224 includes/class-mla-options.php:4325
+#: includes/class-mla-options.php:4471
+msgid "EXIF to IPTC"
+msgstr ""
+
+#: includes/class-mla-options.php:4227 includes/class-mla-options.php:4328
+#: includes/class-mla-options.php:4474
+msgid "IPTC to EXIF"
+msgstr ""
+
+#: includes/class-mla-options.php:4232 includes/class-mla-options.php:4333
+#: includes/class-mla-options.php:4479 includes/class-mla-options.php:4618
+#: includes/class-mla-options.php:4704 includes/class-mla-options.php:4842
+msgid "Priority"
+msgstr ""
+
+#: includes/class-mla-options.php:4354 includes/class-mla-options.php:4706
+msgid "Delimiter(s)"
+msgstr ""
+
+#: includes/class-mla-options.php:4590 includes/class-mla-options.php:4640
+#: includes/class-mla-options.php:4759 includes/class-mla-options.php:4801
+#: includes/class-mla-options.php:4826
+msgid "IPTC"
+msgstr ""
+
+#: includes/class-mla-options.php:4592 includes/class-mla-options.php:4642
+#: includes/class-mla-options.php:4761 includes/class-mla-options.php:4803
+#: includes/class-mla-options.php:4828
+msgid "EXIF"
+msgstr ""
+
+#: includes/class-mla-options.php:4617 includes/class-mla-options.php:4703
+#: includes/class-mla-options.php:4841
+msgid "EXIF/Template Value"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: option name
+#: includes/class-mla-options.php:4851
+#, php-format
+msgid "%1$s: Render unknown custom %2$s."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: option name
+#: includes/class-mla-options.php:4895
+#, php-format
+msgid "%1$s: Update/delete unknown custom %2$s."
+msgstr ""
+
+#: includes/class-mla-options.php:4901
+msgid "IPTC/EXIF mapping settings updated."
+msgstr ""
+
+#: includes/class-mla-options.php:4903
+msgid "IPTC/EXIF settings update failed."
+msgstr ""
+
+#: includes/class-mla-options.php:4906 includes/class-mla-settings.php:885
+#: includes/class-mla-settings.php:891
+msgid "IPTC/EXIF no mapping changes detected."
+msgstr ""
+
+#. translators: 1: field type
+#: includes/class-mla-options.php:4917 includes/class-mla-options.php:4927
+#: includes/class-mla-options.php:4937 includes/class-mla-settings.php:3215
+#, php-format
+msgid "%1$s settings saved."
+msgstr ""
+
+#: includes/class-mla-options.php:4917 includes/class-mla-options.php:4920
+#: includes/class-mla-settings.php:3461 includes/class-mla-settings.php:3500
+#: includes/class-mla-settings.php:3503
+msgid "Standard field"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: field type
+#: includes/class-mla-options.php:4920 includes/class-mla-options.php:4930
+#: includes/class-mla-options.php:4940
+#, php-format
+msgid "%1$s: IPTC/EXIF %2$s settings update failed."
+msgstr ""
+
+#: includes/class-mla-options.php:4927 includes/class-mla-options.php:4930
+#: includes/class-mla-settings.php:3532 includes/class-mla-settings.php:3571
+#: includes/class-mla-settings.php:3574
+msgid "Taxonomy term"
+msgstr ""
+
+#: includes/class-mla-options.php:4937 includes/class-mla-options.php:4940
+#: includes/class-mla-settings.php:3361 includes/class-mla-settings.php:3364
+#: includes/class-mla-settings.php:3618 includes/class-mla-settings.php:3657
+#: includes/class-mla-settings.php:3660
+msgid "Custom field"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: option name, e.g., taxonomy_support
+#: includes/class-mla-options.php:4948
+#, php-format
+msgid "%1$s: Reset unknown custom %2$s"
+msgstr ""
+
+#: includes/class-mla-settings.php:339
+msgid "no slug"
+msgstr ""
+
+#: includes/class-mla-settings.php:350
+msgid "Running"
+msgstr ""
+
+#: includes/class-mla-settings.php:355
+msgid "Skipped"
+msgstr ""
+
+#: includes/class-mla-settings.php:356
+msgid "Reprocessed"
+msgstr ""
+
+#: includes/class-mla-settings.php:442
+msgid "Media Library Assistant Settings"
+msgstr ""
+
+#: includes/class-mla-settings.php:461
+msgid "Views per page"
+msgstr ""
+
+#: includes/class-mla-settings.php:472
+msgid "Types per page"
+msgstr ""
+
+#: includes/class-mla-settings.php:483
+msgid "Upload types per page"
+msgstr ""
+
+#: includes/class-mla-settings.php:619
+msgid "No view slug found"
+msgstr ""
+
+#: includes/class-mla-settings.php:662
+msgid "No upload slug found"
+msgstr ""
+
+#: includes/class-mla-settings.php:702 includes/class-mla-settings.php:2713
+#: includes/class-mla-settings.php:2717
+msgid "Map All Rules, All Attachments Now"
+msgstr ""
+
+#: includes/class-mla-settings.php:826 includes/class-mla-settings.php:2846
+msgid "Map All Attachments, Standard Fields Now"
+msgstr ""
+
+#: includes/class-mla-settings.php:829 includes/class-mla-settings.php:2849
+msgid "Map All Attachments, Taxonomy Terms Now"
+msgstr ""
+
+#: includes/class-mla-settings.php:832 includes/class-mla-settings.php:2852
+msgid "Map All Attachments, Custom Fields Now"
+msgstr ""
+
+#: includes/class-mla-settings.php:955 includes/class-mla-settings.php:2934
+msgid "Settings"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: function name 3: option type, e.g., radio, select, text
+#: includes/class-mla-settings.php:1003 includes/class-mla-settings.php:1035
+#: includes/class-mla-settings.php:1173
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: %2$s unknown type = \"%3$s\""
+msgstr ""
+
+#: includes/class-mla-settings.php:1071 includes/class-mla-settings.php:1331
+msgid "Go to Top"
+msgstr ""
+
+#: includes/class-mla-settings.php:1222
+msgid "General"
+msgstr ""
+
+#: includes/class-mla-settings.php:1223
+msgid "Views"
+msgstr ""
+
+#: includes/class-mla-settings.php:1224
+msgid "Uploads"
+msgstr ""
+
+#: includes/class-mla-settings.php:1225 includes/class-mla-settings.php:3215
+#: includes/class-mla-settings.php:3218
+msgid "MLA Gallery"
+msgstr ""
+
+#: includes/class-mla-settings.php:1226
+msgid "Custom Fields"
+msgstr ""
+
+#: includes/class-mla-settings.php:1228
+msgid "Documentation"
+msgstr ""
+
+#: includes/class-mla-settings.php:1323
+msgid "General Processing Options"
+msgstr ""
+
+#. translators: 1: - 4: page subheader values
+#: includes/class-mla-settings.php:1325
+#, php-format
+msgid ""
+"In this tab you can find a number of options for controlling the "
+"plugin&rsquo;s operation. Scroll down to find options for %1$s, %2$s, %3$s "
+"and %4$s. Be sure to click \"Save Changes\" at the bottom of the tab to save "
+"any changes you make."
+msgstr ""
+
+#: includes/class-mla-settings.php:1325
+msgid "Media/Assistant Table Defaults"
+msgstr ""
+
+#: includes/class-mla-settings.php:1325
+msgid "Media Manager Enhancements"
+msgstr ""
+
+#: includes/class-mla-settings.php:1326 includes/class-mla-settings.php:1684
+#: includes/class-mla-settings.php:1737 includes/class-mla-settings.php:2153
+#: includes/class-mla-settings.php:2203 includes/class-mla-settings.php:2289
+#: includes/class-mla-settings.php:2712 includes/class-mla-settings.php:2715
+#: includes/class-mla-settings.php:2854 includes/class-mla-settings.php:2856
+msgid "Save Changes"
+msgstr ""
+
+#: includes/class-mla-settings.php:1327
+msgid "Export ALL Settings"
+msgstr ""
+
+#: includes/class-mla-settings.php:1328
+msgid "Delete General options and restore default settings"
+msgstr ""
+
+#: includes/class-mla-settings.php:1332
+msgid "Support Our Work"
+msgstr ""
+
+#: includes/class-mla-settings.php:1333 includes/class-mla-settings.php:1336
+msgid "Donate to FTJ"
+msgstr ""
+
+#: includes/class-mla-settings.php:1334
+msgid "Donate"
+msgstr ""
+
+#. translators: 1: donation hyperlink
+#: includes/class-mla-settings.php:1336
+#, php-format
+msgid ""
+"This plugin was inspired by my work on the WordPress web site for our "
+"nonprofit, Fair Trade Judaica. If you find the Media Library Assistant "
+"plugin useful and would like to support a great cause, consider a %1$s to "
+"our work. Thank you!"
+msgstr ""
+
+#: includes/class-mla-settings.php:1336
+msgid "tax-deductible donation"
+msgstr ""
+
+#: includes/class-mla-settings.php:1357
+msgid "enhanced version of the WordPress [gallery] shortcode."
+msgstr ""
+
+#: includes/class-mla-settings.php:1358
+msgid "enhanced version of the WordPress Tag Cloud."
+msgstr ""
+
+#: includes/class-mla-settings.php:1370
+msgid "Shortcodes made available by this plugin"
+msgstr ""
+
+#: includes/class-mla-settings.php:1478
+msgid "Edit View"
+msgstr ""
+
+#: includes/class-mla-settings.php:1484 includes/class-mla-settings.php:1741
+msgid ""
+"The &#8220;slug&#8221; is the URL-friendly, unique key for the view. It must "
+"be all lowercase and contain only letters, numbers, periods (.), slashes (/) "
+"and hyphens (-). For &#8220;<strong>Post MIME Type</strong>&#8221; views, "
+"the slug is also the MIME type specification and <strong>must be a valid "
+"MIME</strong> type, e.g., &#8220;image&#8221; or &#8220;image/jpeg&#8221;."
+msgstr ""
+
+#: includes/class-mla-settings.php:1485 includes/class-mla-settings.php:1742
+msgid "Singular Label"
+msgstr ""
+
+#: includes/class-mla-settings.php:1486 includes/class-mla-settings.php:1743
+msgid "Plural Label"
+msgstr ""
+
+#: includes/class-mla-settings.php:1487 includes/class-mla-settings.php:1744
+msgid ""
+"The labels, e.g., &#8220;Image&#8221; and &#8220;Images&#8221; are used for "
+"column headers and other display purposes."
+msgstr ""
+
+#: includes/class-mla-settings.php:1488 includes/class-mla-settings.php:1745
+msgid "Specification"
+msgstr ""
+
+#: includes/class-mla-settings.php:1489 includes/class-mla-settings.php:1746
+msgid ""
+"If the MIME type specification differs from the slug, enter it here. You may "
+"include multiple MIME types, e.g., &#8220;audio,video&#8221; and/or wildcard "
+"specs, e.g.,  &#8220;*/*ms*&#8221;. This field will be ignored if the Post "
+"MIME Type box is checked."
+msgstr ""
+
+#: includes/class-mla-settings.php:1490 includes/class-mla-settings.php:1747
+msgid "Post MIME Type"
+msgstr ""
+
+#: includes/class-mla-settings.php:1491 includes/class-mla-settings.php:1748
+msgid ""
+"Check this box if you want to add this entry to the list of MIME types "
+"returned by wp_get_mime_types()."
+msgstr ""
+
+#: includes/class-mla-settings.php:1492 includes/class-mla-settings.php:1749
+msgid "Table View"
+msgstr ""
+
+#: includes/class-mla-settings.php:1493 includes/class-mla-settings.php:1750
+msgid ""
+"Check this box if you want to add this entry to the list of Media/Assistant "
+"table views."
+msgstr ""
+
+#: includes/class-mla-settings.php:1495 includes/class-mla-settings.php:1752
+msgid ""
+"You can choose your own table view order by entering a number (1 for first, "
+"etc.) in this field."
+msgstr ""
+
+#: includes/class-mla-settings.php:1497 includes/class-mla-settings.php:1754
+#: includes/class-mla-settings.php:1852 includes/class-mla-settings.php:2216
+msgid ""
+"The description can contain any documentation or notes you need to "
+"understand or use the item."
+msgstr ""
+
+#. translators: 1: bulk_action, e.g., delete, edit, restore, trash
+#: includes/class-mla-settings.php:1608 includes/class-mla-settings.php:2074
+#, php-format
+msgid "Unknown bulk action %1$s"
+msgstr ""
+
+#. translators: 1: view name/slug
+#: includes/class-mla-settings.php:1647 includes/class-mla-settings.php:2116
+#, php-format
+msgid "Edit view \"%1$s\" cancelled."
+msgstr ""
+
+#: includes/class-mla-settings.php:1681
+msgid "View and Post MIME Type Support is disabled"
+msgstr ""
+
+#: includes/class-mla-settings.php:1726 includes/class-mla-settings.php:1729
+msgid "Library Views/Post MIME Type Processing"
+msgstr ""
+
+#: includes/class-mla-settings.php:1727
+msgid ""
+"In this tab you can manage the list of \"Post MIME Types\", which are used "
+"by WordPress to define the views for the <em><strong>Media/Library</strong></"
+"em> screen and the <em><strong>Media Manager/Add Media</strong></em> \"media "
+"items\" drop down list. MLA&rsquo;s <em><strong>Media/Assistant</strong></"
+"em> screen uses an enhanced version of the list, <em>Table Views</em>, to "
+"support views with multiple MIME Types (e.g., \"audio,video\") and wildcard "
+"specifications (e.g. \"*/*ms*\")."
+msgstr ""
+
+#. translators: 1: Documentation hyperlink
+#: includes/class-mla-settings.php:1729
+#, php-format
+msgid ""
+"You can find more information about library views, Post MIME types and how "
+"MLA and WordPress use them in the %1$s section of the Documentation or by "
+"clicking the <strong>\"Help\"</strong> tab in the upper-right corner of this "
+"screen."
+msgstr ""
+
+#: includes/class-mla-settings.php:1729
+msgid "Library View Processing documentation"
+msgstr ""
+
+#: includes/class-mla-settings.php:1733 includes/class-mla-settings.php:1922
+#: includes/class-mla-settings.php:2228
+msgid "Displaying search results for"
+msgstr ""
+
+#: includes/class-mla-settings.php:1734
+msgid "Search Views"
+msgstr ""
+
+#: includes/class-mla-settings.php:1755
+msgid "Add View"
+msgstr ""
+
+#: includes/class-mla-settings.php:1757 includes/class-mla-settings.php:2221
+msgid "<strong>Quick Edit</strong>"
+msgstr ""
+
+#: includes/class-mla-settings.php:1837
+msgid "Edit Upload MIME Type"
+msgstr ""
+
+#: includes/class-mla-settings.php:1842 includes/class-mla-settings.php:2207
+msgid "Extension"
+msgstr ""
+
+#: includes/class-mla-settings.php:1843
+msgid ""
+"The &#8220;extension&#8221; is the file extension for this type, and a "
+"unique key for the item. It must be all lowercase and contain only letters "
+"and numbers."
+msgstr ""
+
+#: includes/class-mla-settings.php:1845 includes/class-mla-settings.php:2210
+msgid ""
+"The MIME Type must be all lowercase and contain only letters, numbers, "
+"periods (.), slashes (/) and hyphens (-). It <strong>must be a valid MIME</"
+"strong> type, e.g., &#8220;image&#8221; or &#8220;image/jpeg&#8221;."
+msgstr ""
+
+#: includes/class-mla-settings.php:1846 includes/class-mla-settings.php:2211
+msgid "Icon Type"
+msgstr ""
+
+#: includes/class-mla-settings.php:1848 includes/class-mla-settings.php:2212
+msgid ""
+"The Icon Type selects a thumbnail image displayed for non-image file types, "
+"such as PDF documents."
+msgstr ""
+
+#: includes/class-mla-settings.php:1849 includes/class-mla-settings.php:2213
+#: includes/class-mla-upload-list-table.php:415
+msgid "Inactive"
+msgstr ""
+
+#: includes/class-mla-settings.php:1850 includes/class-mla-settings.php:2214
+msgid ""
+"Check this box if you want to remove this entry from the list of Upload MIME "
+"Types returned by get_allowed_mime_types()."
+msgstr ""
+
+#: includes/class-mla-settings.php:1921
+msgid "Known File Extension/MIME Type Associations"
+msgstr ""
+
+#: includes/class-mla-settings.php:1923
+msgid "Search Known MIME Types"
+msgstr ""
+
+#: includes/class-mla-settings.php:1925 includes/class-mla-settings.php:2199
+msgid "To search by extension, use \".\", e.g., \".doc\""
+msgstr ""
+
+#: includes/class-mla-settings.php:2150
+msgid "Upload MIME Type Support is disabled"
+msgstr ""
+
+#: includes/class-mla-settings.php:2193 includes/class-mla-settings.php:2196
+msgid "File Extension and MIME Type Processing"
+msgstr ""
+
+#: includes/class-mla-settings.php:2194
+msgid ""
+"In this tab you can manage the list of file extension/MIME Type "
+"associations, which are used by WordPress to decide what kind of files can "
+"be uploaded to the Media Library and to fill in the "
+"<strong><em>post_mime_type</em></strong> value. To upload a file, the file "
+"extension must be in this list and be active."
+msgstr ""
+
+#. translators: 1: Documentation hyperlink
+#: includes/class-mla-settings.php:2196
+#, php-format
+msgid ""
+"You can find more information about file extensions, MIME types and how "
+"WordPress uses them in the %1$s section of the Documentation or by clicking "
+"the <strong>\"Help\"</strong> tab in the upper-right corner of this screen."
+msgstr ""
+
+#: includes/class-mla-settings.php:2196
+msgid "File Extension Processing documentation"
+msgstr ""
+
+#: includes/class-mla-settings.php:2198
+msgid "Search Uploads"
+msgstr ""
+
+#: includes/class-mla-settings.php:2205
+msgid "Upload MIME Type"
+msgstr ""
+
+#: includes/class-mla-settings.php:2206
+msgid ""
+"To search the database of over 1,500 known extension/type associations, "
+"click \"Search Known Types\" below the form."
+msgstr ""
+
+#: includes/class-mla-settings.php:2208
+msgid ""
+"The &#8220;extension&#8221; is the file extension for this type, and unique "
+"key for the item. It must be all lowercase and contain only letters and "
+"numbers."
+msgstr ""
+
+#: includes/class-mla-settings.php:2217
+msgid "Add Upload MIME Type"
+msgstr ""
+
+#: includes/class-mla-settings.php:2219
+msgid "Search Known Types"
+msgstr ""
+
+#: includes/class-mla-settings.php:2227
+#: includes/class-mla-upload-list-table.php:417
+msgid "Active"
+msgstr ""
+
+#: includes/class-mla-settings.php:2280
+msgid "MLA Gallery Options"
+msgstr ""
+
+#: includes/class-mla-settings.php:2281
+msgid "Go to Markup Templates"
+msgstr ""
+
+#: includes/class-mla-settings.php:2282
+msgid ""
+"In this tab you can view the default style and markup templates. You can "
+"also define additional templates and use the <code>mla_style</code> and "
+"<code>mla_markup</code> parameters to apply them in your "
+"<code>[mla_gallery]</code> shortcodes. <strong>NOTE:</strong> template "
+"additions and changes will not be made permanent until you click \"Save "
+"Changes\" at the bottom of this page."
+msgstr ""
+
+#: includes/class-mla-settings.php:2285
+msgid "Style Templates"
+msgstr ""
+
+#: includes/class-mla-settings.php:2287
+msgid "Markup Templates"
+msgstr ""
+
+#: includes/class-mla-settings.php:2300
+msgid "Theme"
+msgstr ""
+
+#: includes/class-mla-settings.php:2348
+msgid ""
+"This default template cannot be altered or deleted, but you can copy the "
+"styles."
+msgstr ""
+
+#: includes/class-mla-settings.php:2359 includes/class-mla-settings.php:2392
+#: includes/class-mla-settings.php:2418
+msgid "Styles"
+msgstr ""
+
+#: includes/class-mla-settings.php:2363 includes/class-mla-settings.php:2396
+#: includes/class-mla-settings.php:2422
+msgid ""
+"List of substitution parameters, e.g., [+selector+], on Documentation tab."
+msgstr ""
+
+#: includes/class-mla-settings.php:2380 includes/class-mla-settings.php:2498
+msgid "Delete this template"
+msgstr ""
+
+#: includes/class-mla-settings.php:2381 includes/class-mla-settings.php:2499
+msgid ""
+"Check the box to delete this template when you press Update at the bottom of "
+"the page."
+msgstr ""
+
+#: includes/class-mla-settings.php:2407
+msgid "Fill in a name and styles to add a new template."
+msgstr ""
+
+#: includes/class-mla-settings.php:2442
+msgid ""
+"This default template cannot be altered or deleted, but you can copy the "
+"markup."
+msgstr ""
+
+#: includes/class-mla-settings.php:2454 includes/class-mla-settings.php:2511
+#: includes/class-mla-settings.php:2561
+msgid "Open"
+msgstr ""
+
+#: includes/class-mla-settings.php:2458 includes/class-mla-settings.php:2515
+#: includes/class-mla-settings.php:2565
+msgid ""
+"Markup for the beginning of the gallery. List of parameters, e.g., [+selector"
+"+], on Documentation tab."
+msgstr ""
+
+#: includes/class-mla-settings.php:2460 includes/class-mla-settings.php:2517
+#: includes/class-mla-settings.php:2567
+msgid "Row"
+msgstr ""
+
+#: includes/class-mla-settings.php:2464 includes/class-mla-settings.php:2571
+msgid "Markup for the beginning of each row in the gallery."
+msgstr ""
+
+#: includes/class-mla-settings.php:2466 includes/class-mla-settings.php:2523
+#: includes/class-mla-settings.php:2573
+msgid "Item"
+msgstr ""
+
+#: includes/class-mla-settings.php:2470 includes/class-mla-settings.php:2577
+msgid "Markup for each item/cell of the gallery."
+msgstr ""
+
+#: includes/class-mla-settings.php:2472 includes/class-mla-settings.php:2529
+#: includes/class-mla-settings.php:2579 includes/class-mla-settings.php:2693
+#: includes/class-mla-settings.php:2829
+msgid "Close"
+msgstr ""
+
+#: includes/class-mla-settings.php:2476 includes/class-mla-settings.php:2583
+msgid "Markup for the end of each row in the gallery."
+msgstr ""
+
+#: includes/class-mla-settings.php:2481 includes/class-mla-settings.php:2538
+#: includes/class-mla-settings.php:2588
+msgid "Markup for the end of the gallery."
+msgstr ""
+
+#: includes/class-mla-settings.php:2521
+msgid "Markup for the beginning of each row."
+msgstr ""
+
+#: includes/class-mla-settings.php:2527
+msgid "Markup for each item/cell."
+msgstr ""
+
+#: includes/class-mla-settings.php:2533
+msgid "Markup for the end of each row."
+msgstr ""
+
+#: includes/class-mla-settings.php:2549
+msgid "Fill in a name and markup to add a new template."
+msgstr ""
+
+#: includes/class-mla-settings.php:2685
+msgid "Custom Field Mapping Progress"
+msgstr ""
+
+#: includes/class-mla-settings.php:2686 includes/class-mla-settings.php:2822
+msgid "DO NOT DO THE FOLLOWING (they will cause mapping to fail)"
+msgstr ""
+
+#: includes/class-mla-settings.php:2687 includes/class-mla-settings.php:2823
+msgid "Close the window"
+msgstr ""
+
+#: includes/class-mla-settings.php:2688 includes/class-mla-settings.php:2824
+msgid "Reload the page"
+msgstr ""
+
+#: includes/class-mla-settings.php:2689 includes/class-mla-settings.php:2825
+msgid "Click the browser&rsquo;s Stop, Back or forward buttons"
+msgstr ""
+
+#: includes/class-mla-settings.php:2690 includes/class-mla-settings.php:2826
+msgid "Progress"
+msgstr ""
+
+#: includes/class-mla-settings.php:2692 includes/class-mla-settings.php:2828
+msgid "Resume"
+msgstr ""
+
+#: includes/class-mla-settings.php:2702 includes/class-mla-settings.php:2706
+msgid "Custom Field and Attachment Metadata Processing Options"
+msgstr ""
+
+#. translators: 1: Documentation hyperlink
+#: includes/class-mla-settings.php:2704
+#, php-format
+msgid ""
+"In this tab you can define the rules for mapping several types of image "
+"metadata to WordPress custom fields. You can also use this screen to define "
+"rules for adding or updating fields within the WordPress-supplied "
+"\"Attachment Metadata\", stored in the \"_wp_attachment_metadata\" custom "
+"field. See the %1$s section of the Documentation for details."
+msgstr ""
+
+#: includes/class-mla-settings.php:2704
+msgid "Updating Attachment Metadata Documentation"
+msgstr ""
+
+#: includes/class-mla-settings.php:2704
+msgid "Adding or changing Attachment Metadata"
+msgstr ""
+
+#. translators: 1: Documentation hyperlink
+#: includes/class-mla-settings.php:2706 includes/class-mla-settings.php:2841
+#, php-format
+msgid ""
+"You can find more information about using the controls in this tab to define "
+"mapping rules and apply them in the %1$s section of the Documentation."
+msgstr ""
+
+#: includes/class-mla-settings.php:2706
+msgid "Custom Field Options documentation"
+msgstr ""
+
+#: includes/class-mla-settings.php:2710 includes/class-mla-settings.php:2851
+msgid "Custom field mapping"
+msgstr ""
+
+#. translators: 1: "Save Changes"
+#: includes/class-mla-settings.php:2715
+#, php-format
+msgid ""
+"Click %1$s to update the \"Enable custom field mapping...\" checkbox and/or "
+"all rule changes and additions at once. <strong>No rule mapping will be "
+"performed.</strong>"
+msgstr ""
+
+#. translators: 1: "Map All Rules..."
+#: includes/class-mla-settings.php:2717
+#, php-format
+msgid ""
+"Click %1$s to apply all the rules at once (rule changes will be applied but "
+"not saved)."
+msgstr ""
+
+#: includes/class-mla-settings.php:2821
+msgid "IPTC &amp; EXIF Mapping Progress"
+msgstr ""
+
+#: includes/class-mla-settings.php:2838 includes/class-mla-settings.php:2841
+msgid "IPTC &amp; EXIF Processing Options"
+msgstr ""
+
+#: includes/class-mla-settings.php:2839
+msgid ""
+"In this tab you can define the rules for mapping IPTC (International Press "
+"Telecommunications Council) and EXIF (EXchangeable Image File) metadata to "
+"WordPress standard attachment fields, taxonomy terms and custom fields. "
+"<strong>NOTE:</strong> settings changes will not be made permanent until you "
+"click \"Save Changes\" at the bottom of this page."
+msgstr ""
+
+#: includes/class-mla-settings.php:2841
+msgid "IPTC/EXIF Options documentation"
+msgstr ""
+
+#: includes/class-mla-settings.php:2845
+msgid "Standard field mapping"
+msgstr ""
+
+#: includes/class-mla-settings.php:2848
+msgid "Taxonomy term mapping"
+msgstr ""
+
+#. translators: 1: "Save Changes"
+#: includes/class-mla-settings.php:2856
+#, php-format
+msgid ""
+"Click %1$s to update the \"Enable IPTC/EXIF mapping...\" checkbox and/or all "
+"rule changes and additions at once. <strong>No rule mapping will be "
+"performed.</strong>"
+msgstr ""
+
+#: includes/class-mla-settings.php:2917
+msgid "Media Library Assistant - Error"
+msgstr ""
+
+#: includes/class-mla-settings.php:2918
+msgid "You do not have permission to manage plugin settings."
+msgstr ""
+
+#: includes/class-mla-settings.php:2945
+msgid "Cannot render content tab"
+msgstr ""
+
+#: includes/class-mla-settings.php:2948
+msgid "Unknown content tab"
+msgstr ""
+
+#. translators: 1: template type 2: template name
+#: includes/class-mla-settings.php:3028 includes/class-mla-settings.php:3117
+#, php-format
+msgctxt "message_list"
+msgid "Deleting %1$s \"%2$s\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: template name 3: template type
+#: includes/class-mla-settings.php:3039 includes/class-mla-settings.php:3130
+#, php-format
+msgid "%1$s: Reserved name \"%2$s\", new %3$s discarded."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: template name 3: template type
+#: includes/class-mla-settings.php:3045 includes/class-mla-settings.php:3136
+#, php-format
+msgid "%1$s: Duplicate name \"%2$s\", new %3$s discarded."
+msgstr ""
+
+#. translators: 1: template type 2: template name
+#: includes/class-mla-settings.php:3049 includes/class-mla-settings.php:3140
+#, php-format
+msgctxt "message_list"
+msgid "Adding new %1$s \"%2$s\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: element name 3: old value
+#: includes/class-mla-settings.php:3059 includes/class-mla-settings.php:3150
+#, php-format
+msgid "%1$s: Blank %2$s, reverting to \"%3$s\"."
+msgstr ""
+
+#: includes/class-mla-settings.php:3059 includes/class-mla-settings.php:3066
+#: includes/class-mla-settings.php:3070
+msgid "style template name"
+msgstr ""
+
+#. translators: 1: ERROR tag 2: element name 3: new value 4: old value
+#: includes/class-mla-settings.php:3066 includes/class-mla-settings.php:3157
+#, php-format
+msgid "%1$s: Duplicate new %2$s \"%3$s\", reverting to \"%4$s\"."
+msgstr ""
+
+#. translators: 1: element name 2: old_value 3: new_value
+#: includes/class-mla-settings.php:3070 includes/class-mla-settings.php:3161
+#, php-format
+msgctxt "message_list"
+msgid "Changing %1$s from \"%2$s\" to \"%3$s\""
+msgstr ""
+
+#. translators: 1: template type 2: template name
+#: includes/class-mla-settings.php:3077
+#, php-format
+msgctxt "message_list"
+msgid "Updating contents of %1$s \"%2$s\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: template type
+#: includes/class-mla-settings.php:3088 includes/class-mla-settings.php:3209
+#, php-format
+msgid "%1$s: Update of %2$s failed."
+msgstr ""
+
+#: includes/class-mla-settings.php:3150 includes/class-mla-settings.php:3157
+#: includes/class-mla-settings.php:3161
+msgid "markup template name"
+msgstr ""
+
+#. translators: 1: template name
+#: includes/class-mla-settings.php:3169
+#, php-format
+msgctxt "message_list"
+msgid "Updating open markup for \"%1$s\"."
+msgstr ""
+
+#. translators: 1: template name
+#: includes/class-mla-settings.php:3175
+#, php-format
+msgctxt "message_list"
+msgid "Updating row open markup for \"%1$s\"."
+msgstr ""
+
+#. translators: 1: template name
+#: includes/class-mla-settings.php:3181
+#, php-format
+msgctxt "message_list"
+msgid "Updating item markup for \"%1$s\"."
+msgstr ""
+
+#. translators: 1: template name
+#: includes/class-mla-settings.php:3187
+#, php-format
+msgctxt "message_list"
+msgid "Updating row close markup for \"%1$s\"."
+msgstr ""
+
+#. translators: 1: template name
+#: includes/class-mla-settings.php:3193
+#, php-format
+msgctxt "message_list"
+msgid "Updating close markup for \"%1$s\"."
+msgstr ""
+
+#. translators: 1: field type
+#: includes/class-mla-settings.php:3218
+#, php-format
+msgid "%1$s no changes detected."
+msgstr ""
+
+#: includes/class-mla-settings.php:3253
+msgid "View settings saved."
+msgstr ""
+
+#: includes/class-mla-settings.php:3287
+msgid "Upload MIME Type settings saved."
+msgstr ""
+
+#: includes/class-mla-settings.php:3330
+msgid "No custom field mapping rules to process."
+msgstr ""
+
+#. translators: 1: field type 2: examined count 3: updated count
+#: includes/class-mla-settings.php:3361 includes/class-mla-settings.php:3500
+#: includes/class-mla-settings.php:3571 includes/class-mla-settings.php:3657
+#, php-format
+msgid "%1$s mapping completed; %2$d attachment(s) examined, %3$d updated."
+msgstr ""
+
+#. translators: 1: field type 2: examined count
+#: includes/class-mla-settings.php:3364 includes/class-mla-settings.php:3503
+#: includes/class-mla-settings.php:3574 includes/class-mla-settings.php:3660
+#, php-format
+msgid ""
+"%1$s mapping completed; %2$d attachment(s) examined, no changes detected."
+msgstr ""
+
+#. translators: 1: number of attachments
+#: includes/class-mla-settings.php:3395
+#, php-format
+msgid "%s attachment"
+msgid_plural "%s attachments"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: singular/plural number of attachments
+#: includes/class-mla-settings.php:3397
+#, php-format
+msgid "Deleted custom field value from %1$s."
+msgstr ""
+
+#: includes/class-mla-settings.php:3400
+msgid "No attachments contained this custom field."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: field type
+#: includes/class-mla-settings.php:3461 includes/class-mla-settings.php:3532
+#: includes/class-mla-settings.php:3618
+#, php-format
+msgid "%1$s: No %2$s settings to process."
+msgstr ""
+
+#: includes/class-mla-settings.php:3491 includes/class-mla-settings.php:3562
+#: includes/class-mla-settings.php:3648
+msgid "updated."
+msgstr ""
+
+#. translators: 1: reference type, e.g., Gallery in
+#: includes/class-mla-settings.php:3753 includes/class-mla-settings.php:3763
+#, php-format
+msgctxt "message_list"
+msgid "%1$s - references updated."
+msgstr ""
+
+#: includes/class-mla-settings.php:3806
+msgid "General settings saved."
+msgstr ""
+
+#. translators: 1: option name
+#: includes/class-mla-settings.php:3837
+#, php-format
+msgctxt "message_list"
+msgid "delete_option \"%1$s\""
+msgstr ""
+
+#: includes/class-mla-settings.php:3845
+msgid "General settings reset to default values."
+msgstr ""
+
+#: includes/class-mla-settings.php:3887
+msgid "select settings"
+msgstr ""
+
+#: includes/class-mla-settings.php:3907
+msgid "Import ALL Settings"
+msgstr ""
+
+#: includes/class-mla-settings.php:3932
+msgctxt "message_list"
+msgid "exported"
+msgstr ""
+
+#: includes/class-mla-settings.php:3934
+msgctxt "message_list"
+msgid "skipped"
+msgstr ""
+
+#: includes/class-mla-settings.php:3941
+msgid "ALL settings exported."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: backup directory name
+#: includes/class-mla-settings.php:3952
+#, php-format
+msgid "%1$s: The settings directory ( %2$s ) cannot be created."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: backup directory name
+#: includes/class-mla-settings.php:3956
+#, php-format
+msgid "%1$s: The settings directory ( %2$s ) is not writable."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: backup file name
+#: includes/class-mla-settings.php:3967
+#, php-format
+msgid "%1$s: The settings file ( %2$s ) could not be opened."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: PHP error information
+#: includes/class-mla-settings.php:3974
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: _export_settings $error_info = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: backup file name 3: error message
+#: includes/class-mla-settings.php:3983
+#, php-format
+msgid "%1$s: Writing the settings file ( %2$s ) \"%3$s\"."
+msgstr ""
+
+#. translators: 1: number of option settings
+#: includes/class-mla-settings.php:3989
+#, php-format
+msgid "Settings exported; %1$s settings recorded."
+msgstr ""
+
+#: includes/class-mla-settings.php:4007
+msgid "No settings imported."
+msgstr ""
+
+#: includes/class-mla-settings.php:4016
+msgid "Please select an import settings file from the dropdown list."
+msgstr ""
+
+#: includes/class-mla-settings.php:4020
+msgid "The import settings dropdown selection is missing."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: PHP error information
+#: includes/class-mla-settings.php:4028
+#, php-format
+msgctxt "error_log"
+msgid "%1$s: _import_settings $error_info = \"%2$s\"."
+msgstr ""
+
+#. translators: 1: ERROR tag 2: backup file name 3: error message
+#: includes/class-mla-settings.php:4037
+#, php-format
+msgid "%1$s: Reading the settings file ( %2$s ) \"%3$s\"."
+msgstr ""
+
+#: includes/class-mla-settings.php:4047
+msgctxt "message_list"
+msgid "updated"
+msgstr ""
+
+#: includes/class-mla-settings.php:4050
+msgctxt "message_list"
+msgid "unchanged"
+msgstr ""
+
+#. translators: 1: number of option settings updated 2: number of option settings unchanged
+#: includes/class-mla-settings.php:4055
+#, php-format
+msgid "Settings imported; %1$s updated, %2$s unchanged."
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:237
+#: includes/class-mla-shortcodes.php:1227
+#: includes/class-mla-shortcodes.php:2134
+#: includes/class-mla-shortcodes.php:2421
+msgid "Previous"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:238
+#: includes/class-mla-shortcodes.php:1228
+#: includes/class-mla-shortcodes.php:2183
+#: includes/class-mla-shortcodes.php:2427
+msgid "Next"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:345
+msgid "mla_debug empty gallery"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:409
+msgid ""
+"<strong>Photonic-enhanced [mla_gallery]</strong> type must be "
+"<strong>default</strong>, query = "
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:736
+msgid "unknown"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:1360
+msgid "mla_debug attributes"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:1361
+msgid "mla_debug arguments"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:1453
+msgid "mla_debug empty cloud"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:2802
+#: includes/class-mla-shortcodes.php:3130
+#: includes/class-mla-shortcodes.php:3161
+msgid "Invalid mla_gallery"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3409
+msgid "mla_debug query"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3410
+msgid "mla_debug request"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3411
+msgid "mla_debug query_vars"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3412
+msgid "mla_debug post_count"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3480
+msgid "mla_debug WHERE filter"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3499
+msgid "mla_debug modified WHERE filter"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3522
+msgid "mla_debug ORDER BY filter, incoming"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3522
+msgid "Replacement ORDER BY clause"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3545
+msgid "mla_debug posts_clauses filter"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3563
+msgid "mla_debug posts_clauses_request filter"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3753
+msgid "Invalid taxonomy"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3959
+msgid "mla_debug query arguments"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3960
+msgid "mla_debug last_query"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3961
+msgid "mla_debug last_error"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3962
+msgid "mla_debug num_rows"
+msgstr ""
+
+#: includes/class-mla-shortcodes.php:3963
+msgid "mla_debug found_rows"
+msgstr ""
+
+#: includes/class-mla-upload-list-table.php:177
+#: includes/class-mla-upload-optional-list-table.php:167
+msgctxt "list_table_column"
+msgid "Extension"
+msgstr ""
+
+#: includes/class-mla-upload-list-table.php:179
+msgctxt "list_table_column"
+msgid "Icon Type"
+msgstr ""
+
+#: includes/class-mla-upload-list-table.php:180
+msgctxt "list_table_column"
+msgid "Source"
+msgstr ""
+
+#: includes/class-mla-upload-list-table.php:181
+msgctxt "list_table_column"
+msgid "Status"
+msgstr ""
+
+#: includes/class-mla-upload-list-table.php:182
+#: includes/class-mla-upload-optional-list-table.php:169
+msgctxt "list_table_column"
+msgid "WordPress Type"
+msgstr ""
+
+#: includes/class-mla-upload-list-table.php:183
+#: includes/class-mla-upload-optional-list-table.php:170
+msgctxt "list_table_column"
+msgid "MLA Type"
+msgstr ""
+
+#: includes/class-mla-upload-list-table.php:184
+msgctxt "list_table_column"
+msgid "Std. Source"
+msgstr ""
+
+#: includes/class-mla-upload-list-table.php:185
+msgctxt "list_table_column"
+msgid "Std. Icon Type"
+msgstr ""
+
+#: includes/class-mla-upload-list-table.php:320
+#: includes/class-mla-view-list-table.php:308
+msgid "Revert to standard item"
+msgstr ""
+
+#: includes/class-mla-upload-list-table.php:320
+#: includes/class-mla-view-list-table.php:308
+msgid "Revert to Standard"
+msgstr ""
+
+#: includes/class-mla-upload-list-table.php:611
+msgid "Delete/Revert Custom"
+msgstr ""
+
+#: includes/class-mla-upload-optional-list-table.php:281
+msgid "Select this entry"
+msgstr ""
+
+#: includes/class-mla-upload-optional-list-table.php:414
+msgid "Select these entries"
+msgstr ""
+
+#: includes/class-mla-view-list-table.php:173
+msgctxt "list_table_column"
+msgid "Specification"
+msgstr ""
+
+#: includes/class-mla-view-list-table.php:174
+msgctxt "list_table_column"
+msgid "Post Mime"
+msgstr ""
+
+#: includes/class-mla-view-list-table.php:175
+msgctxt "list_table_column"
+msgid "Table View"
+msgstr ""
+
+#: includes/class-mla-view-list-table.php:176
+msgctxt "list_table_column"
+msgid "Singular Name"
+msgstr ""
+
+#: includes/class-mla-view-list-table.php:177
+msgctxt "list_table_column"
+msgid "Plural Name"
+msgstr ""
+
+#: includes/class-mla-view-list-table.php:178
+msgctxt "list_table_column"
+msgid "Order"
+msgstr ""
+
+#: includes/mla-main-search-box-template.php:34
+#: includes/mla-main-search-box-template.php:36
+#: includes/mla-media-modal-js-template.php:17
+msgid "Search Media"
+msgstr ""
+
+#: includes/mla-plugin-loader.php:36
+msgid "The Media Library Assistant cannot load."
+msgstr ""
+
+#: includes/mla-plugin-loader.php:38
+msgid "You must resolve these conflicts before this plugin can safely load."
+msgstr ""

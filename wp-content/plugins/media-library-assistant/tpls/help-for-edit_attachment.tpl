@@ -31,5 +31,5 @@ Displays where-used information; Featured in, Inserted in, Gallery in and MLA Ga
 <p>You can change the post or page to which the item is attached by changing the Post ID value and clicking the &#8220;Update&#8221; button. Changing the Post ID value to zero (0) will &#8220;unattach&#8221; the item.</p>
 <!-- template="mla-mapping-actions" -->
 <!-- title="Metadata Mapping" order="4" -->
-<p>The &#8220;Map Custom Field Metadata&#8221; and &#8220;Map IPTC/EXIF Metadata&#8221; links let you create or update attachment values by applying the rules you define on the Media Library Assistant Settings page. The links are located in the &#8220;Save&#8221; metabox in the upper-right part of the screen, just below the Last Modified date and time.</p>
+<p>The &#8220;Map Custom Field Metadata&#8221; and &#8220;Map IPTC/EXIF Metadata&#8221; links let you create or update attachment values by applying the rules you define on the Media Library Assistant Settings page. The links are located in the &#8220;Save&#8221; meta box in the upper-right part of the screen, just below the Last Modified date and time.</p>
 <p>When you click on one of the two links, all of the mapping rules for that type of metadata will be applied to the attachment you are editing. The updates are immediate; you do not need to click the &#8220;Update&#8221; button to make them permanent.</p>

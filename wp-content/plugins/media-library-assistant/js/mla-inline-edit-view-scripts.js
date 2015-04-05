@@ -1,4 +1,7 @@
 // These functions are adapted from wp-admin/js/inline-edit-post.js
+
+var ajaxurl, jQuery, inlineEditView, mla_inline_edit_view_vars;
+
 (function($) {
 inlineEditView = {
 
@@ -53,7 +56,12 @@ inlineEditView = {
 
 	toggle : function(el){
 		var t = this;
-		$(t.what+t.getId(el)).css('display') == 'none' ? t.revert() : t.edit(el);
+
+		if ( 'none' == $( t.what + t.getId( el ) ).css('display') ) {
+			t.revert();
+		} else {
+			t.edit( el );
+		}
 	},
 
 	setBulk : function(){
@@ -64,7 +72,7 @@ inlineEditView = {
 		$('table.widefat tbody').prepend( $('#bulk-edit') );
 		$('#bulk-edit').addClass('inline-editor').show();
 
-		$('tbody th.check-column input[type="checkbox"]').each(function(i){
+		$('tbody th.check-column input[type="checkbox"]').each(function(){
 			if ( $(this).prop('checked') ) {
 				c = false;
 				var id = $(this).val(), theTitle;
@@ -96,7 +104,7 @@ inlineEditView = {
 
 		fields = mla_inline_edit_view_vars.fields;
 		checkboxes = mla_inline_edit_view_vars.checkboxes;
-		
+
 		// add the new blank row
 		editRow = $('#inline-edit').clone(true);
 		$('td', editRow).attr('colspan', $('.widefat:first thead th:visible').length);
@@ -160,8 +168,7 @@ inlineEditView = {
 				} else {
 					$('#edit-'+id+' .inline-edit-save .error').html(mla_inline_edit_view_vars.error).show();
 				}
-			}
-		, 'html');
+			}, 'html');
 		return false;
 	},
 

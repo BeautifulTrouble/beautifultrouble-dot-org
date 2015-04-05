@@ -22,7 +22,7 @@ class,application/java,code,source_java,Compiled Java Bytecode File
 clp,application/x-msclip,default,knotes,Microsoft Clipboard Clip
 crd,application/x-mscardfile,default,knotes,Microsoft Information Card
 css,text/css,code,stylesheet,Cascading Style Sheets (CSS)
-csv,text/csv,text,text,Microsoft’s format for import/export to Excel Word and Access.
+csv,text/csv,text,text,Microsoft's format for import/export to Excel Word and Access.
 dat,application/octet-stream,default,binary,Various Data formats
 divx,video/divx,video,video,DivX LLC Video Format
 dll,application/x-msdownload,code,exe_wine,Microsoft Windows Dynamic Link Library
@@ -120,7 +120,7 @@ sldx,application/vnd.openxmlformats-officedocument.presentationml.slide,interact
 snd,audio/basic,audio,audio,AU audio file - standard Internet/Java wave sound
 sql,text/plain,default,database,Structured Query Language
 sst,application/vnd.ms-pkicertstore,default,default,Microsoft Certificate Store
-stl,application/vnd.ms-pkistl,default,default,Stereo Lithography File 
+stl,application/vnd.ms-pkistl,default,default,Stereo Lithography File
 svg,image/svg+xml,default,vectorgfx,Scalable Vector Graphics (SVG)
 swf,application/x-shockwave-flash,interactive,interactive,Adobe Flash animation file
 tar,application/x-tar,archive,archive,Tar File (Tape Archive)
@@ -383,7 +383,7 @@ csp,application/vnd.commonspace,Sixth Floor Media - CommonSpace
 css,application/x-pointplus,Cascading Style Sheets (CSS)
 css,text/css,Cascading Style Sheets (CSS)
 cssfrag,text/plain,
-csv,text/comma-separated-values,Microsoft’s format for import/export to Excel Word and Access.
+csv,text/comma-separated-values,Microsoft's format for import/export to Excel Word and Access.
 csv,text/csv,Comma-Seperated Values
 cu,application/cu-seeme,CU-SeeMe
 cu,application/x-cu-seeme,CU-SeeMe

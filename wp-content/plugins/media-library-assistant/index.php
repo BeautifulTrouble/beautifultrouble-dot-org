@@ -6,17 +6,36 @@
  * will the rest of the plugin be loaded and run.
  *
  * @package Media Library Assistant
- * @version 1.41
+ * @version 2.02
  */
 
 /*
 Plugin Name: Media Library Assistant
 Plugin URI: http://fairtradejudaica.org/media-library-assistant-a-wordpress-plugin/
-Description: Enhances the Media Library; powerful[mla_gallery], taxonomy support, IPTC/EXIF processing, bulk & quick edit actions and where-used reporting.
-Author: David Lingren
-Version: 1.41
+Description: Enhances the Media Library; powerful [mla_gallery], taxonomy support, IPTC/EXIF processing, bulk & quick edit actions and where-used reporting.
+Author: David Lingren, Fair Trade Judaica
+Text Domain: media-library-assistant
+Domain Path: /languages
+Version: 2.02
 Author URI: http://fairtradejudaica.org/our-story/staff/
+
+Copyright 2011-2014 David Lingren
+
+	This program is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You can get a copy of the GNU General Public License by writing to the
+	Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA
 */
+
+defined( 'ABSPATH' ) or die();
 
 /**
  * Accumulates error messages from name conflict tests
@@ -30,11 +49,21 @@ if ( defined( 'MLA_PLUGIN_PATH' ) ) {
 }
 else {
 	/**
-	 * Provides path information to the plugin root in file system format.
+	 * Provides path information to the plugin root in file system format, including the trailing slash.
 	 */
 	define( 'MLA_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 }
- 
+
+if ( defined( 'MLA_PLUGIN_BASENAME' ) ) {
+	$mla_name_conflict_error_messages .= '<li>constant MLA_PLUGIN_BASENAME</li>';
+}
+else {
+	/**
+	 * Provides the plugin's directory name, relative to the plugins directory, without leading or trailing slashes.
+	 */
+	define( 'MLA_PLUGIN_BASENAME', dirname( plugin_basename( __FILE__ ) ) );
+}
+
 if ( defined( 'MLA_PLUGIN_URL' ) ) {
 	$mla_name_conflict_error_messages .= '<li>constant MLA_PLUGIN_URL</li>';
 }
@@ -43,6 +72,16 @@ else {
 	 * Provides path information to the plugin root in URL format.
 	 */
 	define( 'MLA_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+}
+
+if ( ! defined( 'MLA_BACKUP_DIR' ) ) {
+	/**
+	 * Provides the absolute path to the MLA backup directory, including the trailing slash.
+	 * This constant can be overriden by defining it in the wp_config.php file.
+	 */
+	$content_dir = ( defined('WP_CONTENT_DIR') ) ? WP_CONTENT_DIR : ABSPATH . 'wp-content';
+	define( 'MLA_BACKUP_DIR', $content_dir . '/mla-backup/' );
+	unset( $content_dir );
 }
 
 /**
@@ -56,9 +95,11 @@ $mla_name_conflict_candidates =
 		'MLA' => 'class',
 		'MLAData' => 'class',
 		'MLAEdit' => 'class',
+		'MLA_Checklist_Walker' => 'class',
 		'MLAMime' => 'class',
 		'MLAModal' => 'class',
 		'MLAObjects' => 'class',
+		'MLATextWidget' => 'class',
 		'MLASettings' => 'class',
 		'MLAShortcodes' => 'class',
 		'MLATest' => 'class',

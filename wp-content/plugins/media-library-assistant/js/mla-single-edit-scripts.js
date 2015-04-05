@@ -1,6 +1,8 @@
 // These functions are adapted from wp-admin/js/post.js
 
-var tagBox;
+var jQuery, wpAjax, ajaxurl, tagBox,
+	getUserSetting, setUserSetting, deleteUserSetting,
+	mla_single_edit_vars;
 
 // return an array with any duplicate, whitespace or values removed
 function array_unique_noempty(a) {
@@ -87,7 +89,7 @@ function array_unique_noempty(a) {
 		var tags = $('.the-tags', el),
 			newtag = $('input.newtag', el),
 			comma = mla_single_edit_vars.comma,
-			newtags, text;
+			tagsval, newtags, text;
 
 		text = a ? $(a).text() : newtag.val();
 		tagsval = tags.val();
@@ -110,7 +112,7 @@ function array_unique_noempty(a) {
 		var tax = id.substr(id.indexOf('-')+1);
 
 		$.post(ajaxurl, {'action':'get-tagcloud', 'tax':tax}, function(r, stat) {
-			if ( 0 == r || 'success' != stat )
+			if ( 0 === r || 'success' != stat )
 				r = wpAjax.broken;
 
 			r = $('<p id="tagcloud-'+tax+'" class="the-tagcloud">'+r+'</p>');
@@ -139,7 +141,7 @@ function array_unique_noempty(a) {
 		});
 
 		$('input.newtag', ajaxtag).blur(function() {
-			if ( this.value == '' )
+			if ( this.value === '' )
 	            $(this).parent().siblings('.taghint').css('visibility', '');
 	    }).focus(function(){
 			$(this).parent().siblings('.taghint').css('visibility', 'hidden');
@@ -182,7 +184,7 @@ function array_unique_noempty(a) {
 jQuery(document).ready( function($) {
 //	alert('jQuery(document).ready(function($)');
 //	console.log('jQuery(document).ready(function($)');
-	
+
 	// multi-taxonomies
 	$('#side-info-column').children('div.postbox').each(function(){
 		if ( this.id.indexOf('tagsdiv-') === 0 ) {
@@ -190,10 +192,10 @@ jQuery(document).ready( function($) {
 			return false;
 		}
 	});
-	
+
 	// categories
 	$('.categorydiv').each( function(){
-		var this_id = $(this).attr('id'), noSyncChecks = false, syncChecks, catAddAfter, taxonomyParts, taxonomy, settingName;
+		var this_id = $(this).attr('id'), noSyncChecks = false, syncChecks, catAddBefore, catAddAfter, taxonomyParts, taxonomy, settingName;
 
 		taxonomyParts = this_id.split('-');
 		taxonomyParts.shift();
@@ -219,7 +221,7 @@ jQuery(document).ready( function($) {
 			$('a[href="#' + taxonomy + '-pop"]', '#' + taxonomy + '-tabs').click();
 
 		// Ajax Cat
-		$('#new' + taxonomy).one( 'focus', function() { $(this).val( '' ).removeClass( 'form-input-tip' ) } );
+		$('#new' + taxonomy).one( 'focus', function() { $(this).val( '' ).removeClass( 'form-input-tip' ); } );
 		$('#' + taxonomy + '-add-submit').click( function(){ $('#new' + taxonomy).focus(); });
 
 		syncChecks = function() {
@@ -257,7 +259,7 @@ jQuery(document).ready( function($) {
 		});
 
 		$('#' + taxonomy + '-add-toggle').click( function() {
-			$('#' + taxonomy + '-adder').toggleClass( 'wp-hidden-children' );
+			$('#' + taxonomy + '-adder').toggleClass( 'mla-hidden-children' );
 			$('a[href="#' + taxonomy + '-all"]', '#' + taxonomy + '-tabs').click();
 			$('#new'+taxonomy).focus();
 			return false;

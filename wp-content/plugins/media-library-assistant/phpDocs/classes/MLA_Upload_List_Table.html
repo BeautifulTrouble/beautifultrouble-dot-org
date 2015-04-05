@@ -18,7 +18,10 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Media Library Assistant</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu"></ul>
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Media%20Library%20Assistant.html"><i class="icon-folder-open"></i> Media Library Assistant</a></li>
+</ul>
 </li>
 <li class="dropdown" id="charts-menu">
 <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
@@ -30,7 +33,9 @@
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
                 <span class="label label-info">0</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul></ul></a></li>
+                <ul><li>todo 
+                <span class="label label-info">1</span>
+</li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
 </ul>
@@ -84,6 +89,7 @@ and the value is db column to sort by.</span><pre>get_sortable_columns()</pre></
 created in time to affect the &quot;screen options&quot; setup."><span class="description">Called in the admin_init action because the list_table object isn't
 created in time to affect the "screen options" setup.</span><pre>mla_admin_init_action()</pre></a></li>
 <li class="method public "><a href="#mla_get_sortable_columns" title="mla_get_sortable_columns :: Return the names and display values of the sortable columns"><span class="description">Return the names and display values of the sortable columns</span><pre>mla_get_sortable_columns()</pre></a></li>
+<li class="method public "><a href="#mla_localize_default_columns_array" title="mla_localize_default_columns_array :: Builds the $default_columns array with translated source texts."><span class="description">Builds the $default_columns array with translated source texts.</span><pre>mla_localize_default_columns_array()</pre></a></li>
 <li class="method public "><a href="#mla_manage_columns_filter" title="mla_manage_columns_filter :: Handler for filter 'manage_settings_page_mla-settings-menu_columns'"><span class="description">Handler for filter 'manage_settings_page_mla-settings-menu_columns'</span><pre>mla_manage_columns_filter()</pre></a></li>
 <li class="method public "><a href="#mla_manage_hidden_columns_filter" title="mla_manage_hidden_columns_filter :: Handler for filter 'get_user_option_managesettings_page_mla-settings-menu-uploadcolumnshidden'"><span class="description">Handler for filter 'get_user_option_managesettings_page_mla-settings-menu-uploadcolumnshidden'</span><pre>mla_manage_hidden_columns_filter()</pre></a></li>
 <li class="method public "><a href="#prepare_items" title="prepare_items :: Prepares the list of items for displaying"><span class="description">Prepares the list of items for displaying</span><pre>prepare_items()</pre></a></li>
@@ -527,6 +533,19 @@ created in time to affect the "screen options" setup.</h2>
 <code>array</code>name => array( orderby value, heading ) for sortable columns</div>
 </div></div>
 </div>
+<a name="mla_localize_default_columns_array" id="mla_localize_default_columns_array"></a><div class="element clickable method public mla_localize_default_columns_array" data-toggle="collapse" data-target=".mla_localize_default_columns_array .collapse">
+<h2>Builds the $default_columns array with translated source texts.</h2>
+<pre>mla_localize_default_columns_array() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Called from MLA:mla_plugins_loaded_action because the $default_columns information might be
+accessed from "front end" posts/pages.</p></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.71</td>
+</tr></table>
+</div></div>
+</div>
 <a name="mla_manage_columns_filter" id="mla_manage_columns_filter"></a><div class="element clickable method public mla_manage_columns_filter" data-toggle="collapse" data-target=".mla_manage_columns_filter .collapse">
 <h2>Handler for filter 'manage_settings_page_mla-settings-menu_columns'</h2>
 <pre>mla_manage_columns_filter() : array</pre>
@@ -667,7 +686,9 @@ $this->set_pagination_args().</p></p>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>This array defines table columns and titles where the key is the column slug (and class)
-and the value is the column's title text.</p></p>
+and the value is the column's title text.</p>
+
+<p>All of the columns are added to this array by MLA_Upload_List_Table::mla_admin_init_action.</p></p>
 <table class="table table-bordered"><tr>
 <th>since</th>
 <td>1.40</td>
@@ -715,7 +736,7 @@ sorted by that column. This is computed each time the table is displayed.</p></p
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
-            generated on 2013-06-30T13:10:25-07:00.<br></footer></div>
+            generated on 2015-02-17T16:36:13-08:00.<br></footer></div>
 </div>
 </body>
 </html>

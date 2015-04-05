@@ -12,4 +12,4 @@
 <!-- template="sidebar" -->
 <p><strong>For more information:</strong></p>
 <p><a href="http://codex.wordpress.org/Media_Add_New_Screen#Edit_Media" target="_blank">Documentation on Edit Media</a></p>
-<p><a href="http://wordpress.org/support/" target="_blank">Support Forums</a></p>
+<p><a href="http://wordpress.org/support/plugin/media-library-assistant" target="_blank">MLA Support Forum</a></p>

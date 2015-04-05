@@ -18,7 +18,10 @@
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Media Library Assistant</a><div class="nav-collapse"><ul class="nav">
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu"></ul>
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Media%20Library%20Assistant.html"><i class="icon-folder-open"></i> Media Library Assistant</a></li>
+</ul>
 </li>
 <li class="dropdown" id="charts-menu">
 <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
@@ -30,7 +33,9 @@
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
                 <span class="label label-info">0</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul></ul></a></li>
+                <ul><li>todo 
+                <span class="label label-info">1</span>
+</li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
 </ul>
@@ -73,7 +78,7 @@
 <li class="method public "><a href="#mla_icon_dir_uri_filter" title="mla_icon_dir_uri_filter :: Retrieve the icon directory URL for a MIME type"><span class="description">Retrieve the icon directory URL for a MIME type</span><pre>mla_icon_dir_uri_filter()</pre></a></li>
 <li class="method public "><a href="#mla_icon_dirs_filter" title="mla_icon_dirs_filter :: Retrieve the icon (directory =&gt; URI) array for a MIME type"><span class="description">Retrieve the icon (directory =&gt; URI) array for a MIME type</span><pre>mla_icon_dirs_filter()</pre></a></li>
 <li class="method public "><a href="#mla_mime_types_filter" title="mla_mime_types_filter :: Retrieve list of MIME types and file extensions; use this filter to add types"><span class="description">Retrieve list of MIME types and file extensions; use this filter to add types</span><pre>mla_mime_types_filter()</pre></a></li>
-<li class="method public "><a href="#mla_parse_view_specification" title="mla_parse_view_specification :: Analyze a Library View/Post MIME Type specification, returning an array of the place holders it contains"><span class="description">Analyze a Library View/Post MIME Type specification, returning an array of the place holders it contains</span><pre>mla_parse_view_specification()</pre></a></li>
+<li class="method public "><a href="#mla_parse_view_specification" title="mla_parse_view_specification :: Analyze a Library View/Post MIME Type specification, returning an array of the placeholders it contains"><span class="description">Analyze a Library View/Post MIME Type specification, returning an array of the placeholders it contains</span><pre>mla_parse_view_specification()</pre></a></li>
 <li class="method public "><a href="#mla_pluck_table_views" title="mla_pluck_table_views :: Retrieve views eligible for Media/Assistant table display"><span class="description">Retrieve views eligible for Media/Assistant table display</span><pre>mla_pluck_table_views()</pre></a></li>
 <li class="method public "><a href="#mla_post_mime_types_filter" title="mla_post_mime_types_filter :: Get default Post MIME Types"><span class="description">Get default Post MIME Types</span><pre>mla_post_mime_types_filter()</pre></a></li>
 <li class="method public "><a href="#mla_prepare_view_query" title="mla_prepare_view_query :: Convert a Library View/Post MIME Type specification to WP_Query parameters"><span class="description">Convert a Library View/Post MIME Type specification to WP_Query parameters</span><pre>mla_prepare_view_query()</pre></a></li>
@@ -111,6 +116,7 @@
 <li class="property private "><a href="#%24mla_optional_upload_mime_templates" title="$mla_optional_upload_mime_templates :: In-memory representation of the (read-only) Optional Upload MIME Types"><span class="description">In-memory representation of the (read-only) Optional Upload MIME Types</span><pre>$mla_optional_upload_mime_templates</pre></a></li>
 <li class="property private "><a href="#%24mla_post_mime_highest_ID" title="$mla_post_mime_highest_ID :: Highest existing Post MIME Type ID value"><span class="description">Highest existing Post MIME Type ID value</span><pre>$mla_post_mime_highest_ID</pre></a></li>
 <li class="property private "><a href="#%24mla_post_mime_templates" title="$mla_post_mime_templates :: In-memory representation of the Post MIME Types"><span class="description">In-memory representation of the Post MIME Types</span><pre>$mla_post_mime_templates</pre></a></li>
+<li class="property private "><a href="#%24mla_upload_mime_descriptions" title="$mla_upload_mime_descriptions :: In-memory cache of the default Upload MIME Type descriptions"><span class="description">In-memory cache of the default Upload MIME Type descriptions</span><pre>$mla_upload_mime_descriptions</pre></a></li>
 <li class="property private "><a href="#%24mla_upload_mime_highest_ID" title="$mla_upload_mime_highest_ID :: Highest existing Upload MIME Type ID value"><span class="description">Highest existing Upload MIME Type ID value</span><pre>$mla_upload_mime_highest_ID</pre></a></li>
 <li class="property private "><a href="#%24mla_upload_mime_templates" title="$mla_upload_mime_templates :: In-memory representation of the Upload MIME Types"><span class="description">In-memory representation of the Upload MIME Types</span><pre>$mla_upload_mime_templates</pre></a></li>
 </ul>
@@ -560,7 +566,7 @@ and get_allowed_mime_types().</p>
 </div></div>
 </div>
 <a name="mla_parse_view_specification" id="mla_parse_view_specification"></a><div class="element clickable method public mla_parse_view_specification" data-toggle="collapse" data-target=".mla_parse_view_specification .collapse">
-<h2>Analyze a Library View/Post MIME Type specification, returning an array of the place holders it contains</h2>
+<h2>Analyze a Library View/Post MIME Type specification, returning an array of the placeholders it contains</h2>
 <pre>mla_parse_view_specification(string $specification) : array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -616,7 +622,7 @@ of attachments of each type, and
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$post_mime_types</h4>
-<code>array</code><p>Content types (image, audio, video) and presentation strings, e.g. 'image' => array(__('Images'), __('Manage Images'), _n_noop('Image <span class="count">(%s)</span>', 'Images <span class="count">(%s)</span>')),</p>
+<code>array</code><p>Content types (image, audio, video) and presentation strings, e.g. 'image' => array(__('Images', 'media-library-assistant'), __('Manage Images', 'media-library-assistant'), _n_noop('Image <span class="count">(%s)</span>', 'Images <span class="count">(%s)</span>', 'media-library-assistant')),</p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
@@ -625,7 +631,7 @@ of attachments of each type, and
 </div>
 <a name="mla_prepare_view_query" id="mla_prepare_view_query"></a><div class="element clickable method public mla_prepare_view_query" data-toggle="collapse" data-target=".mla_prepare_view_query .collapse">
 <h2>Convert a Library View/Post MIME Type specification to WP_Query parameters</h2>
-<pre>mla_prepare_view_query(string $specification) : array</pre>
+<pre>mla_prepare_view_query(string $slug, string $specification) : array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -634,6 +640,9 @@ of attachments of each type, and
 <td>1.40</td>
 </tr></table>
 <h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$slug</h4>
+<code>string</code><p>View slug, unique identifier</p></div>
 <div class="subelement argument">
 <h4>$specification</h4>
 <code>string</code><p>A specification, e.g., "custom:Field,null" or "audio,application/vnd.<em>ms</em>"</p>
@@ -803,7 +812,7 @@ Defined as public because it's a filter.</p></p>
 </div>
 <a name="mla_upload_mimes_filter" id="mla_upload_mimes_filter"></a><div class="element clickable method public mla_upload_mimes_filter" data-toggle="collapse" data-target=".mla_upload_mimes_filter .collapse">
 <h2>Retrieve list of allowed MIME types and file extensions; use this filter to remove types</h2>
-<pre>mla_upload_mimes_filter(array $mime_types) : array</pre>
+<pre>mla_upload_mimes_filter(array $mime_types, mixed $user) : array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Called from /wp-includes/functions.php, function get_allowed_mime_types(). That function
@@ -825,6 +834,10 @@ respect this restriction, so any list we produce will be passed thru that functi
 <div class="subelement argument">
 <h4>$mime_types</h4>
 <code>array</code><p>Mime types keyed by the file extension regex corresponding to those types</p></div>
+<div class="subelement argument">
+<h4>$user</h4>
+<code>mixed</code><p>User ID (integer) or object for checking against 'unfiltered_html' capability</p>
+</div>
 <h3>Returns</h3>
 <div class="subelement response">
 <code>array</code>Updated allowed MIME types</div>
@@ -1232,6 +1245,18 @@ Defined as public because it's a filter.</p></p>
 </tr></table>
 </div></div>
 </div>
+<a name="%24mla_upload_mime_descriptions" id="$mla_upload_mime_descriptions"> </a><div class="element clickable property private $mla_upload_mime_descriptions" data-toggle="collapse" data-target=".$mla_upload_mime_descriptions .collapse">
+<h2>In-memory cache of the default Upload MIME Type descriptions</h2>
+<pre>$mla_upload_mime_descriptions : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>1.80</td>
+</tr></table>
+</div></div>
+</div>
 <a name="%24mla_upload_mime_highest_ID" id="$mla_upload_mime_highest_ID"> </a><div class="element clickable property private $mla_upload_mime_highest_ID" data-toggle="collapse" data-target=".$mla_upload_mime_highest_ID .collapse">
 <h2>Highest existing Upload MIME Type ID value</h2>
 <pre>$mla_upload_mime_highest_ID : integer</pre>
@@ -1263,7 +1288,7 @@ Defined as public because it's a filter.</p></p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
-            generated on 2013-06-30T13:10:24-07:00.<br></footer></div>
+            generated on 2015-02-17T16:36:12-08:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -23,5 +23,5 @@
 <p>Hovering over a row in the Extension column reveals action links such as Select. Clicking "Select" will copy the extension, MIME Type and Description values in that row to the Uploads list, creating a new custom item or converting an existing core/mla item to custom with the new values.</p>
 <!-- template="sidebar" -->
 <p><strong>For more information:</strong></p>
-<p><a href="http:/wp-admin/options-general.php?page=mla-settings-menu-documentation&mla_tab=documentation#mla_optional_uploads" target="_blank">Documentation on Searching for Upload MIME Types</a></p>
-<p><a href="http://wordpress.org/support/plugin/media-library-assistant" target="_blank">Support Forum</a></p>
+<p><a href="[+settingsURL+]?page=mla-settings-menu-documentation&mla_tab=documentation#mla_optional_uploads" target="_blank">MLA Documentation on Searching for Upload MIME Types</a></p>
+<p><a href="http://wordpress.org/support/plugin/media-library-assistant" target="_blank">MLA Support Forum</a></p>
