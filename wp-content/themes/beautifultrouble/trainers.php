@@ -11,7 +11,7 @@ get_header(); ?>
   </div><!--/.row -->
   <div class="container">
 <div class="row content">
-  <div class="span8">
+  <div class="span12">
  <!-- Masthead
  ================================================== -->
  <header class="jumbotron subhead" id="overview">
@@ -23,6 +23,7 @@ get_header(); ?>
             $avatar_size = 170;
             $trainers = get_posts( ['nopaging' => 'true', 'post_type' => 'bt_trainer', 'orderby' => 'title', 'order' => 'ASC'] );
 
+            $i = 0;
             foreach($trainers as $trainer) {
                     $trainer_title = get_the_title($trainer->ID);
                     $avatar_url = get_img_url(get_the_post_thumbnail($trainer->ID, $avatar_size));
@@ -48,9 +49,11 @@ get_header(); ?>
                         $trainer_url = $tertiary_url;
                     }
 
-                    echo '<div class="row spacer">';
-                        echo '<div class="span2 big-avatar" style="background-image:url(\'' . $avatar_url . '\');"></div>';
-                        echo '<div class="span6">';
+                    if ($i%3 == 0) {
+                        echo '<div class="row clearfix spacer">';
+                    }
+                        echo '<div class="span1 big-avatar" style="background-image:url(\'' . $avatar_url . '\');"></div>';
+                        echo '<div class="span3">';
                             echo '<h3>';
                             if ($trainer_url) {
                                 echo '<a href="' . $trainer_url . '">' . $trainer_title . '</a>';
@@ -60,16 +63,18 @@ get_header(); ?>
                             echo '</h3>';
                             echo '<p>' . $trainer->post_content . '</p>';
                         echo '</div>';
-                    echo '</div>';
+                    if (($i+1)%3 == 0) {
+                        echo '</div>';
+                    }
+                    $i += 1;
             }
 
     endwhile;
     ?>
-  </div><!-- /.span8 -->
+  </div><!-- /.span12 -->
 
   <div class="span8">
- <?php bootstrapwp_content_nav('nav-below');?>
-
-</div><!-- /.span8 -->
+    <?php bootstrapwp_content_nav('nav-below');?>
+  </div><!-- /.span8 -->
 </div><!-- /.row -->
 <?php get_footer(); ?>
