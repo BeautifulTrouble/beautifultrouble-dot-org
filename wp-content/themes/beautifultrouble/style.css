@@ -360,13 +360,8 @@ ul#editions li a {
 }
 
 @media (min-width: 768px) { 
-
 }
 
 @media (min-width: 1200px) { 
-    div.big-avatar {
-        width: 90px !important;
-        margin-right: -20px !important;
-    }
 }
 

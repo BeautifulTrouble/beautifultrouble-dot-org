@@ -22,7 +22,10 @@ get_header(); ?>
         
             $avatar_size = 170;
             $trainers = get_posts( ['nopaging' => 'true', 'post_type' => 'bt_trainer', 'orderby' => 'title', 'order' => 'ASC'] );
+            $total = count($trainers);
+            $third = (int) $total / 3 + 1;
 
+            echo '<div class="row clearfix ">';
             $i = 0;
             foreach($trainers as $trainer) {
                     $trainer_title = get_the_title($trainer->ID);
@@ -49,11 +52,11 @@ get_header(); ?>
                         $trainer_url = $tertiary_url;
                     }
 
-                    if ($i%3 == 0) {
-                        echo '<div class="row clearfix spacer">';
+                    if ($i % $third == 0) {
+                        echo '<div class="span4">';
                     }
-                        echo '<div class="span1 big-avatar" style="background-image:url(\'' . $avatar_url . '\');"></div>';
-                        echo '<div class="span3">';
+                        echo '<div class="big-avatar" style="background-image:url(\'' . $avatar_url . '\'); margin: 10px 0;"></div>';
+                        echo '<div style="margin-bottom: 20px;">';
                             echo '<h3>';
                             if ($trainer_url) {
                                 echo '<a href="' . $trainer_url . '">' . $trainer_title . '</a>';
@@ -63,11 +66,12 @@ get_header(); ?>
                             echo '</h3>';
                             echo '<p>' . $trainer->post_content . '</p>';
                         echo '</div>';
-                    if (($i+1)%3 == 0) {
+                    if (($i+1) % $third == 0) {
                         echo '</div>';
                     }
                     $i += 1;
             }
+            echo '</div>';
 
     endwhile;
     ?>
