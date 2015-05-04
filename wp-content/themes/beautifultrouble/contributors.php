@@ -58,7 +58,20 @@ foreach($authors as $author) {
         $author_bio         = get_the_author_meta('description', $author['ID'] );
         echo '<div class="row spacer">';
             echo '<div class="span2 big-avatar" style="background-image:url(\'' . $avatar_url . '\');"></div>';
-            echo '<div class="span6"><a href="' . $author_profile_url . '" class="contributor-link"><h3>' . $display_name . '</h3></a><p>' . $author_bio . '</p></div>';
+            echo '<div class="span6">';
+                echo '<a href="' . $author_profile_url . '" class="contributor-link"><h3>' . $display_name . '</h3></a><p>' . $author_bio . '</p>';
+                echo '<ul class="author-social-links">';
+                    $twitter    = get_the_author_meta('user_tw', $author['ID']);
+                    $website    = get_the_author_meta('url', $author['ID']);
+                    $twitter = preg_replace("#(http://twitter.com/|twitter.com/|www.twitter.com/|@)#ie", "", $twitter);
+                    if ( $twitter ) {
+                        echo '<li class="twitter"><a href="http://twitter.com/', $twitter, '">@', $twitter, '</a></li>';
+                    }
+                    if ( $website ) {
+                        echo '<li class="website"><a href="', $website, '">', $website, '</a></li>';
+                    }
+                echo '</ul>';
+            echo '</div>';
         echo '</div>';
 }
 

@@ -272,15 +272,19 @@ input#searchsubmit {
     margin: 0px;
 }
 
+ul.author-social-links {
+    margin-left: 0;
+}
 ul.author-social-links li {
     list-style: none;
-    display: inline;
-    margin-right: 14px;
+    /*display: inline;*/
+    /*margin-right: 14px;*/
 }
 
 li.twitter {
     background: url('../beautifultrouble/img/twitter-16x16.png') no-repeat top left;
     padding-left: 18px;
+    padding-right: 18px;
 }
 li.facebook {
     background: url('../beautifultrouble/img/facebook-16x16.png') no-repeat top left;
