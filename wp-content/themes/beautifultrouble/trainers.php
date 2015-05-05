@@ -61,7 +61,7 @@ get_header(); ?>
                                     echo '<div class="big-avatar ' . sanitize_title($trainer_title) . '" style="'
                                         . 'background-image:url(\'' . $avatar_url . '\'); ' 
                                         . 'background-position: ' . $avatar_pos[get_field('avatar_positioning', $trainer->ID)] . ' 50%; '
-                                        . 'margin: 0 -10px 10px 0;"></div>'
+                                        . 'margin: 7px -10px 0 0;"></div>'
                                         ;
                                 echo '</div>';
                                 echo '<div class="span3">';
