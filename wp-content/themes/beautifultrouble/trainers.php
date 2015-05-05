@@ -4,6 +4,13 @@ Template Name: Trainers template
 */
 get_header(); ?>
 <?php while ( have_posts() ) : the_post(); ?>
+  <script src="/wp-content/themes/beautifultrouble/js/readmore.min.js"></script>
+  <script>
+    jQuery(function () { 
+        jQuery('.trainer-bio').readmore({
+        }); 
+    });
+  </script>
   <div class="row">
     <div class="container">
       <?php if (function_exists('bootstrapwp_breadcrumbs')) bootstrapwp_breadcrumbs(); ?>
@@ -31,7 +38,8 @@ get_header(); ?>
                     $trainer_title = get_the_title($trainer->ID);
                     $avatar_url = get_img_url(get_the_post_thumbnail($trainer->ID, $avatar_size));
                     $avatar_pos = ['Left' => '20%', 'Center' => '50%', 'Right' => '80%'];
-                    $trainer_url = $secondary_url = $tertiary_url = '';
+   
+$trainer_url = $secondary_url = $tertiary_url = '';
 
                     // If there's a user with the same name as a trainer, get their avatar and url.
                     foreach(get_users() as $user) {
@@ -73,7 +81,7 @@ get_header(); ?>
                                             echo $trainer_title;
                                         }
                                         echo '</h3>';
-                                        echo '<p>' . $trainer->post_content . '</p>';
+                                        echo '<p class="trainer-bio">' . $trainer->post_content . '</p>';
                                     echo '</div>';
                                 echo '</div>';
                             echo '</div>';
