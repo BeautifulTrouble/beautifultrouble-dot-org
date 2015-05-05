@@ -209,6 +209,9 @@ div.big-avatar {
     background-size: cover;
     background-position: 50% 30%;
 }
+.page-template-trainers div.big-avatar {
+    min-height: 250px;
+}
 div.spacer {
     margin-top: 40px;
 }

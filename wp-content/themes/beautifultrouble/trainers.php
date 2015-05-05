@@ -30,6 +30,7 @@ get_header(); ?>
             foreach($trainers as $trainer) {
                     $trainer_title = get_the_title($trainer->ID);
                     $avatar_url = get_img_url(get_the_post_thumbnail($trainer->ID, $avatar_size));
+                    $avatar_pos = ['Left' => '20%', 'Center' => '50%', 'Right' => '80%'];
                     $trainer_url = $secondary_url = $tertiary_url = '';
 
                     // If there's a user with the same name as a trainer, get their avatar and url.
@@ -55,17 +56,27 @@ get_header(); ?>
                     if ($i % $third == 0) {
                         echo '<div class="span4">';
                     }
-                        echo '<div class="big-avatar" style="background-image:url(\'' . $avatar_url . '\'); margin: 10px 0;"></div>';
-                        echo '<div style="margin-bottom: 20px;">';
-                            echo '<h3>';
-                            if ($trainer_url) {
-                                echo '<a href="' . $trainer_url . '">' . $trainer_title . '</a>';
-                            } else {
-                                echo $trainer_title;
-                            }
-                            echo '</h3>';
-                            echo '<p>' . $trainer->post_content . '</p>';
-                        echo '</div>';
+                            echo '<div class="row">';
+                                echo '<div class="span1">';
+                                    echo '<div class="big-avatar ' . sanitize_title($trainer_title) . '" style="'
+                                        . 'background-image:url(\'' . $avatar_url . '\'); ' 
+                                        . 'background-position: ' . $avatar_pos[get_field('avatar_positioning', $trainer->ID)] . ' 50%; '
+                                        . 'margin: 0 -10px 10px 0;"></div>'
+                                        ;
+                                echo '</div>';
+                                echo '<div class="span3">';
+                                    echo '<div style="margin-bottom: 20px;">';
+                                        echo '<h3>';
+                                        if ($trainer_url) {
+                                            echo '<a href="' . $trainer_url . '">' . $trainer_title . '</a>';
+                                        } else {
+                                            echo $trainer_title;
+                                        }
+                                        echo '</h3>';
+                                        echo '<p>' . $trainer->post_content . '</p>';
+                                    echo '</div>';
+                                echo '</div>';
+                            echo '</div>';
                     if (($i+1) % $third == 0) {
                         echo '</div>';
                     }
