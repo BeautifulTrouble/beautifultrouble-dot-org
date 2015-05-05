@@ -59,6 +59,17 @@ foreach($authors as $author) {
                     echo '<p><em>', get_field( 'title', $id ), '</em></p>';
                 }
                 echo '<p>' . $author_bio . '</p>';
+                echo '<ul class="author-social-links">';
+                    $twitter    = get_the_author_meta('user_tw', $author['ID']);
+                    $website    = get_the_author_meta('url', $author['ID']);
+                    $twitter = preg_replace("#(http://twitter.com/|twitter.com/|www.twitter.com/|@)#ie", "", $twitter);
+                    if ( $twitter ) {
+                        echo '<li class="twitter"><a href="http://twitter.com/', $twitter, '">@', $twitter, '</a></li>';
+                    }
+                    if ( $website ) {
+                        echo '<li class="website"><a href="', $website, '">', $website, '</a></li>';
+                    }
+                echo '</ul>';
             echo '</div>';
         echo '</div>';
 }
