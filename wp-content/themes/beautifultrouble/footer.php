@@ -20,12 +20,11 @@
         $partners = get_posts( $args );
         if ( $partners ) {
             echo '<h3 class="partners">Partner Organizations</h3>';
-            echo '<div id="partner-logos">';
-            foreach( $partners as $partner ) {
-        ?>
-        <a title="<?php echo get_the_title( $partner->ID ); ?>" href="<?php echo get_permalink( $partner->ID ); ?>"><?php echo get_the_post_thumbnail( $partner->ID, array(100, 50)); ?></a>
-<?php }
-        echo '</div>';
+            echo '<div id="partner-logos" class="span8 offset2">';
+            foreach( $partners as $partner ) { ?>
+                <a title="<?php echo get_the_title( $partner->ID ); ?>" href="<?php echo get_permalink( $partner->ID ); ?>"><?php echo get_the_post_thumbnail( $partner->ID, array(120, 50)); ?></a>
+            <?php }
+            echo '</div><div class="clearfix"></div>';
         }
 ?>
 <hr class="soften" />
