@@ -36,31 +36,18 @@ get_header(); ?>
             $i = 0;
             foreach($trainers as $trainer) {
                     $trainer_title = get_the_title($trainer->ID);
+                    $trainer_url = get_post_permalink($trainer->ID);
                     $avatar_url = get_img_url(get_the_post_thumbnail($trainer->ID, $avatar_size));
                     $avatar_pos = ['Left' => '20%', 'Center' => '50%', 'Right' => '80%'];
-   
-$trainer_url = $secondary_url = $tertiary_url = '';
 
-                    // If there's a user with the same name as a trainer, get their avatar and url.
+                    // If there's a contributor with the same name, use that page's url
                     foreach(get_users() as $user) {
                         if ($user->display_name == $trainer_title) {
-                            $avatar_url = get_img_url(get_avatar($user->ID, $avatar_size));
                             $trainer_url = get_author_posts_url($user->ID);
-
-                            // If the user has a profile url set, use that one
-                            $secondary_url = get_userdata($user->ID)->user_url;
-                            if ($secondary_url) {
-                                $trainer_url = $secondary_url;
-                            }
                             break;
                         }
                     }
-
-                    $tertiary_url = get_field('trainer_url', $trainer->ID);
-                    if ($tertiary_url) {
-                        $trainer_url = $tertiary_url;
-                    }
-
+                    
                     if ($i % $third == 0) {
                         echo '<div class="span4">';
                     }
