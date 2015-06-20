@@ -43,6 +43,9 @@ get_header(); ?>
                     // If there's a contributor with the same name, use that page's url
                     foreach(get_users() as $user) {
                         if ($user->display_name == $trainer_title) {
+                            if (empty($avatar_url)) {
+                                $avatar_url = get_img_url(get_avatar($user->ID, $avatar_size));
+                            }
                             $trainer_url = get_author_posts_url($user->ID);
                             break;
                         }
