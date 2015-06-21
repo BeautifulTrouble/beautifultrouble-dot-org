@@ -220,6 +220,7 @@ div.portrait-avatar {
 }
 .trainer-bio {
     max-height: 15em;
+    overflow: hidden;
 }
 div.spacer {
     margin-top: 40px;
