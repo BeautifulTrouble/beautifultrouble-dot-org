@@ -50,6 +50,9 @@ hr, hr.soften {
     color: #999;
     font-size: 11px;
 }
+.news-item:hover .post-date {
+    color: white;
+}
 
 .carousel-inner  {
     background: rgb(0,0,0);
