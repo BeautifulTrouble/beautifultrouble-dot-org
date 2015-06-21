@@ -205,7 +205,7 @@ div.featured-image img {
     border: 1px solid black;
 }
 div.big-avatar {
-    min-height: 200px;
+    min-height: 170px;
     background-size: cover;
     background-position: 50% 30%;
 }
