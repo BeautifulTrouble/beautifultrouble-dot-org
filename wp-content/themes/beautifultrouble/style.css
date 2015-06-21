@@ -209,6 +209,12 @@ div.big-avatar {
     background-size: cover;
     background-position: 50% 30%;
 }
+div.portrait-avatar {
+    padding-top: 40%;
+    min-height: 170px;
+    background-size: cover;
+    background-position: 50% 30%;
+}
 .page-template-trainers div.big-avatar {
     min-height: 250px;
 }

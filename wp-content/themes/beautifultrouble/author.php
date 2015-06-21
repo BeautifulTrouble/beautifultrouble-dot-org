@@ -32,13 +32,13 @@ if ( have_posts() ) : ?>
                 <header class="jumbotron subhead" id="overview">
                     <h1 class="page-title author"><?php printf( '<span class="vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( "ID" ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author() . '</a></span>' ); ?></h1>
                         <?php
-                        $avatar_size = 170;
+                        $avatar_size = 440;
                         $user_email = get_the_author_meta('user_email');
                         $avatar_url = get_img_url(get_avatar($user_email, $avatar_size));
                         ?>
                         <div class="row spacer">
-                            <div class="span2 big-avatar" style="background-image:url('<?php echo $avatar_url; ?>');"></div>
-                            <div class="span6"><br class="visible-phone"><?php the_author_meta('description'); ?>
+                            <div class="span4 portrait-avatar" style="background-image:url('<?php echo $avatar_url; ?>');"></div>
+                            <div class="span4"><br class="visible-phone"><?php the_author_meta('description'); ?>
                                 <ul class="author-social-links">
                                 <?php 
                                     $twitter    = get_the_author_meta('user_tw');
