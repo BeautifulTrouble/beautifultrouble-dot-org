@@ -30,7 +30,8 @@ get_header(); ?>
             $avatar_size = 170;
             $trainers = get_posts( ['nopaging' => 'true', 'post_type' => 'bt_trainer', 'orderby' => 'title', 'order' => 'ASC'] );
             $total = count($trainers);
-            $third = (int) $total / 3 + 1;
+            $third = (int) $total / 3;
+            if ($third * 3 != $total) $third++;
 
             echo '<div class="row clearfix ">';
             $i = 0;
