@@ -8,22 +8,34 @@ get_header(); ?>
   <script src="/wp-content/themes/beautifultrouble/js/isotope.pkgd.min.js"></script>
   <script>
     jQuery(function () { 
-        jQuery('.grid').isotope({
+        var $ = jQuery;
+        $('.grid').isotope({
             itemSelector: '.person',
             layoutMode: 'fitRows',
             getSortData: {
                 name: '.name',
+                //category: '[data-category]',
                 eman: function(itemElem) {
-                    var t = jQuery(itemElem).find('.name').text();
+                    var t = $(itemElem).find('.name').text();
                     return t.split('').reverse().join('');
                 }
             }
         });
-        jQuery('.trainer-bio').readmore({
+        $('#filters').on('click', 'button', function () {
+            $('#filters button').removeClass('btn-success');
+            $(this).addClass('btn-success');
+            var filterRole = $(this).attr('data-role');
+            $('.grid').isotope({filter: function () {
+                if (filterRole == 'all') return true;
+                if ($(this).find('.exclude').length) return false;
+                return $(this).find('.' + filterRole).length;
+            }});
+        });
+        $('.trainer-bio').readmore({
             speed: 1,
             afterToggle: function(trigger, element, expanded) {
                 // Redraw isotope arrangement after readmore expansions
-                jQuery('.grid').isotope();
+                $('.grid').isotope();
             }
         }); 
     });
@@ -45,38 +57,48 @@ get_header(); ?>
     <?php the_content();
         
             $avatar_size = 250;
-            //$trainers = get_posts( ['nopaging' => 'true', 'post_type' => 'bt_trainer', 'orderby' => 'title', 'order' => 'ASC'] );
             $personnel = get_users('orderby=display_name');
-            //$total = count($trainers);
-            //$third = (int) $total / 3;
-            //if ($third * 3 != $total) $third++;
+
+            echo '<div class="row clearfix"><div id="filters" class="span12">';
+            foreach($personnel as $person) {
+                $fobj = get_field_object('user_roles', 'user_' . $person->ID);
+                if ($fobj) {
+                    echo '<div class="btn-group">';
+                    echo '<button class="btn btn-success" data-role="all">Entire Network</button>';
+                    foreach($fobj["choices"] as $key => $value) {
+                        if ($key == "exclude") continue;
+                        echo '<button class="btn" data-role="' . $key . '">' . $value . '</button>';
+                    }
+                    echo '</div><br />';
+                    break;  // Find the first peronnel record with custom fields
+                            // and use it to display a bunch of sorting buttons
+                }
+            }
+            echo '</div></div>';
 
             echo '<div class="row clearfix grid">';
             foreach($personnel as $person) {
-                    $avatar_pos = ['left' => '20%', 'center' => '50%', 'right' => '80%'];
-                    $avatar_pos = $avatar_pos[get_field('avatar_positioning', $person->ID)];
-                    $avatar_url = get_img_url(get_avatar($person->ID, $avatar_size));
-                    $person_name = $person->data->display_name;
-                    $person_url = get_the_author_meta('url', $person->ID);
-                    $person_bio = get_the_author_meta('description', $person->ID);
+                    $id = $person->ID;
+                    $acfid = 'user_' . $id;
+                    $positions = ['left' => '20%', 'center' => '50%', 'right' => '80%'];
 
-                    // If there's a contributor with the same name, use that page's url
-                    /*
-                    foreach(get_users() as $user) {
-                        if ($user->display_name == $trainer_title) {
-                            if (empty($avatar_url)) {
-                                $avatar_url = get_img_url(get_avatar($user->ID, $avatar_size));
-                            }
-                            $trainer_url = get_author_posts_url($user->ID);
-                            break;
-                        }
-                    }
-                    */
+                    $avatar_pos = $positions[get_field('avatar_positioning', $acfid)];
+                    $avatar_url = get_img_url(get_avatar($id, $avatar_size));
+
+                    $name = $person->data->display_name;
+                    $url = get_the_author_meta('url', $id);
+                    $bio = get_the_author_meta('description', $id);
+                    $roles = get_field('user_roles', $acfid);
 
                     echo '<div class="span4 person">';
+                    if ($roles) {
+                        foreach ($roles as $role) {
+                            echo '<div class="' . $role . '"></div>';
+                        }
+                    }
                     echo '  <div class="row">';
                     echo '    <div class="span1">';
-                    echo '      <div class="big-avatar ' . sanitize_title($person_name) . '" style="'
+                    echo '      <div class="big-avatar ' . sanitize_title($name) . '" style="'
                                 . 'background-image:url(\'' . $avatar_url . '\'); ' 
                                 . 'background-position: ' . $avatar_pos . ' 50%; '
                                 . 'margin: 6px -12px 20px 0; '
@@ -84,49 +106,16 @@ get_header(); ?>
                     echo '    </div>';
                     echo '    <div class="span3">';
                     echo '      <div style="margin-bottom: 20px;">';
-                    if ($person_url) {
-                        echo '    <h3><a class="name" href="' . $person_url . '">' . $person_name . '</a></h3>';
+                    if ($url) {
+                        echo '    <h3><a class="name" href="' . $url . '">' . $name . '</a></h3>';
                     } else {
-                        echo '    <h3 class="name">' . $person_name . '</h3>';
+                        echo '    <h3 class="name">' . $name . '</h3>';
                     }
-                    echo '        <p class="trainer-bio">' . $person_bio . '</p>';
+                    echo '        <p class="trainer-bio">' . $bio . '</p>';
                     echo '      </div>';
                     echo '    </div>';
                     echo '  </div>';
                     echo '</div>';
-
-                    /*
-                    
-                    if ($i % $third == 0) {
-                        echo '<div class="span4">';
-                    }
-                            echo '<div class="row person">';
-                                echo '<div class="span1">';
-                                    echo '<div class="big-avatar ' . sanitize_title($trainer_title) . '" style="'
-                                        . 'background-image:url(\'' . $avatar_url . '\'); ' 
-                                        . 'background-position: ' . $avatar_pos[get_field('avatar_positioning', $trainer->ID)] . ' 50%; '
-                                        . 'margin: 6px -12px 20px 0;"></div>'
-                                        ;
-                                echo '</div>';
-                                echo '<div class="span3">';
-                                    echo '<div style="margin-bottom: 20px;">';
-                                        echo '<h3>';
-                                        if ($trainer_url) {
-                                            echo '<a href="' . $trainer_url . '">' . $trainer_title . '</a>';
-                                        } else {
-                                            echo $trainer_title;
-                                        }
-                                        echo '</h3>';
-                                        echo '<p class="trainer-bio">' . $trainer->post_content . '</p>';
-                                    echo '</div>';
-                                echo '</div>';
-                            echo '</div>';
-
-                    if (($i+1) % $third == 0) {
-                        echo '</div>';
-                    }
-                    $i += 1;
-                    */
             }
             echo '</div>';
 
