@@ -22,8 +22,8 @@ get_header(); ?>
             }
         });
         $('#filters').on('click', 'button', function () {
-            $('#filters button').removeClass('btn-success');
-            $(this).addClass('btn-success');
+            $('#filters button').removeClass('btn-inverse');
+            $(this).addClass('btn-inverse');
             var filterRole = $(this).attr('data-role');
             $('.grid').isotope({filter: function () {
                 if (filterRole == 'all') return true;
@@ -64,7 +64,7 @@ get_header(); ?>
                 $fobj = get_field_object('user_roles', 'user_' . $person->ID);
                 if ($fobj) {
                     echo '<div class="btn-group">';
-                    echo '<button class="btn btn-success" data-role="all">Entire Network</button>';
+                    echo '<button class="btn btn-inverse" data-role="all">Entire Network</button>';
                     foreach($fobj["choices"] as $key => $value) {
                         if ($key == "exclude") continue;
                         echo '<button class="btn" data-role="' . $key . '">' . $value . '</button>';
