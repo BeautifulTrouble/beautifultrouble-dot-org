@@ -3,7 +3,8 @@
 
 
 function beautifultrouble_css_loader() {
-wp_enqueue_style('bootstrap', get_template_directory_uri().'/css/bootstrap.css', false ,'1.0', 'all' );
+//wp_enqueue_style('bootstrap', get_template_directory_uri().'/css/bootstrap.css', false ,'1.0', 'all' );
+wp_enqueue_style('bootstrap', get_theme_root_uri().'/beautifultrouble/css/bootstrap.css', false ,'1.0', 'all' );
 wp_enqueue_style('docs', get_template_directory_uri().'/css/docs.css', false ,'1.0', 'all' );
 wp_enqueue_style('prettify', get_template_directory_uri().'/css/prettify.css', false ,'1.0', 'all' );
 wp_enqueue_style('responsive', get_template_directory_uri().'/css/bootstrap-responsive.css', false, '1.0', 'all' );
@@ -226,7 +227,6 @@ function create_post_type() {
 		)
 	);
 }
-
 
 add_action( 'init', 'create_post_type' );
 
@@ -479,7 +479,6 @@ function beautifultrouble_widgets_init() {
 }
 add_action( 'init', 'beautifultrouble_widgets_init' );
 
-
 function validate_gravatar($email) {
 	// Craft a potential url and test its headers
 	$hash = md5(strtolower(trim($email)));
@@ -642,7 +641,6 @@ class CustomRecentPosts_Widget extends WP_Widget {
 }
 add_action( 'widgets_init', create_function( '', 'register_widget( "CustomRecentPosts_Widget" );' ) );
 
-
 /**
  * Adds SpotlightedModule_Widget widget.
  */
@@ -768,3 +766,4 @@ class CustomPostCount_Widget extends WP_Widget {
 } // class custompostcount_Widget
 // register custompostcount_Widget widget
 add_action( 'widgets_init', create_function( '', 'register_widget( "custompostcount_widget" );' ) );
+
