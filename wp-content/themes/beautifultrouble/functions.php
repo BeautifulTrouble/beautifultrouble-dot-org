@@ -11,6 +11,7 @@ wp_enqueue_style('responsive', get_template_directory_uri().'/css/bootstrap-resp
 wp_enqueue_style('style', get_template_directory_uri().'/style.css', false ,'1.2', 'all' );
 wp_enqueue_style('bt', get_theme_root_uri().'/beautifultrouble/style.css', false,'0.1', 'all' );
 wp_enqueue_script('scalefix', get_theme_root_uri().'/beautifultrouble/js/scale-fix.js', false,'0.1', true );
+//wp_enqueue_script('dropdown', get_theme_root_uri().'/beautifultrouble/js/bootstrap-dropdown.js', false,'0.1', true );
 }
 add_action('wp_enqueue_scripts', 'beautifultrouble_css_loader');
 
