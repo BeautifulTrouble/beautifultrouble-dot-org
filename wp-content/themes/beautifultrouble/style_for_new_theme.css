@@ -20,6 +20,17 @@ body h1.logo {
     height: 120px;
 }
 
+p {
+    margin-bottom: 14px;
+}
+
+.elevator li {
+    font-size: 95%;
+}
+.breadcrumb {
+    margin: 0;
+}
+
 .carousel .item {
     height: 377px;
     overflow: hidden;
@@ -39,6 +50,11 @@ hr, hr.soften {
     margin: 27px 0;
 }
 
+h1, h2, h3 {
+    line-height: 34px;
+    margin-bottom: 18px !important;
+}
+
 .news-item a {
     height: 64px;
 }
@@ -48,7 +64,7 @@ hr, hr.soften {
 }
 .news-item .post-date {
     color: #999;
-    font-size: 11px;
+    font-size: 80%;
 }
 .news-item:hover .post-date {
     color: white;
@@ -119,22 +135,27 @@ div.bt_practitioner a {
 div.bt_tactic h3 a {
     padding: 10px 0 10px 40px;
     background: url('/wp-content/themes/beautifultrouble/img/icon_small_tactic.png') no-repeat;
+    background-position: 0 10px;
 }
 div.bt_principle h3 a {
     padding: 10px 0 10px 40px;
     background: url('/wp-content/themes/beautifultrouble/img/icon_small_principle.png') no-repeat;
+    background-position: 0 10px;
 }
 div.bt_case h3 a {
     padding: 10px 0 10px 40px;
     background: url('/wp-content/themes/beautifultrouble/img/icon_small_case.png') no-repeat;
+    background-position: 0 10px;
 }
 div.bt_theory h3 a {
     padding: 10px 0 10px 40px;
     background: url('/wp-content/themes/beautifultrouble/img/icon_small_theory.png') no-repeat;
+    background-position: 0 10px;
 }
 div.bt_practitioner h3 a {
     padding: 10px 0 10px 40px;
     background: url('/wp-content/themes/beautifultrouble/img/icon_small_practitioner.png') no-repeat;
+    background-position: 0 10px;
 }
 body.single-bt_tactic header h1 {
     padding: 26px 0 10px 80px;
@@ -263,6 +284,10 @@ div.tab-content {
     /*background: url('/wp-content/themes/beautifultrouble/img/quote.png') no-repeat top right;*/
     /*min-height: 92px;*/
 /*}*/
+#quote-top p {
+    font-size: 16px;
+    font-style: italic;
+}
 
 #partner-logos img, #supporters-logos img {
     margin: 0 10px 10px 0;
