@@ -107,6 +107,20 @@ get_header(); ?>
             echo '</div>';
         }
         ?>
+        <?php if( $fields['key_theory'] ) {
+            echo '<div id="key-theory" class="alert alert-success">';
+            echo '<strong id="key-theory">Key Theory at work</strong><br />';
+            // Key Theory At Work
+            $theories = $fields['key_theory'];
+            foreach( $theories as $theory ) {
+                $related = array_pop( $theory['related_theory'] );
+                echo '<p class="theory"><b><a href="' . $related->guid . '">' . $related->post_title . '</a></b><br />';
+                echo $theory['explanation'];
+                echo '</p>';
+            }
+            echo '</div>';
+        }
+        ?>
         <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
 
         <?php $coauthors = get_coauthors(); ?>
