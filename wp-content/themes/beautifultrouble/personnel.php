@@ -25,6 +25,8 @@ get_header(); ?>
             $('#filters button').removeClass('btn-inverse');
             $(this).addClass('btn-inverse');
             var filterRole = $(this).attr('data-role');
+            // Set fragment
+            location.hash = filterRole;
             $('.grid').isotope({filter: function () {
                 if (filterRole == 'all') return true;
                 if ($(this).find('.exclude').length) return false;
@@ -38,6 +40,11 @@ get_header(); ?>
                 $('.grid').isotope();
             }
         }); 
+        // Set filter
+        var fragment = location.hash.slice(1);
+        if (fragment) {
+            $('#filters [data-role="' + fragment + '"]').click();
+        }
     });
   </script>
   <div class="row">
@@ -64,11 +71,11 @@ get_header(); ?>
                 $fobj = get_field_object('user_roles', 'user_' . $person->ID);
                 if ($fobj) {
                     echo '<div class="btn-group">';
-                    echo '<button class="btn btn-inverse" data-role="all">Entire Network</button>';
                     foreach($fobj["choices"] as $key => $value) {
                         if ($key == "exclude") continue;
                         echo '<button class="btn" data-role="' . $key . '">' . $value . '</button>';
                     }
+                    echo '<button class="btn btn-inverse" data-role="all">Entire Network</button>';
                     echo '</div><br />';
                     break;  // Find the first peronnel record with custom fields
                             // and use it to display a bunch of sorting buttons
