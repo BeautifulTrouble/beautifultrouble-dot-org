@@ -1,14 +1,14 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-includes/js/tinymce/plugins/hr
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/hr
 http://core.svn.wordpress.org
 
 
 
-2014-10-23T02:08:20.053191Z
-29735
+2015-07-01T00:52:25.483066Z
+32984
 azaozz
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2015-03-10T21:34:35.344046Z
-b4853cda3c7b4c55371939381cecdb86
-2014-03-06T00:54:14.186825Z
-27275
+2016-01-04T07:02:48.052034Z
+428c9fb47a7b83fa0440a15886d0b11a
+2015-07-01T00:52:25.483066Z
+32984
 azaozz
 
 
@@ -58,7 +58,7 @@ azaozz
 
 
 
-624
+648
 
 plugin.min.js
 file
@@ -66,7 +66,7 @@ file
 
 
 
-2015-03-10T21:34:35.344046Z
+2015-12-16T03:24:41.567018Z
 5c23255ad2d11db3f72c33b649f1389a
 2014-10-23T02:08:20.053191Z
 29735

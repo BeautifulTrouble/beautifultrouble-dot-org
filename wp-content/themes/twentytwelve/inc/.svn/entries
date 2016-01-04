@@ -1,14 +1,14 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-content/themes/twentytwelve/inc
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentytwelve/inc
 http://core.svn.wordpress.org
 
 
 
-2014-11-13T12:00:57.994084Z
-30326
+2015-04-12T21:29:32.613294Z
+32095
 ocean90
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2015-03-10T21:34:36.864046Z
-f2c0b02cccb45be2ad9df9f4dc5932b2
-2014-11-13T12:00:57.994084Z
-30326
+2016-01-04T07:02:48.372034Z
+d87fbc1c9b132e2b55906af7e2734d55
+2015-04-12T21:29:32.613294Z
+32095
 ocean90
 has-props
 
@@ -58,5 +58,5 @@ has-props
 
 
 
-4667
+4684
 

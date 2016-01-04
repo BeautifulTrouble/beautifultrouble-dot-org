@@ -1,15 +1,15 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-admin/css/colors/light
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-admin/css/colors/light
 http://core.svn.wordpress.org
 
 
 
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2015-03-10T21:34:37.340046Z
-e3ceeb9466bd89ba5ee791130f9ca85f
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.620034Z
+b4be2184e5b0187f52904e43be7cbb8e
+2015-11-05T17:53:43.630930Z
+35503
+jorbin
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-13791
+14386
 
 colors.css
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2015-03-10T21:34:37.344046Z
-2297575ac6851b541ef9f8797d318ec2
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.620034Z
+37b13af5b2d2fe92bda3ea34734fa727
+2015-11-05T17:53:43.630930Z
+35503
+jorbin
 has-props
 
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-13793
+14388
 
 colors-rtl.min.css
 file
@@ -100,11 +100,11 @@ file
 
 
 
-2015-03-10T21:34:37.344046Z
-135321308e0cff17720381814fe670fe
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.620034Z
+1bdecd78f1ec3604f202995e0785e120
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
 has-props
 
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-11355
+12249
 
 colors.min.css
 file
@@ -134,11 +134,11 @@ file
 
 
 
-2015-03-10T21:34:37.340046Z
-fcb5d20b06e3fd14e30ff9e923992c85
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.624034Z
+ef025447b62b0fb2dfda1cea9f94a0cf
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
 has-props
 
 
@@ -160,7 +160,7 @@ has-props
 
 
 
-11357
+12251
 
 colors.scss
 file
@@ -168,11 +168,11 @@ file
 
 
 
-2015-03-10T21:34:37.340046Z
-20a8567ba70294295c115f7ed9e071b7
-2014-03-27T17:56:14.627189Z
-27620
-nacin
+2016-01-04T06:59:45.620034Z
+480b9bd647e5b323ef88d63ce55e1d6f
+2015-07-15T20:14:25.463582Z
+33256
+helen
 
 
 

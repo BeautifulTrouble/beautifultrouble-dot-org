@@ -1,15 +1,15 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-includes/Text
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-includes/Text
 http://core.svn.wordpress.org
 
 
 
-2013-05-25T22:10:53.268536Z
-24363
-ocean90
+2015-10-24T22:45:25.693679Z
+35354
+wonderboymusic
 
 
 
@@ -26,20 +26,17 @@ ocean90
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-Diff
-dir
-
 Diff.php
 file
 
 
 
 
-2015-03-10T21:28:47.912046Z
-25fe9d676b0c6a4062c025c6dfdc00d9
-2013-05-25T22:10:53.268536Z
-24363
-ocean90
+2016-01-04T06:59:47.480034Z
+6c70d59e9e9a6e9bd11537719313e32a
+2015-06-28T15:27:24.807716Z
+32961
+jorbin
 has-props
 
 
@@ -61,5 +58,8 @@ has-props
 
 
 
-11945
+12950
+
+Diff
+dir
 

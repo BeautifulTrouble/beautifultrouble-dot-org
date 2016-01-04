@@ -1,15 +1,15 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-content/themes/twentyfifteen/languages
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyfifteen/languages
 http://core.svn.wordpress.org
 
 
 
-2014-12-16T22:02:43.429470Z
-30925
-SergeyBiryukov
+2015-12-08T15:20:27.405625Z
+35794
+ocean90
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2015-03-10T21:34:36.648046Z
-86b05d8ef230b4774bc234979974f469
-2014-12-16T22:02:43.429470Z
-30925
-SergeyBiryukov
+2016-01-04T07:02:48.272034Z
+60929e24aa9fc68903a3586cced89079
+2015-12-08T15:20:27.405625Z
+35794
+ocean90
 
 
 
@@ -58,5 +58,5 @@ SergeyBiryukov
 
 
 
-7117
+7091
 

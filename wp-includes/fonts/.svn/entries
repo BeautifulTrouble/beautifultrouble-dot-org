@@ -1,14 +1,14 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-includes/fonts
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-includes/fonts
 http://core.svn.wordpress.org
 
 
 
-2014-12-09T19:34:23.319189Z
-30787
+2015-07-23T10:03:24.496860Z
+33362
 ocean90
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2015-03-10T21:34:36.340046Z
-8a457a7b9d43377c070b0fe91732ed95
-2014-12-09T19:34:23.319189Z
-30787
-ocean90
+2016-01-04T06:59:47.508034Z
+4e1e8fbebedb4172f1635a4cf29624e8
+2015-07-23T03:02:24.408017Z
+33345
+markjaquith
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-39804
+41916
 
 dashicons.svg
 file
@@ -66,10 +66,10 @@ file
 
 
 
-2015-03-10T21:34:36.340046Z
-0b7e1f9b2978e48c89f99c5befaf77f8
-2014-12-09T19:34:23.319189Z
-30787
+2016-01-04T06:59:47.504034Z
+21e6b28a2d95d779f553565c7831c97d
+2015-07-23T10:03:24.496860Z
+33362
 ocean90
 
 
@@ -92,7 +92,7 @@ ocean90
 
 
 
-90701
+95333
 
 dashicons.woff
 file
@@ -100,11 +100,11 @@ file
 
 
 
-2015-03-10T21:34:36.340046Z
-78f5e202fde4da61a50d49b27e747eb2
-2014-12-09T19:34:23.319189Z
-30787
-ocean90
+2016-01-04T06:59:47.504034Z
+a880efb5c3ff8d61a495354352f81afb
+2015-07-23T03:02:24.408017Z
+33345
+markjaquith
 has-props
 
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-24656
+26044
 
 dashicons.eot
 file
@@ -134,11 +134,11 @@ file
 
 
 
-2015-03-10T21:34:36.340046Z
-cea23664cbf4f6c9484411cbc651d983
-2014-12-09T19:34:23.319189Z
-30787
-ocean90
+2016-01-04T06:59:47.508034Z
+f379d2e99493ad79891d8300bf7a4a31
+2015-07-23T03:02:24.408017Z
+33345
+markjaquith
 has-props
 
 
@@ -160,5 +160,5 @@ has-props
 
 
 
-40054
+42118
 

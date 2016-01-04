@@ -1,15 +1,15 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-admin/css/colors/blue
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-admin/css/colors/blue
 http://core.svn.wordpress.org
 
 
 
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2015-03-10T21:34:37.284046Z
-633d5348edb8b8d16a1e5c73483fa94a
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.516034Z
+4e5f19d15fc3adfb371fdf5e050c8b9d
+2015-11-05T17:53:43.630930Z
+35503
+jorbin
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-13139
+13740
 
 colors.css
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2015-03-10T21:34:37.284046Z
-8d7de25287ecf81d4e0d04534fa900d0
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.516034Z
+99211a5746557a4d67717867f9ae8c62
+2015-11-05T17:53:43.630930Z
+35503
+jorbin
 has-props
 
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-13141
+13742
 
 colors-rtl.min.css
 file
@@ -100,11 +100,11 @@ file
 
 
 
-2015-03-10T21:34:37.284046Z
-8564e463d51205a7ba81fc3dbf47534c
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.516034Z
+fe0277eddd6929335c49e93666773745
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
 has-props
 
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-11082
+11869
 
 colors.min.css
 file
@@ -134,11 +134,11 @@ file
 
 
 
-2015-03-10T21:34:37.284046Z
-09ba9aa3753dfc6aaa747e46172d7f0c
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.516034Z
+dd77d909ddd0981a03cd1bcb90d2a56a
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
 has-props
 
 
@@ -160,7 +160,7 @@ has-props
 
 
 
-11084
+11871
 
 colors.scss
 file
@@ -168,7 +168,7 @@ file
 
 
 
-2015-03-10T21:34:37.284046Z
+2015-12-16T03:24:41.367018Z
 d9d03549d79484672c29145aad594db3
 2014-02-06T06:25:18.020850Z
 26973

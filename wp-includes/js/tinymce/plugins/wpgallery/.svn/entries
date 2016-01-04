@@ -1,15 +1,15 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-includes/js/tinymce/plugins/wpgallery
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/wpgallery
 http://core.svn.wordpress.org
 
 
 
-2014-10-12T18:13:20.451367Z
-29639
-azaozz
+2015-11-07T16:12:27.456452Z
+35531
+wonderboymusic
 
 
 
@@ -26,51 +26,17 @@ azaozz
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-plugin.js
-file
-
-
-
-
-2015-03-10T21:34:35.300046Z
-b10eadbf41e88b236ac764bd26e653f9
-2014-10-12T18:13:20.451367Z
-29639
-azaozz
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3173
-
 plugin.min.js
 file
 
 
 
 
-2015-03-10T21:34:35.300046Z
-b229462e6a542696fbf6bd4917c9074f
-2014-10-12T18:13:20.451367Z
-29639
-azaozz
+2016-01-04T07:02:48.044034Z
+04fb37608ef94f9a747901b2f98b4fce
+2015-11-07T16:12:27.456452Z
+35531
+wonderboymusic
 
 
 
@@ -92,5 +58,39 @@ azaozz
 
 
 
-1654
+1661
+
+plugin.js
+file
+
+
+
+
+2016-01-04T07:02:48.044034Z
+9d48345044e6111fbeb9d2fb444d5c49
+2015-11-07T16:12:27.456452Z
+35531
+wonderboymusic
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3180
 

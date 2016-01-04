@@ -1,15 +1,15 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-content/themes/twentyfourteen/inc
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyfourteen/inc
 http://core.svn.wordpress.org
 
 
 
-2014-12-09T18:57:24.015666Z
-30786
-johnbillion
+2015-04-12T21:29:32.613294Z
+32095
+ocean90
 
 
 
@@ -26,118 +26,16 @@ johnbillion
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-widgets.php
-file
-
-
-
-
-2015-03-10T21:34:36.984046Z
-6cd30957943015d015fb81ee62a336d8
-2014-05-02T18:46:17.138493Z
-28076
-SergeyBiryukov
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9824
-
-featured-content.php
-file
-
-
-
-
-2015-03-10T21:34:36.988046Z
-b5e49ae7ac24d2ee9f018419992d78a3
-2014-10-15T17:21:19.106239Z
-29658
-ocean90
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-15185
-
-template-tags.php
-file
-
-
-
-
-2015-03-10T21:34:36.988046Z
-d9728fafce781cdd98dc0ddf225a83c3
-2014-12-09T18:57:24.015666Z
-30786
-johnbillion
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-7087
-
 custom-header.php
 file
 
 
 
 
-2015-03-10T21:34:36.984046Z
-2f04b950aa97a6642bdc88bbde7cf985
-2014-11-01T03:44:23.227898Z
-30146
+2016-01-04T07:02:48.412034Z
+6300f93c453609b506a93b11e62e2a2b
+2015-01-20T19:03:23.469912Z
+31231
 lancewillett
 has-props
 
@@ -160,7 +58,7 @@ has-props
 
 
 
-4506
+4519
 
 back-compat.php
 file
@@ -168,7 +66,7 @@ file
 
 
 
-2015-03-10T21:34:36.984046Z
+2015-12-16T03:24:41.487018Z
 b29ac75d7a34a9cd14f1ab9e660fdfae
 2014-10-15T17:21:19.106239Z
 29658
@@ -202,10 +100,78 @@ file
 
 
 
-2015-03-10T21:34:36.984046Z
-5a1fd4519addb5a8bc1cba9bb2592d1d
-2014-11-01T03:26:21.921802Z
-30143
+2016-01-04T07:02:48.408034Z
+f455d524a021cbf0529db659608bf703
+2015-04-12T21:29:32.613294Z
+32095
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5633
+
+widgets.php
+file
+
+
+
+
+2016-01-04T07:02:48.408034Z
+e01fc1f8f278449551d91b09547abe4a
+2015-04-12T21:29:32.613294Z
+32095
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9843
+
+featured-content.php
+file
+
+
+
+
+2016-01-04T07:02:48.408034Z
+083b3e3535f34820186619f6a03a0053
+2015-01-20T19:03:23.469912Z
+31231
 lancewillett
 has-props
 
@@ -228,5 +194,39 @@ has-props
 
 
 
-5631
+15187
+
+template-tags.php
+file
+
+
+
+
+2016-01-04T07:02:48.408034Z
+742564101e26b69ee68c48152c651a4f
+2015-02-20T10:35:28.196302Z
+31463
+DrewAPicture
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7224
 

@@ -1,14 +1,14 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-includes/js/tinymce/plugins/colorpicker
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/colorpicker
 http://core.svn.wordpress.org
 
 
 
-2014-10-23T02:08:20.053191Z
-29735
+2015-07-01T00:52:25.483066Z
+32984
 azaozz
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2015-03-10T21:34:35.364046Z
-66ed7befbb2773566ed188e1d3b97cc4
-2014-07-17T21:54:14.709618Z
-28998
+2016-01-04T07:02:48.068034Z
+22538c49f524050bd8300b44526abc2a
+2015-07-01T00:52:25.483066Z
+32984
 azaozz
 
 
@@ -58,7 +58,7 @@ azaozz
 
 
 
-2426
+2450
 
 plugin.min.js
 file
@@ -66,7 +66,7 @@ file
 
 
 
-2015-03-10T21:34:35.364046Z
+2015-12-16T03:24:41.567018Z
 1581bb02286f54b4fb0cce52d2ef61c7
 2014-10-23T02:08:20.053191Z
 29735

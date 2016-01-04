@@ -1,15 +1,15 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-content/themes/twentytwelve/css
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentytwelve/css
 http://core.svn.wordpress.org
 
 
 
-2014-12-16T22:24:22.226464Z
-30930
-SergeyBiryukov
+2015-02-14T17:29:29.475674Z
+31445
+lancewillett
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2015-03-10T21:34:36.852046Z
-e3fd621c2a864ba5aba24aeda3585f94
-2014-12-16T22:24:22.226464Z
-30930
-SergeyBiryukov
+2016-01-04T07:02:48.364034Z
+000f80a506285a81e8918f3628b6cd42
+2015-02-14T17:29:29.475674Z
+31445
+lancewillett
 has-props
 
 
@@ -58,5 +58,5 @@ has-props
 
 
 
-5553
+5543
 

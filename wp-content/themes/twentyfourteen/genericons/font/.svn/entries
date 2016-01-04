@@ -1,8 +1,8 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-content/themes/twentyfourteen/genericons/font
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyfourteen/genericons/font
 http://core.svn.wordpress.org
 
 
@@ -26,81 +26,13 @@ lancewillett
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-genericons-regular-webfont.woff
-file
-
-
-
-
-2015-03-10T21:34:36.944046Z
-db7a8d16b367e4c38591be6d7e979876
-2014-06-06T17:36:14.099862Z
-28510
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-17224
-
-genericons-regular-webfont.eot
-file
-
-
-
-
-2015-03-10T21:34:36.944046Z
-adf093b1ec7239c03865a87ae6d60160
-2014-06-06T17:36:14.099862Z
-28510
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-14935
-
 genericons-regular-webfont.ttf
 file
 
 
 
 
-2015-03-10T21:34:36.944046Z
+2015-12-16T03:24:41.487018Z
 f83f27fb1bfd20d64ba2ae3eaaf4b1ca
 2014-06-06T17:36:14.099862Z
 28510
@@ -134,7 +66,7 @@ file
 
 
 
-2015-03-10T21:34:36.944046Z
+2015-12-16T03:24:41.487018Z
 da07151366f79da6116cf5cfc3cc477b
 2014-06-06T17:36:14.099862Z
 28510
@@ -161,4 +93,72 @@ lancewillett
 
 
 40045
+
+genericons-regular-webfont.woff
+file
+
+
+
+
+2015-12-16T03:24:41.487018Z
+db7a8d16b367e4c38591be6d7e979876
+2014-06-06T17:36:14.099862Z
+28510
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+17224
+
+genericons-regular-webfont.eot
+file
+
+
+
+
+2015-12-16T03:24:41.487018Z
+adf093b1ec7239c03865a87ae6d60160
+2014-06-06T17:36:14.099862Z
+28510
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+14935
 

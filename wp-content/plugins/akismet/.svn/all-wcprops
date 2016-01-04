@@ -1,35 +1,11 @@
 K 25
 svn:wc:ra_dav:version-url
 V 36
-/!svn/ver/1042794/akismet/tags/3.0.4
+/!svn/ver/1265027/akismet/tags/3.1.5
 END
-wrapper.php
+LICENSE.txt
 K 25
 svn:wc:ra_dav:version-url
 V 48
-/!svn/ver/1042794/akismet/tags/3.0.4/wrapper.php
-END
-class.akismet.php
-K 25
-svn:wc:ra_dav:version-url
-V 54
-/!svn/ver/1042794/akismet/tags/3.0.4/class.akismet.php
-END
-class.akismet-widget.php
-K 25
-svn:wc:ra_dav:version-url
-V 61
-/!svn/ver/1042794/akismet/tags/3.0.4/class.akismet-widget.php
-END
-.htaccess
-K 25
-svn:wc:ra_dav:version-url
-V 46
-/!svn/ver/1042794/akismet/tags/3.0.4/.htaccess
-END
-class.akismet-admin.php
-K 25
-svn:wc:ra_dav:version-url
-V 60
-/!svn/ver/1042794/akismet/tags/3.0.4/class.akismet-admin.php
+/!svn/ver/1265027/akismet/tags/3.1.5/LICENSE.txt
 END

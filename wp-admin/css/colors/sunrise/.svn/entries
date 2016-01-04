@@ -1,15 +1,15 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-admin/css/colors/sunrise
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-admin/css/colors/sunrise
 http://core.svn.wordpress.org
 
 
 
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2015-03-10T21:34:37.360046Z
-0c5569b8a2822ed086e78645b0c9f1de
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.652034Z
+e4274ca15d4a38aea20259bb83776ee5
+2015-11-05T17:53:43.630930Z
+35503
+jorbin
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-13160
+13761
 
 colors.css
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2015-03-10T21:34:37.360046Z
-e048709f08faeac3e1fdd8fb27869f0e
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.652034Z
+7dcd4b68ece82d3d9cc5be62d079244d
+2015-11-05T17:53:43.630930Z
+35503
+jorbin
 has-props
 
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-13162
+13763
 
 colors-rtl.min.css
 file
@@ -100,11 +100,11 @@ file
 
 
 
-2015-03-10T21:34:37.360046Z
-5889a9c995d14bafefe1e5c886333930
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.652034Z
+4bd6b6b92b306b97ba3de1c2421fc3e8
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
 has-props
 
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-10979
+11901
 
 colors.min.css
 file
@@ -134,11 +134,11 @@ file
 
 
 
-2015-03-10T21:34:37.364046Z
-11c1107a87cc83ff1df4e588554e349a
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.652034Z
+8c45e2cf777e40fe8b03318f0a193157
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
 has-props
 
 
@@ -160,7 +160,7 @@ has-props
 
 
 
-10981
+11903
 
 colors.scss
 file
@@ -168,7 +168,7 @@ file
 
 
 
-2015-03-10T21:34:37.364046Z
+2015-12-16T03:24:41.367018Z
 5692871a8a7a1914ee0968ddf9923dec
 2014-02-06T06:25:18.020850Z
 26973

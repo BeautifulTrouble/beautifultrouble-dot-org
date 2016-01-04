@@ -1,8 +1,8 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-includes/js/tinymce/plugins/wpdialogs
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/wpdialogs
 http://core.svn.wordpress.org
 
 
@@ -32,7 +32,7 @@ file
 
 
 
-2015-03-10T21:34:35.520046Z
+2015-12-16T03:24:41.575018Z
 06f7aecb5bdfa28739eea0a498d15a81
 2014-04-08T08:29:14.277783Z
 27875
@@ -66,7 +66,7 @@ file
 
 
 
-2015-03-10T21:34:35.520046Z
+2015-12-16T03:24:41.575018Z
 eafbb1478981e337981d287474e240b8
 2014-04-08T08:29:14.277783Z
 27875

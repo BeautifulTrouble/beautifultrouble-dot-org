@@ -1,15 +1,15 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-content/themes/twentyfifteen/css
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyfifteen/css
 http://core.svn.wordpress.org
 
 
 
-2014-12-17T22:44:22.944666Z
-30950
-johnbillion
+2015-07-25T23:00:24.516572Z
+33386
+iseulde
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2015-03-10T21:34:36.696046Z
-7233eef8935a8539e806bee9e03bcea5
-2014-12-17T22:44:22.944666Z
-30950
-johnbillion
+2016-01-04T07:02:48.292034Z
+1e0a6061e4379574a672ff885f6ae33f
+2015-07-25T23:00:24.516572Z
+33386
+iseulde
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-5729
+5699
 
 ie7.css
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2015-03-10T21:34:36.696046Z
+2015-12-16T03:24:41.475018Z
 6468f9823d831d5b4b4d37d5c52c88ac
-2014-12-11T09:30:26.571125Z
-30804
-nacin
+2014-12-10T13:39:24.346487Z
+30796
+iandstewart
 has-props
 
 
@@ -100,11 +100,11 @@ file
 
 
 
-2015-03-10T21:34:36.696046Z
-35d63a4f5450fafdac209c305b496efa
-2014-12-11T09:30:26.571125Z
-30804
-nacin
+2016-01-04T07:02:48.292034Z
+f86cdf670ff2a4f649194e8e36c1b7fc
+2015-01-15T23:05:22.539913Z
+31164
+lancewillett
 has-props
 
 
@@ -126,5 +126,5 @@ has-props
 
 
 
-13627
+14133
 

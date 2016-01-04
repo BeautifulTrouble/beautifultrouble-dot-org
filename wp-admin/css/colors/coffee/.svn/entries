@@ -1,15 +1,15 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-admin/css/colors/coffee
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-admin/css/colors/coffee
 http://core.svn.wordpress.org
 
 
 
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2015-03-10T21:34:37.304046Z
-4660617cfae6b1ec687fe800ea238cd5
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.548034Z
+6509268c1c5e84a108c0030e7f1e8eed
+2015-11-05T17:53:43.630930Z
+35503
+jorbin
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-13160
+13761
 
 colors.css
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2015-03-10T21:34:37.304046Z
-594f599a5d8f91d07fc0f317117561a7
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.548034Z
+dba131a88a68e7acbb7b3cec28db1dcb
+2015-11-05T17:53:43.630930Z
+35503
+jorbin
 has-props
 
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-13162
+13763
 
 colors-rtl.min.css
 file
@@ -100,11 +100,11 @@ file
 
 
 
-2015-03-10T21:34:37.300046Z
-eb4cd2c841fb222e136b5e7b891aea12
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.548034Z
+633688047d2552c2036369c8df1e9dfe
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
 has-props
 
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-10979
+11901
 
 colors.min.css
 file
@@ -134,11 +134,11 @@ file
 
 
 
-2015-03-10T21:34:37.304046Z
-e2f1b66e798b73956910c7f2d8f52893
-2014-11-23T01:26:23.794390Z
-30520
-azaozz
+2016-01-04T06:59:45.548034Z
+68cf9b8927067500035c727ed340fea1
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
 has-props
 
 
@@ -160,7 +160,7 @@ has-props
 
 
 
-10981
+11903
 
 colors.scss
 file
@@ -168,7 +168,7 @@ file
 
 
 
-2015-03-10T21:34:37.304046Z
+2015-12-16T03:24:41.367018Z
 397e3820b27a234330c95e05250f61ce
 2014-02-06T06:25:18.020850Z
 26973

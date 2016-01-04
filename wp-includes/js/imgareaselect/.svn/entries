@@ -1,15 +1,15 @@
 10
 
 dir
-31685
-http://core.svn.wordpress.org/tags/4.1.1/wp-includes/js/imgareaselect
+36133
+http://core.svn.wordpress.org/tags/4.4/wp-includes/js/imgareaselect
 http://core.svn.wordpress.org
 
 
 
-2013-09-21T10:43:10.291005Z
-25465
-ocean90
+2015-07-20T15:57:25.912262Z
+33301
+obenland
 
 
 
@@ -26,81 +26,13 @@ ocean90
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-jquery.imgareaselect.min.js
-file
-
-
-
-
-2015-03-10T21:28:47.984046Z
-0030d4ba4c429d776d23c2e37775873a
-2013-09-21T10:43:10.291005Z
-25465
-ocean90
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-13881
-
-border-anim-v.gif
-file
-
-
-
-
-2015-03-10T21:28:47.972046Z
-20c97a21993cf137ead9fdbecbc42aa8
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-178
-
 border-anim-h.gif
 file
 
 
 
 
-2015-03-10T21:28:47.972046Z
+2014-02-26T01:32:39.097050Z
 5ac3c42cc86e745a5e36b67b4c70a134
 2012-11-07T18:49:10.703842Z
 22425
@@ -134,7 +66,7 @@ file
 
 
 
-2015-03-10T21:28:47.972046Z
+2014-02-26T01:32:39.097050Z
 7d28cad92829b3d633a087b5f3b595af
 2012-04-25T21:49:57.808998Z
 20602
@@ -168,11 +100,11 @@ file
 
 
 
-2015-03-10T21:28:47.984046Z
-55a6b7fb4b1b287497d3fc30910e97ce
-2013-09-21T10:43:10.291005Z
-25465
-ocean90
+2016-01-04T06:59:48.332034Z
+7a0e1bfc429252530cfb8318f53a5986
+2015-07-20T15:57:25.912262Z
+33301
+obenland
 has-props
 
 
@@ -194,5 +126,73 @@ has-props
 
 
 
-37069
+38133
+
+jquery.imgareaselect.min.js
+file
+
+
+
+
+2016-01-04T06:59:48.332034Z
+25f42e049e65ee16d442799755724025
+2015-07-20T15:57:25.912262Z
+33301
+obenland
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9887
+
+border-anim-v.gif
+file
+
+
+
+
+2014-02-26T01:32:39.097050Z
+20c97a21993cf137ead9fdbecbc42aa8
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+178
 
