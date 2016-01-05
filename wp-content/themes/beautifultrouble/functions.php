@@ -163,7 +163,7 @@ function create_post_type() {
         register_post_type( 'bt_trainer',
 		array(
 			'labels' => array(
-				'name' => __( 'Trainers' ),
+				'name' => __( 'Trainers (obsolete, use user profiles)' ),
                                 'singular_name' => __( 'Trainer' ),
                                 'add_new' => _x('Add new', 'Trainer'),
                                 'add_new_item'  => 'Add new Trainer',
@@ -177,7 +177,7 @@ function create_post_type() {
 			'has_archive' => false,
 			'rewrite' => array('slug' => 'trainer'),
                         'description' => 'Trainers in the Beautiful Trouble network',
-                        'menu_position' => 5,
+                        'menu_position' => 70,
                         'menu_icon' => '/wp-content/themes/beautifultrouble/img/bt_menu_partner.png',
                         'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ),
 		)
