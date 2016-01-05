@@ -61,8 +61,8 @@ get_header(); ?>
   <h1><?php the_title();?></h1>
 </header>
 
-    <?php the_content();
-        
+    <?php the_content(); endwhile; 
+
             $avatar_size = 250;
             $personnel = get_users('orderby=display_name');
 
@@ -93,9 +93,26 @@ get_header(); ?>
                     $avatar_url = get_img_url(get_avatar($id, $avatar_size));
 
                     $name = $person->data->display_name;
-                    $url = get_the_author_meta('url', $id);
+                    //$url = get_the_author_meta('url', $id);
+                    $url = get_author_posts_url($id);
                     $bio = get_the_author_meta('description', $id);
                     $roles = get_field('user_roles', $acfid);
+
+            
+                    // Oh Wordpress you are insane... (this is to figure out if a user is a co-author of any posts)
+                    $have_posts = false;
+                    foreach (['bt_tactic', 'bt_theory', 'bt_principle', 'bt_case'] as $post_type) {
+                        $Q = new WP_Query([
+                            'post_type' => $post_type, 
+                            'posts_per_page' => 1,
+                            'post_status' => 'publish', 
+                            'author_name' => get_userdata($id)->user_login
+                        ]);
+                        if ($Q->have_posts()) {
+                            $have_posts = true;
+                            break;
+                        }
+                    }
 
                     echo '<div class="span4 person">';
                     if ($roles) {
@@ -113,7 +130,7 @@ get_header(); ?>
                     echo '    </div>';
                     echo '    <div class="span3">';
                     echo '      <div style="margin-bottom: 20px;">';
-                    if ($url) {
+                    if ($have_posts) {
                         echo '    <h3><a class="name" href="' . $url . '">' . $name . '</a></h3>';
                     } else {
                         echo '    <h3 class="name">' . $name . '</h3>';
@@ -126,7 +143,6 @@ get_header(); ?>
             }
             echo '</div>';
 
-    endwhile;
     ?>
   </div><!-- /.span12 -->
 
