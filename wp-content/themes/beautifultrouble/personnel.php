@@ -41,10 +41,14 @@ get_header(); ?>
             }
         }); 
         // Set filter
-        var fragment = location.hash.slice(1);
-        if (fragment) {
-            $('#filters [data-role="' + fragment + '"]').click();
+        var setfilter = function() {
+            var fragment = location.hash.slice(1);
+            if (fragment) {
+                $('#filters [data-role="' + fragment + '"]').click();
+            }
         }
+        window.onhashchange = setfilter;
+        setfilter();
     });
   </script>
   <div class="row">
