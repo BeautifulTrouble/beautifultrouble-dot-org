@@ -363,6 +363,9 @@ ul#editions li a {
     div.tab-pane:last-of-type > img {
         margin-right: 10px;
     }
+    div.portrait-avatar {
+        padding-top: 40%;
+    }
 }
 
 
