@@ -139,10 +139,11 @@ get_header(); ?>
                     } else {
                         echo '    <h3 class="name">' . $name . '</h3>';
                     }
+                    echo '        <p class="trainer-bio">';
                     if ( get_field( 'title', $acfid ) ) { 
-                        echo '<p><em>', get_field( 'title', $acfid ), '</em></p>';
+                        echo '      <em>', get_field( 'title', $acfid ), '</em><br><br>';
                     }
-                    echo '        <p class="trainer-bio">' . $bio . '</p>';
+                    echo  $bio . '</p>';
                     echo '      </div>';
                     echo '    </div>';
                     echo '  </div>';
