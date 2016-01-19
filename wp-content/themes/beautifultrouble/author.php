@@ -37,8 +37,8 @@ if ( have_posts() ) : ?>
                         $avatar_url = get_img_url(get_avatar($user_email, $avatar_size));
                         ?>
                         <div class="row spacer">
-                            <div class="span4 portrait-avatar" style="background-image:url('<?php echo $avatar_url; ?>');"></div>
-                            <div class="span4"><br class="visible-phone"><?php the_author_meta('description'); ?>
+                            <div class="span2 portrait-avatar" style="background-image:url('<?php echo $avatar_url; ?>');"></div>
+                            <div class="span6"><br class="visible-phone"><?php the_author_meta('description'); ?>
                                 <ul class="author-social-links">
                                 <?php 
                                     $twitter    = get_the_author_meta('user_tw');

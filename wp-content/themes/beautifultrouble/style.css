@@ -213,7 +213,7 @@ div.big-avatar {
     background-position: 50% 30%;
 }
 div.portrait-avatar {
-    padding-top: 40%;
+    /*padding-top: 10%;*/
     min-height: 170px;
     background-size: cover;
     background-position: 50% 30%;
