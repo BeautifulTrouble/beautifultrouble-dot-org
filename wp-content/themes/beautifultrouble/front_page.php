@@ -22,21 +22,24 @@ get_header(); ?>
         <div id="myCarousel" class="carousel slide span8 hidden-phone">
         <!-- Carousel items -->
             <div class="carousel-inner">
-            <! -- default module slides -->
                 <div class="item active">
-                    <a href="http://explore.beautifultrouble.org" "Visualizing Trouble: take our new beta visualization for a spin!"><img src="/wp-content/themes/beautifultrouble/img/visualize4.png"></a>
+                    <img src="/wp-content/themes/beautifultrouble/img/BT_Banners1.jpg">
                 </div>
                 <div class="item">
-                    <a href="/trainings"><img src="/wp-content/themes/beautifultrouble/img/slide-training.jpg"></a>
+                    <img src="/wp-content/themes/beautifultrouble/img/BT_Banners2.jpg">
                 </div>
-            <?php $types = array( 'tactic', 'principle', 'theory', 'case', 'practitioner' ); ?>
-            <?php foreach ($types as $type) { 
-            //$active = $type == $types[0] ? 'active' : '';
-            ?>
-                <div class="item <?php echo $active ?>">
-                    <a href="/<? echo $type ?>"><img src="/wp-content/themes/beautifultrouble/img/bt_slides_<?php echo $type ?>.png" /></a>
+                <div class="item">
+                    <img src="/wp-content/themes/beautifultrouble/img/BT_Banners3.jpg">
                 </div>
-            <?php } ?>
+                <div class="item">
+                    <img src="/wp-content/themes/beautifultrouble/img/BT_Banners4.jpg">
+                </div>
+                <div class="item">
+                    <a href="/study-guide"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners5.jpg"></a>
+                </div>
+                <div class="item">
+                    <a href="/training"><img src="/wp-content/themes/beautifultrouble/img/slide-training.jpg"></a>
+                </div>
 <?php if( $fields['slideshow'] ) {
     // Let's loop through any repeating elements and create seperate
     // arrays for each type of repeating element, i.e., Insights, Epigraphs
