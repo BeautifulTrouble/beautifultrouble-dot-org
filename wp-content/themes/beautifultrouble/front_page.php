@@ -23,10 +23,10 @@ get_header(); ?>
         <!-- Carousel items -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="/wp-content/themes/beautifultrouble/img/BT_Banners1.jpg">
+                    <a href="https://solutions.thischangeseverything.org/"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners1.jpg"></a>
                 </div>
                 <div class="item">
-                    <img src="/wp-content/themes/beautifultrouble/img/BT_Banners2.jpg">
+                    <a href="http://beautifulrising.org"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners2.jpg"></a>
                 </div>
                 <div class="item">
                     <img src="/wp-content/themes/beautifultrouble/img/BT_Banners3.jpg">
