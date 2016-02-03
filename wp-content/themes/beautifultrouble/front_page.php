@@ -32,7 +32,7 @@ get_header(); ?>
                     <img src="/wp-content/themes/beautifultrouble/img/BT_Banners3.jpg">
                 </div>
                 <div class="item">
-                    <img src="/wp-content/themes/beautifultrouble/img/BT_Banners4.jpg">
+                    <a href="/2016/01/10/beautiful-trouble-languages/"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners4.jpg"></a>
                 </div>
                 <div class="item">
                     <a href="/study-guide"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners5.jpg"></a>
