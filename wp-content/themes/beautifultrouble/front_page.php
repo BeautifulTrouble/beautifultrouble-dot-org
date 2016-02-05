@@ -29,7 +29,7 @@ get_header(); ?>
                     <a href="http://beautifulrising.org"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners2.jpg"></a>
                 </div>
                 <div class="item">
-                    <img src="/wp-content/themes/beautifultrouble/img/BT_Banners3.jpg">
+                    <a href="http://beautifultrouble.org/2016/01/29/beautiful-trouble-game/"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners3.jpg"></a>
                 </div>
                 <div class="item">
                     <a href="/2016/01/10/beautiful-trouble-languages/"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners4.jpg"></a>
