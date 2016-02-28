@@ -38,7 +38,7 @@ get_header(); ?>
                     <a href="/study-guide"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners5.jpg"></a>
                 </div>
                 <div class="item">
-                    <a href="/training"><img src="/wp-content/themes/beautifultrouble/img/slide-training.jpg"></a>
+                    <a href="/trainings"><img src="/wp-content/themes/beautifultrouble/img/slide-training.jpg"></a>
                 </div>
 <?php if( $fields['slideshow'] ) {
     // Let's loop through any repeating elements and create seperate
