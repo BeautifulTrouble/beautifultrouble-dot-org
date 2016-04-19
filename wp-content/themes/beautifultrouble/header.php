@@ -43,13 +43,26 @@
     <?php if ( is_singular() && get_option( 'thread_comments' ) ) wp_enqueue_script( 'comment-reply' ); ?>
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-  <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="<?php bloginfo( 'template_url' );?>/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php bloginfo( 'template_url' );?>/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php bloginfo( 'template_url' );?>/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php bloginfo( 'template_url' );?>/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="<?php bloginfo( 'template_url' );?>/ico/apple-touch-icon-57-precomposed.png">
-
+  <!-- All fav and touch icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="<?php get_stylesheet_directory_uri();?>/ico/apple-touch-icon-57x57.png?v=allEgyg8xQ">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?php get_stylesheet_directory_uri();?>/ico/apple-touch-icon-60x60.png?v=allEgyg8xQ">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php get_stylesheet_directory_uri();?>/ico/apple-touch-icon-72x72.png?v=allEgyg8xQ">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php get_stylesheet_directory_uri();?>/ico/apple-touch-icon-76x76.png?v=allEgyg8xQ">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php get_stylesheet_directory_uri();?>/ico/apple-touch-icon-114x114.png?v=allEgyg8xQ">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?php get_stylesheet_directory_uri();?>/ico/apple-touch-icon-120x120.png?v=allEgyg8xQ">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?php get_stylesheet_directory_uri();?>/ico/apple-touch-icon-144x144.png?v=allEgyg8xQ">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php get_stylesheet_directory_uri();?>/ico/apple-touch-icon-152x152.png?v=allEgyg8xQ">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php get_stylesheet_directory_uri();?>/ico/apple-touch-icon-180x180.png?v=allEgyg8xQ">
+    <link rel="icon" type="image/png" href="<?php get_stylesheet_directory_uri();?>/ico/favicon-32x32.png?v=allEgyg8xQ" sizes="32x32">
+    <link rel="icon" type="image/png" href="<?php get_stylesheet_directory_uri();?>/ico/android-chrome-192x192.png?v=allEgyg8xQ" sizes="192x192">
+    <link rel="icon" type="image/png" href="<?php get_stylesheet_directory_uri();?>/ico/favicon-96x96.png?v=allEgyg8xQ" sizes="96x96">
+    <link rel="icon" type="image/png" href="<?php get_stylesheet_directory_uri();?>/ico/favicon-16x16.png?v=allEgyg8xQ" sizes="16x16">
+    <link rel="manifest" href="<?php get_stylesheet_directory_uri();?>/ico/manifest.json?v=allEgyg8xQ">
+    <link rel="mask-icon" href=<?php get_stylesheet_directory_uri();?>/ico"/safari-pinned-tab.svg?v=allEgyg8xQ" color="#000000">
+    <link rel="shortcut icon" href="<?php get_stylesheet_directory_uri();?>/ico/favicon.ico?v=allEgyg8xQ">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="<?php get_stylesheet_directory_uri();?>/ico/mstile-144x144.png?v=allEgyg8xQ">
+    <meta name="theme-color" content="#ffffff">
   <!--[if lt IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
