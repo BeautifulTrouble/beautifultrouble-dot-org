@@ -1,0 +1,399 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Recent Facebook Posts 2.0.9\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recent-facebook-"
+"posts\n"
+"POT-Creation-Date: 2016-07-25 12:36:16+00:00\n"
+"PO-Revision-Date: Wed Sep 14 2016 21:06:55 GMT+0200\n"
+"Last-Translator: admin <joakim@realverdier.no>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: Norwegian (Bokmål)\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Loco - https://localise.biz/\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
+"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
+"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
+"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes\n"
+"X-Loco-Target-Locale: nb_NO"
+
+#: includes/class-admin.php:154
+msgid "<strong>Cache cleared!</strong> You succesfully cleared the cache."
+msgstr "<strong>Hurtigbuffer tømt!</strong> Sletting av hurtigbuffer var vellyket."
+
+#: includes/class-admin.php:201
+msgid "Your configuration seems to be okay and working. Nice work!."
+msgstr "Innstillingene ser ut til å fungere - godt jobbet!"
+
+#: includes/class-admin.php:203
+msgid "The following error was encountered when testing your configuration."
+msgstr "Følgende feil ble funnet under testing av dine innstillinger."
+
+#: includes/class-public.php:235
+msgid "Admins only notice"
+msgstr "Melding til admin"
+
+#: includes/class-public.php:235
+#, c-format
+msgid "Did you <a href=\"%s\">configure the plugin</a> properly?"
+msgstr "Er alle innstillinger <a href=\"%s\">konfigurert</a> riktig?"
+
+#: includes/class-widget.php:18
+msgid "Lists a number of your most recent Facebook posts."
+msgstr "Viser et antall av dine nyeste Facebook-innlegg."
+
+#: includes/class-widget.php:38
+#, c-format
+msgid "You need to <a href=\"%s\">configure Recent Facebook Posts</a> first."
+msgstr "Du må <a href=\"%s\">konfigurere Recent Facebook Posts</a> først."
+
+#: includes/class-widget.php:52
+msgid "Excerpt length:"
+msgstr "Lengde på utdrag:"
+
+#: includes/class-widget.php:58
+msgid "Show like count?"
+msgstr "Vi antall likerklikk?"
+
+#: includes/class-widget.php:63
+msgid "Show comment count?"
+msgstr "Vis antall kommentarer?"
+
+#: includes/class-widget.php:68
+msgid "Show link to Facebook page?"
+msgstr "Vis lenke til Facebook-side?"
+
+#: includes/class-widget.php:73
+msgid "Show link previews?"
+msgstr "Aktivere forhåndsvisning av lenker?"
+
+#: includes/views/settings_page.html.php:21
+msgid "Facebook Settings"
+msgstr "Facebook Innstillinger"
+
+#: includes/views/settings_page.html.php:26
+msgid "This plugin needs a Facebook application to work."
+msgstr "Dette programtillegget er avhengig av en Facebook-applikasjon for å fungere."
+
+#: includes/views/settings_page.html.php:27
+msgid "Please fill in the Facebook Settings fields after creating your application."
+msgstr ""
+"Vennligst fyll ut Facebook Innstillinger-felter etter å ha opprettet din "
+"applikasjon."
+
+#: includes/views/settings_page.html.php:30
+#, c-format
+msgid ""
+"Not sure how to proceed? Please take a close look at the <a "
+"href=\"%s\">installation instructions</a>."
+msgstr ""
+"Usikker på hvordan du skal gå frem? Vennligst se nøye på <a "
+"href=\"%s\">installasjonsveiledningen</a>."
+
+#: includes/views/settings_page.html.php:38
+msgid "Facebook App ID/API Key"
+msgstr "Facebook App-ID/API-nøkkel"
+
+#: includes/views/settings_page.html.php:42
+#, c-format
+msgid "Get your App ID from %s."
+msgstr "Opprett App-ID fra %s."
+
+#: includes/views/settings_page.html.php:47
+msgid "Facebook App Secret"
+msgstr "Facebook App Secret"
+
+#: includes/views/settings_page.html.php:50
+#, c-format
+msgid "Get your App Secret from %s."
+msgstr "Opprett Facebook App Secret fra %s."
+
+#: includes/views/settings_page.html.php:55
+msgid "Facebook Page ID or Slug"
+msgstr "Facebook Page-ID eller Slug"
+
+#: includes/views/settings_page.html.php:58
+#, c-format
+msgid "Use <a href=\"%s\">this tool</a> to find the numeric ID of your Facebook page."
+msgstr ""
+"Benytt <a href=\"%s\">dette verktøyet</a> for å finne numerisk ID til din "
+"Facebook-side."
+
+#: includes/views/settings_page.html.php:64
+msgid "Appearance"
+msgstr "Utseende"
+
+#: includes/views/settings_page.html.php:68
+msgid "Link text"
+msgstr "Lenke-tekst"
+
+#: includes/views/settings_page.html.php:78
+msgid "Load some default styles?"
+msgstr "Aktivere standard stiler?"
+
+#: includes/views/settings_page.html.php:84
+msgid "Image size"
+msgstr "Bildestørrelse"
+
+#: includes/views/settings_page.html.php:96
+msgid "Image dimensions"
+msgstr "Bilde-dimensjoner"
+
+#: includes/views/settings_page.html.php:96
+msgid "(in pixels, optional)"
+msgstr "(i piksler, valgfritt)"
+
+#: includes/views/settings_page.html.php:107
+msgid "Leave empty for default sizing"
+msgstr "La stå tom for standard størrelser"
+
+#: includes/views/settings_page.html.php:119
+msgid "Test your plugin configuration using the button below."
+msgstr "Test innstillingene dine med knappen under."
+
+#: includes/views/settings_page.html.php:125
+msgid "Facebook Posts Cache"
+msgstr "Hurtigbuffer for Facebook-innlegg"
+
+#: includes/views/settings_page.html.php:126
+msgid ""
+"Because fetching posts from Facebook is relatively slow the posts are cached "
+"for <strong>30 minutes</strong>. You can manually clear the cache using the "
+"button below."
+msgstr ""
+"Fordi henting av innlegg fra Facebook er en relativt langsom prosess, blir "
+"innleggene mellomlagret i <strong>30 minutter</strong>. Du kan manuelt tømme "
+"hurtigbufferen ved å trykke på knappen under."
+
+#: includes/views/settings_page.html.php:130
+msgid "Clear Cache"
+msgstr "Tøm hurtigbuffer"
+
+#: includes/views/settings_page.html.php:139
+msgid ""
+"To show a list of your most recent facebook posts in your posts or pages, "
+"use the following shortcode."
+msgstr ""
+"For å vise en liste av dine nyeste Facebook-innlegg på dine sider eller "
+"blogg, benytt følgende minikode."
+
+#: includes/views/settings_page.html.php:141
+#, c-format
+msgid ""
+"The shortcode accepts various arguments, which are listed on the <a "
+"href=\"%s\">plugin FAQ</a>."
+msgstr ""
+"Minikoden aksepterer flere argumenter som er listet i programtilleggets <a "
+"href=\"%s\"> FAQ</a>."
+
+#: includes/views/settings_page.html.php:146
+msgid "Show your appreciation!"
+msgstr "Vis din takknemlighet!"
+
+#: includes/views/settings_page.html.php:147
+msgid ""
+"If you like this plugin, consider showing your consideration in one of the "
+"following ways."
+msgstr ""
+"Dersom du liker dette programtillegget, vurder å dele din synspunkter på en "
+"av følgende måter."
+
+#: includes/views/settings_page.html.php:149
+#, c-format
+msgid "Leave a %s review on WordPress.org"
+msgstr "Legg igjen en %s omtale på WordPress.org"
+
+#: includes/views/settings_page.html.php:150
+msgid "Tweet about Recent Facebook Posts"
+msgstr "Tweet om Recent Facebook Posts"
+
+#: includes/views/settings_page.html.php:151
+msgid "Vote \"works\" on the WordPress.org plugin page"
+msgstr "Stem \"fungerer\" på programtilleggets side hos WordPress.org."
+
+#: includes/views/settings_page.html.php:156
+msgid "Looking for support?"
+msgstr "Trenger du hjelp?"
+
+#: includes/views/settings_page.html.php:157
+#, c-format
+msgid "Please use the <a href=\"%s\">plugin support forums</a> on WordPress.org."
+msgstr ""
+"Vennligst benytt programtilleggets forum for <a href=\"%s\">kundestøtte</a> på "
+"WordPress.org."
+
+#: includes/views/settings_page.html.php:158
+#, c-format
+msgid ""
+"Take a close look at the <a href=\"%s\">installation instructions</a> for help "
+"configuring the plugin and registering your own Facebook application, which "
+"is required to get this plugin to work."
+msgstr ""
+"Se <a href=\"%s\">installasjonsveiledningen</a> for hjelp til innstillinger og "
+"registrering av din egen Facebook-applikasjon som trengs for at dette "
+"programtillegget skal fungere."
+
+#: includes/views/settings_page.html.php:162
+msgid "Other plugins"
+msgstr "Andre programtillegg"
+
+#. Plugin URI of the plugin/theme
+msgid "https://dannyvankooten.com/donate/"
+msgstr "https://dannyvankooten.com/donate/"
+
+#. Description of the plugin/theme
+msgid "Lists most recent posts from a public Facebook page."
+msgstr "Viser de nyeste innleggene fra en offentlig Facebook-side."
+
+#. Author of the plugin/theme
+msgid "Danny van Kooten"
+msgstr "Danny van Kooten"
+
+#. Author URI of the plugin/theme
+msgid "https://dannyvankooten.com/"
+msgstr "https://dannyvankooten.com/"
+
+#: includes/class-admin.php:167
+msgid "Settings"
+msgstr "Innstillinger"
+
+#: includes/class-api.php:51 includes/class-api.php:170
+msgid "Facebook error:"
+msgstr "Facebook feil:"
+
+#: includes/class-api.php:212
+msgid "Connection error:"
+msgstr "Tilkoblingsfeil:"
+
+#: includes/class-public.php:216
+msgid "likes"
+msgstr "liker"
+
+#: includes/class-public.php:217
+msgid "comments"
+msgstr "kommentarer"
+
+#: includes/class-public.php:219
+#, c-format
+msgid "%1$s at %2$s"
+msgstr "%1$s - %2$s"
+
+#: includes/class-public.php:233
+msgid "No recent Facebook posts to show"
+msgstr "Ingen nylige Facebook-innlegg"
+
+#. Plugin Name of the plugin/theme
+msgid "Recent Facebook Posts"
+msgstr "Nylige Facebook-innlegg"
+
+#: includes/class-widget.php:42
+msgid "Title:"
+msgstr "Tittel:"
+
+#: includes/class-widget.php:47
+msgid "Number of posts:"
+msgstr "Antall innlegg:"
+
+#: includes/functions/global.php:23 includes/views/settings_page.html.php:69
+msgid "Find us on Facebook"
+msgstr "Følg oss på Facebook"
+
+#: includes/functions/helpers.php:32
+msgid "just now"
+msgstr "akkurat nå"
+
+#: includes/functions/helpers.php:51
+#, c-format
+msgid "1 year ago"
+msgid_plural "%d years ago"
+msgstr[0] "1 år siden"
+msgstr[1] "%d år siden"
+
+#: includes/functions/helpers.php:55
+#, c-format
+msgid "1 month ago"
+msgid_plural "%d months ago"
+msgstr[0] "1 måned siden"
+msgstr[1] "%d måneder siden"
+
+#: includes/functions/helpers.php:59
+#, c-format
+msgid "1 week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "1 uke siden"
+msgstr[1] "%d uker siden"
+
+#: includes/functions/helpers.php:63
+#, c-format
+msgid "1 day ago"
+msgid_plural "%d days ago"
+msgstr[0] "1 dag siden"
+msgstr[1] "%d dager siden"
+
+#: includes/functions/helpers.php:67
+#, c-format
+msgid "1 hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "1 time siden"
+msgstr[1] "%d timer siden"
+
+#: includes/functions/helpers.php:71
+#, c-format
+msgid "1 minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "1 minutt siden"
+msgstr[1] "%d minutter siden"
+
+#: includes/functions/helpers.php:75
+#, c-format
+msgid "1 second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] "1 sekund siden"
+msgstr[1] "%d sekunder siden"
+
+#: includes/functions/helpers.php:79
+msgid "Some time ago"
+msgstr "For en stund siden"
+
+#: includes/views/settings_page.html.php:73
+msgid "Open links in new window?"
+msgstr "Åpne lenker i nytt vindu?"
+
+#: includes/views/settings_page.html.php:87
+msgid "Don't show images"
+msgstr "Ikke vis bilder"
+
+#: includes/views/settings_page.html.php:88
+msgid "Thumbnail"
+msgstr "Miniatyrbilde"
+
+#: includes/views/settings_page.html.php:89
+msgid "Normal"
+msgstr "Normal"
+
+#: includes/views/settings_page.html.php:99
+msgid "Max Width"
+msgstr "Maks bredde"
+
+#: includes/views/settings_page.html.php:103
+msgid "Max Height"
+msgstr "Maks høyde"
+
+#: includes/views/settings_page.html.php:118
+#: includes/views/settings_page.html.php:122
+msgid "Test Configuration"
+msgstr "Test innstillinger"
+
+#: includes/views/settings_page.html.php:138
+msgid "Usage"
+msgstr "Bruk"
