@@ -1,0 +1,378 @@
+# Copyright (C) 2014 Danny van Kooten
+# This file is distributed under the GPL3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Recent Facebook Posts 2.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recent-facebook-"
+"posts\n"
+"POT-Creation-Date: 2014-09-22 11:26:55+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-10-31 11:14-0000\n"
+"Last-Translator: Jonadabe <jonadabe@hotmail.com>\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.5.7\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2; _nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__; esc_html__;esc_attr_e; esc_html_e;"
+"esc_attr_x:1,2c; esc_html_x:1,2c\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-admin.php:150
+msgid "<strong>Cache cleared!</strong> You succesfully cleared the cache."
+msgstr "<strong>Cache eliminada!</strong> Eliminou com sucesso a sua cache."
+
+#: includes/class-admin.php:163
+msgid "Settings"
+msgstr "Definições"
+
+#: includes/class-admin.php:192
+msgid "Your configuration seems to be okay and working. Nice work!."
+msgstr "A sua configuração parece estar bem e a funcionar. Bom trabalho!"
+
+#: includes/class-admin.php:194
+msgid "The following error was encountered when testing your configuration."
+msgstr "O seguinte erro foi encontrado aquando do teste de configuração."
+
+#: includes/class-api.php:51 includes/class-api.php:164
+msgid "Facebook error:"
+msgstr "Erro do Facebook:"
+
+#: includes/class-api.php:203
+msgid "Connection error:"
+msgstr "Erro de ligação:"
+
+#: includes/class-public.php:188
+msgid "likes"
+msgstr "gostos"
+
+#: includes/class-public.php:189
+msgid "comments"
+msgstr "comentários"
+
+#: includes/class-public.php:191
+msgid "%1$s at %2$s"
+msgstr "%1$s de %2$s"
+
+#: includes/class-public.php:205
+msgid "No recent Facebook posts to show"
+msgstr "Nenhum post recente no Facebook para apresentar"
+
+#: includes/class-public.php:207
+msgid "Admins only notice"
+msgstr "Notificar apenas os administradores"
+
+#: includes/class-public.php:207
+msgid "Did you <a href=\"%s\">configure the plugin</a> properly?"
+msgstr "Configurou o <a href=\"%s\">plugin</a> apropriadamente?"
+
+#: includes/class-widget.php:18
+msgid "Lists a number of your most recent Facebook posts."
+msgstr ""
+"Listar um número determinado dos seus mais recentes artigos do Facebook."
+
+#. Plugin Name of the plugin/theme
+msgid "Recent Facebook Posts"
+msgstr "Artigos recentes no Facebook"
+
+#: includes/class-widget.php:38
+msgid "You need to <a href=\"%s\">configure Recent Facebook Posts</a> first."
+msgstr ""
+"É necessário <a href=\"%s\">configurar os artigos recentes do Facebook</a> "
+"primeiro."
+
+#: includes/class-widget.php:42
+msgid "Title:"
+msgstr "Título:"
+
+#: includes/class-widget.php:47
+msgid "Number of posts:"
+msgstr "Número de artigos:"
+
+#: includes/class-widget.php:52
+msgid "Excerpt length:"
+msgstr "Comprimento do excerto:"
+
+#: includes/class-widget.php:58
+msgid "Show like count?"
+msgstr "Apresentar contagem de gostos?"
+
+#: includes/class-widget.php:63
+msgid "Show comment count?"
+msgstr "Apresentar contagem de comentários?"
+
+#: includes/class-widget.php:68
+msgid "Show link to Facebook page?"
+msgstr "Apresentar link da página no Facebook?"
+
+#: includes/class-widget.php:73
+msgid "Show link previews?"
+msgstr "Apresentar previsualização do link?"
+
+#: includes/functions/global.php:22 includes/views/settings_page.html.php:69
+msgid "Find us on Facebook"
+msgstr "Liga-te connosco no Facebook"
+
+#: includes/functions/helpers.php:23
+msgid "just now"
+msgstr "agora mesmo"
+
+#: includes/functions/helpers.php:42
+msgid "1 year ago"
+msgid_plural "%d years ago"
+msgstr[0] "Há 1 ano"
+msgstr[1] "Há %d anos"
+
+#: includes/functions/helpers.php:46
+msgid "1 month ago"
+msgid_plural "%d months ago"
+msgstr[0] "Há 1 mês"
+msgstr[1] "Há %d mês"
+
+#: includes/functions/helpers.php:50
+msgid "1 week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "Há 1 semana"
+msgstr[1] "Há %d semanas"
+
+#: includes/functions/helpers.php:54
+msgid "1 day ago"
+msgid_plural "%d days ago"
+msgstr[0] "Há 1 dia"
+msgstr[1] "Há %d dias"
+
+#: includes/functions/helpers.php:58
+msgid "1 hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "Há 1 hora"
+msgstr[1] "Há %d horas"
+
+#: includes/functions/helpers.php:62
+msgid "1 minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "Há 1 minuto"
+msgstr[1] "Há %d minutos"
+
+#: includes/functions/helpers.php:66
+msgid "1 second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] "Há 1 segundo"
+msgstr[1] "Há %d segundos"
+
+#: includes/functions/helpers.php:70
+msgid "Some time ago"
+msgstr "Há algum tempo"
+
+#: includes/views/settings_page.html.php:21
+msgid "Facebook Settings"
+msgstr "Definições do Facebook"
+
+#: includes/views/settings_page.html.php:26
+msgid "This plugin needs a Facebook application to work."
+msgstr ""
+"Este plugin precisa de uma aplicação (application) Facebook para funcionar."
+
+#: includes/views/settings_page.html.php:27
+msgid ""
+"Please fill in the Facebook Settings fields after creating your application."
+msgstr ""
+"Por favor preencha os campos das definições do Facebook após criar a sua "
+"aplicação."
+
+#: includes/views/settings_page.html.php:30
+msgid ""
+"Not sure how to proceed? Please take a close look at the <a href=\"%s"
+"\">installation instructions</a>."
+msgstr ""
+"Não tem a certeza de como prosseguir? Por favor atente às <a href=\"%s"
+"\">instruções de instalação</a>."
+
+#: includes/views/settings_page.html.php:38
+msgid "Facebook App ID/API Key"
+msgstr ""
+
+#: includes/views/settings_page.html.php:42
+msgid "Get your App ID from %s."
+msgstr "Busque a sua App ID neste local %s."
+
+#: includes/views/settings_page.html.php:47
+msgid "Facebook App Secret"
+msgstr ""
+
+#: includes/views/settings_page.html.php:50
+msgid "Get your App Secret from %s."
+msgstr "Busque a sua App Secret neste local %s."
+
+#: includes/views/settings_page.html.php:55
+msgid "Facebook Page ID or Slug"
+msgstr ""
+
+#: includes/views/settings_page.html.php:58
+msgid ""
+"Use <a href=\"%s\">this tool</a> to find the numeric ID of your Facebook "
+"page."
+msgstr ""
+"Use <a href=\"%s\">esta ferramenta</a> para encontrar o seu ID da sua página "
+"de Facebook."
+
+#: includes/views/settings_page.html.php:64
+msgid "Appearance"
+msgstr "Aparência"
+
+#: includes/views/settings_page.html.php:68
+msgid "Link text"
+msgstr "Texto link"
+
+#: includes/views/settings_page.html.php:73
+msgid "Open links in new window?"
+msgstr "Abrir links numa nova janela?"
+
+#: includes/views/settings_page.html.php:78
+msgid "Load some default styles?"
+msgstr "Abrir alguns estilos css padrão?"
+
+#: includes/views/settings_page.html.php:84
+msgid "Image size"
+msgstr "Tamanho da imagem"
+
+#: includes/views/settings_page.html.php:87
+msgid "Don't show images"
+msgstr "Não apresentar imagens"
+
+#: includes/views/settings_page.html.php:88
+msgid "Thumbnail"
+msgstr "Miniatura"
+
+#: includes/views/settings_page.html.php:89
+msgid "Normal"
+msgstr ""
+
+#: includes/views/settings_page.html.php:96
+msgid "Image dimensions"
+msgstr "Dimensões da imagem"
+
+#: includes/views/settings_page.html.php:96
+msgid "(in pixels, optional)"
+msgstr "(em pixéis, opcional)"
+
+#: includes/views/settings_page.html.php:99
+msgid "Max Width"
+msgstr "Largura máxima"
+
+#: includes/views/settings_page.html.php:103
+msgid "Max Height"
+msgstr "Altura máxima"
+
+#: includes/views/settings_page.html.php:107
+msgid "Leave empty for default sizing"
+msgstr "Deixar vazio para dimensionamento padrão"
+
+#: includes/views/settings_page.html.php:118
+#: includes/views/settings_page.html.php:122
+msgid "Test Configuration"
+msgstr "Testar configuração"
+
+#: includes/views/settings_page.html.php:119
+msgid "Test your plugin configuration using the button below."
+msgstr "Testar a configuração do seu plugin por usar o botão abaixo."
+
+#: includes/views/settings_page.html.php:125
+msgid "Facebook Posts Cache"
+msgstr "Cache dos artigos do Facebook"
+
+#: includes/views/settings_page.html.php:126
+msgid ""
+"Because fetching posts from Facebook is relatively slow the posts are cached "
+"for <strong>30 minutes</strong>. You can manually clear the cache using the "
+"button below."
+msgstr ""
+"Uma vez que recolher os artigos do Facebook pode tornar lento todo o "
+"processo, os artigos são colocados em cache durante <strong>30 minutos</"
+"strong>. Pode eliminar a cache manualmente por usar o botão abaixo."
+
+#: includes/views/settings_page.html.php:130
+msgid "Clear Cache"
+msgstr "Eliminar Cache"
+
+#: includes/views/settings_page.html.php:139
+msgid "Donate $10, $20 or $50"
+msgstr "Doar $10, $20 ou $50"
+
+#: includes/views/settings_page.html.php:140
+msgid ""
+"I spent a lot of time developing this plugin and offering support for it. If "
+"you like it, consider supporting this plugin by donating a token of your "
+"appreciation."
+msgstr ""
+"Eu passei uma quantidade de tempo a desenvolver este plugin e a oferecer "
+"suporte para ele. Se gosta dele, considere suportar este plugin por doar "
+"apenas um pouco da sua apreciação."
+
+#: includes/views/settings_page.html.php:151
+msgid "Donate with PayPal"
+msgstr "Doar com PayPal"
+
+#: includes/views/settings_page.html.php:156
+msgid "Some other ways to support this plugin"
+msgstr "Algumas outras formas de suportar este plugin"
+
+#: includes/views/settings_page.html.php:158
+msgid "Leave a %s review on WordPress.org"
+msgstr "Deixar um %s comentário no Wordpress.org"
+
+#: includes/views/settings_page.html.php:159
+msgid "Write about the plugin from your blog."
+msgstr "Escreva acerca deste plugin no seu blog."
+
+#: includes/views/settings_page.html.php:160
+msgid "Tweet about Recent Facebook Posts"
+msgstr "Tweetar acerca deste plugin Artigos Recentes do Facebook"
+
+#: includes/views/settings_page.html.php:161
+msgid "Vote \"works\" on the WordPress.org plugin page"
+msgstr "Votar \"funciona\" na página do plugin no WordPress.org"
+
+#: includes/views/settings_page.html.php:166
+msgid "Looking for support?"
+msgstr "À procura de suporte?"
+
+#: includes/views/settings_page.html.php:167
+msgid ""
+"Please use the <a href=\"%s\">plugin support forums</a> on WordPress.org."
+msgstr ""
+"Por favor use o <a href=\"%s\">fórum de suporte do plugin</a> no WordPress."
+"org."
+
+#: includes/views/settings_page.html.php:168
+msgid ""
+"Take a close look at the <a href=\"%s\">installation instructions</a> for "
+"help configuring the plugin and registering your own Facebook application, "
+"which is required to get this plugin to work."
+msgstr ""
+"Verifique atentamente as <a href=\"%s\">instruções de instalação</a> apenas "
+"em inglês, para o ajudar a configurar e a registar a sua própria aplicação "
+"no Facebook, o que é obrigatório para que este plugin funcione corretamente."
+
+#: includes/views/settings_page.html.php:172
+msgid "Other Useful plugins"
+msgstr "Outros plugins úteis"
+
+#. Plugin URI of the plugin/theme
+msgid "http://dannyvankooten.com/wordpress-plugins/recent-facebook-posts/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Lists most recent posts from a public Facebook page."
+msgstr "Listar os artigos mais recentes de uma página pública do Facebook."
+
+#. Author of the plugin/theme
+msgid "Danny van Kooten"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://dannyvankooten.com/"
+msgstr ""

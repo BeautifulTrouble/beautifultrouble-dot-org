@@ -2,288 +2,290 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Recent Facebook Posts\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/recent-facebook-posts\n"
-"POT-Creation-Date: 2014-09-15 16:29+0100\n"
-"PO-Revision-Date: 2014-09-15 16:35+0100\n"
+"POT-Creation-Date: 2014-09-15 16:28+0100\n"
+"PO-Revision-Date: Mon Sep 22 2014 04:40:57 GMT-0300 (Hora verano Sudamérica "
+"Pacífico)\n"
 "Last-Translator: Danny <hi@dannyvankooten.com>\n"
 "Language-Team: \n"
-"Language: nl_NL\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Loco-Source-Locale: es_ES\n"
+"X-Generator: Loco - https://localise.biz/\n"
 "X-Poedit-KeywordsList: _e;__;_n:1,2\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SearchPath-0: ../.\n"
+"X-Loco-Parser: loco_parse_po\n"
+"X-Loco-Target-Locale: en_GB"
 
 #: .././includes/class-admin.php:146
 msgid "<strong>Cache cleared!</strong> You succesfully cleared the cache."
-msgstr "<strong>Cache geleegd!</strong> De cache is succesvol geleegd."
+msgstr ""
+"<strong>¡Cache limpia!</strong> Se ha realizado la limpieza de la cache "
+"satisfactoriamente."
 
 #: .././includes/class-admin.php:159
 msgid "Settings"
-msgstr "Instellingen"
+msgstr "Configuración"
 
 #: .././includes/class-admin.php:188
 msgid "Your configuration seems to be okay and working. Nice work!."
-msgstr "Je configuratie lijkt in orde en te werken. Mooi!"
+msgstr "Tu configuración parece estar en orden. ¡Buen trabajo!"
 
 #: .././includes/class-admin.php:190
 msgid "The following error was encountered when testing your configuration."
-msgstr "De volgende error trad op tijdens het testen van je configuratie."
+msgstr "Se encontró el siguiente error al probar tu configuración."
 
 #: .././includes/class-api.php:51 .././includes/class-api.php:164
 msgid "Facebook error:"
-msgstr "Facebook fout:"
+msgstr "Error de Facebook:"
 
 #: .././includes/class-api.php:203
 msgid "Connection error:"
-msgstr "Connectiefout:"
+msgstr "Error de Conexión:"
 
 #: .././includes/class-public.php:187
 msgid "likes"
-msgstr "vind ik leuks"
+msgstr "Me Gusta"
 
 #: .././includes/class-public.php:188
 msgid "comments"
-msgstr "reacties"
+msgstr "Comentarios"
 
 #: .././includes/class-public.php:190
 #, php-format
 msgid "%1$s at %2$s"
-msgstr "%1$s om %2$s"
+msgstr "%1$s en %2$s"
 
 #: .././includes/class-public.php:204
 msgid "No recent Facebook posts to show"
-msgstr "Er zijn geen recente Facebook berichten om te tonen."
+msgstr "No hay publicaciones de Facebook recientes que mostrar."
 
 #: .././includes/class-public.php:206
 msgid "Admins only notice"
-msgstr "Bericht voor Administrators"
+msgstr "Aviso solo para Administradores"
 
 #: .././includes/class-public.php:206
 #, php-format
 msgid "Did you <a href=\"%s\">configure the plugin</a> properly?"
-msgstr "Heb je de <a href=\"%s\">plugin geconfigureerd</a>?"
+msgstr "¿Has <a href=\"%s\">configurado el plugin</a> correctamente?"
 
 #: .././includes/class-widget.php:18
 msgid "Lists a number of your most recent Facebook posts."
-msgstr "Toont de meest recente Facebook updates van een Facebook pagina."
+msgstr "Enumera una lista de sus publicaciones de Facebook más recientes."
 
 #: .././includes/class-widget.php:22
 msgid "Recent Facebook Posts"
-msgstr "Recente Facebook Berichten"
+msgstr "Recent Facebook Posts"
 
 #: .././includes/class-widget.php:42
 msgid "Title:"
-msgstr "Titel:"
+msgstr "Título:"
 
 #: .././includes/class-widget.php:47
 msgid "Number of posts:"
-msgstr "Aantal berichten"
+msgstr "Número de publicaciones:"
 
 #: .././includes/class-widget.php:52
 msgid "Excerpt length:"
-msgstr "Lengte van uitreksel"
+msgstr "Largo del extracto:"
 
 #: .././includes/class-widget.php:58
 msgid "Show like count?"
-msgstr "Toon aantal vind-ik-leuks?"
+msgstr "¿Mostrar contador de Me Gusta?"
 
 #: .././includes/class-widget.php:63
 msgid "Show comment count?"
-msgstr "Toon aantal reacties?"
+msgstr "¿Mostrar contador de comentarios?"
 
 #: .././includes/class-widget.php:68
 msgid "Show link to Facebook page?"
-msgstr "Toon link naar Facebook pagina?"
+msgstr "¿Mostrar enlace a la página de Facebook?"
 
 #: .././includes/class-widget.php:73
 msgid "Show link previews?"
-msgstr "Toon link voorbeelden?"
+msgstr "¿Mostrar vista previa de los enlaces?"
 
 #: .././includes/functions/global.php:22
 #: .././includes/views/settings_page.html.php:67
 msgid "Find us on Facebook"
-msgstr "Vind ons op Facebook"
+msgstr "Encuéntranos en Facebook"
 
 #: .././includes/functions/helpers.php:23
 msgid "just now"
-msgstr "Zojuist"
+msgstr "Ahora"
 
 #: .././includes/functions/helpers.php:42
 #, php-format
 msgid "1 year ago"
 msgid_plural "%d years ago"
-msgstr[0] "1 jaar geleden"
-msgstr[1] "%d jaren geleden"
+msgstr[0] "Hace un año"
+msgstr[1] "Hace %d años"
 
 #: .././includes/functions/helpers.php:46
 #, php-format
 msgid "1 month ago"
 msgid_plural "%d months ago"
-msgstr[0] "1 maand geleden"
-msgstr[1] "%d maanden geleden"
+msgstr[0] "Hace un mes"
+msgstr[1] "Hace %d meses"
 
 #: .././includes/functions/helpers.php:50
 #, php-format
 msgid "1 week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] "1 week geleden"
-msgstr[1] "%d weken geleden"
+msgstr[0] "Hace una semana"
+msgstr[1] "Hace %d semanas"
 
 #: .././includes/functions/helpers.php:54
 #, php-format
 msgid "1 day ago"
 msgid_plural "%d days ago"
-msgstr[0] "1 dag geleden"
-msgstr[1] "%d dagen geleden"
+msgstr[0] "Hace un día"
+msgstr[1] "Hace %d días"
 
 #: .././includes/functions/helpers.php:58
 #, php-format
 msgid "1 hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] "1 uur geleden"
-msgstr[1] "%d uren geleden"
+msgstr[0] "Hace una hora"
+msgstr[1] "Hace %d horas"
 
 #: .././includes/functions/helpers.php:62
 #, php-format
 msgid "1 minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] "1 minuut geleden"
-msgstr[1] "%d minuten geleden"
+msgstr[0] "Hace un minuto"
+msgstr[1] "Hace %d minutos"
 
 #: .././includes/functions/helpers.php:66
 #, php-format
 msgid "1 second ago"
 msgid_plural "%d seconds ago"
-msgstr[0] "1 seconde geleden"
-msgstr[1] "%d seconden geleden"
+msgstr[0] "Hace un segundo"
+msgstr[1] "Hace %d segundos"
 
 #: .././includes/functions/helpers.php:70
 msgid "Some time ago"
-msgstr "Een tijdje geleden"
+msgstr "Hace algún tiempo"
 
 #: .././includes/views/settings_page.html.php:21
 msgid "Facebook Settings"
-msgstr "Facebook Instellingen"
+msgstr "Configuración de Facebook"
 
 #: .././includes/views/settings_page.html.php:26
 msgid "This plugin needs a Facebook application to work."
-msgstr ""
-"Deze plugin heeft 'n Facebook applicatie nodig om zijn werk te kunnen doen."
+msgstr "Este plugin necesita de una aplicación de Facebook para funcionar."
 
 #: .././includes/views/settings_page.html.php:27
-msgid ""
-"Please fill in the Facebook Settings fields after creating your application."
+msgid "Please fill in the Facebook Settings fields after creating your application."
 msgstr ""
-"Vul aub de Facebook instellingen velden in na het maken van je Facebook "
-"applicatie."
+"Por favor, llena los campos de Configuración de Facebook después de crear tu "
+"aplicación."
 
 #: .././includes/views/settings_page.html.php:30
 #, php-format
 msgid ""
-"Not sure how to proceed? Please take a close look at the <a href=\"%s"
-"\">installation instructions</a>."
+"Not sure how to proceed? Please take a close look at the <a "
+"href=\"%s\">installation instructions</a>."
 msgstr ""
-"Geen idee hoe je verder moet? Bekijk aub de <a href=\"%s\">installatie "
-"instructies</a>."
+"¿No estás seguro de qué hacer? Mira en <a href=\"%s\">Instrucciones de "
+"Instalación</a>."
 
 #: .././includes/views/settings_page.html.php:37
 msgid "Facebook App ID/API Key"
-msgstr "ID van Facebook app/API-sleutel"
+msgstr "ID Facebook App/API Key"
 
 #: .././includes/views/settings_page.html.php:40
 #, php-format
 msgid "Get your App ID from %s."
-msgstr "Verkrijg je App ID van %s."
+msgstr "Obtén tu App ID en %s."
 
 #: .././includes/views/settings_page.html.php:45
 msgid "Facebook App Secret"
-msgstr "Geheime sleutel van de Facebook app"
+msgstr "Facebook App Secret"
 
 #: .././includes/views/settings_page.html.php:48
 #, php-format
 msgid "Get your App Secret from %s."
-msgstr "Verkrijg je App Secret van %s."
+msgstr "Obtén tu App Secret en %s."
 
 #: .././includes/views/settings_page.html.php:53
 msgid "Facebook Page ID or Slug"
-msgstr "Facebook Pagina ID of slug"
+msgstr "ID o slug de página de Facebook"
 
 #: .././includes/views/settings_page.html.php:56
 #, php-format
-msgid ""
-"Use <a href=\"%s\">this tool</a> to find the numeric ID of your Facebook "
-"page."
+msgid "Use <a href=\"%s\">this tool</a> to find the numeric ID of your Facebook page."
 msgstr ""
-"Gebruik <a href=\"%s\">deze website</a> om het numerieke ID van je Facebook "
-"pagina te vinden."
+"Utiliza <a href=\"%s\">esta herramienta</a> para encontrar el ID numérico de "
+"tu página de Facebook."
 
 #: .././includes/views/settings_page.html.php:62
 msgid "Appearance"
-msgstr "Weergave"
+msgstr "Apariencia"
 
 #: .././includes/views/settings_page.html.php:66
 msgid "Link text"
-msgstr "Link tekst"
+msgstr "Texto de enlace"
 
 #: .././includes/views/settings_page.html.php:71
 msgid "Open links in new window?"
-msgstr "Open links in een nieuw venster?"
+msgstr "¿Abrir enlaces en una nueva ventana?"
 
 #: .././includes/views/settings_page.html.php:76
 msgid "Load some default styles?"
-msgstr "Laad wat standaard CSS stijlregels?"
+msgstr "¿Cargar algunos estilos por defecto?"
 
 #: .././includes/views/settings_page.html.php:82
 msgid "Image size"
-msgstr "Afbeeldingsgrootte"
+msgstr "Tamaño de imagen"
 
 #: .././includes/views/settings_page.html.php:85
 msgid "Don't show images"
-msgstr "Toon geen afbeeldingen"
+msgstr "No mostrar imágenes"
 
 #: .././includes/views/settings_page.html.php:86
 msgid "Thumbnail"
-msgstr "Thumbnail"
+msgstr "Miniaturas"
 
 #: .././includes/views/settings_page.html.php:87
 msgid "Normal"
-msgstr "Normaal"
+msgstr "Normal"
 
 #: .././includes/views/settings_page.html.php:94
 msgid "Image dimensions"
-msgstr "Afbeelding afmetingen"
+msgstr "Dimensiones de imagen"
 
 #: .././includes/views/settings_page.html.php:94
 msgid "(in pixels, optional)"
-msgstr "(in pixels, optioneel)"
+msgstr "(en pixeles, opcional)"
 
 #: .././includes/views/settings_page.html.php:97
 msgid "Max Width"
-msgstr "Maximale breedte"
+msgstr "Ancho máx."
 
 #: .././includes/views/settings_page.html.php:101
 msgid "Max Height"
-msgstr "Maximale hoogte"
+msgstr "Alto máx."
 
 #: .././includes/views/settings_page.html.php:105
 msgid "Leave empty for default sizing"
-msgstr "Laat leeg voor standaard afmetingen."
+msgstr "Dejar vacío para tamaño por defecto"
 
 #: .././includes/views/settings_page.html.php:112
 msgid "Save Changes"
-msgstr "Wijzigen Opslaan"
+msgstr "Guardar Cambios"
 
 #: .././includes/views/settings_page.html.php:119
 msgid "Test your plugin configuration using the button below."
-msgstr "Test je plugin configuratie door middel van onderstaande button."
+msgstr "Prueba tu configuración usando el botón de abajo."
 
 #: .././includes/views/settings_page.html.php:122
 msgid "Test Configuration"
-msgstr "Test Configuratie"
+msgstr "Probar Configuración"
 
 #: .././includes/views/settings_page.html.php:126
 msgid ""
@@ -291,17 +293,20 @@ msgid ""
 "for <strong>30 minutes</strong>. You can manually clear the cache using the "
 "button below."
 msgstr ""
-"Omdat berichten van Facebook afhalen langzaam is worden berichten lokaal "
-"gecached voor <strong>30 minuten</strong>. Je kunt de cache manueel legen "
-"met behulp van onderstaande button."
+"Retirar las publicaciones desde los servidores de Facebook puede ser un poco "
+"lento, por ello las publicaciones se guardan en cache durante \n"
+"<strong>30 minutos</strong>. Puedes limpiar la cache manualmente usando el "
+"botón de abajo."
 
 #: .././includes/views/settings_page.html.php:129
 msgid "Clear Cache"
-msgstr "Leeg Cache"
+msgstr "Limpiar Cache"
 
 #: .././includes/views/settings_page.html.php:138
 msgid "Donate $10, $20 or $50"
-msgstr "Doneer €10, €20 of €50"
+msgstr ""
+"Donar \n"
+"$10, $20 or $50"
 
 #: .././includes/views/settings_page.html.php:139
 msgid ""
@@ -309,101 +314,56 @@ msgid ""
 "you like it, consider supporting this plugin by donating a token of your "
 "appreciation."
 msgstr ""
-"Ik heb flink wat tijd besteedt aan het ontwikkelen en ondersteunen van deze "
-"plugin. Als je blij bent met mijn werk, overweeg dan een token van je "
-"waardering te doneren."
+"Pasé mucho tiempo desarrollando este plugin y ofreciendo soporte. Si te "
+"gusta, considera darme tu apoyo mediante una donación como muestra de tu "
+"agradecimiento."
 
 #: .././includes/views/settings_page.html.php:155
 msgid "Some other ways to support this plugin"
-msgstr "Andere manieren om deze plugin te steunen"
+msgstr "Otras formas de apoyar este plugin"
 
 #: .././includes/views/settings_page.html.php:157
 #, php-format
 msgid "Leave a %s review on WordPress.org"
-msgstr "Laat een %s review achter op WordPress.org"
+msgstr "Dejar un Review %s en Wordpress.org"
 
 #: .././includes/views/settings_page.html.php:158
 msgid "Write about the plugin from your blog."
-msgstr "Schrijf over de plugin op je blog."
+msgstr "Escribir acerca de este plugin en tu blog."
 
 #: .././includes/views/settings_page.html.php:159
 msgid "Tweet about Recent Facebook Posts"
-msgstr "Tweet over de Recent Facebook Posts plugin"
+msgstr ""
+"Twittear sobre \n"
+"Recent Facebook Posts"
 
 #: .././includes/views/settings_page.html.php:160
 msgid "Vote \"works\" on the WordPress.org plugin page"
-msgstr "Geef aan dat de plugin \"works\" op de WordPress.org plugin pagina."
+msgstr "Votar \"Works\" en la página del plugin en Wordpress.org"
 
 #: .././includes/views/settings_page.html.php:165
 msgid "Looking for support?"
-msgstr "Ondersteuning nodig?"
+msgstr "¿Buscas soporte?"
 
 #: .././includes/views/settings_page.html.php:166
 #, php-format
-msgid ""
-"Please use the <a href=\"%s\">plugin support forums</a> on WordPress.org."
+msgid "Please use the <a href=\"%s\">plugin support forums</a> on WordPress.org."
 msgstr ""
-"Gebruik aub de <a href=\"%s\">plugin support forums</a> op WordPress.org."
+"Por favor, utiliza el \n"
+"<a href=\"%s\">foro de sporte del plugin</a> en WordPress.org."
 
 #: .././includes/views/settings_page.html.php:167
 #, php-format
 msgid ""
-"Take a close look at the <a href=\"%s\">installation instructions</a> for "
-"help configuring the plugin and registering your own Facebook application, "
-"which is required to get this plugin to work."
+"Take a close look at the <a href=\"%s\">installation instructions</a> for help "
+"configuring the plugin and registering your own Facebook application, which "
+"is required to get this plugin to work."
 msgstr ""
-"Lees de <a href=\"%s\">installatie instructies</a> nauwkeurig voor help met "
-"het configureren van de plugin en het registreren van je eigen Facebook "
-"applicatie. Dit is vereist om de plugin aan de praat te krijgen."
+"Echa un vistazo a las \n"
+"<a href=\"%s\">Instrucciones de Instalación</a> para encontrar ayuda sobre la "
+"configuración de este plugin y el registro de tu propia aplicación de "
+"Facebook, la cual es necesaria para el funcionamiento de este plugin."
 
 #: .././includes/views/settings_page.html.php:171
 msgid "Other Useful plugins"
-msgstr "Andere handige plugins"
-
-#~ msgid ""
-#~ "Some settings have changed which invalidated the cached Facebook posts."
-#~ msgstr ""
-#~ "Bepaalde instellingen zijn gewijzigd waardoor de gecachte Facebook "
-#~ "berichten niet meer kloppen."
-
-#~ msgid "Renew Cache"
-#~ msgstr "Vernieuw Cache"
-
-#~ msgid "Renew Facebook Posts"
-#~ msgstr "Vernieuw Facebook berichten"
-
-#~ msgid "Show attached links?"
-#~ msgstr "Toon bijgevoegde links?"
-
-#~ msgid "Cache expiry time"
-#~ msgstr "Cache tijd"
-
-#~ msgid "(in seconds)"
-#~ msgstr "(in seconden)"
-
-#~ msgid ""
-#~ "Leave empty for default sizing (maximum of 100&#37; of containing element)"
-#~ msgstr ""
-#~ "Laat leeg voor een standaard grootte van maximaal 100&#37; van het "
-#~ "omvattende element."
-
-#~ msgid "year"
-#~ msgstr "jaar"
-
-#~ msgid "month"
-#~ msgstr "maand"
-
-#~ msgid "week"
-#~ msgstr "week"
-
-#~ msgid "day"
-#~ msgstr "dag"
-
-#~ msgid "hour"
-#~ msgstr "uur"
-
-#~ msgid "minute"
-#~ msgstr "minuut"
-
-#~ msgid "%d %ss ago"
-#~ msgstr "%d %sen geleden"
+msgstr "Otros plugin útiles"

@@ -1,0 +1,358 @@
+# Copyright (C) 2015 Danny van Kooten
+# This file is distributed under the GPL3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Recent Facebook Posts 2.0.7\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recent-facebook-posts\n"
+"POT-Creation-Date: 2015-05-15 10:14:11+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-07-01 10:39+0100\n"
+"Last-Translator: Danny <hi@dannyvankooten.com>\n"
+"X-Generator: Poedit 1.7.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2; _nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;"
+"esc_attr__; esc_html__;esc_attr_e; esc_html_e;esc_attr_x:1,2c; esc_html_x:1,2c\n"
+"X-Textdomain-Support: yes\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-admin.php:154
+msgid "<strong>Cache cleared!</strong> You succesfully cleared the cache."
+msgstr "<strong>Bellek temizlendi!</strong> Belleği başarıyla temizlediniz."
+
+#: includes/class-admin.php:167
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: includes/class-admin.php:201
+msgid "Your configuration seems to be okay and working. Nice work!."
+msgstr "Ayarların sorunsuz gözüküyor. İyi iş çıkardın!."
+
+#: includes/class-admin.php:203
+msgid "The following error was encountered when testing your configuration."
+msgstr "Ayarlarınız test edilirken aşağıdaki hata ile karşılaşıldı."
+
+#: includes/class-api.php:51 includes/class-api.php:170
+msgid "Facebook error:"
+msgstr "Facebook hatası:"
+
+#: includes/class-api.php:209
+msgid "Connection error:"
+msgstr "Bağlantı hatası:"
+
+#: includes/class-public.php:213
+msgid "likes"
+msgstr "beğeniler"
+
+#: includes/class-public.php:214
+msgid "comments"
+msgstr "yorumlar"
+
+#: includes/class-public.php:216
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: includes/class-public.php:230
+msgid "No recent Facebook posts to show"
+msgstr "Görüntülenecek Facebook iletisi mevcut değil."
+
+#: includes/class-public.php:232
+msgid "Admins only notice"
+msgstr "Yönetici için uyarı"
+
+#: includes/class-public.php:232
+msgid "Did you <a href=\"%s\">configure the plugin</a> properly?"
+msgstr "Plugin <a href=\"%s\">ayarlar</a>'ını düzgün bir şekilde yaptığınıza emin misiniz?"
+
+#: includes/class-widget.php:18
+msgid "Lists a number of your most recent Facebook posts."
+msgstr "Belli sayıda güncel Facebook iletinizi listeleyin."
+
+#. Plugin Name of the plugin/theme
+msgid "Recent Facebook Posts"
+msgstr "Güncel Facebook iletileri."
+
+#: includes/class-widget.php:38
+msgid "You need to <a href=\"%s\">configure Recent Facebook Posts</a> first."
+msgstr "Öncelikle <a href=\"%s\">Recent Facebook Posts'u ayarlamalısınız</a>."
+
+#: includes/class-widget.php:42
+msgid "Title:"
+msgstr "Başlık:"
+
+#: includes/class-widget.php:47
+msgid "Number of posts:"
+msgstr "Paylaşım sayısı:"
+
+#: includes/class-widget.php:52
+msgid "Excerpt length:"
+msgstr "Yazı uzunluğu:"
+
+#: includes/class-widget.php:58
+msgid "Show like count?"
+msgstr "Beğeni sayısını göster?"
+
+#: includes/class-widget.php:63
+msgid "Show comment count?"
+msgstr "Yorum sayısını göster?"
+
+#: includes/class-widget.php:68
+msgid "Show link to Facebook page?"
+msgstr "Facebook sayfasına bağlantı göster?"
+
+#: includes/class-widget.php:73
+msgid "Show link previews?"
+msgstr "Bağlantılara önizleme göster?"
+
+#: includes/functions/global.php:23 includes/views/settings_page.html.php:69
+msgid "Find us on Facebook"
+msgstr "Bizi facebookta bulun"
+
+#: includes/functions/helpers.php:32
+msgid "just now"
+msgstr "şimdi"
+
+#: includes/functions/helpers.php:51
+msgid "1 year ago"
+msgid_plural "%d years ago"
+msgstr[0] "1 yıl önce"
+msgstr[1] "%d yıl önce"
+
+#: includes/functions/helpers.php:55
+msgid "1 month ago"
+msgid_plural "%d months ago"
+msgstr[0] "1 ay önce"
+msgstr[1] "%d ay önce"
+
+#: includes/functions/helpers.php:59
+msgid "1 week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "1 hafta önce"
+msgstr[1] "%d hafta önce"
+
+#: includes/functions/helpers.php:63
+msgid "1 day ago"
+msgid_plural "%d days ago"
+msgstr[0] "%1 gün önce"
+msgstr[1] "%d gün önce"
+
+#: includes/functions/helpers.php:67
+msgid "1 hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "1 saat önce"
+msgstr[1] "%d saat önce"
+
+#: includes/functions/helpers.php:71
+msgid "1 minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "1 dakika önce"
+msgstr[1] "%d dakika önce"
+
+#: includes/functions/helpers.php:75
+msgid "1 second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] "1 saniye önce"
+msgstr[1] "%d saniye önce"
+
+#: includes/functions/helpers.php:79
+msgid "Some time ago"
+msgstr "Bir süre önce"
+
+#: includes/views/settings_page.html.php:21
+msgid "Facebook Settings"
+msgstr "Facebook ayarları"
+
+#: includes/views/settings_page.html.php:26
+msgid "This plugin needs a Facebook application to work."
+msgstr "Bu plugin, çalışmak için facebook uygulamasına ihtiyaç duyar."
+
+#: includes/views/settings_page.html.php:27
+msgid "Please fill in the Facebook Settings fields after creating your application."
+msgstr "Uygulamanızı oluşturduktan sonra Facebook ayarları bölümünü doldurun."
+
+#: includes/views/settings_page.html.php:30
+msgid ""
+"Not sure how to proceed? Please take a close look at the <a href=\"%s\">installation instructions</a>."
+msgstr "Takıldığınız bir yer mi var? Lütfen <a href=\"%s\">kurulum yönergesi</a>'ni inceleyin."
+
+#: includes/views/settings_page.html.php:38
+msgid "Facebook App ID/API Key"
+msgstr "Facebook uygulaması ID/API anahtarı"
+
+#: includes/views/settings_page.html.php:42
+msgid "Get your App ID from %s."
+msgstr "Uygulama kodunu %s'dan edinin."
+
+#: includes/views/settings_page.html.php:47
+msgid "Facebook App Secret"
+msgstr "Facebook Uygulaması gizlilik/secret anahtarı"
+
+#: includes/views/settings_page.html.php:50
+msgid "Get your App Secret from %s."
+msgstr "Gizlilik anahtarınızı %s'dan alın."
+
+#: includes/views/settings_page.html.php:55
+msgid "Facebook Page ID or Slug"
+msgstr "Facebook sayfa kimliği/ID'si."
+
+#: includes/views/settings_page.html.php:58
+msgid "Use <a href=\"%s\">this tool</a> to find the numeric ID of your Facebook page."
+msgstr "Facebook sayfanızın numerik kimliğini bulmak için <a href=\"%s\">bu aracı</a> kullanabilirsiniz."
+
+#: includes/views/settings_page.html.php:64
+msgid "Appearence"
+msgstr "Görünüş"
+
+#: includes/views/settings_page.html.php:68
+msgid "Link text"
+msgstr "Bağlantı metni"
+
+#: includes/views/settings_page.html.php:73
+msgid "Open links in new window?"
+msgstr "Bağlantıyı harici sayfada aç?"
+
+#: includes/views/settings_page.html.php:78
+msgid "Load some default styles?"
+msgstr "Öntanımlı stilleri yükle?"
+
+#: includes/views/settings_page.html.php:84
+msgid "Image size"
+msgstr "Dosya boyutu"
+
+#: includes/views/settings_page.html.php:87
+msgid "Don't show images"
+msgstr "Resimleri gösterme"
+
+#: includes/views/settings_page.html.php:88
+msgid "Thumbnail"
+msgstr "Küçük resim"
+
+#: includes/views/settings_page.html.php:89
+msgid "Normal"
+msgstr "Normal"
+
+#: includes/views/settings_page.html.php:96
+msgid "Image dimensions"
+msgstr "Resim boyutları"
+
+#: includes/views/settings_page.html.php:96
+msgid "(in pixels, optional)"
+msgstr "(pixel olarak, isteğe bağlı)"
+
+#: includes/views/settings_page.html.php:99
+msgid "Max Width"
+msgstr "En fazla genişlik"
+
+#: includes/views/settings_page.html.php:103
+msgid "Max Height"
+msgstr "En fazla yükseklik"
+
+#: includes/views/settings_page.html.php:107
+msgid "Leave empty for default sizing"
+msgstr "Öntanımlı boyut ayarını kullanmak için boş bırakın."
+
+#: includes/views/settings_page.html.php:118 includes/views/settings_page.html.php:122
+msgid "Test Configuration"
+msgstr "Ayarları test et"
+
+#: includes/views/settings_page.html.php:119
+msgid "Test your plugin configuration using the button below."
+msgstr "Aşağıdaki butonu kullanarak plugin ayarlarınızı test edebilirsiniz."
+
+#: includes/views/settings_page.html.php:125
+msgid "Facebook Posts Cache"
+msgstr "Facebook iletileri önbelleği."
+
+#: includes/views/settings_page.html.php:126
+msgid ""
+"Because fetching posts from Facebook is relatively slow the posts are cached for <strong>30 minutes</"
+"strong>. You can manually clear the cache using the button below."
+msgstr ""
+"Facebook iletilerini yüklemek zaman aldığından ilgili iletiler 30 dakika boyunca önbellekte tutulur."
+"İsterseniz önbelleği aşağıdaki butonu kullanarak el ile temizleyebilirsiniz."
+
+#: includes/views/settings_page.html.php:130
+msgid "Clear Cache"
+msgstr "Önbelleği temizle"
+
+#: includes/views/settings_page.html.php:138
+msgid "Usage"
+msgstr "Kullanım"
+
+#: includes/views/settings_page.html.php:139
+msgid ""
+"To show a list of your most recent facebook posts in your posts or pages, use the following shortcode."
+msgstr ""
+"En güncel Facebook paylaşımlarınızdan oluşan bir listeyigönderi veya sayfa içerisinde göstermek için "
+"aşağıdaki shortcode'u kullanın."
+
+#: includes/views/settings_page.html.php:141
+msgid "The shortcode accepts various arguments, which are listed on the <a href=\"%s\">plugin FAQ</a>."
+msgstr ""
+"Shortcode'u kişiselleştirmek için kullanabileceğiniz argümanlara <a href=\"%s\">plugin FAQ</a> "
+"içerisinden ulaşabilirsiniz."
+
+#: includes/views/settings_page.html.php:146
+msgid "Show your appreciation!"
+msgstr "Beğeninizi gösterin!"
+
+#: includes/views/settings_page.html.php:147
+msgid "If you like this plugin, consider showing your consideration in one of the following ways."
+msgstr "Eğer eklentiyi beğendiyseniz aşağıdaki yollardan biri ile katkıda bulunabilirsiniz."
+
+#: includes/views/settings_page.html.php:149
+msgid "Leave a %s review on WordPress.org"
+msgstr "WordPress.org'da %s yorum bırakın"
+
+#: includes/views/settings_page.html.php:150
+msgid "Write about the plugin from your blog."
+msgstr "Kendi blog sayfanızda değerlendirme yayınlayın."
+
+#: includes/views/settings_page.html.php:151
+msgid "Tweet about Recent Facebook Posts"
+msgstr "Twitterda Recent Facebook Posts'dan bahsedin."
+
+#: includes/views/settings_page.html.php:152
+msgid "Vote \"works\" on the WordPress.org plugin page"
+msgstr "WordPress.org eklenti sayfasında \"works\"'ü puanlayın"
+
+#: includes/views/settings_page.html.php:157
+msgid "Looking for support?"
+msgstr "Desteğe mi ihtiyacınız var?"
+
+#: includes/views/settings_page.html.php:158
+msgid "Please use the <a href=\"%s\">plugin support forums</a> on WordPress.org."
+msgstr "Lütfen WordPress.org'daki <a href=\"%s\">eklenti destek forumu</a>'nu kullanın."
+
+#: includes/views/settings_page.html.php:159
+msgid ""
+"Take a close look at the <a href=\"%s\">installation instructions</a> for help configuring the plugin "
+"and registering your own Facebook application, which is required to get this plugin to work."
+msgstr ""
+"Bu plugini çalıştırabilmek için gerekli ayarlamaları yapmakve kendi Facebook uygulamanızı kayıt etmek "
+"için desteğe ihtiyacınız varsa<a href=\"%s\">Kurulum Yönergeleri</a>'ni inceleyebilirsiniz."
+
+#: includes/views/settings_page.html.php:163
+msgid "Other plugins"
+msgstr "Diğer eklentiler"
+
+#. Plugin URI of the plugin/theme
+msgid "https://dannyvankooten.com/donate/"
+msgstr "https://dannyvankooten.com/donate/"
+
+#. Description of the plugin/theme
+msgid "Lists most recent posts from a public Facebook page."
+msgstr "Facebook sayfasından en güncel paylaşımları listeler."
+
+#. Author of the plugin/theme
+msgid "Danny van Kooten"
+msgstr "Danny van Kooten"
+
+#. Author URI of the plugin/theme
+msgid "https://dannyvankooten.com/"
+msgstr "https://dannyvankooten.com/"

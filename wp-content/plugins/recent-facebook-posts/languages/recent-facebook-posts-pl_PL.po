@@ -1,0 +1,333 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: Recent Facebook Posts\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/recent-facebook-posts\n"
+"POT-Creation-Date: 2014-09-15 16:28+0100\n"
+"PO-Revision-Date: Mon Sep 22 2014 04:40:57 GMT-0300 (Hora verano Sudamérica "
+"Pacífico)\n"
+"Last-Translator: Danny <hi@dannyvankooten.com>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Loco-Source-Locale: pl_PL\n"
+"X-Generator: abc"
+"X-Poedit-KeywordsList: _e;__;_n:1,2\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../.\n"
+"X-Loco-Parser: loco_parse_po\n"
+"X-Loco-Target-Locale: en_GB"
+
+#: .././includes/class-admin.php:146
+msgid "<strong>Cache cleared!</strong> You succesfully cleared the cache."
+msgstr "<strong>Pamięć podręczna wyczyszczona!</strong> Czyszczenie pamięci podręcznej zakńczyło się poprawnie."
+
+#: .././includes/class-admin.php:159
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: .././includes/class-admin.php:188
+msgid "Your configuration seems to be okay and working. Nice work!."
+msgstr "Twoje ustawienia wydają się poprawne. Gratulacje!"
+
+#: .././includes/class-admin.php:190
+msgid "The following error was encountered when testing your configuration."
+msgstr "Podczas tesowania ustawień wystąpił poniższy błąd."
+
+#: .././includes/class-api.php:51 .././includes/class-api.php:164
+msgid "Facebook error:"
+msgstr "Błąd Facebook-a:"
+
+#: .././includes/class-api.php:203
+msgid "Connection error:"
+msgstr "Błąd połączenia:"
+
+#: .././includes/class-public.php:187
+msgid "likes"
+msgstr "polubienia"
+
+#: .././includes/class-public.php:188
+msgid "comments"
+msgstr "komentarze"
+
+#: .././includes/class-public.php:190
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s z %2$s"
+
+#: .././includes/class-public.php:204
+msgid "No recent Facebook posts to show"
+msgstr "Brak niedawnych postów do wyświetlenia"
+
+#: .././includes/class-public.php:206
+msgid "Admins only notice"
+msgstr "Powiadomienie dla administratorów"
+
+#: .././includes/class-public.php:206
+#, php-format
+msgid "Did you <a href=\"%s\">configure the plugin</a> properly?"
+msgstr "Czy <a href=\"%s\">wtyczka</a> została skonfigurowana poprawnie?"
+
+#: .././includes/class-widget.php:18
+msgid "Lists a number of your most recent Facebook posts."
+msgstr "Wyświetl liczbę twoich najnowszych postów."
+
+#: .././includes/class-widget.php:22
+msgid "Recent Facebook Posts"
+msgstr "Niedawne posty"
+
+#: .././includes/class-widget.php:42
+msgid "Title:"
+msgstr "Tytuł:"
+
+#: .././includes/class-widget.php:47
+msgid "Number of posts:"
+msgstr "Liczba postów:"
+
+#: .././includes/class-widget.php:52
+msgid "Excerpt length:"
+msgstr "Długość fragmentu:"
+
+#: .././includes/class-widget.php:58
+msgid "Show like count?"
+msgstr "Wyświetlić liczbę ?"
+
+#: .././includes/class-widget.php:63
+msgid "Show comment count?"
+msgstr "Wyświetlić liczbę komentarzy?"
+
+#: .././includes/class-widget.php:68
+msgid "Show link to Facebook page?"
+msgstr "Wyświetlić łącze do strony Facebook-a?"
+
+#: .././includes/class-widget.php:73
+msgid "Show link previews?"
+msgstr "Wyświetlić podgląd łącza?"
+
+#: .././includes/functions/global.php:22
+#: .././includes/views/settings_page.html.php:67
+msgid "Find us on Facebook"
+msgstr "Znajdź nas na Facebook-u"
+
+#: .././includes/functions/helpers.php:23
+msgid "just now"
+msgstr "teraz"
+
+#: .././includes/functions/helpers.php:42
+#, php-format
+msgid "1 year ago"
+msgid_plural "%d years ago"
+msgstr[0] "Rok temu"
+msgstr[1] "lat wstecz: %d"
+
+#: .././includes/functions/helpers.php:46
+#, php-format
+msgid "1 month ago"
+msgid_plural "%d months ago"
+msgstr[0] "Miesiąc temu"
+msgstr[1] "miesięcy wstecz: %d"
+
+#: .././includes/functions/helpers.php:50
+#, php-format
+msgid "1 week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] "Tydzień temu"
+msgstr[1] "tygodni wstecz: %d"
+
+#: .././includes/functions/helpers.php:54
+#, php-format
+msgid "1 day ago"
+msgid_plural "%d days ago"
+msgstr[0] "Wczoraj"
+msgstr[1] "%d dni temu"
+
+#: .././includes/functions/helpers.php:58
+#, php-format
+msgid "1 hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "Godzinę temu"
+msgstr[1] "%d godzin(y) temu"
+
+#: .././includes/functions/helpers.php:62
+#, php-format
+msgid "1 minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "Minutę temu"
+msgstr[1] "%d minut(y) temu"
+
+#: .././includes/functions/helpers.php:66
+#, php-format
+msgid "1 second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] "Sekundę temu"
+msgstr[1] "%d sekund(y) temu"
+
+#: .././includes/functions/helpers.php:70
+msgid "Some time ago"
+msgstr "Jakiś czas temu"
+
+#: .././includes/views/settings_page.html.php:21
+msgid "Facebook Settings"
+msgstr "Ustawienia Facebook-a"
+
+#: .././includes/views/settings_page.html.php:26
+msgid "This plugin needs a Facebook application to work."
+msgstr "Ta wtyczka wymaga aplikacji Facebook-a."
+
+#: .././includes/views/settings_page.html.php:27
+msgid "Please fill in the Facebook Settings fields after creating your application."
+msgstr "Po utworzeniu aplikacji, wypełnij pola Ustawień Facebook-a."
+
+#: .././includes/views/settings_page.html.php:30
+#, php-format
+msgid "Not sure how to proceed? Please take a close look at the <a href=\"%s\">installation instructions</a>. "
+msgstr "Nie wiesz co dalej? Poświęć chwilę, aby zapoznać się z <a href=\"%s\">instrukcją instalacji</a>. "
+
+#: .././includes/views/settings_page.html.php:37
+msgid "Facebook App ID/API Key"
+msgstr "Identyfikator Aplikacji Facebook-a / Klucz Interfejsu Programistycznego Aplikacji (API)"
+
+#: .././includes/views/settings_page.html.php:40
+#, php-format
+msgid "Get your App ID from %s."
+msgstr "Uzyskaj Identyfikator Aplikacji z %s."
+
+#: .././includes/views/settings_page.html.php:45
+msgid "Facebook App Secret"
+msgstr "Tajny klucz Aplikacji Facebook-a"
+
+#: .././includes/views/settings_page.html.php:48
+#, php-format
+msgid "Get your App Secret from %s."
+msgstr "Uzyskaj tajny klucz Aplikacji z %s."
+
+#: .././includes/views/settings_page.html.php:53
+msgid "Facebook Page ID or Slug"
+msgstr "Identyfikator strony Facebook-a lub Slug."
+
+#: .././includes/views/settings_page.html.php:56
+#, php-format
+msgid "Use <a href=\"%s\">this tool</a> to find the numeric ID of your Facebook page."
+msgstr "Użyj <a href=\"%s\">tego narzędzia</a> aby znaleźć identyfikator numeryczny twojej strony Facebook-a."
+
+#: .././includes/views/settings_page.html.php:62
+msgid "Appearance"
+msgstr "Wygląd"
+
+#: .././includes/views/settings_page.html.php:66
+msgid "Link text"
+msgstr "Tekst łącza"
+
+#: .././includes/views/settings_page.html.php:71
+msgid "Open links in new window?"
+msgstr "Otworzyć łacze w nowym oknie?"
+
+#: .././includes/views/settings_page.html.php:76
+msgid "Load some default styles?"
+msgstr "Załadować style domyślne?"
+
+#: .././includes/views/settings_page.html.php:82
+msgid "Image size"
+msgstr "Rozmiar obrazu"
+
+#: .././includes/views/settings_page.html.php:85
+msgid "Don't show images"
+msgstr "Nie pokazuj obrazów"
+
+#: .././includes/views/settings_page.html.php:86
+msgid "Thumbnail"
+msgstr "Miniaturka"
+
+#: .././includes/views/settings_page.html.php:87
+msgid "Normal"
+msgstr "Normalnie"
+
+#: .././includes/views/settings_page.html.php:94
+msgid "Image dimensions"
+msgstr "Wymiary obrazu"
+
+#: .././includes/views/settings_page.html.php:94
+msgid "(in pixels, optional)"
+msgstr "(piksele, opcjonalnie)"
+
+#: .././includes/views/settings_page.html.php:97
+msgid "Max Width"
+msgstr "Szerokość maksymalna"
+
+#: .././includes/views/settings_page.html.php:101
+msgid "Max Height"
+msgstr "Wysokość maksymalna"
+
+#: .././includes/views/settings_page.html.php:105
+msgid "Leave empty for default sizing"
+msgstr "Pozostaw puste aby użyć rozmiarów domyślnych"
+
+#: .././includes/views/settings_page.html.php:112
+msgid "Save Changes"
+msgstr "Zapisz zmiany"
+
+#: .././includes/views/settings_page.html.php:119
+msgid "Test your plugin configuration using the button below."
+msgstr "Użyj poniższego przycisku, aby przetestować konfigurację wtyczki."
+
+#: .././includes/views/settings_page.html.php:122
+msgid "Test Configuration"
+msgstr "Testuj Konfigurację"
+
+#: .././includes/views/settings_page.html.php:126
+msgid "Because fetching posts from Facebook is relatively slow the posts are cached for <strong>30 minutes</strong>. You can manually clear the cache using the button below."
+msgstr "Ponieważ pobieranie postów jest procesem stosunkowo powolnym, pozostaną one zapisane w pamięci podręcznej na <strong>30 minut</strong>. Aby wymusić wyczyszczenie pamięci podręcznej, użyj poniższego przycisku."
+
+#: .././includes/views/settings_page.html.php:129
+msgid "Clear Cache"
+msgstr "Wyczyść pamięć podręczną"
+
+#: .././includes/views/settings_page.html.php:138
+msgid "Donate $10, $20 or $50"
+msgstr "Podaruj 10, 20 lub 50 dolarów."
+
+#: .././includes/views/settings_page.html.php:139
+msgid "I spent a lot of time developing this plugin and offering support for it. If you like it, consider supporting this plugin by donating a token of your appreciation."
+msgstr "Budowa oraz pomoc techniczna dla tej wtyczki wymaga dużych nakładów czasowych. Jeżeli lubisz tę wtyczkę, rozważ wsparcie jej rozwoju poprzez dobrowolną darowiznę."
+
+#: .././includes/views/settings_page.html.php:155
+msgid "Some other ways to support this plugin"
+msgstr "Inne sposoby na wsparcie rozwoju tej wtyczki"
+
+#: .././includes/views/settings_page.html.php:157
+#, php-format
+msgid "Leave a %s review on WordPress.org"
+msgstr "Napisz %s recenzję na stronie WordPress.org"
+
+#: .././includes/views/settings_page.html.php:158
+msgid "Write about the plugin from your blog."
+msgstr "Napisz o tej wtyczce na swoim blogu."
+
+#: .././includes/views/settings_page.html.php:159
+msgid "Tweet about Recent Facebook Posts"
+msgstr "Tweet o niedawnych postach na Facebook-u"
+
+#: .././includes/views/settings_page.html.php:160
+msgid "Vote \"works\" on the WordPress.org plugin page"
+msgstr "Głosuj \"działa!\" na stronie WordPress.org"
+
+#: .././includes/views/settings_page.html.php:165
+msgid "Looking for support?"
+msgstr "Potrzebujesz wsparcia technicznego?"
+
+#: .././includes/views/settings_page.html.php:166
+#, php-format
+msgid "Please use the <a href=\"%s\">plugin support forums</a> on WordPress.org."
+msgstr "Odwiedź <a href=\"%s\">forum wsparcia wtyczki</a> na WordPress.org."
+
+#: .././includes/views/settings_page.html.php:167
+#, php-format
+msgid "Take a close look at the <a href=\"%s\">installation instructions</a> for help configuring the plugin and registering your own Facebook application, which is required to get this plugin to work."
+msgstr "Zapoznaj się z <a href=\"%s\">instrukcją instalacji</a>. Pomoże ci ona w konfiguracji wtyczki oraz rejestracji twojej własnej aplikacji Facebook-a, wymaganej przez wtyczkę."
+
+#: .././includes/views/settings_page.html.php:171
+msgid "Other Useful plugins"
+msgstr "Inne przydatne wtyczki"
