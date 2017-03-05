@@ -20,9 +20,9 @@
         $partners = get_posts( $args );
         if ( $partners ) {
             echo '<h3 class="partners">Partner Organizations</h3>';
-            echo '<div id="partner-logos" class="span10 offset1">';
+            echo '<div id="partner-logos" class="span12">';
             foreach( $partners as $partner ) { ?>
-                <a title="<?php echo get_the_title( $partner->ID ); ?>" href="<?php echo get_permalink( $partner->ID ); ?>"><?php echo get_the_post_thumbnail( $partner->ID, array(120, 50)); ?></a>
+                <a title="<?php echo get_the_title( $partner->ID ); ?>" href="<?php echo get_permalink( $partner->ID ); ?>"><?php echo get_the_post_thumbnail( $partner->ID, 'small', 'style=width:120px;height:auto'); ?></a>
             <?php }
             echo '</div><div class="clearfix"></div>';
         }
