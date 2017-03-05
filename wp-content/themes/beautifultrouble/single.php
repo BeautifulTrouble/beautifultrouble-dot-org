@@ -35,7 +35,7 @@ get_header(); ?>
             <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
 <?php endwhile; // end of the loop. ?>
 <hr />
- <?php comments_template(); ?>
+ <?php /*comments_template();*/ ?>
 
  <?php bootstrapwp_content_nav('nav-below');?>
 
