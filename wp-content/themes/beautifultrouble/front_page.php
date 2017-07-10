@@ -14,7 +14,7 @@ get_header(); ?>
 <?php $fields = get_fields(); ?>
 <div class="container">
             <ul class="breadcrumb elevator"><li>
-                Beautiful Trouble is a book, web toolbox and international network of artist-activist <a href="/trainings/">trainers</a> whose mission is to make grassroots movements more creative and more effective.
+                Beautiful Trouble exists to make nonviolent revolution irresistible by providing an ever-growing suite of strategic tools and <a href="/trainings/">trainings</a> that inspire movements for a more just, healthy, and equitable world.
                 <a class="visible-phone" href="/all-modules/">Start browsing the Web Toolbox &raquo;</a>
             </li></ul>
             <br>

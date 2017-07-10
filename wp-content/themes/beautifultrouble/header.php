@@ -35,7 +35,7 @@
   ?></title>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=medium-dpi">
-    <meta name="description" content="Beautiful Trouble is a book, web toolbox and international network of artist-activist trainers whose mission is to make grassroots movements more creative and more effective.">
+    <meta name="description" content="Beautiful Trouble exists to make nonviolent revolution irresistible by providing an ever-growing suite of strategic tools and trainings that inspire movements for a more just, healthy, and equitable world.">
 
     <link rel="profile" href="http://gmpg.org/xfn/11" />
 
