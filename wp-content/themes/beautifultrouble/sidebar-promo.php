@@ -7,12 +7,12 @@
                                     Published by <b>OR Books</b>. Order your copy today:
                                     </p>
 <ul class="nav nav-tabs" id="editions">
-  <li class="active"><a href="#bt" data-toggle="tab">Beautiful<br />Troubl</a></li>
+  <li class="active"><a href="#full" data-toggle="tab">Beautiful<br />Trouble</a></li>
   <li><a href="#bt-pocket" data-toggle="tab">BT<br />Pocket</a></li>
   <li><a href="#rising" data-toggle="tab">Beautiful<br />Rising</a></li>
 </ul>
 <div class="tab-content">
-  <div class="tab-pane active" id="bt">
+  <div class="tab-pane active" id="full">
     <img class="alignleft" src="/wp-content/themes/beautifultrouble/img/Beautiful_Trouble_Book_Cover_med.png" width="150" height="185" /><br />
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=264"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$25<br />paperback</span><br />
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=265"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$10<br />ebook</span><br />
