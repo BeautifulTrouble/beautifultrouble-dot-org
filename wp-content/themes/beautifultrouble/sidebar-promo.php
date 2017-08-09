@@ -24,7 +24,7 @@
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=446"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$7<br />ebook</span><br />
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=447"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$18<br />both</span>
   </div>
-  <div class="tab-pane" id="bt-pocket">
+  <div class="tab-pane" id="rising">
     <img class="alignleft" src="/wp-content/themes/beautifultrouble/img/Beautiful_Rising_Book_Cover_med.png" width="150" height="185" /><br />
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=1033"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$22<br />paperback</span><br />
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=1034"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$10<br />ebook</span><br />
