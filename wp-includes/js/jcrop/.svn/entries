@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-includes/js/jcrop
 http://core.svn.wordpress.org
 
@@ -25,6 +25,40 @@ ocean90
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+Jcrop.gif
+file
+
+
+
+
+2014-02-26T01:32:39.097050Z
+5a8bfd37651305bdafbcf2cd51b0254b
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+323
 
 jquery.Jcrop.min.css
 file
@@ -93,38 +127,4 @@ has-props
 
 
 15893
-
-Jcrop.gif
-file
-
-
-
-
-2014-02-26T01:32:39.097050Z
-5a8bfd37651305bdafbcf2cd51b0254b
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-323
 

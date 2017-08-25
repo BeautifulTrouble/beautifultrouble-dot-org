@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-includes/pomo
 http://core.svn.wordpress.org
 
@@ -25,74 +25,6 @@ dd32
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-entry.php
-file
-
-
-
-
-2016-01-04T06:59:47.216034Z
-ed9d811ef0cb13bdc0fa60b8314c8d61
-2015-11-20T04:34:25.537855Z
-35678
-dd32
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2887
-
-translations.php
-file
-
-
-
-
-2016-01-04T06:59:47.216034Z
-54f87e748e3a7bfcbb3ec83456861ecd
-2015-11-20T04:34:25.537855Z
-35678
-dd32
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-8778
 
 mo.php
 file
@@ -195,4 +127,72 @@ has-props
 
 
 5948
+
+entry.php
+file
+
+
+
+
+2016-01-04T06:59:47.216034Z
+ed9d811ef0cb13bdc0fa60b8314c8d61
+2015-11-20T04:34:25.537855Z
+35678
+dd32
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2887
+
+translations.php
+file
+
+
+
+
+2016-01-04T06:59:47.216034Z
+54f87e748e3a7bfcbb3ec83456861ecd
+2015-11-20T04:34:25.537855Z
+35678
+dd32
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8778
 

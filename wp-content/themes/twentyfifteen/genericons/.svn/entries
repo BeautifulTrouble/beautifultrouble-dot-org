@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyfifteen/genericons
 http://core.svn.wordpress.org
 
@@ -25,6 +25,40 @@ ocean90
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+LICENSE.txt
+file
+
+
+
+
+2015-12-16T03:24:41.475018Z
+b234ee4d69f5fce4486a80fdaf4a4263
+2014-10-14T19:28:18.825219Z
+29648
+iandstewart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18092
 
 Genericons.eot
 file
@@ -263,38 +297,4 @@ iandstewart
 
 
 6569
-
-LICENSE.txt
-file
-
-
-
-
-2015-12-16T03:24:41.475018Z
-b234ee4d69f5fce4486a80fdaf4a4263
-2014-10-14T19:28:18.825219Z
-29648
-iandstewart
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-18092
 

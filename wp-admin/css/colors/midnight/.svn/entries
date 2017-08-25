@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-admin/css/colors/midnight
 http://core.svn.wordpress.org
 
@@ -25,40 +25,6 @@ jorbin
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-colors-rtl.css
-file
-
-
-
-
-2016-01-04T06:59:45.396034Z
-ff228ab4531174f9292c7d4689eea615
-2015-11-05T17:53:43.630930Z
-35503
-jorbin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-13761
 
 colors.css
 file
@@ -195,4 +161,38 @@ helen
 
 
 106
+
+colors-rtl.css
+file
+
+
+
+
+2016-01-04T06:59:45.396034Z
+ff228ab4531174f9292c7d4689eea615
+2015-11-05T17:53:43.630930Z
+35503
+jorbin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13761
 

@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-admin/css/colors/light
 http://core.svn.wordpress.org
 
@@ -25,6 +25,40 @@ jorbin
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+colors.scss
+file
+
+
+
+
+2016-01-04T06:59:45.620034Z
+480b9bd647e5b323ef88d63ce55e1d6f
+2015-07-15T20:14:25.463582Z
+33256
+helen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1119
 
 colors-rtl.css
 file
@@ -161,38 +195,4 @@ has-props
 
 
 12251
-
-colors.scss
-file
-
-
-
-
-2016-01-04T06:59:45.620034Z
-480b9bd647e5b323ef88d63ce55e1d6f
-2015-07-15T20:14:25.463582Z
-33256
-helen
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1119
 

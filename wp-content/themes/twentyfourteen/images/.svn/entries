@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyfourteen/images
 http://core.svn.wordpress.org
 
@@ -25,40 +25,6 @@ lancewillett
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-pattern-light.svg
-file
-
-
-
-
-2014-02-26T01:35:08.241051Z
-ff69a6fd14bf4770b36a8880bf53dda8
-2013-10-31T04:28:10.469355Z
-25931
-lancewillett
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-540
 
 pattern-dark.svg
 file
@@ -93,4 +59,38 @@ lancewillett
 
 
 1176
+
+pattern-light.svg
+file
+
+
+
+
+2014-02-26T01:35:08.241051Z
+ff69a6fd14bf4770b36a8880bf53dda8
+2013-10-31T04:28:10.469355Z
+25931
+lancewillett
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+540
 

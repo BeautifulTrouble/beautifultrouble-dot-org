@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-admin/css/colors/ectoplasm
 http://core.svn.wordpress.org
 
@@ -25,6 +25,74 @@ jorbin
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+colors.min.css
+file
+
+
+
+
+2016-01-04T06:59:45.580034Z
+86d2fb3ee504d7846bc973f0bad27fad
+2015-11-18T20:28:25.725663Z
+35648
+jorbin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11903
+
+colors.scss
+file
+
+
+
+
+2015-12-16T03:24:41.367018Z
+940171d1392bd8071122a905d12b9195
+2014-02-06T06:25:18.020850Z
+26973
+helen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+157
 
 colors-rtl.css
 file
@@ -127,72 +195,4 @@ has-props
 
 
 11901
-
-colors.min.css
-file
-
-
-
-
-2016-01-04T06:59:45.580034Z
-86d2fb3ee504d7846bc973f0bad27fad
-2015-11-18T20:28:25.725663Z
-35648
-jorbin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-11903
-
-colors.scss
-file
-
-
-
-
-2015-12-16T03:24:41.367018Z
-940171d1392bd8071122a905d12b9195
-2014-02-06T06:25:18.020850Z
-26973
-helen
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-157
 

@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyfourteen/js
 http://core.svn.wordpress.org
 
@@ -25,74 +25,6 @@ lancewillett
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-featured-content-admin.js
-file
-
-
-
-
-2014-02-26T01:35:08.245051Z
-ca00eaecff50d9777022a34c4b36dbd8
-2013-12-05T23:40:11.847741Z
-26596
-nacin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-329
-
-keyboard-image-navigation.js
-file
-
-
-
-
-2016-01-04T07:02:48.416034Z
-9ec09e3f667433fcc24b25abb4d91700
-2015-01-20T19:03:23.469912Z
-31231
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-497
 
 slider.js
 file
@@ -229,4 +161,72 @@ has-props
 
 
 2428
+
+featured-content-admin.js
+file
+
+
+
+
+2014-02-26T01:35:08.245051Z
+ca00eaecff50d9777022a34c4b36dbd8
+2013-12-05T23:40:11.847741Z
+26596
+nacin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+329
+
+keyboard-image-navigation.js
+file
+
+
+
+
+2016-01-04T07:02:48.416034Z
+9ec09e3f667433fcc24b25abb4d91700
+2015-01-20T19:03:23.469912Z
+31231
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+497
 

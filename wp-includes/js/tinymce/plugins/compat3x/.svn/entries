@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/compat3x
 http://core.svn.wordpress.org
 
@@ -25,6 +25,9 @@ azaozz
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+css
+dir
 
 plugin.js
 file
@@ -93,7 +96,4 @@ azaozz
 
 
 3987
-
-css
-dir
 

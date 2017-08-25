@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins
 http://core.svn.wordpress.org
 
@@ -26,31 +26,13 @@ pento
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-fullscreen
-dir
-
-wplink
-dir
-
-tabfocus
-dir
-
-wpgallery
-dir
-
-hr
-dir
-
-wpemoji
-dir
-
 charmap
 dir
 
-paste
+colorpicker
 dir
 
-colorpicker
+paste
 dir
 
 media
@@ -62,13 +44,13 @@ dir
 image
 dir
 
-textcolor
+wpembed
 dir
 
 directionality
 dir
 
-wpembed
+textcolor
 dir
 
 wordpress
@@ -90,5 +72,23 @@ wpeditimage
 dir
 
 wpautoresize
+dir
+
+fullscreen
+dir
+
+wplink
+dir
+
+wpgallery
+dir
+
+tabfocus
+dir
+
+hr
+dir
+
+wpemoji
 dir
 

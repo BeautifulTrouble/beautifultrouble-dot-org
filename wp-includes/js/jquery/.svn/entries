@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-includes/js/jquery
 http://core.svn.wordpress.org
 
@@ -94,40 +94,6 @@ has-props
 
 1793
 
-jquery.ui.touch-punch.js
-file
-
-
-
-
-2014-02-26T01:32:39.101050Z
-4cc86d1003c45134d6838f13e3885db1
-2012-04-11T02:58:23.877378Z
-20434
-bumpbot
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1179
-
 jquery-migrate.min.js
 file
 
@@ -161,6 +127,40 @@ nacin
 
 
 7200
+
+jquery.ui.touch-punch.js
+file
+
+
+
+
+2014-02-26T01:32:39.101050Z
+4cc86d1003c45134d6838f13e3885db1
+2012-04-11T02:58:23.877378Z
+20434
+bumpbot
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1179
 
 jquery.masonry.min.js
 file
@@ -233,40 +233,6 @@ has-props
 ui
 dir
 
-jquery.form.min.js
-file
-
-
-
-
-2014-02-26T01:32:39.101050Z
-dbc3808473def00fce45fe564dc72dcb
-2013-09-16T21:06:09.611569Z
-25383
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-14720
-
 suggest.min.js
 file
 
@@ -300,6 +266,40 @@ has-props
 
 
 2963
+
+jquery.form.min.js
+file
+
+
+
+
+2014-02-26T01:32:39.101050Z
+dbc3808473def00fce45fe564dc72dcb
+2013-09-16T21:06:09.611569Z
+25383
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+14720
 
 jquery.hotkeys.js
 file

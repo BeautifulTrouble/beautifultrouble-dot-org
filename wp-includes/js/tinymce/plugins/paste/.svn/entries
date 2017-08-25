@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/paste
 http://core.svn.wordpress.org
 
@@ -25,40 +25,6 @@ azaozz
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-plugin.js
-file
-
-
-
-
-2016-01-04T07:02:48.076034Z
-8510f4975434100288bc363aaba2eaae
-2015-11-08T02:32:26.393202Z
-35538
-azaozz
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-48088
 
 plugin.min.js
 file
@@ -93,4 +59,38 @@ azaozz
 
 
 15886
+
+plugin.js
+file
+
+
+
+
+2016-01-04T07:02:48.076034Z
+8510f4975434100288bc363aaba2eaae
+2015-11-08T02:32:26.393202Z
+35538
+azaozz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+48088
 

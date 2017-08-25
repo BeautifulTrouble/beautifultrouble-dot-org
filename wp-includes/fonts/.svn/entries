@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-includes/fonts
 http://core.svn.wordpress.org
 
@@ -25,40 +25,6 @@ ocean90
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-dashicons.ttf
-file
-
-
-
-
-2016-01-04T06:59:47.508034Z
-4e1e8fbebedb4172f1635a4cf29624e8
-2015-07-23T03:02:24.408017Z
-33345
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-41916
 
 dashicons.svg
 file
@@ -161,4 +127,38 @@ has-props
 
 
 42118
+
+dashicons.ttf
+file
+
+
+
+
+2016-01-04T06:59:47.508034Z
+4e1e8fbebedb4172f1635a4cf29624e8
+2015-07-23T03:02:24.408017Z
+33345
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+41916
 

@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/skins/lightgray/fonts
 http://core.svn.wordpress.org
 
@@ -25,74 +25,6 @@ azaozz
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-tinymce-small.woff
-file
-
-
-
-
-2016-01-04T07:02:48.168034Z
-d725b287d3d6816c20520a31924fde17
-2015-03-10T19:20:28.379287Z
-31681
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9000
-
-tinymce.eot
-file
-
-
-
-
-2016-01-04T07:02:48.168034Z
-a4e6a52223e2edbd1bc2b621ec7c08c3
-2015-07-01T00:52:25.483066Z
-32984
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-12044
 
 tinymce-small.eot
 file
@@ -331,4 +263,72 @@ azaozz
 
 
 22359
+
+tinymce-small.woff
+file
+
+
+
+
+2016-01-04T07:02:48.168034Z
+d725b287d3d6816c20520a31924fde17
+2015-03-10T19:20:28.379287Z
+31681
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9000
+
+tinymce.eot
+file
+
+
+
+
+2016-01-04T07:02:48.168034Z
+a4e6a52223e2edbd1bc2b621ec7c08c3
+2015-07-01T00:52:25.483066Z
+32984
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12044
 

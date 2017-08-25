@@ -1,7 +1,7 @@
 10
 
 dir
-36133
+41145
 http://core.svn.wordpress.org/tags/4.4/wp-includes/js/imgareaselect
 http://core.svn.wordpress.org
 
@@ -25,6 +25,40 @@ obenland
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+border-anim-v.gif
+file
+
+
+
+
+2014-02-26T01:32:39.097050Z
+20c97a21993cf137ead9fdbecbc42aa8
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+178
 
 border-anim-h.gif
 file
@@ -161,38 +195,4 @@ has-props
 
 
 9887
-
-border-anim-v.gif
-file
-
-
-
-
-2014-02-26T01:32:39.097050Z
-20c97a21993cf137ead9fdbecbc42aa8
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-178
 
