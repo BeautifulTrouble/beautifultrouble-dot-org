@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/mediaelement
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/mediaelement
 http://core.svn.wordpress.org
 
 
 
-2015-10-21T18:36:28.392274Z
-35306
-helen
+2017-05-12T20:53:45.179094Z
+40522
+adamsilverstein
 
 
 
@@ -32,7 +32,7 @@ file
 
 
 
-2016-01-04T06:59:48.312034Z
+2016-01-04T08:03:08.848034Z
 746c3af7a145a09239a36e5ef61cfea0
 2015-09-11T18:35:26.321150Z
 34018
@@ -59,6 +59,40 @@ wonderboymusic
 
 
 1029
+
+wp-mediaelement.min.css
+file
+
+
+
+
+2017-08-25T03:39:45.638323Z
+eb76120347829c4ba3576665b2d871f0
+2017-05-11T22:29:42.845491Z
+40503
+afercia
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4022
 
 controls.png
 file
@@ -100,11 +134,11 @@ file
 
 
 
-2016-01-04T06:59:48.308034Z
-3fc9c567b4fe652008ea1c14428c9363
-2015-09-20T03:17:24.672523Z
-34310
-wonderboymusic
+2017-08-25T03:39:45.638323Z
+8a628f94d5775fdf423f7cae30eb9453
+2017-05-12T20:53:45.179094Z
+40522
+adamsilverstein
 
 
 
@@ -126,7 +160,7 @@ wonderboymusic
 
 
 
-1537
+1534
 
 silverlightmediaelement.xap
 file
@@ -134,11 +168,11 @@ file
 
 
 
-2016-01-04T06:59:48.308034Z
-a83ab83a3d43222e4ba77cf96e0074aa
-2015-03-05T16:54:26.739760Z
-31608
-wonderboymusic
+2017-08-25T03:39:45.638323Z
+d0e44fd6ecebca46f36d734b3012aa2c
+2016-06-28T09:26:28.709009Z
+37828
+ocean90
 
 
 
@@ -160,7 +194,7 @@ wonderboymusic
 
 
 
-12381
+12459
 
 wp-playlist.js
 file
@@ -168,11 +202,11 @@ file
 
 
 
-2015-12-16T03:24:41.567018Z
-0ec99859384076f01ce50727d9bf18b3
-2014-09-01T19:55:18.836855Z
-29434
-azaozz
+2017-08-25T03:39:45.638323Z
+aaf77f7481f419f5f8c46ae338820443
+2016-02-29T21:50:27.464304Z
+36750
+ocean90
 
 
 
@@ -194,7 +228,7 @@ azaozz
 
 
 
-4724
+4717
 
 controls.svg
 file
@@ -264,47 +298,13 @@ markjaquith
 
 166
 
-wp-mediaelement.css
-file
-
-
-
-
-2016-01-04T06:59:48.308034Z
-b03476d23e09e01f7be81edcb0327fce
-2015-10-21T18:36:28.392274Z
-35306
-helen
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5279
-
 froogaloop.min.js
 file
 
 
 
 
-2016-01-04T06:59:48.308034Z
+2016-01-04T08:03:08.848034Z
 2a8742c0ac1cdbec23be44a7d4e9a3c9
 2015-01-09T20:04:23.201128Z
 31096
@@ -332,17 +332,51 @@ wonderboymusic
 
 1769
 
+wp-mediaelement.css
+file
+
+
+
+
+2017-08-25T03:39:45.638323Z
+f59fa2d103e13985d7e18df4c9d06c85
+2017-05-11T22:29:42.845491Z
+40503
+afercia
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4818
+
 flashmediaelement.swf
 file
 
 
 
 
-2016-01-04T06:59:48.308034Z
-42c6680f8035fc10855ee2e559c9cc78
-2015-09-11T18:35:26.321150Z
-34018
-wonderboymusic
+2017-08-25T03:39:45.638323Z
+2efe1fabfea04432f090ecb3153b10a1
+2016-07-18T10:59:30.808436Z
+38029
+ocean90
 
 
 
@@ -364,7 +398,41 @@ wonderboymusic
 
 
 
-131611
+130054
+
+wp-mediaelement.min.js
+file
+
+
+
+
+2017-08-25T03:39:45.638323Z
+7f5a63461a4870dcff29bcf63b6c9910
+2017-05-12T20:53:45.179094Z
+40522
+adamsilverstein
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+795
 
 bigplay.png
 file
@@ -440,11 +508,11 @@ file
 
 
 
-2016-01-04T06:59:48.312034Z
-55349dce77921ce5ae7b0c66c0ec2e4d
-2015-09-11T18:35:26.321150Z
-34018
-wonderboymusic
+2017-08-25T03:39:45.638323Z
+0687e33e84a860c33a3a885193a6d937
+2016-07-18T10:59:30.808436Z
+38029
+ocean90
 
 
 
@@ -466,7 +534,7 @@ wonderboymusic
 
 
 
-20163
+20431
 
 mediaelement-and-player.min.js
 file
@@ -474,11 +542,11 @@ file
 
 
 
-2016-01-04T06:59:48.312034Z
-53972f85761d00c950a6554b55f46f29
-2015-09-20T02:31:24.643590Z
-34303
-wonderboymusic
+2017-08-25T03:39:45.638323Z
+8970e6e672a1d312c8d8ef471ffb7d5f
+2016-07-18T10:59:30.808436Z
+38029
+ocean90
 
 
 
@@ -500,7 +568,7 @@ wonderboymusic
 
 
 
-80660
+82625
 
 loading.gif
 file
@@ -536,13 +604,47 @@ markjaquith
 
 6224
 
+wp-playlist.min.js
+file
+
+
+
+
+2017-08-25T03:39:45.638323Z
+264563e94e2d16b1066bd413ebc592de
+2016-11-03T05:40:34.759719Z
+39059
+jorbin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3354
+
 jumpforward.png
 file
 
 
 
 
-2016-01-04T06:59:48.312034Z
+2016-01-04T08:03:08.848034Z
 15e1ac8cbacc2efdf1ac2677de48a253
 2015-09-11T18:35:26.321150Z
 34018

@@ -2,13 +2,13 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/media
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/tinymce/plugins/media
 http://core.svn.wordpress.org
 
 
 
-2015-10-20T22:06:24.687785Z
-35272
+2017-05-08T05:32:46.846125Z
+40453
 azaozz
 
 
@@ -26,50 +26,16 @@ azaozz
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-moxieplayer.swf
-file
-
-
-
-
-2015-12-16T03:24:41.567018Z
-4e59d34efb2da0b9a033596a85e4b1ef
-2013-12-28T23:53:15.661789Z
-26759
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-20017
-
 plugin.js
 file
 
 
 
 
-2016-01-04T07:02:48.080034Z
-2a92c5eb43f95da660c4c58dc1aa2501
-2015-10-20T22:06:24.687785Z
-35272
+2017-08-25T03:39:44.773892Z
+a1f2c45f38a2581ec28d2f41f835a1a2
+2017-05-08T05:32:46.846125Z
+40453
 azaozz
 
 
@@ -92,7 +58,7 @@ azaozz
 
 
 
-19748
+48008
 
 plugin.min.js
 file
@@ -100,10 +66,10 @@ file
 
 
 
-2016-01-04T07:02:48.080034Z
-a3befc9aed67d0169c87284c6c1a95e4
-2015-10-20T22:06:24.687785Z
-35272
+2017-08-25T03:39:44.773892Z
+b068d94458289ccfca5221fe750b4155
+2017-05-08T05:32:46.846125Z
+40453
 azaozz
 
 
@@ -126,5 +92,5 @@ azaozz
 
 
 
-10288
+16813
 

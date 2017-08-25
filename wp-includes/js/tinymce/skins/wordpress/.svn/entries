@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/skins/wordpress
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/tinymce/skins/wordpress
 http://core.svn.wordpress.org
 
 
 
-2015-09-18T23:58:26.450746Z
-34281
-azaozz
+2017-07-25T02:21:34.924290Z
+40982
+westonruter
 
 
 
@@ -35,11 +35,11 @@ file
 
 
 
-2016-01-04T07:02:48.140034Z
-fa017da44bc83b2b437dbd75623012d7
-2015-09-18T23:58:26.450746Z
-34281
-azaozz
+2017-08-25T03:41:33.164060Z
+012706854c5bf037e8234aab32868fc8
+2017-07-25T02:21:34.924290Z
+40982
+westonruter
 has-props
 
 
@@ -61,5 +61,5 @@ has-props
 
 
 
-9259
+8918
 

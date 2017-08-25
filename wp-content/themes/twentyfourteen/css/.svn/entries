@@ -2,7 +2,7 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyfourteen/css
+http://core.svn.wordpress.org/tags/4.8.1/wp-content/themes/twentyfourteen/css
 http://core.svn.wordpress.org
 
 
@@ -25,6 +25,40 @@ iseulde
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+editor-style.css
+file
+
+
+
+
+2016-01-04T08:03:08.748034Z
+9a23a1e96059c33072dce3fd9f893f6e
+2015-07-25T23:00:24.516572Z
+33386
+iseulde
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11679
 
 ie.css
 file
@@ -59,38 +93,4 @@ has-props
 
 
 24683
-
-editor-style.css
-file
-
-
-
-
-2016-01-04T07:02:48.392034Z
-9a23a1e96059c33072dce3fd9f893f6e
-2015-07-25T23:00:24.516572Z
-33386
-iseulde
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-11679
 

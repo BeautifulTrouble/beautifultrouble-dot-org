@@ -1,11 +1,11 @@
 K 25
 svn:wc:ra_dav:version-url
 V 36
-/!svn/ver/1265027/akismet/tags/3.1.5
+/!svn/ver/1695995/akismet/tags/3.3.3
 END
-LICENSE.txt
+wrapper.php
 K 25
 svn:wc:ra_dav:version-url
 V 48
-/!svn/ver/1265027/akismet/tags/3.1.5/LICENSE.txt
+/!svn/ver/1695995/akismet/tags/3.3.3/wrapper.php
 END

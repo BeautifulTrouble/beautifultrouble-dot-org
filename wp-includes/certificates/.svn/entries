@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/certificates
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/certificates
 http://core.svn.wordpress.org
 
 
 
-2015-09-18T08:43:26.779221Z
-34247
-dd32
+2016-05-13T18:41:31.913961Z
+37397
+DrewAPicture
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2016-01-04T06:59:47.168034Z
-b6ea3b5f9b5cc919157579ecdefd7901
-2015-09-18T08:43:26.779221Z
-34247
-dd32
+2017-08-25T03:39:46.238624Z
+dd1c7bdebdfc411eb8a336e3d758692c
+2016-05-13T18:41:31.913961Z
+37397
+DrewAPicture
 
 
 
@@ -58,5 +58,5 @@ dd32
 
 
 
-258423
+279564
 

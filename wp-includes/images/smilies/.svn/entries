@@ -2,7 +2,7 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/images/smilies
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/images/smilies
 http://core.svn.wordpress.org
 
 
@@ -26,14 +26,14 @@ pento
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-icon_question.gif
+icon_confused.gif
 file
 
 
 
 
 2015-12-16T03:24:41.547018Z
-d22775b2e32645907141f788c36d4e9d
+7fefa473594650055a36b9e3062c9a91
 2014-10-28T22:02:22.829587Z
 30079
 jorbin
@@ -58,7 +58,75 @@ has-props
 
 
 
-247
+170
+
+mrgreen.png
+file
+
+
+
+
+2016-01-04T08:03:08.828034Z
+2d35c1e05eb1949106d34add6a9d9dda
+2015-04-10T06:20:26.532688Z
+32083
+pento
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1486
+
+simple-smile.png
+file
+
+
+
+
+2016-01-04T08:03:08.828034Z
+e94bb2cf7bc285138eb166b201779768
+2015-04-10T06:20:26.532688Z
+32083
+pento
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1008
 
 icon_sad.gif
 file
@@ -94,17 +162,17 @@ has-props
 
 167
 
-simple-smile.png
+icon_question.gif
 file
 
 
 
 
-2016-01-04T06:59:47.624034Z
-e94bb2cf7bc285138eb166b201779768
-2015-04-10T06:20:26.532688Z
-32083
-pento
+2015-12-16T03:24:41.547018Z
+d22775b2e32645907141f788c36d4e9d
+2014-10-28T22:02:22.829587Z
+30079
+jorbin
 has-props
 
 
@@ -126,7 +194,7 @@ has-props
 
 
 
-1008
+247
 
 icon_wink.gif
 file
@@ -236,7 +304,7 @@ file
 
 
 
-2016-01-04T06:59:47.624034Z
+2016-01-04T08:03:08.828034Z
 519bf3d0051b841e0cb08dc4f4831eed
 2015-04-10T06:20:26.532688Z
 32083
@@ -400,40 +468,6 @@ has-props
 
 241
 
-icon_lol.gif
-file
-
-
-
-
-2015-12-16T03:24:41.547018Z
-d4f04dc65a387ca9b8c0f22ca8c0ec8c
-2014-10-28T22:02:22.829587Z
-30079
-jorbin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-333
-
 icon_razz.gif
 file
 
@@ -467,6 +501,40 @@ has-props
 
 
 175
+
+icon_lol.gif
+file
+
+
+
+
+2015-12-16T03:24:41.547018Z
+d4f04dc65a387ca9b8c0f22ca8c0ec8c
+2014-10-28T22:02:22.829587Z
+30079
+jorbin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+333
 
 icon_redface.gif
 file
@@ -638,40 +706,6 @@ has-props
 
 489
 
-icon_evil.gif
-file
-
-
-
-
-2015-12-16T03:24:41.547018Z
-63bf101bd3d4f7564d3cf31822218d2e
-2014-10-28T22:02:22.829587Z
-30079
-jorbin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-241
-
 icon_mrgreen.gif
 file
 
@@ -705,6 +739,40 @@ has-props
 
 
 348
+
+icon_evil.gif
+file
+
+
+
+
+2015-12-16T03:24:41.547018Z
+63bf101bd3d4f7564d3cf31822218d2e
+2014-10-28T22:02:22.829587Z
+30079
+jorbin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+241
 
 icon_mad.gif
 file
@@ -814,7 +882,7 @@ file
 
 
 
-2016-01-04T06:59:47.624034Z
+2016-01-04T08:03:08.828034Z
 20bebef0054f851332df4f66dda3698d
 2015-04-10T06:20:26.532688Z
 32083
@@ -841,72 +909,4 @@ has-props
 
 
 1233
-
-icon_confused.gif
-file
-
-
-
-
-2015-12-16T03:24:41.547018Z
-7fefa473594650055a36b9e3062c9a91
-2014-10-28T22:02:22.829587Z
-30079
-jorbin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-170
-
-mrgreen.png
-file
-
-
-
-
-2016-01-04T06:59:47.624034Z
-2d35c1e05eb1949106d34add6a9d9dda
-2015-04-10T06:20:26.532688Z
-32083
-pento
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1486
 

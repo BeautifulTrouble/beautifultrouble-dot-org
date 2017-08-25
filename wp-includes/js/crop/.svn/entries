@@ -2,7 +2,7 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/crop
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/crop
 http://core.svn.wordpress.org
 
 
@@ -25,74 +25,6 @@ helen
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-marqueeHoriz.gif
-file
-
-
-
-
-2014-02-26T01:32:39.093050Z
-8cccae9c1ebafdb83be602e4d44c6f0a
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-277
-
-cropper.css
-file
-
-
-
-
-2014-02-26T01:32:39.093050Z
-6b79350bf46e0f692a4d1b2807ed0399
-2012-12-20T15:55:32.158461Z
-23191
-helen
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2949
 
 marqueeVert.gif
 file
@@ -161,4 +93,72 @@ has-props
 
 
 16485
+
+marqueeHoriz.gif
+file
+
+
+
+
+2014-02-26T01:32:39.093050Z
+8cccae9c1ebafdb83be602e4d44c6f0a
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+277
+
+cropper.css
+file
+
+
+
+
+2014-02-26T01:32:39.093050Z
+6b79350bf46e0f692a4d1b2807ed0399
+2012-12-20T15:55:32.158461Z
+23191
+helen
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2949
 

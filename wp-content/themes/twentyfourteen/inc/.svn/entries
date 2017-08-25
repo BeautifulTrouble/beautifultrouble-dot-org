@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyfourteen/inc
+http://core.svn.wordpress.org/tags/4.8.1/wp-content/themes/twentyfourteen/inc
 http://core.svn.wordpress.org
 
 
 
-2015-04-12T21:29:32.613294Z
-32095
-ocean90
+2017-01-27T22:09:42.047477Z
+39960
+davidakennedy
 
 
 
@@ -26,17 +26,85 @@ ocean90
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
+featured-content.php
+file
+
+
+
+
+2017-08-25T03:39:49.184096Z
+f2536a0292c468f72832b79aa39114d2
+2016-02-25T12:53:27.972979Z
+36676
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15187
+
+template-tags.php
+file
+
+
+
+
+2017-08-25T03:39:49.184096Z
+9c84b1ab626b2dc56ab919c42c8479cd
+2017-01-27T22:09:42.047477Z
+39960
+davidakennedy
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7232
+
 custom-header.php
 file
 
 
 
 
-2016-01-04T07:02:48.412034Z
+2016-01-04T08:03:08.748034Z
 6300f93c453609b506a93b11e62e2a2b
-2015-01-20T19:03:23.469912Z
-31231
-lancewillett
+2016-11-14T17:17:31.493813Z
+39166
+karmatosed
 has-props
 
 
@@ -100,11 +168,11 @@ file
 
 
 
-2016-01-04T07:02:48.408034Z
-f455d524a021cbf0529db659608bf703
-2015-04-12T21:29:32.613294Z
-32095
-ocean90
+2017-08-25T03:39:49.180094Z
+1eca603f911619ea4ffd5c8e29de8900
+2016-11-14T17:17:31.493813Z
+39166
+karmatosed
 has-props
 
 
@@ -126,7 +194,7 @@ has-props
 
 
 
-5633
+6638
 
 widgets.php
 file
@@ -134,11 +202,11 @@ file
 
 
 
-2016-01-04T07:02:48.408034Z
-e01fc1f8f278449551d91b09547abe4a
-2015-04-12T21:29:32.613294Z
-32095
-ocean90
+2017-08-25T03:39:49.180094Z
+eca319d77d4f2599cfe05bdf7e588638
+2016-03-21T21:59:29.318529Z
+37007
+westonruter
 has-props
 
 
@@ -160,73 +228,5 @@ has-props
 
 
 
-9843
-
-featured-content.php
-file
-
-
-
-
-2016-01-04T07:02:48.408034Z
-083b3e3535f34820186619f6a03a0053
-2015-01-20T19:03:23.469912Z
-31231
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-15187
-
-template-tags.php
-file
-
-
-
-
-2016-01-04T07:02:48.408034Z
-742564101e26b69ee68c48152c651a4f
-2015-02-20T10:35:28.196302Z
-31463
-DrewAPicture
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-7224
+10615
 

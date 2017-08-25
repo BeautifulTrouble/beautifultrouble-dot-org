@@ -2,13 +2,13 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-content
+http://core.svn.wordpress.org/tags/4.8.1/wp-content
 http://core.svn.wordpress.org
 
 
 
-2015-12-08T15:20:27.405625Z
-35794
+2017-07-17T16:06:56.284736Z
+40914
 ocean90
 
 
@@ -26,9 +26,6 @@ ocean90
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-themes
-dir
-
 index.php
 file
 
@@ -43,5 +40,8 @@ ryan
 has-props
 
 plugins
+dir
+
+themes
 dir
 

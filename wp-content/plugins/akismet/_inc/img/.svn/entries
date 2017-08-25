@@ -2,14 +2,14 @@
 
 dir
 1719137
-http://plugins.svn.wordpress.org/akismet/tags/3.0.4/_inc/img
+http://plugins.svn.wordpress.org/akismet/tags/3.3.3/_inc/img
 http://plugins.svn.wordpress.org
 
 
 
-2014-03-10T21:22:15.753091Z
-873047
-eoigal
+2017-05-01T16:01:58.714814Z
+1649058
+cfinke
 
 
 
@@ -29,7 +29,7 @@ b8457f37-d9ea-0310-8a92-e5e31aec5664
 logo-full-2x.png
 file
 
-
+http://plugins.svn.wordpress.org/akismet/tags/3.0.4/_inc/img/logo-full-2x.png
 
 
 2015-03-10T21:40:54.232046Z

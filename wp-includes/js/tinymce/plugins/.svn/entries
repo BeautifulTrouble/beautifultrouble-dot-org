@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/tinymce/plugins
 http://core.svn.wordpress.org
 
 
 
-2015-11-12T12:04:27.989812Z
-35591
-pento
+2017-07-18T03:23:33.181753Z
+40920
+westonruter
 
 
 
@@ -26,40 +26,10 @@ pento
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-charmap
-dir
-
-colorpicker
-dir
-
-paste
-dir
-
-media
-dir
-
-wpview
-dir
-
-image
-dir
-
-wpembed
-dir
-
-directionality
-dir
-
-textcolor
-dir
-
-wordpress
+wptextpattern
 dir
 
 wpdialogs
-dir
-
-wptextpattern
 dir
 
 compat3x
@@ -80,15 +50,42 @@ dir
 wplink
 dir
 
-wpgallery
+tabfocus
 dir
 
-tabfocus
+wpgallery
 dir
 
 hr
 dir
 
 wpemoji
+dir
+
+charmap
+dir
+
+colorpicker
+dir
+
+paste
+dir
+
+media
+dir
+
+wpview
+dir
+
+image
+dir
+
+textcolor
+dir
+
+directionality
+dir
+
+wordpress
 dir
 

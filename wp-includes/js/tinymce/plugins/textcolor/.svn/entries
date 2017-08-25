@@ -2,13 +2,13 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/textcolor
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/tinymce/plugins/textcolor
 http://core.svn.wordpress.org
 
 
 
-2015-07-01T00:52:25.483066Z
-32984
+2017-05-08T05:32:46.846125Z
+40453
 azaozz
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2016-01-04T07:02:48.108034Z
-ff76dd12efde3c20a321d00058535b3f
-2015-07-01T00:52:25.483066Z
-32984
+2017-08-25T03:39:44.833922Z
+484993eb38dba1019988702c7c8021a6
+2017-05-08T05:32:46.846125Z
+40453
 azaozz
 
 
@@ -58,7 +58,7 @@ azaozz
 
 
 
-6656
+13127
 
 plugin.min.js
 file
@@ -66,10 +66,10 @@ file
 
 
 
-2016-01-04T07:02:48.108034Z
-a5ca0a92e1bdf1fbf3f9a07db5573092
-2015-03-10T19:20:28.379287Z
-31681
+2017-08-25T03:39:44.833922Z
+b8176b7448cc4a20744ca6c5e88e4c41
+2017-05-08T05:32:46.846125Z
+40453
 azaozz
 
 
@@ -92,5 +92,5 @@ azaozz
 
 
 
-3800
+5168
 

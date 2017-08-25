@@ -2,7 +2,7 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/wpgallery
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/tinymce/plugins/wpgallery
 http://core.svn.wordpress.org
 
 
@@ -32,7 +32,7 @@ file
 
 
 
-2016-01-04T07:02:48.044034Z
+2016-01-04T08:03:08.868034Z
 9d48345044e6111fbeb9d2fb444d5c49
 2015-11-07T16:12:27.456452Z
 35531
@@ -66,7 +66,7 @@ file
 
 
 
-2016-01-04T07:02:48.044034Z
+2016-01-04T08:03:08.868034Z
 04fb37608ef94f9a747901b2f98b4fce
 2015-11-07T16:12:27.456452Z
 35531

@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentythirteen/js
+http://core.svn.wordpress.org/tags/4.8.1/wp-content/themes/twentythirteen/js
 http://core.svn.wordpress.org
 
 
 
-2015-03-30T19:20:27.782080Z
-31911
-lancewillett
+2016-07-17T21:14:29.043675Z
+38024
+westonruter
 
 
 
@@ -34,9 +34,9 @@ file
 
 2015-12-16T03:24:41.495018Z
 37b882b9e5354553532455391abbed99
-2014-11-20T17:06:23.685066Z
-30470
-lancewillett
+2016-03-21T21:59:29.318529Z
+37007
+westonruter
 has-props
 
 
@@ -66,11 +66,11 @@ file
 
 
 
-2016-01-04T07:02:48.304034Z
-34824fa6fdb80b80c8b34cfc152ca765
-2015-03-30T19:20:27.782080Z
-31911
-lancewillett
+2017-08-25T03:39:47.719364Z
+991f00aa95d6cb3eedc640949d8d97e7
+2016-07-17T21:14:29.043675Z
+38024
+westonruter
 has-props
 
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-3590
+4767
 
 html5.js
 file

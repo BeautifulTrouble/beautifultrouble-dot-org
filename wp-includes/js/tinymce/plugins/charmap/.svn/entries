@@ -2,13 +2,13 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/charmap
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/tinymce/plugins/charmap
 http://core.svn.wordpress.org
 
 
 
-2015-09-09T19:45:26.529405Z
-33950
+2017-05-30T23:35:41.281216Z
+40707
 azaozz
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2016-01-04T07:02:48.064034Z
-a3a422577ac81c9ef6d7036869c30c7b
-2015-09-09T19:45:26.529405Z
-33950
+2017-08-25T03:39:44.725868Z
+139897943cd17cda7942e1dc94011aca
+2017-05-30T23:35:41.281216Z
+40707
 azaozz
 
 
@@ -58,7 +58,7 @@ azaozz
 
 
 
-9873
+18241
 
 plugin.min.js
 file
@@ -66,10 +66,10 @@ file
 
 
 
-2016-01-04T07:02:48.064034Z
-218b586940473a3d64d408b22fa603ae
-2015-09-09T19:45:26.529405Z
-33950
+2017-08-25T03:39:44.725868Z
+e21c5873be5aa8407266377225b67c26
+2017-05-30T23:35:41.281216Z
+40707
 azaozz
 
 
@@ -92,5 +92,5 @@ azaozz
 
 
 
-7471
+9163
 

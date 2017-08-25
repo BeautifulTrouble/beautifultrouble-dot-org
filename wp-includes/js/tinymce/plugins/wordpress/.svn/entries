@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/wordpress
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/tinymce/plugins/wordpress
 http://core.svn.wordpress.org
 
 
 
-2015-11-11T03:27:25.680520Z
-35571
-azaozz
+2017-07-18T03:23:33.181753Z
+40920
+westonruter
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2016-01-04T07:02:47.996034Z
-42f0fd8dc00634c3bd92d67f983167c6
-2015-11-11T03:27:25.680520Z
-35571
-azaozz
+2017-08-25T03:41:33.152053Z
+ef6e5669ee3af739f33eaf8c092edf87
+2017-07-18T03:23:33.181753Z
+40920
+westonruter
 
 
 
@@ -58,7 +58,7 @@ azaozz
 
 
 
-25890
+29399
 
 plugin.min.js
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2016-01-04T07:02:47.996034Z
-b46f4f2afbda7e481b420a8ee19c7406
-2015-11-11T03:27:25.680520Z
-35571
-azaozz
+2017-08-25T03:41:33.152053Z
+97336cf7d88da1e9c142069d76f11c23
+2017-07-18T03:23:33.181753Z
+40920
+westonruter
 
 
 
@@ -92,5 +92,5 @@ azaozz
 
 
 
-13274
+15098
 

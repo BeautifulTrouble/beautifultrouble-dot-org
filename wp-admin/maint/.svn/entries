@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-admin/maint
+http://core.svn.wordpress.org/tags/4.8.1/wp-admin/maint
 http://core.svn.wordpress.org
 
 
 
-2015-12-08T22:02:27.080804Z
-35802
-ocean90
+2016-07-04T13:10:30.293186Z
+37889
+SergeyBiryukov
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2016-01-04T06:59:45.856034Z
-951bc3728d300393514e168769efbeaa
-2015-12-08T22:02:27.080804Z
-35802
-ocean90
+2017-08-25T03:40:25.166078Z
+e180a3bb17b896e1cdccf337995bfe2f
+2016-07-04T13:10:30.293186Z
+37889
+SergeyBiryukov
 has-props
 
 
@@ -58,5 +58,5 @@ has-props
 
 
 
-7107
+7173
 

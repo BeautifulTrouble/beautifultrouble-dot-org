@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/wptextpattern
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/tinymce/plugins/wptextpattern
 http://core.svn.wordpress.org
 
 
 
-2015-08-17T14:51:24.541106Z
-33589
-obenland
+2016-11-06T23:38:33.370910Z
+39090
+iseulde
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2016-01-04T07:02:48.000034Z
-d4d46a49f3589ec1c136ab912a2da7ca
-2015-08-17T14:51:24.541106Z
-33589
-obenland
+2017-08-25T03:39:44.861936Z
+bbe31109bb4a2955ac73c0b0ac1e8d8c
+2016-11-06T23:38:33.370910Z
+39090
+iseulde
 
 
 
@@ -58,7 +58,7 @@ obenland
 
 
 
-4127
+8806
 
 plugin.min.js
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2016-01-04T07:02:48.000034Z
-8291a8caa3672971dc61b332ecc437c3
-2015-08-17T14:51:24.541106Z
-33589
-obenland
+2017-08-25T03:39:44.861936Z
+a92e4569e92450776f18e0bb6ddae1b1
+2016-11-06T23:38:33.370910Z
+39090
+iseulde
 
 
 
@@ -92,5 +92,5 @@ obenland
 
 
 
-1772
+3162
 

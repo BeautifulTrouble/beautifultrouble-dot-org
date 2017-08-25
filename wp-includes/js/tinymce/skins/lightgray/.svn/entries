@@ -2,13 +2,13 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/skins/lightgray
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/tinymce/skins/lightgray
 http://core.svn.wordpress.org
 
 
 
-2015-09-09T19:45:26.529405Z
-33950
+2017-05-08T05:32:46.846125Z
+40453
 azaozz
 
 
@@ -26,6 +26,74 @@ azaozz
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
+content.inline.min.css
+file
+
+
+
+
+2017-08-25T03:39:45.342176Z
+4e0b29837fad1438a92fd0f27c43db68
+2017-05-08T05:32:46.846125Z
+40453
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3073
+
+content.min.css
+file
+
+
+
+
+2017-08-25T03:39:45.342176Z
+2f9c65ecc50238c129c9db06f7d1b0de
+2017-05-08T05:32:46.846125Z
+40453
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3497
+
 fonts
 dir
 
@@ -38,10 +106,10 @@ file
 
 
 
-2016-01-04T07:02:48.176034Z
-fa7377e0da20941e25af2944599e42db
-2015-09-09T19:45:26.529405Z
-33950
+2017-08-25T03:39:45.342176Z
+b7da29baf0549e017bdeaa2d836db37b
+2017-05-08T05:32:46.846125Z
+40453
 azaozz
 has-props
 
@@ -64,107 +132,5 @@ has-props
 
 
 
-27047
-
-content.inline.min.css
-file
-
-
-
-
-2016-01-04T07:02:48.176034Z
-35b20a1298ab637a58ac70fa73df335c
-2015-09-09T19:45:26.529405Z
-33950
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1588
-
-skin.ie7.min.css
-file
-
-
-
-
-2016-01-04T07:02:48.176034Z
-cea6608407da4b0d07f4bdad387059c2
-2015-09-09T19:45:26.529405Z
-33950
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-27271
-
-content.min.css
-file
-
-
-
-
-2016-01-04T07:02:48.176034Z
-b7c6c39dbee52e316139d6f41ec805ca
-2015-09-09T19:45:26.529405Z
-33950
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2003
+39404
 

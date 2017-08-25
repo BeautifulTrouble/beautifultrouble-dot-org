@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/jquery
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/jquery
 http://core.svn.wordpress.org
 
 
 
-2015-11-07T12:37:26.288533Z
-35528
-ocean90
+2016-11-03T05:40:34.759719Z
+39059
+jorbin
 
 
 
@@ -26,246 +26,8 @@ ocean90
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-jquery.query.js
-file
-
-
-
-
-2014-02-26T01:32:39.101050Z
-3bcc587af2c7b01fc6fbc9c077050143
-2013-01-29T20:52:32.707690Z
-23356
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3785
-
-jquery.hotkeys.min.js
-file
-
-
-
-
-2014-02-26T01:32:39.101050Z
-e353217d4555ab5c62b367be6889813d
-2012-08-23T00:04:18.101198Z
-21592
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1793
-
-jquery-migrate.min.js
-file
-
-
-
-
-2014-02-26T01:32:39.101050Z
-512b871a2830e44259bc3ce3343afcd0
-2013-07-23T15:28:25.425667Z
-24781
-nacin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-7200
-
-jquery.ui.touch-punch.js
-file
-
-
-
-
-2014-02-26T01:32:39.101050Z
-4cc86d1003c45134d6838f13e3885db1
-2012-04-11T02:58:23.877378Z
-20434
-bumpbot
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1179
-
-jquery.masonry.min.js
-file
-
-
-
-
-2015-12-16T03:24:41.555018Z
-928adcedcd52b828e51f9ec291655e01
-2014-03-27T07:33:16.049765Z
-27617
-nacin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1836
-
-jquery.table-hotkeys.js
-file
-
-
-
-
-2014-02-26T01:35:08.293051Z
-a706ead694231e74fd6750b1670580a5
-2013-11-15T05:16:09.640263Z
-26108
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3730
-
 ui
 dir
-
-suggest.min.js
-file
-
-
-
-
-2015-12-16T03:24:41.555018Z
-21a79ede04fa5ee9017e6bdbdba5bfe9
-2014-04-02T19:05:16.240750Z
-27742
-ocean90
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2963
 
 jquery.form.min.js
 file
@@ -300,6 +62,40 @@ has-props
 
 
 14720
+
+suggest.min.js
+file
+
+
+
+
+2017-08-25T03:39:44.633821Z
+7311075c2b411b299c94e36e2e3bab89
+2016-01-13T17:22:27.471301Z
+36254
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2993
 
 jquery.hotkeys.js
 file
@@ -341,11 +137,11 @@ file
 
 
 
-2014-02-26T01:32:39.101050Z
-90e237d5f01035b958feaf514ef27f7a
-2013-05-14T17:22:58.347884Z
-24252
-ocean90
+2017-08-25T03:39:44.633821Z
+6c57b762589f13ea5b3579ca5e6c369b
+2016-05-20T06:11:28.185436Z
+37440
+jorbin
 
 
 
@@ -367,7 +163,7 @@ ocean90
 
 
 
-17142
+23497
 
 jquery.serialize-object.js
 file
@@ -511,11 +307,11 @@ file
 
 
 
-2016-01-04T06:59:48.252034Z
-207abeb83412721d556faeba36e00822
-2015-06-27T23:40:23.874079Z
-32949
-wonderboymusic
+2017-08-25T03:39:44.645828Z
+8610f03fe77640dee8c4cc924e060f12
+2016-05-23T09:00:29.342410Z
+37494
+ocean90
 has-props
 
 
@@ -537,41 +333,7 @@ has-props
 
 
 
-95977
-
-suggest.js
-file
-
-
-
-
-2015-12-16T03:24:41.555018Z
-bf55f3b46b05aa372a0bed97b848de9e
-2014-06-26T16:08:14.688955Z
-28655
-SergeyBiryukov
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6976
+97184
 
 jquery.form.js
 file
@@ -606,4 +368,242 @@ has-props
 
 
 41719
+
+suggest.js
+file
+
+
+
+
+2017-08-25T03:39:44.645828Z
+3a2474569145d51ecabf7fc4fb078982
+2016-01-13T17:22:27.471301Z
+36254
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6991
+
+jquery.query.js
+file
+
+
+
+
+2014-02-26T01:32:39.101050Z
+3bcc587af2c7b01fc6fbc9c077050143
+2013-01-29T20:52:32.707690Z
+23356
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3785
+
+jquery.hotkeys.min.js
+file
+
+
+
+
+2014-02-26T01:32:39.101050Z
+e353217d4555ab5c62b367be6889813d
+2012-08-23T00:04:18.101198Z
+21592
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1793
+
+jquery-migrate.min.js
+file
+
+
+
+
+2017-08-25T03:39:44.645828Z
+7121994eec5320fbe6586463bf9651c2
+2016-05-20T06:11:28.185436Z
+37440
+jorbin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10056
+
+jquery.ui.touch-punch.js
+file
+
+
+
+
+2014-02-26T01:32:39.101050Z
+4cc86d1003c45134d6838f13e3885db1
+2012-04-11T02:58:23.877378Z
+20434
+bumpbot
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1179
+
+jquery.masonry.min.js
+file
+
+
+
+
+2017-08-25T03:39:44.645828Z
+cd0eb3406096ff80266e7c9d7d419186
+2016-08-18T18:55:30.835105Z
+38217
+jorbin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1819
+
+jquery.table-hotkeys.js
+file
+
+
+
+
+2014-02-26T01:35:08.293051Z
+a706ead694231e74fd6750b1670580a5
+2013-11-15T05:16:09.640263Z
+26108
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3730
 

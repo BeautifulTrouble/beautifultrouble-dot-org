@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-admin/css/colors/midnight
+http://core.svn.wordpress.org/tags/4.8.1/wp-admin/css/colors/midnight
 http://core.svn.wordpress.org
 
 
 
-2015-11-18T20:28:25.725663Z
-35648
-jorbin
+2017-05-06T14:37:44.040609Z
+40446
+swissspidy
 
 
 
@@ -26,17 +26,17 @@ jorbin
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-colors.css
+colors-rtl.css
 file
 
 
 
 
-2016-01-04T06:59:45.396034Z
-2155bdba4f4aa5090b8b8fe168c537f6
-2015-11-05T17:53:43.630930Z
-35503
-jorbin
+2017-08-25T03:40:24.437714Z
+58dae4b75a6f54d583e36870591fbc46
+2017-05-06T14:37:44.040609Z
+40446
+swissspidy
 has-props
 
 
@@ -58,7 +58,41 @@ has-props
 
 
 
-13763
+13170
+
+colors.css
+file
+
+
+
+
+2017-08-25T03:40:24.441716Z
+f9eaa22ba873fe30c5adecec9275dfef
+2017-05-06T14:37:44.040609Z
+40446
+swissspidy
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13172
 
 colors-rtl.min.css
 file
@@ -66,11 +100,11 @@ file
 
 
 
-2016-01-04T06:59:45.396034Z
-45a1dc3597f440d818d7adaaec694a3d
-2015-11-18T20:28:25.725663Z
-35648
-jorbin
+2017-08-25T03:40:24.441716Z
+ecb168ac881b1974386d6722018589df
+2016-11-15T18:11:31.462331Z
+39189
+helen
 has-props
 
 
@@ -92,7 +126,7 @@ has-props
 
 
 
-11901
+11473
 
 colors.min.css
 file
@@ -100,11 +134,11 @@ file
 
 
 
-2016-01-04T06:59:45.400034Z
-fc8831d91e726e0f99730adde37e9175
-2015-11-18T20:28:25.725663Z
-35648
-jorbin
+2017-08-25T03:40:24.441716Z
+ec678f19e1681ae3cfc6cc15d1b0a128
+2016-11-15T18:11:31.462331Z
+39189
+helen
 has-props
 
 
@@ -126,7 +160,7 @@ has-props
 
 
 
-11903
+11475
 
 colors.scss
 file
@@ -161,38 +195,4 @@ helen
 
 
 106
-
-colors-rtl.css
-file
-
-
-
-
-2016-01-04T06:59:45.396034Z
-ff228ab4531174f9292c7d4689eea615
-2015-11-05T17:53:43.630930Z
-35503
-jorbin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-13761
 

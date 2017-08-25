@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/wpeditimage
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/tinymce/plugins/wpeditimage
 http://core.svn.wordpress.org
 
 
 
-2015-11-12T12:04:27.989812Z
-35591
-pento
+2017-05-18T22:25:41.499833Z
+40644
+azaozz
 
 
 
@@ -32,44 +32,10 @@ file
 
 
 
-2016-01-04T07:02:48.024034Z
-8136bbc002d33f1d8231bda314363d57
-2015-11-12T12:04:27.989812Z
-35591
-pento
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-28388
-
-plugin.min.js
-file
-
-
-
-
-2016-01-04T07:02:48.020034Z
-75b114a2b3864eea8534a8b2ff5b66c9
-2015-11-11T03:27:25.680520Z
-35571
+2017-08-25T03:39:44.921965Z
+d5c9675e20338decbb5cbb5704cbeae3
+2017-05-18T22:25:41.499833Z
+40644
 azaozz
 
 
@@ -92,5 +58,39 @@ azaozz
 
 
 
-14011
+31475
+
+plugin.min.js
+file
+
+
+
+
+2017-08-25T03:39:44.921965Z
+fede2d004deec3d7c15459a56bd40a21
+2017-05-18T22:25:41.499833Z
+40644
+azaozz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15100
 

@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/swfupload
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/swfupload
 http://core.svn.wordpress.org
 
 
 
-2014-08-13T03:56:17.311198Z
-29257
-DrewAPicture
+2017-04-14T16:43:44.182213Z
+40329
+adamsilverstein
 has-props
 
 
@@ -25,40 +25,6 @@ has-props
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
-
-handlers.js
-file
-
-
-
-
-2015-12-16T03:24:41.567018Z
-14b2d04fdb85bc1f171cf3dfb2987dca
-2014-02-24T20:49:14.071569Z
-27100
-wonderboymusic
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-12655
 
 handlers.min.js
 file
@@ -100,11 +66,11 @@ file
 
 
 
-2015-12-16T03:24:41.567018Z
-ef3ae9014525cf81187afaa61bca737e
-2014-08-13T03:56:17.311198Z
-29257
-DrewAPicture
+2017-08-25T03:39:45.790400Z
+6cd370bfd4d86c44ac155fd913e971ac
+2016-09-03T15:02:36.482566Z
+38458
+SergeyBiryukov
 has-props
 
 
@@ -126,7 +92,7 @@ has-props
 
 
 
-37691
+37690
 
 license.txt
 file
@@ -198,4 +164,38 @@ has-props
 
 
 13133
+
+handlers.js
+file
+
+
+
+
+2017-08-25T03:39:45.794402Z
+220adfeb811cbe402367392b44d5fbfd
+2017-04-14T16:43:44.182213Z
+40329
+adamsilverstein
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12657
 

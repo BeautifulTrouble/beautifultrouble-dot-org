@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyfifteen/css
+http://core.svn.wordpress.org/tags/4.8.1/wp-content/themes/twentyfifteen/css
 http://core.svn.wordpress.org
 
 
 
-2015-07-25T23:00:24.516572Z
-33386
-iseulde
+2015-12-23T13:10:28.658986Z
+36040
+SergeyBiryukov
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2016-01-04T07:02:48.292034Z
-1e0a6061e4379574a672ff885f6ae33f
-2015-07-25T23:00:24.516572Z
-33386
-iseulde
+2017-08-25T03:39:46.866938Z
+c542480da525a3dc0c255ed966c90dcc
+2015-12-23T13:10:28.658986Z
+36040
+SergeyBiryukov
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-5699
+5757
 
 ie7.css
 file
@@ -100,7 +100,7 @@ file
 
 
 
-2016-01-04T07:02:48.292034Z
+2016-01-04T08:03:08.736034Z
 f86cdf670ff2a4f649194e8e36c1b7fc
 2015-01-15T23:05:22.539913Z
 31164

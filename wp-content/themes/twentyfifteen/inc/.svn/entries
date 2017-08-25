@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyfifteen/inc
+http://core.svn.wordpress.org/tags/4.8.1/wp-content/themes/twentyfifteen/inc
 http://core.svn.wordpress.org
 
 
 
-2015-10-03T01:10:26.125884Z
-34756
-SergeyBiryukov
+2017-01-27T22:09:42.047477Z
+39960
+davidakennedy
 
 
 
@@ -32,7 +32,7 @@ file
 
 
 
-2016-01-04T07:02:48.280034Z
+2016-01-04T08:03:08.736034Z
 81345fec4ede475e0746fd7d5be59346
 2015-07-06T17:27:26.102406Z
 33063
@@ -100,11 +100,11 @@ file
 
 
 
-2016-01-04T07:02:48.276034Z
-2f2f90d4f7e6f4de4c61b4037041ba3c
-2015-10-03T01:10:26.125884Z
-34756
-SergeyBiryukov
+2017-08-25T03:39:47.659334Z
+861825f8459dbf344709f0d3c3f148e9
+2016-03-01T22:18:26.846686Z
+36764
+westonruter
 has-props
 
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-20467
+21461
 
 template-tags.php
 file
@@ -134,11 +134,11 @@ file
 
 
 
-2016-01-04T07:02:48.280034Z
-249a5f35d28b83b0ffb78b3444a48913
-2015-06-30T19:23:25.189068Z
-32976
-obenland
+2017-08-25T03:39:47.659334Z
+78fc83a85eacf4f9f09516521c6867e5
+2017-01-27T22:09:42.047477Z
+39960
+davidakennedy
 has-props
 
 
@@ -160,5 +160,5 @@ has-props
 
 
 
-7984
+8320
 

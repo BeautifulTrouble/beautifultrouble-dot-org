@@ -2,7 +2,7 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyten/images/headers
+http://core.svn.wordpress.org/tags/4.8.1/wp-content/themes/twentyten/images/headers
 http://core.svn.wordpress.org
 
 
@@ -25,6 +25,40 @@ markjaquith
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+sunset.jpg
+file
+
+
+
+
+2014-02-26T01:32:38.985050Z
+520a4d27d1415b69677f505f6f4a35ce
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+22115
 
 forestfloor-thumbnail.jpg
 file
@@ -535,38 +569,4 @@ has-props
 
 
 81579
-
-sunset.jpg
-file
-
-
-
-
-2014-02-26T01:32:38.985050Z
-520a4d27d1415b69677f505f6f4a35ce
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-22115
 

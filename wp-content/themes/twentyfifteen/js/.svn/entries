@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-content/themes/twentyfifteen/js
+http://core.svn.wordpress.org/tags/4.8.1/wp-content/themes/twentyfifteen/js
 http://core.svn.wordpress.org
 
 
 
-2015-07-29T18:13:24.497322Z
-33458
-westonruter
+2016-03-15T21:33:28.646540Z
+36966
+karmatosed
 
 
 
@@ -25,6 +25,108 @@ westonruter
 
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
+
+skip-link-focus-fix.js
+file
+
+
+
+
+2015-12-16T03:24:41.475018Z
+d774bf15e2e23e3a7bbb9afa92f4f0b6
+2014-10-15T05:49:19.203685Z
+29652
+azaozz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+727
+
+functions.js
+file
+
+
+
+
+2017-08-25T03:39:46.838923Z
+a76b662d0cca75d9012db66d1d2eb7c5
+2016-03-15T21:33:28.646540Z
+36966
+karmatosed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5920
+
+html5.js
+file
+
+
+
+
+2015-12-16T03:24:41.475018Z
+e95ca1122287c8b6889b126ac893b750
+2014-10-14T19:28:18.825219Z
+29648
+iandstewart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2432
 
 keyboard-image-navigation.js
 file
@@ -127,106 +229,4 @@ ocean90
 
 
 832
-
-skip-link-focus-fix.js
-file
-
-
-
-
-2015-12-16T03:24:41.475018Z
-d774bf15e2e23e3a7bbb9afa92f4f0b6
-2014-10-15T05:49:19.203685Z
-29652
-azaozz
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-727
-
-functions.js
-file
-
-
-
-
-2016-01-04T07:02:48.284034Z
-520bf96c293c660a3e3c765bc9524521
-2015-07-29T18:13:24.497322Z
-33458
-westonruter
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5899
-
-html5.js
-file
-
-
-
-
-2015-12-16T03:24:41.475018Z
-e95ca1122287c8b6889b126ac893b750
-2014-10-14T19:28:18.825219Z
-29648
-iandstewart
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2432
 

@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/rest-api
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/rest-api
 http://core.svn.wordpress.org
 
 
 
-2015-12-04T23:36:25.211810Z
-35737
-wonderboymusic
+2017-07-19T20:12:38.018207Z
+40933
+westonruter
 
 
 
@@ -26,51 +26,17 @@ wonderboymusic
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-class-wp-rest-response.php
-file
-
-
-
-
-2016-01-04T06:59:47.244034Z
-048c26d35ebdff72579cc599f09aab19
-2015-11-18T18:29:26.195145Z
-35635
-johnbillion
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6129
-
 class-wp-rest-server.php
 file
 
 
 
 
-2016-01-04T06:59:47.244034Z
-c0b2b45ffdb936e0e65ec521f3f330f8
-2015-12-04T23:36:25.211810Z
-35737
-wonderboymusic
+2017-08-25T03:41:33.132044Z
+6bdd30be6ee9eaf7579e09aad0a944c3
+2017-07-19T20:12:38.018207Z
+40933
+westonruter
 has-props
 
 
@@ -92,7 +58,7 @@ has-props
 
 
 
-33742
+38841
 
 class-wp-rest-request.php
 file
@@ -100,11 +66,11 @@ file
 
 
 
-2016-01-04T06:59:47.244034Z
-d7b97c625dce06330bbf339b0aa192f9
-2015-11-30T09:51:27.099563Z
-35714
-rmccue
+2017-08-25T03:39:42.332672Z
+8f91e88d5ff98c37f77d59b8960e457b
+2017-05-22T16:16:42.731051Z
+40673
+jnylen0
 has-props
 
 
@@ -126,5 +92,45 @@ has-props
 
 
 
-21052
+24845
+
+endpoints
+dir
+
+class-wp-rest-response.php
+file
+
+
+
+
+2017-08-25T03:39:42.332672Z
+08796d0cda636c6a24bcebbb73ef2c98
+2016-06-10T04:50:33.430140Z
+37640
+peterwilsoncc
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7633
+
+fields
+dir
 

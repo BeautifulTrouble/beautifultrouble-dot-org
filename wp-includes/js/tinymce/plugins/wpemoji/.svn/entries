@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/js/tinymce/plugins/wpemoji
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/js/tinymce/plugins/wpemoji
 http://core.svn.wordpress.org
 
 
 
-2015-04-18T23:29:26.457674Z
-32122
-azaozz
+2016-04-15T16:10:37.631853Z
+37178
+jorbin
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2016-01-04T07:02:48.060034Z
-1d793200d7b3e0f80818903ca5721bc7
-2015-04-18T23:29:26.457674Z
-32122
-azaozz
+2017-08-25T03:39:44.709860Z
+f77a6131c150653ddfa17a568a1962d0
+2016-03-10T05:09:27.201638Z
+36895
+pento
 
 
 
@@ -58,7 +58,7 @@ azaozz
 
 
 
-3506
+3546
 
 plugin.min.js
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2016-01-04T07:02:48.060034Z
-7ceb852c73b74dc1b5f5f015be95506d
-2015-04-18T23:29:26.457674Z
-32122
-azaozz
+2017-08-25T03:39:44.709860Z
+c6cc2ce4842cf34494b20855418ec7ee
+2016-04-15T16:10:37.631853Z
+37178
+jorbin
 
 
 
@@ -92,5 +92,5 @@ azaozz
 
 
 
-1539
+1564
 

@@ -2,14 +2,14 @@
 
 dir
 41145
-http://core.svn.wordpress.org/tags/4.4/wp-includes/theme-compat
+http://core.svn.wordpress.org/tags/4.8.1/wp-includes/theme-compat
 http://core.svn.wordpress.org
 
 
 
-2015-10-30T10:40:26.218674Z
-35422
-SergeyBiryukov
+2016-07-06T17:08:31.174541Z
+37929
+ocean90
 
 
 
@@ -26,16 +26,50 @@ SergeyBiryukov
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
+embed-content.php
+file
+
+
+
+
+2017-08-25T03:39:42.624818Z
+8d56b68c3883df89dc813b2eafa2901c
+2016-07-06T17:08:31.174541Z
+37929
+ocean90
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3198
+
 comments.php
 file
 
 
 
 
-2016-01-04T06:59:47.436034Z
-45a2bc31cfc25d16d5320032a2669f73
-2015-10-30T10:38:25.401610Z
-35419
+2017-08-25T03:39:42.624818Z
+1822ba9f62e4bf3d510a7e4306e67d4b
+2016-07-06T12:40:29.541855Z
+37926
 SergeyBiryukov
 has-props
 
@@ -58,41 +92,7 @@ has-props
 
 
 
-4309
-
-comments-popup.php
-file
-
-
-
-
-2016-01-04T06:59:47.436034Z
-03c38fde840702a09625cbd702a005ad
-2015-10-30T10:35:24.783340Z
-35418
-SergeyBiryukov
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5020
+2112
 
 header.php
 file
@@ -100,10 +100,10 @@ file
 
 
 
-2016-01-04T06:59:47.436034Z
-6f57714f47d1e7202dd47b613dd001dd
-2015-10-30T10:39:25.426386Z
-35421
+2017-08-25T03:39:42.624818Z
+304c40bba1dd25870a0bceffefc25024
+2016-07-06T12:40:29.541855Z
+37926
 SergeyBiryukov
 has-props
 
@@ -126,7 +126,41 @@ has-props
 
 
 
-1892
+1893
+
+footer-embed.php
+file
+
+
+
+
+2017-08-25T03:39:42.620816Z
+16841cf55adc04ab84f22e932b96196a
+2016-05-25T16:05:27.477173Z
+37528
+DrewAPicture
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+438
 
 sidebar.php
 file
@@ -134,10 +168,10 @@ file
 
 
 
-2016-01-04T06:59:47.436034Z
-7609b069dbc2092853633ca193d36b63
-2015-10-30T10:40:26.218674Z
-35422
+2017-08-25T03:39:42.624818Z
+8087f37304ad86ff1748b4446c9a2c0a
+2016-07-06T12:40:29.541855Z
+37926
 SergeyBiryukov
 has-props
 
@@ -160,7 +194,41 @@ has-props
 
 
 
-4597
+4060
+
+embed.php
+file
+
+
+
+
+2017-08-25T03:39:42.624818Z
+72b64c89bf45f2760c6133f7a3dd3649
+2016-03-28T18:24:27.130768Z
+37054
+DrewAPicture
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+479
 
 footer.php
 file
@@ -168,10 +236,10 @@ file
 
 
 
-2016-01-04T06:59:47.436034Z
-df39dfd3e4ba09d404155448346ad69e
-2015-10-30T10:38:49.379423Z
-35420
+2017-08-25T03:39:42.624818Z
+8c5ff873dc3098a5e46ccbbf909c377e
+2016-07-06T12:40:29.541855Z
+37926
 SergeyBiryukov
 has-props
 
@@ -194,5 +262,73 @@ has-props
 
 
 
-1302
+1059
+
+embed-404.php
+file
+
+
+
+
+2017-08-25T03:39:42.624818Z
+8fab25000fafee699fb4e76871ed02f4
+2016-03-28T18:24:27.130768Z
+37054
+DrewAPicture
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+970
+
+header-embed.php
+file
+
+
+
+
+2017-08-25T03:39:42.624818Z
+67962ba2c878829d26817766d258dcc0
+2016-05-25T16:05:27.477173Z
+37528
+DrewAPicture
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+704
 
