@@ -33,9 +33,6 @@
   </div>
   <div class="tab-pane active" id="bundle">
     <img class="alignleft" src="/wp-content/themes/beautifultrouble/img/beautiful_books_bundle.jpg" width="150" height="185" />
-    <p>As a special holiday promotion, you can now buy the original resource for troublemakers, Beautiful Trouble: A Toolbox for Revolution, together with our newest guide, Beautiful Rising: Creative Resistance from the Global South, for one low price of $38 — a 20% discount!</p>
-    <p>The e-book versions can also be purchased together at 20% off — just $16.</p>
-    <p>Order now — the special price won't last past December.</p>
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=1123"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$38<br />paperback bundle</span><br />
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=1124"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$16<br />ebook bundle</span><br />
   </div>
