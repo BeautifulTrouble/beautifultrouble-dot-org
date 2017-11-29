@@ -7,12 +7,13 @@
                                     Published by <b>OR Books</b>. Order your copy today:
                                     </p>
 <ul class="nav nav-tabs" id="editions">
-  <li class="active"><a href="#full" data-toggle="tab">Beautiful<br />Trouble</a></li>
+  <li><a href="#full" data-toggle="tab">Beautiful<br />Trouble</a></li>
   <li><a href="#bt-pocket" data-toggle="tab">BT<br />Pocket</a></li>
   <li><a href="#rising" data-toggle="tab">Beautiful<br />Rising</a></li>
+  <li class="active"><a href="#bundle" data-toggle="tab">Trouble<br />and Rising</a></li>
 </ul>
 <div class="tab-content">
-  <div class="tab-pane active" id="full">
+  <div class="tab-pane" id="full">
     <img class="alignleft" src="/wp-content/themes/beautifultrouble/img/Beautiful_Trouble_Book_Cover_med.png" width="150" height="185" /><br />
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=264"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$25<br />paperback</span><br />
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=265"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$10<br />ebook</span><br />
@@ -30,6 +31,15 @@
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=1034"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$10<br />ebook</span><br />
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=1035"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$25<br />both</span>
   </div>
+  <div class="tab-pane active" id="bundle">
+    <img class="alignleft" src="/wp-content/themes/beautifultrouble/img/beautiful_books_bundle.jpg" width="150" height="185" />
+    <p>As a special holiday promotion, you can now buy the original resource for troublemakers, Beautiful Trouble: A Toolbox for Revolution, together with our newest guide, Beautiful Rising: Creative Resistance from the Global South, for one low price of $38 — a 20% discount!</p>
+    <p>The e-book versions can also be purchased together at 20% off — just $16.</p>
+    <p>Order now — the special price won't last past December.</p>
+    <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=1123"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$38<br />paperback bundle</span><br />
+    <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=1124"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$16<br />ebook bundle</span><br />
+  </div>
+
 </div>
     <p><i class="highlight">Not sure yet? <b><a href="/the-book">Find out more about the books!</a></b></i></p>
         </div><!--/.well .sidebar-nav -->
