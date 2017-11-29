@@ -32,7 +32,7 @@
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=1035"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$25<br />both</span>
   </div>
   <div class="tab-pane active" id="bundle">
-    <img class="alignleft" src="/wp-content/themes/beautifultrouble/img/beautiful_books_bundle.jpg" width="150" height="185" />
+    <img class="alignleft" src="/wp-content/themes/beautifultrouble/img/beautiful_books_bundle.jpg" width="150" height="185" /><br />
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=1123"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$38<br />paperback bundle</span><br />
     <a class="img" href="http://store-93fb1.mybigcommerce.com/cart.php?action=add&product_id=1124"><img src="http://orbooks.com/wp-content/themes/orbooks/media/image/add_button.gif" /></a><span class="price">$16<br />ebook bundle</span><br />
   </div>
