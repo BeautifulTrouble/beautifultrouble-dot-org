@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 /**
  * CSS Document
  *
@@ -7,12 +8,18 @@
  * Adapted from /wp-admin/css/edit.css and given unique names to avoid conflicts.
  */
 
-.media-toolbar {
+.attachments-browser .media-toolbar {
 	overflow: visible;
 }
 
-.media-toolbar-secondary {
+.attachments-browser .media-toolbar .media-toolbar-secondary {
 	width: 50%;
+	max-width: 50%;
+}
+
+.attachments-browser .media-toolbar .media-toolbar-primary {
+	width: 50%;
+	max-width: 50%;
 }
 
 /** === Search Options */
@@ -46,7 +53,7 @@
 	vertical-align:middle;
 }
 
-.mode-grid.media-frame .media-toolbar input#media-search-input,
+.mode-grid.media-frame .media-toolbar input#mla-media-search-input,
 .mode-grid.media-frame .media-toolbar input#mla-search-submit {
 	/* margin-top: 11px; */
 	position: static;
@@ -106,7 +113,6 @@
 	max-height: 200px;
 }
 
-/* Required for WP v3.5.x */
 .media-sidebar .compat-item .mla-taxonomy-row td.field div.tabs-panel input {
 	width: 16px;
 }
@@ -174,6 +180,23 @@
 
 .mla_ac_match {
 	text-decoration: underline;
+}
+
+/**
+ * Responsive layout
+ */
+@media only screen and (max-width: 900px) {
+}
+
+/* Responsive on portrait and landscape */
+@media only screen and (max-width: 640px), screen and (max-height: 400px) {
+}
+
+/* Landscape specific header override */
+@media screen and (max-height: 400px) {
+}
+
+@media only screen and (max-width: 480px) {
 }
 
 /** === INCLUDED BY ANTONIO === */

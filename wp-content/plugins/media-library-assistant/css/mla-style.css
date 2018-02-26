@@ -30,88 +30,22 @@ div.mla_errors {
 }
 
 /*
- * MLA List Table ID_parent column
+ * MLA List Table Filter, Terms Search, Empty Trash and Clear Filter-by buttons
  */
-td.column-ID_parent, th.column-ID_parent {
-	width: 100px;
-	max-width: 100px;
-}
-
-/*
- * MLA List Table icon/thumbnail column
- * These can be overridden by an options setting
- */
-img.mla_media_thumbnail_64_64 {
-	max-width: 64px;
-	max-height: 64px;
-}
-
-img.mla_media_thumbnail_80_60 {
-	max-width: 80px;
-	max-height: 60px;
-}
-
-/*
- * MLA List Table Terms Search and Clear Filter-by buttons
- */
-#mla-terms-search-open,
-#clear_filter_by {
-	margin: 1px 8px 0 0;
-}
-
-/*
- * MLA Edit single item field labels column
- */
-.mla-media-item .describe th {
-	width: 150px
-}
-
-/*
- * MLA Display Single Item Image Metadata, Featured in, Inserted in
- */
-textarea[readonly] {
-	background-color: rgb(238, 238, 238)
-}
-
-/*
- * MLA Display Single Item
- */
-.has-right-sidebar .mla-inner-sidebar {
-	clear: right;
-	float: right;
-	position: relative;
-	width: 286px;
-	margin-top: 10px;
-	margin-left: 10px;
-	margin-right: auto;
-	display:block
-}
-
-.has-right-sidebar .mla-media-single {
-	width: 100%;
-	clear: left;
-	margin-right: -2000px;
-	float: left
-}
-
-.has-right-sidebar .mla-media-item {
-	margin-right: 300px;
-}
-
-.has-right-sidebar .mla-media-item table {
-	width: 100%
-}
-
-.mla-media-item .describe input[type='text'],
-.mla-media-item .describe textarea {
-	width: 100%
+.actions #post-query-submit,
+.actions #mla-terms-search-open,
+.actions #delete_all,
+.actions #clear_filter_by {
+	float: left;
+	margin: 1px 4px 0 0;
 }
 
 /*
  * MLA Inline editing - adapted from load-styles.php
  */
 .mla_bulk_taxonomy_options {
-	margin-bottom: 10px
+	margin-top: 8px;
+	margin-bottom: 8px
 }
 
 #wpbody-content .quick-edit-row-attachment .inline-edit-col-left {
@@ -127,11 +61,11 @@ textarea[readonly] {
 }
 
 #wpbody-content .bulk-edit-row-attachment .inline-edit-col-left {
-	width: 30%
+	width: 25%
 }
 
 #wpbody-content .bulk-edit-row-attachment .inline-edit-col-center {
-	width: 20%
+	width: 25%
 }
 
 #wpbody-content .bulk-edit-row-attachment .inline-edit-col-right {
@@ -150,9 +84,15 @@ textarea[readonly] {
 	width: 40%
 }
 
+.bulk-edit-row-attachment fieldset.inline-edit-col-left .reset {
+	margin: 0px 5px
+}
+
 .quick-edit-row-attachment fieldset.inline-edit-col-left label span.title,
+.quick-edit-row-attachment fieldset.inline-edit-col-right label span.title,
 .bulk-edit-row-attachment fieldset.inline-edit-col-right label span.title {
-	width: 6em
+	width: 6em;
+	line-height: 1.2
 }
 
 .quick-edit-row-attachment fieldset.inline-edit-col-center span.catshow,
@@ -161,8 +101,13 @@ textarea[readonly] {
 }
 
 .quick-edit-row-attachment fieldset.inline-edit-col-left label span.input-text-wrap,
+.quick-edit-row-attachment fieldset.inline-edit-col-right label span.input-text-wrap,
 .bulk-edit-row-attachment fieldset.inline-edit-col-right label span.input-text-wrap {
 	margin-left: 6em
+}
+
+.bulk-edit-row-attachment fieldset.inline-edit-col-right label.inline-edit-post-content textarea.wp-editor-area {
+	height: auto
 }
 
 .quick-edit-row-attachment fieldset.inline-edit-col-left label.inline-edit-post-parent span.input-text-wrap,
@@ -204,6 +149,11 @@ textarea[readonly] {
 .quick-edit-row-attachment fieldset.inline-edit-col-right label.inline-edit-tags span.title,
 .bulk-edit-row-attachment fieldset.inline-edit-col-right label.inline-edit-tags span.title {
 	width: 99%
+}
+
+.inline-edit-save #bulk_map,
+.inline-edit-save #bulk_custom_field_map {
+	margin-right: 1em
 }
 
 .bulk-progress-titles div a:before {
@@ -265,6 +215,29 @@ textarea[readonly] {
 }
 
 @media screen and ( max-width: 782px ) {
+	/* Quick Edit and Bulk Edit */
+	#wpbody-content .quick-edit-row-attachment .inline-edit-col-left,
+	#wpbody-content .quick-edit-row-attachment .inline-edit-col-right,
+	#wpbody-content .inline-edit-row-attachment .inline-edit-col-center,
+	#wpbody-content .bulk-edit-row-attachment .inline-edit-col-left,
+	#wpbody-content .bulk-edit-row-attachment .inline-edit-col-right {
+		float: none;
+		width: 100%;
+	}
+
+	.quick-edit-row-attachment fieldset.inline-edit-col-left label span.title,
+	.quick-edit-row-attachment fieldset.inline-edit-col-right label span.title,
+	.bulk-edit-row-attachment fieldset.inline-edit-col-right label span.title {
+		width: 100%;
+		line-height: 2.5
+	}
+
+	.quick-edit-row-attachment fieldset.inline-edit-col-left label span.input-text-wrap,
+	.quick-edit-row-attachment fieldset.inline-edit-col-right label span.input-text-wrap,
+	.bulk-edit-row-attachment fieldset.inline-edit-col-right label span.input-text-wrap {
+		margin-left: 0em
+	}
+
 	.bulk-progress-titles div {
 		font-size: 16px;
 	}
@@ -279,16 +252,47 @@ textarea[readonly] {
 }
 
 /*
- * MLA Settings page, Views and Uploads tab inline editing - adapted from load-styles.php
+ * MLA Settings page, Views, Uploads and Custom Fields tab inline editing - adapted from load-styles.php
  */
+
 #wpbody-content .bulk-edit-row-upload .inline-edit-col-left,
+#wpbody-content .bulk-edit-row-custom .inline-edit-col-left,
 #wpbody-content .bulk-edit-row-view .inline-edit-col-left {
-	width: 40%
+	width: 30%
 }
 
 #wpbody-content .bulk-edit-row-upload .inline-edit-col-right,
+#wpbody-content .bulk-edit-row-custom .inline-edit-col-right,
 #wpbody-content .bulk-edit-row-view .inline-edit-col-right {
-	width: 59%
+	width: 69%
+}
+
+#wpbody-content .quick-edit-row-custom fieldset.inline-edit-col label span.title,
+#wpbody-content .bulk-edit-row-custom fieldset.inline-edit-col-right label span.title {
+	width: 8em;
+	text-align: right
+}
+
+#wpbody-content .quick-edit-row-custom fieldset.inline-edit-col label span.checkbox-title,
+#wpbody-content .bulk-edit-row-custom fieldset.inline-edit-col-right label span.checkbox-title {
+	margin-left: .25em;
+	margin-right: 2em;
+}
+
+#wpbody-content .quick-edit-row-custom fieldset.inline-edit-col label span.dropdown-title,
+#wpbody-content .bulk-edit-row-custom fieldset.inline-edit-col-right label span.dropdown-title {
+	float:left;
+	margin-right: .25em;
+	margin-left: 2em;
+}
+
+#wpbody-content .quick-edit-row-custom fieldset.inline-edit-col label span.input-text-wrap {
+	margin-left: 8.5em;
+	width: 24em
+}
+
+#wpbody-content .quick-edit-row-custom fieldset.inline-edit-col label span.input-dropdown-wrap {
+	float:left;
 }
 
 .quick-edit-row-upload fieldset.inline-edit-col label span.title,
@@ -308,8 +312,12 @@ textarea[readonly] {
 
 .quick-edit-row-upload fieldset.inline-edit-col label,
 .quick-edit-row-view fieldset.inline-edit-col label {
-	float:left;
-	width: 26em
+	width: 21em
+}
+
+.quick-edit-row-upload fieldset.inline-edit-col label.checkbox-label,
+.quick-edit-row-view fieldset.inline-edit-col label.checkbox-label {
+	width: 10.5em
 }
 
 .quick-edit-row-upload fieldset.inline-edit-col input.inline-edit-menu-order,
@@ -319,10 +327,89 @@ textarea[readonly] {
 	width: 5em
 }
 
+@media screen and ( max-width: 782px ) {
+	#wpbody-content .bulk-edit-row-upload .inline-edit-col-left,
+	#wpbody-content .bulk-edit-row-view .inline-edit-col-left,
+	#wpbody-content .bulk-edit-row-upload .inline-edit-col-right,
+	#wpbody-content .bulk-edit-row-view .inline-edit-col-right {
+		float: none;
+		width: 100%
+	}
+
+	.quick-edit-row-upload fieldset.inline-edit-col label span.title,
+	.bulk-edit-row-upload fieldset.inline-edit-col-right label span.title,
+	.quick-edit-row-view fieldset.inline-edit-col label span.title,
+	.bulk-edit-row-view fieldset.inline-edit-col-right label span.title {
+		width: 100%
+	}
+
+	.quick-edit-row-upload fieldset.inline-edit-col label span.input-text-wrap,
+	.bulk-edit-row-upload fieldset.inline-edit-col-right label span.input-text-wrap,
+	.quick-edit-row-view fieldset.inline-edit-col label span.input-text-wrap,
+	.bulk-edit-row-view fieldset.inline-edit-col-right label span.input-text-wrap {
+		margin-left: 0px;
+		width: 100%
+	}
+
+	.quick-edit-row-upload fieldset.inline-edit-col label,
+	.quick-edit-row-view fieldset.inline-edit-col label {
+		float: none;
+		width: 100%
+	}
+
+	.quick-edit-row-upload fieldset.inline-edit-col input.inline-edit-menu-order,
+	.bulk-edit-row-upload fieldset.inline-edit-col-right label.inline-edit-menu-order span.input-text-wrap,
+	.quick-edit-row-view fieldset.inline-edit-col input.inline-edit-menu-order,
+	.bulk-edit-row-view fieldset.inline-edit-col-right label.inline-edit-menu-order span.input-text-wrap {
+		width: 100%
+	}
+}
+
 /*
  * MLA Settings page
  */
- 
+
+#donate-button-div {
+	margin-top: 5px;
+}
+
+#wpbody-content .optiontable th {
+	padding-right: 10px;
+}
+
+.mla-settings-taxonomy-th {
+	padding: 0px 5px;
+	text-align:center;
+	border-right: 1px solid
+}
+
+.mla-settings-enable-form {
+	margin-left: 0px;
+	margin-top: 10px;
+	padding-bottom: 10px;
+	border-bottom:thin solid #888888;
+}
+
+span.submit.mla-settings-submit,
+p.submit.mla-settings-submit {
+	padding-bottom: 0px
+}
+
+#mla-shortcode-list  {
+	width: 90%;
+	padding-left: 5%;
+}
+
+.mla-settings-help {
+	font-size: 8pt;
+	padding-bottom: 5px;
+}
+
+#mla-display-settings-iptc-exif-tab .mla-mapping,
+#mla-display-settings-custom-field-tab .mla-mapping {
+	margin-left: 10px;
+}
+
 ul.mla_settings { 
 	list-style-type: disc;
 	list-style-position: outside;
@@ -330,4 +417,99 @@ ul.mla_settings {
 
 ul.mla_settings li { 
 	margin-left: 2em;
+}
+
+#mla-add-iptc-exif-table,
+#mla-add-custom-field-table {
+	margin-bottom: 15px;
+}
+
+#mla-add-iptc-exif-table th,
+#mla-add-custom-field-table th {
+	padding: 5px 5px 5px 0px;
+	width: 10px;
+}
+
+#mla-add-iptc-exif-table td,
+#mla-add-custom-field-table td {
+	padding: 5px 0px 5px 0px;
+}
+
+#mla-add-custom-field-toggle {
+	text-decoration:none;
+}
+
+#mla-add-iptc-exif-table input[type="text"],
+#mla-add-iptc-exif-table select,
+#mla-add-custom-field-table input[type="text"],
+#mla-add-custom-field-table select {
+	width: 100%;
+}
+
+/*
+ * Help and Documentation content
+ */
+
+.mla-doc-toc-list {
+	list-style-position:inside;
+	list-style:disc;
+	line-height: 15px;
+	padding-left: 20px
+}
+
+.mla-doc-hook-label {
+	text-align: right;
+	padding: 0 1em 2em 0;
+	vertical-align: top;
+	font-weight:bold
+}
+
+.mla-doc-hook-definition {
+	vertical-align: top;
+}
+
+.mla-doc-table-label {
+	text-align: right;
+	padding-right: 10px;
+	vertical-align: top;
+	font-weight:bold
+}
+
+.mla-doc-table-sublabel {
+	padding-right: 10px;
+	vertical-align: top
+}
+
+.mla-doc-table-reverse {
+	text-align: right;
+	padding-right: 10px;
+	vertical-align:top
+}
+
+.mla-doc-table-definition {
+	vertical-align: top;
+}
+
+.mla-doc-bold-link {
+	font-size:14px;
+	font-weight:bold
+}
+
+.mla-doc-dropdown-padding {
+	padding-left: 40px
+}
+
+#mla-doc-gallery-shortcode {
+	float:left;
+	margin-right: 15px
+}
+
+#mla-doc-cloud-shortcode {
+	float:left;
+	margin-left: 15px
+}
+
+#mla-doc-list-shortcode {
+	float:left;
+	margin-left: 15px
 }

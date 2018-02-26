@@ -21,51 +21,14 @@ if ( !function_exists( 'post_categories_meta_box' ) ) {
  * @since 0.1
  */
 class MLA {
-
 	/**
-	 * Current version number
+	 * Current date for Development Version, empty for production versions
 	 *
-	 * @since 0.1
+	 * @since 2.10
 	 *
 	 * @var	string
 	 */
-	const CURRENT_MLA_VERSION = '2.02';
-
-	/**
-	 * Slug for registering and enqueueing plugin style sheet
-	 *
-	 * @since 0.1
-	 *
-	 * @var	string
-	 */
-	const STYLESHEET_SLUG = 'mla-style';
-
-	/**
-	 * Slug for localizing and enqueueing JavaScript - edit single item page
-	 *
-	 * @since 0.1
-	 *
-	 * @var	string
-	 */
-	const JAVASCRIPT_SINGLE_EDIT_SLUG = 'mla-single-edit-scripts';
-
-	/**
-	 * Object name for localizing JavaScript - edit single item page
-	 *
-	 * @since 0.1
-	 *
-	 * @var	string
-	 */
-	const JAVASCRIPT_SINGLE_EDIT_OBJECT = 'mla_single_edit_vars';
-
-	/**
-	 * Slug for localizing and enqueueing JavaScript - MLA List Table
-	 *
-	 * @since 0.20
-	 *
-	 * @var	string
-	 */
-	const JAVASCRIPT_INLINE_EDIT_SLUG = 'mla-inline-edit-scripts';
+	const MLA_DEVELOPMENT_VERSION = '';
 
 	/**
 	 * Object name for localizing JavaScript - MLA List Table
@@ -77,105 +40,6 @@ class MLA {
 	const JAVASCRIPT_INLINE_EDIT_OBJECT = 'mla_inline_edit_vars';
 
 	/**
-	 * Slug for adding plugin submenu
-	 *
-	 * @since 0.1
-	 *
-	 * @var	string
-	 */
-	const ADMIN_PAGE_SLUG = 'mla-menu';
-
-	/**
-	 * Action name; uniquely identifies the nonce
-	 *
-	 * @since 0.1
-	 *
-	 * @var	string
-	 */
-	const MLA_ADMIN_NONCE = 'mla_admin';
-
-	/**
-	 * mla_admin_action value for permanently deleting a single item
-	 *
-	 * @since 0.1
-	 *
-	 * @var	string
-	 */
-	const MLA_ADMIN_SINGLE_DELETE = 'single_item_delete';
-
-	/**
-	 * mla_admin_action value for displaying a single item
-	 *
-	 * @since 0.1
-	 *
-	 * @var	string
-	 */
-	const MLA_ADMIN_SINGLE_EDIT_DISPLAY = 'single_item_edit_display';
-
-	/**
-	 * mla_admin_action value for updating a single item
-	 *
-	 * @since 0.1
-	 *
-	 * @var	string
-	 */
-	const MLA_ADMIN_SINGLE_EDIT_UPDATE = 'single_item_edit_update';
-
-	/**
-	 * mla_admin_action value for restoring a single item from the trash
-	 *
-	 * @since 0.1
-	 *
-	 * @var	string
-	 */
-	const MLA_ADMIN_SINGLE_RESTORE = 'single_item_restore';
-
-	/**
-	 * mla_admin_action value for moving a single item to the trash
-	 *
-	 * @since 0.1
-	 *
-	 * @var	string
-	 */
-	const MLA_ADMIN_SINGLE_TRASH = 'single_item_trash';
-
-	/**
-	 * mla_admin_action value for mapping Custom Field metadata
-	 *
-	 * @since 1.10
-	 *
-	 * @var	string
-	 */
-	const MLA_ADMIN_SINGLE_CUSTOM_FIELD_MAP = 'single_item_custom_field_map';
-
-	/**
-	 * mla_admin_action value for mapping IPTC/EXIF metadata
-	 *
-	 * @since 1.00
-	 *
-	 * @var	string
-	 */
-	const MLA_ADMIN_SINGLE_MAP = 'single_item_map';
-
-	/**
-	 * mla_admin_action value for setting an item's parent object
-	 *
-	 * @since 1.82
-	 *
-	 * @var	string
-	 */
-	const MLA_ADMIN_SET_PARENT = 'set_parent';
-
-	/**
-	 * mla_admin_action value for searching taxonomy terms
-	 *
-	 * @since 1.90
-	 *
-	 * @var	string
-	 */
-	const MLA_ADMIN_TERMS_SEARCH = 'terms_search';
-
-	/**
 	 * Holds screen ids to match help text to corresponding screen
 	 *
 	 * @since 0.1
@@ -183,6 +47,26 @@ class MLA {
 	 * @var	array
 	 */
 	private static $page_hooks = array();
+
+	/**
+	 * Accumulates error messages from name conflict tests
+	 *
+	 * @since 1.14
+	 */
+	private static $mla_language_support_error_messages = '';
+	 
+	/**
+	 * Displays name conflict error messages at the top of the Dashboard
+	 *
+	 * @since 2.11
+	 */
+	public static function mla_name_conflict_reporting_action () {
+		$messages = self::$mla_language_support_error_messages;
+
+		echo '<div class="error"><p><strong>The Media Library Assistant cannot activate multi-language support.</strong> Another plugin or theme has declared conflicting class, function or constant names:</p>'."\r\n";
+		echo "<ul>{$messages}</ul>\r\n";
+		echo '<p>You must resolve these conflicts before multi-language support can be activated.</p></div>'."\r\n";
+	}
 
 	/**
 	 * Initialization function, similar to __construct()
@@ -196,45 +80,58 @@ class MLA {
 	 * @return	void
 	 */
 	public static function initialize( ) {
+		global $sitepress, $polylang;
+
+		if ( 'checked' == MLACore::mla_get_option( 'enable_featured_image_generation' ) ) {
+			if ( class_exists( 'MLA_Thumbnail' ) ) {
+				self::$mla_language_support_error_messages .= "<li>class MLA_Thumbnail</li>";
+			} else {
+				require_once( MLA_PLUGIN_PATH . 'includes/class-mla-thumbnail-generation.php' );
+				MLA_Thumbnail::initialize();
+			}
+		}
+
+		/*
+		 * Check for WPML/Polylang presence before loading language support class,
+		 * then immediately initialize it since we're already in the "init" action.
+		 */
+		if ( is_object( $sitepress ) ) {
+			if ( class_exists( 'MLA_WPML' ) ) {
+				self::$mla_language_support_error_messages .= "<li>class MLA_WPML</li>";
+			}
+
+			if ( class_exists( 'MLA_WPML_List_Table' ) ) {
+				self::$mla_language_support_error_messages .= "<li>class MLA_WPML_List_Table</li>";
+			}
+
+			if ( class_exists( 'MLA_WPML_Table' ) ) {
+				self::$mla_language_support_error_messages .= "<li>class MLA_WPML_Table</li>";
+			}
+
+			if ( empty( self::$mla_language_support_error_messages ) ) {
+				require_once( MLA_PLUGIN_PATH . 'includes/class-mla-wpml-support.php' );
+				MLA_WPML::initialize();
+			}
+		} elseif ( is_object( $polylang ) ) {
+			if ( class_exists( 'MLA_Polylang' ) ) {
+				self::$mla_language_support_error_messages .= "<li>class MLA_Polylang</li>";
+			}
+
+			if ( empty( self::$mla_language_support_error_messages ) ) {
+				require_once( MLA_PLUGIN_PATH . 'includes/class-mla-polylang-support.php' );
+				MLA_Polylang::initialize();
+			}
+		}
+
+		if ( ! empty( self::$mla_language_support_error_messages ) ) {
+			add_action( 'admin_notices', 'MLA::mla_name_conflict_reporting_action' );
+		}
+
 		add_action( 'admin_init', 'MLA::mla_admin_init_action' );
 		add_action( 'admin_enqueue_scripts', 'MLA::mla_admin_enqueue_scripts_action' );
 		add_action( 'admin_menu', 'MLA::mla_admin_menu_action' );
 		add_filter( 'set-screen-option', 'MLA::mla_set_screen_option_filter', 10, 3 ); // $status, $option, $value
 		add_filter( 'screen_options_show_screen', 'MLA::mla_screen_options_show_screen_filter', 10, 2 ); // $show_screen, $this
-	}
-
-	/**
-	 * Load a plugin text domain
-	 * 
-	 * The "add_action" for this function is in mla-plugin-loader.php, because the "initialize"
-	 * function above doesn't run in time.
-	 * Defined as public because it's an action.
-	 *
-	 * @since 1.60
-	 *
-	 * @return	void
-	 */
-	public static function mla_plugins_loaded_action(){
-		$text_domain = 'media-library-assistant';
-		$locale = apply_filters( 'mla_plugin_locale', get_locale(), $text_domain );
-
-		/*
-		 * To override the plugin's translation files for one, some or all strings,
-		 * create a sub-directory named 'media-library-assistant' in the WordPress
-		 * WP_LANG_DIR (e.g., /wp-content/languages) directory.
-		 */
-		load_textdomain( $text_domain, trailingslashit( WP_LANG_DIR ) . $text_domain . '/' . $text_domain . '-' . $locale . '.mo' );
-		load_plugin_textdomain( $text_domain, false, MLA_PLUGIN_BASENAME . '/languages/' );
-
-		/*
-		 * Now we can localize values in other plugin components
-		 */
-		MLAOptions::mla_localize_option_definitions_array();
-		MLASettings::mla_localize_tablist();
-		MLA_List_Table::mla_localize_default_columns_array();
-		MLA_Upload_List_Table::mla_localize_default_columns_array();
-		MLA_Upload_Optional_List_Table::mla_localize_default_columns_array();
-		MLA_View_List_Table::mla_localize_default_columns_array();
 	}
 
 	/**
@@ -245,12 +142,16 @@ class MLA {
 	 * @return	void
 	 */
 	public static function mla_admin_init_action() {
-//error_log( 'DEBUG: mla_admin_init_action $_REQUEST = ' . var_export( $_REQUEST, true ), 0 );
+		//static $count = 0;
+		//error_log( __LINE__ . ' DEBUG: MLA::mla_admin_init_action $count = ' . var_export( $count++, true ), 0 );
+		
+		//error_log( __LINE__ . ' DEBUG: MLA::mla_admin_init_action referer = ' . var_export( wp_get_referer(), true ), 0 );
+		//error_log( __LINE__ . ' DEBUG: MLA::mla_admin_init_action $_REQUEST = ' . var_export( $_REQUEST, true ), 0 );
 		/*
 		 * Process secure file download requests
 		 */
 		if ( isset( $_REQUEST['mla_download_file'] ) && isset( $_REQUEST['mla_download_type'] ) ) {
-			check_admin_referer( self::MLA_ADMIN_NONCE );
+			check_admin_referer( MLACore::MLA_ADMIN_NONCE_ACTION, MLACore::MLA_ADMIN_NONCE_NAME );
 			self::_process_mla_download_file();
 			exit();
 		}
@@ -262,42 +163,174 @@ class MLA {
 			if ( isset( $_REQUEST['mla-set-parent-ajax-nonce'] ) ) {
 				check_admin_referer( 'mla_find_posts', 'mla-set-parent-ajax-nonce' );
 			} else {
-				check_admin_referer( self::MLA_ADMIN_NONCE );
+				check_admin_referer( MLACore::MLA_ADMIN_NONCE_ACTION, MLACore::MLA_ADMIN_NONCE_NAME );
 			}
 
-			switch ( $_REQUEST['mla_admin_action'] ) {
-				case self::MLA_ADMIN_SINGLE_CUSTOM_FIELD_MAP:
-					do_action( 'mla_begin_mapping', 'single_custom', $_REQUEST['mla_item_ID'] );
-					$updates = MLAOptions::mla_evaluate_custom_field_mapping( $_REQUEST['mla_item_ID'], 'single_attachment_mapping' );
-					do_action( 'mla_end_mapping' );
-
-					if ( !empty( $updates ) ) {
-						$item_content = MLAData::mla_update_single_item( $_REQUEST['mla_item_ID'], $updates );
-					}
-
-					$view_args = isset( $_REQUEST['mla_source'] ) ? array( 'mla_source' => $_REQUEST['mla_source']) : array();
-					wp_redirect( add_query_arg( $view_args, admin_url( 'post.php' ) . '?post=' . $_REQUEST['mla_item_ID'] . '&action=edit&message=101' ), 302 );
-					exit;
-				case self::MLA_ADMIN_SINGLE_MAP:
-					$item = get_post( $_REQUEST['mla_item_ID'] );
-					do_action( 'mla_begin_mapping', 'single_iptc_exif', $_REQUEST['mla_item_ID'] );
-					$updates = MLAOptions::mla_evaluate_iptc_exif_mapping( $item, 'iptc_exif_mapping' );
-					do_action( 'mla_end_mapping' );
-					$page_content = MLAData::mla_update_single_item( $_REQUEST['mla_item_ID'], $updates );
-
-					$view_args = isset( $_REQUEST['mla_source'] ) ? array( 'mla_source' => $_REQUEST['mla_source']) : array();
-					wp_redirect( add_query_arg( $view_args, admin_url( 'post.php' ) . '?post=' . $_REQUEST['mla_item_ID'] . '&action=edit&message=102' ), 302 );
-					exit;
-				default:
-					// ignore the rest
-			} // switch ($_REQUEST['mla_admin_action'])
+			if ( apply_filters( 'mla_list_table_admin_action', true, $_REQUEST['mla_admin_action'], ( isset( $_REQUEST['mla_item_ID'] ) ? $_REQUEST['mla_item_ID'] : 0 ) ) ) {
+				switch ( $_REQUEST['mla_admin_action'] ) {
+					case MLACore::MLA_ADMIN_SINGLE_CUSTOM_FIELD_MAP:
+						if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_ALLOW_CUSTOM_FIELD_MAPPING ) ) {
+							do_action( 'mla_begin_mapping', 'single_custom', $_REQUEST['mla_item_ID'] );
+							$updates = MLAOptions::mla_evaluate_custom_field_mapping( $_REQUEST['mla_item_ID'], 'single_attachment_mapping' );
+							do_action( 'mla_end_mapping' );
+	
+							if ( !empty( $updates ) ) {
+								$item_content = MLAData::mla_update_single_item( $_REQUEST['mla_item_ID'], $updates );
+							}
+							
+							$message = '101';
+						} else {
+							$message = '103';
+						}
+						
+						$view_args = isset( $_REQUEST['mla_source'] ) ? array( 'mla_source' => $_REQUEST['mla_source']) : array();
+						wp_redirect( add_query_arg( $view_args, admin_url( 'post.php' ) . '?post=' . $_REQUEST['mla_item_ID'] . '&action=edit&message=' . $message ), 302 );
+						exit;
+					case MLACore::MLA_ADMIN_SINGLE_MAP:
+						if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_ALLOW_CUSTOM_FIELD_MAPPING ) ) {
+							$item = get_post( $_REQUEST['mla_item_ID'] );
+							do_action( 'mla_begin_mapping', 'single_iptc_exif', $_REQUEST['mla_item_ID'] );
+							$updates = MLAOptions::mla_evaluate_iptc_exif_mapping( $item, 'iptc_exif_mapping' );
+							do_action( 'mla_end_mapping' );
+							$page_content = MLAData::mla_update_single_item( $_REQUEST['mla_item_ID'], $updates );
+							$message = '102';
+						} else {
+							$message = '104';
+						}
+						
+						$view_args = isset( $_REQUEST['mla_source'] ) ? array( 'mla_source' => $_REQUEST['mla_source']) : array();
+						wp_redirect( add_query_arg( $view_args, admin_url( 'post.php' ) . '?post=' . $_REQUEST['mla_item_ID'] . '&action=edit&message=' . $message ), 302 );
+						exit;
+					default:
+						do_action( 'mla_list_table_custom_admin_action', $_REQUEST['mla_admin_action'], ( isset( $_REQUEST['mla_item_ID'] ) ? $_REQUEST['mla_item_ID'] : 0 ) );
+						// ignore the rest
+				} // switch ($_REQUEST['mla_admin_action'])
+			} // apply_filters mla_list_table_admin_action
 		} // (!empty($_REQUEST['mla_admin_action'])
 
-		if ( ( defined('WP_ADMIN') && WP_ADMIN ) && ( defined('DOING_AJAX') && DOING_AJAX ) ) {
-			add_action( 'wp_ajax_' . self::JAVASCRIPT_INLINE_EDIT_SLUG, 'MLA::mla_inline_edit_ajax_action' );
-			add_action( 'wp_ajax_' . self::JAVASCRIPT_INLINE_EDIT_SLUG . '-set-parent', 'MLA::mla_set_parent_ajax_action' );
-			add_action( 'wp_ajax_' . 'mla_find_posts', 'MLA::mla_find_posts_ajax_action' );
+		if ( is_admin() ) {
+			if ( defined('DOING_AJAX') && DOING_AJAX ) {
+				add_action( 'wp_ajax_' . MLACore::JAVASCRIPT_INLINE_EDIT_SLUG, 'MLA::mla_inline_edit_ajax_action' );
+			}
 		}
+	}
+
+	/**
+	 * Print optional in-lne styles for Media/Assistant submenu table
+	 *
+	 * @since 2.13
+	 */
+	public static function mla_admin_print_styles_action() {
+		echo "<style type='text/css'>\n";
+
+		// Optional - limit width of the views list
+		$width_value = MLACore::mla_get_option( MLACoreOptions::MLA_TABLE_VIEWS_WIDTH );
+		if ( !empty( $width_value ) ) {
+			if ( is_numeric( $width_value ) ) {
+				$width_value .= 'px';
+			}
+
+			echo "  ul.subsubsub {\n";
+			echo "    width: {$width_value};\n";
+			echo "    max-width: {$width_value};\n";
+			echo "  }\n";
+		}
+
+		echo "  img.mla_media_thumbnail {\n";
+
+		// Optional - change the size of the thumbnail/icon images
+		$icon_value = MLACore::mla_get_option( MLACoreOptions::MLA_TABLE_ICON_SIZE );
+		$set_column_width = !empty( $icon_value ) && is_numeric( $icon_value ) && ( 64 < $icon_value );
+		
+		if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_ENABLE_MLA_ICONS ) ) {
+			if ( empty( $icon_value ) ) {
+				$icon_value = 64;
+			} else {
+				if ( is_numeric( $icon_value ) ) {
+					$icon_value = absint( $icon_value );
+				}
+			}
+
+			$icon_width = $icon_height = $icon_value . 'px';
+
+			echo "    height: auto;\n";
+			echo "    max-width: {$icon_width};\n";
+			echo "    max-height: {$icon_height};\n";
+		} else {
+			if ( empty( $icon_value ) ) {
+				if ( MLATest::$wp_4dot3_plus ) {
+					$icon_value = 60;
+				} else {
+					$icon_value = 80;
+				}
+			}
+
+			$icon_width = absint( $icon_value ) . 'px';
+			echo "    max-width: {$icon_width};\n";
+
+			if ( MLATest::$wp_4dot3_plus ) {
+				echo "    max-height: auto;\n";
+			} else {
+				$icon_height = ( absint( .75 * (float) $icon_value ) ) . 'px';
+				echo "    max-height: {$icon_height};\n";
+			}
+		}
+
+		echo "  }\n";
+
+		if ( MLATest::$wp_4dot3_plus ) {
+			// Emulate WordPress styles in list-tables.css
+			echo "  table.attachments .column-primary strong {\n";
+			echo "    display: block;\n";
+			echo "    margin-bottom: .2em;\n";
+			echo "    font-size: 14px;\n";
+			echo "  }\n";
+	
+			echo "  table.attachments .column-primary .media-icon {\n";
+			echo "    float: left;\n";
+			echo "    margin: 0 9px 0 0;\n";
+			echo "    font-size: 14px;\n";
+			echo "  }\n";
+	
+			echo "  table.attachments .column-primary div.row-actions {\n";
+			echo "    clear: both;\n";
+			echo "  }\n";
+	
+			// Explicit primary column width including icon and some margin
+			if ( $set_column_width ) {
+				$column_width = ( $icon_value + 30 ) . 'px';
+	
+				echo "  table.attachments th.column-primary {\n";
+				echo "    width: {$column_width};\n";
+				echo "  }\n";
+			}
+			
+			echo "  table.attachments td.column-primary {\n";
+			echo "    position: relative;\n";
+			
+			if ( $set_column_width ) {
+				echo "    width: {$column_width};\n";
+			}
+			
+			echo "  }\n";
+		} else {
+			/*
+			 * Override defaults in /wp-admin/load-styles.php
+			 */
+			echo "  .fixed td.column-icon, .fixed th.column-icon {\n";
+			echo "    width: {$icon_width};\n";
+			echo "  }\n";
+
+			/*
+			 * Separate ID_parent column
+			 */
+			echo "  td.column-ID_parent, th.column-ID_parent {\n";
+			echo "  	width: 100px;\n";
+			echo "  	max-width: 100px;\n";
+			echo "  }\n";
+		}
+
+		echo "</style>\n";
 	}
 
 	/**
@@ -310,77 +343,86 @@ class MLA {
 	 * @return	void
 	 */
 	public static function mla_admin_enqueue_scripts_action( $page_hook ) {
+		global $wp_locale;
+
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 
-		if ( 'checked' != MLAOptions::mla_get_option( MLAOptions::MLA_SCREEN_DISPLAY_LIBRARY ) ) {
-			wp_register_style( self::STYLESHEET_SLUG . '-nolibrary', MLA_PLUGIN_URL . 'css/mla-nolibrary.css', false, self::CURRENT_MLA_VERSION );
-			wp_enqueue_style( self::STYLESHEET_SLUG . '-nolibrary' );
+		if ( 'checked' != MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_DISPLAY_LIBRARY ) ) {
+			wp_register_style( MLACore::STYLESHEET_SLUG . '-nolibrary', MLA_PLUGIN_URL . 'css/mla-nolibrary.css', false, MLACore::CURRENT_MLA_VERSION );
+			wp_enqueue_style( MLACore::STYLESHEET_SLUG . '-nolibrary' );
 		}
 
 		if ( 'edit-tags.php' == $page_hook ) {
-			wp_register_style( self::STYLESHEET_SLUG, MLA_PLUGIN_URL . 'css/mla-edit-tags-style.css', false, self::CURRENT_MLA_VERSION );
-			wp_enqueue_style( self::STYLESHEET_SLUG );
+			wp_register_style( MLACore::STYLESHEET_SLUG, MLA_PLUGIN_URL . 'css/mla-edit-tags-style.css', false, MLACore::CURRENT_MLA_VERSION );
+			wp_enqueue_style( MLACore::STYLESHEET_SLUG );
 			return;
 		}
 
-		if ( 'media_page_' . self::ADMIN_PAGE_SLUG != $page_hook ) {
+		if ( 'media_page_' . MLACore::ADMIN_PAGE_SLUG != $page_hook ) {
 			return;
 		}
 
-		wp_register_style( self::STYLESHEET_SLUG, MLA_PLUGIN_URL . 'css/mla-style.css', false, self::CURRENT_MLA_VERSION );
-		wp_enqueue_style( self::STYLESHEET_SLUG );
+		// Add the styles for variable-size icon and WP 4.3 primary column display 
+		add_action( 'admin_print_styles', 'MLA::mla_admin_print_styles_action' );
 
-		wp_register_style( self::STYLESHEET_SLUG . '-set-parent', MLA_PLUGIN_URL . 'css/mla-style-set-parent.css', false, self::CURRENT_MLA_VERSION );
-		wp_enqueue_style( self::STYLESHEET_SLUG . '-set-parent' );
-
-		if ( isset( $_REQUEST['mla_admin_action'] ) && ( $_REQUEST['mla_admin_action'] == self::MLA_ADMIN_SINGLE_EDIT_DISPLAY ) ) {
-			wp_enqueue_script( self::JAVASCRIPT_SINGLE_EDIT_SLUG, MLA_PLUGIN_URL . "js/mla-single-edit-scripts{$suffix}.js", 
-				array( 'wp-lists', 'suggest', 'jquery' ), self::CURRENT_MLA_VERSION, false );
-			$script_variables = array(
-				'comma' => _x( ',', 'tag_delimiter', 'media-library-assistant' ),
-				'Ajax_Url' => admin_url( 'admin-ajax.php' ) 
-			);
-			wp_localize_script( self::JAVASCRIPT_SINGLE_EDIT_SLUG, self::JAVASCRIPT_SINGLE_EDIT_OBJECT, $script_variables );
+		if ( $wp_locale->is_rtl() ) {
+			wp_register_style( MLACore::STYLESHEET_SLUG, MLA_PLUGIN_URL . 'css/mla-style-rtl.css', false, MLACore::CURRENT_MLA_VERSION );
 		} else {
-			wp_enqueue_script( self::JAVASCRIPT_INLINE_EDIT_SLUG, MLA_PLUGIN_URL . "js/mla-inline-edit-scripts{$suffix}.js", 
-				array( 'wp-lists', 'suggest', 'jquery' ), self::CURRENT_MLA_VERSION, false );
-
-			wp_enqueue_script( self::JAVASCRIPT_INLINE_EDIT_SLUG . '-set-parent', MLA_PLUGIN_URL . "js/mla-set-parent-scripts{$suffix}.js", 
-				array( 'wp-lists', 'suggest', 'jquery', self::JAVASCRIPT_INLINE_EDIT_SLUG ), self::CURRENT_MLA_VERSION, false );
-
-			MLAModal::mla_add_terms_search_scripts();
-
-			$fields = array( 'post_title', 'post_name', 'post_excerpt', 'post_content', 'image_alt', 'post_parent', 'post_parent_title', 'menu_order', 'post_author' );
-			$custom_fields = MLAOptions::mla_custom_field_support( 'quick_edit' );
-			$custom_fields = array_merge( $custom_fields, MLAOptions::mla_custom_field_support( 'bulk_edit' ) );
-			foreach ($custom_fields as $slug => $label ) {
-				$fields[] = $slug;
-			}
-
-			$fields = apply_filters( 'mla_list_table_inline_fields', $fields );
-
-			$script_variables = array(
-				'fields' => $fields,
-				'ajaxFailError' => __( 'An ajax.fail error has occurred. Please reload the page and try again.', 'media-library-assistant' ),
-				'ajaxDoneError' => __( 'An ajax.done error has occurred. Please reload the page and try again.', 'media-library-assistant' ),
-				'error' => __( 'Error while saving the changes.', 'media-library-assistant' ),
-				'ntdelTitle' => __( 'Remove From Bulk Edit', 'media-library-assistant' ),
-				'noTitle' => __( '(no title)', 'media-library-assistant' ),
-				'bulkTitle' => __( 'Bulk Edit items', 'media-library-assistant' ),
-				'bulkWaiting' => __( 'Waiting', 'media-library-assistant' ),
-				'bulkComplete' => __( 'Complete', 'media-library-assistant' ),
-				'bulkUnchanged' => __( 'Unchanged', 'media-library-assistant' ),
-				'bulkSuccess' => __( 'Succeeded', 'media-library-assistant' ),
-				'bulkFailure' => __( 'Failed', 'media-library-assistant' ),
-				'bulkCanceled' => __( 'CANCELED', 'media-library-assistant' ),
-				'bulkChunkSize' => MLAOptions::mla_get_option( MLAOptions::MLA_BULK_CHUNK_SIZE ),
-				'comma' => _x( ',', 'tag_delimiter', 'media-library-assistant' ),
-				'ajax_action' => self::JAVASCRIPT_INLINE_EDIT_SLUG,
-				'ajax_nonce' => wp_create_nonce( self::MLA_ADMIN_NONCE ) 
-			);
-
-			wp_localize_script( self::JAVASCRIPT_INLINE_EDIT_SLUG, self::JAVASCRIPT_INLINE_EDIT_OBJECT, $script_variables );
+			wp_register_style( MLACore::STYLESHEET_SLUG, MLA_PLUGIN_URL . 'css/mla-style.css', false, MLACore::CURRENT_MLA_VERSION );
 		}
+
+		wp_enqueue_style( MLACore::STYLESHEET_SLUG );
+
+		wp_register_style( MLACore::STYLESHEET_SLUG . '-set-parent', MLA_PLUGIN_URL . 'css/mla-style-set-parent.css', false, MLACore::CURRENT_MLA_VERSION );
+		wp_enqueue_style( MLACore::STYLESHEET_SLUG . '-set-parent' );
+
+		wp_enqueue_script( MLACore::JAVASCRIPT_INLINE_EDIT_SLUG, MLA_PLUGIN_URL . "js/mla-inline-edit-scripts{$suffix}.js", 
+			array( 'wp-lists', 'suggest', 'jquery' ), MLACore::CURRENT_MLA_VERSION, false );
+
+		wp_enqueue_script( MLACore::JAVASCRIPT_INLINE_EDIT_SLUG . '-set-parent', MLA_PLUGIN_URL . "js/mla-set-parent-scripts{$suffix}.js", 
+			array( 'wp-lists', 'suggest', 'jquery', MLACore::JAVASCRIPT_INLINE_EDIT_SLUG ), MLACore::CURRENT_MLA_VERSION, false );
+
+		MLAModal::mla_add_terms_search_scripts();
+
+		$fields = array( 'post_title', 'post_name', 'post_excerpt', 'post_content', 'image_alt', 'post_parent', 'post_parent_title', 'menu_order', 'post_author' );
+		$custom_fields = MLACore::mla_custom_field_support( 'quick_edit' );
+		$custom_fields = array_merge( $custom_fields, MLACore::mla_custom_field_support( 'bulk_edit' ) );
+		foreach ( $custom_fields as $slug => $details ) {
+			$fields[] = $slug;
+		}
+
+		$fields = apply_filters( 'mla_list_table_inline_fields', $fields );
+
+		$script_variables = array(
+			'fields' => $fields,
+			'ajaxFailError' => __( 'An ajax.fail error has occurred. Please reload the page and try again.', 'media-library-assistant' ),
+			'ajaxDoneError' => __( 'An ajax.done error has occurred. Please reload the page and try again.', 'media-library-assistant' ),
+			'error' => __( 'Error while saving the changes.', 'media-library-assistant' ),
+			'ntdelTitle' => __( 'Remove From Bulk Edit', 'media-library-assistant' ),
+			'noTitle' => __( '(no title)', 'media-library-assistant' ),
+			'bulkTitle' => __( 'Bulk Edit items', 'media-library-assistant' ),
+			'bulkWaiting' => __( 'Waiting', 'media-library-assistant' ),
+			'bulkComplete' => __( 'Complete', 'media-library-assistant' ),
+			'bulkUnchanged' => __( 'Unchanged', 'media-library-assistant' ),
+			'bulkSuccess' => __( 'Succeeded', 'media-library-assistant' ),
+			'bulkFailure' => __( 'Failed', 'media-library-assistant' ),
+			'bulkCanceled' => __( 'CANCELED', 'media-library-assistant' ),
+			'bulkChunkSize' => MLACore::mla_get_option( MLACoreOptions::MLA_BULK_CHUNK_SIZE ),
+			'comma' => _x( ',', 'tag_delimiter', 'media-library-assistant' ),
+			'useSpinnerClass' => false,
+			'ajax_action' => MLACore::JAVASCRIPT_INLINE_EDIT_SLUG,
+			'ajax_nonce' => wp_create_nonce( MLACore::MLA_ADMIN_NONCE_ACTION, MLACore::MLA_ADMIN_NONCE_NAME ) 
+		);
+
+		if ( version_compare( get_bloginfo( 'version' ), '4.2', '>=' ) ) {
+			$script_variables['useSpinnerClass'] = true;
+		}
+
+		if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_BULK_EDITOR ) ) {
+			$script_variables['quickTagsInit'] = array( 'post_content' => array( 'id' => 'post_content', 'buttons' => 'strong,em,link,block,del,ins,img,ul,ol,li,code,close', 'active' => true, ) );
+		}
+
+		wp_localize_script( MLACore::JAVASCRIPT_INLINE_EDIT_SLUG, self::JAVASCRIPT_INLINE_EDIT_OBJECT, $script_variables );
 	}
 
 	/**
@@ -390,10 +432,6 @@ class MLA {
 	 * add settings page in the "Settings" section.
 	 * add settings link in the Plugins section entry for MLA.
 	 *
-	 * For WordPress versions before 3.5, 
-	 * add submenu page(s) for attachment taxonomies,
-	 * add filter to clean up taxonomy submenu labels.
-	 *
 	 * @since 0.1
 	 *
 	 * @return	void
@@ -401,21 +439,19 @@ class MLA {
 	public static function mla_admin_menu_action( ) {
 		global $submenu;
 
-		if ( 'checked' != MLAOptions::mla_get_option( MLAOptions::MLA_SCREEN_DISPLAY_LIBRARY ) ) {
-			add_action( 'load-upload.php', 'MLA::mla_load_media_action' );
-		}
+		add_action( 'load-upload.php', 'MLA::mla_load_media_action' );
 
-		$page_title = MLAOptions::mla_get_option( MLAOptions::MLA_SCREEN_PAGE_TITLE );
+		$page_title = MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_PAGE_TITLE );
 		if ( empty( $page_title ) ) {
-			$page_title = MLAOptions::mla_get_option( MLAOptions::MLA_SCREEN_PAGE_TITLE, true );
+			$page_title = MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_PAGE_TITLE, true );
 		}
 
-		$menu_title = MLAOptions::mla_get_option( MLAOptions::MLA_SCREEN_MENU_TITLE );
+		$menu_title = MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_MENU_TITLE );
 		if ( empty( $menu_title ) ) {
-			$menu_title = MLAOptions::mla_get_option( MLAOptions::MLA_SCREEN_MENU_TITLE, true );
+			$menu_title = MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_MENU_TITLE, true );
 		}
 
-		$hook = add_submenu_page( 'upload.php', $page_title, $menu_title, 'upload_files', self::ADMIN_PAGE_SLUG, 'MLA::mla_render_admin_page' );
+		$hook = add_submenu_page( 'upload.php', $page_title, $menu_title, 'upload_files', MLACore::ADMIN_PAGE_SLUG, 'MLA::mla_render_admin_page' );
 		add_action( 'load-' . $hook, 'MLA::mla_add_menu_options' );
 		add_action( 'load-' . $hook, 'MLA::mla_add_help_tab' );
 		self::$page_hooks[ $hook ] = $hook;
@@ -423,14 +459,6 @@ class MLA {
 		$taxonomies = get_object_taxonomies( 'attachment', 'objects' );
 		if ( !empty( $taxonomies ) ) {
 			foreach ( $taxonomies as $tax_name => $tax_object ) {
-				/*
-				 * WordPress 3.5 adds native support for taxonomies
-				 */
-				if ( ! MLATest::$wordpress_3point5_plus ) {
-					$hook = add_submenu_page( 'upload.php', $tax_object->label, $tax_object->label, 'manage_categories', 'mla-edit-tax-' . $tax_name, 'MLA::mla_edit_tax_redirect' );
-					add_action( 'load-' . $hook, 'MLA::mla_edit_tax_redirect' );
-				} // ! MLATest::$wordpress_3point5_plus
-
 				/*
 				 * The page_hook we need for taxonomy edits is slightly different
 				 */
@@ -447,16 +475,16 @@ class MLA {
 		/*
 		 * If we are suppressing the Media/Library submenu, force Media/Assistant to come first
 		 */
-		if ( 'checked' != MLAOptions::mla_get_option( MLAOptions::MLA_SCREEN_DISPLAY_LIBRARY ) ) {
+		if ( 'checked' != MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_DISPLAY_LIBRARY ) ) {
 			$menu_position = 4;
 		} else {
-			$menu_position = (integer) MLAOptions::mla_get_option( MLAOptions::MLA_SCREEN_ORDER );
+			$menu_position = (integer) MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_ORDER );
 		}
 
-		if ( $menu_position && is_array( $submenu['upload.php'] ) ) {
+		if ( $menu_position && !empty( $submenu['upload.php'] ) ) {
 			foreach ( $submenu['upload.php'] as $menu_order => $menu_item ) {
-				if ( self::ADMIN_PAGE_SLUG == $menu_item[2] ) {
-					$menu_item[2] = 'upload.php?page=' . self::ADMIN_PAGE_SLUG;
+				if ( MLACore::ADMIN_PAGE_SLUG == $menu_item[2] ) {
+					$menu_item[2] = 'upload.php?page=' . MLACore::ADMIN_PAGE_SLUG;
 					$submenu['upload.php'][$menu_position] = $menu_item;
 					unset( $submenu['upload.php'][$menu_order] );
 					ksort( $submenu['upload.php'] );
@@ -469,15 +497,25 @@ class MLA {
 	}
 
 	/**
-	 * Redirect to Media/Assistant if Media/Library is hidden
+	 * Redirect to Media/Assistant if Media/Library is hidden or a trash/delete
+	 * returns from Media/Edit Media initiated from Media/Assistant
 	 *
 	 * @since 1.60
 	 *
 	 * @return	void
 	 */
 	public static function mla_load_media_action( ) {
-		if ( 'checked' != MLAOptions::mla_get_option( MLAOptions::MLA_SCREEN_DISPLAY_LIBRARY ) ) {
-			$query_args = '?page=' . self::ADMIN_PAGE_SLUG;
+		$mla_source = isset( $_REQUEST['mla_source'] ) && in_array( $_REQUEST['mla_source'], array ( 'trash', 'delete' ) );
+
+		if ( $mla_source || ( 'checked' != MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_DISPLAY_LIBRARY ) ) ) {
+			/*
+			 * Allow "grid" view even if the list view is suppressed
+			 */
+			if ( isset( $_REQUEST['mode'] ) && 'grid' === $_REQUEST['mode'] ) {
+				return;
+			}
+			
+			$query_args = '?page=' . MLACore::ADMIN_PAGE_SLUG;
 
 			/*
 			 * Compose a message if returning from the Edit Media screen
@@ -538,37 +576,30 @@ class MLA {
 		$file_suffix = $screen->id;
 
 		/*
-		 * Override the screen suffix if we are going to display something other than the attachment table
+		 * Use a generic page for edit taxonomy screens
 		 */
-		if ( isset( $_REQUEST['mla_admin_action'] ) ) {
-			switch ( $_REQUEST['mla_admin_action'] ) {
-				case self::MLA_ADMIN_SINGLE_EDIT_DISPLAY:
-					$file_suffix = self::MLA_ADMIN_SINGLE_EDIT_DISPLAY;
+		if ( 't_' == substr( self::$page_hooks[ $file_suffix ], 0, 2 ) ) {
+			$taxonomy = substr( self::$page_hooks[ $file_suffix ], 2 );
+			switch ( $taxonomy ) {
+				case 'attachment_category':
+				case 'attachment_tag':
 					break;
-			} // switch
-		} else { // isset( $_REQUEST['mla_admin_action'] )
-			/*
-			 * Use a generic page for edit taxonomy screens
-			 */
-			if ( 't_' == substr( self::$page_hooks[ $file_suffix ], 0, 2 ) ) {
-				$taxonomy = substr( self::$page_hooks[ $file_suffix ], 2 );
-				switch ( $taxonomy ) {
-					case 'attachment_category':
-					case 'attachment_tag':
-						break;
-					default:
-						$tax_object = get_taxonomy( $taxonomy );
+				default:
+					$tax_object = get_taxonomy( $taxonomy );
 
-						if ( $tax_object->hierarchical ) {
-							$file_suffix = 'edit-hierarchical-taxonomy';
-						} else {
-							$file_suffix = 'edit-flat-taxonomy';
-						}
-				} // $taxonomy switch
-			} // is taxonomy
+					if ( $tax_object->hierarchical ) {
+						$file_suffix = 'edit-hierarchical-taxonomy';
+					} else {
+						$file_suffix = 'edit-flat-taxonomy';
+					}
+			} // $taxonomy switch
+		} // is taxonomy
+
+		$template_array = apply_filters( 'mla_list_table_help_template', NULL, 'help-for-' . $file_suffix . '.tpl', $file_suffix );
+		if ( is_null( $template_array ) ) {
+			$template_array = MLACore::mla_load_template( 'help-for-' . $file_suffix . '.tpl' );
 		}
 
-		$template_array = MLAData::mla_load_template( 'help-for-' . $file_suffix . '.tpl' );
 		if ( empty( $template_array ) ) {
 			return;
 		}
@@ -601,7 +632,7 @@ class MLA {
 				);
 			} else {
 				/* translators: 1: ERROR tag 2: function name 3: template key */
-				error_log( sprintf( _x( '%1$s: %2$s discarding "%3$s"; no title/order', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'mla_add_help_tab', $id ), 0 );
+				MLACore::mla_debug_add( sprintf( _x( '%1$s: %2$s discarding "%3$s"; no title/order', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'mla_add_help_tab', $id ), MLACore::MLA_DEBUG_CATEGORY_ANY );
 			}
 		}
 
@@ -633,10 +664,6 @@ class MLA {
 	 * @return	boolean	True to display "Screen Options", false to suppress them
 	 */
 	public static function mla_screen_options_show_screen_filter( $show_screen, $this_screen ) {
-		if ( isset( $_REQUEST['mla_admin_action'] ) && ( $_REQUEST['mla_admin_action'] == self::MLA_ADMIN_SINGLE_EDIT_DISPLAY ) ) {
-			return false;
-		}
-
 		return $show_screen;
 	}
 
@@ -649,53 +676,33 @@ class MLA {
 	 * @param	string	Name of the option being changed
 	 * @param	string	New value of the option
 	 *
-	 * @return	string|void	New value if this is our option, otherwise nothing
+	 * @return	mixed	New value if this is our option, otherwise original status
 	 */
 	public static function mla_set_screen_option_filter( $status, $option, $value ) {
+		global $wp_filter;
+
+		MLACore::mla_debug_add( __LINE__ . " MLA::mla_set_screen_option_filter( {$option} ) status = " . var_export( $status, true ), MLACore::MLA_DEBUG_CATEGORY_ANY );
+		MLACore::mla_debug_add( __LINE__ . " MLA::mla_set_screen_option_filter( {$option} ) value = " . var_export( $value, true ), MLACore::MLA_DEBUG_CATEGORY_ANY );
+
+		foreach( $wp_filter['set-screen-option'] as $priority => $filters ) {
+			$debug_message = __LINE__ . ' MLA::mla_set_screen_option_filter $wp_filter[set-screen-option] priority = ' . var_export( $priority, true ) . '<br />';
+			foreach ( $filters as $name => $descriptor ) {
+				$debug_message .= 'filter name = ' . var_export( $name, true ) . '<br />';
+			}
+			MLACore::mla_debug_add( $debug_message, MLACore::MLA_DEBUG_CATEGORY_ANY );
+		}
+
 		if ( 'mla_entries_per_page' == $option ) {
 			return $value;
-		} elseif ( $status ) {
-			return $status;
-		}
-	}
-
-	/**
-	 * Redirect to the Edit Tags/Categories page
-	 *
-	 * The custom taxonomy add/edit submenu entries go to "upload.php" by default.
-	 * This filter is the only way to redirect them to the correct WordPress page.
-	 * The filter is not required for WordPress 3.5 and later.
-	 *
-	 * @since 0.1
-	 *
-	 * @return	void
-	 */
-	public static function mla_edit_tax_redirect( ) {
-		/*
-		 * WordPress 3.5 adds native support for taxonomies
-		 */
-		if ( MLATest::$wordpress_3point5_plus ) {
-			return;
 		}
 
-		$screen = get_current_screen();
-
-		if ( isset( $_REQUEST['page'] ) && ( substr( $_REQUEST['page'], 0, 13 ) == 'mla-edit-tax-' ) ) {
-			$taxonomy = substr( $_REQUEST['page'], 13 );
-			wp_redirect( admin_url( 'edit-tags.php?taxonomy=' . $taxonomy . '&post_type=attachment' ), 302 );
-			exit;
-		}
+		return $status;
 	}
 
 	/**
 	 * Cleanup menus for Edit Tags/Categories page
 	 *
-	 * For WordPress before 3.5, the submenu entries for custom taxonomies
-	 * under the "Media" menu are not set up correctly by WordPress, so this
-	 * function cleans them up, redirecting the request to the right WordPress
-	 * page for editing/adding taxonomy terms.
-	 * For WordPress 3.5 and later, the function fixes the submenu bolding when
-	 * going to the Edit Media screen.
+	 * Fixes the submenu bolding when going to the Edit Media screen.
 	 *
 	 * @since 0.1
 	 *
@@ -706,51 +713,32 @@ class MLA {
 	public static function mla_parent_file_filter( $parent_file ) {
 		global $submenu_file, $submenu, $hook_suffix;
 
-		/*
-		 * Make sure the "Assistant" submenu line is bolded if it's the default
-		 */
-		if ( 'media_page_' . self::ADMIN_PAGE_SLUG == $hook_suffix ) {
-			$submenu_file = 'upload.php?page=' . self::ADMIN_PAGE_SLUG;
+		// Make sure the "Assistant" submenu line is bolded if it's been moved
+		if ( 'media_page_' . MLACore::ADMIN_PAGE_SLUG == $hook_suffix ) {
+			if ( 'checked' != MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_DISPLAY_LIBRARY ) ) {
+				$menu_position = 4;
+			} else {
+				$menu_position = (integer) MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_ORDER );
+			}
+			
+			if ( $menu_position ) {
+				$submenu_file = 'upload.php?page=' . MLACore::ADMIN_PAGE_SLUG;
+			}
 		}
 
 		/*
 		 * Make sure the "Assistant" submenu line is bolded if the Media/Library submenu is hidden
 		 */
-		if ( 'checked' != MLAOptions::mla_get_option( MLAOptions::MLA_SCREEN_DISPLAY_LIBRARY ) &&
-		     'upload.php' == $parent_file && 'upload.php' == $submenu_file ) {
-			$submenu_file = 'upload.php?page=' . self::ADMIN_PAGE_SLUG;
+		if ( 'checked' != MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_DISPLAY_LIBRARY ) &&
+		     'upload.php' == $parent_file && ( empty( $submenu_file ) || 'upload.php' == $submenu_file ) ) {
+			$submenu_file = 'upload.php?page=' . MLACore::ADMIN_PAGE_SLUG;
 		}
 
 		/*
 		 * Make sure the "Assistant" submenu line is bolded when we go to the Edit Media page
 		 */
 		if ( isset( $_REQUEST['mla_source'] ) ) {
-			$submenu_file = 'upload.php?page=' . self::ADMIN_PAGE_SLUG;
-		}
-
-		/*
-		 * WordPress 3.5 adds native support for taxonomies
-		 */
-		if ( MLATest::$wordpress_3point5_plus ) {
-			return $parent_file;
-		}
-
-		if ( isset( $_REQUEST['taxonomy'] ) ) {
-			$taxonomies = get_object_taxonomies( 'attachment', 'objects' );
-
-			foreach ( $taxonomies as $tax_name => $tax_object ) {
-				if ( $_REQUEST['taxonomy'] == $tax_name ) {
-					$mla_page = 'mla-edit-tax-' . $tax_name;
-					$real_page = 'edit-tags.php?taxonomy=' . $tax_name . '&post_type=attachment';
-
-					foreach ( $submenu['upload.php'] as $submenu_index => $submenu_entry ) {
-						if ( $submenu_entry[ 2 ] == $mla_page ) {
-							$submenu['upload.php'][ $submenu_index ][ 2 ] = $real_page;
-							return 'upload.php';
-						}
-					}
-				}
-			}
+			$submenu_file = 'upload.php?page=' . MLACore::ADMIN_PAGE_SLUG;
 		}
 
 		return $parent_file;
@@ -766,13 +754,27 @@ class MLA {
 	 * @return	void	echos file contents and calls exit();
 	 */
 	private static function _process_mla_download_file() {
+		$message = '';
 		if ( isset( $_REQUEST['mla_download_file'] ) && isset( $_REQUEST['mla_download_type'] ) ) {
 			if( ini_get( 'zlib.output_compression' ) ) { 
 				ini_set( 'zlib.output_compression', 'Off' );
 			}
-			
+
 			$file_name = stripslashes( $_REQUEST['mla_download_file'] );
-		
+			$match_name = str_replace( '\\', '/', $file_name );
+			$upload_dir = wp_upload_dir();
+			$allowed_path = str_replace( '\\', '/', $upload_dir['basedir'] );
+
+			if ( 0 !== strpos( $match_name, $allowed_path ) ) {
+				$message = __( 'ERROR', 'media-library-assistant' ) . ': ' . 'download path out of bounds.';
+			} elseif ( false !== strpos( $match_name, '..' ) ) {
+				$message = __( 'ERROR', 'media-library-assistant' ) . ': ' . 'download path invalid.';
+			}
+		} else {
+			$message = __( 'ERROR', 'media-library-assistant' ) . ': ' . 'download argument(s) not set.';
+		}
+
+		if ( empty( $message ) ) {
 			header('Pragma: public'); 	// required
 			header('Expires: 0');		// no cache
 			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
@@ -783,29 +785,26 @@ class MLA {
 			header('Content-Transfer-Encoding: binary');
 			header('Content-Length: '.filesize( $file_name ));	// provide file size
 			header('Connection: close');
-		
+
 			readfile( $file_name );
-		
+
 			if ( isset( $_REQUEST['mla_download_disposition'] ) && 'delete' == $_REQUEST['mla_download_disposition'] ) {
 				@unlink( $file_name );
 			}
-			
-			exit();
 		} else {
-			$message = __( 'ERROR', 'media-library-assistant' ) . ': ' . 'download argument(s) not set.';
+			echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+			echo '<html xmlns="http://www.w3.org/1999/xhtml">';
+			echo '<head>';
+			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+			echo '<title>Download Error</title>';
+			echo '</head>';
+			echo '';
+			echo '<body>';
+			echo $message;
+			echo '</body>';
+			echo '</html> ';
 		}
 		
-		echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
-		echo '<html xmlns="http://www.w3.org/1999/xhtml">';
-		echo '<head>';
-		echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
-		echo '<title>Download Error</title>';
-		echo '</head>';
-		echo '';
-		echo '<body>';
-		echo $message;
-		echo '</body>';
-		echo '</html> ';
 		exit();
 	}
 
@@ -820,7 +819,7 @@ class MLA {
 	 * @return	string	Empty, or new value for the field
 	 */
 	private static function _process_bulk_value( $post_id, $bulk_value ) {
-		$new_value = trim( $bulk_value );
+		$new_value = stripslashes( trim( $bulk_value ) );
 
 		if ( 'template:[+empty+]' == $new_value ) {
 			return NULL;
@@ -845,6 +844,248 @@ class MLA {
 	}
 
 	/**
+	 * Prepare Bulk Edit field-level updates
+	 *
+	 * @since 2.11
+	 *
+	 * @param	integer	$post_id Current post ID
+	 * @param	array	$request Form elements, e.g., from $_REQUEST
+	 * @param	array	$custom_field_map Form id to field name mapping
+	 *
+	 * @return	array	Non-empty form elements
+	 */
+	public static function mla_prepare_bulk_edits( $post_id, $request, $custom_field_map ) {
+		/*
+		 * Copy the edit form contents to $new_data
+		 * Trim text values for testing purposes only
+		 */
+		$new_data = array() ;
+		if ( isset( $request['post_title'] ) ) {
+			$test_value = self::_process_bulk_value( $post_id, $request['post_title'] );
+			if ( ! empty( $test_value ) ) {
+				$new_data['post_title'] = $test_value;
+			} elseif ( is_null( $test_value ) ) {
+				$new_data['post_title'] = '';
+			}
+		}
+
+		if ( isset( $request['post_excerpt'] ) ) {
+			$test_value = self::_process_bulk_value( $post_id, $request['post_excerpt'] );
+			if ( ! empty( $test_value ) ) {
+				$new_data['post_excerpt'] = $test_value;
+			} elseif ( is_null( $test_value ) ) {
+				$new_data['post_excerpt'] = '';
+			}
+		}
+
+		if ( isset( $request['post_content'] ) ) {
+			$test_value = self::_process_bulk_value( $post_id, $request['post_content'] );
+			if ( ! empty( $test_value ) ) {
+				$new_data['post_content'] = $test_value;
+			} elseif ( is_null( $test_value ) ) {
+				$new_data['post_content'] = '';
+			}
+		}
+
+		/*
+		 * image_alt requires a separate key because some attachment types
+		 * should not get a value, e.g., text or PDF documents
+		 */
+		if ( isset( $request['image_alt'] ) ) {
+			$test_value = self::_process_bulk_value( $post_id, $request['image_alt'] );
+			if ( ! empty( $test_value ) ) {
+				$new_data['bulk_image_alt'] = $test_value;
+			} elseif ( is_null( $test_value ) ) {
+				$new_data['bulk_image_alt'] = '';
+			}
+		}
+
+		if ( isset( $request['post_parent'] ) ) {
+			if ( is_numeric( $request['post_parent'] ) ) {
+				$new_data['post_parent'] = $request['post_parent'];
+			}
+		}
+
+		if ( isset( $request['post_author'] ) ) {
+			if ( -1 != $request['post_author'] ) {
+					$new_data['post_author'] = $request['post_author'];
+			}
+		}
+
+		if ( isset( $request['comment_status'] ) ) {
+			if ( -1 != $request['comment_status'] ) {
+					$new_data['comment_status'] = $request['comment_status'];
+			}
+		}
+
+		if ( isset( $request['ping_status'] ) ) {
+			if ( -1 != $request['ping_status'] ) {
+					$new_data['ping_status'] = $request['ping_status'];
+			}
+		}
+
+		/*
+		 * Custom field support
+		 */
+		$custom_fields = array();
+
+		if ( is_array( $custom_field_map ) ) {
+			foreach ( $custom_field_map as $slug => $details ) {
+				if ( isset( $request[ $slug ] ) ) {
+					$test_value = self::_process_bulk_value( $post_id, $request[ $slug ] );
+					if ( ! empty( $test_value ) ) {
+						$custom_fields[ $details['name'] ] = $test_value;
+					} elseif ( is_null( $test_value ) ) {
+						if ( $details['no_null'] ) {
+							$custom_fields[ $details['name'] ] = NULL;
+						} else {
+							$custom_fields[ $details['name'] ] = '';
+						}
+					}
+				}
+			} // foreach
+		}
+
+		if ( ! empty( $custom_fields ) ) {
+			$new_data[ 'custom_updates' ] = $custom_fields;
+		}
+
+		/*
+		 * Taxonomy Support
+		 */
+		$tax_inputs = array();
+		$tax_actions = array();
+		MLACore::mla_debug_add( __LINE__ . " MLA::mla_prepare_bulk_edits( {$post_id} ) tax_input = " . var_export( $request['tax_input'], true ), MLACore::MLA_DEBUG_CATEGORY_AJAX );
+
+		if ( isset( $request['tax_input'] ) && is_array( $request['tax_input'] ) ) {
+			foreach ( $request['tax_input'] as $taxonomy => $terms ) {
+				if ( ! empty( $request['tax_action'] ) ) {
+					$tax_action = $request['tax_action'][ $taxonomy ];
+				} else {
+					$tax_action = 'replace';
+				}
+
+				MLACore::mla_debug_add( __LINE__ . " MLA::mla_prepare_bulk_edits( {$post_id}, {$taxonomy}, {$tax_action} ) terms = " . var_export( $terms, true ), MLACore::MLA_DEBUG_CATEGORY_AJAX );
+
+				/*
+				 * Ignore empty updates
+				 */
+				if ( $hierarchical = is_array( $terms ) ) {
+					if ( false !== ( $index = array_search( 0, $terms ) ) ) {
+						unset( $terms[ $index ] );
+					}
+				} else {
+					/*
+					 * Parse out individual terms
+					 */
+					$comma = _x( ',', 'tag_delimiter', 'media-library-assistant' );
+					if ( ',' !== $comma ) {
+						$tags = str_replace( $comma, ',', $terms );
+					}
+
+					$fragments = explode( ',', trim( $terms, " \n\t\r\0\x0B," ) );
+					$terms = array();
+					foreach( $fragments as $fragment ) {
+						// WordPress encodes special characters, e.g., "&" as HTML entities in term names
+						if ( MLATest::$wp_3dot5 ) {
+							$fragment = _wp_specialchars( trim( stripslashes_deep( $fragment ) ) );
+						} else {
+							$fragment = _wp_specialchars( trim( wp_unslash( $fragment ) ) );
+						}
+
+						if ( ! empty( $fragment ) ) {
+							$terms[] = $fragment;
+						}
+					} // foreach fragment
+
+					$terms = array_unique( $terms );
+				}
+
+				if ( empty( $terms ) && 'replace' != $tax_action ) {
+					continue;
+				}
+
+				$post_terms = get_object_term_cache( $post_id, $taxonomy );
+				if ( false === $post_terms ) {
+					$post_terms = wp_get_object_terms( $post_id, $taxonomy );
+					wp_cache_add( $post_id, $post_terms, $taxonomy . '_relationships' );
+				}
+
+				$current_terms = array();
+				foreach( $post_terms as $new_term ) {
+					if ( $hierarchical ) {
+						$current_terms[ $new_term->term_id ] =  $new_term->term_id;
+					} else {
+						$current_terms[ $new_term->name ] =  $new_term->name;
+					}
+				}
+				MLACore::mla_debug_add( __LINE__ . " MLA::mla_prepare_bulk_edits( {$post_id}, {$taxonomy}, {$tax_action} ) current_terms = " . var_export( $current_terms, true ), MLACore::MLA_DEBUG_CATEGORY_AJAX );
+
+				if ( 'add' == $tax_action ) {
+					/*
+					 * Add new terms; remove existing terms
+					 */
+					foreach ( $terms as $index => $new_term ) {
+						if ( isset( $current_terms[ $new_term ] ) ) {
+							unset( $terms[ $index ] );
+						}
+					}
+
+					$do_update = ! empty( $terms );
+				} elseif ( 'remove' == $tax_action ) {
+					/*
+					 * Remove only the existing terms
+					 */
+					foreach ( $terms as $index => $new_term ) {
+						if ( ! isset( $current_terms[ $new_term ] ) ) {
+							unset( $terms[ $index ] );
+						}
+					}
+
+					$do_update = ! empty( $terms );
+				} else { 
+					/*
+					 * Replace all terms; if the new terms match the term
+					 * cache, we can skip the update
+					 */
+					foreach ( $terms as $new_term ) {
+						if ( isset( $current_terms[ $new_term ] ) ) {
+							unset( $current_terms[ $new_term ] );
+						} else {
+							$current_terms[ $new_term ] = $new_term;
+							break; // not a match; stop checking
+						}
+					}
+
+					$do_update = ! empty( $current_terms );
+				}
+
+				MLACore::mla_debug_add( __LINE__ . " MLA::mla_prepare_bulk_edits( {$post_id}, {$taxonomy}, {$tax_action} ) do_update = " . var_export( $do_update, true ), MLACore::MLA_DEBUG_CATEGORY_AJAX );
+				MLACore::mla_debug_add( __LINE__ . " MLA::mla_prepare_bulk_edits( {$post_id}, {$taxonomy}, {$tax_action} ) new terms = " . var_export( $terms, true ), MLACore::MLA_DEBUG_CATEGORY_AJAX );
+
+				if ( $do_update ) {
+					$tax_inputs[ $taxonomy ] = $terms;
+					$tax_actions[ $taxonomy ] = $tax_action;
+				}
+			} // foreach taxonomy
+		}
+
+		$new_data[ 'tax_input' ] = $tax_inputs;
+		$new_data[ 'tax_action' ] = $tax_actions;
+
+		return $new_data;
+	}
+
+	/**
+	 * Holds [+index+] and [+found_rows+] values for MLAData_Source::_evaluate_data_source
+	 *
+	 * @since 2.52
+	 *
+	 * @var	array
+	 */
+	public static $bulk_edit_data_source = array();
+
+	/**
 	 * Process bulk action for one or more attachments
 	 *
 	 * @since 2.00
@@ -856,15 +1097,33 @@ class MLA {
 	 */
 	public static function mla_process_bulk_action( $bulk_action, $request = NULL ) {
 		$page_content = array( 'message' => '', 'body' => '', 'unchanged' => 0, 'success' => 0, 'failure' => 0, 'item_results' => array() );
-		
+		$custom_field_map = MLACore::mla_custom_field_support( 'bulk_edit' );
+
+		/*
+		 * do_cleanup will remove the bulk edit elements from the $_REQUEST super array.
+		 * It is passed in the $request so it can be filtered.
+		 */
 		if ( NULL == $request ) {
 			$request = $_REQUEST;
-			$do_cleanup = true;
+			$request['mla_bulk_action_do_cleanup'] = true;
 		} else {
-			$do_cleanup = false;
+			$request['mla_bulk_action_do_cleanup'] = false;
 		}
-		
+
+		$request = apply_filters( 'mla_list_table_bulk_action_initial_request', $request, $bulk_action, $custom_field_map );
+		MLACore::mla_debug_add( __LINE__ . " MLA::mla_process_bulk_action request = " . var_export( $request, true ), MLACore::MLA_DEBUG_CATEGORY_AJAX );
+
 		if ( isset( $request['cb_attachment'] ) ) {
+			if ( !empty( $request['cb_offset'] ) ) {
+				self::$bulk_edit_data_source['cb_offset'] = absint( $request['cb_offset'] );
+				self::$bulk_edit_data_source['cb_count'] = absint( $request['cb_count'] );
+				self::$bulk_edit_data_source['cb_index'] = self::$bulk_edit_data_source['cb_offset'];
+			} else {
+				self::$bulk_edit_data_source['cb_offset'] = 0;
+				self::$bulk_edit_data_source['cb_count'] = count( $request['cb_attachment'] );
+				self::$bulk_edit_data_source['cb_index'] = 0;
+			}
+
 			$item_content = apply_filters( 'mla_list_table_begin_bulk_action', NULL, $bulk_action );
 			if ( is_null( $item_content ) ) {
 				$prevent_default = false;
@@ -880,10 +1139,10 @@ class MLA {
 				if ( isset( $item_content['body'] ) ) {
 					$page_content['body'] = $item_content['body'];
 				}
-				
+
 				return $page_content;
 			}
-			
+
 			if ( !empty( $request['bulk_custom_field_map'] ) ) {
 				do_action( 'mla_begin_mapping', 'bulk_custom', NULL );
 			} elseif ( !empty( $request['bulk_map'] ) ) {
@@ -891,10 +1150,14 @@ class MLA {
 			}
 
 			foreach ( $request['cb_attachment'] as $index => $post_id ) {
+				self::$bulk_edit_data_source['cb_index']++;
+				
 				if ( ! current_user_can( 'edit_post', $post_id ) ) {
 					$page_content['message'] .= __( 'ERROR', 'media-library-assistant' ) . ': ' . __( 'You are not allowed to edit Attachment: ', 'media-library-assistant' ) . $post_id . '<br>';
 					continue;
 				}
+
+				$request = apply_filters( 'mla_list_table_bulk_action_item_request', $request, $bulk_action, $post_id, $custom_field_map );
 
 				$item_content = apply_filters( 'mla_list_table_bulk_action', NULL, $bulk_action, $post_id );
 				if ( is_null( $item_content ) ) {
@@ -904,7 +1167,7 @@ class MLA {
 					$prevent_default = isset( $item_content['prevent_default'] ) ? $item_content['prevent_default'] : false;
 					$custom_message = isset( $item_content['message'] ) ? $item_content['message'] : '';
 				}
-	
+
 				if ( ! $prevent_default ) {
 					switch ( $bulk_action ) {
 						case 'delete':
@@ -924,197 +1187,15 @@ class MLA {
 								break;
 							}
 
-							/*
-							 * Copy the edit form contents to $new_data
-							 * Trim text values for testing purposes only
-							 */
-							$new_data = array() ;
-							if ( isset( $request['post_title'] ) ) {
-								$test_value = self::_process_bulk_value( $post_id, $request['post_title'] );
-								if ( ! empty( $test_value ) ) {
-									$new_data['post_title'] = $test_value;
-								} elseif ( is_null( $test_value ) ) {
-									$new_data['post_title'] = '';
-								}
-							}
+							$new_data = self::mla_prepare_bulk_edits( $post_id, $request, $custom_field_map );
+							MLACore::mla_debug_add( __LINE__ . " MLA::mla_process_bulk_action( {$post_id} ) new_data = " . var_export( $new_data, true ), MLACore::MLA_DEBUG_CATEGORY_AJAX );
+							$tax_input = $new_data['tax_input'];
+							$tax_action = $new_data['tax_action'];
+							unset( $new_data['tax_input'] );
+							unset( $new_data['tax_action'] );
 
-							if ( isset( $request['post_excerpt'] ) ) {
-								$test_value = self::_process_bulk_value( $post_id, $request['post_excerpt'] );
-								if ( ! empty( $test_value ) ) {
-									$new_data['post_excerpt'] = $test_value;
-								} elseif ( is_null( $test_value ) ) {
-									$new_data['post_excerpt'] = '';
-								}
-							}
-
-							if ( isset( $request['post_content'] ) ) {
-								$test_value = self::_process_bulk_value( $post_id, $request['post_content'] );
-								if ( ! empty( $test_value ) ) {
-									$new_data['post_content'] = $test_value;
-								} elseif ( is_null( $test_value ) ) {
-									$new_data['post_content'] = '';
-								}
-							}
-
-							/*
-							 * image_alt requires a separate key because some attachment types
-							 * should not get a value, e.g., text or PDF documents
-							 */
-							if ( isset( $request['image_alt'] ) ) {
-								$test_value = self::_process_bulk_value( $post_id, $request['image_alt'] );
-								if ( ! empty( $test_value ) ) {
-									$new_data['bulk_image_alt'] = $test_value;
-								} elseif ( is_null( $test_value ) ) {
-									$new_data['bulk_image_alt'] = '';
-								}
-							}
-
-							if ( isset( $request['post_parent'] ) ) {
-								if ( is_numeric( $request['post_parent'] ) ) {
-									$new_data['post_parent'] = $request['post_parent'];
-								}
-							}
-
-							if ( isset( $request['post_author'] ) ) {
-								if ( -1 != $request['post_author'] ) {
-										$new_data['post_author'] = $request['post_author'];
-								}
-							}
-
-							if ( isset( $request['comment_status'] ) ) {
-								if ( -1 != $request['comment_status'] ) {
-										$new_data['comment_status'] = $request['comment_status'];
-								}
-							}
-
-							if ( isset( $request['ping_status'] ) ) {
-								if ( -1 != $request['ping_status'] ) {
-										$new_data['ping_status'] = $request['ping_status'];
-								}
-							}
-
-							/*
-							 * Custom field support
-							 */
-							$custom_fields = array();
-							foreach (MLAOptions::mla_custom_field_support( 'bulk_edit' ) as $slug => $label ) {
-								if ( isset( $request[ $slug ] ) ) {
-									$test_value = self::_process_bulk_value( $post_id, $request[ $slug ] );
-									if ( ! empty( $test_value ) ) {
-										$custom_fields[ $label ] = $test_value;
-									} elseif ( is_null( $test_value ) ) {
-										$custom_fields[ $label ] = '';
-									}
-								}
-							} // foreach
-
-							if ( ! empty( $custom_fields ) ) {
-								$new_data[ 'custom_updates' ] = $custom_fields;
-							}
-
-							/*
-							 * Taxonomy Support
-							 */
-							$tax_input = array();
-							foreach ( $request['tax_input'] as $taxonomy => $terms ) {
-								if ( ! empty( $request['tax_action'] ) ) {
-									$tax_action = $request['tax_action'][ $taxonomy ];
-								} else {
-									$tax_action = 'replace';
-								}
-
-								/*
-								 * Ignore empty updates
-								 */
-								if ( $hierarchical = is_array( $terms ) ) {
-									if ( false !== ( $index = array_search( 0, $terms ) ) ) {
-										unset( $terms[ $index ] );
-									}
-								} else {
-									/*
-									 * Parse out individual terms
-									 */
-									$comma = _x( ',', 'tag_delimiter', 'media-library-assistant' );
-									if ( ',' !== $comma ) {
-										$tags = str_replace( $comma, ',', $terms );
-									}
-						
-									$fragments = explode( ',', trim( $terms, " \n\t\r\0\x0B," ) );
-									$terms = array();
-									foreach( $fragments as $fragment ) {
-										$fragment = trim( wp_unslash( $fragment ) );
-										if ( ! empty( $fragment ) ) {
-											$terms[] = $fragment;
-										}
-									} // foreach fragment
-
-									$terms = array_unique( $terms );
-								}
-
-								if ( empty( $terms ) && 'replace' != $tax_action ) {
-									continue;
-								}
-
-								$post_terms = get_object_term_cache( $post_id, $taxonomy );
-								if ( false === $post_terms ) {
-									$post_terms = wp_get_object_terms( $post_id, $taxonomy );
-									wp_cache_add( $post_id, $post_terms, $taxonomy . '_relationships' );
-								}
-
-								$current_terms = array();
-								foreach( $post_terms as $new_term ) {
-									if ( $hierarchical ) {
-										$current_terms[ $new_term->term_id ] =  $new_term->term_id;
-									} else {
-										$current_terms[ $new_term->name ] =  $new_term->name;
-									}
-								}
-								
-								if ( 'add' == $tax_action ) {
-									/*
-									 * Add new terms; remove existing terms
-									 */
-									foreach ( $terms as $index => $new_term ) {
-										if ( isset( $current_terms[ $new_term ] ) ) {
-											unset( $terms[ $index ] );
-										}
-									}
-									
-									$do_update = ! empty( $terms );
-								} elseif ( 'remove' == $tax_action ) {
-									/*
-									 * Remove only the existing terms
-									 */
-									foreach ( $terms as $index => $new_term ) {
-										if ( ! isset( $current_terms[ $new_term ] ) ) {
-											unset( $terms[ $index ] );
-										}
-									}
-									
-									$do_update = ! empty( $terms );
-								} else { 
-									/*
-									 * Replace all terms; if the new terms match the term
-									 * cache, we can skip the update
-									 */
-									foreach ( $terms as $new_term ) {
-										if ( isset( $current_terms[ $new_term ] ) ) {
-											unset( $current_terms[ $new_term ] );
-										} else {
-											$current_terms[ $new_term ] = $new_term;
-											break; // not a match; stop checking
-										}
-									}
-									
-									$do_update = ! empty( $current_terms );
-								}
-
-								if ( $do_update ) {
-									$tax_input[ $taxonomy ] = $terms;
-								}
-							} // foreach taxonomy
-
-							$item_content = MLAData::mla_update_single_item( $post_id, $new_data, $tax_input, $request['tax_action'] );
+							$item_content = MLAData::mla_update_single_item( $post_id, $new_data, $tax_input, $tax_action );
+							MLACore::mla_debug_add( __LINE__ . " MLA::mla_process_bulk_action( {$post_id} ) item_content = " . var_export( $item_content, true ), MLACore::MLA_DEBUG_CATEGORY_AJAX );
 							break;
 						case 'restore':
 							$item_content = self::_restore_single_item( $post_id );
@@ -1124,7 +1205,7 @@ class MLA {
 							break;
 						default:
 							$item_content = apply_filters( 'mla_list_table_custom_bulk_action', NULL, $bulk_action, $post_id );
-	
+
 							if ( is_null( $item_content ) ) {
 								$prevent_default = false;
 								/* translators: 1: ERROR tag 2: bulk action */
@@ -1134,7 +1215,7 @@ class MLA {
 							}
 					} // switch $bulk_action
 				} // ! $prevent_default
-				
+
 				// Custom action can set $prevent_default, so test again.
 				if ( ! $prevent_default ) {
 					if ( ! empty( $custom_message ) ) {
@@ -1145,11 +1226,11 @@ class MLA {
 							$item_content['message'] = $custom_message . '<br>' . $item_content['message'];
 						}
 					}
-	
+
 					$page_content['item_results'][ $post_id ] = array( 'result' => 'unknown', 'message' => $item_content['message'] );
 					if ( ! empty( $item_content['message'] ) ) {
 						$page_content['message'] .= $item_content['message'] . '<br>';
-	
+
 						if ( false !== strpos( $item_content['message'], __( 'no changes detected', 'media-library-assistant' ) ) ) {
 							$page_content['unchanged'] += 1;
 							$page_content['item_results'][ $post_id ]['result'] = 'unchanged';
@@ -1177,7 +1258,7 @@ class MLA {
 				$page_content['body'] = $item_content['body'];
 			}
 
-			if ( $do_cleanup ) {
+			if ( $request['mla_bulk_action_do_cleanup'] ) {
 				unset( $_REQUEST['post_title'] );
 				unset( $_REQUEST['post_excerpt'] );
 				unset( $_REQUEST['post_content'] );
@@ -1188,10 +1269,11 @@ class MLA {
 				unset( $_REQUEST['post_author'] );
 				unset( $_REQUEST['tax_input'] );
 				unset( $_REQUEST['tax_action'] );
-	
-				foreach (MLAOptions::mla_custom_field_support( 'bulk_edit' ) as $slug => $label )
+
+				foreach ( MLACore::mla_custom_field_support( 'bulk_edit' ) as $slug => $details ) {
 					unset( $_REQUEST[ $slug ] );
-	
+				}
+
 				unset( $_REQUEST['cb_attachment'] );
 			}
 		} else { // isset cb_attachment
@@ -1199,15 +1281,40 @@ class MLA {
 			$page_content['message'] = sprintf( __( 'Bulk Action %1$s - no items selected.', 'media-library-assistant' ), $bulk_action );
 		}
 
-		if ( $do_cleanup ) {
+		if ( $request['mla_bulk_action_do_cleanup'] ) {
 			unset( $_REQUEST['action'] );
 			unset( $_REQUEST['bulk_custom_field_map'] );
 			unset( $_REQUEST['bulk_map'] );
 			unset( $_REQUEST['bulk_edit'] );
 			unset( $_REQUEST['action2'] );
 		}
-		
+
+		MLACore::mla_debug_add( __LINE__ . " MLA::mla_process_bulk_action returning page_content = " . var_export( $page_content, true ), MLACore::MLA_DEBUG_CATEGORY_AJAX );
 		return $page_content;
+	}
+
+	/**
+	 * Clear the Media/Assistant submenu Filter-by variables 
+	 *
+	 * @since 2.13
+	 *
+	 * @param	array	$preserves Filters to be retained
+	 *
+	 * @return	void
+	 */
+	public static function mla_clear_filter_by( $preserves = array() ) {
+		$filters = array( 'author', 'heading_suffix', 'ids', 'mla-metakey', 'mla-metavalue', 'mla-tax', 'mla-term', 'parent' );
+
+		$filters = apply_filters( 'mla_list_table_clear_filter_by_filters', $filters, $preserves );
+		$preserves = apply_filters( 'mla_list_table_clear_filter_by_preserves', $preserves, $filters );
+
+		foreach ( $filters as $filter ) {
+			if ( ! in_array( $filter, $preserves ) ) {
+				unset( $_REQUEST[ $filter ] );
+			}
+		}
+
+		do_action( 'mla_list_table_clear_filter_by' );
 	}
 
 	/**
@@ -1234,21 +1341,31 @@ class MLA {
 			$_GET['orderby'] = $_REQUEST['orderby'];
 		}
 
+		// bulk_refresh simply refreshes the page, ignoring other bulk actions
+		if ( ! empty( $_REQUEST['bulk_refresh'] ) ) {
+			unset( $_REQUEST['action'] );
+			unset( $_POST['action'] );
+			unset( $_REQUEST['action2'] );
+			unset( $_POST['action2'] );
+		}
+
 		$bulk_action = self::_current_bulk_action();
 
-		$page_title = MLAOptions::mla_get_option( MLAOptions::MLA_SCREEN_PAGE_TITLE );
+		$page_title = MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_PAGE_TITLE );
 		if ( empty( $page_title ) ) {
-			$page_title = MLAOptions::mla_get_option( MLAOptions::MLA_SCREEN_PAGE_TITLE, true );
+			$page_title = MLACore::mla_get_option( MLACoreOptions::MLA_SCREEN_PAGE_TITLE, true );
 		}
 
 		echo "<div class=\"wrap\">\n";
-		echo "<div id=\"icon-upload\" class=\"icon32\"><br/></div>\n";
-		echo "<h2>{$page_title}"; // trailing </h2> is action-specific
+//		echo "<div id=\"icon-upload\" class=\"icon32\"><br/></div>\n";
+		echo "<h1 class=\"wp-heading-inline\">{$page_title}"; // trailing </h1> is action-specific
 
 		if ( !current_user_can( 'upload_files' ) ) {
-			echo " - Error</h2>\n";
+			echo ' - ' . __( 'ERROR', 'media-library-assistant' ) . "</h1>\n";
 			wp_die( __( 'You do not have permission to manage attachments.', 'media-library-assistant' ) );
 		}
+
+		$heading_tail = "</h1>\n<a href=\"media-new.php\" class=\"page-title-action\">" . esc_html_x('Add New', 'file') . "</a>\n<hr class=\"wp-header-end\">\n";
 
 		$page_content = array(
 			'message' => '',
@@ -1284,14 +1401,7 @@ class MLA {
 		} // $bulk_action
 
 		if ( isset( $_REQUEST['clear_filter_by'] ) ) {
-			unset( $_REQUEST['heading_suffix'] );
-			unset( $_REQUEST['parent'] );
-			unset( $_REQUEST['author'] );
-			unset( $_REQUEST['mla-tax'] );
-			unset( $_REQUEST['mla-term'] );
-			unset( $_REQUEST['mla-metakey'] );
-			unset( $_REQUEST['mla-metavalue'] );
-			do_action( 'mla_list_table_clear_filter_by' );
+			self::mla_clear_filter_by();
 		}
 
 		/*
@@ -1324,7 +1434,7 @@ class MLA {
 		 * Process row-level actions that affect a single item
 		 */
 		if ( !empty( $_REQUEST['mla_admin_action'] ) ) {
-			check_admin_referer( self::MLA_ADMIN_NONCE );
+			check_admin_referer( MLACore::MLA_ADMIN_NONCE_ACTION, MLACore::MLA_ADMIN_NONCE_NAME );
 
 			$page_content = apply_filters( 'mla_list_table_single_action', NULL, $_REQUEST['mla_admin_action'], ( isset( $_REQUEST['mla_item_ID'] ) ? $_REQUEST['mla_item_ID'] : 0 ) );
 			if ( is_null( $page_content ) ) {
@@ -1337,44 +1447,23 @@ class MLA {
 
 			if ( ! $prevent_default ) {
 				switch ( $_REQUEST['mla_admin_action'] ) {
-					case self::MLA_ADMIN_SINGLE_DELETE:
+					case MLACore::MLA_ADMIN_SINGLE_DELETE:
 						$page_content = self::_delete_single_item( $_REQUEST['mla_item_ID'] );
 						break;
-					case self::MLA_ADMIN_SINGLE_EDIT_DISPLAY:
-						echo ' - ' . __( 'Edit single item', 'media-library-assistant' ) . '</h2>';
-						$page_content = self::_display_single_item( $_REQUEST['mla_item_ID'] );
-						break;
-					case self::MLA_ADMIN_SINGLE_EDIT_UPDATE:
-						if ( !empty( $_REQUEST['update'] ) ) {
-							$page_content = MLAData::mla_update_single_item( $_REQUEST['mla_item_ID'], $_REQUEST['attachments'][ $_REQUEST['mla_item_ID'] ], $_REQUEST['tax_input'] );
-						} elseif ( !empty( $_REQUEST['map-iptc-exif'] ) ) {
-							$item = get_post( $_REQUEST['mla_item_ID'] );
-							do_action( 'mla_begin_mapping', 'single_iptc_exif', $_REQUEST['mla_item_ID'] );
-							$updates = MLAOptions::mla_evaluate_iptc_exif_mapping( $item, 'iptc_exif_mapping' );
-							do_action( 'mla_end_mapping' );
-							$page_content = MLAData::mla_update_single_item( $_REQUEST['mla_item_ID'], $updates );
-						} else {
-							$page_content = array(
-								/* translators: 1: post ID */
-								'message' => sprintf( __( 'Item %1$d cancelled.', 'media-library-assistant' ), $_REQUEST['mla_item_ID'] ),
-								'body' => '' 
-							);
-						}
-						break;
-					case self::MLA_ADMIN_SINGLE_RESTORE:
+					case MLACore::MLA_ADMIN_SINGLE_RESTORE:
 						$page_content = self::_restore_single_item( $_REQUEST['mla_item_ID'] );
 						break;
-					case self::MLA_ADMIN_SINGLE_TRASH:
+					case MLACore::MLA_ADMIN_SINGLE_TRASH:
 						$page_content = self::_trash_single_item( $_REQUEST['mla_item_ID'] );
 						break;
-					case self::MLA_ADMIN_SET_PARENT:
+					case MLACore::MLA_ADMIN_SET_PARENT:
 						$new_data = array( 'post_parent' => $_REQUEST['found_post_id'] );
-	
+
 						foreach( $_REQUEST['children'] as $child ) {
 							$item_content = MLAData::mla_update_single_item( $child, $new_data );
 							$page_content['message'] .= $item_content['message'] . '<br>';
 						}
-	
+
 						unset( $_REQUEST['parent'] );
 						unset( $_REQUEST['children'] );
 						unset( $_REQUEST['mla-set-parent-ajax-nonce'] );
@@ -1382,7 +1471,7 @@ class MLA {
 						unset( $_REQUEST['found_post_id'] );
 						unset( $_REQUEST['mla-set-parent-submit'] );
 						break;
-					case self::MLA_ADMIN_TERMS_SEARCH:
+					case MLACore::MLA_ADMIN_TERMS_SEARCH:
 						/*
 						 * This will be handled as a database query argument,
 						 * but validate the arguments here
@@ -1409,7 +1498,7 @@ class MLA {
 						} // Unknown mla_admin_action
 				} // switch ($_REQUEST['mla_admin_action'])
 			} // ! $prevent_default
-			
+
 			if ( ! empty( $custom_message ) ) {
 				$page_content['message'] = $custom_message . $page_content['message'];
 			}
@@ -1434,17 +1523,17 @@ class MLA {
 			 * Display Attachments list
 			 */
 			if ( !empty( $_REQUEST['heading_suffix'] ) ) {
-				echo ' - ' . esc_html( $_REQUEST['heading_suffix'] ) . "</h2>\n";
+				echo ' - ' . esc_html( $_REQUEST['heading_suffix'] ) . $heading_tail;
 			} elseif ( !empty( $_REQUEST['mla_terms_search'] ) ) {
-					echo ' - ' . __( 'term search results for', 'media-library-assistant' ) . ' "' . esc_html( stripslashes( trim( $_REQUEST['mla_terms_search']['phrases'] ) ) ) . "\"</h2>\n";
+					echo ' - ' . __( 'term search results for', 'media-library-assistant' ) . ' "' . esc_html( stripslashes( trim( $_REQUEST['mla_terms_search']['phrases'] ) ) ) . $heading_tail;
 			} elseif ( !empty( $_REQUEST['s'] ) ) {
 				if ( empty( $_REQUEST['mla_search_fields'] ) ) {
-					echo ' - ' . __( 'post/parent results for', 'media-library-assistant' ) . ' "' . esc_html( stripslashes( trim( $_REQUEST['s'] ) ) ) . "\"</h2>\n";
+					echo ' - ' . __( 'post/parent results for', 'media-library-assistant' ) . ' "' . esc_html( stripslashes( trim( $_REQUEST['s'] ) ) ) . "\"" . $heading_tail;
 				} else {
-					echo ' - ' . __( 'search results for', 'media-library-assistant' ) . ' "' . esc_html( stripslashes( trim( $_REQUEST['s'] ) ) ) . "\"</h2>\n";
+					echo ' - ' . __( 'search results for', 'media-library-assistant' ) . ' "' . esc_html( stripslashes( trim( $_REQUEST['s'] ) ) ) . "\"" . $heading_tail;
 				}
 			} else {
-				echo "</h2>\n";
+				echo $heading_tail;
 			}
 
 			if ( !empty( $page_content['message'] ) ) {
@@ -1459,54 +1548,6 @@ class MLA {
 				echo "  </p></div>\n"; // id="message"
 			}
 
-			/*
-			 * Optional - limit width of the views list
-			 */
-			$option_value = MLAOptions::mla_get_option( MLAOptions::MLA_TABLE_VIEWS_WIDTH );
-			if ( !empty( $option_value ) ) {
-				if ( is_numeric( $option_value ) ) {
-					$option_value .= 'px';
-				}
-
-				echo "  <style type='text/css'>\n";
-				echo "    ul.subsubsub {\n";
-				echo "      width: {$option_value};\n";
-				echo "      max-width: {$option_value};\n";
-				echo "    }\n";
-				echo "  </style>\n";
-			}
-
-			/*
-			 * Optional - change the size of the thumbnail/icon images
-			 */
-			$option_value = MLAOptions::mla_get_option( MLAOptions::MLA_TABLE_ICON_SIZE );
-			if ( !empty( $option_value ) ) {
-				if ( is_numeric( $option_value ) ) {
-					$option_value .= 'px';
-				}
-
-				if ( 'checked' == MLAOptions::mla_get_option( MLAOptions::MLA_ENABLE_MLA_ICONS ) ) {
-					$class = 'mla_media_thumbnail_64_64';
-				} else {
-					$class = 'mla_media_thumbnail_80_60';
-				}
-
-				echo "  <style type='text/css'>\n";
-				echo "  #icon.column-icon {\n";
-				echo "    width: {$option_value};\n";
-				echo "    max-width: {$option_value};\n";
-				//echo "    height: {$option_value};\n";
-				//echo "    max-height: {$option_value};\n";
-				echo "  }\n";
-				echo "  img.{$class} {\n";
-				echo "    width: {$option_value};\n";
-				echo "    max-width: {$option_value};\n";
-				echo "    height: {$option_value};\n";
-				echo "    max-height: {$option_value};\n";
-				echo "  }\n";
-				echo "  </style>\n";
-			}
-
 			//	Create an instance of our package class...
 			$MLAListTable = apply_filters( 'mla_list_table_new_instance', NULL );
 			if ( is_null( $MLAListTable ) ) {
@@ -1516,16 +1557,16 @@ class MLA {
 			//	Fetch, prepare, sort, and filter our data...
 			$MLAListTable->prepare_items();
 			$MLAListTable->views();
-			
+
 			$view_arguments = MLA_List_Table::mla_submenu_arguments();
 			if ( isset( $view_arguments['lang'] ) ) {
-				$form_url = 'upload.php?page=' . self::ADMIN_PAGE_SLUG . '&lang=' . $view_arguments['lang'];
+				$form_url = 'upload.php?page=' . MLACore::ADMIN_PAGE_SLUG . '&lang=' . $view_arguments['lang'];
 			} else {
-				$form_url = 'upload.php?page=' . self::ADMIN_PAGE_SLUG;
+				$form_url = 'upload.php?page=' . MLACore::ADMIN_PAGE_SLUG;
 			}
 
 			//	 Forms are NOT created automatically, wrap the table in one to use features like bulk actions
-			echo '<form action="' . admin_url( $form_url ) . '" method="post" id="mla-filter">' . "\n";
+			echo "\n" . '<form action="' . admin_url( $form_url ) . '" method="post" id="mla-filter">' . "\n";
 			/*
 			 * Include the Search Media box
 			 */
@@ -1573,132 +1614,6 @@ class MLA {
 	}
 
 	/**
-	 * Ajax handler to fetch candidates for the "Set Parent" popup window
-	 *
-	 * Adapted from wp_ajax_find_posts in /wp-admin/includes/ajax-actions.php.
-	 * Adds filters for post type and pagination.
-	 *
-	 * @since 1.90
-	 *
-	 * @return	void	passes results to wp_send_json_success() for JSON encoding and transmission
-	 */
-	public static function mla_find_posts_ajax_action() {
-		global $wpdb;
-
-		check_ajax_referer( 'mla_find_posts' );
-
-		$post_types = get_post_types( array( 'public' => true ), 'objects' );
-		unset( $post_types['attachment'] );
-
-		$s = stripslashes( $_REQUEST['mla_set_parent_search_text'] );
-		$count = isset( $_REQUEST['mla_set_parent_count'] ) ? $_REQUEST['mla_set_parent_count'] : 50;
-		$paged = isset( $_REQUEST['mla_set_parent_paged'] ) ? $_REQUEST['mla_set_parent_paged'] : 1;
-
-		$args = array(
-			'post_type' => ( 'all' == $_REQUEST['mla_set_parent_post_type'] ) ? array_keys( $post_types ) : $_REQUEST['mla_set_parent_post_type'],
-			'post_status' => 'any',
-			'posts_per_page' => $count,
-			'paged' => $paged,
-		);
-
-		if ( '' !== $s )
-			$args['s'] = $s;
-
-		$posts = get_posts( $args );
-
-		if ( ( ! $posts ) && $paged > 1 ) {
-			$args['paged'] = $paged = 1;
-			$posts = get_posts( $args );
-		}
-
-		$found = count( $posts );
-
-		$html = '<input name="mla_set_parent_count" id="mla-set-parent-count" type="hidden" value="' . $count . "\">\n";
-		$html .= '<input name="mla_set_parent_paged" id="mla-set-parent-paged" type="hidden" value="' . $paged . "\">\n";
-		$html .= '<input name="mla_set_parent_found" id="mla-set-parent-found" type="hidden" value="' . $found . "\">\n";
-
-		$html .= '<table class="widefat"><thead><tr><th class="found-radio"><br /></th><th>'.__('Title').'</th><th class="no-break">'.__('Type').'</th><th class="no-break">'.__('Date').'</th><th class="no-break">'.__('Status').'</th></tr></thead><tbody>' . "\n";
-		if ( $found ) {
-			$alt = '';
-			foreach ( $posts as $post ) {
-				$title = trim( $post->post_title ) ? $post->post_title : __( '(no title)' );
-				$alt = ( 'alternate' == $alt ) ? '' : 'alternate';
-
-				switch ( $post->post_status ) {
-					case 'publish' :
-					case 'private' :
-						$stat = __('Published');
-						break;
-					case 'future' :
-						$stat = __('Scheduled');
-						break;
-					case 'pending' :
-						$stat = __('Pending Review');
-						break;
-					case 'draft' :
-						$stat = __('Draft');
-						break;
-					default:
-						$stat = sanitize_text_field( $post->post_status );
-				}
-
-				if ( '0000-00-00 00:00:00' == $post->post_date ) {
-					$time = '';
-				} else {
-					/* translators: date format in table columns, see http://php.net/date */
-					$time = mysql2date(__('Y/m/d'), $post->post_date);
-				}
-
-				$html .= '<tr class="' . trim( 'found-posts ' . $alt ) . '"><td class="found-radio"><input type="radio" id="found-'.$post->ID.'" name="found_post_id" value="' . esc_attr($post->ID) . '"></td>';
-				$html .= '<td><label for="found-'.$post->ID.'">' . esc_html( $title ) . '</label></td><td class="no-break">' . esc_html( $post_types[$post->post_type]->labels->singular_name ) . '</td><td class="no-break">'.esc_html( $time ) . '</td><td class="no-break">' . esc_html( $stat ). ' </td></tr>' . "\n";
-			} // foreach post
-		} else {
-				$html .= '<tr class="' . trim( 'found-posts ' ) . '"><td class="found-radio">&nbsp;</td>';
-				$html .= '<td colspan="4">No results found.</td></tr>' . "\n";
-		}
-
-		$html .= "</tbody></table>\n";
-
-		wp_send_json_success( $html );
-	}
-
-	/**
-	 * Ajax handler to set post_parent for a single attachment
-	 *
-	 * Adapted from wp_ajax_inline_save in /wp-admin/includes/ajax-actions.php
-	 *
-	 * @since 0.20
-	 *
-	 * @return	void	echo HTML <td> innerHTML for updated call or error message, then die()
-	 */
-	public static function mla_set_parent_ajax_action() {
-		check_ajax_referer( self::MLA_ADMIN_NONCE, 'nonce' );
-
-		if ( empty( $_REQUEST['post_ID'] ) ) {
-			echo __( 'ERROR', 'media-library-assistant' ) . ': ' . __( 'No post ID found', 'media-library-assistant' );
-			die();
-		} else {
-			$post_id = $_REQUEST['post_ID'];
-		}
-
-		if ( ! current_user_can( 'edit_post', $post_id ) ) {
-			wp_die( __( 'ERROR', 'media-library-assistant' ) . ': ' . __( 'You are not allowed to edit this Attachment.', 'media-library-assistant' ) );
-		}
-
-		$results = MLAData::mla_update_single_item( $post_id, $_REQUEST );
-		if ( false !== strpos( $results['message'], __( 'ERROR', 'media-library-assistant' ) ) ) {
-			wp_die( $results['message'] );
-		}
-
-		$new_item = (object) MLAData::mla_get_attachment_by_id( $post_id );
-
-		//	Create an instance of our package class and echo the new HTML
-		$MLAListTable = new MLA_List_Table();
-		$MLAListTable->single_row( $new_item );
-		die(); // this is required to return a proper result
-	}
-
-	/**
 	 * Ajax handler for bulk editing and mapping
 	 *
 	 * @since 2.00
@@ -1724,7 +1639,7 @@ class MLA {
 		 */
 		switch ( $_REQUEST['bulk_action'] ) {
 			case 'bulk_custom_field_map':
-				$_REQUEST['bulk_custom_field_map'] = __( 'Map Custom Field Metadata', 'media-library-assistant' );
+				$_REQUEST['bulk_custom_field_map'] = __( 'Map Custom Field metadata', 'media-library-assistant' );
 				break;
 			case 'bulk_map':
 				$_REQUEST['bulk_map'] = __( 'Map IPTC/EXIF metadata', 'media-library-assistant' );
@@ -1732,7 +1647,7 @@ class MLA {
 			case 'bulk_edit':
 				$_REQUEST['bulk_edit'] = __( 'Update', 'media-library-assistant' );
 		}
-		
+
 		$item_content = (object) self::mla_process_bulk_action( 'edit' );
 		wp_send_json_success( $item_content );
 	}
@@ -1749,10 +1664,10 @@ class MLA {
 	public static function mla_inline_edit_ajax_action() {
 		set_current_screen( $_REQUEST['screen'] );
 
-		check_ajax_referer( self::MLA_ADMIN_NONCE, 'nonce' );
+		check_ajax_referer( MLACore::MLA_ADMIN_NONCE_ACTION, MLACore::MLA_ADMIN_NONCE_NAME );
 
 		if ( ! empty( $_REQUEST['bulk_action'] ) ) {
-			self::_bulk_edit_ajax_handler();
+			self::_bulk_edit_ajax_handler(); // calls wp_send_json_success and die()
 		}
 
 		if ( empty( $_REQUEST['post_ID'] ) ) {
@@ -1770,11 +1685,24 @@ class MLA {
 		 * Custom field support
 		 */
 		$custom_fields = array();
-		foreach (MLAOptions::mla_custom_field_support( 'quick_edit' ) as $slug => $label ) {
+		foreach ( MLACore::mla_custom_field_support( 'quick_edit' ) as $slug => $details ) {
 			if ( isset( $_REQUEST[ $slug ] ) ) {
-				$custom_fields[ $label ] = $_REQUEST[ $slug ];
+				$value = trim( $_REQUEST[ $slug ] );
 				unset ( $_REQUEST[ $slug ] );
-			  }
+
+				// '(Array)' indicates an existing array value in the field, which we preserve
+				if ( 'array' == $details['option'] ) {
+					$value = explode( ',', $value );
+				} elseif ( '(Array)' == $value ) {
+					continue;
+				}
+
+				if ( $details['no_null'] && empty( $value ) ) {
+					$custom_fields[ $details['name'] ] = NULL;
+				} else {
+					$custom_fields[ $details['name'] ] = $value;
+				}
+			}
 		}
 
 		if ( ! empty( $custom_fields ) ) {
@@ -1798,8 +1726,7 @@ class MLA {
 			 * Flat taxonomy strings must be cleaned up and duplicates removed
 			 */
 			$tax_output = array();
-			$tax_input = $_REQUEST['tax_input'];
-			foreach ( $tax_input as $tax_name => $tax_value ) {
+			foreach ( $_REQUEST['tax_input'] as $tax_name => $tax_value ) {
 				if ( ! is_array( $tax_value ) ) {
 					$comma = _x( ',', 'tag_delimiter', 'media-library-assistant' );
 					if ( ',' != $comma ) {
@@ -1824,10 +1751,10 @@ class MLA {
 				} // ! array( $tax_value )
 
 				$tax_output[$tax_name] = $tax_value;
-			} // foreach $tax_input
-		} else { // ! empty( $_REQUEST['tax_input'] )
-			$tax_output = NULL;
-		}
+			} // foreach tax_input
+
+			$_REQUEST['tax_input'] = $tax_output;
+		} // ! empty( $_REQUEST['tax_input'] )
 
 		$item_content = apply_filters( 'mla_list_table_inline_action', NULL, $post_id );
 		if ( is_null( $item_content ) ) {
@@ -1839,13 +1766,20 @@ class MLA {
 		}
 
 		if ( ! $prevent_default ) {
-			$results = MLAData::mla_update_single_item( $post_id, $_REQUEST, $tax_output );
+			MLACore::mla_debug_add( __LINE__ . " MLA::mla_inline_edit_ajax_action( {$post_id} ) \$_REQUEST = " . var_export( $_REQUEST, true ), MLACore::MLA_DEBUG_CATEGORY_AJAX );
+			$results = MLAData::mla_update_single_item( $post_id, $_REQUEST, $_REQUEST['tax_input'] );
+			MLACore::mla_debug_add( __LINE__ . " MLA::mla_inline_edit_ajax_action( {$post_id} ) results = " . var_export( $results, true ), MLACore::MLA_DEBUG_CATEGORY_AJAX );
 		}
-	
+
 		$new_item = (object) MLAData::mla_get_attachment_by_id( $post_id );
+		MLACore::mla_debug_add( __LINE__ . " MLA::mla_inline_edit_ajax_action( {$post_id} ) new_item = " . var_export( $new_item, true ), MLACore::MLA_DEBUG_CATEGORY_AJAX );
 
 		//	Create an instance of our package class and echo the new HTML
-		$MLAListTable = new MLA_List_Table();
+		$MLAListTable = apply_filters( 'mla_list_table_new_instance', NULL );
+		if ( is_null( $MLAListTable ) ) {
+			$MLAListTable = new MLA_List_Table();
+		}
+
 		$MLAListTable->single_row( $new_item );
 		die(); // this is required to return a proper result
 	}
@@ -1854,7 +1788,6 @@ class MLA {
 	 * Compose a Post Type Options list with current selection
  	 *
 	 * @since 1.90
-	 * @uses $mla_option_templates contains row and table templates
 	 *
 	 * @param	array 	template parts
 	 * @param	string 	current selection or 'all' (default)
@@ -1901,10 +1834,10 @@ class MLA {
 	 * @return	string	HTML <form> markup for hidden form
 	 */
 	public static function mla_set_parent_form( $return_form = true ) {
-		$set_parent_template = MLAData::mla_load_template( 'admin-set-parent-form.tpl' );
+		$set_parent_template = MLACore::mla_load_template( 'admin-set-parent-form.tpl' );
 		if ( ! is_array( $set_parent_template ) ) {
 			/* translators: 1: ERROR tag 2: function name 3: non-array value */
-			error_log( sprintf( _x( '%1$s: %2$s non-array "%3$s"', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'MLA::_build_inline_edit_form', var_export( $set_parent_template, true ) ), 0 );
+			MLACore::mla_debug_add( sprintf( _x( '%1$s: %2$s non-array "%3$s"', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'MLA::_build_inline_edit_form', var_export( $set_parent_template, true ) ), MLACore::MLA_DEBUG_CATEGORY_ANY );
 			return '';
 		}
 
@@ -1941,9 +1874,9 @@ class MLA {
 		}
 
 		$page_values = array(
-			'mla_set_parent_url' => esc_url( add_query_arg( array_merge( MLA_List_Table::mla_submenu_arguments( false ), array( 'page' => MLA::ADMIN_PAGE_SLUG ) ), admin_url( 'upload.php' ) ) ),
-			'mla_set_parent_action' => self::MLA_ADMIN_SET_PARENT,
-			'wpnonce' => wp_nonce_field( self::MLA_ADMIN_NONCE, '_wpnonce', true, false ),
+			'mla_set_parent_url' => esc_url( add_query_arg( array_merge( MLA_List_Table::mla_submenu_arguments( false ), array( 'page' => MLACore::ADMIN_PAGE_SLUG ) ), admin_url( 'upload.php' ) ) ),
+			'mla_set_parent_action' => MLACore::MLA_ADMIN_SET_PARENT,
+			'wpnonce' => wp_nonce_field( MLACore::MLA_ADMIN_NONCE_ACTION, MLACore::MLA_ADMIN_NONCE_NAME, true, false ),
 			'mla_set_parent_div' => $set_parent_div,
 		);
 
@@ -1969,17 +1902,17 @@ class MLA {
 		$hierarchical_taxonomies = array();
 		$flat_taxonomies = array();
 		foreach ( $taxonomies as $tax_name => $tax_object ) {
-			if ( $tax_object->hierarchical && $tax_object->show_ui && MLAOptions::mla_taxonomy_support($tax_name, 'quick-edit') ) {
+			if ( $tax_object->hierarchical && $tax_object->show_ui && MLACore::mla_taxonomy_support($tax_name, 'quick-edit') ) {
 				$hierarchical_taxonomies[$tax_name] = $tax_object;
-			} elseif ( $tax_object->show_ui && MLAOptions::mla_taxonomy_support($tax_name, 'quick-edit') ) {
+			} elseif ( $tax_object->show_ui && MLACore::mla_taxonomy_support($tax_name, 'quick-edit') ) {
 				$flat_taxonomies[$tax_name] = $tax_object;
 			}
 		}
 
-		$page_template_array = MLAData::mla_load_template( 'admin-inline-edit-form.tpl' );
+		$page_template_array = MLACore::mla_load_template( 'admin-inline-edit-form.tpl' );
 		if ( ! is_array( $page_template_array ) ) {
 			/* translators: 1: ERROR tag 2: function name 3: non-array value */
-			error_log( sprintf( _x( '%1$s: %2$s non-array "%3$s"', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'MLA::_build_inline_edit_form', var_export( $page_template_array, true ) ), 0 );
+			MLACore::mla_debug_add( sprintf( _x( '%1$s: %2$s non-array "%3$s"', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'MLA::_build_inline_edit_form', var_export( $page_template_array, true ) ), MLACore::MLA_DEBUG_CATEGORY_ANY );
 			return '';
 		}
 
@@ -1993,10 +1926,10 @@ class MLA {
 		}
 
 		$custom_fields = '';
-		foreach (MLAOptions::mla_custom_field_support( 'quick_edit' ) as $slug => $label ) {
+		foreach ( MLACore::mla_custom_field_support( 'quick_edit' ) as $slug => $details ) {
 			  $page_values = array(
 				  'slug' => $slug,
-				  'label' => esc_attr( $label ),
+				  'label' => esc_attr( $details['name'] ),
 			  );
 			  $custom_fields .= MLAData::mla_parse_template( $page_template_array['custom_field'], $page_values );
 		}
@@ -2014,7 +1947,7 @@ class MLA {
 			foreach ( $hierarchical_taxonomies as $tax_name => $tax_object ) {
 				if ( current_user_can( $tax_object->cap->assign_terms ) ) {
 				  ob_start();
-				  wp_terms_checklist( NULL, array( 'taxonomy' => $tax_name ) );
+				  wp_terms_checklist( NULL, array( 'taxonomy' => $tax_name, 'popular_cats' => array(), ) );
 				  $tax_checklist = ob_get_contents();
 				  ob_end_clean();
   
@@ -2095,23 +2028,34 @@ class MLA {
 		}
 
 		$bulk_custom_fields = '';
-		foreach (MLAOptions::mla_custom_field_support( 'bulk_edit' ) as $slug => $label ) {
+		foreach ( MLACore::mla_custom_field_support( 'bulk_edit' ) as $slug => $details ) {
 			  $page_values = array(
 				  'slug' => $slug,
-				  'label' => esc_attr( $label ),
+				  'label' => esc_attr( $details['name'] ),
 			  );
 			  $bulk_custom_fields .= MLAData::mla_parse_template( $page_template_array['custom_field'], $page_values );
 		}
 
 		$set_parent_form = MLA::mla_set_parent_form();
 
+		if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_BULK_EDITOR ) ) {
+			$quicktags_settings = array( 'buttons' => 'strong,em,link,block,del,ins,img,ul,ol,li,code,close' );
+			ob_start();
+			wp_editor( '', 'post_content', array( 'media_buttons' => false, 'tinymce' => false, 'textarea_rows' => 5, 'quicktags' => $quicktags_settings ) );
+			$description_field = ob_get_contents();
+			ob_end_clean();
+		} else {
+			$description_field = '<textarea class="widefat" name="post_content"></textarea>';
+		}
+
 		$page_values = array(
-			'colspan' => count( $MLAListTable->get_columns() ),
+			'colspan' => $MLAListTable->get_column_count(),
 			'Quick Edit' => __( 'Quick Edit', 'media-library-assistant' ),
 			'Title' => __( 'Title', 'media-library-assistant' ),
 			'Name/Slug' => __( 'Name/Slug', 'media-library-assistant' ),
 			'Caption' => __( 'Caption', 'media-library-assistant' ),
 			'Description' => __( 'Description', 'media-library-assistant' ),
+			'description_field' => $description_field,
 			'ALT Text' => __( 'ALT Text', 'media-library-assistant' ),
 			'Parent ID' => __( 'Parent ID', 'media-library-assistant' ),
 			'Select' => __( 'Select', 'media-library-assistant' ),
@@ -2121,6 +2065,7 @@ class MLA {
 			'quick_middle_column' => $quick_middle_column,
 			'quick_right_column' => $quick_right_column,
 			'Cancel' => __( 'Cancel', 'media-library-assistant' ),
+			'Reset' => __( 'Reset', 'media-library-assistant' ),
 			'Update' => __( 'Update', 'media-library-assistant' ),
 			'Bulk Edit' => __( 'Bulk Edit', 'media-library-assistant' ),
 			'bulk_middle_column' => $bulk_middle_column,
@@ -2132,15 +2077,25 @@ class MLA {
 			'Allow' => __( 'Allow', 'media-library-assistant' ),
 			'Do not allow' => __( 'Do not allow', 'media-library-assistant' ),
 			'bulk_custom_fields' => $bulk_custom_fields,
+			'bulk_map_style' => '',
 			'Map IPTC/EXIF metadata' =>  __( 'Map IPTC/EXIF metadata', 'media-library-assistant' ),
-			'Map Custom Field metadata' =>  __( 'Map Custom Field Metadata', 'media-library-assistant' ),
+			'bulk_custom_field_map_style' => '',
+			'Map Custom Field metadata' =>  __( 'Map Custom Field metadata', 'media-library-assistant' ),
 			'Bulk Waiting' =>  __( 'Waiting', 'media-library-assistant' ),
 			'Bulk Running' =>  __( 'In-process', 'media-library-assistant' ),
 			'Bulk Complete' =>  __( 'Complete', 'media-library-assistant' ),
 			'Refresh' =>  __( 'Refresh', 'media-library-assistant' ),
 			'set_parent_form' => $set_parent_form,
 		);
-		
+
+		if ( 'checked' != MLACore::mla_get_option( MLACoreOptions::MLA_ALLOW_CUSTOM_FIELD_MAPPING ) ) {
+			$page_values['bulk_custom_field_map_style'] = 'display: none';
+		}
+
+		if ( 'checked' != MLACore::mla_get_option( MLACoreOptions::MLA_ALLOW_IPTC_EXIF_MAPPING ) ) {
+			$page_values['bulk_map_style'] = 'display: none';
+		}
+
 		$page_values = apply_filters( 'mla_list_table_inline_values', $page_values );
 		$page_template = apply_filters( 'mla_list_table_inline_template', $page_template_array['page'] );
 		$parse_value = MLAData::mla_parse_template( $page_template, $page_values );
@@ -2243,290 +2198,6 @@ class MLA {
 			/* translators: 1: post ID */
 			'message' => sprintf( __( 'Item %1$d permanently deleted.', 'media-library-assistant' ), $post_id ),
 			'body' => '' 
-		);
-	}
-
-	/**
-	 * Display a single item sub page; prepare the form to 
-	 * change the meta data for a single attachment.
-	 * 
-	 * This function is not used in WordPress 3.5 and later.
-	 *
-	 * @since 0.1
-	 * 
-	 * @param	integer	The WordPress Post ID of the attachment item
-	 *
-	 * @return	array	message and/or HTML content
-	 */
-	private static function _display_single_item( $post_id ) {
-		global $post;
-
-		/*
-		 * This function sets the global $post
-		 */
-		$post_data = MLAData::mla_get_attachment_by_id( $post_id );
-		if ( !isset( $post_data ) ) {
-			return array(
-				'message' => __( 'ERROR', 'media-library-assistant' ) . ': ' . __( 'Could not retrieve Attachment.', 'media-library-assistant' ),
-				'body' => '' 
-			);
-		}
-
-		if ( ! current_user_can( 'edit_post', $post_id ) ) {
-			return array(
-				'message' => __( 'You are not allowed to edit this Attachment.', 'media-library-assistant' ),
-				'body' => '' 
-			);
-		}
-
-		if ( 0 === strpos( strtolower( $post_data['post_mime_type'] ), 'image' )  ) {
-			$page_template_array = MLAData::mla_load_template( 'admin-display-single-image.tpl' );
-			$width = isset( $post_data['mla_wp_attachment_metadata']['width'] ) ? $post_data['mla_wp_attachment_metadata']['width'] : '';
-			$height = isset( $post_data['mla_wp_attachment_metadata']['height'] ) ? $post_data['mla_wp_attachment_metadata']['height'] : '';
-			$image_meta = var_export( $post_data['mla_wp_attachment_metadata'], true );
-
-			if ( !isset( $post_data['mla_wp_attachment_image_alt'] ) ) {
-				$post_data['mla_wp_attachment_image_alt'] = '';
-			}
-		} else {
-			$page_template_array = MLAData::mla_load_template( 'admin-display-single-document.tpl' );
-			$width = '';
-			$height = '';
-			$image_meta = '';
-		}
-
-		if ( array( $page_template_array ) ) {
-			$page_template = $page_template_array['page'];
-			$authors_template = $page_template_array['authors'];
-			$postbox_template = $page_template_array['postbox'];
-		} else {
-			/* translators: 1: ERROR tag 2: page_template_array */
-			error_log( sprintf( _x( '%1$s: MLA::_display_single_item \$page_template_array = "%2$s"', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), var_export( $page_template_array, true ) ), 0 );
-			$page_template = $page_template_array;
-			$authors_template = '';
-			$postbox_template = '';
-		}
-
-		if ( empty($post_data['mla_references']['parent_title'] ) ) {
-			$parent_info = $post_data['mla_references']['parent_errors'];
-		} else {
-			$parent_info = sprintf( '(%1$s) %2$s %3$s', $post_data['mla_references']['parent_type'], $post_data['mla_references']['parent_title'], $post_data['mla_references']['parent_errors'] );
-		}
-
-		if ( $authors = self::mla_authors_dropdown( $post_data['post_author'], 'attachments[' . $post_data['ID'] . '][post_author]' ) ) {
-			$args = array (
-				'ID' => $post_data['ID'],
-				'Author' => __( 'Author', 'media-library-assistant' ),
-				'authors' => $authors
-				);
-			$authors = MLAData::mla_parse_template( $authors_template, $args );
-		} else {
-			$authors = '';
-		}
-
-		if ( MLAOptions::$process_featured_in ) {
-			$features = '';
-
-			foreach ( $post_data['mla_references']['features'] as $feature_id => $feature ) {
-				if ( $feature_id == $post_data['post_parent'] ) {
-					$parent = __( 'PARENT', 'media-library-assistant' ) . ' ';
-				} else {
-					$parent = '';
-				}
-
-				$features .= sprintf( '%1$s (%2$s %3$s), %4$s', /*$1%s*/ $parent, /*$2%s*/ $feature->post_type, /*$3%s*/ $feature_id, /*$4%s*/ $feature->post_title ) . "\n";
-			} // foreach $feature
-		} else {
-			$features = __( 'Disabled', 'media-library-assistant' );
-		}
-
-		if ( MLAOptions::$process_inserted_in ) {
-			$inserts = '';
-
-			foreach ( $post_data['mla_references']['inserts'] as $file => $insert_array ) {
-				$inserts .= $file . "\n";
-
-				foreach ( $insert_array as $insert ) {
-					if ( $insert->ID == $post_data['post_parent'] ) {
-						$parent = '  ' . __( 'PARENT', 'media-library-assistant' ) . ' ';
-					} else {
-						$parent = '  ';
-					}
-
-					$inserts .= sprintf( '%1$s (%2$s %3$s), %4$s', /*$1%s*/ $parent, /*$2%s*/ $insert->post_type, /*$3%s*/ $insert->ID, /*$4%s*/ $insert->post_title ) . "\n";
-				} // foreach $insert
-			} // foreach $file
-		} else {
-			$inserts = __( 'Disabled', 'media-library-assistant' );
-		}
-
-		if ( MLAOptions::$process_gallery_in ) {
-			$galleries = '';
-
-			foreach ( $post_data['mla_references']['galleries'] as $gallery_id => $gallery ) {
-				if ( $gallery_id == $post_data['post_parent'] ) {
-					$parent = __( 'PARENT', 'media-library-assistant' ) . ' ';
-				} else {
-					$parent = '';
-				}
-
-				$galleries .= sprintf( '%1$s (%2$s %3$s), %4$s', /*$1%s*/ $parent, /*$2%s*/ $gallery['post_type'], /*$3%s*/ $gallery_id, /*$4%s*/ $gallery['post_title'] ) . "\n";
-			} // foreach $gallery
-		} else {
-			$galleries = __( 'Disabled', 'media-library-assistant' );
-		}
-
-		if ( MLAOptions::$process_mla_gallery_in ) {
-			$mla_galleries = '';
-
-			foreach ( $post_data['mla_references']['mla_galleries'] as $gallery_id => $gallery ) {
-				if ( $gallery_id == $post_data['post_parent'] ) {
-					$parent = __( 'PARENT', 'media-library-assistant' ) . ' ';
-				} else {
-					$parent = '';
-				}
-
-				$mla_galleries .= sprintf( '%1$s (%2$s %3$s), %4$s', /*$1%s*/ $parent, /*$2%s*/ $gallery['post_type'], /*$3%s*/ $gallery_id, /*$4%s*/ $gallery['post_title'] ) . "\n";
-			} // foreach $gallery
-		} else {
-			$mla_galleries = __( 'Disabled', 'media-library-assistant' );
-		}
-
-		/*
-		 * WordPress doesn't look in hidden fields to set the month filter dropdown or sorting parameters
-		 */
-		if ( isset( $_REQUEST['m'] ) ) {
-			$url_args = '&m=' . $_REQUEST['m'];
-		} else {
-			$url_args = '';
-		}
-
-		if ( isset( $_REQUEST['post_mime_type'] ) ) {
-			$url_args .= '&post_mime_type=' . $_REQUEST['post_mime_type'];
-		}
-
-		if ( isset( $_REQUEST['order'] ) ) {
-			$url_args .= '&order=' . $_REQUEST['order'];
-		}
-
-		if ( isset( $_REQUEST['orderby'] ) ) {
-			$url_args .= '&orderby=' . $_REQUEST['orderby'];
-		}
-
-		/*
-		 * Add the current view arguments
-		 */
-		if ( isset( $_REQUEST['detached'] ) ) {
-			$view_args = '<input type="hidden" name="detached" value="' . $_REQUEST['detached'] . "\" />\n";
-		} elseif ( isset( $_REQUEST['status'] ) ) {
-			$view_args = '<input type="hidden" name="status" value="' . $_REQUEST['status'] . "\" />\n";
-		} else {
-			$view_args = '';
-		}
-
-		if ( isset( $_REQUEST['paged'] ) ) {
-			$view_args .= sprintf( '<input type="hidden" name="paged" value="%1$s" />', $_REQUEST['paged'] ) . "\n";
-		}
-
-		$side_info_column = '';
-		$taxonomies = get_object_taxonomies( 'attachment', 'objects' );
-
-		foreach ( $taxonomies as $tax_name => $tax_object ) {
-			ob_start();
-
-			if ( $tax_object->hierarchical && $tax_object->show_ui ) {
-				$box = array(
-					 'id' => $tax_name . 'div',
-					'title' => esc_html( $tax_object->labels->name ),
-					'callback' => 'categories_meta_box',
-					'args' => array(
-						 'taxonomy' => $tax_name 
-					),
-					'inside_html' => '' 
-				);
-				post_categories_meta_box( $post, $box );
-			} elseif ( $tax_object->show_ui ) {
-				$box = array(
-					 'id' => 'tagsdiv-' . $tax_name,
-					'title' => esc_html( $tax_object->labels->name ),
-					'callback' => 'post_tags_meta_box',
-					'args' => array(
-						 'taxonomy' => $tax_name 
-					),
-					'inside_html' => '' 
-				);
-				post_tags_meta_box( $post, $box );
-			}
-
-			$box['inside_html'] = ob_get_contents();
-			ob_end_clean();
-			$side_info_column .= MLAData::mla_parse_template( $postbox_template, $box );
-		}
-
-		$page_values = array(
-			'form_url' => admin_url( 'upload.php' ) . '?page=' . self::ADMIN_PAGE_SLUG . $url_args,
-			'ID' => $post_data['ID'],
-			'post_mime_type' => $post_data['post_mime_type'],
-			'menu_order' => $post_data['menu_order'],
-			'mla_admin_action' => self::MLA_ADMIN_SINGLE_EDIT_UPDATE,
-			'view_args' => $view_args,
-			'wpnonce' => wp_nonce_field( self::MLA_ADMIN_NONCE, '_wpnonce', true, false ),
-			'Cancel' => __( 'Cancel', 'media-library-assistant' ),
-			'Update' => __( 'Update', 'media-library-assistant' ),
-			'Map IPTC/EXIF metadata' =>  __( 'Map IPTC/EXIF metadata', 'media-library-assistant' ),
-			'attachment_icon' => wp_get_attachment_image( $post_id, array( 160, 120 ), true ),
-			'File name' => __( 'File name', 'media-library-assistant' ),
-			'file_name' => esc_html( $post_data['mla_references']['file'] ),
-			'File type' => __( 'File type', 'media-library-assistant' ),
-			'Upload date' => __( 'Upload date', 'media-library-assistant' ),
-			'post_date' => $post_data['post_date'],
-			'Last modified' => __( 'Last modified', 'media-library-assistant' ),
-			'post_modified' => $post_data['post_modified'],
-			'Dimensions' => __( 'Dimensions', 'media-library-assistant' ),
-			'width' => $width,
-			'height' => $height,
-			'Title' => __( 'Title', 'media-library-assistant' ),
-			'required' => __( 'required', 'media-library-assistant' ),
-			'post_title_attr' => esc_attr( $post_data['post_title'] ),
-			'Name/Slug' => __( 'Name/Slug', 'media-library-assistant' ),
-			'post_name_attr' => esc_attr( $post_data['post_name'] ),
-			'Must be unique' => __( 'Must be unique; will be validated.', 'media-library-assistant' ),
-			'ALT Text' => __( 'ALT Text', 'media-library-assistant' ),
-			'image_alt_attr' => '',
-			'ALT Text Help' => __( 'Alternate text for the image, e.g. &#8220;The Mona Lisa&#8221;', 'media-library-assistant' ),
-			'Caption' => __( 'Caption', 'media-library-assistant' ),
-			'post_excerpt_attr' => esc_attr( $post_data['post_excerpt'] ),
-			'Description' => __( 'Description', 'media-library-assistant' ),
-			'post_content' => esc_textarea( $post_data['post_content'] ),
-			'Parent Info' => __( 'Parent Info', 'media-library-assistant' ),
-			'post_parent' => $post_data['post_parent'],
-			'parent_info' => esc_attr( $parent_info ),
-			'Parent Info Help' => __( 'ID, type and title of parent, if any.', 'media-library-assistant' ),
-			'Menu Order' => __( 'Menu Order', 'media-library-assistant' ),
-			'authors' => $authors,
-			'File URL' => __( 'File URL', 'media-library-assistant' ),
-			'guid_attr' => esc_attr( $post_data['guid'] ),
-			'File URL Help' => __( 'Location of the uploaded file.', 'media-library-assistant' ),
-			'Image Metadata' => __( 'Image Metadata', 'media-library-assistant' ),
-			'image_meta' => esc_textarea( $image_meta ),
-			'Featured in' => __( 'Featured in', 'media-library-assistant' ),
-			'features' => esc_textarea( $features ),
-			'Inserted in' => __( 'Inserted in', 'media-library-assistant' ),
-			'inserts' => esc_textarea( $inserts ),
-			'Gallery in' => __( 'Gallery in', 'media-library-assistant' ),
-			'galleries' => esc_textarea( $galleries ),
-			'MLA Gallery in' => __( 'MLA Gallery in', 'media-library-assistant' ),
-			'mla_galleries' => esc_textarea( $mla_galleries ),
-			'side_info_column' => $side_info_column 
-		);
-
-		if ( !empty( $post_data['mla_wp_attachment_image_alt'] ) ) {
-			$page_values['image_alt_attr'] = esc_attr( $post_data['mla_wp_attachment_image_alt'] );
-		}
-
-		return array(
-			'message' => '',
-			'body' => MLAData::mla_parse_template( $page_template, $page_values ) 
 		);
 	}
 

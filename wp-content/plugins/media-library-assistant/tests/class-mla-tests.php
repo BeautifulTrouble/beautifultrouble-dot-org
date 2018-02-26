@@ -15,14 +15,23 @@
  */
 class MLATest {
 	/**
-	 * True if WordPress version is 3.5 or newer
+	 * True if WordPress version is 3.5.x
 	 *
-	 * @since 0.60
+	 * @since 2.14
 	 *
 	 * @var	boolean
 	 */
-	public static $wordpress_3point5_plus = null;
-	
+	public static $wp_3dot5 = null;
+
+	/**
+	 * True if WordPress version is 4.3 or newer
+	 *
+	 * @since 2.13
+	 *
+	 * @var	boolean
+	 */
+	public static $wp_4dot3_plus = null;
+
 	/**
 	 * Initialization function, similar to __construct()
 	 *
@@ -31,12 +40,17 @@ class MLATest {
 	 * @return	void
 	 */
 	public static function initialize() {
-		MLATest::$wordpress_3point5_plus = version_compare( get_bloginfo( 'version' ), '3.5', '>=' );
-		
-		/*
-		 * This is the earliest effective place to add E_STRICT to error_reporting
-		 */
-		//error_reporting( E_ALL | E_STRICT );
+		MLATest::$wp_3dot5 = ( version_compare( get_bloginfo( 'version' ), '3.5.0', '>=' ) && version_compare( get_bloginfo( 'version' ), '3.5.99', '<=' ) );
+		MLATest::$wp_4dot3_plus = version_compare( get_bloginfo( 'version' ), '4.2.99', '>=' );
+
+		// This is the earliest effective place to change error_reporting
+		$php_reporting = trim( MLACore::mla_get_option( MLACoreOptions::MLA_DEBUG_REPLACE_PHP_REPORTING ) );
+		if ( ! empty( $php_reporting ) ) {
+			@error_reporting( 0 + $php_reporting );
+		}
+
+		// This is the earliest effective place to localize values in other plugin components
+		MLACoreOptions::mla_localize_option_definitions_array();
 	}
 
 	/**
@@ -57,7 +71,7 @@ class MLATest {
 
 		return '';
 	}
-	
+
 	/**
 	 * Test that your WordPress version is at least that of the $min_version
 	 *
@@ -76,6 +90,6 @@ class MLATest {
 
 		return '';
 	}
-	
+
 } // class MLATest
 ?>

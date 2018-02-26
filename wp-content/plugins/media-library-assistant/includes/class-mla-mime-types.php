@@ -22,11 +22,18 @@ class MLAMime {
 	 * @return	void
 	 */
 	public static function initialize() {
+		self::_localize_default_upload_columns();
+		self::_localize_default_upload_optional_columns();
+		self::_localize_default_view_columns();
+
 //		add_filter( 'sanitize_mime_type', 'MLAMime::mla_sanitize_mime_type_filter', 0x7FFFFFFF, 2 );
 		add_filter( 'ext2type', 'MLAMime::mla_ext2type_filter', 0x7FFFFFFF, 1 );
 //		add_filter( 'wp_check_filetype_and_ext', 'MLAMime::mla_wp_check_filetype_and_ext_filter', 0x7FFFFFFF, 4 );
 
-		if ( 'checked' == MLAOptions::mla_get_option( MLAOptions::MLA_ENABLE_UPLOAD_MIMES ) ) {
+		// Handle WP 4.6.2, 4.7.x SVG bug
+		add_filter( 'getimagesize_mimes_to_exts', 'MLAMime::mla_getimagesize_mimes_to_exts_filter', 0x7FFFFFFF, 1 );
+
+		if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_ENABLE_UPLOAD_MIMES ) ) {
 			if ( function_exists('wp_get_mime_types') ) {
 				add_filter( 'mime_types', 'MLAMime::mla_mime_types_filter', 0x7FFFFFFF, 1 );
 			}
@@ -34,14 +41,14 @@ class MLAMime {
 			add_filter( 'upload_mimes', 'MLAMime::mla_upload_mimes_filter', 0x7FFFFFFF, 2 );
 		}
 
-		if ( 'checked' == MLAOptions::mla_get_option( MLAOptions::MLA_ENABLE_POST_MIME_TYPES ) ) {
+		if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_ENABLE_POST_MIME_TYPES ) ) {
 			add_filter( 'post_mime_types', 'MLAMime::mla_post_mime_types_filter', 0x7FFFFFFF, 1 );
 		}
 
 		add_filter( 'icon_dir', 'MLAMime::mla_icon_dir_filter', 0x7FFFFFFF, 1 );
 		add_filter( 'icon_dir_uri', 'MLAMime::mla_icon_dir_uri_filter', 0x7FFFFFFF, 1 );
 		add_filter( 'icon_dirs', 'MLAMime::mla_icon_dirs_filter', 0x7FFFFFFF, 1 );
-//		add_filter( 'wp_mime_type_icon', 'MLAMime::mla_wp_mime_type_icon_filter', 0x7FFFFFFF, 3 );
+		//add_filter( 'wp_mime_type_icon', 'MLAMime::mla_wp_mime_type_icon_filter', 0x7FFFFFFF, 3 );
 	}
 
 	/**
@@ -53,6 +60,33 @@ class MLAMime {
 	 */
 	private static $disable_mla_filtering = false;
 
+	/**
+	 * Filters the list mapping image mime types to their respective extensions.
+	 *
+	 * Mitigates a bug in WP 4.6.x and 4.7.x that prevents uploading SVG files.
+	 *
+	 * @since 2.50
+	 *
+	 * @param  array $mime_to_ext Array of image mime types and their matching extensions.
+	 */
+	public static function mla_getimagesize_mimes_to_exts_filter( $mime_to_ext ) {
+		$wp_version = get_bloginfo('version');
+		if ( version_compare( $wp_version, '4.6.2', '<' ) || version_compare( $wp_version, '4.7.2', '>' ) ) {
+			return $mime_to_ext;
+		}
+		
+		if ( ! ( isset( $_REQUEST['name'] ) && isset( $_REQUEST['mlaAddNewBulkEditFormString'] ) ) ) {
+			return $mime_to_ext;
+		}
+		
+		$file_name = strtolower( $_REQUEST['name'] );
+		if ( false === strpos( $file_name, '.svg' ) ) {
+			return $mime_to_ext;
+		}
+		
+		return array_merge( $mime_to_ext, array( 'application/octet-stream' => 'svg' ) );
+	}
+	
 	/**
 	 * Sanitize a MIME type
 	 *
@@ -126,7 +160,7 @@ class MLAMime {
 		$items = self::mla_query_upload_items( array( 'mla_upload_view' => 'active' ), 0, 0 );
 		$pairs = array();
 		foreach ( $items as $value )
-			if ( 'checked' == MLAOptions::mla_get_option( MLAOptions::MLA_ENABLE_MLA_ICONS ) ) {
+			if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_ENABLE_MLA_ICONS ) ) {
 				$pairs[ $value->slug ] = $value->icon_type;
 			} else {
 				$pairs[ $value->slug ] = $value->wp_icon_type;
@@ -249,7 +283,7 @@ class MLAMime {
 	 * provided by Multisite Super Admins at wp-admin/network/settings.php." Multisite installs must
 	 * respect this restriction, so any list we produce will be passed thru that function if it exists.
 	 *
-	 * This function is defined as public because it's a filter.
+	 * Defined as public because it's a filter.
 	 *
 	 * @since 1.40
 	 *
@@ -391,9 +425,7 @@ class MLAMime {
 	 * @return	string	Updated path to the icon directory, no trailing slash
 	 */
 	public static function mla_icon_dir_filter( $path ) {
-		global $wp_filter;
-
-		if ( 'checked' == MLAOptions::mla_get_option( MLAOptions::MLA_ENABLE_MLA_ICONS ) ) {
+		if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_ENABLE_MLA_ICONS ) ) {
 			return MLA_PLUGIN_PATH . 'images/crystal';
 		}
 		 
@@ -413,9 +445,7 @@ class MLAMime {
 	 * @return	string	Updated path to the icon directory URL, no trailing slash
 	 */
 	public static function mla_icon_dir_uri_filter( $uri ) {
-		global $wp_filter;
-
-		if ( 'checked' == MLAOptions::mla_get_option( MLAOptions::MLA_ENABLE_MLA_ICONS ) ) {
+		if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_ENABLE_MLA_ICONS ) ) {
 			return MLA_PLUGIN_URL . 'images/crystal';
 		}
 
@@ -435,9 +465,7 @@ class MLAMime {
 	 * @return	array	Updated (path => URI) array
 	 */
 	public static function mla_icon_dirs_filter( $path_uri_array ) {
-		global $wp_filter;
-
-		if ( 'checked' == MLAOptions::mla_get_option( MLAOptions::MLA_ENABLE_MLA_ICONS ) ) {
+		if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_ENABLE_MLA_ICONS ) ) {
 			$path_uri_array [ MLA_PLUGIN_PATH . 'images/crystal' ] = MLA_PLUGIN_URL . 'images/crystal';
 		}
 
@@ -456,11 +484,249 @@ class MLAMime {
 	 * @param	string	MIME type represented by the icon
 	 * @param	integer	Attachment ID or zero (0) if MIME type passed in
 	 *
-	 * @return	array	Updated (path => URI) array
+	 * @return	array	Updated URI to the MIME type icon
 	 */
 	public static function mla_wp_mime_type_icon_filter( $icon, $mime, $post_id ) {
 		return $icon;
 	} // mla_wp_mime_type_icon_filter
+
+	/**
+	 * Table column definitions, Settings/Uploads tab table
+	 *
+	 * This array defines table columns and titles where the key is the column slug (and class)
+	 * and the value is the column's title text.
+	 * 
+	 * All of the columns are added to this array by 
+	 * MLAMime::_localize_default_upload_columns.
+	 *
+	 * @since 1.40
+	 *
+	 * @var	array
+	 */
+	public static $default_upload_columns = array();
+
+	/**
+	 * Sortable column definitions, Settings/Uploads tab table
+	 *
+	 * This array defines the table columns that can be sorted. The array key
+	 * is the column slug that needs to be sortable, and the value is database column
+	 * to sort by. Often, the key and value will be the same, but this is not always
+	 * the case (as the value is a column name from the database, not the list table).
+	 *
+	 * The array value also contains a boolean which is 'true' if the initial sort order
+	 * for the column is DESC/Descending.
+	 *
+	 * @since 1.40
+	 *
+	 * @var	array
+	 */
+	public static $default_sortable_upload_columns = array(
+		'name' => array('slug',false),
+		'mime_type' => array('mime_type',false),
+		'icon_type' => array('icon_type',false),
+		'source' => array('source',false),
+		'status'  => array('disabled',false),
+		'core_type'  => array('core_type',false),
+		'mla_type' => array('mla_type',false),
+		'standard_source' => array('standard_source',false),
+		'core_icon_type' => array('core_icon_type',false),
+		'description' => array('description',false)
+        );
+
+	/**
+	 * Builds the $default_upload_columns array with translated source texts.
+	 *
+	 * @since 1.71
+	 *
+	 * @return	void
+	 */
+	public static function _localize_default_upload_columns( ) {
+		/*
+		 * Build the default columns array at runtime to accomodate calls to the localization functions
+		 */
+		self::$default_upload_columns = array(
+			'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
+			'icon'   => '',		
+			'name' => _x( 'Extension', 'list_table_column', 'media-library-assistant' ),
+			'mime_type' => _x( 'MIME Type', 'list_table_column', 'media-library-assistant' ),
+			'icon_type' => _x( 'Icon Type', 'list_table_column', 'media-library-assistant' ),
+			'source' => _x( 'Source', 'list_table_column', 'media-library-assistant' ),
+			'status'  => _x( 'Status', 'list_table_column', 'media-library-assistant' ),
+			'core_type'  => _x( 'WordPress Type', 'list_table_column', 'media-library-assistant' ),
+			'mla_type' => _x( 'MLA Type', 'list_table_column', 'media-library-assistant' ),
+			'standard_source' => _x( 'Std. Source', 'list_table_column', 'media-library-assistant' ),
+			'core_icon_type' => _x( 'Std. Icon Type', 'list_table_column', 'media-library-assistant' ),
+			'description' => _x( 'Description', 'list_table_column', 'media-library-assistant' )
+		);
+	}
+
+	/**
+	 * Return the orderby values of the sortable columns
+	 *
+	 * @since 1.40
+	 *
+	 * @return	array	orderby_valuecolumn_slug => array( , initial_descending_sort ) for sortable columns
+	 */
+	private static function _get_sortable_upload_columns( ) {
+		$results = array();
+		foreach ( self::$default_sortable_upload_columns as $key => $value ) {
+			$results[ $value[0] ] = $value[0];
+		}
+		
+		return $results;
+	}
+
+	/**
+	 * Table column definitions
+	 *
+	 * This array defines table columns and titles where the key is the column slug (and class)
+	 * and the value is the column's title text.
+	 * 
+	 * All of the columns are added to this array by 
+	 * MLAMime::_localize_default_upload_optional_columns.
+	 *
+	 * @since 1.40
+	 *
+	 * @var	array
+	 */
+	public static $default_upload_optional_columns = array();
+
+	/**
+	 * Sortable column definitions
+	 *
+	 * This array defines the table columns that can be sorted. The array key
+	 * is the column slug that needs to be sortable, and the value is database column
+	 * to sort by. Often, the key and value will be the same, but this is not always
+	 * the case (as the value is a column name from the database, not the list table).
+	 *
+	 * The array value also contains a boolean which is 'true' if the initial sort order
+	 * for the column is DESC/Descending.
+	 *
+	 * @since 1.40
+	 *
+	 * @var	array
+	 */
+	public static $default_upload_optional_sortable_columns = array(
+		'name' => array('slug',false),
+		'mime_type' => array('mime_type',false),
+		'core_type' => array('core_type',false),
+		'mla_type' => array('mla_type',false),
+		'description' => array('description',false)
+        );
+
+	/**
+	 * Builds the $default_upload_optional_columns array with translated source texts.
+	 *
+	 * @since 1.71
+	 *
+	 * @return	void
+	 */
+	private static function _localize_default_upload_optional_columns( ) {
+		// Build the default columns array at runtime to accomodate calls to the localization functions
+		self::$default_upload_optional_columns = array(
+			'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
+			'name' => _x( 'Extension', 'list_table_column', 'media-library-assistant' ),
+			'mime_type' => _x( 'MIME Type', 'list_table_column', 'media-library-assistant' ),
+			'core_type'  => _x( 'WordPress Type', 'list_table_column', 'media-library-assistant' ),
+			'mla_type' => _x( 'MLA Type', 'list_table_column', 'media-library-assistant' ),
+			'description' => _x( 'Description', 'list_table_column', 'media-library-assistant' )
+		);
+	}
+
+	/**
+	 * Return the names and orderby values of the sortable columns
+	 *
+	 * @since 1.40
+	 *
+	 * @return	array	column_slug => array( orderby value, initial_descending_sort ) for sortable columns
+	 */
+	private static function _get_sortable_upload_optional_columns( ) {
+		$results = array();
+		foreach ( self::$default_upload_optional_sortable_columns as $key => $value ) {
+			$results[ $value[0] ] = $value[0];
+		}
+		
+		return $results;
+	}
+
+	/**
+	 * Table column definitions, Settings/Views tab table
+	 *
+	 * This array defines table columns and titles where the key is the column slug
+	 * (and class) and the value is the column's title text.
+	 * 
+	 * All of the columns are added to this array by 
+	 * MLAMime::_localize_default_view_columns.
+	 *
+	 * @since 1.40
+	 *
+	 * @var	array
+	 */
+	public static $default_view_columns = array();
+
+	/**
+	 * Sortable column definitions, Settings/Views tab table
+	 *
+	 * This array defines the table columns that can be sorted. The array key
+	 * is the column slug that needs to be sortable, and the value is database column
+	 * to sort by. Often, the key and value will be the same, but this is not always
+	 * the case (as the value is a column name from the database, not the list table).
+	 *
+	 * The array value also contains a boolean which is 'true' if the initial sort order
+	 * for the column is DESC/Descending.
+	 *
+	 * @since 1.40
+	 *
+	 * @var	array
+	 */
+	public static $default_sortable_view_columns = array(
+		'name' => array('slug',false),
+		'specification' => array('specification',false),
+		'post_mime_type' => array('post_mime_type',false),
+		'table_view' => array('table_view',false),
+		'singular' => array('singular',false),
+		'plural' => array('plural',false),
+		'menu_order' => array('menu_order',false),
+		'description' => array('description',false)
+        );
+
+	/**
+	 * Builds the $default_view_columns array with translated source texts.
+	 *
+	 * @since 1.71
+	 *
+	 * @return	void
+	 */
+	private static function _localize_default_view_columns( ) {
+		// Build the default columns array at runtime to accomodate calls to the localization functions
+		self::$default_view_columns = array(
+			'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
+			'name' => _x( 'Slug', 'list_table_column', 'media-library-assistant' ),
+			'specification'  => _x( 'Specification', 'list_table_column', 'media-library-assistant' ),
+			'post_mime_type' => _x( 'Post Mime', 'list_table_column', 'media-library-assistant' ),
+			'table_view' => _x( 'Table View', 'list_table_column', 'media-library-assistant' ),
+			'singular'  => _x( 'Singular Name', 'list_table_column', 'media-library-assistant' ),
+			'plural'  => _x( 'Plural Name', 'list_table_column', 'media-library-assistant' ),
+			'menu_order' => _x( 'Order', 'list_table_column', 'media-library-assistant' ),
+			'description' => _x( 'Description', 'list_table_column', 'media-library-assistant' )
+		);
+	}
+
+	/**
+	 * Return the names and orderby values of the sortable columns
+	 *
+	 * @since 1.40
+	 *
+	 * @return	array	column_slug => array( orderby value, initial_descending_sort ) for sortable columns
+	 */
+	private static function _get_sortable_view_columns( ) {
+		$results = array();
+		foreach ( self::$default_sortable_view_columns as $key => $value ) {
+			$results[ $value[0] ] = $value[0];
+		}
+		
+		return $results;
+	}
 
 	/**
 	 * Sanitize and expand query arguments from request variables
@@ -480,7 +746,7 @@ class MLAMime {
 		 */
 		if ( ! is_array( $raw_request ) ) {
 			/* translators: 1: ERROR tag 2: function name 3: non-array value */
-			error_log( sprintf( _x( '%1$s: %2$s non-array "%3$s"', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'MLAMime::_prepare_view_items_query', var_export( $raw_request, true ) ), 0 );
+			MLACore::mla_debug_add( sprintf( _x( '%1$s: %2$s non-array "%3$s"', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'MLAMime::_prepare_view_items_query', var_export( $raw_request, true ) ), MLACore::MLA_DEBUG_CATEGORY_ANY );
 			return NULL;
 		}
 
@@ -496,13 +762,9 @@ class MLAMime {
 					if ( 'none' == $value ) {
 						$clean_request[ $key ] = $value;
 					} else {
-						$sortable_columns = MLA_View_List_Table::mla_get_sortable_columns();
-						foreach ($sortable_columns as $sort_key => $sort_value ) {
-							if ( $value == $sort_value[0] ) {
-								$clean_request[ $key ] = $value;
-								break;
-							}
-						} // foreach
+						if ( array_key_exists( $value, self::_get_sortable_view_columns() ) ) {
+							$clean_request[ $key ] = $value;
+						}
 					}
 					break;
 				case 'order':
@@ -679,7 +941,7 @@ class MLAMime {
 		 */
 		$results = array();
 		foreach ( $mla_types as $value ) {
-			if ( in_array( $value->slug, array( 'all', 'trash', 'unattached' ) ) ) {
+			if ( in_array( $value->slug, array( 'all', 'trash', 'detached' ) ) ) {
 				continue;
 			}
 
@@ -730,7 +992,7 @@ class MLAMime {
 		/*
 		 * Start with MLA standard types
 		 */
-		$mla_types = MLAOptions::mla_get_option( MLAOptions::MLA_POST_MIME_TYPES, true );
+		$mla_types = MLACore::mla_get_option( MLACoreOptions::MLA_POST_MIME_TYPES, true );
 		if ( ! is_array( $mla_types ) ) {
 			$mla_types = array ();
 		}
@@ -740,7 +1002,7 @@ class MLAMime {
 		 * filter-enhanced extensions, retain anything new as a custom type.
 		 * Otherwise, add the current MLA custom types.
 		 */
-		$custom_types = MLAOptions::mla_get_option( MLAOptions::MLA_POST_MIME_TYPES, false, true );
+		$custom_types = MLACore::mla_get_option( MLACoreOptions::MLA_POST_MIME_TYPES, false, true );
 
 		if ( is_array( $custom_types ) ) {
 			$mla_types = array_merge( $mla_types, $custom_types );
@@ -791,7 +1053,7 @@ class MLAMime {
 	private static function _put_post_mime_templates() {
 		$mla_post_mimes = array ();
 
-		$mla_types = MLAOptions::mla_get_option( MLAOptions::MLA_POST_MIME_TYPES, true );
+		$mla_types = MLACore::mla_get_option( MLACoreOptions::MLA_POST_MIME_TYPES, true );
 
 		foreach ( self::$mla_post_mime_templates as $slug => $value ) {
 			unset( $value['post_ID'] );
@@ -802,12 +1064,14 @@ class MLAMime {
 			$mla_post_mimes[ $slug ] =  $value;
 		}
 
-		MLAOptions::mla_update_option( MLAOptions::MLA_POST_MIME_TYPES, $mla_post_mimes );
+		MLACore::mla_update_option( MLACoreOptions::MLA_POST_MIME_TYPES, $mla_post_mimes );
 		return true;
 	}
 
 	/**
 	 * Convert a Library View/Post MIME Type specification to WP_Query parameters
+	 *
+	 * Compatibility shim for MLACore::mla_prepare_view_query
 	 *
 	 * @since 1.40
 	 *
@@ -817,106 +1081,22 @@ class MLAMime {
 	 * @return	array	post_mime_type specification or custom field query
 	 */
 	public static function mla_prepare_view_query( $slug, $specification ) {
-		$query = array ( );
-		$specification = self::mla_parse_view_specification( $specification );
-		if ( 'mime' == $specification['prefix'] ) {
-			$query['post_mime_type'] = $specification['value'];
-		} else {
-			$meta_query = array( 'slug' => $slug , 'relation' => 'OR', 'patterns' => array () );
-			switch( $specification['option'] ) {
-				case 'match':
-					$patterns = array_map( 'trim', explode( ',', $specification['value'] ) );
-					foreach ( (array) $patterns as $pattern ) {
-						$pattern = preg_replace( '/\*+/', '%', $pattern );
-						if ( false !== strpos( $pattern, '%' ) ) {
-							/*
-							 * Preserve the pattern - it will be used in the "where" filter
-							 */
-							$meta_query['patterns'][] = $pattern;
-							$meta_query[] = array( 'key' => $specification['name'], 'value' => $pattern, 'compare' => 'LIKE' );
-						} else {
-							$meta_query[] = array( 'key' => $specification['name'], 'value' => $pattern, 'compare' => '=' );
-						}
-					} // foreach pattern
-
-					if ( empty( $meta_query['patterns'] ) ) {
-						unset( $meta_query['patterns'] );
-					}
-
-					break;
-				case 'null':
-					$meta_query['key'] = $specification['name'];
-					$meta_query['value'] = 'NULL';
-					break;
-				default: // '', 'any'
-					$meta_query[] = array( 'key' => $specification['name'], 'value' => NULL, 'compare' => '!=' );
-			}
-
-			$query['meta_query'] = $meta_query;
-		} // custom field specification
-
-		return $query;
+		return MLACore::mla_prepare_view_query( $slug, $specification );
 	}
 
 	/**
 	 * Analyze a Library View/Post MIME Type specification, returning an array of the placeholders it contains
 	 *
+	 * Compatibility shim for MLACore::mla_parse_view_specification
+	 *
 	 * @since 1.40
 	 *
-	 * @param	string	A specification, e.g., "custom:Field,null" or "audio,application/vnd.*ms*"
+	 * @param	string|array	A specification, e.g., "custom:Field,null" or "audio,application/vnd.*ms*"
 	 *
 	 * @return	array	( ['prefix'] => string, ['name'] => string, ['value'] => string, ['option'] => string, optional ['error'] => string )
 	 */
 	public static function mla_parse_view_specification( $specification ) {
-			$result = array( 'prefix' => '', 'name' => '', 'value' => '', 'option' => '' );
-			$match_count = preg_match( '/^(.+):(.+)/', $specification, $matches );
-			if ( 1 == $match_count ) {
-				$result['prefix'] = trim( strtolower( $matches[1] ) );
-				$tail = $matches[2];
-
-				$match_count = preg_match( '/([^,=]+)((,|=)(.+))$/', $tail, $matches );
-				if ( 1 == $match_count ) {
-					$result['name'] = $matches[1];
-
-					if ( ',' == $matches[3] ) {
-						$result['option'] = trim( strtolower( $matches[4] ));
-					} else {
-						$result['option'] = 'match';
-						$result['value'] = $matches[4];
-					}
-				} else {
-					$result['option'] = 'any';
-					$result['name'] = $tail;
-				}
-			} else {
-				$result['prefix'] = 'mime';
-				$result['value'] = $specification;
-			}
-
-			/*
-			 * Validate the results
-			 */
-			if ( 'mime' == $result['prefix'] ) {
-				$mime_types = array_map( 'trim', explode( ',', $result['value'] ) );
-				foreach ( (array) $mime_types as $raw_mime_type ) {
-					$no_wildcards = str_replace( '*', 'X', $raw_mime_type );
-					$clean_mime_type = sanitize_mime_type( $no_wildcards );
-					if ( $clean_mime_type != $no_wildcards ) {
-						/* translators: 1: ERROR tag 2: raw_mime_type */
-						$result['error'] = '<br>' . sprintf( __( '%1$s: Bad specification part "%2$s"', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $raw_mime_type );
-					}
-				} // foreach
-			} elseif ( 'custom' == $result['prefix'] ) {
-				if ( ! in_array( $result['option'], array( '', 'any', 'match', 'null' ) ) ) {
-					/* translators: 1: ERROR tag 2: option, e.g., any, match, null */
-					$result['error'] = '<br>' . sprintf( __( '%1$s: Bad specification option "%2$s"', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $specification['option'] );
-				}
-			} else {
-				/* translators: 1: ERROR tag 2: prefix, e.g., custom */
-				$result['error'] = '<br>' . sprintf( __( '%1$s: Bad specification prefix "%2$s"', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $specification['prefix'] );
-			}
-
-		return $result;
+		return MLACore::mla_parse_view_specification( $specification );
 	}
 
 	/**
@@ -965,7 +1145,7 @@ class MLAMime {
 		 * Validate specification, if present
 		 */
 		if ( !empty( $request['specification'] ) ) {
-			$specification = self::mla_parse_view_specification( $request['specification'] );
+			$specification = MLACore::mla_parse_view_specification( $request['specification'] );
 			if ( isset( $specification['error'] ) ) {
 				$errors .= $specification['error'];
 			}
@@ -1066,7 +1246,7 @@ class MLAMime {
 		}
 
 		if ( !empty( $specification ) ) {
-			$result = self::mla_parse_view_specification( $request['specification'] );
+			$result = MLACore::mla_parse_view_specification( $specification );
 			if ( isset( $result['error'] ) ) {
 				$errors .= $result['error'];
 			}
@@ -1215,7 +1395,7 @@ class MLAMime {
 		 */
 		if ( ! is_array( $raw_request ) ) {
 			/* translators: 1: ERROR tag 2: function name 3: non-array value */
-			error_log( sprintf( _x( '%1$s: %2$s non-array "%3$s"', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'MLAMime::_prepare_upload_items_query', var_export( $raw_request, true ) ), 0 );
+			MLACore::mla_debug_add( sprintf( _x( '%1$s: %2$s non-array "%3$s"', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'MLAMime::_prepare_upload_items_query', var_export( $raw_request, true ) ), MLACore::MLA_DEBUG_CATEGORY_ANY );
 			return NULL;
 		}
 
@@ -1235,13 +1415,9 @@ class MLAMime {
 					if ( 'none' == $value ) {
 						$clean_request[ $key ] = $value;
 					} else {
-						$sortable_columns = MLA_Upload_List_Table::mla_get_sortable_columns();
-						foreach ($sortable_columns as $sort_key => $sort_value ) {
-							if ( $value == $sort_value[0] ) {
-								$clean_request[ $key ] = $value;
-								break;
-							}
-						} // foreach
+						if ( array_key_exists( $value, self::_get_sortable_upload_columns() ) ) {
+							$clean_request[ $key ] = $value;
+						}
 					}
 					break;
 				case 'order':
@@ -1301,13 +1477,13 @@ class MLAMime {
 		foreach ( self::$mla_upload_mime_templates as $slug => $value ) {
 			if ( ! empty( $keyword ) ) {
 				if ( false === $extension ) {
-				$found  = false !== stripos( $slug, $keyword );
-				$found |= false !== stripos( $value['mime_type'], $keyword );
-				$found |= false !== stripos( $value['icon_type'], $keyword );
-				$found |= false !== stripos( $value['core_type'], $keyword );
-				$found |= false !== stripos( $value['mla_type'], $keyword );
-				$found |= false !== stripos( $value['core_icon_type'], $keyword );
-				$found |= false !== stripos( $value['description'], $keyword );
+					$found  = false !== stripos( $slug, $keyword );
+					$found |= false !== stripos( $value['mime_type'], $keyword );
+					$found |= false !== stripos( $value['icon_type'], $keyword );
+					$found |= false !== stripos( $value['core_type'], $keyword );
+					$found |= false !== stripos( $value['mla_type'], $keyword );
+					$found |= false !== stripos( $value['core_icon_type'], $keyword );
+					$found |= false !== stripos( $value['description'], $keyword );
 				} else {
 					$found  = false !== stripos( $slug, $extension );
 				}
@@ -1451,28 +1627,28 @@ class MLAMime {
 
 		$upload_items = array(
 			'all' => array(
-				'singular' => _x( 'All', 'upload_list_table_view_singular', 'media_library-assistant' ),
-				'plural' => _x( 'All', 'upload_list_table_view_plural', 'media_library-assistant' ),
+				'singular' => _x( 'All', 'table_view_singular', 'media_library-assistant' ),
+				'plural' => _x( 'All', 'table_view_plural', 'media_library-assistant' ),
 				'count' => 0 ),
 			'active' => array(
-				'singular' => _x( 'Active', 'upload_list_table_view_singular', 'media_library-assistant' ),
-				'plural' => _x( 'Active', 'upload_list_table_view_plural', 'media_library-assistant' ),
+				'singular' => _x( 'Active', 'table_view_singular', 'media_library-assistant' ),
+				'plural' => _x( 'Active', 'table_view_plural', 'media_library-assistant' ),
 				'count' => 0 ),
 			'inactive' => array(
-				'singular' => _x( 'Inactive', 'upload_list_table_view_singular', 'media_library-assistant' ),
-				'plural' => _x( 'Inactive', 'upload_list_table_view_plural', 'media_library-assistant' ),
+				'singular' => _x( 'Inactive', 'table_view_singular', 'media_library-assistant' ),
+				'plural' => _x( 'Inactive', 'table_view_plural', 'media_library-assistant' ),
 				'count' => 0 ),
 			'core' => array(
-				'singular' => _x( 'WordPress', 'upload_list_table_view_singular', 'media_library-assistant' ),
-				'plural' => _x( 'WordPress', 'upload_list_table_view_plural', 'media_library-assistant' ),
+				'singular' => _x( 'WordPress', 'table_view_singular', 'media_library-assistant' ),
+				'plural' => _x( 'WordPress', 'table_view_plural', 'media_library-assistant' ),
 				'count' => 0 ),
 			'mla' => array(
-				'singular' => _x( 'MLA', 'upload_list_table_view_singular', 'media_library-assistant' ),
-				'plural' => _x( 'MLA', 'upload_list_table_view_plural', 'media_library-assistant' ),
+				'singular' => _x( 'MLA', 'table_view_singular', 'media_library-assistant' ),
+				'plural' => _x( 'MLA', 'table_view_plural', 'media_library-assistant' ),
 				'count' => 0 ),
 			'custom' => array(
-				'singular' => _x( 'Custom', 'upload_list_table_view_singular', 'media_library-assistant' ),
-				'plural' => _x( 'Custom', 'upload_list_table_view_plural', 'media_library-assistant' ),
+				'singular' => _x( 'Custom', 'table_view_singular', 'media_library-assistant' ),
+				'plural' => _x( 'Custom', 'table_view_plural', 'media_library-assistant' ),
 				'count' => 0 ),
 		);
 
@@ -1639,6 +1815,70 @@ class MLAMime {
 	}
 
 	/**
+	 * Get an attachment icon height and width
+	 *
+	 * @since 2.14
+	 *
+	 * @param	string	Icon Type, e.g., audio, video, spreadsheet
+	 *
+	 * @return	array	( width, height )
+	 */
+	public static function mla_get_icon_type_size( $icon_type ) {
+		if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_ENABLE_MLA_ICONS ) ) {
+			return array( 'width' => 64, 'height' => 64 );
+		}
+		
+		$icon_info = NULL;
+		$icon_dir = apply_filters( 'icon_dir', ABSPATH . WPINC . '/images/media' );
+		if ( false === ( $dh = @opendir( $icon_dir ) ) ) {
+			$icon_dir = apply_filters( 'icon_dir', ABSPATH . WPINC . '/images/crystal' );
+			$dh = opendir( $icon_dir );
+		}
+
+		if ( $dh ) {
+			while ( false !== $icon_file = readdir( $dh ) ) {
+				$icon_file = basename( $icon_file );
+				if ( substr( $icon_file, 0, 1 ) == '.' ) {
+					continue;
+				}
+				
+				$file_info = pathinfo( $icon_file );
+				if ( in_array( strtolower( $file_info['extension'] ), array('png', 'gif', 'jpg') ) ) {
+					if ( $icon_type == $file_info['filename'] ) {
+						$icon_info = $file_info;
+						break;
+					} elseif ( 'default' == $file_info['filename'] ) {
+						$icon_info = $file_info;
+					}
+				}
+			}
+
+			closedir( $dh );
+		}
+	
+		if ( is_null( $icon_info ) ) {
+			return array( 'width' => 64, 'height' => 64 );
+		}
+		
+		$image_info = getimagesize( $icon_dir . '/' . $icon_info['filename'] . '.' . $icon_info['extension'] );
+		if ( $image_info ) {
+			if ( isset( $image_info[0] ) ) {
+				$image_info['width'] = $image_info[0];
+			} else {
+				$image_info['width'] = 0;
+			}
+
+			if ( isset( $image_info[1] ) ) {
+				$image_info['height'] = $image_info[1];
+			} else {
+				$image_info['height'] = 0;
+			}
+		}
+
+		return $image_info;
+	}
+
+	/**
 	 * Get an HTML img element representing an attachment icon
 	 *
 	 * @since 1.40
@@ -1655,7 +1895,7 @@ class MLAMime {
 			$width = $size[0];
 			$height = $size[1];
 		} else {
-			@list($width, $height) = getimagesize($icon_file);
+			@list($width, $height) = getimagesize( $icon_file );
 		}
 
 		$hwstring = image_hwstring($width, $height);
@@ -1707,29 +1947,15 @@ class MLAMime {
 			return true;
 		}
 
-		/*
-		 * Find the WordPress-standard (unfiltered) extensions
-		 * WordPress 3.4.x and earlier do not implement wp_get_mime_types
-		 */
+		// Find the WordPress-standard (unfiltered) extensions
 		global $wp_filter;
-		if ( function_exists('wp_get_mime_types') ) {
-			if ( isset( $wp_filter['mime_types'] ) ) {
-				$save_filters = $wp_filter['mime_types'];
-				unset( $wp_filter['mime_types'] );
-				$core_types = wp_get_mime_types();
-				$wp_filter['mime_types'] = $save_filters;
-			} else {
-				$core_types = wp_get_mime_types();
-			}
+		if ( isset( $wp_filter['mime_types'] ) ) {
+			$save_filters = $wp_filter['mime_types'];
+			unset( $wp_filter['mime_types'] );
+			$core_types = wp_get_mime_types();
+			$wp_filter['mime_types'] = $save_filters;
 		} else {
-			if ( isset( $wp_filter['upload_mimes'] ) ) {
-				$save_filters = $wp_filter['upload_mimes'];
-				unset( $wp_filter['upload_mimes'] );
-				$core_types = get_allowed_mime_types();
-				$wp_filter['upload_mimes'] = $save_filters;
-			} else {
-				$core_types = get_allowed_mime_types();
-			}
+			$core_types = wp_get_mime_types();
 		}
 
 		/*
@@ -1737,7 +1963,7 @@ class MLAMime {
 		 * filter-enhanced extensions, retain anything new as a custom type.
 		 */
 		$custom_types = array();
-		$mla_upload_mimes = MLAOptions::mla_get_option( MLAOptions::MLA_UPLOAD_MIMES );
+		$mla_upload_mimes = MLACore::mla_get_option( MLACoreOptions::MLA_UPLOAD_MIMES );
 		if ( is_array( $mla_upload_mimes ) ) {
 			$first_time_called = false;
 			$custom_types = $mla_upload_mimes['custom'];
@@ -1754,9 +1980,7 @@ class MLAMime {
 			self::$disable_mla_filtering = false;
 		}
 
-		/*
-		 * Explode any entries with multiple extensions
-		 */
+		// Explode any entries with multiple extensions
 		foreach ( $core_types as $key => $value )
 			if ( false !== strpos( $key, '|' ) ) {
 				unset( $core_types[ $key ] );
@@ -1781,16 +2005,24 @@ class MLAMime {
 		 * Save the descriptions for use in _put_upload_mime_types()
 		 */
 		self::$mla_upload_mime_descriptions = array();
-		$template_array = MLAData::mla_load_template( 'mla-default-mime-types.tpl' );
+		$template_array = MLACore::mla_load_template( 'mla-default-mime-types.tpl' );
 		if ( isset( $template_array['mla-mime-types'] ) ) {
 			$mla_mime_types = preg_split('/[\r\n]+/', $template_array['mla-mime-types'] );
+			$line_number = 0;
 			foreach ( $mla_mime_types as $mla_type ) {
+				$line_number++;
+				// Ignore blank lines
+				if ( empty( $mla_type ) ) {
+					continue;
+				}
+				
 				$array = explode(',', $mla_type );
 
-				/* Anthony Martin debug * /
-				if ( 4 > count( $array ) ) {
-					trigger_error( sprintf( 'mla-default-mime-types.tpl $array = "%1$s".', var_export( $array, true ) ), E_USER_WARNING );
-				} // */
+				// Bypass damaged entries
+				if ( 5 > count( $array ) ) {
+					MLACore::mla_debug_add( __LINE__ . " _get_upload_mime_templates mla-default-mime-types.tpl section mla-mime-types( {$line_number} '{$mla_type}' ) \$array = " . var_export( $array, true ), MLACore::MLA_DEBUG_CATEGORY_ANY );
+					continue;
+				}
 
 				$key = strtolower( $array[0] );
 				self::$mla_upload_mime_descriptions[ $key ] = $array[4];
@@ -1809,15 +2041,13 @@ class MLAMime {
 					'core_icon_type' => self::mla_get_core_icon_type( $array[0] )
 				);
 
-				if ( 'checked' == MLAOptions::mla_get_option( MLAOptions::MLA_ENABLE_MLA_ICONS ) ) {
-					self::$mla_upload_mime_templates[ $key ]['icon_type'] = self::$mla_upload_mime_templates[ $array[0] ]['mla_icon_type'];
+				if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_ENABLE_MLA_ICONS ) ) {
+					self::$mla_upload_mime_templates[ $key ]['icon_type'] = self::$mla_upload_mime_templates[ $key ]['mla_icon_type'];
 				}
 			}
 		}
 
-		/*
-		 * Add the WordPress-standard (unfiltered) extensions, initialized to an active state
-		 */
+		// Add the WordPress-standard (unfiltered) extensions, initialized to an active state
 		foreach ( $core_types as $key => $value ) {
 			$key = strtolower( $key );
 			if ( isset( self::$mla_upload_mime_templates[ $key ] ) ) {
@@ -1833,15 +2063,12 @@ class MLAMime {
 				$mla_type = '';
 				$description = '';
 
-				if ( NULL == $icon_type = wp_ext2type( $key ) ) {
-					$icon_type = 'default';
-				}
+				$icon_type = self::mla_get_core_icon_type( $key );
 
 				$wp_icon_type = $icon_type;
 				$mla_icon_type = $icon_type;
-				$core_icon_type = self::mla_get_core_icon_type( $key );
+				$core_icon_type = $icon_type;
 			}
-
 
 			self::$mla_upload_mime_templates[ $key ] = array(
 				'post_ID' => $post_ID,
@@ -1858,21 +2085,18 @@ class MLAMime {
 				'core_icon_type' => $core_icon_type
 			);
 
-			if ( 'checked' == MLAOptions::mla_get_option( MLAOptions::MLA_ENABLE_MLA_ICONS ) ) {
-				self::$mla_upload_mime_templates[ $array[0] ]['icon_type'] = self::$mla_upload_mime_templates[ $array[0] ]['mla_icon_type'];
+			if ( 'checked' == MLACore::mla_get_option( MLACoreOptions::MLA_ENABLE_MLA_ICONS ) ) {
+				self::$mla_upload_mime_templates[ $key ]['icon_type'] = self::$mla_upload_mime_templates[ $key ]['mla_icon_type'];
 			}
 		}
 
-		/*
-		 * Add the user-defined custom types
-		 */
+		// Add the user-defined custom types
 		foreach ( $custom_types as $key => $value ) {
 			$key = strtolower( $key );
 			if ( isset( self::$mla_upload_mime_templates[ $key ] ) ) {
 				extract( self::$mla_upload_mime_templates[ $key ] );
-				/*
-				 * Make sure it's really custom
-				 */
+
+				// Make sure it's really custom
 				if ( ( 'core' == $source && $value == $core_type ) || ( 'mla' == $source && $value == $mla_type ) ) {
 					continue;
 					 }
@@ -1885,6 +2109,9 @@ class MLAMime {
 			if ( NULL == $icon_type = wp_ext2type( $key ) ) {
 				$icon_type = 'default';
 			}
+			
+			// Don't cache the results of mla_ext2type_filter() until current settings are applied below
+			self::$mla_icon_type_associations = NULL;
 
 			self::$mla_upload_mime_templates[ $key ] = array(
 				'post_ID' => ++self::$mla_upload_mime_highest_ID,
@@ -1907,9 +2134,7 @@ class MLAMime {
 			return true;
 		}
 
-		/*
-		 * Apply the current settings, if any
-		 */
+		// Apply the current settings, if any
 		foreach ( self::$mla_upload_mime_templates as $key => $value ) {
 			$default_description = isset( self::$mla_upload_mime_descriptions[ $key ] ) ? self::$mla_upload_mime_descriptions[ $key ] : '';
 			self::$mla_upload_mime_templates[ $key ]['disabled'] = isset( $mla_upload_mimes['disabled'][ $key ] );
@@ -1951,7 +2176,7 @@ class MLAMime {
 			}
 		}
 
-		MLAOptions::mla_update_option( MLAOptions::MLA_UPLOAD_MIMES, $mla_upload_mimes );
+		MLACore::mla_update_option( MLACoreOptions::MLA_UPLOAD_MIMES, $mla_upload_mimes );
 		return true;
 	}
 
@@ -1985,7 +2210,7 @@ class MLAMime {
 			$slug = pathinfo( 'X.' . strtolower( trim( $request['slug'] ) ), PATHINFO_EXTENSION );
 			if ( $slug != $request['slug'] ) {
 				/* translators: 1: element name 2: bad_value 3: good_value */
-				$messages .= sprintf( __( '<br>' . 'Changing %1$s "%2$s" to valid value "%3$s"', 'media-library-assistant' ), __( 'extension', 'media-library-assistant' ), $request['slug'], $slug );
+				$messages .= sprintf( __( '<br>' . 'Changing %1$s "%2$s" to valid value "%3$s"', 'media-library-assistant' ), __( 'Extension', 'media-library-assistant' ), $request['slug'], $slug );
 			}
 
 			/*
@@ -2111,7 +2336,7 @@ class MLAMime {
 		if ( $slug != $original_slug ) {
 			if ( $slug != $request['slug'] ) {
 				/* translators: 1: element name 2: bad_value 3: good_value */
-				$messages .= sprintf( __( '<br>' . 'Changing new %1$s "%2$s" to valid value "%3$s"', 'media-library-assistant' ), __( 'extension', 'media-library-assistant' ), $request['slug'], $slug );
+				$messages .= sprintf( __( '<br>' . 'Changing new %1$s "%2$s" to valid value "%3$s"', 'media-library-assistant' ), __( 'Extension', 'media-library-assistant' ), $request['slug'], $slug );
 			}
 
 			/*
@@ -2122,7 +2347,7 @@ class MLAMime {
 				$errors .= '<br>' . sprintf( __( '%1$s: Could not add new extension "%2$s"; value already exists', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), $slug );
 			} else {
 				/* translators: 1: element name 2: old_value 3: new_value */
-				$messages .= sprintf( '<br>' . __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ), __( 'extension', 'media-library-assistant' ), $original_slug, $slug );
+				$messages .= sprintf( '<br>' . __( 'Changing %1$s from "%2$s" to "%3$s"', 'media-library-assistant' ), __( 'Extension', 'media-library-assistant' ), $original_slug, $slug );
 			}
 
 			/*
@@ -2358,7 +2583,7 @@ class MLAMime {
 		 */
 		if ( ! is_array( $raw_request ) ) {
 			/* translators: 1: ERROR tag 2: function name 3: non-array value */
-			error_log( sprintf( _x( '%1$s: %2$s non-array "%3$s"', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'MLAMime::_prepare_optional_upload_items_query', var_export( $raw_request, true ) ), 0 );
+			MLACore::mla_debug_add( sprintf( _x( '%1$s: %2$s non-array "%3$s"', 'error_log', 'media-library-assistant' ), __( 'ERROR', 'media-library-assistant' ), 'MLAMime::_prepare_optional_upload_items_query', var_export( $raw_request, true ) ), MLACore::MLA_DEBUG_CATEGORY_ANY );
 			return NULL;
 		}
 
@@ -2374,13 +2599,9 @@ class MLAMime {
 					if ( 'none' == $value ) {
 						$clean_request[ $key ] = $value;
 					} else {
-						$sortable_columns = MLA_Upload_Optional_List_Table::mla_get_sortable_columns();
-						foreach ($sortable_columns as $sort_key => $sort_value ) {
-							if ( $value == $sort_value[0] ) {
-								$clean_request[ $key ] = $value;
-								break;
-							}
-						} // foreach
+						if ( array_key_exists( $value, self::_get_sortable_upload_optional_columns() ) ) {
+							$clean_request[ $key ] = $value;
+						}
 					}
 					break;
 				case 'order':
@@ -2542,13 +2763,25 @@ class MLAMime {
 		}
 
 		self::$mla_optional_upload_mime_templates = array ();
-		$template_array = MLAData::mla_load_template( 'mla-default-mime-types.tpl' );
+		$template_array = MLACore::mla_load_template( 'mla-default-mime-types.tpl' );
 		if ( isset( $template_array['mla-optional-mime-types'] ) ) {
 			$mla_mime_types = preg_split('/[\r\n]+/', $template_array['mla-optional-mime-types'] );
 
 			$ID = 0;
 			foreach ( $mla_mime_types as $mla_type ) {
+				// Ignore blank lines
+				if ( empty( $mla_type ) ) {
+					continue;
+				}
+				
 				$array = explode(',', $mla_type );
+
+				// Bypass damaged entries
+				if ( 3 > count( $array ) ) {
+					MLACore::mla_debug_add( __LINE__ . " _get_upload_mime_templates mla-default-mime-types.tpl section mla-optional-mime-types( {$ID} '{$mla_type}' ) \$array = " . var_export( $array, true ), MLACore::MLA_DEBUG_CATEGORY_ANY );
+					continue;
+				}
+
 				$slug = $array[0];
 				if ( $matched_type = self::mla_get_upload_mime( $slug ) ) {
 					$core_type = $matched_type['core_type'];

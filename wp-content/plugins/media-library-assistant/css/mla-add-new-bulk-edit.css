@@ -8,16 +8,21 @@
 
 /* Layout */
 
+#bulk-edit-reset {
+	margin: 0px 5px
+}
+
 #mla-add-new-bulk-edit-div .mla_taxonomy_options {
-	margin-bottom: 10px
+	margin-top: 8px;
+	margin-bottom: 8px
 }
 
 #mla-add-new-bulk-edit-div .inline-edit-col-left {
-	width: 20%
+	width: 25%
 }
 
 #mla-add-new-bulk-edit-div .inline-edit-col-center {
-	width: 30%
+	width: 25%
 }
 
 #mla-add-new-bulk-edit-div .inline-edit-col-right {
@@ -25,7 +30,8 @@
 }
 
 #mla-add-new-bulk-edit-div fieldset.inline-edit-col-right label span.title {
-	width: 6em
+	width: 6em;
+	line-height: 1.2
 }
 
 #mla-add-new-bulk-edit-div fieldset.inline-edit-col-right label span.input-text-wrap {
@@ -68,6 +74,25 @@
 	height: 0;
 	clear: both;
 	visibility: hidden;
+}
+
+@media screen and ( max-width: 782px ) {
+	/* Quick Edit and Bulk Edit */
+	#mla-add-new-bulk-edit-div .inline-edit-col-left,
+	#mla-add-new-bulk-edit-div .inline-edit-col-right,
+	#mla-add-new-bulk-edit-div .inline-edit-col-center {
+		float: none;
+		width: 100%;
+	}
+
+	#mla-add-new-bulk-edit-div fieldset.inline-edit-col-right label span.title {
+		width: 100%;
+		line-height: 2.5
+	}
+
+	#mla-add-new-bulk-edit-div fieldset.inline-edit-col-right label span.input-text-wrap {
+		margin-left: 0em
+	}
 }
 
 /* Positioning */

@@ -12,7 +12,7 @@
             </ul>
 
 <!-- template="tag_fieldset" -->
-          <fieldset class="inline-edit-col-right"><div class="inline-edit-col">
+          <fieldset class="inline-edit-col-right inline-edit-tags"><div class="inline-edit-col">
 [+tag_blocks+]          </div></fieldset>
 <!-- template="tag_block" -->
             <label class="inline-edit-tags">
@@ -39,6 +39,7 @@
           <fieldset class="inline-edit-col-left">
             <div class="inline-edit-col">
               <h4>[+Quick Edit+]</h4>
+			  <div id="item_thumbnail"></div>
               <label> <span class="title">[+Title+]</span> <span class="input-text-wrap">
                 <input type="text" name="post_title" class="ptitle" value="" />
                 </span> </label>
@@ -89,6 +90,52 @@
           </p>
         </td>
       </tr>
+      <tr id="blank-bulk-edit" class="inline-edit-row inline-edit-row-attachment inline-edit-attachment bulk-edit-row bulk-edit-row-attachment bulk-edit-attachment" style="display: none">
+        <td colspan="[+colspan+]" class="colspanchange">
+[+bulk_middle_column+]
+[+bulk_right_column+]
+          <fieldset class="inline-edit-col-right inline-edit-fields">
+            <div class="inline-edit-col">
+              <label> <span class="title">[+Title+]</span> <span class="input-text-wrap">
+                <input type="text" name="post_title" class="ptitle" value="" />
+                </span> </label>
+              <label> <span class="title">[+Caption+]</span> <span class="input-text-wrap">
+                <input type="text" name="post_excerpt" value="" />
+                </span> </label>
+              <label class="inline-edit-post-content"> <span class="title">[+Description+]</span> <span class="input-text-wrap">
+                [+description_field+]
+                </span> </label>
+              <label class="inline-edit-image-alt"> <span class="title">[+ALT Text+]</span> <span class="input-text-wrap">
+                <input type="text" name="image_alt" value="" />
+                </span> </label>
+              <div class="inline-edit-group">
+                <label class="inline-edit-post-parent alignleft"> <span class="title">[+Parent ID+]</span> <span class="input-text-wrap">
+                  <input type="text" name="post_parent" value="" />
+                  </span> </label>
+                  <input id="bulk-edit-set-parent" title="[+Select+]" class="button-primary parent" type="button" name="post_parent_set" value="[+Select+]" />
+[+bulk_authors+]
+              </div>
+              <div class="inline-edit-group">
+							<label class="inline-edit-comments alignleft"> <span class="title">[+Comments+]</span> <span class="input-text-wrap">
+								<select name="comment_status">
+									<option selected="selected" value="-1">&mdash; [+No Change+] &mdash;</option>
+									<option value="open">[+Allow+]</option>
+									<option value="closed">[+Do not allow+]</option>
+								</select>
+								</span> </label>
+							<label class="inline-edit-pings alignright"> <span class="title">[+Pings+]</span> <span class="input-text-wrap">
+								<select name="ping_status">
+									<option selected="selected" value="-1">&mdash; [+No Change+] &mdash;</option>
+									<option value="open">[+Allow+]</option>
+									<option value="closed">[+Do not allow+]</option>
+								</select>
+								</span> </label>
+              </div>
+[+bulk_custom_fields+]
+            </div>
+          </fieldset>
+        </td>
+      </tr>
       <tr id="bulk-edit" class="inline-edit-row inline-edit-row-attachment inline-edit-attachment bulk-edit-row bulk-edit-row-attachment bulk-edit-attachment" style="display: none">
         <td colspan="[+colspan+]" class="colspanchange">
           <fieldset class="inline-edit-col-left">
@@ -97,11 +144,13 @@
               <div id="bulk-title-div">
                 <div id="bulk-titles"></div>
               </div>
+		  	<a accesskey="c" href="#inline-edit" title="[+Cancel+]" class="button-secondary cancel alignleft">[+Cancel+]</a>
+		  	<a accesskey="r" href="#inline-edit" title="[+Reset+]" class="button-secondary reset alignleft">[+Reset+]</a>
             </div>
           </fieldset>
 [+bulk_middle_column+]
 [+bulk_right_column+]
-          <fieldset class="inline-edit-col-right">
+          <fieldset class="inline-edit-col-right inline-edit-fields">
             <div class="inline-edit-col">
               <label> <span class="title">[+Title+]</span> <span class="input-text-wrap">
                 <input type="text" name="post_title" class="ptitle" value="" />
@@ -109,8 +158,8 @@
               <label> <span class="title">[+Caption+]</span> <span class="input-text-wrap">
                 <input type="text" name="post_excerpt" value="" />
                 </span> </label>
-              <label> <span class="title">[+Description+]</span> <span class="input-text-wrap">
-                <textarea class="widefat" name="post_content"></textarea>
+              <label class="inline-edit-post-content"> <span class="title">[+Description+]</span> <span class="input-text-wrap">
+                [+description_field+]
                 </span> </label>
               <label class="inline-edit-image-alt"> <span class="title">[+ALT Text+]</span> <span class="input-text-wrap">
                 <input type="text" name="image_alt" value="" />
@@ -144,8 +193,8 @@
           <p class="submit inline-edit-save">
 		  	<a accesskey="c" href="#inline-edit" title="[+Cancel+]" class="button-secondary cancel alignleft">[+Cancel+]</a>
             <input accesskey="s" type="submit" name="bulk_edit" id="bulk_edit" class="button-primary alignright" value="[+Update+]"  />
-            <input accesskey="i" type="submit" name="bulk_map" id="bulk_map" class="button-secondary alignright" value="[+Map IPTC/EXIF metadata+]" style="margin-right: 1em"  />
-            <input accesskey="m" type="submit" name="bulk_custom_field_map" id="bulk_custom_field_map" class="button-secondary alignright" value="[+Map Custom Field metadata+]" style="margin-right: 1em" />
+            <input style="[+bulk_map_style+]" accesskey="i" type="submit" name="bulk_map" id="bulk_map" class="button-secondary alignright" value="[+Map IPTC/EXIF metadata+]" />
+            <input style="[+bulk_custom_field_map_style+]" accesskey="m" type="submit" name="bulk_custom_field_map" id="bulk_custom_field_map" class="button-secondary alignright" value="[+Map Custom Field metadata+]" />
             <input type="hidden" name="page" value="mla-menu" />
             <input type="hidden" name="screen" value="media_page_mla-menu" />
             <span class="error" style="display:none"></span> <br class="clear" />

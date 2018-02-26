@@ -14,11 +14,6 @@
 	<!-- mla-terms-search-div -->
 <!-- template="mla-terms-search-div" -->
 	<div id="mla-terms-search-div" style="display: none;">
-		<!-- 
-		<input name="parent" id="mla-terms-search-parent" type="hidden" value="">
-		<input name="children[]" id="mla-terms-search-children" type="hidden" value="">
-		[+mla_find_posts_nonce+]
-		 -->
 		<div id="mla-terms-search-head-div"> [+Search Terms+]
 			<div id="mla-terms-search-close-div"></div>
 		</div>
@@ -52,6 +47,14 @@
 						<li>
 							<input name="mla_terms_search[radio_terms]" id="mla-terms-search-radio-terms-or" type="radio" value="OR" [+terms_or_checked+] />
 							[+Any term+]
+						</li>
+					</ul>
+				</div>
+				<div id="mla-terms-search-exact-div">
+					<ul class="mla-terms-search-options">
+						<li>
+							<input name="mla_terms_search[exact]" id="mla-terms-search-exact" type="checkbox" value="exact" [+exact_checked+] />
+							[+Exact+]
 						</li>
 					</ul>
 				</div>

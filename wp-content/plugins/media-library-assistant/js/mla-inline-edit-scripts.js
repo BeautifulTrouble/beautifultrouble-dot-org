@@ -9,7 +9,7 @@ var jQuery,
 			inProcess: false,
 			doCancel: false
 		},
-	
+
 		// Utility functions
 		utility: {
 			getId : function( o ) {
@@ -18,7 +18,7 @@ var jQuery,
 				return parts[ parts.length - 1 ];
 			}
 		},
-	
+
 		// Components
 		setParent: null,
 		inlineEditAttachment: null
@@ -72,6 +72,9 @@ var jQuery,
 			});
 			$('a.cancel', bulkRow).click(function(){
 				return mla.inlineEditAttachment.revert();
+			});
+			$('a.reset', bulkRow).click(function(){
+				return mla.inlineEditAttachment.doReset();
 			});
 			$('input[type="submit"]', bulkRow).click(function(e){
 				e.preventDefault();
@@ -127,22 +130,21 @@ var jQuery,
 			});
 		},
 
-/*		toggle : function(el){
-			var t = this;
-
-			if ( 'none' == $( t.what + mla.utility.getId( el ) ).css('display') ) {
-				t.revert();
-			} else {
-				t.edit( el );
-			}
-		}, // */
-
 		bulkEdit : function(){
 			var te = '', c = true;
 			this.revert();
 
-			$('#bulk-edit td').attr('colspan', $('.widefat:first thead th:visible').length);
-			$('table.widefat tbody').prepend( $('#bulk-edit') );
+			$('#bulk-edit td').attr('colspan', $( 'th:visible, td:visible', '.widefat:first thead' ).length);
+			/*
+			 * Insert the editor at the top of the table with an empty row above
+			 * in WP 4.2+ to maintain zebra striping.
+			 */
+			if ( mla.settings.useSpinnerClass ) {
+				$('table.widefat tbody').prepend( $('#bulk-edit') ).prepend('<tr class="hidden"></tr>');
+			} else {
+				$('table.widefat tbody').prepend( $('#bulk-edit') );
+			}
+
 			$('#bulk-edit').addClass('inline-editor').show();
 
 			$('tbody th.check-column input[type="checkbox"]').each(function(){
@@ -173,6 +175,16 @@ var jQuery,
 			});
 
 			$('html, body').animate( { scrollTop: 0 }, 'fast' );
+
+			if ( ( typeof quicktags !== 'undefined' ) && ( typeof  mla.settings.quickTagsInit !== 'undefined' ) ) {
+				for ( id in mla.settings.quickTagsInit ) {
+					quicktags( mla.settings.quickTagsInit[id] );
+
+					if ( mla.settings.quickTagsInit[id]['active'] ) {
+						window.wpActiveEditor = id;
+					}
+				}
+			}
 		},
 
 		bulkSave : function(e) {
@@ -194,7 +206,7 @@ var jQuery,
 				success: 0,
 				failure: 0
 			};
-			
+
 			//mla.bulkEdit.ids = []; // clone doesn't do this.
 			mla.bulkEdit.chunkSize = +mla.settings.bulkChunkSize;
 			mla.bulkEdit.targetName = e.target.name;
@@ -215,12 +227,12 @@ var jQuery,
 			var te = '', c = true;
 			this.revert();
 
-			$('#bulk-progress td').attr('colspan', $('.widefat:first thead th:visible').length);
+			$('#bulk-progress td').attr('colspan', $( 'th:visible, td:visible', '.widefat:first thead' ).length);
 			$('table.widefat tbody').prepend( $('#bulk-progress') );
 			$('#bulk-progress').addClass('inline-editor').show();
 			$('#cb-select-all-1' ).removeAttr( 'checked' );
 			$('#cb-select-all-2' ).removeAttr( 'checked' );
-			
+
 			$('tbody th.check-column input[type="checkbox"]').each(function(){
 				if ( $(this).prop('checked') ) {
 					c = false;
@@ -258,7 +270,6 @@ var jQuery,
 
 			// Find the items to process
 			chunk = mla.bulkEdit.ids.slice( mla.bulkEdit.offset, mla.bulkEdit.offset + mla.bulkEdit.chunkSize );
-			mla.bulkEdit.offset += mla.bulkEdit.chunkSize;
 
 			// Move them from waiting to running
 			for ( cIndex = 0; cIndex < chunk.length; cIndex++ ) {
@@ -271,40 +282,61 @@ var jQuery,
 
 			params = {
 				action: mla.settings.ajax_action,
-				nonce: mla.settings.ajax_nonce,
+				mla_admin_nonce: mla.settings.ajax_nonce,
 				bulk_action: mla.bulkEdit.targetName,
+				cb_offset: mla.bulkEdit.offset,
+				cb_count: mla.bulkEdit.idsCount,
 				cb_attachment: chunk
 			};
 
+			mla.bulkEdit.offset += mla.bulkEdit.chunkSize;
+
 			params = $.param( params ) + '&' + mla.bulkEdit.fields;
 			//console.log( params );
-			
+
 			// make ajax request
 			mla.bulkEdit.inProcess = true;
-			spinner.show();
+
+			if ( mla.settings.useSpinnerClass ) {
+				spinner.addClass("is-active");
+			} else {
+				spinner.show();
+			}
+
 			statusMessage = mla.settings.bulkWaiting + ': ' + mla.bulkEdit.waiting
 				+ ', ' + mla.settings.bulkComplete + ': ' + mla.bulkEdit.complete
 				+ ', ' + mla.settings.bulkUnchanged + ': ' + mla.bulkEdit.unchanged
 				+ ', ' + mla.settings.bulkSuccess + ': ' + mla.bulkEdit.success
 				+ ', ' + mla.settings.bulkFailure + ': ' + mla.bulkEdit.failure;
 			results.html( statusMessage ).show();
-			
+
 			$.ajax( ajaxurl, {
 				type: 'POST',
 				data: params,
 				dataType: 'json'
 			}).always( function() {
-				spinner.hide();
+
+				if ( mla.settings.useSpinnerClass ) {
+					spinner.removeClass("is-active");
+				} else {
+					spinner.hide();
+				}
+
 			}).done( function( response, status ) {
 					var responseData = 'no response.data', responseMessage, items;
-					
-					spinner.hide();
+
+					if ( mla.settings.useSpinnerClass ) {
+						spinner.removeClass("is-active");
+					} else {
+						spinner.hide();
+					}
+
 					if ( response ) {
 						if ( ! response.success ) {
 							if ( response.responseData ) {
 								responseData = response.data;
 							}
-							
+
 							results.html( JSON.stringify( response ) ).show();
 							mla.bulkEdit.offset = mla.bulkEdit.idsCount; // Stop
 						} else {
@@ -318,17 +350,17 @@ var jQuery,
 									result = response.data.item_results[ id ]['result'];
 									$( this ).html( title + ' (' + id + ') - ' + result );
 								}
-								
+
 								$( '#attachment-' + id ).remove();
 							});
-							
+
 							$( '#bulk-progress-complete' ).append( items );
 							mla.bulkEdit.complete += mla.bulkEdit.running;
 							mla.bulkEdit.running = 0;
 							mla.bulkEdit.unchanged += response.data.unchanged;
 							mla.bulkEdit.success += response.data.success;
 							mla.bulkEdit.failure += response.data.failure;
-							
+
 							responseMessage = mla.settings.bulkWaiting + ': ' + mla.bulkEdit.waiting
 								+ ', ' + mla.settings.bulkComplete + ': ' + mla.bulkEdit.complete
 								+ ', ' + mla.settings.bulkUnchanged + ': ' + mla.bulkEdit.unchanged
@@ -340,7 +372,7 @@ var jQuery,
 						results.html( mla.settings.error ).show();
 						mla.bulkEdit.offset = mla.bulkEdit.idsCount; // Stop
 					}
-					
+
 					if ( mla.bulkEdit.doCancel ) {
 						results.html( mla.settings.bulkCanceled + '. ' +  responseMessage ).show();
 					} else {
@@ -362,7 +394,7 @@ var jQuery,
 		},
 
 		quickEdit : function(id) {
-			var t = this, fields, editRow, rowData, fIndex;
+			var t = this, fields, editRow, rowData, icon, fIndex;
 			t.revert();
 
 			if ( typeof(id) == 'object' )
@@ -370,16 +402,31 @@ var jQuery,
 
 			fields = mla.settings.fields;
 
-			// add the new blank row
+			/*
+			 * add the new edit row with an extra blank row underneath
+			 * in WP 4.2+ to maintain zebra striping
+			 */
 			editRow = $('#inline-edit').clone(true);
-			$('td', editRow).attr('colspan', $('.widefat:first thead th:visible').length);
+			$('td', editRow).attr('colspan', $( 'th:visible, td:visible', '.widefat:first thead' ).length);
 
-			if ( $(t.what+id).hasClass('alternate') )
-				$(editRow).addClass('alternate');
-			$(t.what+id).hide().after(editRow);
+			if ( mla.settings.useSpinnerClass ) {
+				$(t.what+id).hide().after(editRow).after('<tr class="hidden"></tr>');
+			} else {
+				if ( $(t.what+id).hasClass('alternate') ) {
+					$(editRow).addClass('alternate');
+				}
+
+				$(t.what+id).hide().after(editRow);
+			}
 
 			// populate the data
 			rowData = $('#inline_'+id);
+
+			icon = $('.item_thumbnail', rowData).html();
+			if ( icon.length ) {
+				$( '#item_thumbnail', editRow ).html( icon );
+			}
+
 			if ( !$(':input[name="post_author"] option[value="' + $('.post_author', rowData).text() + '"]', editRow).val() ) {
 				// author no longer has edit caps, so we need to add them to the list of authors
 				$(':input[name="post_author"]', editRow).prepend('<option value="' + $('.post_author', rowData).text() + '">' + $('#' + t.type + '-' + id + ' .author').text() + '</option>');
@@ -412,7 +459,7 @@ var jQuery,
 				var terms = $(this).text(),
 					taxname = $(this).attr('id').replace('_' + id, ''),
 					textarea = $('textarea.tax_input_' + taxname, editRow),
-					comma = mla.settings.comma;
+					comma = mla.settings.comma, langArgument;
 
 				if ( terms ) {
 					if ( ',' !== comma )
@@ -420,11 +467,19 @@ var jQuery,
 					textarea.val(terms);
 				}
 
-				textarea.suggest( ajaxurl + '?action=ajax-tag-search&tax=' + taxname, { delay: 500, minchars: 2, multiple: true, multipleSep: mla.settings.comma + ' ' } );
+			langArgument = $('.lang', rowData).text();
+			if ( 0 < langArgument.length ) {
+				langArgument = '&lang=' + langArgument;
+			} else {
+				langArgument = '';
+			}
+
+				textarea.suggest( ajaxurl + '?action=ajax-tag-search&tax=' + taxname + '&preview_id=' + id + langArgument, { delay: 500, minchars: 2, multiple: true, multipleSep: mla.settings.comma + ' ' } );
 			});
 
-			$(editRow).attr('id', 'edit-'+id).addClass('inline-editor').show();
+			rowData = $(editRow).attr('id', 'edit-'+id).addClass('inline-editor').show().position().top;
 			$('.ptitle', editRow).focus();
+			$( 'html, body' ).animate( { scrollTop: rowData }, 'fast' );
 
 			return false;
 		},
@@ -432,14 +487,19 @@ var jQuery,
 		quickSave : function( id ) {
 			var params, fields, page = $('.post_status_page').val() || '';
 
-			if ( typeof(id) == 'object' )
+			if ( typeof(id) == 'object' ) {
 				id = mla.utility.getId(id);
+			}
 
-			$('table.widefat .inline-edit-save .spinner').show();
+			if ( mla.settings.useSpinnerClass ) {
+				$('table.widefat .inline-edit-save .spinner').addClass("is-active");
+			} else {
+				$('table.widefat .inline-edit-save .spinner').show();
+			}
 
 			params = {
 				action: mla.settings.ajax_action,
-				nonce: mla.settings.ajax_nonce,
+				mla_admin_nonce: mla.settings.ajax_nonce,
 				post_type: 'attachment',
 				post_ID: id,
 				edit_date: 'true',
@@ -452,11 +512,20 @@ var jQuery,
 			// make ajax request
 			$.post( ajaxurl, params,
 				function( response ) {
-					$( 'table.widefat .inline-edit-save .spinner' ).hide();
+					if ( mla.settings.useSpinnerClass ) {
+						$('table.widefat .inline-edit-save .spinner').removeClass("is-active");
+					} else {
+						$('table.widefat .inline-edit-save .spinner').hide();
+					}
 
 					if ( response ) {
 						if ( -1 != response.indexOf( '<tr' ) ) {
-							$( mla.inlineEditAttachment.what + id ).remove();
+							if ( mla.settings.useSpinnerClass ) {
+								$( mla.inlineEditAttachment.what + id ).siblings('tr.hidden').addBack().remove();
+							} else {
+								$( mla.inlineEditAttachment.what + id ).remove();
+							}
+
 							$( '#edit-' + id ).before( response ).remove();
 							$( mla.inlineEditAttachment.what + id ).hide().fadeIn();
 						} else {
@@ -467,7 +536,7 @@ var jQuery,
 						$( '#edit-' + id + ' .inline-edit-save .error' ).html( mla.settings.error ).show();
 					}
 				}, 'html');
-			
+
 			return false;
 		},
 
@@ -558,11 +627,16 @@ var jQuery,
 				tableCell = $( '#attachment-' + postId + " td.attached_to" ).clone( true );
 				tableCell.html( '<span class="spinner"></span>' );
 				$( '#attachment-' + postId + " td.attached_to" ).replaceWith( tableCell );
-				$( '#attachment-' + postId + " td.attached_to .spinner" ).show();
+
+				if ( mla.settings.useSpinnerClass ) {
+					$( '#attachment-' + postId + " td.attached_to .spinner" ).addClass("is-active");
+				} else {
+					$( '#attachment-' + postId + " td.attached_to .spinner" ).show();
+				}
 
 				params = $.param( {
 					action: mla.settings.ajax_action + '-set-parent',
-					nonce: mla.settings.ajax_nonce,
+					mla_admin_nonce: mla.settings.ajax_nonce,
 					post_ID: postId,
 					post_parent: parentId,
 				} );
@@ -589,14 +663,62 @@ var jQuery,
 			mla.setParent.close();
 		},
 
+		doReset : function(){
+			var id = $('table.widefat tr.inline-editor').attr('id'),
+				bulkRow = $('table.widefat #bulk-edit'),
+				blankRow = $('#inlineedit #blank-bulk-edit'),
+				blankCategories = $('.inline-edit-categories', blankRow ).html(),
+				blankTags = $('.inline-edit-tags', blankRow ).html(),
+				blankFields = $('.inline-edit-fields', blankRow ).html();
+
+			if ( id ) {
+				if ( mla.settings.useSpinnerClass ) {
+					$('table.widefat .inline-edit-save .spinner').removeClass("is-active");
+				} else {
+					$('table.widefat .inline-edit-save .spinner').hide();
+				}
+
+				if ( 'bulk-edit' == id ) {
+					$('.inline-edit-categories', bulkRow ).html( blankCategories ),
+					$('.inline-edit-tags', bulkRow ).html( blankTags ),
+					$('.inline-edit-fields', bulkRow ).html( blankFields );
+
+					if ( ( typeof quicktags !== 'undefined' ) && ( typeof  mla.settings.quickTagsInit !== 'undefined' ) ) {
+						for ( id in mla.settings.quickTagsInit ) {
+							quicktags( mla.settings.quickTagsInit[id] );
+		
+							if ( mla.settings.quickTagsInit[id]['active'] ) {
+								window.wpActiveEditor = id;
+							}
+						}
+					}
+
+					$('#bulk-edit-set-parent', bulkRow).on( 'click', function(){
+						return mla.inlineEditAttachment.bulkParentOpen();
+					});
+				}
+			}
+
+			return false;
+		},
+
 		revert : function(){
 			var id = $('table.widefat tr.inline-editor').attr('id');
 
 			if ( id ) {
-				$('table.widefat .inline-edit-save .spinner').hide();
+				if ( mla.settings.useSpinnerClass ) {
+					$('table.widefat .inline-edit-save .spinner').removeClass("is-active");
+				} else {
+					$('table.widefat .inline-edit-save .spinner').hide();
+				}
 
 				if ( 'bulk-edit' == id ) {
-					$('table.widefat #bulk-edit').removeClass('inline-editor').hide();
+					if ( mla.settings.useSpinnerClass ) {
+						$('table.widefat #bulk-edit').removeClass('inline-editor').hide().siblings('tr.hidden').remove();
+					} else {
+						$('table.widefat #bulk-edit').removeClass('inline-editor').hide();
+					}
+
 					$('#bulk-titles').html('');
 					$('#inlineedit').append( $('#bulk-edit') );
 				} else {
@@ -605,7 +727,12 @@ var jQuery,
 						$('#bulk-progress-waiting').html('');
 						$('#inlineedit').append( $('#bulk-progress') );
 					} else {
-						$('#'+id).remove();
+						if ( mla.settings.useSpinnerClass ) {
+							$('#'+id).siblings('tr.hidden').addBack().remove();
+						} else {
+							$('#'+id).remove();
+						}
+
 						id = id.substr( id.lastIndexOf('-') + 1 );
 						$(this.what+id).show();
 					}

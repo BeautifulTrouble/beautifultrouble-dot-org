@@ -5,11 +5,11 @@ var jQuery, wpAjax,
 	mlaTaxonomy = {
 		// Properties
 		settings: {},
-	
+
 		// Utility functions
 		utility: {
 		},
-	
+
 		// Components
 		termsSearch: null
 	};
@@ -33,7 +33,6 @@ var jQuery, wpAjax,
 			});
 
 			$( '#mla-terms-search-submit' ).click( function() {
-				// $( '#mla-terms-search-search-div .spinner' ).show();
 				mlaTaxonomy.termsSearch.close();
 			});
 
@@ -93,14 +92,22 @@ var jQuery, wpAjax,
 				spinner = $( '#mla-terms-search-search-div .spinner' ),
 				ajaxResponse = null;
 
-			spinner.show();
+			if ( mla.settings.useSpinnerClass ) {
+				spinner.addClass("is-active");
+			} else {
+				spinner.show();
+			}
 
 			$.ajax( ajaxurl, {
 				type: 'POST',
 				data: post,
 				dataType: mlaTaxonomy.settings.termsSearchDataType
 			}).always( function() {
-				spinner.hide();
+				if ( mla.settings.useSpinnerClass ) {
+					spinner.removeClass("is-active");
+				} else {
+					spinner.hide();
+				}
 			}).done( function( response ) {
 				var responseData = 'no response.data', id = 0;
 

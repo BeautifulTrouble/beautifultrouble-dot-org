@@ -7,7 +7,7 @@
             </select>
 
 <!-- template="single-item-edit" -->
-<h3>[+Edit Upload MIME+]</h3>
+<h2>[+Edit Upload MIME+]</h2>
 <form action="[+form_url+]" method="post" class="validate" id="mla-edit-upload">
 	<input type="hidden" name="page" value="mla-settings-menu-upload" />
 	<input type="hidden" name="mla_tab" value="upload" />
@@ -51,18 +51,18 @@
 	</td>
 	</tr>
 </table>
-<p class="submit">
+<p class="submit mla-settings-submit">
 <input name="cancel" type="submit" class="button-primary" value="[+Cancel+]" />&nbsp;
 <input name="update" type="submit" class="button-primary" value="[+Update+]" />&nbsp;
 </p>
 </form>
 <!-- template="upload-disabled" -->
-<h3>[+Support is disabled+]</h3>
+<h2>[+Support is disabled+]</h2>
 <form action="[+form_url+]" method="post" class="mla-display-settings-page" id="mla-display-settings-upload-tab">
     <table class="optiontable">
 [+options_list+]
 	</table>
-    <p class="submit" style="padding-bottom: 0;">
+    <p class="submit mla-settings-submit">
         <input name="mla-upload-options-save" type="submit" class="button-primary" value="[+Save Changes+]" />
     </p>
 	<input type="hidden" name="page" value="mla-settings-menu-upload" />
@@ -71,15 +71,16 @@
 </form>
 
 <!-- template="before-optional-uploads-table" -->
+<h2>[+Known File Extension+]</h2>
 <form action="[+form_url+]" method="get" id="mla-search-optional-uploads-form">
 	<input type="hidden" name="page" value="mla-settings-menu-upload" />
 	<input type="hidden" name="mla_tab" value="upload" />
 	[+_wpnonce+]
-	<H3 style="width: 600px; float: left">[+Known File Extension+][+results+]</H3>
+	[+results+]
 	<p class="search-box" style="margin-top: 1em">
 		<label class="screen-reader-text" for="mla-search-optional-uploads-input">[+Search Known MIME+]:</label>
 		<input type="search" id="mla-search-optional-uploads-input" name="s" value="[+s+]" />
-		<input type="submit" name="mla-optional-uploads-search" id="mla-search-optional-uploads-submit" class="button" value="Search Types" />
+		<input type="submit" name="mla-optional-uploads-search" id="mla-search-optional-uploads-submit" class="button" value="[+Search Types+]" />
 		<span class="description"><br />[+To search by+]</span>
 	</p>
 </form>
@@ -89,16 +90,16 @@
 		<input type="hidden" name="page" value="mla-settings-menu-upload" />
 		<input type="hidden" name="mla_tab" value="upload" />
 		[+_wpnonce+]
-		
+
 <!-- template="after-optional-uploads-table" -->
-		<p class="submit">
+		<p class="submit mla-settings-submit">
 		<input name="mla-optional-uploads-cancel" type="submit" class="button-primary" value="Cancel" />&nbsp;
 		</p>
 	</form><!-- /id=mla-search-uploads-filter --> 
 </div><!-- /col-container -->
 
 <!-- template="before-table" -->
-<h3>[+File Extension Processing+]</h3>
+<h2>[+File Extension Processing+]</h2>
 <p>[+In this tab+]</p>
 <p>[+You can find+]</p>
 <div id="ajax-response"></div>
@@ -122,26 +123,26 @@
 				<input type="hidden" name="page" value="mla-settings-menu-upload" />
 				<input type="hidden" name="mla_tab" value="upload" />
 				[+_wpnonce+]
-				
+
 <!-- template="after-table" -->
 			</form><!-- /id=mla-search-uploads-filter --> 
 		</div><!-- /col-wrap --> 
-		<div style="margin-left: 10px; margin-top: 10px;">
+	</div><!-- /col-right -->
+	<div id="col-left">
+		<div class="col-wrap">
+		<div class="mla-settings-enable-form">
 		<form action="[+form_url+]" method="post" class="mla-display-settings-page" id="mla-display-settings-upload-tab">
 			<table class="optiontable">
 		[+options_list+]
 			</table>
-			<span class="submit" style="padding-bottom: 0;">
+			<span class="submit mla-settings-submit">
 				<input name="mla-upload-options-save" type="submit" class="button-primary" value="[+Save Changes+]" />
 			</span>
 		[+_wpnonce+]
 		</form>
 		</div>
-	</div><!-- /col-right -->
-	<div id="col-left">
-		<div class="col-wrap">
 			<div class="form-wrap">
-				<h3>[+Add New Upload+]</h3>
+				<h2>[+Add New Upload+]</h2>
 						<p class="description">[+To search database+]</p>
 				<form action="[+form_url+]" method="post" class="validate" id="mla-add-upload">
 					<input type="hidden" name="page" value="mla-settings-menu-upload" />
@@ -172,7 +173,7 @@
 						<textarea name="mla_upload_item[description]" id="mla-upload-description" rows="5" cols="40">[+description+]</textarea>
 						<p class="description">[+The description can+]</p>
 					</div>
-					<p class="submit">
+					<p class="submit mla-settings-submit">
 						<input type="submit" name="mla-add-upload-submit" id="mla-add-upload-submit" class="button button-primary" value="[+Add Upload MIME+]" /> <a href="[+search_url+]" class="button">[+Search Known Types+]</a>
 					</p>
 				</form><!-- /id=mla-add-upload --> 
@@ -191,19 +192,21 @@ try{document.forms.addtag['mla-upload-slug'].focus();}catch(e){}
 					<fieldset class="inline-edit-col">
 						<div class="inline-edit-col">
 							<h4>[+Quick Edit+]</h4>
-							<label> <span class="title">[+Extension+]</span> <span class="input-text-wrap">
+							<label class="alignleft"> <span class="title">[+Extension+]</span> <span class="input-text-wrap">
 								<input type="text" name="slug" class="ptitle" value="" />
 								</span> </label>
-							<label> <span class="title">[+MIME Type+]</span> <span class="input-text-wrap">
+							<label class="alignleft"> <span class="title">[+MIME Type+]</span> <span class="input-text-wrap">
 								<input type="text" name="mime_type" class="ptitle" value="" />
 								</span> </label>
-							<br clear="all">
-							<label> <span class="title">[+Icon Type+]</span> <span class="input-text-wrap">
+							<div class="inline-edit-group">
+								<label class="alignleft checkbox-label">
+								<input type="checkbox" name="disabled" class="ptitle" checked="checked" value="1" />
+								</span> <span class="checkbox-title">[+Inactive+]</span>
+								</label> 
+								<label class="alignleft"> <span class="title">[+Icon Type+]</span> <span class="input-text-wrap">
 [+inline_icon_types+]
 								</span> </label>
-							<span class="input-text-wrap">
-								<input type="checkbox" name="disabled" class="ptitle" checked="checked" value="1" />
-								</span> <span class="title">[+Inactive+]</span> 
+							</div>
 						</div>
 					</fieldset>
 					<p class="inline-edit-save submit"> <a accesskey="c" href="#inline-edit" title="[+Cancel+]" class="cancel button-secondary alignleft">[+Cancel+]</a> <a accesskey="s" href="#inline-edit" title="[+Update Upload MIME+]" class="save button-primary alignright">[+Update+]</a>

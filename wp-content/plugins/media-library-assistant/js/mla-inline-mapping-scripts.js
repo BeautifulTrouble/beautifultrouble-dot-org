@@ -6,14 +6,15 @@ var jQuery,
 		// Properties
 		settings: {},
 		bulkMap: {
+			ids: [],
 			inProcess: false,
 			doCancel: false
 		},
-	
+
 		// Utility functions
 		utility: {
 		},
-	
+
 		// Components
 		inlineMapAttachment: null
 	};
@@ -29,8 +30,8 @@ var jQuery,
 		init : function(){
 			var progressDiv = $( '#mla-progress-div' );
 
-			$('#mla-progress-cancel', progressDiv).off( 'click' );
-			$('#mla-progress-cancel', progressDiv).click( function(){
+			$('#mla-progress-pause', progressDiv).off( 'click' );
+			$('#mla-progress-pause', progressDiv).click( function(){
 				if ( mla.bulkMap.inProcess ) {
 					mla.bulkMap.doCancel = true;
 					return false;
@@ -39,10 +40,15 @@ var jQuery,
 				}
 			});
 
+			$('#mla-progress-cancel', progressDiv).off( 'click' );
+			$('#mla-progress-cancel', progressDiv).click( function(){
+				return mla.inlineMapAttachment.revert();
+			});
+
 			$('#mla-progress-resume', progressDiv).off( 'click' );
 			$('#mla-progress-resume', progressDiv).click( function(){
 				var totalItems = +mla.settings.totalItems, newOffset = + $( '#mla-progress-offset' ).val();
-				
+
 				if ( totalItems < newOffset ) {
 					newOffset = totalItems;
 				} else {
@@ -50,7 +56,7 @@ var jQuery,
 						newOffset = 0;
 					}
 				}
-				
+
 				if ( mla.bulkMap.inProcess ) {
 					mla.bulkMap.doCancel = true;
 					return false;
@@ -62,8 +68,7 @@ var jQuery,
 			// Clicking "Refresh" submits the form, refreshing the page
 			$( '#mla-progress-refresh', progressDiv ).off( 'click' );
 			$( '#mla-progress-refresh', progressDiv ).click( function(){
-				$( '#mla-progress-refresh' ).prop( 'disabled', true );
-				$( '#mla-progress-refresh' ).css( 'opacity', '0.5' );
+				$( '#mla-progress-refresh' ).prop( 'disabled', true ).css( 'opacity', '0.5' );
 			});
 
 			$('#mla-progress-close', progressDiv).off( 'click' );
@@ -75,18 +80,66 @@ var jQuery,
 				return mla.inlineMapAttachment.revert();
 			});
 
-			// add event handler to the Map All links
+			// add event handler to the Execute All Rules
 			$( 'input[type="submit"].mla-mapping' ).click(function( e ){
 				e.preventDefault();
 				return mla.inlineMapAttachment.bulkMap( e.target.name, 0 );
 			});
+
+			// add event handler to the Bulk Actions Apply (top)
+			$( 'input[type="submit"]#doaction' ).click(function( e ){
+				var action = $( '#bulk-action-selector-top' ).val(), ids;
+//console.log( 'Bulk Actions Apply (top) ', e.target.id, ' ', action );
+				if ( 'execute' !== action ) {
+					return true;
+				}
+				
+				ids = $('tbody th.check-column input[type="checkbox"]').serializeArray();
+				if ( 0 === ids.length ) {
+					return true;
+				}
+
+				$.each( ids, function( index, id ) {
+					mla.bulkMap.ids[ index ] = +id.value;
+				});
+//console.log( JSON.stringify( mla.bulkMap ) );
+
+				e.preventDefault();
+				return mla.inlineMapAttachment.bulkMap( 'mapping-options-bulk-execute', 0 );
+			});
+
+			// add event handler to the Bulk Actions Apply (bottom)
+			$( 'input[type="submit"]#doaction2' ).click(function( e ){
+				var action = $( '#bulk-action-selector-bottom' ).val(), ids;
+				if ( 'execute' !== action ) {
+					return true;
+				}
+				
+				ids = $('tbody th.check-column input[type="checkbox"]').serializeArray();
+				if ( 0 === ids.length ) {
+					return true;
+				}
+
+				$.each( ids, function( index, id ) {
+					mla.bulkMap.ids[ index ] = +id.value;
+				});
+
+				e.preventDefault();
+				return mla.inlineMapAttachment.bulkMap( 'mapping-options-bulk-execute', 0 );
+			});
+
+			// add event handler to the Execute rollover links
+			$( 'a.execute' ).click(function( e ){
+				e.preventDefault();
+				return mla.inlineMapAttachment.bulkMap( e.target.id, 0 );
+			});
 		},
 
 		bulkMap : function( action, initialOffset ) {
-			var oldComplete = 0, oldUnchanged = 0, oldSuccess = 0, oldSkip = 0, oldRedone = 0;
-			
+			var oldComplete = 0, oldUnchanged = 0, oldSuccess = 0, oldSkip = 0, oldRedone = 0, bulk_ids = [];
+
 			initialOffset = +initialOffset;
-			
+
 			if ( 0 < initialOffset ) {
 				oldComplete = typeof mla.bulkMap.complete === 'undefined' ? 0 : mla.bulkMap.complete;
 				oldUnchanged = typeof mla.bulkMap.unchanged === 'undefined' ? 0 : mla.bulkMap.unchanged;
@@ -94,7 +147,7 @@ var jQuery,
 				oldSkip = typeof mla.bulkMap.skip === 'undefined' ? 0 : mla.bulkMap.skip;
 				oldRedone = typeof mla.bulkMap.redone === 'undefined' ? 0 : mla.bulkMap.redone;
 			}
-			
+
 			// See if we're skipping or re-processing any items
 			if ( oldComplete < initialOffset ) {
 				oldSkip += initialOffset - oldComplete;
@@ -103,8 +156,10 @@ var jQuery,
 					oldRedone += oldComplete - initialOffset;
 				}
 			}
-			
+
+			bulk_ids = typeof mla.bulkMap.ids === 'undefined' ? [] : mla.bulkMap.ids;
 			mla.bulkMap = {
+				ids: bulk_ids,
 				inProcess: false,
 				doCancel: false,
 				chunkSize: +mla.settings.bulkChunkSize,
@@ -136,7 +191,8 @@ var jQuery,
 			$( '#mla-progress-div' ).show();
 
 			// Disable "Close" until the bulk mapping is complete
-			$( '#mla-progress-cancel' ).prop( 'disabled', false ).css( 'opacity', '1.0' );
+			$( '#mla-progress-pause' ).prop( 'disabled', false ).css( 'opacity', '1.0' ).show();
+			$( '#mla-progress-cancel' ).hide();
 			$( '#mla-progress-resume' ).hide();
 			$( '#mla-progress-offset' ).hide();
 			$( '#mla-progress-refresh' ).hide();
@@ -156,7 +212,7 @@ var jQuery,
 			} else {
 				chunk = mla.bulkMap.chunkSize;
 			}
-			
+
 			mla.bulkMap.waiting -= chunk;
 			mla.bulkMap.running = chunk;
 
@@ -165,17 +221,18 @@ var jQuery,
 				mla_tab: mla.settings.mla_tab,
 				screen: mla.settings.screen,
 				action: mla.settings.ajax_action,
-				nonce: mla.settings.ajax_nonce,
+				mla_admin_nonce: mla.settings.ajax_nonce,
 				bulk_action: mla.bulkMap.targetName,
+				ids: mla.bulkMap.ids,
 				offset: mla.bulkMap.complete,
 				length: chunk
 			};
 
 			params = $.param( params ) + '&' + mla.bulkMap.fields;
-			
+
 			// make ajax request
 			mla.bulkMap.inProcess = true;
-			
+
 			percentComplete = Math.floor( ( 100 * mla.bulkMap.complete ) / mla.settings.totalItems ) + '%';
 			$( '#mla-progress-meter' ).css( 'width', percentComplete );
 			$( '#mla-progress-meter' ).html( percentComplete );
@@ -183,12 +240,17 @@ var jQuery,
 			if ( 0 < mla.bulkMap.skip ) {
 				statusMessage += ', ' + mla.settings.bulkSkip + ': ' + mla.bulkMap.skip;
 			}
-			
+
 			if ( 0 < mla.bulkMap.redone ) {
 				statusMessage += ', ' + mla.settings.bulkRedone + ': ' + mla.bulkMap.redone;
 			}
-			
-			spinner.show();
+
+			if ( mla.settings.useSpinnerClass ) {
+				spinner.addClass("is-active");
+			} else {
+				spinner.show();
+			}
+
 			statusMessage = mla.settings.bulkWaiting + ': ' + mla.bulkMap.waiting
 				+ ', ' + mla.settings.bulkRunning + ': ' + mla.bulkMap.running
 				+ ', ' + mla.settings.bulkComplete + ': ' + mla.bulkMap.complete
@@ -196,22 +258,26 @@ var jQuery,
 				+ ', ' + mla.settings.bulkUnchanged + ': ' + mla.bulkMap.unchanged
 				+ ', ' + mla.settings.bulkSuccess + ': ' + mla.bulkMap.success;
 			message.html( statusMessage ).show();
-			
+
 			$.ajax( ajaxurl, {
 				type: 'POST',
 				data: params,
 				dataType: 'json'
 			}).always( function() {
-				spinner.hide();
+				if ( mla.settings.useSpinnerClass ) {
+					spinner.removeClass("is-active");
+				} else {
+					spinner.hide();
+				}
 			}).done( function( response, status ) {
 					var responseData = 'no response.data', responseMessage = '';
-					
+
 					if ( response ) {
 						if ( ! response.success ) {
 							if ( response.responseData ) {
 								responseData = response.data;
 							}
-							
+
 							error.html( JSON.stringify( response ) );
 							mla.bulkMap.waiting = 0; // Stop
 						} else {
@@ -225,23 +291,23 @@ var jQuery,
 								mla.bulkMap.running = 0;
 								mla.bulkMap.unchanged += response.data.unchanged;
 								mla.bulkMap.success += response.data.success;
-								
+
 								if ( 'undefined' !== typeof response.data.refresh ) {
 									mla.bulkMap.refresh = response.data.refresh;
 								}
-								
+
 								percentComplete = Math.floor( ( 100 * mla.bulkMap.complete ) / mla.settings.totalItems ) + '%';
 								$( '#mla-progress-meter' ).css( 'width', percentComplete );
 								$( '#mla-progress-meter' ).html( percentComplete );
-	
+
 								if ( 0 < mla.bulkMap.skip ) {
 									responseMessage += ', ' + mla.settings.bulkSkip + ': ' + mla.bulkMap.skip;
 								}
-								
+
 								if ( 0 < mla.bulkMap.redone ) {
 									responseMessage += ', ' + mla.settings.bulkRedone + ': ' + mla.bulkMap.redone;
 								}
-								
+
 								responseMessage = mla.settings.bulkWaiting + ': ' + mla.bulkMap.waiting
 									+ ', ' + mla.settings.bulkComplete + ': ' + mla.bulkMap.complete
 									+ responseMessage // skip and redone
@@ -254,9 +320,11 @@ var jQuery,
 						error.html( mla.settings.error );
 						mla.bulkMap.waiting = 0; // Stop
 					}
-					
+
 					if ( mla.bulkMap.doCancel ) {
-						message.html( mla.settings.bulkCanceled + '. ' +  responseMessage ).show();
+						message.html( mla.settings.bulkPaused + '. ' +  responseMessage ).show();
+						$( '#mla-progress-pause' ).hide();
+						$( '#mla-progress-cancel' ).show();
 						$( '#mla-progress-resume' ).show();
 						$( '#mla-progress-offset' ).val( mla.bulkMap.complete ).show();
 					} else {
@@ -272,8 +340,8 @@ var jQuery,
 					} else {
 						$( '#mla-progress-close' ).prop( 'disabled', false ).css( 'opacity', '1.0' );
 					}
-					
-					$( '#mla-progress-cancel' ).prop( 'disabled', true ).css( 'opacity', '0.5' );
+
+					$( '#mla-progress-pause' ).prop( 'disabled', true ).css( 'opacity', '0.5' );
 					mla.bulkMap.inProcess = false;
 			}).fail( function( jqXHR, status ) {
 				if ( 200 == jqXHR.status ) {
@@ -288,7 +356,11 @@ var jQuery,
 			var progressDiv = $( '#mla-progress-div' );
 
 			if ( progressDiv ) {
-				$('p.inline-edit-save .spinner', progressDiv ).hide();
+				if ( mla.settings.useSpinnerClass ) {
+					$('p.inline-edit-save .spinner', progressDiv ).removeClass("is-active");
+				} else {
+					$('p.inline-edit-save .spinner', progressDiv ).hide();
+				}
 
 				// Reset Div content to initial values
 

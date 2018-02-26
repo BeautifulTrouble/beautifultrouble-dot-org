@@ -1,6 +1,6 @@
 <!-- template="single-item-edit" -->
 <div id="ajax-response"></div>
-<h3>[+Edit View+]</h3>
+<h2>[+Edit View+]</h2>
 <form action="[+form_url+]" method="post" class="validate" id="mla-edit-view">
 	<input type="hidden" name="page" value="mla-settings-menu-view" />
 	<input type="hidden" name="mla_tab" value="view" />
@@ -64,18 +64,18 @@
 	</td>
 	</tr>
 </table>
-<p class="submit">
+<p class="submit mla-settings-submit">
 <input name="cancel" type="submit" class="button-primary" value="[+Cancel+]" />&nbsp;
 <input name="update" type="submit" class="button-primary" value="[+Update+]" />&nbsp;
 </p>
 </form>
 <!-- template="view-disabled" -->
-<h3>[+Support is disabled+]</h3>
+<h2>[+Support is disabled+]</h2>
 <form action="[+form_url+]" method="post" class="mla-display-settings-page" id="mla-display-settings-view-tab">
     <table class="optiontable">
 [+options_list+]
 	</table>
-    <p class="submit" style="padding-bottom: 0;">
+    <p class="submit mla-settings-submit">
         <input name="mla-view-options-save" type="submit" class="button-primary" value="[+Save Changes+]" />
     </p>
 	<input type="hidden" name="page" value="mla-settings-menu-view" />
@@ -84,7 +84,7 @@
 </form>
 
 <!-- template="before-table" -->
-<h3>[+Library Views Processing+]</h3>
+<h2>[+Library Views Processing+]</h2>
 <p>[+In this tab+]</p>
 <p>[+You can find+]</p>
 <div id="ajax-response"></div>
@@ -107,27 +107,27 @@
 				<input type="hidden" name="page" value="mla-settings-menu-view" />
 				<input type="hidden" name="mla_tab" value="view" />
 				[+_wpnonce+]
-				
+
 <!-- template="after-table" -->
 			</form><!-- /id=mla-search-views-filter --> 
 		</div><!-- /col-wrap --> 
-		<div style="margin-left: 10px; margin-top: 10px;">
+	</div><!-- /col-right -->
+
+	<div id="col-left">
+		<div class="col-wrap">
+		<div class="mla-settings-enable-form">
 		<form action="[+form_url+]" method="post" class="mla-display-settings-page" id="mla-display-settings-view-tab">
 			<table class="optiontable">
 		[+options_list+]
 			</table>
-			<span class="submit" style="padding-bottom: 0;">
+			<span class="submit mla-settings-submit">
 				<input name="mla-view-options-save" type="submit" class="button-primary" value="[+Save Changes+]" />
 			</span>
 		[+_wpnonce+]
 		</form>
 		</div>
-	</div><!-- /col-right -->
-	
-	<div id="col-left">
-		<div class="col-wrap">
 			<div class="form-wrap">
-				<h3>[+Add New View+]</h3>
+				<h2>[+Add New View+]</h2>
 				<form action="[+form_url+]" method="post" class="validate" id="mla-add-view">
 					<input type="hidden" name="page" value="mla-settings-menu-view" />
 					<input type="hidden" name="mla_tab" value="view" />
@@ -169,7 +169,7 @@
 						<textarea name="mla_view_item[description]" id="mla-view-description" rows="5" cols="40">[+description+]</textarea>
 						<p class="description">[+The description can+]</p>
 					</div>
-					<p class="submit">
+					<p class="submit mla-settings-submit">
 						<input type="submit" name="mla-add-view-submit" id="mla-add-view-submit" class="button button-primary" value="[+Add View+]" />
 					</p>
 				</form><!-- /id=mla-add-view --> 
@@ -188,28 +188,32 @@ try{document.forms.addtag['mla-view-slug'].focus();}catch(e){}
 					<fieldset class="inline-edit-col">
 						<div class="inline-edit-col">
 							<h4>[+Quick Edit+]</h4>
-							<label> <span class="title">[+Slug+]</span> <span class="input-text-wrap">
+							<label class="alignleft"> <span class="title">[+Slug+]</span> <span class="input-text-wrap">
 								<input type="text" name="slug" class="ptitle" value="" />
 								</span> </label>
-							<label> <span class="title">[+Specification+]</span> <span class="input-text-wrap">
+							<label class="alignleft"> <span class="title">[+Specification+]</span> <span class="input-text-wrap">
 								<input type="text" name="specification" class="ptitle" value="" />
 								</span> </label>
-							<label> <span class="title">[+Singular Label+]</span> <span class="input-text-wrap">
+							<label class="alignleft"> <span class="title">[+Singular Label+]</span> <span class="input-text-wrap">
 								<input type="text" name="singular" class="ptitle" value="" />
 								</span> </label>
-							<label> <span class="title">[+Plural Label+]</span> <span class="input-text-wrap">
+							<label class="alignleft"> <span class="title">[+Plural Label+]</span> <span class="input-text-wrap">
 								<input type="text" name="plural" class="ptitle" value="" />
 								</span> </label>
-							<br clear="all">
-							<span class="input-text-wrap">
-								<input type="checkbox" name="post_mime_type" class="ptitle" checked="checked" value="1" />
-								</span> <span class="title">[+Post MIME Type+]&nbsp;&nbsp;&nbsp;&nbsp;</span>
-							<span class="input-text-wrap">
-								<input type="checkbox" name="table_view" class="ptitle" checked="checked" value="1" />
-								</span> <span class="title">[+Table View+]&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-							<span class="title">[+Menu Order+]</span> <span class="input-text-wrap">
-								<input class="inline-edit-menu-order" type="text" name="menu_order" class="ptitle" value="" />
-								</span>
+							<div class="inline-edit-group">
+								<label class="alignleft checkbox-label">
+									<input type="checkbox" name="post_mime_type" class="ptitle" checked="checked" value="1" />
+									<span class="checkbox-title">[+Post MIME Type+]</span>
+								</label>
+								<label class="alignleft checkbox-label">
+									<input type="checkbox" name="table_view" class="ptitle" checked="checked" value="1" />
+									<span class="checkbox-title">[+Table View+]</span> 
+								</label>
+								<label class="alignleft">
+									<span class="title">[+Menu Order+]</span>
+									<span class="input-text-wrap"><input type="text" name="menu_order" class="ptitle inline-edit-menu-order" value="" /></span>
+								</label>
+							</div>
 						</div>
 					</fieldset>
 					<p class="inline-edit-save submit"> <a accesskey="c" href="#inline-edit" title="Cancel" class="cancel button-secondary alignleft">[+Cancel+]</a> <a accesskey="s" href="#inline-edit" title="[+Update+]" class="save button-primary alignright">[+Update+]</a>

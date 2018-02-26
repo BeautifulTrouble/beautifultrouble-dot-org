@@ -148,18 +148,26 @@ var jQuery;
 					mla_set_parent_count: $( '#mla-set-parent-count' ).val(),
 					mla_set_parent_paged: $( '#mla-set-parent-paged' ).val(),
 					action: 'mla_find_posts',
-					_ajax_nonce: $('#mla-set-parent-ajax-nonce').val()
+					mla_admin_nonce: $('#mla-set-parent-ajax-nonce').val()
 				},
 				spinner = $( '#mla-set-parent-search-div .spinner' );
 
-			spinner.show();
+			if ( mla.settings.useSpinnerClass ) {
+				spinner.addClass("is-active");
+			} else {
+				spinner.show();
+			}
 
 			$.ajax( ajaxurl, {
 				type: 'POST',
 				data: post,
 				dataType: 'json'
 			}).always( function() {
-				spinner.hide();
+				if ( mla.settings.useSpinnerClass ) {
+					spinner.removeClass("is-active");
+				} else {
+					spinner.hide();
+				}
 			}).done( function( response ) {
 				var responseData = 'no response.data', id = 0;
 

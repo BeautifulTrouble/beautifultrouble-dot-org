@@ -3,11 +3,11 @@ var jQuery,
 	mla = {
 		// Properties
 		settings: {},
-	
+
 		// Utility functions
 		utility: {
 		},
-	
+
 		// Components
 		setParent: null,
 		mlaEditAttachment: null
