@@ -45,7 +45,6 @@ get_header(); ?>
     <hr />
     <div class="row">
         <div class="span8">
-    <?php comments_template(); ?>
         </div>
     </div> <!-- /.row -->
 <?php get_footer(); ?>

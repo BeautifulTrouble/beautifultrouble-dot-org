@@ -136,7 +136,6 @@ get_header(); ?>
     <div class="row">
         <div class="span8">
     <?php bootstrapwp_content_nav('nav-below');?>
-    <?php comments_template(); ?>
         </div>
     </div>
 <?php get_footer(); ?>
