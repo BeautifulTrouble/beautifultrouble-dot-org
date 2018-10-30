@@ -343,10 +343,9 @@ body {
     height: 40px;
     position: fixed;
     font-size: 16px;
-    top: 0;
+    top: 40px;
     left: 0; right: 0;
     text-align: center;
-    z-index: 2;
     background: #04a3d7;
     background: -moz-linear-gradient(left, #04a3d7 0%, #8fc24c 33%, #f6991f 66%, #fdbf00 100%);
     background: -webkit-linear-gradient(left, #04a3d7 0%,#8fc24c 33%,#f6991f 66%,#fdbf00 100%);
@@ -355,6 +354,7 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25), inset 0 -1px 0 rgba(0,0,0,.1);
 }
 .new-site-notice span {
     font-style: italic;
@@ -364,9 +364,6 @@ body {
     font-weight: bold;
     color: white;
     margin-left: 10px;
-}
-.navbar-fixed-top {
-    top: 40px;
 }
 /* End temporary notice of new website */
 
@@ -386,9 +383,12 @@ body {
         position: absolute;
         height: 80px;
         padding: 0 10px;
+        top: 50px;
     }
     .navbar-fixed-top {
-        padding-top: 80px;
+        margin-bottom: 100px;
+        z-index: 1;
+        position: relative;
     }
     /* End temporary notice of new website */
      
@@ -424,6 +424,7 @@ body {
 }
 
 
+/* Tablet (rare) */
 @media (min-width: 768px) and (max-width: 979px) { 
     /* Temporary notice of new website */
     body {
@@ -432,9 +433,12 @@ body {
     .new-site-notice {
         position: absolute;
         height: 60px;
+        top: 50px;
     }
     .navbar-fixed-top {
-        padding-top: 60px;
+        margin-bottom: 100px;
+        z-index: 1;
+        position: relative;
     }
     /* End temporary notice of new website */
 
