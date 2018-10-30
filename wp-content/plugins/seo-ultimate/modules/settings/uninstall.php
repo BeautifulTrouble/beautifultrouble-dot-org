@@ -9,12 +9,12 @@ if (class_exists('SU_Module')) {
 
 class SU_Uninstall extends SU_Module {
 
-	function get_parent_module() { return 'settings'; }
-	function get_child_order() { return 40; }
-	function is_independent_module() { return false; }
+	static function get_parent_module() { return 'settings'; }
+	static function get_child_order() { return 40; }
+	static function is_independent_module() { return false; }
 	function get_settings_key() { return $this->get_module_key(); }
 	
-	function get_module_title() { return __('Uninstaller', 'seo-ultimate'); }
+	static function get_module_title() { return __('Uninstaller', 'seo-ultimate'); }
 	function get_module_subtitle() { return __('Uninstall', 'seo-ultimate'); }
 	
 	function get_admin_page_tabs() {

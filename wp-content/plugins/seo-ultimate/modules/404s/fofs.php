@@ -8,9 +8,27 @@
 if (class_exists('SU_Module')) {
 
 class SU_Fofs extends SU_Module {
-	function get_module_title() { return __('404 Monitor', 'seo-ultimate'); }
-	function has_menu_count() { return true; }
-	function admin_page_contents() { $this->children_admin_page_tabs(); }
+	static function get_module_title() { return __('404 Monitor', 'seo-ultimate'); }
+	static function get_menu_title() { return __('404 Monitor', 'seo-ultimate'); }
+	static function has_menu_count() { return true; }
+	function admin_page_contents() { 
+	
+		if ($this->should_show_sdf_theme_promo()) {
+			echo "\n\n<div class='row'>\n";
+			echo "\n\n<div class='col-sm-8 col-md-9'>\n";
+		}
+		
+		$this->children_admin_page_tabs(); 
+		
+		if ($this->should_show_sdf_theme_promo()) {
+			echo "\n\n</div>\n";
+			echo "\n\n<div class='col-sm-4 col-md-3'>\n";
+			$this->promo_sdf_banners();
+			echo "\n\n</div>\n";
+			echo "\n\n</div>\n";
+		}
+		
+	}
 	
 	function add_help_tabs($screen) {
 		

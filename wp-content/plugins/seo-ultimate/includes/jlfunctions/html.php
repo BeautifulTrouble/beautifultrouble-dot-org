@@ -14,7 +14,7 @@ class suhtml {
 	 * 
 	 * @return string
 	 */
-	function option_tags($options, $current) {
+	static function option_tags($options, $current) {
 		$html = '';
 		foreach ($options as $value => $label) {
 			if (is_array($label)) {

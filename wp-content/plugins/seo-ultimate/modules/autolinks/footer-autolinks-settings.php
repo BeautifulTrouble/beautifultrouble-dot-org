@@ -9,11 +9,11 @@ if (class_exists('SU_Module')) {
 
 class SU_FooterAutolinksSettings extends SU_Module {
 	
-	function get_parent_module() { return 'autolinks'; }
-	function get_child_order() { return 40; }
-	function is_independent_module() { return false; }
+	static function get_parent_module() { return 'autolinks'; }
+	static function get_child_order() { return 40; }
+	static function is_independent_module() { return false; }
 	
-	function get_module_title() { return __('Footer Deeplink Juggernaut Settings', 'seo-ultimate'); }
+	static function get_module_title() { return __('Footer Deeplink Juggernaut Settings', 'seo-ultimate'); }
 	function get_module_subtitle() { return __('Footer Link Settings', 'seo-ultimate'); }
 	
 	function get_default_settings() {

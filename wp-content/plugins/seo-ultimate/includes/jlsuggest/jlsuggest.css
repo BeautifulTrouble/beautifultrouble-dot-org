@@ -5,7 +5,7 @@ input.jlsuggest,
 }
 
 input.jls_loading {
-	background-image: url(loading.gif);
+	background-image: url(loading.gif) !important;
 	background-repeat: no-repeat;
 	background-position: 98% center;
 }

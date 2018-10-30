@@ -9,11 +9,11 @@ if (class_exists('SU_Module')) {
 
 class SU_ContentAutolinksSettings extends SU_Module {
 	
-	function get_parent_module() { return 'autolinks'; }
-	function get_child_order() { return 20; }
-	function is_independent_module() { return false; }
+	static function get_parent_module() { return 'autolinks'; }
+	static function get_child_order() { return 20; }
+	static function is_independent_module() { return false; }
 	
-	function get_module_title() { return __('Content Deeplink Juggernaut Settings', 'seo-ultimate'); }
+	static function get_module_title() { return __('Content Deeplink Juggernaut Settings', 'seo-ultimate'); }
 	function get_module_subtitle() { return __('Content Link Settings', 'seo-ultimate'); }
 	
 	function get_default_settings() {
@@ -62,7 +62,7 @@ class SU_ContentAutolinksSettings extends SU_Module {
 			)
 		), __('Additional Dampening Effect', 'seo-ultimate'));
 		
-		$this->textbox('linkfree_tags', __('Don&#8217;t add autolinks to text within these HTML tags <em>(separate with commas)</em>:', 'seo-ultimate'), $this->get_default_setting('linkfree_tags'), __('Tag Restrictions', 'seo-ultimate'));
+		$this->textbox('linkfree_tags', __('Tag Restrictions', 'seo-ultimate'), $this->get_default_setting('linkfree_tags'), false, array('help_text' => __('Don&#8217;t add autolinks to text within these HTML tags <em>(separate with commas)</em>:', 'seo-ultimate')));
 		
 		$siloing_checkboxes = array();
 		$post_types = get_post_types(array('public' => true), 'objects');

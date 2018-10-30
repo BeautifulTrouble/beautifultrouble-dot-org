@@ -9,9 +9,9 @@ if (class_exists('SU_Module')) {
 
 class SU_Modules extends SU_Module {
 	
-	function get_module_title() { return __('Module Manager', 'seo-ultimate'); }
-	function get_menu_title() { return __('Modules', 'seo-ultimate'); }
-	function get_menu_pos()   { return 0; }
+	static function get_module_title() { return __('Module Manager', 'seo-ultimate'); }
+	static function get_menu_title() { return __('Modules', 'seo-ultimate'); }
+	static function get_menu_pos()   { return 0; }
 	function is_menu_default(){ return true; }
 	
 	function init() {
@@ -40,29 +40,20 @@ class SU_Modules extends SU_Module {
 			
 			update_option('seo_ultimate', $psdata);
 			
-			wp_redirect(add_query_arg('su-modules-updated', '1', suurl::current()), 301);
+			wp_redirect( esc_url( add_query_arg( 'su-modules-updated', '1', suurl::current() ) ), 301 );
 			exit;
 		}
 	}
 	
 	function admin_page_contents() {
 		
-		if ($this->plugin->should_show_wp_ultimate_promo()) {
-?>
-<div id="wp-ultimate">
-	<a href="http://www.wpultimatetheme.com/" target="_blank">
-		<img src="<?php echo $this->plugin->plugin_dir_url; ?>plugin/images/wp-ultimate.gif" alt="<?php esc_attr_e('Like SEO Ultimate? Check out the WP Ultimate theme from SEO Design Solutions.', 'seo-ultimate'); ?>" title="" />
-	</a>
-</div>
-
-<?php
-		}
-		
-		echo '<p>';
+		echo '<div class="row">';
+		echo '<div class="col-sm-8 col-md-9">';
+		echo '<div class="bs-callout bs-callout-grey"><p>';
 		_e('SEO Ultimate&#8217;s features are located in groups called &#8220;modules.&#8221; By default, most of these modules are listed in the &#8220;SEO&#8221; menu on the left. Whenever you&#8217;re working with a module, you can view documentation by clicking the &#8220;Help&#8221; tab in the upper-right-hand corner of your administration screen.', 'seo-ultimate');
 		echo "</p>\n<p>";
 		_e('The Module Manager lets you  disable or hide modules you don&#8217;t use. You can also silence modules from displaying bubble alerts on the menu.', 'seo-ultimate');
-		echo "</p>\n";
+		echo "</p></div>\n";
 		
 		if (!empty($_GET['su-modules-updated']))
 			$this->print_message('success', __('Modules updated.', 'seo-ultimate'));
@@ -73,13 +64,20 @@ class SU_Modules extends SU_Module {
 			  __('Status', 'seo-ultimate')
 			, __('Module', 'seo-ultimate')
 		);
+		
 		echo <<<STR
-<table class="widefat" cellspacing="0">
-	<thead><tr>
-		<th scope="col" class="module-status">{$headers[0]}</th>
-		<th scope="col" class="module-name">{$headers[1]}</th>
-	</tr></thead>
-	<tbody>
+<div class="panel panel-default">
+  <div class="panel-heading">
+	<div class="row">
+	<div class="col-sm-4 col-md-4">
+    <h3 class="panel-title step-title module-status">{$headers[0]}</h3>
+	</div>
+	<div class="col-sm-4 col-md-4">
+    <h3 class="panel-title step-title module-name">{$headers[1]}</h3>
+	</div>
+	</div>
+  </div>
+  <div class="panel-body">
 
 STR;
 		
@@ -88,6 +86,12 @@ STR;
 			, SU_MODULE_SILENCED => __('Silenced', 'seo-ultimate')
 			, SU_MODULE_HIDDEN => __('Hidden', 'seo-ultimate')
 			, SU_MODULE_DISABLED => __('Disabled', 'seo-ultimate')
+		);
+		$buttons = array(
+			  SU_MODULE_ENABLED => 'btn-success'
+			, SU_MODULE_SILENCED => 'btn-default'
+			, SU_MODULE_HIDDEN => 'btn-warning'
+			, SU_MODULE_DISABLED => 'btn-danger'
 		);
 		
 		$modules = array();
@@ -123,8 +127,8 @@ STR;
 			
 			$currentstatus = $psdata['modules'][$key];
 			
-			echo "\t\t<tr>\n\t\t\t<td class='module-status' id='module-status-$key'>\n";
-			echo "\t\t\t\t<input type='hidden' name='su-$key-module-status' id='su-$key-module-status' value='$currentstatus' />\n";
+			echo "\t\t<div class='form-group'>\n\t\t\t<div class='col-sm-4 col-md-4'>\n";
+			echo "\t\t\t<div class='btn-group sdf_toggle module-status' id='module-status-$key'>\n";
 			
 			$hidden_is_hidden = ($this->plugin->call_module_func($key, 'get_menu_title', $module_menu_title) && $module_menu_title === false)
 								|| ($this->plugin->call_module_func($key, 'is_independent_module', $is_independent_module) && $is_independent_module &&
@@ -153,31 +157,48 @@ STR;
 						break;
 				}
 				
-				if ($is_current || $currentstatus == $statuscode) $current = ' current'; else $current = '';
+				if ($is_current || $currentstatus == $statuscode) {
+					$current = ' active'; 
+				}
+				else {
+					$current = '';
+				}
 				$codeclass = str_replace('-', 'n', strval($statuscode));
-				echo "\t\t\t\t\t<span class='status-$codeclass'$style>";
-				echo "<a href='javascript:void(0)' onclick=\"javascript:set_module_status('$key', $statuscode, this)\" class='$current'>$statuslabel</a></span>\n";
+				echo "\t\t\t\t\t";
+				echo "<a href='javascript:void(0)' onclick=\"javascript:set_module_status('$key', $statuscode, this)\" type='button' class='status-$codeclass btn btn-sm btn-default$current'$style>$statuslabel</a>\n";
 			}
 			
-			if (!$this->plugin->module_exists($key) || !$this->plugin->call_module_func($key, 'get_admin_url', $admin_url))
+			if (!$this->plugin->module_exists($key) || !$this->plugin->call_module_func($key, 'get_admin_url', $admin_url)) {
 				$admin_url = false;
+			}
 			
 			if ($currentstatus > SU_MODULE_DISABLED && $admin_url) {
-				$cellcontent = "<a href='{$admin_url}'>$name</a>";
+				$cellcontent = "<a class='module-link' href='{$admin_url}'>$name</a>";
 			} else
 				$cellcontent = $name;
 			
+			echo "\t\t\t</div>\n";
+			echo "\t\t\t\t<input type='hidden' name='su-$key-module-status' id='su-$key-module-status' value='$currentstatus' />\n";
 			echo <<<STR
-				</td>
-				<td class='module-name'>
+				</div>
+				<div class='col-sm-4 col-md-4 module-name'>
 					$cellcontent
-				</td>
-			</tr>
+				</div>
+			</div>
 
 STR;
 		}
 		
-		echo "\t</tbody>\n</table>\n";
+		echo "\t</div>\n</div>\n";
+		
+		echo '</div>';
+		echo '<div class="col-sm-4 col-md-3">';
+		
+			if ($this->should_show_sdf_theme_promo()) {
+				$this->promo_sdf_banners();
+			}
+		echo '</div>';
+		echo '</div>';
 		
 		$this->admin_form_end(null, false);
 	}

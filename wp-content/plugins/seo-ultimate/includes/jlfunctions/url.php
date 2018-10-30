@@ -11,7 +11,7 @@ class suurl {
 	 * 
 	 * @return string The current URL.
 	 */
-	function current() {
+	static function current() {
 		$url = 'http';
 		if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") $url .= "s";
 		$url .= "://";
@@ -29,7 +29,7 @@ class suurl {
 	 * @param string $url2
 	 * @return bool
 	 */
-	function equal($url1, $url2) {
+	static function equal($url1, $url2) {
 		
 		if (($url1parts = parse_url($url1)) && isset($url1parts['host'])) {
 			$url1parts['host'] = strtolower($url1parts['host']);
@@ -50,7 +50,7 @@ class suurl {
 	 * @param array $parts
 	 * @return string
 	 */
-	function build($parts) {
+	static function build($parts) {
 		
 		$url = '';
 		

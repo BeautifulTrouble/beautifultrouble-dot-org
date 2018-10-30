@@ -24,7 +24,8 @@ class SU_InternalLinkAliases extends SU_Module {
 		$this->jlsuggest_init();
 	}
 	
-	function get_module_title() { return __('Link Mask Generator', 'seo-ultimate'); }
+	static function get_module_title() { return __('Link Mask Generator', 'seo-ultimate'); }
+	static function get_menu_title() { return __('Link Mask Generator', 'seo-ultimate'); }
 	
 	function get_settings_key() { return 'internal-link-aliases'; }
 	
@@ -159,7 +160,7 @@ class SU_InternalLinkAliases extends SU_Module {
 		return trim(sustr::preg_filter('a-zA-Z0-9_/', $alias_dir), '/');
 	}
 	
-	function postmeta_fields($fields) {
+	function postmeta_fields($fields, $screen) {
 		
 		if (!current_user_can('manage_options'))
 			return $fields;
@@ -370,3 +371,4 @@ class SU_InternalLinkAliases extends SU_Module {
 	}
 	
 }
+?>

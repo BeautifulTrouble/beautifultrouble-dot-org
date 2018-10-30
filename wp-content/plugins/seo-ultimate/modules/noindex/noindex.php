@@ -16,12 +16,12 @@ add_filter('su_settings_export_array', 'su_noindex_export_filter');
 
 class SU_Noindex extends SU_Module {
 	
-	function get_module_title() { return __('Noindex Manager', 'seo-ultimate'); }
+	static function get_module_title() { return __('Noindex Manager', 'seo-ultimate'); }
 	function get_module_subtitle() { return __('Noindex', 'seo-ultimate'); }
 	
-	function get_parent_module() { return 'meta-robots'; }
+	static function get_parent_module() { return 'meta-robots'; }
 	function get_settings_key() { return 'noindex'; }
-	function is_independent_module() { return false; }
+	static function is_independent_module() { return false; }
 	
 	function init() {
 		
@@ -167,7 +167,7 @@ class SU_Noindex extends SU_Module {
 		echo "\t<meta name=\"robots\" content=\"noindex\" />\n";
 	}
 	
-	function postmeta_fields($fields) {
+	function postmeta_fields($fields, $screen) {
 		$fields['30|meta_robots_noindex|meta_robots_nofollow'] = $this->get_postmeta_checkboxes(array(
 			  'meta_robots_noindex' => __('Noindex: Tell search engines not to index this webpage.', 'seo-ultimate')
 			, 'meta_robots_nofollow' => __('Nofollow: Tell search engines not to spider links on this webpage.', 'seo-ultimate')

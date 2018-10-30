@@ -1,0 +1,72 @@
+
+/* CUSTOMIZE THE CAROUSEL/BANNERS
+-------------------------------------------------- */
+/* Carousel base class */
+#sdf-promo-carousel {
+	max-width: 300px;
+}
+#sdf-promo-carousel .carousel {
+  margin-bottom: 40px;
+
+  /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+  margin-top: 0px;
+}
+/* Since positioning the image, we need to help out the caption */
+#sdf-promo-carousel .carousel-caption {
+  z-index: 10;
+}
+#sdf-promo-carousel .carousel-caption h1,
+#sdf-promo-carousel .carousel-caption h1 a,#sdf-promo-carousel .carousel-caption h1 a:hover,#sdf-promo-carousel .carousel-caption h1 a:focus,
+#sdf-promo-carousel .carousel-caption h2,
+#sdf-promo-carousel .carousel-caption h2 a,#sdf-promo-carousel .carousel-caption h2 a:hover,#sdf-promo-carousel .carousel-caption h2 a:focus,
+#sdf-promo-carousel .carousel-caption h3,
+#sdf-promo-carousel .carousel-caption h3 a,#sdf-promo-carousel .carousel-caption h3 a:hover,#sdf-promo-carousel .carousel-caption h3 a:focus {
+    color: #ffffff;
+}
+
+/* Declare heights because of positioning of img element */
+#sdf-promo-carousel .carousel .item {
+  height: 350px;
+  background-color: #868686;
+}
+#sdf-promo-carousel .carousel-inner > .item a img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+}
+.sdf-admin #sdf-promo-carousel .carousel-control {
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+.sdf-admin #sdf-promo-carousel .carousel-control.left {
+  background-image: -webkit-gradient(linear, 0 top, 100% top, from(rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.0001)));
+  background-image: -webkit-linear-gradient(left, color-stop(rgba(0, 0, 0, 0.4) 0), color-stop(rgba(0, 0, 0, 0.0001) 100%));
+  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.4) 0, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0, rgba(0, 0, 0, 0.0001) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+}
+.sdf-admin #sdf-promo-carousel .carousel-control.right {
+  right: 0;
+  left: auto;
+  background-image: -webkit-gradient(linear, 0 top, 100% top, from(rgba(0, 0, 0, 0.0001)), to(rgba(0, 0, 0, 0.4)));
+  background-image: -webkit-linear-gradient(left, color-stop(rgba(0, 0, 0, 0.0001) 0), color-stop(rgba(0, 0, 0, 0.4) 100%));
+  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.4) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.4) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+}
+.sdf-admin #sdf-promo-carousel .carousel-control:hover,.sdf-admin .carousel-control:focus {
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.sdf-admin #sdf-promo-carousel .carousel-control .icon-prev, .sdf-admin .carousel-control .icon-next, .sdf-admin .carousel-control .glyphicon-chevron-left, .sdf-admin .carousel-control .glyphicon-chevron-right {
+    bottom: 140px !important;
+		top: auto !important;
+}
+.sdf-admin #sdf-promo-carousel .carousel-control .icon-next, .sdf-admin .carousel-control .glyphicon-chevron-right {
+    left: 0 !important;
+}

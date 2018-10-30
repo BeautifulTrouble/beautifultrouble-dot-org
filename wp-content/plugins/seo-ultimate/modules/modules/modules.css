@@ -2,43 +2,10 @@
 	clear: left;
 }
 
-#su-modules td {
-	vertical-align: middle;
-}
-
-#su-modules td.module-status {
-	padding-right: 2em;
-	white-space: nowrap;
-	min-width: 25em;
-}
-
-#su-modules td.module-status input {
-	display: none;
-}
-
-#su-modules td.module-status a {
-	float: left;
-	display: block;
-	border: 1px solid transparent;
-	padding: 0.3em 0.5em;
-	color: #999;
-	margin-right: 0.2em;
-}
-
-#su-modules td.module-status a:hover {
-	border-color: #ccc #666 #666 #ccc;
-}
-
-#su-modules td.module-status a.current {
-	border-color: #666 #ccc #ccc #666;
-}
-
-#su-modules td.module-status .status-10 a.current { color: green; }
-#su-modules td.module-status .status-5  a.current { color: black; }
-#su-modules td.module-status .status-0 a.current  { color: darkorange; }
-#su-modules td.module-status .status-n10 a.current{ color: red; }
-
-#su-modules #wp-ultimate {
-	float: right;
-	margin: 0 1em 1em;
-}
+#su-modules .module-status a.status-10.active { color: green; }
+#su-modules .module-status a.status-5.active { color: black; }
+#su-modules .module-status a.status-0.active  { color: darkorange; }
+#su-modules .module-status a.status-n10.active { color: red; }
+#su-modules .module-name { color: #767676; }
+#su-modules .module-name a.module-link { color: #0074A2; }
+#su-modules .module-name a.module-link:hover { color: #0074A2; }

@@ -13,7 +13,7 @@ class sunum {
 	 * 
 	 * @return int The lowest of the numbers.
 	 */
-	function lowest() {
+	static function lowest() {
 		$numbers = func_get_args();
 		$numbers = array_values($numbers);
 		
@@ -30,3 +30,4 @@ class sunum {
 		return false;
 	}
 }
+?>

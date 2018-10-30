@@ -15,8 +15,8 @@ add_filter('su_settings_export_array', 'su_meta_keywords_export_filter');
 
 class SU_MetaKeywords extends SU_Module {
 	
-	function get_module_title() { return __('Meta Keywords Editor', 'seo-ultimate'); }
-	function get_menu_title()   { return __('Meta Keywords', 'seo-ultimate'); }
+	static function get_module_title() { return __('Meta Keywords Editor', 'seo-ultimate'); }
+	static function get_menu_title()   { return __('Meta Keywords', 'seo-ultimate'); }
 	function get_settings_key() { return 'meta'; }
 	function get_default_status() { return SU_MODULE_DISABLED; }
 	
@@ -166,7 +166,7 @@ class SU_MetaKeywords extends SU_Module {
 		return $count > 1;
 	}
 	
-	function postmeta_fields($fields) {	
+	function postmeta_fields($fields, $screen) {	
 		$fields['25|keywords'] = $this->get_postmeta_textbox('keywords', __('Meta Keywords:<br /><em>(separate with commas)</em>', 'seo-ultimate'));
 		return $fields;
 	}

@@ -11,15 +11,15 @@ class SU_ContentAutolinks extends SU_Module {
 	
 	var $legacy_sitewide_lpa_in_use = false;
 	
-	function get_parent_module() { return 'autolinks'; }
-	function get_child_order() { return 10; }
-	function is_independent_module() { return false; }
+	static function get_parent_module() { return 'autolinks'; }
+	static function get_child_order() { return 10; }
+	static function is_independent_module() { return false; }
 	
-	function get_module_title() { return __('Content Deeplink Juggernaut', 'seo-ultimate'); }
+	static function get_module_title() { return __('Content Deeplink Juggernaut', 'seo-ultimate'); }
 	function get_module_subtitle() { return __('Content Links', 'seo-ultimate'); }
 	
 	function init() {
-		add_filter('the_content', array(&$this, 'autolink_content'));
+		add_filter('the_content', array(&$this, 'autolink_content'), self::filter_autolink_content_priority());
 		
 		add_filter('su_postmeta_help', array(&$this, 'postmeta_help'), 35);
 		add_filter('su_get_postmeta-autolinks', array(&$this, 'get_post_autolinks'), 10, 3);
@@ -27,6 +27,22 @@ class SU_ContentAutolinks extends SU_Module {
 		
 		add_filter('su_get_setting-autolinks-linkfree_tags', array(&$this, 'filter_linkfree_tags'));
 		add_filter('su_get_setting-autolinks-dampen_sitewide_lpa_value', array(&$this, 'filter_dampen_sitewide_lpa_value'));
+	}
+	
+	static function filter_autolink_content_priority() {
+
+		//A workaround for WP-Syntax. Running our callback slightly earlier than WP-Syntax's
+		$wp_syntax_priority = has_filter('the_content', 'wp_syntax_after_filter');
+		if ( $wp_syntax_priority === false && class_exists('WP_Syntax') ) {
+			//Newer versions of WP-Syntax use a class with static methods instead of plain functions.
+			$wp_syntax_priority = has_filter('the_content', array('WP_Syntax', 'afterFilter'));
+		}
+		if ( $wp_syntax_priority !== false ) {
+			$autolink_content_priority = $wp_syntax_priority - 1;
+		} else {
+			$autolink_content_priority = 1002;
+		}
+		return $autolink_content_priority;
 	}
 	
 	function filter_linkfree_tags($tags) {
@@ -87,7 +103,8 @@ class SU_ContentAutolinks extends SU_Module {
 		$dest_limit = $from_post_type ? (bool)$this->get_setting('dest_limit_' . $from_post_type, false) : false;
 		$dest_limit_taxonomies = array();
 		if ($dest_limit) {
-			$from_post_type_taxonomies = suwp::get_object_taxonomy_names($from_post_type);
+			//$from_post_type_taxonomies = suwp::get_object_taxonomy_names($from_post_type);
+			$from_post_type_taxonomies = suwp::get_taxonomy_names($from_post_type);
 			foreach ($from_post_type_taxonomies as $from_post_type_taxonomy) {
 				if ($this->get_setting('dest_limit_' . $from_post_type . '_within_' . $from_post_type_taxonomy, false))
 					$dest_limit_taxonomies[] = $from_post_type_taxonomy;
@@ -449,7 +466,7 @@ class SU_ContentAutolinks extends SU_Module {
 		return true;
 	}
 	
-	function postmeta_fields($fields) {
+	function postmeta_fields($fields, $screen) {
 		$id = suwp::get_post_id();
 		
 		if ($id)

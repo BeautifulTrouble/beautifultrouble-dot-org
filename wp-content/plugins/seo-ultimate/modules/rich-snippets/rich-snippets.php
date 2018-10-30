@@ -11,9 +11,9 @@ class SU_RichSnippets extends SU_Module {
 	
 	var $apply_subproperty_markup_args = array();
 	
-	function get_module_title() { return __('Rich Snippet Creator', 'seo-ultimate'); }
+	static function get_module_title() { return __('Rich Snippet Creator', 'seo-ultimate'); }
 	
-	function get_parent_module() { return 'misc'; }
+	static function get_parent_module() { return 'misc'; }
 	function get_settings_key() { return 'rich-snippets'; }
 	
 	function init() {
@@ -41,8 +41,7 @@ class SU_RichSnippets extends SU_Module {
 	function get_supported_snippet_types() {
 
 		return array(
-			//REVIEW
-			  'review' => array(
+			'review' => array(
 				  'label' => __('Review', 'seo-ultimate')
 				, 'tags' => 'Review'
 				, 'content_tags' => '<div itemprop="reviewBody">%s</div>'
@@ -340,7 +339,7 @@ class SU_RichSnippets extends SU_Module {
 		return $content;
 	}
 	
-	function postmeta_fields($fields) {
+	function postmeta_fields($fields, $screen) {
 		$fields['serp'][40]['rich_snippet_type'] = $this->get_postmeta_dropdown('rich_snippet_type', array(
 			  'none' => __('Standard', 'seo-ultimate')
 			, 'review' => __('Review', 'seo-ultimate')
@@ -371,14 +370,12 @@ class SU_RichSnippets extends SU_Module {
 		
 		$fields['serp'][46]['rich_snippet_place_address_street|rich_snippet_place_address_po_box|rich_snippet_place_address_city|rich_snippet_place_address_state|rich_snippet_place_address_country|rich_snippet_place_address_postal_code|rich_snippet_place_map_url|rich_snippet_place_tel_number|rich_snippet_place_fax_number|rich_snippet_place_photo'] =
 			$this->get_postmeta_subsection('rich_snippet_type', 'place',
-				  $this->get_postmeta_textboxes(array(
-					  'rich_snippet_place_address_street'  => __('Street Address:', 'seo-ultimate')
-					, 'rich_snippet_place_address_po_box'  => __('Post Office Box Number:', 'seo-ultimate')
-					, 'rich_snippet_place_address_city'    => __('City:', 'seo-ultimate')
-					, 'rich_snippet_place_address_state'   => __('State or Region:', 'seo-ultimate')
-					, 'rich_snippet_place_address_country' => __('Country:', 'seo-ultimate')
-					, 'rich_snippet_place_address_postal_code' => __('Postal Code:', 'seo-ultimate')
-				), array(), __('Address:', 'seo-ultimate'))
+				$this->get_postmeta_textbox('rich_snippet_place_address_street', __('Street Address:', 'seo-ultimate'), array('type' => 'text'))
+				. $this->get_postmeta_textbox('rich_snippet_place_address_po_box', __('Post Office Box Number:', 'seo-ultimate'), array('type' => 'text'))
+				. $this->get_postmeta_textbox('rich_snippet_place_address_city', __('City:', 'seo-ultimate'), array('type' => 'text'))
+				. $this->get_postmeta_textbox('rich_snippet_place_address_state', __('State or Region:', 'seo-ultimate'), array('type' => 'text'))
+				. $this->get_postmeta_textbox('rich_snippet_place_address_country', __('Country:', 'seo-ultimate'), array('type' => 'text'))
+				. $this->get_postmeta_textbox('rich_snippet_place_address_postal_code', __('Postal Code:', 'seo-ultimate'), array('type' => 'text'))
 				. $this->get_postmeta_jlsuggest_box('rich_snippet_place_map_url', __('Map Page:', 'seo-ultimate'), 'types=posttype')
 				. $this->get_postmeta_textbox('rich_snippet_place_tel_number', __('Phone Number:', 'seo-ultimate'), array('type' => 'tel'))
 				. $this->get_postmeta_textbox('rich_snippet_place_fax_number', __('Fax Number:', 'seo-ultimate'), array('type' => 'tel'))

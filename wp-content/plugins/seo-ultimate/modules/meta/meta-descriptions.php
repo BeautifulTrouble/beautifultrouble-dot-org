@@ -15,8 +15,8 @@ add_filter('su_settings_export_array', 'su_meta_descriptions_export_filter');
 
 class SU_MetaDescriptions extends SU_Module {
 	
-	function get_module_title() { return __('Meta Description Editor', 'seo-ultimate'); }
-	function get_menu_title()   { return __('Meta Descriptions', 'seo-ultimate'); }
+	static function get_module_title() { return __('Meta Description Editor', 'seo-ultimate'); }
+	static function get_menu_title()   { return __('Meta Descriptions', 'seo-ultimate'); }
 	function get_settings_key() { return 'meta'; }
 	
 	function init() {
@@ -166,17 +166,16 @@ class SU_MetaDescriptions extends SU_Module {
 			return $desc;
 	}
 	
-	function postmeta_fields($fields) {
+	function postmeta_fields($fields, $screen) {
 		$id = '_su_description';
 		$value = su_esc_attr($this->get_postmeta('description'));
 		
 		$fields['serp'][20]['description'] =
-			  "<tr class='su textarea' valign='top'>\n<th scope='row' class='su'><label for='$id'>".__('Meta Description:', 'seo-ultimate')."</label></th>\n"
-			. "<td class='su'><textarea name='$id' id='$id' class='regular-text' cols='60' rows='3' tabindex='2'"
+			"<div class='form-group su textarea'>\n<label class='col-sm-4 col-md-4 control-label' for='$id'>".__('Meta Description:', 'seo-ultimate')."</label>\n<div class='col-sm-4 col-md-4'>"
+			. "<textarea name='$id' id='$id' class='form-control regular-text' cols='60' rows='3' tabindex='2'"
 			. " onkeyup=\"javascript:document.getElementById('su_meta_description_charcount').innerHTML = document.getElementById('_su_description').value.length\">$value</textarea>"
-			. "<br />".sprintf(__('You&#8217;ve entered %s characters. Most search engines use up to 140.', 'seo-ultimate'), "<strong id='su_meta_description_charcount'>".strlen($value)."</strong>")
-			. "</td>\n</tr>\n"
-		;
+			. "</div>\n<div class='col-sm-4 col-md-4 help-text'>".sprintf(__('You&#8217;ve entered %s characters. Most search engines use up to 140.', 'seo-ultimate'), "<strong id='su_meta_description_charcount'>".strlen($value)."</strong>")
+			. "</div>\n</div>\n";
 		
 		return $fields;
 	}

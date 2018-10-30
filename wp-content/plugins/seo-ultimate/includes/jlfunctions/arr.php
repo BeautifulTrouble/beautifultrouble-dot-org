@@ -14,7 +14,7 @@ class suarr {
 	 * @param array $array The array whose keys/values should be formatted.
 	 * @return array The array with the key/value formats applied.
 	 */
-	function aprintf($keyformat, $valueformat, $array) {
+	static function aprintf($keyformat, $valueformat, $array) {
 		$newarray = array();
 		foreach ($array as $key => $value) {
 			if ($keyformat) {
@@ -33,7 +33,7 @@ class suarr {
 	 * @param array $array Passed by reference.
 	 * @param mixed $value The value to remove.
 	 */
-	function remove_value(&$array, $value) {
+	static function remove_value(&$array, $value) {
 		$index = array_search($value, $array);
 		if ($index !== false)
 			unset($array[$index]);
@@ -46,7 +46,7 @@ class suarr {
 	 * 
 	 * @return array
 	 */
-	function explode_lines($lines) {
+	static function explode_lines($lines) {
 		$lines = explode("\n", $lines);
 		$lines = array_map('trim', $lines); //Remove any \r's
 		return $lines;
@@ -59,7 +59,7 @@ class suarr {
 	 * @param array $arr Passed by reference
 	 * @param string $valuekey The array key used to access the string values by which the arrays in $arr are to be sorted
 	 */
-	function vksort(&$arr, $valuekey) {
+	static function vksort(&$arr, $valuekey) {
 		$valuekey = sustr::preg_filter('A-Za-z0-9 ', $valuekey);
 		uasort($arr, create_function('$a,$b', 'return strcasecmp($a["'.$valuekey.'"], $b["'.$valuekey.'"]);'));
 	}
@@ -71,7 +71,7 @@ class suarr {
 	 * @param array $arr Passed by reference
 	 * @param string $valuekey The array key used to access the string values by which the arrays in $arr are to be sorted
 	 */
-	function vklrsort(&$arr, $valuekey) {
+	static function vklrsort(&$arr, $valuekey) {
 		$valuekey = sustr::preg_filter('A-Za-z0-9 ', $valuekey);
 		uasort($arr, create_function('$a,$b', 'return strlen($b["'.$valuekey.'"]) - strlen($a["'.$valuekey.'"]);'));
 	}
@@ -93,13 +93,13 @@ class suarr {
 	 * 
 	 * @return array The flattened array
 	 */
-	function flatten_values($arr, $value_keys, $use_default_if_empty=false, $default='') {
+	static function flatten_values($arr, $value_keys, $use_default_if_empty=false, $default='') {
 		foreach ((array)$value_keys as $key)
 			$arr = suarr::_flatten_values($arr, $key, $use_default_if_empty, $default);
 		return $arr;
 	}
 	
-	function _flatten_values($arr, $value_key = 0, $use_default_if_empty=false, $default='') {
+	static function _flatten_values($arr, $value_key = 0, $use_default_if_empty=false, $default='') {
 		if (!is_array($arr) || !count($arr)) return array();
 		$newarr = array();
 		foreach ($arr as $key => $array_value) {
@@ -133,7 +133,7 @@ class suarr {
 	 * 
 	 * @return array
 	 */
-	function key_replace($array, $key_changes, $recursive = true, $return_replaced_only = false) {
+	static function key_replace($array, $key_changes, $recursive = true, $return_replaced_only = false) {
 		$newarray = array();
 		foreach ($array as $key => $value) {
 			$changed = false;
@@ -164,7 +164,7 @@ class suarr {
 	 * 
 	 * @return array
 	 */
-	function value_replace($array, $value_changes, $recursive = true, $return_replaced_only = false) {
+	static function value_replace($array, $value_changes, $recursive = true, $return_replaced_only = false) {
 		$newarray = array();
 		
 		foreach ((array)$array as $key => $value) {
@@ -194,14 +194,14 @@ class suarr {
 	 * 
 	 * @return array
 	 */
-	function simplify($arr, $keyloc, $valloc, $use_default_if_empty=false, $default='') {
+	static function simplify($arr, $keyloc, $valloc, $use_default_if_empty=false, $default='') {
 		$keys = suarr::flatten_values($arr, $keyloc, $use_default_if_empty, $default);
 		$values = suarr::flatten_values($arr, $valloc, $use_default_if_empty, $default);
 		return array_combine($keys, $values);
 	}
 	
 	//Function based on http://php.net/manual/en/function.array-unique.php#82508
-	function in_array_i($str, $a) {
+	static function in_array_i($str, $a) {
 		foreach($a as $v){
 			if (strcasecmp($str, $v)==0)
 				return true;
@@ -210,7 +210,7 @@ class suarr {
 	}
 
 	//Function based on http://php.net/manual/en/function.array-unique.php#82508
-	function array_unique_i($a) {
+	static function array_unique_i($a) {
 		$n = array();
 		foreach($a as $k=>$v) {
 			if (!suarr::in_array_i($v, $n))

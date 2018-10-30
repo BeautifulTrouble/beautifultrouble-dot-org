@@ -1,110 +1,103 @@
 /* ADMIN PAGES */
 
-div.su-module {
+div.sdf-admin {
 	padding-bottom: 1em;
 }
 
-div.su-module h2 {
+div.sdf-admin h2 {
 	margin-bottom: 0.5em;
 }
 
-div.su-module h4.su-subheader {
+div.sdf-admin h4.su-subheader {
 	font-size: 1.17em;
 	margin: 3em 0 1em;
 	padding-top: 1em;
 	border-top: 3px solid #ccc;
 }
 
-div.su-module table.widefat {
+div.sdf-admin table.widefat {
 	width: auto;
 }
 
-div.su-module table.fullwidth,
-div.su-module table.fullwidth input.regular-text {
+div.sdf-admin table.fullwidth,
+div.sdf-admin table.fullwidth input.regular-text {
 	width: 100%;
 } 
 
-div.su-module table.widefat td {
+div.sdf-admin table.widefat td {
 	padding-right: 2em;
 }
 
-div.su-module table.widefat td ul {
+div.sdf-admin table.widefat td ul {
 	list-style-type: disc;
 	margin-left: 1em;
 	padding-left: 1em;
 }
 
-div.su-module .form-table .regular-text,
-div.su-module .form-table .jls_text_dest {
+div.sdf-admin .form-table .regular-text,
+div.sdf-admin .form-table .jls_text_dest {
 	width: 325px;
 }
 
-div.su-module .form-table .subfield {
+div.sdf-admin .form-table .subfield {
 	width: auto;
 }
 
-div.su-module .form-table td div.field {
+div.sdf-admin .form-table div div.field {
 	padding-bottom: 1em;
 }
 
-div.su-module .form-table label.su-indent {
+div.sdf-admin .form-table label.su-indent {
 	padding-left: 3em;
 }
 
-div.su-module .form-table tr.su-admin-form-group > td {
-	padding: 0;
-}
 
-div.su-module .form-table tr.su-admin-form-group > td > fieldset > table {
-	width: 100%;
-}
-
-div.su-module table.report {
+div.sdf-admin table.report {
 	border-collapse: collapse;
 	border-top: 1px solid #ccc;
 }
 
-div.su-module table.report th {
+div.sdf-admin table.report th {
 	font-weight: normal;
 }
 
-div.su-module table.report th, div.su-module table.report td {
+div.sdf-admin table.report th, div.sdf-admin table.report td {
 	padding: 1em 3em 1em 0;
 	border-bottom: 1px solid #ccc;
 	text-align: left;
 }
 
-div.su-module table.su-indent {
+div.sdf-admin table.su-indent {
 	padding-left: 30px;
 }
 
-div.su-module table.su-indent th {
+div.sdf-admin table.su-indent th {
 	font-weight: normal;
 }
 
-div.su-module table.form-table table.su-indent th {
+div.sdf-admin table.form-table table.su-indent th {
 	font-size: 1.1em;
 }
 
-div.su-module table.su-indent th:after { content: ":"; }
+div.sdf-admin table.su-indent th:after { content: ":"; }
 
-div.su-module table tr.su-indent-level-1 .su-field-label { padding-left: 1em; }
-div.su-module table tr.su-indent-level-2 .su-field-label { padding-left: 3em; }
-div.su-module table tr.su-indent-level-3 .su-field-label { padding-left: 5em; }
-div.su-module table tr.su-indent-level-4 .su-field-label { padding-left: 7em; }
+div.sdf-admin table tr.su-indent-level-1 .su-field-label { padding-left: 1em; }
+div.sdf-admin table tr.su-indent-level-2 .su-field-label { padding-left: 3em; }
+div.sdf-admin table tr.su-indent-level-3 .su-field-label { padding-left: 5em; }
+div.sdf-admin table tr.su-indent-level-4 .su-field-label { padding-left: 7em; }
 
-div.su-module table tr.su-indent .su-field-label {
+div.sdf-admin table tr.su-indent .su-field-label {
 	line-height: 1em;
 }
 
-div.su-module table tr.su-indent .su-child-fields-toggle,
-div.su-module table tr.su-indent .su-child-fields-toggle-filler {
+div.sdf-admin table tr.su-indent .su-child-fields-toggle,
+div.sdf-admin table tr.su-indent .su-child-fields-toggle-filler {
 	display: block;
 	float: left;
 	width: 1em;
 }
 
-div.su-module table tr.su-indent .su-child-fields-toggle {
+div.sdf-admin table tr.su-indent .su-child-fields-toggle {
 	text-align: center;
 	cursor: pointer;
 	border: 1px solid #666;
@@ -112,7 +105,7 @@ div.su-module table tr.su-indent .su-child-fields-toggle {
 	background-color: #eee;
 }
 
-div.su-module table tr.su-indent .su-field-label-text {
+div.sdf-admin table tr.su-indent .su-field-label-text {
 	display: block;
 	padding-left: 2em;
 }
@@ -126,33 +119,33 @@ div.su-importmodule #import-status {
 	padding: 1em 0;
 }
 
-div.su-module textarea[disabled] {
+div.sdf-admin textarea[disabled] {
 	background-color: #eee;
 }
 
 /* META EDIT TABLE */
 
-div.su-module .su-meta-edit-table table.widefat,
-div.su-module .su-meta-edit-table table.widefat .regular-text { width: 100%; }
-div.su-module .su-meta-edit-table table.widefat td.su-actions { width: 6em; }
-div.su-module .su-meta-edit-table table.widefat td.su-id { width: 2em; }
-div.su-module .su-meta-edit-table table.widefat td.su-name { width: 20em; }
-div.su-module .su-meta-edit-table table.widefat td { vertical-align: middle; }
+div.sdf-admin .su-meta-edit-table table.widefat,
+div.sdf-admin .su-meta-edit-table table.widefat .regular-text { width: 100%; }
+div.sdf-admin .su-meta-edit-table table.widefat td.su-actions { width: 8em; }
+div.sdf-admin .su-meta-edit-table table.widefat td.su-id { width: 2em; }
+div.sdf-admin .su-meta-edit-table table.widefat td.su-name { width: 20em; }
+div.sdf-admin .su-meta-edit-table table.widefat td { vertical-align: middle; }
 
-div.su-module .su-meta-edit-table .su-meta-table-post-status {
+div.sdf-admin .su-meta-edit-table .su-meta-table-post-status {
 	font-style: italic;
 	color: #999;
 }
 
 /* IMPORT MODULES */
 
-.su-module table#import-status {
+.sdf-admin table#import-status {
 	border: 0;
 	width: auto;
 	margin: 2em 0;
 }
 
-.su-module table#import-status td {
+.sdf-admin table#import-status td {
 	padding: 0 0.5em 1em 0;
 }
 

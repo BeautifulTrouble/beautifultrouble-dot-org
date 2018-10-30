@@ -9,10 +9,10 @@ if (class_exists('SU_Module')) {
 
 class SU_LinkNofollow extends SU_Module {
 	
-	function get_module_title() { return __('Nofollow Manager', 'seo-ultimate'); }
+	static function get_module_title() { return __('Nofollow Manager', 'seo-ultimate'); }
 	function get_default_status() { return SU_MODULE_DISABLED; }
 	
-	function get_parent_module() { return 'misc'; }
+	static function get_parent_module() { return 'misc'; }
 	function get_settings_key() { return 'link-nofollow'; }
 	
 	function init() {

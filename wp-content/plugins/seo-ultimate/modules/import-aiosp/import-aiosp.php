@@ -9,8 +9,8 @@ if (class_exists('SU_ImportModule')) {
 
 class SU_ImportAIOSP extends SU_ImportModule {
 	
-	function get_module_title() { return __('Import from All in One SEO Pack', 'seo-ultimate'); }
-	function get_menu_title() { return __('AIOSP Import', 'seo-ultimate'); }
+	static function get_module_title() { return __('Import from All in One SEO Pack', 'seo-ultimate'); }
+	static function get_menu_title() { return __('AIOSP Import', 'seo-ultimate'); }
 	
 	function get_op_title() { return __('All in One SEO Pack', 'seo-ultimate'); }
 	function get_op_abbr()  { return __('AIOSP', 'seo-ultimate'); }

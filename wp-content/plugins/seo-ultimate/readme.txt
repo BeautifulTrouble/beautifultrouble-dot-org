@@ -1,13 +1,23 @@
 === SEO Ultimate ===
-Contributors: SEO Design Solutions, JohnLamansky
+Contributors: SEO Design Solutions, JohnLamansky, djalexandar, M Rub Shuvo
 Tags: seo, SEO Ultimate, suite, google, yahoo, bing, search engines, admin, post, page, custom post types, categories, tags, terms, custom taxonomies, base, title, title tag, wp_title, meta, robots, noindex, nofollow, canonical, HTTP headers, 404, robots.txt, htaccess, slugs, url, anchor, more, link, excerpt, permalink, links, autolinks, code, footer, settings, redirect, 301, 302, 307, modules, uninstallable, reinstallable, downgradable, import, export, CSV, affiliate, Open Graph, og, microdata, Facebook, Twitter, Schema.org
-Requires at least: 3.5
-Tested up to: 3.5
-Stable tag: 7.6.1
+Requires at least: 3.9
+Tested up to: 4.6.1
+Stable tag: 7.6.5.9
 
-This all-in-one SEO plugin gives you control over title tags, noindex, meta tags, Open Graph, slugs, canonical, autolinks, 404 errors, rich snippets, and more.
+This all-in-one SEO plugin gives you control over meta titles & descriptions, open graph, auto-linking, rich-snippets, 404 monitoring, siloing & more.
 
 == Description ==
+
+= From the Creators of SEO Ultimate =
+
+<blockquote>
+<strong>Premium Support Now Available</strong><br>
+<p>The SEO Design Solutions team does not provide support for SEO Ultimate on the WordPress forums. However, dedicated one on one email support is available when you upgrade to <a  title="SEO Ultimate+" href="http://www.seoultimateplus.com">SEO Ultimate+</a>. The premium version of SEO Ultimate also has exclusive new features, detailed training videos and custom revisions not available in the free version.</p>
+<p>You should also check out the <a href="http://www.seodesignframework.com/" title="SEO Design Framework">SEO Design Framework</a> (a drag and drop, multipurpose WordPress theme) created as the perfect companion for SEO Ultimate+.</p>
+</blockquote>
+
+[youtube http://www.youtube.com/watch?v=F_pW_4pl6lc]
 
 = Recent Releases =
 
@@ -243,6 +253,80 @@ Frequently asked questions, settings help, and troubleshooting tips for SEO Ulti
 
 
 == Changelog ==
+
+= Version 7.6.5.9 (November 3, 2016) =
+* Bugfix: Replaced deprecated add_utility_page with add_menu_page
+
+= Version 7.6.5.8 (September 23, 2015) =
+* Bugfix: Admin pagination
+* Bugfix: Problem Of Wrong ID's
+* Bugfix: Yandex Validation Error For Open Graph Article Prefix
+
+= Version 7.6.5.7 (June 29, 2015) =
+* Improvement: SEO Admin Toolbar Menu
+* Bugfix: Bootstrap/Prototype Conflict Fix
+* Bugfix: Load seo.admin.css
+* Bugfix: Styles fix for all post types
+* Bugfix: Removed Dashboard Banner
+
+= Version 7.6.5.6 (June 8, 2015) =
+* Bugfix: CiviCRM Conflict Issue With SEO Ultimate Open Graph Integrator & Titles Module
+* Bugfix: Excluded Bootstrap tooltips and popovers from css/js
+* Bugfix: Excluded Bootstrap button js
+
+= Version 7.6.5.5 (May 12, 2015) =
+* Bugfix: Module Enable/Disable Fix
+* Bugfix: Data Table classes fix
+
+= Version 7.6.5.4 (May 7, 2015) =
+* Bugfix: Toggle for "SEO" Menu in admin toolbar
+
+= Version 7.6.5.3 (April 29, 2015) =
+* Bugfix: Fixing add_query_arg() and remove_query_arg() usage
+* Bugfix: Fixed Strict Standards & Warning Error While Enable or Disable Any Modules From Module Manager
+* Bugfix: Added User Log In & Log Out Conditional Logic For SEO Admin Toolbar
+* Bugfix: Bootstrap Modal Status CSS Class Change .modal-open >>> .sdf-modal-open
+
+= Version 7.6.5.2 (April 28, 2015) =
+* Bugfix: Compatibility Issue With Wordpress 4.2.1
+* Bugfix: Deeplink Juggernaut autolink dampening
+* Bugfix: Twitter Cards
+* Bugfix: Open Graph Integrator module
+
+= Version 7.6.5.1 (June 03, 2014) =
+* Bugfix: Permalink Tweaker (URL Bases)
+
+= Version 7.6.5 (June 02, 2014) =
+* Bugfix: jQuery UI slider styles collision
+* Bugfix: Media ThickBox z-index collision removed
+* Bugfix: Title Tag Rewriter function call by reference removed
+* Bugfix: Other css collisions removed
+
+= Version 7.6.4.3 (April 14, 2014) =
+* Bugfix: Rich Snippet Creator's "Place” search result type address fields appearance fix
+
+= Version 7.6.4.2 (April 11, 2014) =
+* Bugfix: Twitter Card Tags Handle Fix
+
+= Version 7.6.4.1 (April 10, 2014) =
+* Bugfix: Layout Fix on Miscellaneous page
+
+= Version 7.6.4 (April 9, 2014) =
+* Bugfix: Title tag issue with $ sign when followed by a number 0-99 (Pre-parse the title replacement text to escape the $n backreferences because of preg_replace issue)
+* Bugfix: Post Metabox Single Tab layout issue
+* Bugfix: SDF Promo Ads option on settings page
+
+= Version 7.6.3.1 (March 24, 2014) =
+* Bugfix: Added rel="nofollow" to all author attribution links, whitepapers module SDS Blog links and banner ads
+
+= Version 7.6.3 (March 24, 2014) =
+* Bugfix: Title Tag Rewriter Fix for Data Loss on Update from 7.6.1
+* Bugfix: Code Inserter Fix for Data Loss on Update from 7.6.1
+* Feature: Added Media Upload Button in Metabox Social Networks Listing Image and Open Graph Integrator Module Image input fields
+
+= Version 7.6.2 (March 19, 2014) =
+* Bugfix: Fixed PHP 5.3 Strict Errors/Notices
+* Feature: Added Twitter Bootstrap Assets and updated Markup
 
 = Version 7.6.1 (January 1, 2013) =
 * Bugfix: Fixed a bug that prevented the "Dampener" column from appearing on the Deeplink Juggernaut Content Links tab

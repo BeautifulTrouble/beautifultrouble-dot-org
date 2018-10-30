@@ -12,7 +12,7 @@ class suwp {
 	 * 
 	 * @return int|false The ID of the current post, or false on failure.
 	 */
-	function get_post_id() {
+	static function get_post_id() {
 		if (is_admin()) {
 			if (!empty($_REQUEST['post']))
 				return intval($_REQUEST['post']);
@@ -30,7 +30,7 @@ class suwp {
 		return false;
 	}
 	
-	function is_tax($taxonomy='', $term='') {
+	static function is_tax($taxonomy='', $term='') {
 		if ($taxonomy) {
 			switch ($taxonomy) {
 				case 'category': return is_category($term); break;
@@ -42,18 +42,18 @@ class suwp {
 		}
 	}
 	
-	function get_taxonomies() {
+	static function get_taxonomies() {
 		$taxonomies = get_taxonomies(array('public' => true), 'objects');
 		if (isset($taxonomies['post_format']) && $taxonomies['post_format']->labels->name == _x( 'Format', 'post format' ))
 			$taxonomies['post_format']->labels->name = __('Post Format Archives', 'seo-ultimate');
 		return $taxonomies;
 	}
 	
-	function get_taxonomy_names() {
+	static function get_taxonomy_names() {
 		return get_taxonomies(array('public' => true), 'names');
 	}
 	
-	function get_object_taxonomies($post_type) {
+	static function get_object_taxonomies($post_type) {
 		$taxonomies = get_object_taxonomies($post_type, 'objects');
 		$taxonomies = wp_filter_object_list($taxonomies, array('public' => true, 'show_ui' => true));
 		return $taxonomies;
@@ -72,12 +72,12 @@ class suwp {
 	 * @param callback $ua The user agent to use.
 	 * @return object $rss The RSS object.
 	 */
-	function load_rss($url, $ua) {
+	static function load_rss($url, $ua) {
 		$ua = addslashes($ua);
 		$uafunc = create_function('', "return '$ua';");
 		add_filter('http_headers_useragent', $uafunc);
-		require_once (ABSPATH . WPINC . '/rss.php');
-		$rss = fetch_rss($url);
+		require_once (ABSPATH . WPINC . '/class-simplepie.php');
+		$rss = fetch_feed($url);
 		remove_filter('http_headers_useragent', $uafunc);
 		return $rss;
 	}
@@ -85,7 +85,7 @@ class suwp {
 	/**
 	 * @return string
 	 */
-	function add_backup_url($text) {
+	static function add_backup_url($text) {
 		$anchor = __('backup your database', 'seo-ultimate');
 		return str_replace($anchor, '<a href="'.suwp::get_backup_url().'" target="_blank">'.$anchor.'</a>', $text);
 	}
@@ -93,14 +93,14 @@ class suwp {
 	/**
 	 * @return string
 	 */
-	function get_backup_url() {
+	static function get_backup_url() {
 		if (is_plugin_active('wp-db-backup/wp-db-backup.php'))
 			return admin_url('tools.php?page=wp-db-backup');
 		else
 			return 'http://codex.wordpress.org/Backing_Up_Your_Database';
 	}
 	
-	function get_edit_term_link($id, $taxonomy) {
+	static function get_edit_term_link($id, $taxonomy) {
 		$tax_obj = get_taxonomy($taxonomy);
 		if ($tax_obj->show_ui)
 			return get_edit_term_link($id, $taxonomy);
@@ -108,7 +108,7 @@ class suwp {
 			return false;
 	}
 	
-	function get_term_slug($term_obj) {
+	static function get_term_slug($term_obj) {
 		$tax_name = $term_obj->taxonomy;
 		$tax_obj = get_taxonomy($tax_name);
 		if ($tax_obj->rewrite['hierarchical']) {
@@ -131,7 +131,7 @@ class suwp {
 		return $term_slug;
 	}
 	
-	function permalink_mode() {
+	static function permalink_mode() {
 		if (strlen($struct = get_option('permalink_structure'))) {
 			if (sustr::startswith($struct, '/index.php/'))
 				return SUWP_INDEX_PERMALINKS;
@@ -141,14 +141,14 @@ class suwp {
 			return SUWP_QUERY_PERMALINKS;
 	}
 	
-	function get_blog_home_url() {
+	static function get_blog_home_url() {
 		if ('page' == get_option('show_on_front') && $page_id = (int)get_option('page_for_posts'))
 			return get_permalink($page_id);
 		
 		return home_url('/');
 	}
 	
-	function get_admin_scope() {
+	static function get_admin_scope() {
 		if (is_blog_admin())
 			return 'blog';
 		

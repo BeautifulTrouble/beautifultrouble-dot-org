@@ -11,12 +11,12 @@ define('SU_DOWNGRADE_LIMIT', '5.0');
 
 class SU_Install extends SU_Module {
 	
-	function get_parent_module() { return 'settings'; }
-	function get_child_order() { return 20; }
-	function is_independent_module() { return false; }
+	static function get_parent_module() { return 'settings'; }
+	static function get_child_order() { return 20; }
+	static function is_independent_module() { return false; }
 	
-	function get_module_title() { return __('Upgrade/Downgrade/Reinstall', 'seo-ultimate'); }
-	function get_menu_title() { return __('Installer', 'seo-ultimate'); }
+	static function get_module_title() { return __('Upgrade/Downgrade/Reinstall', 'seo-ultimate'); }
+	static function get_menu_title() { return __('Installer', 'seo-ultimate'); }
 	
 	function get_admin_page_tabs() {
 		

@@ -8,7 +8,8 @@
 if (class_exists('SU_Module')) {
 
 class SU_Autolinks extends SU_Module {
-	function get_module_title() { return __('Deeplink Juggernaut', 'seo-ultimate'); }
+	static function get_module_title() { return __('Deeplink Juggernaut', 'seo-ultimate'); }
+	static function get_menu_title() { return __('Deeplink Juggernaut', 'seo-ultimate'); }
 	
 	function add_help_tabs($screen) {
 		

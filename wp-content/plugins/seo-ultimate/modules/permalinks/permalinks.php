@@ -12,9 +12,8 @@ if (class_exists('SU_Module')) {
 
 class SU_Permalinks extends SU_Module {
 	
-	function get_module_title() { return __('Permalink Tweaker', 'seo-ultimate'); }
-	
-	function get_parent_module() { return 'misc'; }
+	static function get_module_title() { return __('Permalink Tweaker', 'seo-ultimate'); }
+	static function get_parent_module() { return 'misc'; }
 	function get_settings_key() { return 'permalinks'; }
 	
 	function get_default_settings() {

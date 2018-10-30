@@ -9,10 +9,10 @@ if (class_exists('SU_Module')) {
 
 class SU_WebmasterVerify extends SU_Module {
 	
-	function get_module_title() { return __('Webmaster Verification Assistant', 'seo-ultimate'); }
-	function get_menu_title() { return __('W.M. Verification', 'seo-ultimate'); }
+	static function get_module_title() { return __('Webmaster Verification Assistant', 'seo-ultimate'); }
+	static function get_menu_title() { return __('W.M. Verification', 'seo-ultimate'); }
 	
-	function get_parent_module() { return 'misc'; }
+	static function get_parent_module() { return 'misc'; }
 	function get_settings_key() { return 'meta'; }
 	
 	function init() {

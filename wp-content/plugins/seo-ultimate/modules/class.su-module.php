@@ -96,9 +96,9 @@ class SU_Module {
 	 * @since 0.1
 	 * @uses __construct()
 	 */
-	function SU_Module() {
+	/*function SU_Module() {
 		$this->__construct();
-	}
+	}*/
 	
 	
 	/********** PSEUDO-ABSTRACT FUNCTIONS **********/
@@ -117,7 +117,7 @@ class SU_Module {
 	 * 
 	 * @return string
 	 */
-	function get_module_title() { return ''; }
+	static function get_module_title() { return ''; }
 	
 	/**
 	 * The title to be used by parent modules.
@@ -145,7 +145,8 @@ class SU_Module {
 	 * 
 	 * @return string The title shown on the admin menu.
 	 */
-	function get_menu_title() { return isset($this) ? $this->get_module_title() : ''; }
+	
+	static function get_menu_title() { return isset($this) ? $this->get_module_title() : ''; }
 	
 	/**
 	 * Determines where this module's admin page should appear relative to those of other modules.
@@ -155,7 +156,7 @@ class SU_Module {
 	 * 
 	 * @return int The menu position index.
 	 */
-	function get_menu_pos()   { return 10; }
+	static function get_menu_pos()   { return 10; }
 	
 	/**
 	 * Determines where this module's admin contents should appear on the parent page relative to those of other sibling modules.
@@ -165,7 +166,7 @@ class SU_Module {
 	 * 
 	 * @return int The child order index.
 	 */
-	function get_child_order() { return 999; }
+	static function get_child_order() { return 999; }
 	
 	/**
 	 * The number that should be displayed in a bubble next to the module's menu title.
@@ -190,7 +191,7 @@ class SU_Module {
 	 * 
 	 * @return boolean
 	 */
-	function has_menu_count() { return false; }
+	static function has_menu_count() { return false; }
 	
 	/**
 	 * A descriptive label of the menu count.
@@ -257,7 +258,7 @@ class SU_Module {
 	 * 
 	 * @return string|bool
 	 */
-	function get_parent_module() { return false; }
+	static function get_parent_module() { return false; }
 	
 	/**
 	 * Returns an array of admin page tabs; the label is the key and the callback is the value.
@@ -276,7 +277,7 @@ class SU_Module {
 	 * 
 	 * @return bool
 	 */
-	function is_independent_module() {
+	static function is_independent_module() {
 		return true;
 	}
 	
@@ -298,7 +299,12 @@ class SU_Module {
 				global $seo_ultimate;
 				return $seo_ultimate->modules[$parent]->get_settings_key();
 			} else {
-				return false;
+				if (strlen($parent = self::get_parent_module()) && !self::is_independent_module()) {
+					global $seo_ultimate;
+					return $seo_ultimate->get_module_key();
+				} else {
+					return false;
+				}
 			}
 		}
 	}
@@ -372,7 +378,11 @@ class SU_Module {
 	 * 
 	 * @since 6.0
 	 */
-	function admin_page_init() { }
+	function admin_page_init() {
+
+		add_filter( 'admin_body_class', 'su_add_admin_body_class' );
+	
+	}
 	
 	/**
 	 * Is called at WordPress' admin_init hook when the post editor is loaded.
@@ -423,7 +433,7 @@ class SU_Module {
 	 * @param array $fields The fields array.
 	 * @return array The updated fields array.
 	 */
-	function postmeta_fields($fields) { return $fields;	}
+	function postmeta_fields($fields, $screen) { return $fields;	}
 	
 	/********** INITIALIZATION FUNCTIONALITY **********/
 	
@@ -666,9 +676,18 @@ class SU_Module {
 	 */
 	function children_admin_page_tabs_form() {
 		if (count($tabs = $this->get_children_admin_page_tabs())) {
+			echo "\n\n<div class='row'>\n";
+			echo "\n\n<div class='col-sm-8 col-md-9'>\n";
+		
 			$this->admin_form_start(false, false);
 			$this->admin_page_tabs($tabs);
 			$this->admin_form_end(null, false);
+			
+			echo "\n\n</div>\n";
+				echo "\n\n<div class='col-sm-4 col-md-3'>\n";
+				$this->promo_sdf_banners();
+				echo "\n\n</div>\n";
+			echo "\n\n</div>\n";
 		}
 	}
 	
@@ -765,7 +784,7 @@ class SU_Module {
 	 */
 	function update_setting($key, $value, $module=null, $array_key=null) {
 		if (!$module) $module = $this->get_settings_key();
-		
+
 		$msdata = (array)get_option("seo_ultimate_module_$module", array());
 		
 		$use_custom  = 	apply_filters("su_custom_update_setting-$module-$key", false, $value, $key) ||
@@ -879,7 +898,7 @@ class SU_Module {
 		else
 			$class = '';
 		
-		echo "<div id=\"su-".su_esc_attr($this->get_module_key())."\" class=\"su-module$class\">\n";
+		echo "<div id=\"su-".su_esc_attr($this->get_module_key())."\" class=\"sdf-admin$class\">\n";
 		screen_icon($icon);
 		echo "\n<h2>".$this->get_page_title()."</h2>\n";
 	}
@@ -960,9 +979,9 @@ class SU_Module {
 	function admin_footer() {
 		printf(__('%1$s | %2$s %3$s by %4$s', 'seo-ultimate'),
 			$this->get_module_title(),
-			'<a href="'.SU_PLUGIN_URI.'" target="_blank">'.__(SU_PLUGIN_NAME, 'seo-ultimate').'</a>',
+			'<a href="'.SU_PLUGIN_URI.'" target="_blank" rel="nofollow">'.__(SU_PLUGIN_NAME, 'seo-ultimate').'</a>',
 			SU_VERSION,
-			'<a href="'.SU_AUTHOR_URI.'" target="_blank">'.__(SU_AUTHOR, 'seo-ultimate').'</a>'
+			'<a href="'.SU_AUTHOR_URI.'" target="_blank" rel="nofollow">'.__(SU_AUTHOR, 'seo-ultimate').'</a>'
 		);
 		
 		echo "<br />";
@@ -1122,12 +1141,13 @@ class SU_Module {
 		echo "\n<div class='su-meta-edit-table'>\n";
 		
 		$page_links = paginate_links( array(
-			  'base' => add_query_arg( $type . '_paged', '%#%' ) . '#' . $tab
+			  'base' => html_entity_decode( esc_url( add_query_arg( $type . '_paged', '%#%' ) ) ) . '#' . $tab
 			, 'format' => ''
 			, 'prev_text' => __('&laquo;')
 			, 'next_text' => __('&raquo;')
 			, 'total' => $num_pages
 			, 'current' => $pagenum
+			, 'add_args' => false
 		));
 		
 		if ( $page_links ) {
@@ -1181,9 +1201,16 @@ class SU_Module {
 					
 					break;
 				case 'term':
-					$id = intval($object->term_id);
+					if (!isset($object->term_taxonomy_id)) {
+						$id = intval($object->term_id);
+						$view_url = get_term_link($id, $type);
+					}
+					else{
+						$id = intval($object->term_id);
+						$view_url = get_term_link(intval($object->term_id), $type);
+					}
 					$name = $object->name;
-					$view_url = get_term_link($id, $type);
+
 					$edit_url = suwp::get_edit_term_link($id, $type);
 					break;
 				default: return false; break;
@@ -1262,11 +1289,11 @@ class SU_Module {
 			case 'textbox':
 				$value = su_esc_editable_html($value);
 				$placeholder = $extra ? " placeholder='" . su_esc_attr($extra) . "'" : '';
-				return "<input name='$name'$inputid value='$value'$placeholder type='text' class='textbox regular-text' />";
+				return "<input name='$name'$inputid value='$value'$placeholder type='text' class='form-control input-sm textbox regular-text' />";
 				break;
 			case 'textarea':
 				$value = su_esc_editable_html($value);
-				return "<textarea name='$name'$inputid type='text' rows='3' cols='50' class='textarea regular-text'>$value</textarea>";
+				return "<textarea name='$name'$inputid type='text' rows='3' cols='50' class='textarea form-control regular-text'>$value</textarea>";
 				break;
 			case 'checkbox':
 				$checked = $value ? " checked='checked'" : '';
@@ -1365,12 +1392,12 @@ class SU_Module {
 		if ($form) {
 			$hook = $this->plugin->key_to_hook($this->get_module_or_parent_key());
 			if ($this->is_action('update')) $this->print_message('success', __('Settings updated.', 'seo-ultimate'));
-			echo "<form id='su-admin-form' method='post' action='?page=$hook'>\n";
+			echo "<form id='su-admin-form' class='form-horizontal' method='post' action='?page=$hook'>\n";
 			settings_fields($hook);
 		}
 		
 		echo "\n";
-		if ($table) echo "<table class='form-table'>\n";
+		//if ($table) echo "<table class='form-table'>\n";
 	}
 	
 	/**
@@ -1386,7 +1413,7 @@ class SU_Module {
 	function admin_form_end($button = null, $table = true) {
 		
 		if ($button === null) $button = __('Save Changes'); //This string is used in normal WP, so we don't need a textdomain
-		if ($table) echo "</table>\n";
+		//if ($table) echo "</table>\n";
 		
 		if ($button !== false) {
 ?>
@@ -1404,7 +1431,7 @@ class SU_Module {
 	 * @since 1.5
 	 */
 	function admin_form_table_start() {
-		echo "<table class='form-table'>\n";
+		//echo "<table class='form-table'>\n";
 	}
 	
 	/**
@@ -1413,7 +1440,7 @@ class SU_Module {
 	 * @since 1.5
 	 */
 	function admin_form_table_end() {
-		echo "</table>\n";
+		//echo "</table>\n";
 	}
 	
 	/**
@@ -1446,7 +1473,7 @@ class SU_Module {
 	 * @param $headers Array of (CSS class => Internationalized column title)
 	 */
 	function admin_wftable_start($headers = false) {
-		echo "\n<table class='widefat' cellspacing='0'>\n";
+		echo "\n<table class='table table-bordered'>\n";
 		if ($headers)
 			$this->table_column_headers($headers);
 		else {
@@ -1532,9 +1559,7 @@ class SU_Module {
 	 * @param bool $newtable Whether to open a new <table> element.
 	 */
 	function admin_form_group_start($title, $newtable=true) {
-		$class = $newtable ? ' class="su-admin-form-group"' : '';
-		echo "<tr valign='top'$class>\n<th scope='row'>$title</th>\n<td><fieldset><legend class='hidden'>$title</legend>\n";
-		if ($newtable) echo "<table>\n";
+		echo "<div class='form-group'>\n<label class='col-sm-4 col-md-4 control-label'>$title</label><div class='col-sm-4 col-md-4'>\n";
 	}
 	
 	/**
@@ -1545,16 +1570,15 @@ class SU_Module {
 	 * @param bool $newtable Whether to close a <table> element.
 	 */
 	function admin_form_group_end($newtable=true) {
-		if ($newtable) echo "</table>\n";
-		echo "</fieldset>\n</td>\n</tr>\n";
+		echo "</div>\n<div class='col-sm-4 col-md-4 help-text'>\n</div>\n</div>\n";
 	}
 	
 	function admin_form_indent_start() {
-		echo "<tr valign='top'><td colspan='2'><table class='su-indent'>";
+		echo "<div class='form-group'><div class='col-md-12'>";
 	}
 	
 	function admin_form_indent_end() {
-		echo "</table></td></tr>";
+		echo "</div></div>";
 	}
 	
 	/**
@@ -1565,9 +1589,9 @@ class SU_Module {
 	 * @param string $text
 	 */
 	function textblock($text) {
-		echo "<tr valign='top' class='su-admin-form-textblock'>\n<td colspan='2'>\n";
+		echo "<div class='form-group su-admin-form-textblock'>\n<div class='col-md-12'>\n";
 		echo $text;
-		echo "\n</td>\n</tr>\n";
+		echo "\n</div>\n</div>\n";
 	}
 	
 	/**
@@ -1613,7 +1637,7 @@ class SU_Module {
 		if ($grouptext)
 			$this->admin_form_group_start($grouptext, false);
 		elseif ($output_tr)
-			echo "<tr valign='top' class='su-admin-form-checkbox'>\n<td colspan='2'>\n";
+			echo "<div class='form-group su-admin-form-checkbox'>\n<div class='col-md-12'>\n";
 		
 		if (is_array($checkboxes)) {
 			foreach ($checkboxes as $name => $desc) {
@@ -1638,24 +1662,23 @@ class SU_Module {
 					$int_var_name = $name.'_value';
 					$int_var_value = sustr::to_int($this->get_setting($int_var_name));
 					if ($this->get_setting($name) === true) $sfdisabled = ''; else $sfdisabled = "readonly='readonly' ";
-					$desc = str_replace('%d', "</label><input name='$int_var_name' id='$int_var_name' type='text' value='$int_var_value' size='2' maxlength='3' $sfdisabled/><label for='$name'>", $desc);
+					$desc = str_replace('%d', "</label><input name='$int_var_name' id='$int_var_name' class='form-control input-sm nowidth-input' type='text' value='$int_var_value' size='2' maxlength='3' $sfdisabled/><label for='$name'>", $desc);
 					$desc = str_replace("<label for='$name'></label>", '', $desc);
 					$onclick = " onclick=\"javascript:document.getElementById('$int_var_name').readOnly=!this.checked;\"";
 				}
 				
 				if ($indent) $labelclass = " class='su-indent'"; else $labelclass = '';
-				echo "<label for='$name'$labelclass><input name='$name' id='$name' type='checkbox' value='1'";
+				echo "<div class='checkbox'><label for='$name'$labelclass><input name='$name' id='$name' type='checkbox' value='1'";
 				if ($checked !== false && ($checked === true || $this->get_setting($name) === true)) echo " checked='checked'";
 				if ($disabled) echo " disabled='disabled'";
-				echo "$onclick /> $desc</label><br />\n";
+				echo "$onclick /> $desc</label></div>\n";
 			}
 		}
 		
 		if ($grouptext) {
-			echo "</fieldset>";
 			$this->admin_form_group_end(false);
 		} elseif ($output_tr) {
-			echo "</td>\n</tr>\n";
+			echo "</div>\n</div>\n";
 		}
 	}
 	
@@ -1719,7 +1742,7 @@ class SU_Module {
 				
 				extract($this->insert_subfield_textboxes($name, $desc));
 				
-				echo "<div><label for='$id'$class><input name='$name' id='$id' type='radio' value='$value'";
+				echo "<div class='radio'><label for='$id'$class><input name='$name' id='$id' type='radio' value='$value'";
 				if ($current) echo " checked='checked'";
 				echo " /> $label";
 				
@@ -1728,8 +1751,8 @@ class SU_Module {
 			}
 		}
 		
-		if ($grouptext) echo "</fieldset>";
-		echo "</td>\n</tr>\n";
+		if ($grouptext)
+			$this->admin_form_group_end(false);
 	}
 	
 	/**
@@ -1759,7 +1782,7 @@ class SU_Module {
 		if ($grouptext)
 			$this->admin_form_group_start($grouptext, false);
 		elseif ($in_table)
-			echo "<tr valign='top' class='su-admin-form-dropdown'>\n<td colspan='2'>\n";
+			echo "<div class='form-group su-admin-form-dropdown'>\n<div class='col-sm-4 col-md-4'>\n";
 		
 		if (is_array($values)) {
 			
@@ -1775,7 +1798,7 @@ class SU_Module {
 		if ($grouptext)
 			$this->admin_form_group_end();
 		elseif ($in_table)
-			echo "</td>\n</tr>\n";
+			echo "</div>\n<div class='col-sm-4 col-md-4 help-text'>\n</div>\n</div>\n";
 	}
 	
 	/**
@@ -1806,7 +1829,7 @@ class SU_Module {
 			if ($enabled) $disabled = ''; else $disabled = " readonly='readonly'";
 			
 			$esfvalue = su_esc_attr($sfvalue);
-			$field_html = "</label><input class='textbox subfield' name='$sfname' id='$sfname' type='text' value='$esfvalue'$disabled";
+			$field_html = "</label><input class='textbox subfield form-control input-sm' name='$sfname' id='$sfname' type='text' value='$esfvalue'$disabled";
 			if ($is_int_field) $field_html .= " size='2' maxlength='3'";
 			$field_html .= " /><label for='$name'>";
 			
@@ -1841,6 +1864,8 @@ class SU_Module {
 		$tree_level = isset($args['tree_level']) ? $args['tree_level'] : false;
 		$disabled = isset($args['disabled']) ? $args['disabled'] : false;
 		$in_table = isset($args['in_table']) ? $args['in_table'] : true;
+		$help_text = isset($args['help_text']) ? $args['help_text'] : false;
+		$callout = isset($args['callout']) ? $args['callout'] : false;
 		
 		if (!$disabled && $this->is_action('update')) {
 			foreach ($textboxes as $id => $title) {
@@ -1876,16 +1901,19 @@ class SU_Module {
 			$id = su_esc_attr($id);
 			$resetmessage = su_esc_attr(__('Are you sure you want to replace the textbox contents with this default value?', 'seo-ultimate'));
 			
+			if ($callout)
+				echo "<div class='bs-callout bs-callout-grey'><h4>$callout</h4></div>\n";
+				
 			if ($grouptext)
-				echo "<div class='field'><label for='$id'>$title</label><br />\n";
+				echo "<div class='form-group'><label class='col-sm-4 col-md-4 control-label' for='$id'>$title</label>\n<div class='col-sm-4 col-md-4'>\n";
 			elseif ($in_table && strpos($title, '</a>') === false)
-				echo "<tr valign='top'$indentattrs$hidden>\n<th scope='row' class='su-field-label'>$indenttoggle<label for='$id'><span class='su-field-label-text'>$title</span></label></th>\n<td>";
+				echo "<div class='form-group'$indentattrs$hidden>\n<label class='col-sm-4 col-md-4 control-label' for='$id'><span class='su-field-label-text'>$title</span></label>\n<div class='col-sm-4 col-md-4'>\n";
 			elseif ($in_table)
-				echo "<tr valign='top'$indentattrs$hidden>\n<td class='su-field-label'>$indenttoggle<span class='su-field-label-text'>$title</span></td>\n<td>";
+				echo "<div class='form-group'$indentattrs$hidden>\n<label class='col-sm-4 col-md-4 control-label' for='$id'><span class='su-field-label-text'>$title</span></label>\n<div class='col-sm-4 col-md-4'>\n";
 			
 			echo $before;
 			
-			echo "<input name='$id' id='$id' type='text' value='$value' class='regular-text' ";
+			echo "<input name='$id' id='$id' type='text' value='$value'  class='form-control input-sm regular-text' ";
 			
 			if ($placeholder) {
 				$a_placeholder = su_esc_attr($placeholder);
@@ -1920,7 +1948,12 @@ class SU_Module {
 			if ($grouptext)
 				echo "</div>\n";
 			elseif ($in_table)
-				echo "</td>\n</tr>\n";
+				echo "</div>\n";
+				
+			if ($help_text)
+				echo "<div class='col-sm-4 col-md-4'>$help_text</div>\n</div>\n";
+			else
+				echo "<div class='col-sm-4 col-md-4'></div>\n</div>\n";
 		}
 		
 		if ($grouptext) $this->admin_form_group_end(false);
@@ -1971,13 +2004,13 @@ class SU_Module {
 			$value = su_esc_editable_html($this->get_setting($id));
 			$id = su_esc_attr($id);
 			
-			echo "<tr valign='top'>\n";
-			if ($title) echo "<th scope='row'><label for='$id'>$title</label></th>\n";
-			echo '<td>';
-			echo "<textarea name='$id' id='$id' type='text' class='regular-text' cols='$cols' rows='$rows'";
+			echo "<div class='form-group'>\n";
+			if ($title) echo "<label class='col-sm-4 col-md-4 control-label' for='$id'>$title</label>\n";
+			echo "<div class='col-sm-4 col-md-4'>";
+			echo "<textarea name='$id' id='$id' type='text' class='form-control regular-text' cols='$cols' rows='$rows'";
 			if ($disabled) echo " disabled='disabled'";
 			echo ">$value</textarea>";
-			echo "</td>\n</tr>\n";
+			echo "</div>\n<div class='col-sm-4 col-md-4 help-text'>\n</div>\n</div>\n";
 		}
 	}
 	
@@ -2029,11 +2062,11 @@ class SU_Module {
 			
 			register_setting($this->get_module_key(), $id);
 			
-			echo "<tr valign='top'>\n";
-			if ($title) echo "<th scope='row'><label for='$id'>$title</label></th>\n";
-			echo "<td>";
+			echo "<div class='form-group'>\n";
+			if ($title) echo "<label class='col-sm-4 col-md-4 control-label' for='$id'>$title</label>\n";
+			echo "<div class='col-sm-4 col-md-4'>";
 			echo $this->get_jlsuggest_box($id, $this->get_setting($id), $params);
-			echo "</td>\n</tr>\n";
+			echo "</div>\n<div class='col-sm-4 col-md-4 help-text'>\n</div>\n</div>\n";
 		}
 	}
 	
@@ -2042,6 +2075,59 @@ class SU_Module {
 	 */
 	function jlsuggest_box($id, $title, $params='') {
 		$this->jlsuggest_boxes(array(compact('id', 'title', 'params')));
+	}
+	/**
+	 * @since 7.6.3
+	 */
+	function medialib_boxes($media_boxes) {
+		
+		if ($this->is_action('update')) {
+			foreach ($media_boxes as $media_box) {
+				
+				if (!isset($media_box['id']))
+					continue;
+				
+				$id = $media_box['id'];
+				
+				if (isset($_POST[$id]))
+					$this->update_setting($id, stripslashes($_POST[$id]));
+			}
+		}
+		
+		foreach ($media_boxes as $media_box) {
+			
+			if (!isset($media_box['id']))
+				continue;
+			
+			$media_box = wp_parse_args($media_box, array(
+				  'title' => ''
+				, 'params' => ''
+			));
+			
+			extract($media_box, EXTR_SKIP);
+			
+			register_setting($this->get_module_key(), $id);
+			
+			echo "<div class='form-group'>\n";
+			if ($title) echo "<label class='col-sm-4 col-md-4 control-label' for='$id'>$title</label>\n";
+			echo "<div class='col-sm-4 col-md-4'>";
+			echo "<div class='input-group'>
+				<input id='".su_esc_attr($id)."' name='".su_esc_attr($id)."' type='text' class='wpu-image form-control' size='40' value='".$this->get_setting($id)."'>
+				<span class='input-group-btn'>
+					<span class='btn btn-custom btn-file wpu-media-upload'>
+						<i class='fa fa-upload'></i> Upload Image <input type='file'>
+					</span>
+				</span>
+			</div>";
+			echo "</div>\n<div class='col-sm-4 col-md-4 help-text'>\n</div>\n</div>\n";
+		}
+	}
+	
+	/**
+	 * @since 7.6.3
+	 */
+	function medialib_box($id, $title, $params='') {
+		$this->medialib_boxes(array(compact('id', 'title', 'params')));
 	}
 	
 	/********** ADMIN SECURITY FUNCTIONS **********/
@@ -2257,29 +2343,28 @@ class SU_Module {
 		
 		if ($grouptext) {
 			$h_grouptext = esc_html($grouptext);
-			$html .= "<tr class='su textbox' valign='top'>\n<th scope='row' class='su'><label>$h_grouptext</label></th>\n<td class='su group'><table>";
+			$html = "<div class='form-group su textbox'>\n<h4 class='col-sm-4 col-md-4 control-label'>$h_grouptext</h4>\n<div class='col-sm-4 col-md-4'></div>\n<div class='col-sm-4 col-md-4 help-text'>\n</div>\n</div>\n";
 		}
 		
 		foreach ($textboxes as $id => $title) {
 			
 			$type = isset($textbox_args[$id]['type']) ? $textbox_args[$id]['type'] : 'text';
-			
+			$input_clss = ($type == 'text') ? 'input-sm ' : '';
+			 
 			register_setting('seo-ultimate', $id);
 			$value = su_esc_editable_html($this->get_postmeta($id));
 			$id = "_su_".su_esc_attr($id);
 			
 			$e_title = su_esc_attr($title);
 			
-			if ($grouptext)
-				$html .= "<tr><th scope='row'>$title</th><td><input name='$id' id='$id' type='$type' value='$value' class='regular-text' tabindex='2' /></td></tr>";
-			else
-				$html .= "<tr class='su textbox' valign='middle'>\n<th scope='row' class='su'><label for='$id'>$title</label></th>\n"
-						."<td class='su'><input name='$id' id='$id' type='$type' value='$value' class='regular-text' tabindex='2' /></td>\n</tr>\n";
+			$html = "<div class='form-group su textbox'>\n<label class='col-sm-4 col-md-4 control-label' for='$id'>$title</label>\n<div class='col-sm-4 col-md-4'><input name='$id' id='$id' type='$type' value='$value' class='"
+			. $input_clss."form-control regular-text' tabindex='2' />\n"
+			. "</div>\n<div class='col-sm-4 col-md-4 help-text'>\n</div>\n</div>\n";
 		}
 		
 		if ($grouptext) {
 			$h_grouptext = esc_html($grouptext);
-			$html .= "</table></td>\n</tr>\n";
+			//$html .= "</table></td>\n</tr>\n";
 		}
 		
 		return $html;
@@ -2318,8 +2403,8 @@ class SU_Module {
 			$value = su_esc_editable_html($this->get_postmeta($id));
 			$id = "_su_".su_esc_attr($id);
 			
-			$html .= "<tr class='su textarea' valign='top'>\n<th scope='row' class='su'><label for='$id'>$title</label></th>\n"
-					."<td class='su'><textarea name='$id' id='$id' class='regular-text' tabindex='2' cols='60' rows='3'>$value</textarea></td>\n</tr>\n";
+			$html = "<div class='form-group su textarea'>\n<label class='col-sm-4 col-md-4 control-label' for='$id'>$title</label>\n<div class='col-sm-4 col-md-4'><textarea name='$id' id='$id' class='form-control regular-text' tabindex='2' cols='60' rows='3'>$value</textarea>\n"
+			."</div>\n<div class='col-sm-4 col-md-4 help-text'>\n</div>\n</div>\n";
 		}
 		
 		return $html;
@@ -2352,7 +2437,7 @@ class SU_Module {
 	function get_postmeta_checkboxes($checkboxes, $grouptext) {
 		
 		$valign = (is_array($checkboxes) && count($checkboxes) > 1) ? 'top' : 'middle';
-		$html = "<tr class='su checkboxes' valign='$valign'>\n<th scope='row' class='su'>$grouptext</th>\n<td class='su'><fieldset><legend class='hidden'>$grouptext</legend>\n";
+		$html = "<div class='form-group su checkboxes'>\n<label class='col-sm-4 col-md-4 control-label'>$grouptext</label>\n<div class='col-sm-4 col-md-4'>\n";
 		
 		if (is_array($checkboxes)) {
 			foreach ($checkboxes as $name => $desc) {
@@ -2361,13 +2446,13 @@ class SU_Module {
 				$checked = ($this->get_postmeta($name) == 1);
 				$name = "_su_".su_esc_attr($name);
 				
-				$html .= "<label for='$name'><input name='$name' id='$name' type='checkbox' tabindex='2' value='1'";
+				$html .= "<div class='checkbox'><label for='$name'><input name='$name' id='$name' type='checkbox' tabindex='2' value='1'";
 				if ($checked) $html .= " checked='checked'";
-				$html .= " /> $desc</label><br />\n";
+				$html .= " /> $desc</label></div>\n";
 			}
 		}
 		
-		$html .= "</fieldset></td>\n</tr>\n";
+		$html .= "</div>\n<div class='col-sm-4 col-md-4 help-text'>\n</div>\n</div>\n";
 		
 		return $html;
 	}
@@ -2403,14 +2488,16 @@ class SU_Module {
 		
 		register_setting('seo-ultimate', $name);
 		$current = $this->get_postmeta($name);
-		if ($current === '') $current = array_shift(array_keys($options));
+		if ($current === '') {
+			$current = reset($options);
+		}
 		$name = "_su_".su_esc_attr($name);
 		
-		$html = "<tr class='su dropdown' valign='middle'>\n<th scope='row' class='su'><label for='$name'>$grouptext</label></th>\n<td class='su'><fieldset><legend class='hidden'>$grouptext</legend>\n";
+		$html = "<div class='form-group su dropdown'>\n<label class='col-sm-4 col-md-4 control-label' for='$name'>$grouptext</label>\n<div class='col-sm-4 col-md-4'>\n";
 		$html .= "<select name='$name' id='$name' onchange='javascript:su_toggle_select_children(this)'>\n";
 		$html .= suhtml::option_tags($options, $current);
 		$html .= "</select>\n";
-		$html .= "</fieldset></td>\n</tr>\n";
+		$html .= "</div>\n<div class='col-sm-4 col-md-4 help-text'></div>\n</div>\n";
 		
 		return $html;
 	}
@@ -2440,10 +2527,10 @@ class SU_Module {
 			$value = su_esc_editable_html($this->get_postmeta($id));
 			$id = "_su_".su_esc_attr($id);
 			
-			$html .= "<tr class='su jlsuggestbox' valign='middle'>\n<th scope='row' class='su'><label for='$id'>$title</label></th>\n"
-					."<td class='su'>";
+			$html .= "<div class='form-group su jlsuggestbox'>\n<label class='col-sm-4 col-md-4 control-label' for='$id'>$title</label>\n"
+					."<div class='col-sm-4 col-md-4 su'>";
 			$html .= $this->get_jlsuggest_box($id, $value, $params);
-			$html .= "</td>\n</tr>\n";
+			$html .= "</div>\n<div class='col-sm-4 col-md-4 help-text'>\n</div>\n</div>\n";
 		}
 		
 		return $html;
@@ -2466,6 +2553,61 @@ class SU_Module {
 	}
 	
 	/**
+	 * Generates the HTML for multiple post meta mediaupload boxes.
+	 * 
+	 * @since 7.6.3
+	 * 
+	 * @param array $media_boxes An array of mediaupload boxes. (Field/setting IDs are the keys, and descriptions are the values.)
+	 * @return string The HTML for the mediaupload boxes.
+	 */
+	function get_postmeta_medialib_boxes($media_boxes) {
+		
+		$html = '';
+		
+		foreach ($media_boxes as $media_box) {
+			
+			if (!isset($media_box['id']) || !isset($media_box['title']))
+				continue;
+			
+			$id = $media_box['id'];
+			$title = $media_box['title'];
+			
+			register_setting('seo-ultimate', $id);
+			$value = su_esc_editable_html($this->get_postmeta($id));
+			$id = "_su_".su_esc_attr($id);
+			
+			$html .= "<div class='form-group su'>\n<label class='col-sm-4 col-md-4 control-label' for='$id'>$title</label>\n"
+					."<div class='col-sm-4 col-md-4 su'>";
+			$html .= "<div class='input-group'>
+				<input id='".su_esc_attr($id)."' name='".su_esc_attr($id)."' type='text' class='wpu-image form-control' size='40' value='".$value."'>
+				<span class='input-group-btn'>
+					<span class='btn btn-custom btn-file wpu-media-upload'>
+						<i class='fa fa-upload'></i> Upload Image <input type='file'>
+					</span>
+				</span>
+			</div>";
+			$html .= "</div>\n<div class='col-sm-4 col-md-4 help-text'>\n</div>\n</div>\n";
+		}
+		
+		return $html;
+	}
+	
+	/**
+	 * Generates the HTML for a single post meta mediaupload box.
+	 * 
+	 * @since 7.6.3
+	 * @uses get_postmeta_medialib_boxes()
+	 * 
+	 * @param string $id The ID of the HTML element.
+	 * @param string $title The label of the HTML element.
+	 * @return string The HTML that would render the mediaupload box.
+	 */
+	function get_postmeta_medialib_box($id, $title) {
+		$media_box = compact('id', 'title');
+		return $this->get_postmeta_medialib_boxes(array($media_box));
+	}
+	
+	/**
 	 * Turns a <tr> into a post meta subsection.
 	 * 
 	 * @since 2.5
@@ -2481,7 +2623,7 @@ class SU_Module {
 		
 		$field = su_esc_attr($field);
 		$value = su_esc_attr($value);
-		$html = str_replace('<tr ', "<tr class='su_{$field}_{$value}_subsection$hidden' ", $html);
+		$html = str_replace("<div class='form-group ", "<div class='form-group su_{$field}_{$value}_subsection$hidden ", $html);
 		return $html;
 	}
 	
@@ -2719,7 +2861,7 @@ class SU_Module {
 			$html .= " placeholder='$e_placeholder'";
 		}
 		
-		$html .= " type='text' class='textbox regular-text jlsuggest'";
+		$html .= " type='text' class='form-control input-sm textbox regular-text jlsuggest'";
 		$html .= ' title="' . __('Type a URL or start typing the name of an item on your site', 'seo-ultimate') . '"';
 		$html .= $is_url ? '' : ' style="display:none;" ';
 		$html .= ' />';
@@ -2797,6 +2939,142 @@ class SU_Module {
 		}
 		
 		return false;
+	}
+	
+	
+	/**
+	 * @since 7.6
+	 */
+	function should_show_sdf_theme_promo() {
+		return $this->is_sdf_theme_promo_applicable() && $this->get_setting('sdf_theme','', 'settings');
+	}
+	
+	/**
+	 * @since 7.6
+	 */
+	function is_sdf_theme_promo_applicable() {
+		//If the current user can install themes and if SDF isn't already uploaded...
+		if (current_user_can('install_themes') && (wp_get_theme('seodesign')->errors() === false)){
+			$theme = wp_get_theme(); // gets the current theme
+			return ('SEO Design Framework' == $theme->name || 'seodesign' == $theme->template || 'seodesign' == $theme->parent_theme) ? false : true;
+		}
+		else{
+			return true;
+		}
+	}	
+
+	
+	/**
+	* Display the RSS entries in a list.
+	*
+	* @since 7.6.2
+	*
+	* @param string|array|object $rss RSS url.
+	* @param array $args Widget arguments.
+	*/
+	function promo_sdf_banners_rss_output( $rss, $args = array() ) {
+		if ( is_string( $rss ) ) {
+			$rss = fetch_feed($rss);
+		} elseif ( is_array($rss) && isset($rss['url']) ) {
+			$args = $rss;
+			$rss = fetch_feed($rss['url']);
+		} elseif ( !is_object($rss) ) {
+			return;
+		}
+
+		if ( is_wp_error($rss) ) {
+			if ( is_admin() || current_user_can('manage_options') )
+				echo '<p>' . sprintf( __('<strong>RSS Error</strong>: %s'), $rss->get_error_message() ) . '</p>';
+			return;
+		}
+
+		$default_args = array( 'show_author' => 0, 'show_date' => 0, 'show_summary' => 0 );
+		$args = wp_parse_args( $args, $default_args );
+		extract( $args, EXTR_SKIP );
+
+		$items = (int) $items;
+		if ( $items < 1 || 20 < $items )
+			$items = 10;
+		$show_summary  = (int) $show_summary;
+		$show_author   = (int) $show_author;
+		$show_date     = (int) $show_date;
+
+		if ( !$rss->get_item_quantity() ) {
+			echo '<ul><li>' . __( 'An error has occurred, which probably means the feed is down. Try again later.' ) . '</li></ul>';
+			$rss->__destruct();
+			unset($rss);
+			return;
+		}
+
+		foreach ( $rss->get_items(0, $items) as $item ) {
+			$link = $item->get_link();
+			while ( stristr($link, 'http') != $link )
+				$link = substr($link, 1);
+			$link = esc_url(strip_tags($link));
+			$title = esc_attr(strip_tags($item->get_title()));
+			if ( empty($title) )
+				$title = '';
+
+			$desc = str_replace( array("\n", "\r"), ' ', esc_attr( strip_tags( @html_entity_decode( $item->get_description(), ENT_QUOTES, get_option('blog_charset') ) ) ) );
+			$excerpt = wp_html_excerpt( $desc, 120 );
+
+			// Append ellipsis. Change existing [...] to [&hellip;].
+			if ( '[...]' == substr( $excerpt, -5 ) )
+				$excerpt = substr( $excerpt, 0, -5 ) . '[&hellip;]';
+			elseif ( '[&hellip;]' != substr( $excerpt, -10 ) && $desc != $excerpt )
+				$excerpt .= ' [&hellip;]';
+
+			$excerpt = esc_html( $excerpt );
+
+			if ( $show_summary ) {
+				$summary = "<p>$excerpt</p>";
+			} else {
+				$summary = '';
+			}
+
+			$date = '';
+			if ( $show_date ) {
+				$date = $item->get_date( 'U' );
+
+				if ( $date ) {
+					$date = ' <span class="rss-date">' . date_i18n( get_option( 'date_format' ), $date ) . '</span>';
+				}
+			}
+
+			$author = '';
+			if ( $show_author ) {
+				$author = $item->get_author();
+				if ( is_object($author) ) {
+					$author = $author->get_name();
+					$author = ' <cite>' . esc_html( strip_tags( $author ) ) . '</cite>';
+				}
+			}
+
+			if ( $link == '' ) {
+				echo "<h3>$title</h3>{$summary}";
+			} else {
+				echo "<h3>$title</h3>{$summary}<p><a class='btn btn-large btn-warning' href='$link' target='_blank' rel='nofollow'>Read More</a></p>";
+			}
+		}
+		$rss->__destruct();
+		unset($rss);
+	}
+	
+	/**
+	 * @since 7.6.2
+	 */
+	function promo_sdf_banners() {
+		
+		if ($this->should_show_sdf_theme_promo()) {	
+			?>
+			<div id="sds_promo_blog_post" class="hide">
+			<?php $this->promo_sdf_banners_rss_output( 'http://feeds.seodesignsolutions.com/SeoDesignSolutionsBlog', array('show_summary' => 1, 'show_date' => 0, 'items' => 1) ); ?>
+			</div>
+			<div id="sdf-promo-carousel"></div>
+			<p>Remove these ads?<br />
+			<a href="https://www.seoultimateplus.com/breaking-news" target="_blank" title="Upgrade to SEO Ultimate+">Upgrade to SEO Ultimate+</a></p>
+			<?php
+		}	
 	}
 }
 ?>

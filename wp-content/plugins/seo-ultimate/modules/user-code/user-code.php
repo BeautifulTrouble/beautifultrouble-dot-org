@@ -18,7 +18,8 @@ add_filter('su_settings_import_array', 'su_user_code_import_filter');
 
 class SU_UserCode extends SU_Module {
 	
-	function get_module_title() { return __('Code Inserter', 'seo-ultimate'); }
+	static function get_module_title() { return __('Code Inserter', 'seo-ultimate'); }
+	static function get_menu_title() { return __('Code Inserter', 'seo-ultimate'); }
 	
 	function get_default_settings() {
 		return array(
@@ -42,32 +43,33 @@ class SU_UserCode extends SU_Module {
 		foreach ($hooks as $hook) add_filter($hook, array(&$this, "{$hook}_code"), 'su_head' == $hook ? 11 : 10);
 	}
 	
-	function get_admin_page_tabs() {
-		return array(
-			  array('title' => __('Everywhere', 'seo-ultimate'), 'id' => 'su-everywhere', 'callback' => array('usercode_admin_tab', 'global'))
-		);
-	}
+	
 	
 	function admin_page_contents() {
-		if (!$this->user_authorized())
-			$this->print_message('error', __('These fields are disabled because your user account does not have permission to insert arbitrary HTML into this site&#8217;s code.', 'seo-ultimate'));
 		
-		$this->children_admin_page_tabs_form();
-	}
-	
-	function usercode_admin_tab($section) {
+		if ($this->should_show_sdf_theme_promo()) {
+			echo "\n\n<div class='row'>\n";
+			echo "\n\n<div class='col-sm-8 col-md-9'>\n";
+		}
 		
+		$this->admin_form_start(false, false);
 		$textareas = array(
 			  'wp_head' => __('&lt;head&gt; Tag', 'seo-ultimate')
 			, 'the_content_before' => __('Before Item Content', 'seo-ultimate')
 			, 'the_content_after' => __('After Item Content', 'seo-ultimate')
 			, 'wp_footer' => __('Footer', 'seo-ultimate')
 		);
-		$textareas = suarr::aprintf("{$section}_%s", false, $textareas);
-		
-		$this->admin_form_table_start();
+		$textareas = suarr::aprintf("global_%s", false, $textareas);
 		$this->textareas($textareas, 5, 30, array('disabled' => !$this->user_authorized()));
-		$this->admin_form_table_end();
+		$this->admin_form_end(null, false);
+			
+		if ($this->should_show_sdf_theme_promo()) {
+			echo "\n\n</div>\n";
+			echo "\n\n<div class='col-sm-4 col-md-3'>\n";
+			$this->promo_sdf_banners();
+			echo "\n\n</div>\n";
+			echo "\n\n</div>\n";
+		}
 	}
 	
 	function get_usercode($field) {

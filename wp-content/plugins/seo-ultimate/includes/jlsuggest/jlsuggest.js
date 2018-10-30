@@ -1,5 +1,5 @@
 jQuery(document).ready( function($) {
-	$('input.jlsuggest', '.su-module,#su-postmeta-box').each(function() {
+	$('input.jlsuggest', '.sdf-admin,#su-postmeta-box').each(function() {
 		var params = $(this).attr('su:params') ? '&' + $(this).attr('su:params') : '';
 		$(this).jlsuggest(ajaxurl + '?action=su-jlsuggest-autocomplete' + params,
 			{ delay: 500, minchars: 2, multiple: false, textDest: true, noUrls: true } );

@@ -15,7 +15,7 @@ class suio {
 	 * 
 	 * @return bool
 	 */
-	function is_file($filename, $path, $ext=false) {
+	static function is_file($filename, $path, $ext=false) {
 		$is_ext = strlen($ext) ? sustr::endswith($filename, '.'.ltrim($ext, '*.')) : true;		
 		return is_file(suio::tslash($path).$filename) && $is_ext;
 	}
@@ -29,7 +29,7 @@ class suio {
 	 * 
 	 * @return bool
 	 */
-	function is_dir($name, $path) {
+	static function is_dir($name, $path) {
 		return $name != '.' && $name != '..' && is_dir(suio::tslash($path).$name);
 	}
 	
@@ -40,7 +40,7 @@ class suio {
 	 * 
 	 * @return string
 	 */
-	function tslash($path) {
+	static function tslash($path) {
 		return suio::untslash($path).'/';
 	}
 	
@@ -51,7 +51,7 @@ class suio {
 	 * 
 	 * @return string
 	 */
-	function untslash($path) {
+	static function untslash($path) {
 		return rtrim($path, '/');
 	}
 	
@@ -63,7 +63,7 @@ class suio {
 	 * 
 	 * @return array An array of arrays which represent rows of the file.
 	 */
-	function import_csv($path) {
+	static function import_csv($path) {
 		if (!is_readable($path)) return false;
 		
 		$result = array();
@@ -107,7 +107,7 @@ class suio {
 	 * 
 	 * @return false Returns a value only if conversion failed
 	 */
-	function export_csv($csv) {
+	static function export_csv($csv) {
 		header("Content-Type: text/csv");
 		$result = suio::print_csv($csv);
 		if ($result) die(); else return false;
@@ -120,7 +120,7 @@ class suio {
 	 * 
 	 * @return bool Whether or not the conversion was successful
 	 */
-	function print_csv($csv) {
+	static function print_csv($csv) {
 		if (!is_array($csv) || !count($csv) || !is_array($csv[0])) return false;
 		
 		$headers = array_keys($csv[0]);

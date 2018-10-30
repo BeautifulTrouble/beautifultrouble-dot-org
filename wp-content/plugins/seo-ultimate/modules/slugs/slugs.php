@@ -9,10 +9,11 @@ if (class_exists('SU_Module')) {
 
 class SU_Slugs extends SU_Module {
 	
-	function get_module_title() { return __('Slug Optimizer', 'seo-ultimate'); }
+	static function get_module_title() { return __('Slug Optimizer', 'seo-ultimate'); }
 	
-	function get_parent_module() { return 'misc'; }
+	static function get_parent_module() { return 'misc'; }
 	function get_settings_key() { return 'slugs'; }
+	function get_default_status() { return SU_MODULE_DISABLED; }
 	
 	function admin_page_contents() {
 		$this->child_admin_form_start();
@@ -42,7 +43,7 @@ class SU_Slugs extends SU_Module {
 	function optimize_slug($slug) {
 		
 		//If no slug exists, start off with the post title
-		if (empty($slug)) $slug = $_POST['post_title'];
+		if (empty($slug) && isset($_POST['post_title'])) $slug = $_POST['post_title'];
 		
 		//Prepare the title and the words for comparison
 		$slug = sustr::tolower(stripslashes($slug));

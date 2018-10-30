@@ -15,14 +15,14 @@ add_filter('su_settings_export_array', 'su_fofs_log_export_filter');
 
 class SU_FofsLog extends SU_Module {
 	
-	function get_parent_module() { return 'fofs'; }
-	function get_child_order() { return 10; }
-	function is_independent_module() { return false; }
+	static function get_parent_module() { return 'fofs'; }
+	static function get_child_order() { return 10; }
+	static function is_independent_module() { return false; }
 	
-	function get_module_title() { return __('404 Monitor Log', 'seo-ultimate'); }
+	static function get_module_title() { return __('404 Monitor Log', 'seo-ultimate'); }
 	function get_module_subtitle() { return __('Log', 'seo-ultimate'); }
-	
-	function has_menu_count() { return true; }
+	function get_default_status() { return SU_MODULE_DISABLED; }
+	static function has_menu_count() { return true; }
 	function get_settings_key() { return '404s'; }
 	
 	function get_menu_count() {
@@ -64,7 +64,7 @@ class SU_FofsLog extends SU_Module {
 	}
 	
 	function queue_admin_scripts() {
-		if ($this->is_module_admin_page()) wp_enqueue_script('scriptaculous-effects');
+		//if ($this->is_module_admin_page()) wp_enqueue_script('scriptaculous-effects');
 	}
 	
 	function log_hit($hit) {
@@ -192,8 +192,8 @@ class SU_FofsLog extends SU_Module {
 						, date_i18n(get_option('date_format'), $data['last_hit_time'])
 						, date_i18n(get_option('time_format'), $data['last_hit_time'])
 						)
-					, 'referers' => number_format_i18n(count($data['referers'])) . (count($data['referers']) ? " <a href='#' onclick=\"return su_toggle_blind('su-404s-hit-$md5url-referers')\";'><img src='{$this->module_dir_url}hit-details.png' title='".__('View list of referring URLs', 'seo-ultimate')."' /></a>" : '')
-					, 'user-agents' => number_format_i18n(count($data['user_agents'])) . (count($data['user_agents']) ? " <a href='#' onclick=\"return su_toggle_blind('su-404s-hit-$md5url-user-agents')\";'><img src='{$this->module_dir_url}hit-details.png' title='".__('View list of user agents', 'seo-ultimate')."' /></a>" : '')
+					, 'referers' => number_format_i18n(count($data['referers'])) . (count($data['referers']) ? " <a href='#' class='su_toggle_hide' data-toggle='su-404s-hit-$md5url-referers'><img src='{$this->module_dir_url}hit-details.png' title='".__('View list of referring URLs', 'seo-ultimate')."' /></a>" : '')
+					, 'user-agents' => number_format_i18n(count($data['user_agents'])) . (count($data['user_agents']) ? " <a href='#' class='su_toggle_hide' data-toggle='su-404s-hit-$md5url-user-agents'><img src='{$this->module_dir_url}hit-details.png' title='".__('View list of user agents', 'seo-ultimate')."' /></a>" : '')
 				));
 				
 				echo "\t</tr>\n";
@@ -202,9 +202,9 @@ class SU_FofsLog extends SU_Module {
 				
 				if (count($data['referers'])) {
 					
-					echo "<div id='su-404s-hit-$md5url-referers' class='su-404s-hit-referers-list' style='display: none;'>\n";
+					echo "<div id='su-404s-hit-$md5url-referers' class='su-404s-hit-referers-list' style='display:none;'>\n";
 					echo "\t\t\t<div><strong>".__('Referring URLs', 'seo-ultimate')."</strong> &mdash; ";
-					echo "<a href='#' onclick=\"Effect.BlindUp('su-404s-hit-$md5url-referers'); return false;\">".__('Hide list', 'seo-ultimate')."</a>";
+					echo "<a href='#' class='su_toggle_up' data-toggle='su-404s-hit-$md5url-referers'>".__('Hide list', 'seo-ultimate')."</a>";
 					echo "</div>\n";
 					echo "\t\t\t<ul>\n";
 					
@@ -223,9 +223,9 @@ class SU_FofsLog extends SU_Module {
 				echo "\t<tr class='su-404s-hit-user-agents$new'>\n\t\t<td colspan='".count($headers)."'>";
 				
 				if (count($data['user_agents'])) {
-					echo "<div id='su-404s-hit-$md5url-user-agents' class='su-404s-hit-user-agents-list'  style='display: none;'>\n";
+					echo "<div id='su-404s-hit-$md5url-user-agents' class='su-404s-hit-user-agents-list' style='display:none;'>\n";
 					echo "\t\t\t<div><strong>".__('User Agents', 'seo-ultimate')."</strong> &mdash; ";
-					echo "<a href='#' onclick=\"Effect.BlindUp('su-404s-hit-$md5url-user-agents'); return false;\">".__('Hide list', 'seo-ultimate')."</a>";
+					echo "<a href='#' class='su_toggle_up' data-toggle='su-404s-hit-$md5url-user-agents'>".__('Hide list', 'seo-ultimate')."</a>";
 					echo "</div>\n";
 					echo "\t\t\t<ul>\n";
 					

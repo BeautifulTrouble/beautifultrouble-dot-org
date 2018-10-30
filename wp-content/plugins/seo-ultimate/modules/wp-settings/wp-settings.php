@@ -11,9 +11,10 @@ class SU_WpSettings extends SU_Module {
 	
 	var $results = array();
 	
-	function get_module_title() { return __('Settings Monitor', 'seo-ultimate'); }
+	static function get_module_title() { return __('Settings Monitor', 'seo-ultimate'); }
+	static function get_menu_title() { return __('Settings Monitor', 'seo-ultimate'); }
 	
-	function has_menu_count() { return true; }
+	static function has_menu_count() { return true; }
 	function get_menu_count() {
 		$count = 0;
 		foreach ($this->results as $data) {
@@ -58,6 +59,11 @@ class SU_WpSettings extends SU_Module {
 	
 	function admin_page_contents() {
 		
+		if ($this->should_show_sdf_theme_promo()) {
+			echo "\n\n<div class='row'>\n";
+			echo "\n\n<div class='col-sm-8 col-md-9'>\n";
+		}
+		
 		echo "\n<p>";
 		_e("Settings Monitor analyzes your blog&#8217;s settings and notifies you of any problems. If any issues are found, they will show up in red or yellow below.", 'seo-ultimate');
 		echo "</p>\n";
@@ -91,6 +97,14 @@ class SU_WpSettings extends SU_Module {
 		}
 		
 		echo "</table>\n\n";
+		
+		if ($this->should_show_sdf_theme_promo()) {
+			echo "\n\n</div>\n";
+			echo "\n\n<div class='col-sm-4 col-md-3'>\n";
+			$this->promo_sdf_banners();
+			echo "\n\n</div>\n";
+			echo "\n\n</div>\n";
+		}
 	}
 }
 

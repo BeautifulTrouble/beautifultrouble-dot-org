@@ -9,9 +9,9 @@ if (class_exists('SU_Module')) {
 
 class SU_Linkbox extends SU_Module {
 
-	function get_module_title() { return __('Linkbox Inserter', 'seo-ultimate'); }
+	static function get_module_title() { return __('Linkbox Inserter', 'seo-ultimate'); }
 	
-	function get_parent_module() { return 'misc'; }
+	static function get_parent_module() { return 'misc'; }
 	function get_settings_key() { return 'linkbox'; }
 	
 	function get_default_settings() {

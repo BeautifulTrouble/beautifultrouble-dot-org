@@ -9,8 +9,8 @@ if (class_exists('SU_Module')) {
 
 class SU_MetaRobots extends SU_Module {
 	
-	function get_module_title() { return __('Meta Robot Tags Editor', 'seo-ultimate'); }
-	function get_menu_title()   { return __('Meta Robot Tags', 'seo-ultimate'); }
+	static function get_module_title() { return __('Meta Robot Tags Editor', 'seo-ultimate'); }
+	static function get_menu_title()   { return __('Meta Robot Tags', 'seo-ultimate'); }
 	function get_settings_key() { return 'meta'; }
 	
 	function init() {

@@ -9,9 +9,9 @@ if (class_exists('SU_Module')) {
 
 class SU_Canonical extends SU_Module {
 
-	function get_module_title() { return __('Canonicalizer', 'seo-ultimate'); }
+	static function get_module_title() { return __('Canonicalizer', 'seo-ultimate'); }
 	
-	function get_parent_module() { return 'misc'; }
+	static function get_parent_module() { return 'misc'; }
 	function get_settings_key() { return 'canonical'; }
 	
 	function init() {
@@ -158,7 +158,7 @@ class SU_Canonical extends SU_Module {
 				$link = trailingslashit($link) ."page/$page";
 				$link = user_trailingslashit($link, 'paged');
 			} else {
-				$link = add_query_arg( 'paged', $page, $link );
+				$link = esc_url( add_query_arg( 'paged', $page, $link ) );
 			}
 		}
 		
@@ -186,17 +186,17 @@ class SU_Canonical extends SU_Module {
 				if ($max > 0 && ($num == 1 || ($num > 1 && $num > $max))) {
 					
 					if ($wp_rewrite->using_permalinks())
-						wp_redirect(preg_replace('|/[0-9]{1,9}/?$|', '/', $url), 301);
+						wp_redirect( preg_replace( '|/[0-9]{1,9}/?$|', '/', $url ), 301 );
 					else
-						wp_redirect(remove_query_arg('page', $url), 301);
+						wp_redirect( esc_url( remove_query_arg( 'page', $url ) ), 301 );
 				}
 				
 			} elseif (is_404() && $num = absint(get_query_var('paged'))) {
 				
 				if ($wp_rewrite->using_permalinks())
-					wp_redirect(preg_replace('|/page/[0-9]{1,9}/?$|', '/', $url), 301);
+					wp_redirect( preg_replace('|/page/[0-9]{1,9}/?$|', '/', $url), 301 );
 				else
-					wp_redirect(remove_query_arg('paged', $url), 301);
+					wp_redirect( esc_url( remove_query_arg( 'paged', $url ) ), 301 );
 			}
 		}
 	}

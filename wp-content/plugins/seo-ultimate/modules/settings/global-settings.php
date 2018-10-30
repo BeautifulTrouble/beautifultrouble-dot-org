@@ -11,25 +11,26 @@ class SU_GlobalSettings extends SU_Module {
 	
 	var $wp_meta_called = false;
 	
-	function get_parent_module() { return 'settings'; }
-	function get_child_order() { return 10; }
-	function is_independent_module() { return false; }
+	static function get_parent_module() { return 'settings'; }
+	static function get_child_order() { return 10; }
+	static function is_independent_module() { return false; }
 	
-	function get_module_title() { return __('Global Settings', 'seo-ultimate'); }
+	static function get_module_title() { return __('Global Settings', 'seo-ultimate'); }
 	
 	function get_default_settings() {
 		return array(
 			  'attribution_link' => false
 			, 'mark_code' => true
-			, 'wp_ultimate' => true
+			, 'sdf_theme' => true
+			, 'seo_toolbar_menu' => true
 		);
 	}
 	
 	function init() {
 		//Hook to add attribution link
 		if ($this->get_setting('attribution_link')) {
-			add_action('wp_meta', array(&$this, 'meta_link'));
-			add_action('wp_footer', array(&$this, 'footer_link'));
+			//add_action('wp_meta', array(&$this, 'meta_link'));
+			//add_action('wp_footer', array(&$this, 'footer_link'));
 		}
 	}
 	
@@ -39,15 +40,13 @@ class SU_GlobalSettings extends SU_Module {
 		
 		$checkboxes = array(
 			  'mark_code' => __('Identify the plugin&#8217;s HTML code insertions with HTML comment tags', 'seo-ultimate')
-			, 'attribution_link' => __('Enable nofollow&#8217;d attribution link on my site', 'seo-ultimate')
-			, 'attribution_link_css' => array('description' => __('Add CSS styles to the attribution link', 'seo-ultimate'), 'indent' => true)
+			, 'sdf_theme' => __('Show the promo slider for SEO Design Framework on plugin pages', 'seo-ultimate')
+			, 'seo_toolbar_menu' => __('Show "SEO" Menu in admin toolbar', 'seo-ultimate')
+			//, 'attribution_link' => __('Enable nofollow&#8217;d attribution link on my site', 'seo-ultimate')
+			//, 'attribution_link_css' => array('description' => __('Add CSS styles to the attribution link', 'seo-ultimate'), 'indent' => true)
 		);
 		
-		if ($this->plugin->is_wp_ultimate_promo_applicable())
-			$checkboxes['wp_ultimate'] = __('Show the promo image for WP Ultimate on the Module Manager page', 'seo-ultimate');
-		
 		$this->checkboxes($checkboxes);
-		
 		$this->admin_form_end();
 	}
 	

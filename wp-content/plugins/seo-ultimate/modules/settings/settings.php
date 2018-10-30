@@ -9,7 +9,7 @@ if (class_exists('SU_Module')) {
 
 class SU_Settings extends SU_Module {
 	
-	function get_module_title() {
+	static function get_module_title() {
 		if (is_network_admin())
 			return __('Plugin Management', 'seo-ultimate');
 		
@@ -23,7 +23,7 @@ class SU_Settings extends SU_Module {
 		return __('SEO Ultimate Plugin Settings', 'seo-ultimate');
 	}
 	
-	function get_menu_title() { return __('SEO Ultimate', 'seo-ultimate'); }
+	static function get_menu_title() { return __('SEO Ultimate', 'seo-ultimate'); }
 	
 	function get_menu_parent() {
 		if (is_network_admin())

@@ -9,11 +9,11 @@ if (class_exists('SU_Module')) {
 
 class SU_SettingsData extends SU_Module {
 
-	function get_parent_module() { return 'settings'; }
-	function get_child_order() { return 20; }
-	function is_independent_module() { return false; }
+	static function get_parent_module() { return 'settings'; }
+	static function get_child_order() { return 20; }
+	static function is_independent_module() { return false; }
 	
-	function get_module_title() { return __('Settings Data Manager', 'seo-ultimate'); }
+	static function get_module_title() { return __('Settings Data Manager', 'seo-ultimate'); }
 	function get_module_subtitle() { return __('Manage Settings Data', 'seo-ultimate'); }
 	
 	function get_admin_page_tabs() {
@@ -234,7 +234,7 @@ class SU_SettingsData extends SU_Module {
 			echo "\n<p>";
 			_e('You can import settings and data from these plugins. Clicking a plugin&#8217;s name will take you to the importer page, where you can customize parameters and start the import.', 'seo-ultimate');
 			echo "</p>\n";
-			echo "<table class='widefat'>\n";
+			echo "<table class='table table-bordered'>\n";
 			
 			$class = '';
 			foreach ($importmodules as $key => $x_module) {
