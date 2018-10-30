@@ -55,7 +55,8 @@ hr, hr.soften {
 }
 
 .carousel-inner  {
-    background: rgb(0,0,0);
+    /*background: rgb(0,0,0);*/
+    background: white;
     text-align: center;
 }
 
@@ -333,12 +334,63 @@ ul#editions li a {
     font-size: 0.9em;
 }
 
+/* Temporary notice of new website */
+body {
+    padding-top: 110px;
+}
+.new-site-notice {
+    color: white;
+    height: 40px;
+    position: fixed;
+    font-size: 16px;
+    top: 0;
+    left: 0; right: 0;
+    text-align: center;
+    z-index: 2;
+    background: #04a3d7;
+    background: -moz-linear-gradient(left, #04a3d7 0%, #8fc24c 33%, #f6991f 66%, #fdbf00 100%);
+    background: -webkit-linear-gradient(left, #04a3d7 0%,#8fc24c 33%,#f6991f 66%,#fdbf00 100%);
+    background: linear-gradient(to right, #04a3d7 0%,#8fc24c 33%,#f6991f 66%,#fdbf00 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#04a3d7', endColorstr='#fdbf00',GradientType=1 );
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.new-site-notice span {
+    font-style: italic;
+    margin-right: 10px;
+}
+.new-site-notice a {
+    font-weight: bold;
+    color: white;
+    margin-left: 10px;
+}
+.navbar-fixed-top {
+    top: 40px;
+}
+/* End temporary notice of new website */
+
+
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) { 
     body h1.logo {
         background: url('../beautifultrouble/img/bt-small-banner.png') no-repeat;
         height: 240px;
     }
+
+    /* Temporary notice of new website */
+    body {
+        padding-top: 0;
+    }
+    .new-site-notice {
+        position: absolute;
+        height: 80px;
+        padding: 0 10px;
+    }
+    .navbar-fixed-top {
+        padding-top: 80px;
+    }
+    /* End temporary notice of new website */
      
     .jumbotron h1, .jumbotron p {
         text-align: left;
@@ -353,6 +405,9 @@ ul#editions li a {
     }
     form[role="search"] input#s {
         width: 170px;
+    }
+    .searchform {
+        margin-top: 6px !important;
     }
     div.big-avatar {
         min-height: 340px;
@@ -370,6 +425,19 @@ ul#editions li a {
 
 
 @media (min-width: 768px) and (max-width: 979px) { 
+    /* Temporary notice of new website */
+    body {
+        padding-top: 0;
+    }
+    .new-site-notice {
+        position: absolute;
+        height: 60px;
+    }
+    .navbar-fixed-top {
+        padding-top: 60px;
+    }
+    /* End temporary notice of new website */
+
     body h1.logo {
         background: url('../beautifultrouble/img/bt-med-banner.png') no-repeat;
     }
@@ -380,6 +448,13 @@ ul#editions li a {
         width: 300px;
         margin: 0px;
         float: none;
+    }
+}
+
+/* Troublesome middle width layout */
+@media (min-width: 980px) and (max-width: 1199px) { 
+    .searchform {
+        display: none;
     }
 }
 

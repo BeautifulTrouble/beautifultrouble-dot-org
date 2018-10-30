@@ -69,6 +69,13 @@
     <?php wp_head(); ?>
   </head>
   <body <?php body_class(); ?>  data-spy="scroll" data-target=".subnav" data-offset="50" onload="prettyPrint()">
+    <div class="new-site-notice">
+        <div>
+            <span>New website coming soon!</span>
+            In the meantime, check out the latest version of our toolkit at 
+            <a href="https://beautifulrising.org" target="_blank">beautifulrising.org</a>
+        </div>
+    </div>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
