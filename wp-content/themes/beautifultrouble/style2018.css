@@ -20,6 +20,45 @@ body h1.logo {
     height: 120px;
 }
 
+/* Undo bootstrap 2015-ness */
+.breadcrumb {
+    background: #fbfbfb;
+    padding: 19px;
+    border-radius: 0;
+}
+.well, .alert {
+    border-radius: 0;
+    padding: 19px;
+    box-shadow: none;
+}
+.nav-tabs li a {
+    border-radius: 0;
+}
+.pager a {
+    border-radius: 0;
+}
+blockquote {
+    padding: 19px;
+    background: #fbfbfb;
+    border: none;
+    border-left: 1px solid #ddd;
+}
+/* End undo bootstrap 2015-ness */
+
+.marketing a {
+    color: rgb(51,51,51);
+}
+h1 {
+    margin-bottom: 25px !important;
+}
+h2 {
+    line-height: 125%;
+    margin-bottom: 10px;
+}
+a.license img {
+    margin-bottom: 10px !important;
+}
+
 .carousel .item {
     height: 377px;
     overflow: hidden;
@@ -37,6 +76,8 @@ body.home .avatar, body.author .avatar {
 
 hr, hr.soften {
     margin: 27px 0;
+    border: 0;
+    background-image: none;
 }
 
 .news-item a {
@@ -460,6 +501,16 @@ body {
 @media (min-width: 980px) and (max-width: 1199px) { 
     .searchform {
         display: none;
+    }
+    .nav-tabs a {
+        font-size: 11px;
+    }
+    div.tab-pane {
+        min-height: 0;
+    }
+    .tab-pane img {
+        max-width: 40%;
+        max-height: 160px;
     }
 }
 

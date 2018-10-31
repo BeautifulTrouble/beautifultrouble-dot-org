@@ -1,8 +1,8 @@
         <?php
           if ( function_exists('dynamic_sidebar')) dynamic_sidebar("page-sidebar");
         ?>
-        <div id="buy-the-book" class="sidebar-nav">
-                <h2>Get the book!</h2>
+        <div id="buy-the-book" class="sidebar-nav marketing">
+                <h2><a href="/trainings">Get the book!</a></h2>
                                     <p>
                                     Published by <b>OR Books</b>. Order your copy today:
                                     </p>
