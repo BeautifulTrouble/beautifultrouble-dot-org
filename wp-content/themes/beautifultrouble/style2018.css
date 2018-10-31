@@ -43,10 +43,19 @@ blockquote {
     border: none;
     border-left: 1px solid #ddd;
 }
+blockquote p {
+    margin-bottom: 5px;
+    font-size: 14px;
+    line-height: 18px;
+}
+strong, b, h1, h2, h3, h4, h5, h6 {
+    font-weight: 600 !important;
+}
 /* End undo bootstrap 2015-ness */
 
-.marketing a {
+.marketing h2, .marketing h2 a {
     color: rgb(51,51,51);
+    font-weight: 600;
 }
 h1 {
     margin-bottom: 25px !important;
@@ -237,9 +246,6 @@ body.post-type-archive-bt_theory > div.container a  {
 .content {
     margin-top: 10px;
 }
-h3.partners, h3.supporters {
-    text-transform: uppercase;
-}
 div.featured-image {
     text-align: center;
     background: rgb(0,0,0);
@@ -403,7 +409,7 @@ body {
     margin-right: 10px;
 }
 .new-site-notice a {
-    font-weight: bold;
+    font-weight: 600;
     color: white;
     margin-left: 10px;
 }
