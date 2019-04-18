@@ -1,0 +1,228 @@
+[
+    {
+        "name": "gerardojbaez/money",
+        "version": "v0.2.1",
+        "version_normalized": "0.2.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/gerardojbaez/money.git",
+            "reference": "21717195a95e67b56872ae07feadbafeeab08962"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/gerardojbaez/money/zipball/21717195a95e67b56872ae07feadbafeeab08962",
+            "reference": "21717195a95e67b56872ae07feadbafeeab08962",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5.9"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "5.4.*"
+        },
+        "time": "2016-09-17 21:00:52",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Gerardojbaez\\Money\\": "src/"
+            },
+            "files": [
+                "src/helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Gerardo Báez",
+                "email": "gerardojbaez@gmail.com"
+            }
+        ],
+        "description": "A simple and cross-platform alternative to PHP money_format(). 91 currencies supported, including INR.",
+        "keywords": [
+            "currency",
+            "formatter",
+            "money",
+            "money_format"
+        ]
+    },
+    {
+        "name": "myclabs/deep-copy",
+        "version": "1.8.1",
+        "version_normalized": "1.8.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/myclabs/DeepCopy.git",
+            "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
+            "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^7.1"
+        },
+        "replace": {
+            "myclabs/deep-copy": "self.version"
+        },
+        "require-dev": {
+            "doctrine/collections": "^1.0",
+            "doctrine/common": "^2.6",
+            "phpunit/phpunit": "^7.1"
+        },
+        "time": "2018-06-11 23:09:50",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "DeepCopy\\": "src/DeepCopy/"
+            },
+            "files": [
+                "src/DeepCopy/deep_copy.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Create deep copies (clones) of your objects",
+        "keywords": [
+            "clone",
+            "copy",
+            "duplicate",
+            "object",
+            "object graph"
+        ]
+    },
+    {
+        "name": "typisttech/imposter",
+        "version": "0.3.0",
+        "version_normalized": "0.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/TypistTech/imposter.git",
+            "reference": "7389c07c3803906219b45a72e809e6ab1a24eacc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/TypistTech/imposter/zipball/7389c07c3803906219b45a72e809e6ab1a24eacc",
+            "reference": "7389c07c3803906219b45a72e809e6ab1a24eacc",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^7.0"
+        },
+        "require-dev": {
+            "codeception/aspect-mock": "^2.1",
+            "codeception/base": "^2.3",
+            "squizlabs/php_codesniffer": "^3.2"
+        },
+        "suggest": {
+            "typisttech/imposter-plugin": "Composer plugin to integrate composer and imposter"
+        },
+        "time": "2018-01-16 09:26:33",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "TypistTech\\Imposter\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Tang Rufus",
+                "email": "tangrufus@gmail.com",
+                "homepage": "https://www.typist.tech",
+                "role": "Developer"
+            },
+            {
+                "name": "Typist Tech",
+                "email": "imposter@typist.tech",
+                "homepage": "https://www.typist.tech"
+            }
+        ],
+        "description": "Wrapping all composer vendor packages inside your own namespace. Intended for WordPress plugins",
+        "homepage": "https://www.typist.tech/projects/imposter",
+        "keywords": [
+            "composer",
+            "dependency",
+            "monkey-patching",
+            "namespace",
+            "wordpress"
+        ]
+    },
+    {
+        "name": "typisttech/imposter-plugin",
+        "version": "0.3.0",
+        "version_normalized": "0.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/TypistTech/imposter-plugin.git",
+            "reference": "cb268517406c40b7ef469a838d816d80ce865fed"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/TypistTech/imposter-plugin/zipball/cb268517406c40b7ef469a838d816d80ce865fed",
+            "reference": "cb268517406c40b7ef469a838d816d80ce865fed",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "^1.1",
+            "php": "^7.0",
+            "typisttech/imposter": "^0.3.0"
+        },
+        "require-dev": {
+            "codeception/base": "^2.3",
+            "composer/composer": "^1.5",
+            "squizlabs/php_codesniffer": "^3.2",
+            "typisttech/codeception-composer-project-module": "^0.1.1"
+        },
+        "time": "2018-01-16 09:45:16",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "TypistTech\\Imposter\\Plugin\\ImposterPlugin"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "TypistTech\\Imposter\\Plugin\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Tang Rufus",
+                "email": "tangrufus@gmail.com",
+                "homepage": "https://www.typist.tech",
+                "role": "Developer"
+            },
+            {
+                "name": "Typist Tech",
+                "email": "imposter-plugin@typist.tech",
+                "homepage": "https://www.typist.tech"
+            }
+        ],
+        "description": "Composer plugin that wraps all composer vendor packages inside your own namespace. Intended for WordPress plugins",
+        "homepage": "https://www.typist.tech/projects/imposter-plugin",
+        "keywords": [
+            "composer",
+            "composer-plugin",
+            "dependency",
+            "monkey-patching",
+            "namespace",
+            "wordpress"
+        ]
+    }
+]

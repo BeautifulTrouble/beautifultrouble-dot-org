@@ -1,0 +1,14 @@
+{
+  "require": {
+    "gerardojbaez/money": "0.*",
+    "myclabs/deep-copy": "^1.8",
+    "typisttech/imposter-plugin": "^0.3.0"
+  },
+  "extra": {
+    "imposter": {
+      "namespace": "WPS\\Vendor"
+    }
+  },
+  "require-dev": {
+  }
+}
