@@ -53,6 +53,10 @@ strong, b, h1, h2, h3, h4, h5, h6 {
 }
 /* End undo bootstrap 2015-ness */
 
+/* Get rid of unpleasant gray boxes on the shop pages */
+.woocommerce .label {
+    background-color: initial;
+}
 .marketing h2, .marketing h2 a {
     color: rgb(51,51,51);
     font-weight: 600;
