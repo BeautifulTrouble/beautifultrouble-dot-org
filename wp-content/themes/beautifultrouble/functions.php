@@ -15,11 +15,15 @@ wp_enqueue_script('scalefix', get_theme_root_uri().'/beautifultrouble/js/scale-f
 add_action('wp_enqueue_scripts', 'beautifultrouble_css_loader');
 
 function bootstrapwp_posted_on() {
-	printf( __( '<span class="sep"> Contributed by </span> <span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span></span>', 'beautifultrouble' ),
-		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-		esc_attr( sprintf( __( 'View all posts by %s', 'bootstrap' ), get_the_author() ) ),
-		esc_html( get_the_author() )
-	);
+    if (!preg_match('/\/shop\//', get_permalink())) {
+        printf( __( '<span class="sep"> Contributed by </span> <span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span></span>', 'beautifultrouble' ),
+            esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+            esc_attr( sprintf( __( 'View all posts by %s', 'bootstrap' ), get_the_author() ) ),
+            esc_html( get_the_author() )
+        );
+    } else {
+        echo "Added";
+    }
 }
 
 function get_img_url($text) {
