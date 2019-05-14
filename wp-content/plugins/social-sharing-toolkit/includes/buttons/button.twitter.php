@@ -5,15 +5,13 @@ class MR_Social_Sharing_Toolkit_Twitter extends MR_Social_Sharing_Toolkit_Button
 		$this->follow_buttons[] = array('name' => 'follow_twitter', 'id' => '@', 'types' => array('none', 'horizontal', 'icon_small', 'icon_small_text', 'icon_medium', 'icon_medium_text', 'icon_large'));
 		$this->title = 'Twitter';
 		$this->icon = 'twitter';
-		//add_shortcode('social_share_twitter', array($this, 'shortcode_tweet'));
-		//add_shortcode('social_follow_twitter', array($this, 'shortcode_follow'));
 	}
 
 	function tw_tweet($url, $title, $type, $id, $media = '', $description = '', $text = '', $icon = '') {
 		$count_url = '';
 		$bitly = get_option('mr_social_sharing_bitly');
-		if ($bitly['enable'] == 1 && $bitly['username'] != '' && $bitly['key'] != '') {
-			if (is_array($bitly['cache']) && array_key_exists($url, $bitly['cache'])) {
+		if (isset($bitly['enable']) && $bitly['enable'] == 1 && $bitly['username'] != '' && $bitly['key'] != '') {
+			if (isset($bitly['cache']) && is_array($bitly['cache']) && array_key_exists($url, $bitly['cache'])) {
 				$count_url = $url;
 				$url = $bitly['cache'][$url];
 			} else {
@@ -36,7 +34,7 @@ class MR_Social_Sharing_Toolkit_Twitter extends MR_Social_Sharing_Toolkit_Button
 				if ($count_url != '') {
 					$retval .= ' data-counturl="'.$count_url.'"';	
 				}
-				$retval .= ' data-text="'.$title.'">Tweet</a>';
+				$retval .= ' data-text="'.$title.'"></a>';
 				$footer = (get_option('mr_social_sharing_js_footer') == 1) ? true : false;
 				$this->enqueue_script('Social_sharing_twitter', 'https://platform.twitter.com/widgets.js', $footer);
 				break;
@@ -48,7 +46,7 @@ class MR_Social_Sharing_Toolkit_Twitter extends MR_Social_Sharing_Toolkit_Button
 				if ($count_url != '') {
 					$retval .= ' data-counturl="'.$count_url.'"';	
 				}
-				$retval .= ' data-text="'.$title.'">Tweet</a>';
+				$retval .= ' data-text="'.$title.'"></a>';
 				$footer = (get_option('mr_social_sharing_js_footer') == 1) ? true : false;
 				$this->enqueue_script('Social_sharing_twitter', 'https://platform.twitter.com/widgets.js', $footer);
 				break;
@@ -60,7 +58,7 @@ class MR_Social_Sharing_Toolkit_Twitter extends MR_Social_Sharing_Toolkit_Button
 				if ($count_url != '') {
 					$retval .= ' data-counturl="'.$count_url.'"';	
 				}
-				$retval .= ' data-text="'.$title.'">Tweet</a>';
+				$retval .= ' data-text="'.$title.'"></a>';
 				$footer = (get_option('mr_social_sharing_js_footer') == 1) ? true : false;
 				$this->enqueue_script('Social_sharing_twitter', 'https://platform.twitter.com/widgets.js', $footer);
 				break;
@@ -101,23 +99,6 @@ class MR_Social_Sharing_Toolkit_Twitter extends MR_Social_Sharing_Toolkit_Button
 		return $retval;
 	}
 	
-	/*function shortcode_tweet() {
-		if (!is_feed()) {		
-			extract(shortcode_atts(array('id' => '', 'type' => 'none', 'title' => get_the_title(), 'url' => get_permalink()), $atts));
-			return $this->tw_tweet($url, $title, $type, $id);
-		}
-		return '';
-	}
-	
-	function shortcode_follow() {
-		if (!is_feed()) {
-			extract(shortcode_atts(array('id' => '', 'type' => 'none'), $atts));
-			if ($id != '') {
-				return $this->follow_twitter($type, $id);
-			}
-		}
-		return '';
-	}*/
 }
 $MR_Social_Sharing_Toolkit_Twitter = new MR_Social_Sharing_Toolkit_Twitter();
 ?>

@@ -13,7 +13,7 @@ class MR_Social_Sharing_Toolkit_Widget extends WP_Widget {
 		$url = empty($instance['fixed_url']) ? '' : $instance['fixed_url'];
 		$title = empty($instance['fixed_title']) ? wp_title('', false) : $instance['fixed_title'];
 		$media = '';
-		if ($this->options['mr_social_sharing_pinterest']['default_image'] != '' && $this->options['mr_social_sharing_pinterest']['fixed_image'] == 1) {
+		if (( isset($this->options['mr_social_sharing_pinterest']['default_image']) && $this->options['mr_social_sharing_pinterest']['default_image'] != '') && (isset($this->options['mr_social_sharing_pinterest']['fixed_image']) && $this->options['mr_social_sharing_pinterest']['fixed_image'] == 1)) {
 			$media = $this->options['mr_social_sharing_pinterest']['default_image'];
 		} else {
 			if (current_theme_supports('post-thumbnails')) {

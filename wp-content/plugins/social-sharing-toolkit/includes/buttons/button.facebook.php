@@ -10,11 +10,9 @@ class MR_Social_Sharing_Toolkit_Facebook extends MR_Social_Sharing_Toolkit_Butto
 	}
 	
 	function fb_like($url, $title, $type, $id, $media = '', $description = '', $text = '', $icon = '') {
-		//$retval = '<iframe src="https://www.facebook.com/plugins/like.php?locale='.__('en_US','mr_social_sharing_toolkit').'&amp;href='.urlencode($url).'&amp;layout=';
 		$retval = '<div class="fb-like" data-href="'.$url.'" data-send="false" ';
 		switch ($type) {
 			case 'horizontal':
-				//$retval .= 'button_count';
 				if ($id == 'recommend') {
 					$width = __('fb_horizontal_recommend_width','mr_social_sharing_toolkit');
 					$width = ($width == 'fb_horizontal_recommend_width') ? '120' : $width;
@@ -27,7 +25,6 @@ class MR_Social_Sharing_Toolkit_Facebook extends MR_Social_Sharing_Toolkit_Butto
 				$height = '21';				
 				break;
 			case 'vertical':
-				//$retval .= 'box_count';
 				if ($id == 'recommend') {
 					$width = __('fb_vertical_recommend_width','mr_social_sharing_toolkit');
 					$width = ($width == 'fb_vertical_recommend_width') ? '92' : $width;
@@ -40,7 +37,6 @@ class MR_Social_Sharing_Toolkit_Facebook extends MR_Social_Sharing_Toolkit_Butto
 				$height = '62';
 				break;
 			case 'none_text':
-				//$retval .= 'standard';
 				if ($id == 'recommend') {
 					$width = 'auto';
 					$retval .= 'data-width="'.$width.'" data-action="recommend"';					
@@ -51,7 +47,6 @@ class MR_Social_Sharing_Toolkit_Facebook extends MR_Social_Sharing_Toolkit_Butto
 				$height = '25';
 				break;
 			default:
-				//$retval .= 'standard';
 				if ($id == 'recommend') {
 					$width = __('fb_standard_recommend_width','mr_social_sharing_toolkit');
 					$width = ($width == 'fb_standard_standard_recommend_width') ? '91' : $width;
@@ -61,15 +56,14 @@ class MR_Social_Sharing_Toolkit_Facebook extends MR_Social_Sharing_Toolkit_Butto
 					$width = ($width == 'fb_standard_width') ? '51' : $width;
 					$retval .= 'data-width="'.$width.'"';					
 				}
-				$height = '24';
+				$height = '21';
 				break;
 		}
-		//$retval .= '&amp;show_faces=false&amp;width='.$width.'&amp;height='.$height.'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:'.$width.'px; height:'.$height.'px;" allowTransparency="true"></iframe>';*/
 		$retval .= ' data-show-faces="false"></div>';
 		$lang = __('en_US','mr_social_sharing_toolkit');
 		$footer = (get_option('mr_social_sharing_js_footer') == 1) ? true : false;
 		$this->enqueue_script('Social_sharing_facebook_root', plugins_url('/button.facebook.js', __FILE__), $footer);
-		$this->enqueue_script('Social_sharing_facebook_xfbml', 'http://connect.facebook.net/'.$lang.'/all.js#xfbml=1', $footer);
+		$this->enqueue_script('Social_sharing_facebook_xfbml', '//connect.facebook.net/'.$lang.'/all.js#xfbml=1&appId=188707654478', $footer);
 		return '<span style="display: inline-block; width: '.$width.'px; height: '.$height.'px; overflow: hidden;">'.$retval.'</span>';
 	}
 				
@@ -77,30 +71,24 @@ class MR_Social_Sharing_Toolkit_Facebook extends MR_Social_Sharing_Toolkit_Butto
 		switch ($type) {
 			case 'vertical':
 				$retval = '<fb:share-button type="box_count" href="'.$url.'"></fb:share-button>';
-				//$retval = '<a name="fb_share" type="box_count" share_url="'.$url.'" href="http://www.facebook.com/sharer.php">Share</a>';
 				$this->enqueue_script('Social_sharing_facebook_root', plugins_url('/button.facebook.js', __FILE__));
 				$footer = (get_option('mr_social_sharing_js_footer') == 1) ? true : false;
-				$this->enqueue_script('Social_sharing_facebook_xfbml', 'http://connect.facebook.net/en_US/all.js#xfbml=1', $footer);
-				//$this->enqueue_script('Social_sharing_facebook_share', 'http://static.ak.fbcdn.net/connect.php/js/FB.Share', $footer);
+				$this->enqueue_script('Social_sharing_facebook_xfbml', '//connect.facebook.net/en_US/all.js#xfbml=1&appId=188707654478', $footer);
 				break;
 			case 'horizontal':
 				$retval = '<fb:share-button type="button_count" href="'.$url.'"></fb:share-button>';
-				//$retval = '<a name="fb_share" type="button_count" share_url="'.$url.'" href="http://www.facebook.com/sharer.php">Share</a>';
 				$this->enqueue_script('Social_sharing_facebook_root', plugins_url('/button.facebook.js', __FILE__));
 				$footer = (get_option('mr_social_sharing_js_footer') == 1) ? true : false;
-				$this->enqueue_script('Social_sharing_facebook_xfbml', 'http://connect.facebook.net/en_US/all.js#xfbml=1', $footer);
-				//$this->enqueue_script('Social_sharing_facebook_share', 'http://static.ak.fbcdn.net/connect.php/js/FB.Share', $footer);
+				$this->enqueue_script('Social_sharing_facebook_xfbml', '//connect.facebook.net/en_US/all.js#xfbml=1&appId=188707654478', $footer);
 				break;
 			case 'none':
 				$retval = '<fb:share-button type="button" href="'.$url.'"></fb:share-button>';
-				//$retval = '<a name="fb_share" type="button" share_url="'.$url.'" href="http://www.facebook.com/sharer.php">Share</a>';
 				$this->enqueue_script('Social_sharing_facebook_root', plugins_url('/button.facebook.js', __FILE__));
 				$footer = (get_option('mr_social_sharing_js_footer') == 1) ? true : false;
-				$this->enqueue_script('Social_sharing_facebook_xfbml', 'http://connect.facebook.net/en_US/all.js#xfbml=1', $footer);
-				//$this->enqueue_script('Social_sharing_facebook_share', 'http://static.ak.fbcdn.net/connect.php/js/FB.Share', $footer);
+				$this->enqueue_script('Social_sharing_facebook_xfbml', '//connect.facebook.net/en_US/all.js#xfbml=1&appId=188707654478', $footer);
 				break;
 			default:
-				$url = 'https://www.facebook.com/sharer/sharer.php?u='.urlencode($url).'&amp;t='.urlencode($title);
+				$url = '//www.facebook.com/sharer/sharer.php?u='.urlencode($url).'&amp;t='.urlencode($title);
 				$text = ($text == '') ? __('Share on','mr_social_sharing_toolkit').' Facebook' : $text;
 				$retval = $this->get_icon($type, $url, $text, $icon, true);
 				break;
@@ -109,17 +97,16 @@ class MR_Social_Sharing_Toolkit_Facebook extends MR_Social_Sharing_Toolkit_Butto
 	}
 	
 	function fb_send($url, $title, $type, $id, $media = '', $description = '', $text = '', $icon = '') {
-		//$retval = '<div id="fb-root"></div><fb:send href="'.$url.'" font=""></fb:send>';
 		$retval = '<div class="fb-send" data-href="'.$url.'"></div>';
 		$lang = __('en_US','mr_social_sharing_toolkit');
 		$this->enqueue_script('Social_sharing_facebook_root', plugins_url('/button.facebook.js', __FILE__));
 		$footer = (get_option('mr_social_sharing_js_footer') == 1) ? true : false;
-		$this->enqueue_script('Social_sharing_facebook_xfbml', 'http://connect.facebook.net/'.$lang.'/all.js#xfbml=1', $footer);
+		$this->enqueue_script('Social_sharing_facebook_xfbml', '//connect.facebook.net/'.$lang.'/all.js#xfbml=1&appId=188707654478', $footer);
 		return $retval;			
 	}	
 	
 	function follow_facebook($type, $id, $text = '', $icon = '') {
-		$url = 'http://www.facebook.com/'.$id;
+		$url = '//www.facebook.com/'.$id;
 		$text = ($text == '') ? __('Friend me on','mr_social_sharing_toolkit').' Facebook' : $text;
 		$blank = (get_option('mr_social_sharing_follow_new') == 1) ? true : false;
 		return $this->get_icon($type, $url, $text, $icon, false, $blank);

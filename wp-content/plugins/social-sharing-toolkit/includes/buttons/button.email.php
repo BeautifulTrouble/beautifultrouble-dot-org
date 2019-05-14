@@ -9,7 +9,7 @@ class MR_Social_Sharing_Toolkit_Email extends MR_Social_Sharing_Toolkit_Button {
 	function ml_send($url, $title, $type, $id = '', $media = '', $description = '', $text = '', $icon = '') {
 		$url = 'mailto:?subject='.$title.'&amp;body='.$url;
 		$text = ($text == '') ? __('Share via email','mr_social_sharing_toolkit') : $text;
-		return $this->get_icon($type, $url, $text, $icon, false, true);		
+		return $this->get_icon($type, $url, $text, $icon, false, true);
 	}	
 }
 ?>

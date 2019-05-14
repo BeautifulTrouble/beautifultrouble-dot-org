@@ -25,7 +25,7 @@ class MR_Social_Sharing_Toolkit_GooglePlus extends MR_Social_Sharing_Toolkit_But
 				$this->enqueue_script('Social_sharing_googleplus', plugins_url('/button.googleplus.js', __FILE__), $footer);	
 				break;
 			default:
-				$url = 'https://plusone.google.com/_/+1/confirm?hl=en&amp;url='.urlencode($url).'&amp;title='.urlencode($title);
+				$url = '//plusone.google.com/_/+1/confirm?hl=en&amp;url='.urlencode($url).'&amp;title='.urlencode($title);
 				$text = ($text == '') ? '+1' : $text;
 				$retval = $this->get_icon($type, $url, $text, $icon, true);
 				break;
@@ -34,7 +34,7 @@ class MR_Social_Sharing_Toolkit_GooglePlus extends MR_Social_Sharing_Toolkit_But
 	}
 	
 	function follow_plus($type, $id, $text = '', $icon = '') {
-		$url = 'http://plus.google.com/'.$id;
+		$url = '//plus.google.com/'.$id;
 		$text = ($text == '') ? __('Add me to your circles','mr_social_sharing_toolkit') : $text;
 		$blank = (get_option('mr_social_sharing_follow_new') == 1) ? true : false;
 		return $this->get_icon($type, $url, $text, $icon, false, $blank);

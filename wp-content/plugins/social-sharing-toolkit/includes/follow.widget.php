@@ -6,7 +6,7 @@ class MR_Social_Sharing_Toolkit_Follow_Widget extends WP_Widget {
 		$this->WP_Widget( 'mr-social-sharing-toolkit-follow-widget', 'Social Sharing Toolkit '.__('Follow Widget','mr_social_sharing_toolkit'), $widget_ops, $control_ops );
 	}
 
-	function widget ( $args, $instance) {
+	function widget($args, $instance) {
 		extract( $args );
 		global $MR_Social_Sharing_Toolkit;
 		$widget_title = empty($instance['widget_title']) ? '' : $instance['widget_title'];

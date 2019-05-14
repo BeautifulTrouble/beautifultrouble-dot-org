@@ -1,10 +1,9 @@
 === Social Sharing Toolkit ===
-Contributors: MarijnRongen
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=P8ZVNC57E58FE&lc=NL&item_name=WordPress%20plugins%20by%20Marijn%20Rongen&item_number=Social%20Sharing%20Toolkit&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Tags: Facebook, Like, LinkedIn, Share, Google, Plus, +1, Pinterest, Google+, Twitter, Tweet, Buffer, Follow, StumbleUpon, Stumble, Tumblr, Delicious, Digg, Reddit, Myspace, Hyves, YouTube, Flickr, 500px, Picasa, deaviantART, mail, RSS, feed, connect, recommend, social, sharing, widget, shortcode, page, post, button, counter, icon, bitly, Open Graph
+Contributors: linksalpha
+Tags: Facebook, Like, WhatsApp, LinkedIn, Share, Google, Plus, +1, Pinterest, Google+, Twitter, Tweet, Follow, Tumblr, Digg, Reddit, Myspace, YouTube, Flickr, 500px, deaviantART, email, Gmail, AOL, Evernote, Hotmail, Instapaper, Mail.ru, Pocket, Sonico, vkontakte, Weibo, Yahoo Mail, Yammer, RSS, feed, connect, recommend, social, sharing, widget, shortcode, page, post, button, counter, icon, bitly, Open Graph
 Requires at least: 3.0
-Tested up to: 3.4.1
-Stable tag: 2.1.1
+Tested up to: 5.0.3
+Stable tag: 2.6
 License: GPLv2 or later
 
 Easy sharing and connecting on social networks. Display on posts or use widgets or shortcode. Also Twitter name/hashtag to link converter.
@@ -17,21 +16,29 @@ The plugin currently supports the following networks for sharing your content:
 
 * Facebook (like, share and send buttons)
 * Twitter
-* Buffer
 * Google +1
 * Pinterest
 * LinkedIn
 * Tumblr
-* StumbleUpon
-* Delicious
 * Digg
 * Reddit
 * Myspace
-* Hyves
+* Gmail
+* AOL
+* Evernote
+* Outlook
+* Instapaper
+* Mail.ru
+* Pocket
+* Sonico
+* vkontakte
+* Weibo
+* Yahoo Mail
+* Yammer
 
-On Tweet and Buffer buttons you can specify a Twitter handle which is then appended to the tweet a visitor sends (like "... via @WordPress"). An email send button is also included.
+On Tweet button you can specify a Twitter handle which is then appended to the tweet a visitor sends (like "... via @WordPress"). An email send button is also included.
 
-You can decide which networks to support on your blog, where the buttons will appear (either above or below the content). Through drag and drop you can easily change the order in which the buttons appear. 
+You can decide which networks to support on your blog, where the buttons will appear (either above or below the content). Through drag and drop you can easily change the order in which the buttons appear.
 
 For each button you can choose a different type (not all types are available for each button):
 
@@ -44,24 +51,26 @@ For each button you can choose a different type (not all types are available for
 * medium icon with text
 * large icon
 
-You can also choose the orientation of the buttons: 
+You can also choose the orientation of the buttons:
 
 * horizontal (buttons are placed side by side)
-* vertical (buttons are placed below each other) 
+* vertical (buttons are placed below each other)
 
-= Divider = 
+= Divider =
 
-In version 2.0.4 three dividers were added to each list. These might be useful in ordering the buttons, especially in the case of varying button types used with a horizontal orientation. A divider will split the element containing the buttons in two, allowing for more customization. 
+In version 2.0.4 three dividers were added to each list. These might be useful in ordering the buttons, especially in the case of varying button types used with a horizontal orientation. A divider will split the element containing the buttons in two, allowing for more customization.
 
 = Shortcode =
 
 It is also possible to only let the buttons appear where you want by using shortcode. The shortcode function has it's own list of buttons with the same possibilities as the list for content. Use the shortcode [social_share/] in the content where you would like to display the buttons.
 
+Since version 2.1.2: Use one or both of the url and title attributes to override these settings with your own information. Example: [social_share url="http://www.mywebsite.com" title="My Website"/]
+
 = Widget =
 
 The widget has it's own list of buttons with the same possibilities as the list for posts & pages. You can however specify a fixed title and url to use for the buttons in the widget.
 
-= Follow Widget = 
+= Follow Widget =
 
 Since version 2.0.0 an extra widget is added with the possibility to provide easy links to your profiles on other social networks.
 
@@ -79,7 +88,6 @@ The networks currently supported for the Follow Widget are:
 * YouTube
 * Flickr
 * 500px
-* Picasa
 * Instagram
 * DeviantArt
 * Last.fm
@@ -94,11 +102,11 @@ A button for an RSS feed is also included. Of course the type, order and orienta
 * medium icon with text
 * large icon
 
-To use a button you must enter your user / profile id or username for the network. To use the RSS feed button you must enter the full url. 
+To use a button you must enter your user / profile id or username for the network. To use the RSS feed button you must enter the full url.
 
 = Automatic Twitter links =
 
-This plugin also includes a configurable & improved version of my earlier Automatic Twitter Links plugin. You can decide if you want to convert Twitter names and/or hashtags to links. 
+This plugin also includes a configurable & improved version of my earlier Automatic Twitter Links plugin. You can decide if you want to convert Twitter names and/or hashtags to links.
 Twitter names will link to their Twitter profile and hashtags will link to the Twitter search page.
 
 = Bitly =
@@ -107,13 +115,16 @@ Since version 2.0.5 the plugin has the option to use bitly to shorten the urls f
 
 = Pinterest =
 
-Since version 2.0.5 the plugin has the option to show Pinterest buttons. The plugin tries to find the featured image or first image in the content if available. If no image is available the button is omitted. 
+Since version 2.0.5 the plugin has the option to show Pinterest buttons. The plugin tries to find the featured image or first image in the content if available. If no image is available the button is omitted.
 Since version 2.0.7 is is possible to enter the URL of a default image to use in case no image was found. You can also set the plugin to always use the default image regardless of any available images.
 
 = Open Graph =
 
 Since version 2.0.5 the plugin also has the option to automatically create Open Graph tags on your Wordpress site. These will tell Facebook for example which image to display when sharing a page.
 You can enter the URL of a default image to use in case no image was found. The plugin will try to use the thumbnail attached to the post (if your theme supports it), or the first image it finds in the content. To turn of this behavior you can check a box which will force the plugin to always use the default image you have specified.
+
+= Analytics =
+The plugin runs off our servers at LinksAlpha.com in order to process the social sharing analytics which helps you track virality of your content across social channels.
 
 == Frequently Asked Questions ==
 
@@ -142,7 +153,7 @@ To display the follow buttons somewhere else you can use the following code:
 	echo $social_sharing_toolkit->create_followers();
 ?>`
 
-= The LinkedIn follow link doesn't seem right = 
+= The LinkedIn follow link doesn't seem right =
 
 You may need to setup you custom public profile url. To do so, use the following steps:
 1. When signed in to LinkedIn, Go to Edit Profile
@@ -161,10 +172,40 @@ Upload the Social Sharing Toolkit plugin to the `/wp-content/plugins/` folder on
 == Screenshots ==
 
 1. Plugin configuration: General settings
-2. Plugin configuration: Content, Shortcode and Share Widget have the same options 
+2. Plugin configuration: Content, Shortcode and Share Widget have the same options
 3. Advanced settings with bitly, Pinterest and Open Graph options
 
 == Upgrade Notice ==
+
+= 2.6 =
+* Removed outdated services
+
+= 2.5 =
+* Minor change.
+* WP 4.4 release support.
+
+= 2.4 =
+* Added support for WhatsApp.
+
+= 2.3 =
+* Bug fixes.
+
+= 2.2 =
+* Added option to select image size available for sharing if featured image is set.
+* Add new button to enable sharing on more services, including Gmail, AOL, Evernote, Hotmail, Instapaper, Mail.ru, Pocket, Sonico, vkontakte, Weibo, Yahoo Mail, and Yammer.
+* Bug fixes.
+
+= 2.1.4 =
+
+Change from webstagram profile to native instagram profile, notification of author change.
+
+= 2.1.3 =
+
+Please update to version 2.1.3 to fix an issue with the loading of stylesheets.
+
+= 2.1.2 =
+
+Please update to version 2.1.2 immediately for several crucial fixes.
 
 = 2.1.1 =
 
@@ -231,6 +272,18 @@ Please update to version 1.0.1 to prevent an unexpected printing of the page tit
 
 == Changelog ==
 
+= 2.1.3 =
+* Minor fix involving the correct loading of stylesheets
+
+= 2.1.2 =
+* Several minor fixes
+* Added url and title attribute to shortcode function
+* Added button for Youtube Channels
+* Added button for Spotify Albums
+* Added button for Last.fm music (artists)
+* Added buttons for App.net
+* Fixed possible script injection vulnerability
+
 = 2.1.1 =
 * Minor fix removing some unwanted text
 
@@ -264,7 +317,7 @@ Please update to version 1.0.1 to prevent an unexpected printing of the page tit
 * Included an option to specify a default image for the Pinterest button
 * Fixed some major issues with shortcodes and excerpts
 
-= 2.0.6 = 
+= 2.0.6 =
 * Fixed buttons not appearing on pages
 * Fixed Pinterest issue
 
@@ -328,11 +381,11 @@ Please update to version 1.0.1 to prevent an unexpected printing of the page tit
 * Added feature to choose if buttons display in excerpts (doesn't work on some themes)
 
 = 1.3.0 =
-* Added feature to display buttons only on posts, only on pages or on posts and pages 
+* Added feature to display buttons only on posts, only on pages or on posts and pages
 * Improved hashtag to link conversion
 * Fixed Facebook language to en_US to prevent width issues
 * Fixed excerpt issue
-* Fixed some css issues 
+* Fixed some css issues
 
 = 1.2.5 =
 * Added title field to widget
@@ -345,7 +398,7 @@ Please update to version 1.0.1 to prevent an unexpected printing of the page tit
 * Added widget
 
 = 1.0.1 =
-* Fixed unexpected printing of the page title 
+* Fixed unexpected printing of the page title
 
 = 1.0.0 =
 * First version

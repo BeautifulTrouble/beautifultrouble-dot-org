@@ -7,7 +7,7 @@ class MR_Social_Sharing_Toolkit_Goodreads extends MR_Social_Sharing_Toolkit_Butt
 	}
 	
 	function follow_goodreads($type, $id, $text = '', $icon = '') {
-		$url = 'http://goodreads.com/profile/'.$id;
+		$url = 'http://goodreads.com/author/show/'.$id;
 		$text = ($text == '') ? __('My profile on','mr_social_sharing_toolkit').' Goodreads' : $text;
 		$blank = (get_option('mr_social_sharing_follow_new') == 1) ? true : false;
 		return $this->get_icon($type, $url, $text, $icon, false, $blank);

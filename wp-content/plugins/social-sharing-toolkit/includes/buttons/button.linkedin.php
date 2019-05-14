@@ -8,7 +8,7 @@ class MR_Social_Sharing_Toolkit_Linkedin extends MR_Social_Sharing_Toolkit_Butto
 		$this->title = 'LinkedIn';
 		$this->icon = 'linkedin';
 	}
-	
+
 	function li_share($url, $title, $type, $id, $media = '', $description = '', $text = '', $icon = '') {
 		switch ($type) {
 			case 'horizontal':
@@ -34,21 +34,21 @@ class MR_Social_Sharing_Toolkit_Linkedin extends MR_Social_Sharing_Toolkit_Butto
 		}
 		return $retval;
 	}
-	
+
 	function follow_linked($type, $id, $text = '', $icon = '') {
 		$url = 'http://www.linkedin.com/in/'.$id;
 		$text = ($text == '') ? __('Join my network on','mr_social_sharing_toolkit').' LinkedIn' : $text;
 		$blank = (get_option('mr_social_sharing_follow_new') == 1) ? true : false;
 		return $this->get_icon($type, $url, $text, $icon, false, $blank);
 	}
-	
+
 	function follow_linked_co($type, $id, $text = '', $icon = '') {
 		$url = 'http://www.linkedin.com/company/'.$id;
 		$text = ($text == '') ? __('Follow my company on','mr_social_sharing_toolkit').' LinkedIn' : $text;
 		$blank = (get_option('mr_social_sharing_follow_new') == 1) ? true : false;
 		return $this->get_icon($type, $url, $text, $icon, false, $blank);
 	}
-	
+
 	function follow_linked_group($type, $id, $text = '', $icon = '') {
 		$url = 'http://www.linkedin.com/groups?gid='.$id;
 		$text = ($text == '') ? __('Join my group on','mr_social_sharing_toolkit').' LinkedIn' : $text;

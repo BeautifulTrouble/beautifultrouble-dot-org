@@ -77,7 +77,7 @@ class MR_Social_Sharing_Toolkit_Button {
 				$icon = ($icon == '') ? str_replace('includes/', '', plugins_url('/images/icons_small/'.$this->icon.'.png', __FILE__)) : $icon;
 				break;
 		}
-		$retval = '<a href="'.$url.'"><img src="'.$icon.'" alt="'.$title.'" title="'.$title.'"/>'.$text.'</a>';
+		$retval = '<a class="mr_social_share_'.$this->icon.'" href="'.$url.'"><img src="'.$icon.'" class="nopin" alt="'.$title.'" title="'.$title.'"/>'.$text.'</a>';
 		return $retval;	
 	}
 	
