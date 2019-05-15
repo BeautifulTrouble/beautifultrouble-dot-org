@@ -28,7 +28,7 @@ get_header(); ?>
         <h1><?php the_title();?></h1>
       </header>
          
-   <p class="meta"><?php echo bootstrapwp_posted_on();?> on <span class="entry-date"><?php echo get_the_date(); ?></span></p>
+   <p class="meta"><?php echo bootstrapwp_posted_on();?></p>
    
     
             <?php the_content();?>

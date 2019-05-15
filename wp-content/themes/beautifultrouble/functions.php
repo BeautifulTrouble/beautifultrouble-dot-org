@@ -21,8 +21,8 @@ function bootstrapwp_posted_on() {
             esc_attr( sprintf( __( 'View all posts by %s', 'bootstrap' ), get_the_author() ) ),
             esc_html( get_the_author() )
         );
+        printf('on <span class="entry-date">%s</span>', get_the_date());
     } else {
-        echo "Added";
     }
 }
 
