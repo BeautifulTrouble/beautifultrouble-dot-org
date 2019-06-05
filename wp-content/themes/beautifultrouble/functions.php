@@ -772,3 +772,5 @@ class CustomPostCount_Widget extends WP_Widget {
 // register custompostcount_Widget widget
 add_action( 'widgets_init', create_function( '', 'register_widget( "custompostcount_widget" );' ) );
 
+// Woocommerce shop
+update_option('woocommerce_catalog_rows', 8);
