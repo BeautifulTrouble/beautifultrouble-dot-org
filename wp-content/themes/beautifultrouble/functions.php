@@ -14,12 +14,20 @@ wp_enqueue_script('scalefix', get_theme_root_uri().'/beautifultrouble/js/scale-f
 }
 add_action('wp_enqueue_scripts', 'beautifultrouble_css_loader');
 
-// WooCommerce
-add_filter('loop_shop_per_page', 'new_loop_shop_per_page', 20);
-function new_loop_shop_per_page($cols) {
-  $cols = 21;
-  return $cols;
+function bt_add_woocommerce_support() {
+    add_theme_support( 'woocommerce', array(
+        'product_grid'          => array(
+            'default_rows'    => 8,
+            'min_rows'        => 2,
+            'max_rows'        => 8,
+            'default_columns' => 3,
+            'min_columns'     => 2,
+            'max_columns'     => 5,
+        ),
+    ) );
 }
+add_action('after_setup_theme', 'bt_add_woocommerce_support');
+
 
 function bootstrapwp_posted_on() {
     if (!preg_match('/\/shop\//', get_permalink())) {
