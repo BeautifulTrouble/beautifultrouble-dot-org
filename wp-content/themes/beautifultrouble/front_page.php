@@ -40,6 +40,9 @@ get_header(); ?>
                 <div class="item">
                     <a href="/trainings"><img src="/wp-content/themes/beautifultrouble/img/slide-training.jpg"></a>
                 </div>
+                <div class="item">
+                    <a href="/shop"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners6.jpg"></a>
+                </div>
 <?php if( $fields['slideshow'] ) {
     // Let's loop through any repeating elements and create seperate
     // arrays for each type of repeating element, i.e., Insights, Epigraphs
