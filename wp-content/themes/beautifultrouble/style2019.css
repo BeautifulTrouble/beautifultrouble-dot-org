@@ -393,7 +393,7 @@ body {
     color: white;
     height: 40px;
     position: fixed;
-    z-index: 1;
+    z-index: 100;
     font-size: 16px;
     top: 40px;
     left: 0; right: 0;

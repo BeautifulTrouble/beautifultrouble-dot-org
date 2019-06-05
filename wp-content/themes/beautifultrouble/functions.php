@@ -14,6 +14,13 @@ wp_enqueue_script('scalefix', get_theme_root_uri().'/beautifultrouble/js/scale-f
 }
 add_action('wp_enqueue_scripts', 'beautifultrouble_css_loader');
 
+// WooCommerce
+add_filter('loop_shop_per_page', 'new_loop_shop_per_page', 20);
+function new_loop_shop_per_page($cols) {
+  $cols = 21;
+  return $cols;
+}
+
 function bootstrapwp_posted_on() {
     if (!preg_match('/\/shop\//', get_permalink())) {
         printf( __( '<span class="sep"> Contributed by </span> <span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span></span>', 'beautifultrouble' ),
