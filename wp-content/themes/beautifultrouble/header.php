@@ -36,6 +36,7 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=medium-dpi">
     <meta name="description" content="Beautiful Trouble exists to make nonviolent revolution irresistible by providing an ever-growing suite of strategic tools and trainings that inspire movements for a more just, healthy, and equitable world.">
+    <meta name="google-site-verification" content="OH-dhmLtRPitaL7XOelQED0am7LBgMsUDL_f-qFFIB8" />
 
     <link rel="profile" href="http://gmpg.org/xfn/11" />
 
