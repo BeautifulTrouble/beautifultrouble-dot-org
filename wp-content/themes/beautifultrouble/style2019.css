@@ -393,7 +393,7 @@ body {
     color: white;
     height: 40px;
     position: fixed;
-    z-index: 100;
+    z-index: 1;
     font-size: 16px;
     top: 40px;
     left: 0; right: 0;
@@ -489,7 +489,7 @@ body {
     }
     .navbar-fixed-top {
         margin-bottom: 100px;
-        z-index: 2;
+        z-index: 1;
         position: relative;
     }
     /* End temporary notice of new website */
