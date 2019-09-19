@@ -68,5 +68,7 @@ $('#editions a').click(function (e) {
   $(this).tab('show');
 })
 </script>
+<!-- Climate strike September 2019 -->
+<script src="https://assets.digitalclimatestrike.net/widget.js" async></script>
 </body>
 </html>
