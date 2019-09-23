@@ -17,6 +17,10 @@ get_header(); ?>
                 Beautiful Trouble exists to make nonviolent revolution irresistible by providing an ever-growing suite of strategic tools and <a href="/trainings/">trainings</a> that inspire movements for a more just, healthy, and equitable world.
                 <a class="visible-phone" href="/all-modules/">Start browsing the Web Toolbox &raquo;</a>
             </li></ul>
+
+<script src="https://climateclock.world/widget-v1.js" async></script>
+<climate-clock></climate-clock>
+
             <br>
     <div class="row">
         <div id="myCarousel" class="carousel slide span8 hidden-phone">
