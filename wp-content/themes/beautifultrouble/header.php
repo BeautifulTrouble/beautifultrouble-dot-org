@@ -96,7 +96,8 @@
     <div class="row">
 
         <script src="https://climateclock.world/widget-v1.js" async></script>
-        <climate-clock></climate-clock>
+        <climate-clock></climate-clock> 
+            <br><br>
 
         <div class="span8"><a href="/" title="Beautiful Trouble front page"><h1 class="logo">Beautiful Trouble</h1></a></div>
         <div class="span4">
