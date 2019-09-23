@@ -94,6 +94,10 @@
     </div>
     <div class="container">
     <div class="row">
+
+        <script src="https://climateclock.world/widget-v1.js" async></script>
+        <climate-clock></climate-clock>
+
         <div class="span8"><a href="/" title="Beautiful Trouble front page"><h1 class="logo">Beautiful Trouble</h1></a></div>
         <div class="span4">
             <?php $args = array( 'numberposts' => 1, 'orderby' => 'rand', 'post_type' => array ('bt_review'));
