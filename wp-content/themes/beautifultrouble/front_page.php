@@ -140,3 +140,7 @@ get_header(); ?>
     </div>
 </div>
 <?php get_footer();?>
+
+<script src="https://climateclock.world/widget-v1.js" async></script>
+<climate-clock bottom glow></climate-clock>
+
