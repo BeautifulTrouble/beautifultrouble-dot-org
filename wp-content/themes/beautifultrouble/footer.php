@@ -68,5 +68,7 @@ $('#editions a').click(function (e) {
   $(this).tab('show');
 })
 </script>
+<script src="https://climateclock.world/widget-v1.js" async></script>
+<climate-clock bottom glow></climate-clock>
 </body>
 </html>
