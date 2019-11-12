@@ -23,13 +23,16 @@ get_header(); ?>
         <!-- Carousel items -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <a href="https://solutions.thischangeseverything.org/"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners1a.jpg"></a>
+                    <a href="http://beautifultrouble.org/game"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners7.jpg"></a>
                 </div>
                 <div class="item">
                     <a href="http://beautifulrising.org"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners2.jpg"></a>
                 </div>
                 <div class="item">
-                    <a href="http://beautifultrouble.org/2016/01/29/beautiful-trouble-game/"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners3.jpg"></a>
+                    <a href="/shop"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners6.jpg"></a>
+                </div>
+                <div class="item active">
+                    <a href="https://solutions.thischangeseverything.org/"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners1a.jpg"></a>
                 </div>
                 <div class="item">
                     <a href="/2016/01/10/beautiful-trouble-languages/"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners4.jpg"></a>
@@ -39,9 +42,6 @@ get_header(); ?>
                 </div>
                 <div class="item">
                     <a href="/trainings"><img src="/wp-content/themes/beautifultrouble/img/slide-training.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/shop"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners6.jpg"></a>
                 </div>
 <?php if( $fields['slideshow'] ) {
     // Let's loop through any repeating elements and create seperate
