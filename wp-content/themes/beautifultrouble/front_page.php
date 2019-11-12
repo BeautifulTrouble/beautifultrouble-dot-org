@@ -31,7 +31,7 @@ get_header(); ?>
                 <div class="item">
                     <a href="/shop"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners6.jpg"></a>
                 </div>
-                <div class="item active">
+                <div class="item">
                     <a href="https://solutions.thischangeseverything.org/"><img src="/wp-content/themes/beautifultrouble/img/BT_Banners1a.jpg"></a>
                 </div>
                 <div class="item">
