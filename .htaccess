@@ -1,9 +1,3 @@
-# Mitigate WP DoS attack
-<Files xmlrpc.php>
-Order allow,deny
-Deny from all
-</Files>
-
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On

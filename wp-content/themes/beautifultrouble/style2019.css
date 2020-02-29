@@ -306,6 +306,7 @@ div.tab-content {
 
 .navbar .nav > li > a  {
     color: rgb(220,220,220);
+    padding: 9px 8px 11px; /* Squeeze more menu items in */
 }
 
 .caret {
