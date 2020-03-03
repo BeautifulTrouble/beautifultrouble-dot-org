@@ -7,8 +7,6 @@ function pullquote_preview_pop(corePath, stylePath, styleFile) {
 	}
 	varWin.document.open();
 	var varWinDoc = varWin.document;
-
-  corePath = preg_replace("http:", "https:", corePath);
 	
 	varWinDoc.writeln("<!DOCTYPE html PUBLIC \"-\/\/W3C\/\/DTD XHTML 1.0 Transitional\/\/EN\"");
 	varWinDoc.writeln("        \"http:\/\/www.w3.org\/TR\/2000\/REC-xhtml1-20000126\/DTD\/xhtml1-transitional.dtd\">");

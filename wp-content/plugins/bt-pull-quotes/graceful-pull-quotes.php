@@ -383,7 +383,7 @@ EOT;
 				echo '							<option value="' . $style['file'] . '"' . $this->checkcombo( $opts, 'style', $style['file'], $deftag ) . '>' . $this->p__( $style['name'] ) . "</option>\n";
 			}
 ?>						</select>
-					</label> (<a href="#" onclick="pullquote_preview_pop('<?php echo( $this->plugin_url ); // FIXME: this link should only appear if there's JavaScript, or make it work without ?>/resources', '<?php echo( $this->style_url ); ?>', document.getElementById('style').value); return false;" title="<?php $this->p_e( 'show a preview of the selected style in a pop-up window' ); ?>"><?php $this->p_e( 'preview' ); ?></a>)<br />
+					</label> (<a href="#" onclick="pullquote_preview_pop('<?php echo( str_replace("http:", "https:", $this->plugin_url ) ); // FIXME: this link should only appear if there's JavaScript, or make it work without ?>/resources', '<?php echo( $this->style_url ); ?>', document.getElementById('style').value); return false;" title="<?php $this->p_e( 'show a preview of the selected style in a pop-up window' ); ?>"><?php $this->p_e( 'preview' ); ?></a>)<br />
 					<?php $this->p_e( 'Note: a "jspullquotes.css" file in the active Theme directory will override this setting'); ?></td>
 				</tr>
 <?php
