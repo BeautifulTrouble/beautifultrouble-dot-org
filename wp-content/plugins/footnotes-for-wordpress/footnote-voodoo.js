@@ -1,7 +1,7 @@
 // Fair Use Repository Footnote Voodoo
 // Version 2010.0303
 // 
-// Copyright (c) 2005-2010, Charles Johnson
+// Copyright (c) 2005-2016, Charles Johnson
 // Parts derived from WikiPedia Inline Article Viewer by Brent Charbonneau
 // Released under the GPL license
 // http://www.gnu.org/copyleft/gpl.html
@@ -152,7 +152,6 @@ function appendInlineButton(link) {
 }
 
 function inlineViewClickHandler(anEvent) {
-	console.log("Hello!");
 	// Kludge-tastic
 	var event = (anEvent ? anEvent : window.event);
 	var target;
@@ -232,10 +231,12 @@ function newInlineWindow(event, href, link){
 	var pageBoundPadding = 10;
 	
 	var xpos, ypos;
+
+	coords = getOffset(link);
 	
 	// get the position of the element that was clicked on...
-	var elementTop = getElementOffset(link,'Top');
-	var elementLeft = getElementOffset(link,'Left');
+	var elementTop = coords.top;
+	var elementLeft = coords.left;
 	var elementHeight = link.offsetHeight;
 	
 	// setup the x-position of the inline window...
@@ -255,7 +256,7 @@ function newInlineWindow(event, href, link){
 	
 	// setup the y-positioning of the inline window...
 	ypos = elementTop + elementHeight + 3;
-
+	
 	var container = document.createElement('div');
 	container.id = windowFullID;
 	
@@ -264,7 +265,8 @@ function newInlineWindow(event, href, link){
 
 	container.innerHTML = '<div id="outerWindowCont-' + windowID + '" ' + 
 		'class="float-a-note" style="' +
-		'top: ' + (ypos+9) + 'px; left: ' + xpos + 'px; ' +
+		'top: ' + (ypos+9) + 'px;' +
+		'left: ' + xpos + 'px;' +
 		'margin: 0;' +
 		'padding: ' + Math.round((windowPadding-windowButtonHeight)/2) +'px ' + windowPadding + 'px ' + windowPadding + 'px; ' +
 		'max-height: ' + cssBoxHeight + 'px; ' +
@@ -331,8 +333,9 @@ function arrangeWindowVertically (link, windowID) {
 	var ypos;
 	
 	// get the position of the element that was clicked on...
-	var elementTop = getElementOffset(link,'Top');
-	var elementBottom = getElementOffset(link, 'Bottom');
+	coords = getOffset(link);
+	var elementTop = coords.top;
+	var elementBottom = coords.top + link.offsetHeight;
 
 	// check to see if the window goes beyond the bottom of the viewport...
 	var boxBottom = elementTop + outerWindowContentBox.offsetHeight + pageBoundPadding;
@@ -346,7 +349,8 @@ function arrangeWindowVertically (link, windowID) {
 		outerWindowContentBox.style.top = ypos + 'px';
 		
 		outerWindowTipBox.style.top = (elementTop - 10) + 'px';
-		outerWindowTipBox.style.backgroundImage = tipUpUrl;	}
+		outerWindowTipBox.style.backgroundImage = tipUpUrl;
+	}
 }
 
 function populateInnerWindow(href, link, windowID) {
@@ -450,10 +454,49 @@ function closeInlineWindow (windowID) {
 	}
 }
 
+// getOffset: get a top and left coordinate for the given element suitable for filling
+// in to a top: or left: CSS rule. If possible, use new hotness getOffsetRect and adjust
+// for the position of the chosen element relative to the viewport. If not, use clunky
+// and error-prone old method of traversing offsetParent elements and summing up coords
+// technique derived from http://javascript.info/tutorial/coordinates
+function getOffset(elem) {
+	if (elem.getBoundingClientRect) {
+		return getOffsetRect(elem)
+	} else { // old browser
+		return getOffsetSum(elem)
+    } /* if */
+} /* getOffset () */
+
+function getOffsetRect(elem) {
+    // (1)
+    var box = elem.getBoundingClientRect()
+    
+    var body = document.body
+    var docElem = document.documentElement
+    
+    // (2)
+    var scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop
+    var scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft
+    
+    // (3)
+    var clientTop = docElem.clientTop || body.clientTop || 0
+    var clientLeft = docElem.clientLeft || body.clientLeft || 0
+    
+    // (4)
+    var top  = box.top +  scrollTop - clientTop
+    var left = box.left + scrollLeft - clientLeft
+    
+    return { top: Math.round(top), left: Math.round(left) }
+} /* getOffsetRect () */
+
+function getOffsetSum (elem) {
+	return { top: getElementOffset(elem,"Top"), left: getElementOffset(elem, "Left") };
+} /* getOffsetSum () */
+
 function getElementOffset(element,whichCoord) {
 	var count = 0
 	while (element!=null) {
-	 	count += element['offset' + whichCoord];
+	 	count += parseInt(element['offset' + whichCoord]);
 		element = element.offsetParent;
 	}
 	return count;

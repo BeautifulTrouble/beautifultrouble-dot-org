@@ -3,8 +3,8 @@ Contributors: Charles Johnson
 Donate link: http://projects.radgeek.com/wp-footnotes/
 Tags: footnotes, formatting
 Requires at least: 2.9
-Tested up to: 3.0.1
-Stable tag: 2010.0822
+Tested up to: 4.7
+Stable tag: 2016.1230
 
 Footnotes for WordPress enables easy-to-use fancy footnotes for WordPress posts.
 
@@ -41,7 +41,20 @@ later on in the document, using the `[backref name="..."]` shortcode.
 	So is this.[ref name="source2"]Source[/ref]
 	
 	And this one comes from the same source as the first.[backref name="source1"]
+
+Footnotes are numbered, beginning at 1. However, you can change the numbering if you
+so desire using the `number="..."` attribute. For example, I often use this when
+quoting from a book that contains footnotes or endnotes, in order to represent the
+notes used by the original text.
+
+	This is footnoted, but footnotes begin at number 42.[ref number="42"]...[/ref]
 	
+You can change the text that is displayed in the note's superscripted link from the
+note's number to any text or symbol that you choose using the `superscript="..."`
+attribute. For example, to use an asterisk instead of the note number:
+
+	This is footnoted with a good old asterisk.[ref superscript="*"]...[/ref]
+
 By default, the list of footnotes appears at the bottom of the post. However, if you
 wish them to appear somewhere above the bottom of the post, for formatting or other
 reasons, you can do so using the `[references/]` shortcode:
@@ -84,6 +97,17 @@ the "See also:" text.
 
     Example: `This is footnoted.[ref]This is the text of the of the footnote.[/ref]`
 
+*	Normally footnotes use numbered superscripts to indicate the footnote, beginning
+	with 1. You can choose to use symbols instead, like *, **, †, etc. To use custom
+	text for a footnote's superscript, use `[ref superscript="*"]...[/ref]`, and
+	replace the asterisk with whatever symbol or text you want to use.
+	
+*	Normally footnotes begin at 1 and count up towards infinity. If you want to use
+	numbered subscripts but need to reset the number they count from, use the `number`
+	attribute. For example, if you want the current subscript to be numbered 128, and
+	for subsequent subscripts to be numbered 129, 130, etc., use:
+	`[ref number="128"]...[/ref]`.
+	
 *   To create a footnote with a specific unique ID, instead of the one that the plugin
     will automatically generate for you, use `[ref name="..."]...[/ref]`
 

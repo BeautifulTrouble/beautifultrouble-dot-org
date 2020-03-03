@@ -3,7 +3,7 @@
 Plugin Name: Footnotes for WordPress
 Plugin URI: http://projects.radgeek.com/wp-footnotes.php
 Description: easy-to-use fancy footnotes for WordPress posts
-Version: 2010.0822
+Version: 2016.1230
 Author: Charles Johnson
 Author URI: http://radgeek.com/
 License: GPL
@@ -11,16 +11,20 @@ License: GPL
 
 /**
  * @package FootnotesForWordPress
- * @version 2010.0822
+ * @version 2016.1230
  */
-define('FFWP_VERSION', '2010.0822');
+define('FFWP_VERSION', '2016.1230');
 
 class FootnotesForWordPress {
 	var $accumulated;
-
-	function FootnotesForWordPress () { // constructor
+	private $note_number_base = 0;
+	private $note_number_base_at = 0;
+	private $discharge_the_content;
+	
+	public function __construct () { // constructor
 		$this->accumulated = array();
-
+		$this->discharge_the_content = true;
+		
 		$url = $this->plugin_url();
 		
 		// Pre-register scripts and styles
@@ -49,7 +53,7 @@ class FootnotesForWordPress {
 	} /* FootnotesForWordPress constructor */
 
 	var $plugin_path = NULL;
-	function plugin_url () {
+	public function plugin_url () {
 		if (is_null($this->plugin_path)) :
 			preg_match (
 				'|'.WP_PLUGIN_DIR.'/(.+)$|',
@@ -65,11 +69,13 @@ class FootnotesForWordPress {
 		endif;
 		return trailingslashit(WP_PLUGIN_URL.'/'.$this->plugin_path);
 	}
-	function add_scripts () {
+	
+	public function add_scripts () {
 		wp_enqueue_script('footnote-voodoo');
 		wp_enqueue_style('footnote-voodoo');
 	}
-	function add_inline_styles () {
+	
+	public function add_inline_styles () {
 	?>
 <style type="text/css">
 
@@ -91,12 +97,15 @@ class FootnotesForWordPress {
 	}
 
 	var $bullets = array();
-	function shortcode ($atts, $content = NULL, $code = '') {
+	public function shortcode ($atts, $content = NULL, $code = '') {
 		global $post;
 
 		// Get parameters
 		$atts = shortcode_atts( array(
 			"name" => NULL,
+			"group" => NULL,
+			"number" => NULL,
+			"superscript" => NULL,
 			'backlink-prefix' => 'to-',
 		), $atts );
 
@@ -105,53 +114,82 @@ class FootnotesForWordPress {
 			$this->bullets[$post->post_name] = array();
 		endif;
 		
-		$bullet = (count($this->bullets[$post->post_name]) + 1);
+		$numberOfNotes = (count($this->bullets[$post->post_name]) + 1);
+		
+		if (!is_null($atts['number'])) :
+			if (intval($atts['number']) > 0) :
+				$this->note_number_base = (intval($atts['number']) - 1);
+				$this->note_number_base_at = $numberOfNotes - 1;
+			endif;
+		endif;
+	
+		$bullet = $this->note_number_base + ($numberOfNotes - $this->note_number_base_at);
 		if (is_null($noteId) and !is_null($post)) :
 			$noteId = $post->post_name.'-n-'.$bullet;
 		endif;
-		$this->bullets[$post->post_name][$noteId] = $bullet;
+		
+		$bulletText = (is_null($atts['superscript']) ? $bullet : $atts['superscript']);
+		$this->bullets[$post->post_name][$noteId] = array(
+			"number" => $bullet,
+			"text" => $bulletText,
+		);
 		
 		// Allow any inside shortcodes to do their work.
-		$content = do_shortcode($content);
-		$note_marker = "<strong><sup>[$bullet]</sup></strong>";
+		$content = array( do_shortcode($content) );
+		$note_marker = "<strong><sup>[$bulletText]</sup></strong>";
 
-		$note = <<<EON
-<li class="footnote" id="$noteId">$note_marker $content <a class="note-return" href="#{$atts['backlink-prefix']}{$noteId}">&#x21A9;</a></li>
-EON;
-		$this->accumulated[] = $note;
+		$prefix = "<li class=\"footnote\" id=\"$noteId\">$note_marker";
+		$suffix = "<a class=\"note-return\" href=\"#{$atts['backlink-prefix']}{$noteId}\">&#x21A9;</a></li>";
 
-		return '<sup>[<a href="#'.$noteId.'" class="footnoted" id="'.$atts['backlink-prefix'].$noteId.'">'.$bullet.'</a>]</sup>';
+		// previously set.
+		if (isset($this->accumulated[$noteId])) :
+			$silent = true;
+			$content = array_merge(
+				$this->accumulated[$noteId][1],
+				$content
+			);
+		endif;
+		
+		// [prefix, content (array), suffix]
+		$this->accumulated[$noteId] = array($prefix, $content, $suffix);
+
+		return ($silent ? '' : '<sup>[<a href="#'.$noteId.'" class="footnoted" id="'.$atts['backlink-prefix'].$noteId.'">'.$bulletText.'</a>]</sup>');
 	} /* FootnotesForWordPress::shortcode */
 
-	function backref ($atts = array(), $content = NULL, $code = '') {
+	public function backref ($atts = array(), $content = NULL, $code = '') {
 		global $post;
 
 		// Get parameters
 		$atts = shortcode_atts( array(
 			"name" => NULL,
+			"group" => NULL,
+			"number" => NULL,
+			"superscript" => NULL,
 			'backlink-prefix' => 'to-',
 		), $atts );
 
 		$bullet = $this->bullets[$post->post_name][$atts['name']];
 
 		if (!is_null($atts['name'])) :
-			$ret = '<sup>[<a href="#'.$atts['name'].'" class="footnoted">'.$bullet.'</a>]</sup>';
+			$ret = '<sup>[<a href="#'.$atts['name'].'" class="footnoted">'.$bullet['text'].'</a>]</sup>';
 		else :
 			$ret = '';
 		endif;
 
 		return $ret;
-	}
-	function discharge ($atts = array(), $content = NULL, $code = '') {
+	} /* FootnotesForWordPress::backref */
+	
+	public function discharge ($atts = array(), $content = NULL, $code = '') {
 		// Get parameters
 		$atts = shortcode_atts ( array(
 			"class" => "footnotes",
+			"group" => NULL,
 		), $atts );
 
 		$notes = '';
 		if (count($this->accumulated) > 0) :
 			$notes = "<ol class=\"{$atts['class']}\">\n\t"
-				.implode("\n\t", $this->accumulated)
+				.implode("\n\t", array_map(array($this, 'implode_accumulated_line'), $this->accumulated))
 				."</ol>\n";
 			$this->accumulated = array();
 		endif;
@@ -159,13 +197,41 @@ EON;
 		return $notes;
 	} /* FootnotesForWordPress::discharge */
 
-	function the_content ($content) {
+	public function implode_accumulated_line ($line) {
+		return $line[0] . implode("\n", $line[1]) . $line[2];
+	} /* FootnotesForWordPress::implode_accumulated_line () */
+	
+	public function discharge_at_end_of_post ($value = NULL) {
+		$ret = null;
+		if (is_null($value)) :
+			$ret = $this->discharge_the_content;
+		else :
+			$this->discharge_the_content = $value;			
+		endif;
+		return $ret;
+	} /* FootnotesForWordPress::discharge_at_end_of_post () */
+	
+	public function the_content ($content) {
 		/* Discharge any remaining footnotes */
-		$content .= "\n".$this->discharge();
-
+		if ($this->discharge_at_end_of_post()) :
+			$content .= "\n".$this->discharge();
+		endif;
+		
 		return $content;
 	} /* FootnotesForWordPress::the_content() */
 } /* class FootnotesForWordPress */
 
-$footnotesForWordPress = new FootnotesForWordPress;
+function post_has_footnotes ($atts = array()) {
+	global $footnotesForWordPress;
+	return (count($footnotesForWordPress->accumulated) > 0);
+}
 
+function the_post_footnotes ($atts = array()) {
+	global $footnotesForWordPress;
+	
+	print $footnotesForWordPress->discharge($atts);
+} /* the_post_footnotes () */
+
+global $footnotesForWordPress; // Singleton object.
+
+$footnotesForWordPress = new FootnotesForWordPress;

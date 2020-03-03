@@ -355,7 +355,7 @@ class MR_Social_Sharing_Toolkit {
 						<p>
 							' . __('Check the boxes to display the button on Social Sharing Toolkit Follow widget. For each button you can select a separate style from the dropdown box. You can change the order of the buttons by dragging them to the desired location in the list.', 'mr_social_sharing_toolkit') . '
 							<br/><br/>
-							' . __('For each button you only have to enter your id or username of the network as it appears in the url of your profile page. You will need to enter the complete url for the RSS Feed (including the http:// part) if you wish to display this button.', 'mr_social_sharing_toolkit') . '
+							' . __('For each button you only have to enter your id or username of the network as it appears in the url of your profile page. You will need to enter the complete url for the RSS Feed (including the https:// part) if you wish to display this button.', 'mr_social_sharing_toolkit') . '
 							<br/>
 							<br/>
 							' . __('To add the widget to your website', 'mr_social_sharing_toolkit') . ' <a href="widgets.php">' . __('go to the widget configuration page', 'mr_social_sharing_toolkit') . '</a>.
@@ -695,7 +695,7 @@ class MR_Social_Sharing_Toolkit {
 			$description = $this->prepare_text($description);
 		}
 		if ($url == '') {
-			$url = 'http://' . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+			$url = 'https://' . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
 		}
 		$count_bookmarks = 0;
 		$bookmarks = '
@@ -954,17 +954,17 @@ class MR_Social_Sharing_Toolkit {
 	function linkify($content) {
 		if ($this -> options['mr_social_sharing_linkify_new'] == 1) {
 			if ($this -> options['mr_social_sharing_twitter_handles'] == 1) {
-				$content = preg_replace("/(^|\s)+(@([a-zA-Z0-9_-]{1,15}))(\.*[^|\n|\r|\t|\s|\<|\&]*)/i", "$1<a href=\"http://twitter.com/$3\" target=\"_BLANK\">$2</a>$4", $content);
+				$content = preg_replace("/(^|\s)+(@([a-zA-Z0-9_-]{1,15}))(\.*[^|\n|\r|\t|\s|\<|\&]*)/i", "$1<a href=\"https://twitter.com/$3\" target=\"_BLANK\">$2</a>$4", $content);
 			}
 			if ($this -> options['mr_social_sharing_twitter_hashtags'] == 1) {
-				$content = preg_replace("/(^|\s)+((?:(?<!&))#([a-zA-Z0-9]+^[-|;]))([^|\n|\r|\t|\s|\.|\<|\&]*)/i", "$1<a href=\"http://twitter.com/search/$3\" target=\"_BLANK\">$2</a>$4", $content);
+				$content = preg_replace("/(^|\s)+((?:(?<!&))#([a-zA-Z0-9]+^[-|;]))([^|\n|\r|\t|\s|\.|\<|\&]*)/i", "$1<a href=\"https://twitter.com/search/$3\" target=\"_BLANK\">$2</a>$4", $content);
 			}
 		} else {
 			if ($this -> options['mr_social_sharing_twitter_handles'] == 1) {
-				$content = preg_replace("/(^|\s)+(@([a-zA-Z0-9_-]{1,15}))(\.*[^|\n|\r|\t|\s|\<|\&]*)/i", "$1<a href=\"http://twitter.com/$3\">$2</a>$4", $content);
+				$content = preg_replace("/(^|\s)+(@([a-zA-Z0-9_-]{1,15}))(\.*[^|\n|\r|\t|\s|\<|\&]*)/i", "$1<a href=\"https://twitter.com/$3\">$2</a>$4", $content);
 			}
 			if ($this -> options['mr_social_sharing_twitter_hashtags'] == 1) {
-				$content = preg_replace("/(^|\s)+((?:(?<!&))#([a-zA-Z0-9]+^[-|;]))([^|\n|\r|\t|\s|\.|\<|\&]*)/i", "$1<a href=\"http://twitter.com/search/$3\">$2</a>$4", $content);
+				$content = preg_replace("/(^|\s)+((?:(?<!&))#([a-zA-Z0-9]+^[-|;]))([^|\n|\r|\t|\s|\.|\<|\&]*)/i", "$1<a href=\"https://twitter.com/search/$3\">$2</a>$4", $content);
 			}
 		}
 		return $content;
