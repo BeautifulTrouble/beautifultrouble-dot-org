@@ -94,6 +94,7 @@
             <a href="https://beautifulrising.org" target="_blank">beautifulrising.org</a>
         </div>
     </div>
+    <?php if ( !is_page_template('page-blank.php') ) { ?>
     <div class="container">
     <div class="row">
         <div class="span8"><a href="/" title="Beautiful Trouble front page"><h1 class="logo">Beautiful Trouble</h1></a></div>
@@ -112,3 +113,4 @@
         </div>
     </div>
     </div>
+    <?php } ?>
