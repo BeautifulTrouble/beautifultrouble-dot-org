@@ -13,12 +13,6 @@ get_header(); ?>
    <div class="container">
 
       
- <!-- Masthead
-      ================================================== -->
-      <header class="jumbotron subhead" style="text-align:center;" id="overview">
-        <h1><?php the_title();?></h1>
-      </header>
-			
 				<div class="content">
 				  <?php the_content();?>
 				<?php endwhile; // end of the loop. ?>
