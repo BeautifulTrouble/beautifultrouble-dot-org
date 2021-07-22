@@ -89,9 +89,9 @@
     </div>
     <div class="new-site-notice">
         <div>
-            <span>New website coming soon!</span>
-            In the meantime, check out the latest version of our toolkit at 
-            <a href="https://beautifulrising.org" target="_blank">beautifulrising.org</a>
+            <span>We have a new website!</span>
+            Check out the latest version of our toolkit at 
+            <a href="https://beautifultrouble.org/toolbox" target="_blank">beautifultrouble.org/toolbox</a>
         </div>
     </div>
     <?php if ( !is_page_template('page-blank.php') ) { ?>

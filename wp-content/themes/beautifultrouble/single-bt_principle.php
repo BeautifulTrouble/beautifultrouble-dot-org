@@ -11,6 +11,9 @@
  * @since WP-Bootstrap 0.1
  */
 
+preg_match("/[^\/]+$/", $wp->request, $slug);
+echo '<meta http-equiv="refresh" content="0;url=https://beautifultrouble.org/tool/' . $slug[0] . '" />';
+
 get_header(); ?>
 <?php $fields = get_fields(); ?>
 <?php if( $fields['repeating_elements'] ) {
